@@ -1,0 +1,45 @@
+name: 自动更新进度看板
+
+# 任何人 push（含网页上传文件）后自动重算看板。
+# 忽略看板自身与脚本/数据的变更，避免机器人提交触发死循环。
+on:
+  push:
+    branches: [main]
+    paths-ignore:
+      - '进度看板.md'
+      - '.github/workflows/**'
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+concurrency:
+  group: update-dashboard
+  cancel-in-progress: true
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 检出仓库
+        uses: actions/checkout@v4
+
+      - name: 安装 Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      - name: 重新生成看板
+        run: python scripts/update_dashboard.py
+
+      - name: 有变化则提交
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add 进度看板.md
+          if git diff --staged --quiet; then
+            echo "看板无变化，跳过提交。"
+          else
+            git commit -m "🤖 自动更新进度看板"
+            git push
+          fi
