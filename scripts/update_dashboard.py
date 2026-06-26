@@ -104,8 +104,27 @@ def analyze(pos_dir: Path):
 def status_badge(max_r, got):
     if max_r == 0:
         return "🟥 待出题"
-    # 若最大轮的待审题表已传但还没出审核结果，视为进行中
+    if max_r <= 2:
+        return "🟨 进行至一二轮"
     return f"🟨 进行至第{max_r}轮"
+
+
+def display_slots(got, files, grp_max):
+    """把内部轮次合并成展示槽位：第1、2轮 → 「一二轮」，第3轮起单列。
+    返回 [(label, got_set, files_map), ...]
+    """
+    slots = []
+    # 一二轮：合并 round 1 与 2
+    g12 = set(got.get(1, set())) | set(got.get(2, set()))
+    f12 = {}
+    for rd in (1, 2):
+        for col, names in files.get(rd, {}).items():
+            f12.setdefault(col, []).extend(names)
+    slots.append(("一二轮", g12, f12))
+    # 第3轮及以后
+    for rd in range(3, max(grp_max, 2) + 1):
+        slots.append((f"第{rd}轮", set(got.get(rd, set())), files.get(rd, {})))
+    return slots
 
 
 HTML_HEAD = """<!DOCTYPE html>
@@ -195,23 +214,24 @@ def build_html(rows, order, total, n_todo, n_doing):
               (r.get("子行业", "") or "（无子行业）") == sub]
         P.append(f'<h2>{_html.escape(ind)} / {_html.escape(sub)}</h2>')
         grp_max = max((r["_max"] for r in rs), default=0)
-        show_rounds = max(grp_max, 1)
+        slot_labels = [s[0] for s in display_slots({}, {}, grp_max)]
         head = '<table><tr><th style="text-align:left">岗位</th><th>分工</th><th>状态</th>'
-        for rd in range(1, show_rounds + 1):
-            head += f'<th>第{rd}轮</th>'
+        for lab in slot_labels:
+            head += f'<th>{lab}</th>'
         head += '</tr>'
         P.append(head)
         for r in rs:
             if r["_max"] == 0:
                 badge = '<span class="badge b-todo">待出题</span>'
+            elif r["_max"] <= 2:
+                badge = '<span class="badge b-doing">进行至一二轮</span>'
             else:
                 badge = f'<span class="badge b-doing">进行至第{r["_max"]}轮</span>'
             row = (f'<tr><td class="pos">{_html.escape(r.get("岗位名称",""))}</td>'
                    f'<td class="who">{_html.escape(r.get("分工","") or "—")}</td>'
                    f'<td>{badge}</td>')
-            for rd in range(1, show_rounds + 1):
-                row += '<td>' + render_cell(r["_got"].get(rd, set()),
-                                            r["_files"].get(rd, {})) + '</td>'
+            for lab, gset, fmap in display_slots(r["_got"], r["_files"], grp_max):
+                row += '<td>' + render_cell(gset, fmap) + '</td>'
             row += '</tr>'
             P.append(row)
         P.append('</table>')
@@ -267,19 +287,18 @@ def main():
         L.append(f"### {ind} / {sub}")
         L.append("")
         grp_max = max((r["_max"] for r in rs), default=0)
-        show_rounds = max(grp_max, 1)
+        slot_labels = [s[0] for s in display_slots({}, {}, grp_max)]
         head = "| 岗位 | 分工 | 状态 |"
         sep = "|---|---|---|"
-        for rd in range(1, show_rounds + 1):
-            head += f" 第{rd}轮 |"
+        for lab in slot_labels:
+            head += f" {lab} |"
             sep += ":-:|"
         L.append(head)
         L.append(sep)
         for r in rs:
             line = f"| {r.get('岗位名称','')} | {r.get('分工','') or '—'} | {status_badge(r['_max'], r['_got'])} |"
-            for rd in range(1, show_rounds + 1):
-                got = r["_got"].get(rd, set())
-                line += f" {dots(got) if got else '—'} |"
+            for lab, gset, fmap in display_slots(r["_got"], r["_files"], grp_max):
+                line += f" {dots(gset) if gset else '—'} |"
             L.append(line)
         L.append("")
 
