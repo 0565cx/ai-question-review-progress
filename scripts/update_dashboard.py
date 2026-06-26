@@ -78,33 +78,27 @@ def load_positions():
 
 
 def analyze(pos_dir: Path):
-    """返回 {round: set(已就绪的列)} 与最大轮次。"""
-    got = {}  # round -> set(col)
+    """返回 (got, files, max_r)。
+    got:   {round: set(已就绪的列)}
+    files: {round: {列: [文件名,...]}}
+    """
+    got = {}
+    files = {}
 
-    待 = list_files(pos_dir / FOLDERS["待审题"])
-    保 = list_files(pos_dir / FOLDERS["保留"])
-    题 = list_files(pos_dir / FOLDERS["重出题"])
-    答 = list_files(pos_dir / FOLDERS["重出答案"])
-    板 = list_files(pos_dir / FOLDERS["看板"])
+    def add(col, names):
+        for n in names:
+            r = round_of(n) or 1
+            got.setdefault(r, set()).add(col)
+            files.setdefault(r, {}).setdefault(col, []).append(n)
 
-    for n in 待:
-        r = round_of(n) or 1
-        got.setdefault(r, set()).add("待审题表")
-    for n in 保:
-        r = round_of(n) or 1
-        got.setdefault(r, set()).add("保留题目")
-    for n in 题:
-        r = round_of(n) or 1
-        got.setdefault(r, set()).add("需重出题")
-    for n in 答:
-        r = round_of(n) or 1
-        got.setdefault(r, set()).add("需重出答案")
-    for n in 板:
-        r = round_of(n) or 1
-        got.setdefault(r, set()).add("审核看板")
+    add("待审题表", list_files(pos_dir / FOLDERS["待审题"]))
+    add("保留题目", list_files(pos_dir / FOLDERS["保留"]))
+    add("需重出题", list_files(pos_dir / FOLDERS["重出题"]))
+    add("需重出答案", list_files(pos_dir / FOLDERS["重出答案"]))
+    add("审核看板", list_files(pos_dir / FOLDERS["看板"]))
 
     max_r = max(got.keys(), default=0)
-    return got, max_r
+    return got, files, max_r
 
 
 def status_badge(max_r, got):
@@ -114,11 +108,127 @@ def status_badge(max_r, got):
     return f"🟨 进行至第{max_r}轮"
 
 
+HTML_HEAD = """<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>8月迭代 · 各岗位审题进度看板</title>
+<style>
+:root{--g:#2ea043;--gray:#e6e8eb;--txt:#1f2328;--mut:#656d76;--bd:#d0d7de;--bg:#f6f8fa}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,"PingFang SC","Microsoft YaHei",Segoe UI,sans-serif;color:var(--txt);background:#fff;padding:20px}
+h1{font-size:22px;margin:0 0 4px}
+.sub{color:var(--mut);font-size:13px;margin-bottom:16px}
+.stats{display:flex;gap:18px;flex-wrap:wrap;margin:14px 0 20px;font-size:14px}
+.stats b{font-size:20px}
+.legend{background:var(--bg);border:1px solid var(--bd);border-radius:8px;padding:10px 14px;font-size:13px;margin-bottom:22px;line-height:1.9}
+.legend .cell{display:inline-flex;vertical-align:middle;margin:0 6px}
+h2{font-size:16px;margin:26px 0 10px;padding-bottom:6px;border-bottom:2px solid var(--bg)}
+table{border-collapse:collapse;width:100%;margin-bottom:8px;font-size:13px}
+th,td{border:1px solid var(--bd);padding:7px 9px;text-align:center;white-space:nowrap}
+th{background:var(--bg);font-weight:600;position:sticky;top:0}
+td.pos{text-align:left;font-weight:600}
+td.who{color:var(--mut)}
+.badge{display:inline-block;padding:2px 9px;border-radius:20px;font-size:12px;white-space:nowrap}
+.b-todo{background:#ffeef0;color:#cf222e}
+.b-doing{background:#fff8c5;color:#9a6700}
+.cell{display:inline-flex;gap:3px}
+.dot{width:13px;height:13px;border-radius:3px;background:var(--gray);cursor:default;display:inline-block}
+.dot.on{background:var(--g)}
+.empty{color:#afb8c1}
+.tip{position:relative}
+.tip:hover::after{content:attr(data-tip);position:absolute;left:50%;bottom:130%;transform:translateX(-50%);
+ background:#1f2328;color:#fff;padding:7px 10px;border-radius:6px;font-size:12px;white-space:pre-line;
+ z-index:9;min-width:160px;max-width:320px;text-align:left;box-shadow:0 4px 14px rgba(0,0,0,.18)}
+.foot{color:var(--mut);font-size:12px;margin-top:24px;border-top:1px solid var(--bg);padding-top:12px}
+</style>
+</head>
+<body>
+"""
+
+
+def build_html(rows, order, total, n_todo, n_doing):
+    import html as _html
+    COLS_ABBR = ["待审题表", "保留题目", "需重出题", "需重出答案", "审核看板"]
+    P = []
+    P.append(HTML_HEAD)
+    P.append('<h1>8月迭代 · 各岗位审题进度看板</h1>')
+    P.append('<div class="sub">🤖 由 GitHub Actions 自动生成 · 把文件传到岗位对应文件夹后自动刷新</div>')
+
+    P.append('<div class="stats">'
+             f'<span>岗位总数 <b>{total}</b></span>'
+             f'<span>🟥 未开始 <b>{n_todo}</b></span>'
+             f'<span>🟨 进行中 <b>{n_doing}</b></span>'
+             '</div>')
+
+    # 图例
+    P.append('<div class="legend">'
+             '<b>每一轮的格子由 5 个小方块组成，从左到右依次是：</b><br>'
+             '① 待审题表　② 保留题目　③ 需重出题　④ 需重出答案　⑤ 审核看板<br>'
+             '<span class="cell">'
+             '<span class="dot on"></span><span class="dot"></span>'
+             '<span class="dot on"></span><span class="dot"></span>'
+             '<span class="dot on"></span></span>'
+             '　绿色 = 已上传，灰色 = 待上传　·　鼠标悬停格子可看具体文件名'
+             '</div>')
+
+    def render_cell(got_set, files_map):
+        """一轮 → 5个方块的 HTML，带悬停文件名。"""
+        if not got_set:
+            return '<span class="empty">—</span>'
+        blocks = ""
+        tips = []
+        for c in COLS_ABBR:
+            on = c in got_set
+            blocks += f'<span class="dot{" on" if on else ""}"></span>'
+            if on:
+                fs = files_map.get(c, [])
+                tips.append(f"✅ {c}：\n" + "\n".join("· " + _html.escape(x) for x in fs))
+            else:
+                tips.append(f"○ {c}：待上传")
+        tip = _html.escape("\n".join(tips)).replace("&#x27;", "'")
+        return f'<span class="cell tip" data-tip="{tip}">{blocks}</span>'
+
+    for ind, sub in order:
+        rs = [r for r in rows if r.get("行业", "") == ind and
+              (r.get("子行业", "") or "（无子行业）") == sub]
+        P.append(f'<h2>{_html.escape(ind)} / {_html.escape(sub)}</h2>')
+        grp_max = max((r["_max"] for r in rs), default=0)
+        show_rounds = max(grp_max, 1)
+        head = '<table><tr><th style="text-align:left">岗位</th><th>分工</th><th>状态</th>'
+        for rd in range(1, show_rounds + 1):
+            head += f'<th>第{rd}轮</th>'
+        head += '</tr>'
+        P.append(head)
+        for r in rs:
+            if r["_max"] == 0:
+                badge = '<span class="badge b-todo">待出题</span>'
+            else:
+                badge = f'<span class="badge b-doing">进行至第{r["_max"]}轮</span>'
+            row = (f'<tr><td class="pos">{_html.escape(r.get("岗位名称",""))}</td>'
+                   f'<td class="who">{_html.escape(r.get("分工","") or "—")}</td>'
+                   f'<td>{badge}</td>')
+            for rd in range(1, show_rounds + 1):
+                row += '<td>' + render_cell(r["_got"].get(rd, set()),
+                                            r["_files"].get(rd, {})) + '</td>'
+            row += '</tr>'
+            P.append(row)
+        P.append('</table>')
+
+    import datetime as _dt
+    ts = _dt.datetime.utcnow().strftime("%Y-%m-%d %H:%M UTC")
+    P.append(f'<div class="foot">最后更新：{ts}　·　数据来源：仓库各岗位文件夹</div>')
+    P.append('</body></html>')
+    (ROOT / "index.html").write_text("\n".join(P), encoding="utf-8")
+
+
 def main():
     rows = load_positions()
     for r in rows:
-        got, max_r = analyze(ROOT / r["path"])
+        got, files, max_r = analyze(ROOT / r["path"])
         r["_got"] = got
+        r["_files"] = files
         r["_max"] = max_r
 
     total = len(rows)
@@ -187,6 +297,9 @@ def main():
 
     (ROOT / "进度看板.md").write_text("\n".join(L) + "\n", encoding="utf-8")
     print(f"已生成进度看板.md（{total} 个岗位）")
+
+    build_html(rows, order, total, n_todo, n_doing)
+    print("已生成 index.html")
 
 
 if __name__ == "__main__":

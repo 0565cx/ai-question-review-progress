@@ -7,6 +7,7 @@ on:
     branches: [main]
     paths-ignore:
       - '进度看板.md'
+      - 'index.html'
       - '.github/workflows/**'
   workflow_dispatch: {}
 
@@ -36,7 +37,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add 进度看板.md
+          git add 进度看板.md index.html
           if git diff --staged --quiet; then
             echo "看板无变化，跳过提交。"
           else
