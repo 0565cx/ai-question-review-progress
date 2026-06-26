@@ -129,7 +129,10 @@ def main():
     L.append("# 8月迭代 · 各岗位审题进度看板")
     L.append("")
     L.append("> 🤖 本看板由 GitHub Actions **自动生成**：把文件传到岗位对应的类型文件夹后，进度自动刷新，无需手动改。")
-    L.append("> 每一轮审核需上传 5 类文件：**待审题表 / 保留题目 / 需重出题 / 需重出答案 / 审核看板**；已上传打 ✅，未传留空。")
+    L.append("")
+    L.append("**每个圆点格代表一轮审核应交的 5 份文件，顺序固定：**")
+    L.append("")
+    L.append("> ① 待审题表　② 保留题目　③ 需重出题　④ 需重出答案　⑤ 审核看板　——　● = 已上传，○ = 待上传")
     L.append("")
     L.append("## 总览")
     L.append("")
@@ -143,31 +146,30 @@ def main():
         if k not in order:
             order.append(k)
 
-    L.append("## 进度明细（按子行业分组，逐轮打勾）")
+    def dots(got_set):
+        return "".join("●" if c in got_set else "○" for c in COLS)
+
+    L.append("## 进度明细（按子行业分组）")
     L.append("")
     for ind, sub in order:
         rs = [r for r in rows if r.get("行业", "") == ind and
               (r.get("子行业", "") or "（无子行业）") == sub]
         L.append(f"### {ind} / {sub}")
         L.append("")
-        # 该组里最大轮次，决定展开几轮
         grp_max = max((r["_max"] for r in rs), default=0)
         show_rounds = max(grp_max, 1)
-        # 表头：每轮 5 列
-        head = "| 岗位类型 | 岗位名称 | 分工 | 状态 |"
-        sep = "|---|---|---|---|"
+        head = "| 岗位 | 分工 | 状态 |"
+        sep = "|---|---|---|"
         for rd in range(1, show_rounds + 1):
-            for c in COLS:
-                head += f" 第{rd}轮·{c} |"
-                sep += ":-:|"
+            head += f" 第{rd}轮 |"
+            sep += ":-:|"
         L.append(head)
         L.append(sep)
         for r in rs:
-            line = f"| {r.get('岗位类型','')} | {r.get('岗位名称','')} | {r.get('分工','') or '—'} | {status_badge(r['_max'], r['_got'])} |"
+            line = f"| {r.get('岗位名称','')} | {r.get('分工','') or '—'} | {status_badge(r['_max'], r['_got'])} |"
             for rd in range(1, show_rounds + 1):
                 got = r["_got"].get(rd, set())
-                for c in COLS:
-                    line += f" {'✅' if c in got else ''} |"
+                line += f" {dots(got) if got else '—'} |"
             L.append(line)
         L.append("")
 
