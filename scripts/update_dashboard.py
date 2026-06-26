@@ -26,6 +26,15 @@ FOLDERS = {
     "重出题": "3_需重新出题",
     "重出答案": "4_需重新出答案",
     "看板": "5_审核结果看板",
+    "汇总": "6_汇总",
+}
+# 语言问题审核的 4 个子文件夹（顺序即流程）
+LANG_SUB = ["待语言问题审核", "一审结果", "待重出", "重出结果"]
+LANG_DIRS = {
+    "待语言问题审核": "7_语言问题审核/1_待语言问题审核",
+    "一审结果": "7_语言问题审核/2_一审结果",
+    "待重出": "7_语言问题审核/3_待重出",
+    "重出结果": "7_语言问题审核/4_重出结果",
 }
 # 看板每轮展示的 5 个勾列
 COLS = ["待审题表", "保留题目", "需重出题", "需重出答案", "审核看板"]
@@ -78,9 +87,10 @@ def load_positions():
 
 
 def analyze(pos_dir: Path):
-    """返回 (got, files, max_r)。
+    """返回 (got, files, max_r, extra)。
     got:   {round: set(已就绪的列)}
     files: {round: {列: [文件名,...]}}
+    extra: {"汇总": [文件], "语言": {子项: [文件]}}
     """
     got = {}
     files = {}
@@ -97,8 +107,11 @@ def analyze(pos_dir: Path):
     add("需重出答案", list_files(pos_dir / FOLDERS["重出答案"]))
     add("审核看板", list_files(pos_dir / FOLDERS["看板"]))
 
+    extra = {"汇总": list_files(pos_dir / FOLDERS["汇总"]),
+             "语言": {k: list_files(pos_dir / v) for k, v in LANG_DIRS.items()}}
+
     max_r = max(got.keys(), default=0)
-    return got, files, max_r
+    return got, files, max_r, extra
 
 
 def status_badge(max_r, got):
@@ -190,7 +203,9 @@ def build_html(rows, order, total, n_todo, n_doing):
              '<span class="dot on"></span><span class="dot"></span>'
              '<span class="dot on"></span><span class="dot"></span>'
              '<span class="dot on"></span></span>'
-             '　绿色 = 已上传，灰色 = 待上传　·　鼠标悬停格子可看具体文件名'
+             '　绿色 = 已上传，灰色 = 待上传　·　鼠标悬停格子可看具体文件名<br>'
+             '<b>汇总</b>：全部轮次完成后最终保留的题目　·　'
+             '<b>语言审核</b>（4格）：① 待语言问题审核　② 一审结果　③ 待重出　④ 重出结果'
              '</div>')
 
     def render_cell(got_set, files_map):
@@ -210,6 +225,32 @@ def build_html(rows, order, total, n_todo, n_doing):
         tip = _html.escape("\n".join(tips)).replace("&#x27;", "'")
         return f'<span class="cell tip" data-tip="{tip}">{blocks}</span>'
 
+    def render_single(names, label):
+        """单文件夹（如汇总）→ 1个方块。"""
+        on = bool(names)
+        tip = (f"✅ {label}：\n" + "\n".join("· " + _html.escape(x) for x in names)) if on \
+            else f"○ {label}：待上传"
+        tip = _html.escape(tip).replace("&#x27;", "'")
+        return (f'<span class="cell tip" data-tip="{tip}">'
+                f'<span class="dot{" on" if on else ""}"></span></span>')
+
+    def render_lang(lang_map):
+        """语言审核 → 4个方块（待审/一审结果/待重出/重出结果）。"""
+        if not any(lang_map.values()):
+            return '<span class="empty">—</span>'
+        blocks = ""
+        tips = []
+        for k in LANG_SUB:
+            fs = lang_map.get(k, [])
+            on = bool(fs)
+            blocks += f'<span class="dot{" on" if on else ""}"></span>'
+            if on:
+                tips.append(f"✅ {k}：\n" + "\n".join("· " + _html.escape(x) for x in fs))
+            else:
+                tips.append(f"○ {k}：待上传")
+        tip = _html.escape("\n".join(tips)).replace("&#x27;", "'")
+        return f'<span class="cell tip" data-tip="{tip}">{blocks}</span>'
+
     # 单张大表：全局最大轮次对齐，行业/子行业作为左侧列
     global_max = max((r["_max"] for r in rows), default=2)
     slot_labels = [s[0] for s in display_slots({}, {}, global_max)]
@@ -218,7 +259,7 @@ def build_html(rows, order, total, n_todo, n_doing):
             '<th style="text-align:left">岗位</th><th>分工</th><th>状态</th>')
     for lab in slot_labels:
         head += f'<th>{lab}</th>'
-    head += '</tr>'
+    head += '<th>汇总</th><th>语言审核</th></tr>'
     P.append(head)
 
     # 计算每个 (行业,子行业) 的行数，用于 rowspan 合并
@@ -241,6 +282,8 @@ def build_html(rows, order, total, n_todo, n_doing):
                     f'<td>{badge}</td>')
             for lab, gset, fmap in display_slots(r["_got"], r["_files"], global_max):
                 row += '<td>' + render_cell(gset, fmap) + '</td>'
+            row += '<td>' + render_single(r["_extra"]["汇总"], "汇总题目") + '</td>'
+            row += '<td>' + render_lang(r["_extra"]["语言"]) + '</td>'
             row += '</tr>'
             P.append(row)
     P.append('</table>')
@@ -255,10 +298,11 @@ def build_html(rows, order, total, n_todo, n_doing):
 def main():
     rows = load_positions()
     for r in rows:
-        got, files, max_r = analyze(ROOT / r["path"])
+        got, files, max_r, extra = analyze(ROOT / r["path"])
         r["_got"] = got
         r["_files"] = files
         r["_max"] = max_r
+        r["_extra"] = extra
 
     total = len(rows)
     n_todo = sum(1 for r in rows if r["_max"] == 0)
@@ -272,6 +316,8 @@ def main():
     L.append("**每个圆点格代表一轮审核应交的 5 份文件，顺序固定：**")
     L.append("")
     L.append("> ① 待审题表　② 保留题目　③ 需重出题　④ 需重出答案　⑤ 审核看板　——　● = 已上传，○ = 待上传")
+    L.append("")
+    L.append("> **汇总**：全部轮次完成后最终保留的题目（● = 已传）。**语言审核**：4 个环节顺序为 ① 待语言问题审核　② 一审结果　③ 待重出　④ 重出结果。")
     L.append("")
     L.append("## 总览")
     L.append("")
@@ -288,6 +334,11 @@ def main():
     def dots(got_set):
         return "".join("●" if c in got_set else "○" for c in COLS)
 
+    def lang_dots(lang_map):
+        if not any(lang_map.values()):
+            return "—"
+        return "".join("●" if lang_map.get(k) else "○" for k in LANG_SUB)
+
     L.append("## 进度明细")
     L.append("")
     global_max = max((r["_max"] for r in rows), default=2)
@@ -297,6 +348,8 @@ def main():
     for lab in slot_labels:
         head += f" {lab} |"
         sep += ":-:|"
+    head += " 汇总 | 语言审核 |"
+    sep += ":-:|:-:|"
     L.append(head)
     L.append(sep)
     for ind, sub in order:
@@ -310,6 +363,7 @@ def main():
                     f"{r.get('分工','') or '—'} | {status_badge(r['_max'], r['_got'])} |")
             for lab, gset, fmap in display_slots(r["_got"], r["_files"], global_max):
                 line += f" {dots(gset) if gset else '—'} |"
+            line += f" {'●' if r['_extra']['汇总'] else '○'} | {lang_dots(r['_extra']['语言'])} |"
             L.append(line)
     L.append("")
 
@@ -323,6 +377,11 @@ def main():
     L.append("| `3_需重新出题` | 各轮审核后需要重新出题的清单 |")
     L.append("| `4_需重新出答案` | 各轮审核后需要重新出答案的清单 |")
     L.append("| `5_审核结果看板` | 各轮审核后生成的看板 |")
+    L.append("| `6_汇总` | 全部轮次审核完成后最终保留的所有题目 |")
+    L.append("| `7_语言问题审核/1_待语言问题审核` | 待语言问题审核的题目 |")
+    L.append("| `7_语言问题审核/2_一审结果` | 语言问题一审结果 |")
+    L.append("| `7_语言问题审核/3_待重出` | 语言问题待重出清单 |")
+    L.append("| `7_语言问题审核/4_重出结果` | 语言问题重出结果 |")
     L.append("")
 
     (ROOT / "进度看板.md").write_text("\n".join(L) + "\n", encoding="utf-8")
