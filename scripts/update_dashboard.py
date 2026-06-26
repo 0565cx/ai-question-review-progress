@@ -149,6 +149,7 @@ th,td{border:1px solid var(--bd);padding:7px 9px;text-align:center;white-space:n
 th{background:var(--bg);font-weight:600;position:sticky;top:0}
 td.pos{text-align:left;font-weight:600}
 td.who{color:var(--mut)}
+td.grp{text-align:left;vertical-align:middle;background:#fbfcfd;font-weight:600;color:#444}
 .badge{display:inline-block;padding:2px 9px;border-radius:20px;font-size:12px;white-space:nowrap}
 .b-todo{background:#ffeef0;color:#cf222e}
 .b-doing{background:#fff8c5;color:#9a6700}
@@ -209,32 +210,40 @@ def build_html(rows, order, total, n_todo, n_doing):
         tip = _html.escape("\n".join(tips)).replace("&#x27;", "'")
         return f'<span class="cell tip" data-tip="{tip}">{blocks}</span>'
 
+    # 单张大表：全局最大轮次对齐，行业/子行业作为左侧列
+    global_max = max((r["_max"] for r in rows), default=2)
+    slot_labels = [s[0] for s in display_slots({}, {}, global_max)]
+    head = ('<table><tr><th style="text-align:left">行业</th>'
+            '<th style="text-align:left">子行业</th>'
+            '<th style="text-align:left">岗位</th><th>分工</th><th>状态</th>')
+    for lab in slot_labels:
+        head += f'<th>{lab}</th>'
+    head += '</tr>'
+    P.append(head)
+
+    # 计算每个 (行业,子行业) 的行数，用于 rowspan 合并
     for ind, sub in order:
         rs = [r for r in rows if r.get("行业", "") == ind and
               (r.get("子行业", "") or "（无子行业）") == sub]
-        P.append(f'<h2>{_html.escape(ind)} / {_html.escape(sub)}</h2>')
-        grp_max = max((r["_max"] for r in rs), default=0)
-        slot_labels = [s[0] for s in display_slots({}, {}, grp_max)]
-        head = '<table><tr><th style="text-align:left">岗位</th><th>分工</th><th>状态</th>'
-        for lab in slot_labels:
-            head += f'<th>{lab}</th>'
-        head += '</tr>'
-        P.append(head)
-        for r in rs:
+        for i, r in enumerate(rs):
             if r["_max"] == 0:
                 badge = '<span class="badge b-todo">待出题</span>'
             elif r["_max"] <= 2:
                 badge = '<span class="badge b-doing">进行至一二轮</span>'
             else:
                 badge = f'<span class="badge b-doing">进行至第{r["_max"]}轮</span>'
-            row = (f'<tr><td class="pos">{_html.escape(r.get("岗位名称",""))}</td>'
-                   f'<td class="who">{_html.escape(r.get("分工","") or "—")}</td>'
-                   f'<td>{badge}</td>')
-            for lab, gset, fmap in display_slots(r["_got"], r["_files"], grp_max):
+            row = "<tr>"
+            if i == 0:
+                row += f'<td class="grp" rowspan="{len(rs)}">{_html.escape(ind)}</td>'
+                row += f'<td class="grp" rowspan="{len(rs)}">{_html.escape(sub)}</td>'
+            row += (f'<td class="pos">{_html.escape(r.get("岗位名称",""))}</td>'
+                    f'<td class="who">{_html.escape(r.get("分工","") or "—")}</td>'
+                    f'<td>{badge}</td>')
+            for lab, gset, fmap in display_slots(r["_got"], r["_files"], global_max):
                 row += '<td>' + render_cell(gset, fmap) + '</td>'
             row += '</tr>'
             P.append(row)
-        P.append('</table>')
+    P.append('</table>')
 
     import datetime as _dt
     ts = _dt.datetime.utcnow().strftime("%Y-%m-%d %H:%M UTC")
@@ -279,28 +288,30 @@ def main():
     def dots(got_set):
         return "".join("●" if c in got_set else "○" for c in COLS)
 
-    L.append("## 进度明细（按子行业分组）")
+    L.append("## 进度明细")
     L.append("")
+    global_max = max((r["_max"] for r in rows), default=2)
+    slot_labels = [s[0] for s in display_slots({}, {}, global_max)]
+    head = "| 行业 | 子行业 | 岗位 | 分工 | 状态 |"
+    sep = "|---|---|---|---|---|"
+    for lab in slot_labels:
+        head += f" {lab} |"
+        sep += ":-:|"
+    L.append(head)
+    L.append(sep)
     for ind, sub in order:
         rs = [r for r in rows if r.get("行业", "") == ind and
               (r.get("子行业", "") or "（无子行业）") == sub]
-        L.append(f"### {ind} / {sub}")
-        L.append("")
-        grp_max = max((r["_max"] for r in rs), default=0)
-        slot_labels = [s[0] for s in display_slots({}, {}, grp_max)]
-        head = "| 岗位 | 分工 | 状态 |"
-        sep = "|---|---|---|"
-        for lab in slot_labels:
-            head += f" {lab} |"
-            sep += ":-:|"
-        L.append(head)
-        L.append(sep)
-        for r in rs:
-            line = f"| {r.get('岗位名称','')} | {r.get('分工','') or '—'} | {status_badge(r['_max'], r['_got'])} |"
-            for lab, gset, fmap in display_slots(r["_got"], r["_files"], grp_max):
+        for i, r in enumerate(rs):
+            # 同组只在首行显示行业/子行业，其余留空，视觉上对齐成块
+            c_ind = ind if i == 0 else ""
+            c_sub = sub if i == 0 else ""
+            line = (f"| {c_ind} | {c_sub} | {r.get('岗位名称','')} | "
+                    f"{r.get('分工','') or '—'} | {status_badge(r['_max'], r['_got'])} |")
+            for lab, gset, fmap in display_slots(r["_got"], r["_files"], global_max):
                 line += f" {dots(gset) if gset else '—'} |"
             L.append(line)
-        L.append("")
+    L.append("")
 
     L.append("---")
     L.append("## 文件夹说明")
