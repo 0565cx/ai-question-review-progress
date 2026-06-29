@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Round 3 Dashboard</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; margin: 24px; color: #1f2937; }
+    h1, h2, h3 { margin: 10px 0 12px; }
+    .cards { display: grid; grid-template-columns: repeat(3, minmax(140px, 220px)); gap: 12px; margin: 8px 0 18px; }
+    .card { border: 1px solid #e5e7eb; border-radius: 10px; padding: 12px; background: #fafafa; }
+    .card .k { font-size: 12px; color: #6b7280; }
+    .card .v { font-size: 24px; font-weight: 700; margin-top: 4px; }
+    table { border-collapse: collapse; width: 100%; margin: 8px 0 18px; }
+    th, td { border: 1px solid #e5e7eb; padding: 8px 10px; vertical-align: middle; }
+    th { background: #f9fafb; }
+    .legend span { margin-right: 12px; font-size: 13px; color: #374151; }
+    .mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; }
+    .ex { margin: 6px 0; color: #374151; }
+    .section-divider { border: 0; border-top: 2px solid #eef2f7; margin: 22px 0; }
+  </style>
+</head>
+<body>
+  <h1>Round 3 审核看板</h1>
+
+  <div class="cards">
+    <div class="card"><div class="k">A类错误</div><div class="v">6</div></div>
+    <div class="card"><div class="k">B类错误</div><div class="v">122</div></div>
+    <div class="card"><div class="k">C类错误</div><div class="v">33</div></div>
+  </div>
+
+  <h2>本轮题目主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">本轮（三轮）共复审二轮待回流的 422 题，两模型并集最终仍判删 136 题，其中题干侧问题已明显收敛：A 类仅 6 题，全部为 A1；C 类 33 题里 C2 重复题 30 题、C1 原题重复 3 题。也就是说，三轮剩余的题干问题不再是大面积知识性失真，而是两类更集中的尾部问题：一是个别题干仍存在术语或逻辑矛盾，如把“超差”与“仍在图纸公差范围内”并置；二是重复题仍集中出现在 IATF16949/PPAP/SPC/控制计划等高频知识点上，虽然场景换了零部件或工序，但候选人的核心作答路径几乎不变。总体看，三轮对题干质量的清洗已经接近尾声，后续若继续出题，重点不在大改题型，而在术语自检和去重机制前移。</div>
+<h2>本轮答案主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">本轮删除仍然以答案问题为主：B 类 122 次，其中 B1 87 次、B3 34 次、B2 1 次。B1 依旧是最高发项，集中表现为标准/方法论引用不严谨或知识归属错误，例如把 SPC 趋势判异、VDA6.3 条款归属、客户全检要求下的抽样替代等内容说错；B3 则说明部分答案虽然方向相关，但没有按题干要求的维度、边界或判断逻辑作答，出现“泛泛而谈”“答非所问”或漏掉指定拆解维度的问题；B2 只剩 1 题，说明“过时或非最佳实践”类错误已基本压下去。综合两模型结果看，三轮剩余难点已经从普遍性错误收缩为“高可核验知识点的硬错”和“结构化作答不贴题”两类。</div>
+<h2>后续重新出内容时应补充的规则</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">【重新出题】<br/>后续重新出题时，先补两条硬规则：1）所有涉及公差、超差、控制限、接收限、抽样切换、判异规则等术语的题干，生成后必须做一次术语一致性检查，禁止出现自相矛盾表述；2）建立题目去重指纹，至少按“知识点 + 题干动作 + 候选人核心作答路径”三维去重，像 IATF/PPAP/SPC/控制计划/8D 这类高频知识点不能只靠换零件名、换工序名继续出题。若同知识点必须保留多题，必须让第二层分析对象或第三层复杂约束产生实质差异。<br/><br/>【重出答案】<br/>后续重出答案时，优先补三条规则：1）凡引用 IATF16949、VDA6.3、SPC、MSA、客户要求或行业标准编号的内容，必须逐条做存在性和对应性校验，拿不准就只写原则，不强凑条款号；2）答案必须严格响应题干要求的判断边界和展开维度，例如题干要求按人机料法环拆解、要求说明为何不能采用某做法，就必须逐项覆盖，不能只给笼统措施；3）凡涉及客户全检、计量到期、过程能力判异、审核评分等场景，优先写行业通行的合规处置顺序，避免把协商豁免、抽样替代、延长期限之类次优动作写成最佳实践。</div>
+
+  <hr class="section-divider" />
+
+  <h2>模型进度与删除率</h2>
+  <table>
+    <thead>
+      <tr><th>Model</th><th>批次完成</th><th>完成率</th><th>删除率</th><th>主错误</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>GPT5.5</td><td style='text-align:center'>11/11</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:18.2%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">18.2%</span></td><td style='text-align:center'>B>C>A</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>11/11</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:19.9%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">19.9%</span></td><td style='text-align:center'>B>C>A</td></tr>
+    </tbody>
+  </table>
+
+  <h2>批次状态矩阵</h2>
+  <div class="legend">
+    <span>✓ done</span><span>… running</span><span>○ pending</span><span>! blocked</span><span>x failed</span>
+  </div>
+  <table>
+    <thead><tr><th>Model</th><th>R3-B001</th><th>R3-B002</th><th>R3-B003</th><th>R3-B004</th><th>R3-B005</th><th>R3-B006</th><th>R3-B007</th><th>R3-B008</th><th>R3-B009</th><th>R3-B010</th><th>R3-B011</th></tr></thead>
+    <tbody><tr><td>GPT5.5</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td></tr></tbody>
+  </table>
+
+  <h2>细分错误统计（A1/B1...）</h2>
+  <table>
+    <thead><tr><th>错误子类</th><th>数量</th></tr></thead>
+    <tbody><tr><td>A1</td><td style='text-align:center'>6</td></tr><tr><td>B1</td><td style='text-align:center'>87</td></tr><tr><td>B2</td><td style='text-align:center'>1</td></tr><tr><td>B3</td><td style='text-align:center'>34</td></tr><tr><td>C1</td><td style='text-align:center'>3</td></tr><tr><td>C2</td><td style='text-align:center'>30</td></tr></tbody>
+  </table>
+
+  <h3>细分错误示例（每类2条）</h3>
+  <table>
+    <thead><tr><th>错误子类</th><th>例1-题号</th><th>例1-题目</th><th>例1-理由</th><th>例2-题号</th><th>例2-题目</th><th>例2-理由</th></tr></thead>
+    <tbody><tr><td>A1</td><td>Q028</td><td>在量产过程中，某供应商来料连续十批按加严检验方案全部合格，此时应如何调整后续的抽样检验方式？请简述转移规则的触发条件和操作逻辑。</td><td>Gemini3.1pro: 题干中“关键特性超差”通常指超出图纸公差，这与后文“仍在客户接收限范围内”存在逻辑矛盾。若指超出工艺控制限，应明确表述为“超出控制限”。正确的应该是：“过程巡检中发现某工序关键特性超出内部控制限，但仍在客户接收限（图纸公差）范围内...”。</td><td>Q054</td><td>在量产现场巡检时发现某批次制动卡钳的表面涂层存在批量起泡缺陷，该批次尚未入库也未发往总装线。请简述此时应如何实施不合格品隔离，重点说明隔离范围确定的依据。</td><td>GPT5.5: 题干原文“发现一个零件尺寸超差但仍在图纸公差范围内”自相矛盾；“超差”通常表示超出公差范围，若仍在图纸公差范围内应表述为“偏离目标值但仍在公差范围内”。；Gemini3.1pro: 统计过程控制（SPC）中标准的判异准则是“连续6点单调递增或递减”，而非“连续5点”。参考答案称“连续5点单调递增或递减”为明确定义的异常判异准则存在知识性错误。</td></tr><tr><td>B1</td><td>Q016</td><td>在监控某零部件关键尺寸的过程能力时，控制图显示连续5个点呈单调上升趋势，且均未超出控制限。请简单说说，这种波动模式反映了过程可能存在哪类问题，以及你接下来会重点核查哪些现场因素？</td><td>GPT5.5: 参考答案将原文“连续5个点呈单调上升趋势”判定为“统计过程控制中明确定义的异常判异准则之一”，不严谨；常用AIAG/Western Electric/Nelson类趋势判异通常要求连续6点或更多单调趋势，不能笼统把5点单调趋势作为明确判异准则。</td><td>Q025</td><td>某车型焊装线在量产爬坡阶段，多台白车身在四门两盖区域出现匹配间隙超差，且问题集中出现在同一夹具定位销磨损后更换的批次。现场已按常规方法完成夹具校准和首件确认，但后续仍间歇性复现。请简述你将如何系统性排查该问题的根本原因，并说明为何不能仅依赖夹具精度复测或单点尺寸调整来闭环。</td><td>Gemini3.1pro: 统计过程控制中，“连续两点中有一点落在A区（2σ~3σ），另一点落在B区（1σ~2σ）”并非标准的SPC判异准则。标准的判异准则是“连续3点中有2点落在A区或其外”。参考答案称其为典型判异准则是错误的。正确的应该是指出该现象尚未触发标准判异准则。</td></tr><tr><td>B2</td><td>Q402</td><td>当审核一个总装车间的扭矩管理过程时，发现其拧紧设备校准证书在审核当日已过期2天，但设备期间核查记录完整且全部合格，且过去30天的扭矩抽检结果100%合格。按VDA6.3对‘系统有效性’的评分要求，此时是否可给予‘基本符合’？请说明核心判断逻辑。</td><td>GPT5.5: 参考答案第二层把“同步启动加急校准+延长证书有效期协商”列为最佳实践，原文还写“须获计量机构书面确认”。校准证书已过期时，质量工程师应停用/隔离设备、完成校准、评估过期期间产品风险并追溯处置，不能把与计量机构协商延长已过期证书有效期作为最佳实践。；Gemini3.1pro: 答案第一层存在知识性错误。VDA6.3中“人员资源”属于P6.3，“物质资源（设备、工装等）”属于P6.4。答案将P6.2称为“人员、设备、工装”是分类错误。正确的应当是P6.2为“生产过程控制”，设备校验应归属P6.4相关条款。</td><td>nan</td><td>nan</td><td>nan</td></tr><tr><td>B3</td><td>Q075</td><td>某新能源电驱壳体压铸产线在导入新型气密性防错工装后，量产首月发生3起因密封圈装配方向错误导致的批量泄漏返工。该防错工装具备物理导向结构，但实际作业中操作员可通过施加异常外力绕过导向。请分析该防错设计失效的本质类型，并说明你将从人、机、料、法、环五个维度分别采取哪些针对性改进动作来阻断此类‘可强制绕过’型失效路径。</td><td>GPT5.5: 题干要求“从人、机、料、法、环五个维度分别采取哪些针对性改进动作”，参考答案未按五个维度分别作答，只给出强化物理阻断、力反馈、人机交互等通用方案，回答范围与题目要求不一致。</td><td>Q164</td><td>在产品交付前，因尺寸超差而返工所消耗的人工和材料费用，属于内部失败成本吗？请简述。</td><td>Gemini3.1pro: 题干问的是“属于内部失败成本吗？请简述”，参考答案第二层却回答了“返工成本的识别与归集方法”，跑题。</td></tr><tr><td>C1</td><td>Q122</td><td>当某零部件的控制计划中将‘表面划伤’列为关键特性并设定为全检，但检验作业指导书仅规定‘目视抽查5件/班’时，这种差异最可能暴露哪一环节的质量策划疏漏？请从先期质量策划的职责角度简单说说。</td><td>Gemini3.1pro: 与Q692题干完全一致。</td><td>Q123</td><td>新项目PPAP提交后，客户反馈某装配工位的控制计划注明使用防错验证卡进行班前点检，但现场实际执行的是操作员口头确认。你作为先期质量人员，会重点核查控制计划与哪个配套文件的一致性来定位问题根源？请简述理由。</td><td>Gemini3.1pro: 与Q962题干完全一致。</td></tr><tr><td>C2</td><td>Q005</td><td>IATF16949对质量管理体系的要求，是在ISO9001基础上做了什么类型的补充？请简述。</td><td>GPT5.5: 与前序题目question_id 7高度重复，均围绕IATF16949与ISO9001的基本关系/行业补充关系作答，候选人核心回答几乎一致。</td><td>Q014</td><td>生产件批准提交主要确认供应商是否具备哪种量产保障能力？</td><td>GPT5.5: 与前序题目question_id 50高度重复，均考察生产件批准提交用于确认供应商是否具备稳定批量生产合格零件的能力，作答核心要点基本相同。</td></tr></tbody>
+  </table>
+</body>
+</html>

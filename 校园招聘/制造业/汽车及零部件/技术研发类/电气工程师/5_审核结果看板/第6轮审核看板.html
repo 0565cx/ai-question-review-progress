@@ -1,0 +1,72 @@
+﻿<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Round 6 Dashboard</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; margin: 24px; color: #1f2937; }
+    h1, h2, h3 { margin: 10px 0 12px; }
+    .cards { display: grid; grid-template-columns: repeat(3, minmax(140px, 220px)); gap: 12px; margin: 8px 0 18px; }
+    .card { border: 1px solid #e5e7eb; border-radius: 10px; padding: 12px; background: #fafafa; }
+    .card .k { font-size: 12px; color: #6b7280; }
+    .card .v { font-size: 24px; font-weight: 700; margin-top: 4px; }
+    table { border-collapse: collapse; width: 100%; margin: 8px 0 18px; }
+    th, td { border: 1px solid #e5e7eb; padding: 8px 10px; vertical-align: middle; }
+    th { background: #f9fafb; }
+    .legend span { margin-right: 12px; font-size: 13px; color: #374151; }
+    .mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; }
+    .ex { margin: 6px 0; color: #374151; }
+    .section-divider { border: 0; border-top: 2px solid #eef2f7; margin: 22px 0; }
+  </style>
+</head>
+<body>
+  <h1>Round 6 审核看板</h1>
+
+  <div class="cards">
+    <div class="card"><div class="k">A类错误</div><div class="v">7</div></div>
+    <div class="card"><div class="k">B类错误</div><div class="v">21</div></div>
+    <div class="card"><div class="k">C类错误</div><div class="v">0</div></div>
+  </div>
+
+  <h2>本轮题目主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">六轮输入36题，本轮可保留17题，需要重新出题5题，保留题干重出答案14题。题目层面剩余问题主要集中在图形符号含义提问、直流快充与交流控制导引信号混用，以及高压预充、主接触器和HVIL相关题干前提错误。后续重出时应减少概念背诵型问法，改为具体故障诊断、设计校核或试验闭环场景。</div>
+<h2>本轮答案主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">六轮答案错误仍以B1硬伤为主，包括UDS 0x19/OBD 0x03服务号混淆、LIN帧结构说错、国标直流快充中误写CP/PWM/S3或把CC线当通信线，以及预充继电器、主正/主负接触器时序错误。还有少量答案把标准适用范围误用到保险丝、线束压降或穿舱阻燃要求上，需要在重出答案时强化标准边界和工程动作顺序校验。</div>
+<h2>后续重新出内容时应补充的规则</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">【重新出题】<br/>重新出题时必须明确是交流充电还是国标直流快充，是低压回路保护还是高压上下电时序。题干不得要求候选人解释图形符号、符号含义或背诵标准条款；应转为量产故障、设计校核、试验验证或问题定位场景。<br/><br/>【重出答案】<br/>重出答案必须先做五项自检：服务号是否对应正确诊断协议，直流快充接口信号是否没有混入交流CP/PWM概念，预充和主接触器动作顺序是否正确，HVIL与接触器反馈/母线电压监测是否没有混淆，标准名称和适用范围是否真实匹配。不确定的标准限值不要写成强制要求。</div>
+
+  <hr class="section-divider" />
+
+  <h2>模型进度与删除率</h2>
+  <table>
+    <thead>
+      <tr><th>Model</th><th>批次完成</th><th>完成率</th><th>删除率</th><th>主错误</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>GPT5.5</td><td style='text-align:center'>1/1</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:44.4%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">44.4%</span></td><td style='text-align:center'>B>A</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>1/1</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:33.3%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">33.3%</span></td><td style='text-align:center'>B>A</td></tr>
+    </tbody>
+  </table>
+
+  <h2>批次状态矩阵</h2>
+  <div class="legend">
+    <span>✓ done</span><span>… running</span><span>○ pending</span><span>! blocked</span><span>x failed</span>
+  </div>
+  <table>
+    <thead><tr><th>Model</th><th>R6-B001</th></tr></thead>
+    <tbody><tr><td>GPT5.5</td><td style='text-align:center'>✓</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>✓</td></tr></tbody>
+  </table>
+
+  <h2>细分错误统计（A1/B1...）</h2>
+  <table>
+    <thead><tr><th>错误子类</th><th>数量</th></tr></thead>
+    <tbody><tr><td>A1</td><td style='text-align:center'>3</td></tr><tr><td>A4</td><td style='text-align:center'>4</td></tr><tr><td>B1</td><td style='text-align:center'>21</td></tr></tbody>
+  </table>
+
+  <h3>细分错误示例（每类2条）</h3>
+  <table>
+    <thead><tr><th>错误子类</th><th>例1-题号</th><th>例1-题目</th><th>例1-理由</th><th>例2-题号</th><th>例2-题目</th><th>例2-理由</th></tr></thead>
+    <tbody><tr><td>A1</td><td>Q011</td><td>在整车高压系统下电过程中，为什么必须等待预充电继电器断开后，才能执行主正和主负继电器的断开操作？请简单说说这一时序设计背后的电气安全考虑。</td><td>Gemini3.1pro: 题干存在严重的高压时序常识错误：“在整车高压系统下电过程中，为什么必须等待预充电继电器断开后，才能执行主正和主负继电器的断开操作”。正确的情况是，预充继电器在高压上电完成（主正闭合）后就已经断开了，下电过程中预充继电器本身就是断开状态，不需要等待其断开。</td><td>Q017</td><td>在直流快充连接过程中，车辆端通过检测充电枪端CP信号的电压幅值和占空比变化来判断插枪状态和充电准备就绪。请简述CP信号在插枪后、未启动充电前这一阶段所呈现的典型电压特征及其物理含义。</td><td>GPT5.5: 参考答案将直流快充插枪后、未启动充电前的CP信号描述为“1kHz、约10%占空比、±12V方波”，并说对应GB/T 20234.3的待机就绪状态。这是把交流/CCS控制导引PWM口径错误套用到国标直流快充接口场景。直流快充接口的连接确认和通信不应简单描述为该CP PWM特征；正确口径应区分国标直流接口的连接确认线、辅助电源/通信线及GB/T 27930通信状态。；Gemini3.1pro: 题干存在严重的知识性错误：“在直流快充连接过程中，车辆端通过检测充电枪端CP信号的电压幅值和占空比变化来判断插枪状态和充电准备就绪”。正确的知识是，CP信号和PWM占空比是交流充电（交流慢充）的特征，国标直流快充使用的是CC1/CC2进行连接确认，并通过CAN通信进行参数交换，直流快充中没有CP信号和PWM占空比。</td></tr><tr><td>A4</td><td>Q002</td><td>请简单说说电气原理图中‘保险丝’的图形符号通常由哪两个基本元素构成，它们分别代表什么物理特性？</td><td>GPT5.5: 题干要求候选人回答“保险丝”的“图形符号通常由哪两个基本元素构成”，属于明确要求解释图形符号构成。按审题规则，凡题干要求说明符号、图形符号、符号含义等内容，应标记A4并删除；正确口径应改为口语化考察保险丝在电路中的保护作用或选型原则，而不是要求描述图形符号。；Gemini3.1pro: 题干要求解释保险丝的图形符号构成及物理特性，违反了“凡题干要求候选人说出、列出、写出或解释‘符号、符号含义、绘制图形/图表/结构图’等内容，一律标记A4并删除”的规则。正确的做法是避免在口语面试中考察图形符号的具体绘制或构成。</td><td>Q002</td><td>请简单说说电气原理图中‘保险丝’的图形符号通常由哪两个基本元素构成，它们分别代表什么物理特性？</td><td>GPT5.5: 题干要求候选人回答“保险丝”的“图形符号通常由哪两个基本元素构成”，属于明确要求解释图形符号构成。按审题规则，凡题干要求说明符号、图形符号、符号含义等内容，应标记A4并删除；正确口径应改为口语化考察保险丝在电路中的保护作用或选型原则，而不是要求描述图形符号。；Gemini3.1pro: 题干要求解释保险丝的图形符号构成及物理特性，违反了“凡题干要求候选人说出、列出、写出或解释‘符号、符号含义、绘制图形/图表/结构图’等内容，一律标记A4并删除”的规则。正确的做法是避免在口语面试中考察图形符号的具体绘制或构成。</td></tr><tr><td>B1</td><td>Q009</td><td>请简述充电通信协议中，规定车辆与充电桩之间如何同步时钟以确保报文时效性的基础机制名称。</td><td>GPT5.5: 参考答案把“规定车辆与充电桩之间如何同步时钟以确保报文时效性”的基础机制说成“时间戳同步机制”，并称GB/T 27930—2023通过周期性时间戳交互、充电机作为主时钟源下发绝对时间来对齐双方时间基准。充电通信的报文时效性通常依赖通信周期、超时监控和状态机时序判定，不是题中所述的统一时钟同步机制；答案还给出疑似具体报文ID和条款作为确定事实，属于协议机制硬错。正确口径应围绕报文周期、超时判定、握手/充电状态机和故障降级处理说明。</td><td>Q015</td><td>请简述直流电路中，电源正负极之间形成稳定电压的必要条件是什么？</td><td>GPT5.5: 参考答案称“电源正负极之间形成稳定电压的必要条件是存在闭合的、连续的导电通路”，这是直流电路基本原理错误。电源正负极之间的端电压可在开路状态下存在并保持，闭合导电通路是形成电流的条件，不是形成稳定电压的必要条件。正确口径应说明稳定电压来自电源内部电化学或电能转换机制及其稳压能力，闭合回路决定负载电流和端电压跌落。</td></tr></tbody>
+  </table>
+</body>
+</html>

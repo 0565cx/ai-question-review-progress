@@ -1,0 +1,72 @@
+﻿<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Round 5 Dashboard</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; margin: 24px; color: #1f2937; }
+    h1, h2, h3 { margin: 10px 0 12px; }
+    .cards { display: grid; grid-template-columns: repeat(3, minmax(140px, 220px)); gap: 12px; margin: 8px 0 18px; }
+    .card { border: 1px solid #e5e7eb; border-radius: 10px; padding: 12px; background: #fafafa; }
+    .card .k { font-size: 12px; color: #6b7280; }
+    .card .v { font-size: 24px; font-weight: 700; margin-top: 4px; }
+    table { border-collapse: collapse; width: 100%; margin: 8px 0 18px; }
+    th, td { border: 1px solid #e5e7eb; padding: 8px 10px; vertical-align: middle; }
+    th { background: #f9fafb; }
+    .legend span { margin-right: 12px; font-size: 13px; color: #374151; }
+    .mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; }
+    .ex { margin: 6px 0; color: #374151; }
+    .section-divider { border: 0; border-top: 2px solid #eef2f7; margin: 22px 0; }
+  </style>
+</head>
+<body>
+  <h1>Round 5 审核看板</h1>
+
+  <div class="cards">
+    <div class="card"><div class="k">A类错误</div><div class="v">4</div></div>
+    <div class="card"><div class="k">B类错误</div><div class="v">28</div></div>
+    <div class="card"><div class="k">C类错误</div><div class="v">1</div></div>
+  </div>
+
+  <h2>本轮题目主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">本轮回流后题干问题已明显收敛，仅少数题存在题干前提不成立或工程对象设定偏差，如电动尾门撑杆机构、注塑缩痕位置、压铸厚壁区冷隔等场景需要更精确。重复题方面，已对 Gemini 的 C1 判断进行机器核验，不成立的 3 项已剔除。</div>
+<h2>本轮答案主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">本轮答案问题仍以 B1 专业知识和工程逻辑错误为主，涉及控制臂受力、形位公差、转向机构、热熔嵌件、注塑筋厚与缩痕、透气膜压差方向、铝硅合金流动性、尺寸链增减环、回弹与弹性模量等。这些都属于会直接误导候选人的硬错误。</div>
+<h2>后续重新出内容时应补充的规则</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">【重新出题】<br/>继续重新出题时，需要先固定零件对象、工况和工艺边界，不要把控制臂、撑杆、压铸件、注塑件等对象的典型受力和失效机理混写；涉及重复题时要以题干和作答路径为判断依据。<br/><br/>【重出答案】<br/>重出答案时要强制核对基础机械常识、材料性能和工艺适用范围；答案中不得出现物理方向写反、材料类别写错、尺寸链增减环混用、标准或工艺对象套错等问题。</div>
+
+  <hr class="section-divider" />
+
+  <h2>模型进度与删除率</h2>
+  <table>
+    <thead>
+      <tr><th>Model</th><th>批次完成</th><th>完成率</th><th>删除率</th><th>主错误</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>GPT5.5</td><td style='text-align:center'>2/2</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:39.5%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">39.5%</span></td><td style='text-align:center'>B>C</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>2/2</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:37.2%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">37.2%</span></td><td style='text-align:center'>B>A</td></tr>
+    </tbody>
+  </table>
+
+  <h2>批次状态矩阵</h2>
+  <div class="legend">
+    <span>✓ done</span><span>… running</span><span>○ pending</span><span>! blocked</span><span>x failed</span>
+  </div>
+  <table>
+    <thead><tr><th>Model</th><th>R5-B001</th><th>R5-B002</th></tr></thead>
+    <tbody><tr><td>GPT5.5</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td></tr></tbody>
+  </table>
+
+  <h2>细分错误统计（A1/B1...）</h2>
+  <table>
+    <thead><tr><th>错误子类</th><th>数量</th></tr></thead>
+    <tbody><tr><td>A1</td><td style='text-align:center'>4</td></tr><tr><td>B1</td><td style='text-align:center'>27</td></tr><tr><td>B2</td><td style='text-align:center'>1</td></tr><tr><td>C2</td><td style='text-align:center'>1</td></tr></tbody>
+  </table>
+
+  <h3>细分错误示例（每类2条）</h3>
+  <table>
+    <thead><tr><th>错误子类</th><th>例1-题号</th><th>例1-题目</th><th>例1-理由</th><th>例2-题号</th><th>例2-题目</th><th>例2-理由</th></tr></thead>
+    <tbody><tr><td>A1</td><td>Q007</td><td>汽车电动尾门的撑杆机构常采用四连杆结构，请简述在尾门从关闭状态开启到中间位置的过程中，该机构中主动件、连杆和从动件之间的运动传递关系是怎样的。</td><td>Gemini3.1pro: 题干常识错误。汽车电动尾门的撑杆机构通常是电动推杆（丝杠螺母直线驱动），而非四连杆结构，四连杆常用于铰链。</td><td>Q012</td><td>当一个圆柱形零件仅靠端面和一个侧面定位，却未限制绕轴线的旋转自由度，这属于过定位还是欠定位？请简述判断依据。</td><td>GPT5.5: 答案对端面和侧面限制自由度的解释错误；端面通常限制1个平移和2个转动，不是3个移动自由度。；Gemini3.1pro: 题干与答案不严谨。圆柱面未限制旋转若不影响加工则为不完全定位而非欠定位；且单一平面侧面只能限制1个移动自由度，非2个。</td></tr><tr><td>B1</td><td>Q001</td><td>请简单说说控制臂在车辆直线行驶时主要承受哪类力，以及这个力的传递方向。</td><td>Gemini3.1pro: 知识性错误。直线行驶时车辆垂向力主要由弹簧和减震器承受，控制臂主要承受纵向和侧向力，且并非沿轴线传递垂向力。</td><td>Q004</td><td>在车灯支架的注塑件图纸中，要求灯罩安装面的平面度公差为0.05毫米，同时该面相对于底座基准面的垂直度公差也为0.05毫米。请简单说说，当该安装面整体呈微小弧形隆起（最高点偏离理想平面0.04毫米），但法向方向仍与基准面保持垂直时，它是否满足这两项公差要求？为什么？</td><td>GPT5.5: 答案称弧形面必不满足垂直度；题干已说明法向仍垂直且平面度0.04未超0.05，结论误导。；Gemini3.1pro: 知识性错误。垂直度公差带是两个平行平面，若实际表面满足平面度0.05且整体垂直，则必然包容在0.05的垂直度公差带内，满足要求。</td></tr><tr><td>B2</td><td>Q014</td><td>某混合动力车型的电池包上盖采用碳纤维复合材料，需与铝合金托盘实现高强度、耐振动且不破坏纤维连续性的连接。请简述在满足量产自动化装配前提下，为何优先选用热熔嵌件而非自冲铆接，并从纤维层间损伤风险、热-机械耦合载荷下的失效起始位置、以及产线换型柔性三方面说明技术权衡依据。</td><td>GPT5.5: 答案把热熔嵌件描述为使碳纤维预浸料/模压件熔融结合，已固化碳纤维复合材料通常不能这样热熔。；Gemini3.1pro: 方案偏门。碳纤维电池包上盖与铝托盘的主承力连接常用预埋嵌件螺栓连接或FDS，热熔嵌件不适用于此类结构连接。</td><td>nan</td><td>nan</td><td>nan</td></tr><tr><td>C2</td><td>Q034</td><td>请简述门锁安装点与铰链安装点在车门结构上通常需要满足的相对位置关系。</td><td>GPT5.5: 与Q0015均问车门锁安装点与铰链安装点的相对位置关系，候选人核心作答会高度一致。</td><td>nan</td><td>nan</td><td>nan</td></tr></tbody>
+  </table>
+</body>
+</html>

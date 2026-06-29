@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Round 4 Dashboard</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; margin: 24px; color: #1f2937; }
+    h1, h2, h3 { margin: 10px 0 12px; }
+    .cards { display: grid; grid-template-columns: repeat(3, minmax(140px, 220px)); gap: 12px; margin: 8px 0 18px; }
+    .card { border: 1px solid #e5e7eb; border-radius: 10px; padding: 12px; background: #fafafa; }
+    .card .k { font-size: 12px; color: #6b7280; }
+    .card .v { font-size: 24px; font-weight: 700; margin-top: 4px; }
+    table { border-collapse: collapse; width: 100%; margin: 8px 0 18px; }
+    th, td { border: 1px solid #e5e7eb; padding: 8px 10px; vertical-align: middle; }
+    th { background: #f9fafb; }
+    .legend span { margin-right: 12px; font-size: 13px; color: #374151; }
+    .mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; }
+    .ex { margin: 6px 0; color: #374151; }
+    .section-divider { border: 0; border-top: 2px solid #eef2f7; margin: 22px 0; }
+  </style>
+</head>
+<body>
+  <h1>Round 4 审核看板</h1>
+
+  <div class="cards">
+    <div class="card"><div class="k">A类错误</div><div class="v">4</div></div>
+    <div class="card"><div class="k">B类错误</div><div class="v">26</div></div>
+    <div class="card"><div class="k">C类错误</div><div class="v">0</div></div>
+  </div>
+
+  <h2>本轮题目主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">本轮（四轮）共复审三轮回流的 136 题，两模型并集最终仍判删 27 题，其中题干类问题只剩 4 题需要重新出题，说明经过前三轮清洗后，题干层面的场景设计、重复度和可答性问题已经大幅下降。四轮保留下来的题干问题几乎全部收缩为 A1，即对抽样转移规则、VDA6.3评分档位和模块归属等事实性前提写错，导致题目本身把候选人引向错误知识判断；不再出现前几轮那种大面积重复题、语义跑偏或复杂语病问题。整体上，题干风险已经从“结构性出题质量问题”收缩为“少量高可核验知识点写错”。</div>
+<h2>本轮答案主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">本轮删除仍然主要集中在答案侧：B 类 23 题全部为 B1，占本轮绝对多数。错误高度集中在汽车质量体系与方法论里的硬知识引用，包括 IATF16949 条款号错配、VDA6.3 模块名称和问题编号对应错误、APQP 阶段归属错误、GB/T 2828.1 抽样转移规则条件写错，以及 ppm、AQL、过程能力等基础口径换算或判定失准。也就是说，四轮剩余问题已经不再是答案层次、口语化或场景贴合度，而是“凡可逐条核验的标准事实，一旦写错就整题失效”的尾部硬错。两模型在本轮最终也表现出较高一致性，进一步说明这批剩余问题的客观性较强。</div>
+<h2>后续重新出内容时应补充的规则</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">【重新出题】<br/>后续重新出题时，重点只补一条硬规则：凡题干涉及抽样检验转移规则、VDA6.3 评分档位/模块名称、APQP 阶段、IATF16949 条款定位等可直接查标准的问题，必须先做“题干事实前提校验”，确认题干中的规则条件、条款映射和术语定义本身成立，才能作为提问前提写进题目。不要让题干用错误规则去引导候选人回答。<br/><br/>【重出答案】<br/>后续重出答案时，必须继续强化“标准事实双校验”：1）所有 IATF16949、VDA6.3、APQP、PPAP、GB/T 2828.1 等条款号、阶段名、模块名、转移条件、评分规则都要逐条核对，不确定时宁可只写原则，不强行写编号；2）涉及 ppm、AQL、合格率换算、过程能力、抽样切换等数值口径时，先验算再落字；3）对“关键特性”“产品安全”“返工控制”“过程审核”等高频主题，优先用标准中的准确术语表述，避免用泛化概念替代正式定义。</div>
+
+  <hr class="section-divider" />
+
+  <h2>模型进度与删除率</h2>
+  <table>
+    <thead>
+      <tr><th>Model</th><th>批次完成</th><th>完成率</th><th>删除率</th><th>主错误</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>GPT5.5</td><td style='text-align:center'>4/4</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:15.4%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">15.4%</span></td><td style='text-align:center'>B>A</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>3/3</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:9.4%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">9.4%</span></td><td style='text-align:center'>B>A</td></tr>
+    </tbody>
+  </table>
+
+  <h2>批次状态矩阵</h2>
+  <div class="legend">
+    <span>✓ done</span><span>… running</span><span>○ pending</span><span>! blocked</span><span>x failed</span>
+  </div>
+  <table>
+    <thead><tr><th>Model</th><th>R4-B001</th><th>R4-B002</th><th>R4-B003</th><th>R4-B004</th></tr></thead>
+    <tbody><tr><td>GPT5.5</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>○</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td></tr></tbody>
+  </table>
+
+  <h2>细分错误统计（A1/B1...）</h2>
+  <table>
+    <thead><tr><th>错误子类</th><th>数量</th></tr></thead>
+    <tbody><tr><td>A1</td><td style='text-align:center'>5</td></tr><tr><td>B1</td><td style='text-align:center'>31</td></tr></tbody>
+  </table>
+
+  <h3>细分错误示例（每类2条）</h3>
+  <table>
+    <thead><tr><th>错误子类</th><th>例1-题号</th><th>例1-题目</th><th>例1-理由</th><th>例2-题号</th><th>例2-题目</th><th>例2-理由</th></tr></thead>
+    <tbody><tr><td>A1</td><td>Q001</td><td>在批量来料检验中，若连续五批按正常检验方案均被接收，且期间未发生任何质量异常，此时应如何调整后续的抽样检验方案？请简述对应的转移规则及其执行依据。</td><td>GPT5.5: 题干原文称“若连续五批按正常检验方案均被接收，且期间未发生任何质量异常，此时应如何调整后续的抽样检验方案”，隐含连续5批正常检验接收即可转入放宽检验；按GB/T 2828.1正常检验转放宽并非仅凭连续5批接收触发，通常还需满足转移得分/连续批次、生产稳定及负责部门认可等条件，不能直接调整为放宽检验。；Gemini3.1pro: 题干中“连续五批按正常检验方案均被接收”作为转放宽的条件存在知识性错误（GB/T 2828.1通常要求连续10批）；参考答案第一层中“加严检验后的放宽检验方案”表述错误，应为“放宽检验”。</td><td>Q001</td><td>在批量来料检验中，若连续五批按正常检验方案均被接收，且期间未发生任何质量异常，此时应如何调整后续的抽样检验方案？请简述对应的转移规则及其执行依据。</td><td>GPT5.5: 题干原文称“若连续五批按正常检验方案均被接收，且期间未发生任何质量异常，此时应如何调整后续的抽样检验方案”，隐含连续5批正常检验接收即可转入放宽检验；按GB/T 2828.1正常检验转放宽并非仅凭连续5批接收触发，通常还需满足转移得分/连续批次、生产稳定及负责部门认可等条件，不能直接调整为放宽检验。；Gemini3.1pro: 题干中“连续五批按正常检验方案均被接收”作为转放宽的条件存在知识性错误（GB/T 2828.1通常要求连续10批）；参考答案第一层中“加严检验后的放宽检验方案”表述错误，应为“放宽检验”。</td></tr><tr><td>B1</td><td>Q001</td><td>在批量来料检验中，若连续五批按正常检验方案均被接收，且期间未发生任何质量异常，此时应如何调整后续的抽样检验方案？请简述对应的转移规则及其执行依据。</td><td>GPT5.5: 题干原文称“若连续五批按正常检验方案均被接收，且期间未发生任何质量异常，此时应如何调整后续的抽样检验方案”，隐含连续5批正常检验接收即可转入放宽检验；按GB/T 2828.1正常检验转放宽并非仅凭连续5批接收触发，通常还需满足转移得分/连续批次、生产稳定及负责部门认可等条件，不能直接调整为放宽检验。；Gemini3.1pro: 题干中“连续五批按正常检验方案均被接收”作为转放宽的条件存在知识性错误（GB/T 2828.1通常要求连续10批）；参考答案第一层中“加严检验后的放宽检验方案”表述错误，应为“放宽检验”。</td><td>Q002</td><td>IATF16949标准与ISO9001标准之间是什么关系？请简单说说。</td><td>GPT5.5: 参考答案原文称“IATF16949……完全包含了ISO9001的全部要求”，该表述不准确；IATF 16949是汽车行业质量管理体系补充要求，需与ISO 9001配套使用，并不是把ISO 9001全文“完全包含”在自身标准文本中。</td></tr></tbody>
+  </table>
+</body>
+</html>

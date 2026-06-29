@@ -1,0 +1,72 @@
+﻿<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Round 4 Dashboard</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; margin: 24px; color: #1f2937; }
+    h1, h2, h3 { margin: 10px 0 12px; }
+    .cards { display: grid; grid-template-columns: repeat(3, minmax(140px, 220px)); gap: 12px; margin: 8px 0 18px; }
+    .card { border: 1px solid #e5e7eb; border-radius: 10px; padding: 12px; background: #fafafa; }
+    .card .k { font-size: 12px; color: #6b7280; }
+    .card .v { font-size: 24px; font-weight: 700; margin-top: 4px; }
+    table { border-collapse: collapse; width: 100%; margin: 8px 0 18px; }
+    th, td { border: 1px solid #e5e7eb; padding: 8px 10px; vertical-align: middle; }
+    th { background: #f9fafb; }
+    .legend span { margin-right: 12px; font-size: 13px; color: #374151; }
+    .mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; }
+    .ex { margin: 6px 0; color: #374151; }
+    .section-divider { border: 0; border-top: 2px solid #eef2f7; margin: 22px 0; }
+  </style>
+</head>
+<body>
+  <h1>Round 4 审核看板</h1>
+
+  <div class="cards">
+    <div class="card"><div class="k">A类错误</div><div class="v">4</div></div>
+    <div class="card"><div class="k">B类错误</div><div class="v">40</div></div>
+    <div class="card"><div class="k">C类错误</div><div class="v">2</div></div>
+  </div>
+
+  <h2>本轮题目主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">本轮回流题目的题干问题相对少，主要集中在少数几何公差、尺寸链和工艺场景设定上。其中有些题干前提过于绝对或条件不足，例如平面度、基准约束、悬架硬点方向等题目需要更清晰地限定工程条件。</div>
+<h2>本轮答案主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">答案错误仍以 B1 知识性或逻辑错误为主，涉及冲裁毛刺方向、压铸缩痕/热节机理、铝硅合金流动性、圆跳动与同轴度边界、尺寸链增减环、TIM 压缩率、IATF16949 依据等。这些问题会直接误导候选人的专业判断，已按规则进入重出答案或重新出题分流。</div>
+<h2>后续重新出内容时应补充的规则</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">【重新出题】<br/>重新出题时要避免绝对化问法，对几何公差、尺寸链、悬架布置等题目必须给足基准、工况、零件对象和判断边界；同知识点重出时要换真实工程场景，不要只换表述。<br/><br/>【重出答案】<br/>重出答案时先核对基础物理方向、标准依据、材料与工艺对象是否匹配；案例不要把注塑、压铸、冲压、金属壳体和塑料件的工艺口径混用；涉及流程或标准时要写明真实条款或行业常用依据。</div>
+
+  <hr class="section-divider" />
+
+  <h2>模型进度与删除率</h2>
+  <table>
+    <thead>
+      <tr><th>Model</th><th>批次完成</th><th>完成率</th><th>删除率</th><th>主错误</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>GPT5.5</td><td style='text-align:center'>5/5</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:18.6%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">18.6%</span></td><td style='text-align:center'>B>A</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>5/5</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:7.3%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">7.3%</span></td><td style='text-align:center'>B>C</td></tr>
+    </tbody>
+  </table>
+
+  <h2>批次状态矩阵</h2>
+  <div class="legend">
+    <span>✓ done</span><span>… running</span><span>○ pending</span><span>! blocked</span><span>x failed</span>
+  </div>
+  <table>
+    <thead><tr><th>Model</th><th>R4-B001</th><th>R4-B002</th><th>R4-B003</th><th>R4-B004</th><th>R4-B005</th></tr></thead>
+    <tbody><tr><td>GPT5.5</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td></tr></tbody>
+  </table>
+
+  <h2>细分错误统计（A1/B1...）</h2>
+  <table>
+    <thead><tr><th>错误子类</th><th>数量</th></tr></thead>
+    <tbody><tr><td>A1</td><td style='text-align:center'>4</td></tr><tr><td>B1</td><td style='text-align:center'>39</td></tr><tr><td>B2</td><td style='text-align:center'>1</td></tr><tr><td>C1</td><td style='text-align:center'>2</td></tr></tbody>
+  </table>
+
+  <h3>细分错误示例（每类2条）</h3>
+  <table>
+    <thead><tr><th>错误子类</th><th>例1-题号</th><th>例1-题目</th><th>例1-理由</th><th>例2-题号</th><th>例2-题目</th><th>例2-理由</th></tr></thead>
+    <tbody><tr><td>A1</td><td>Q005</td><td>在汽车座椅调节机构的金属支架加工中，图纸要求安装面的平面度公差为0.1毫米，同时该面相对于基准A的垂直度公差也为0.1毫米。请简单说说，当实际零件该安装面整体向基准A方向均匀倾斜了0.08毫米时，为什么它可能仍满足垂直度要求，却一定不满足平面度要求？</td><td>GPT5.5: 题干断言均匀倾斜的安装面一定不满足平面度，概念错误；平面整体倾斜仍可满足平面度。</td><td>Q046</td><td>请简单说说基准体系中第二基准的作用，它主要用来约束零件哪个方向的自由度？</td><td>GPT5.5: 题干只说第二基准、未限定第一基准类型和基准要素形态，却要求唯一自由度方向判断，条件不足。</td></tr><tr><td>B1</td><td>Q002</td><td>汽车电动尾门的撑杆机构常采用四连杆结构，请简述在尾门从关闭状态开启到中间位置的过程中，该机构中主动件、连杆和从动件之间的运动传递关系是怎样的。</td><td>Gemini3.1pro: 冲裁间隙过小会导致二次剪切带，但毛刺通常较小；间隙过大才会导致毛刺显著增大。答案中“毛刺增大”的描述存在专业知识错误。</td><td>Q004</td><td>某新能源汽车电驱系统壳体采用铝合金压铸成型，需在壳体上集成多个高压连接器安装接口。因装配空间受限且需满足IP67防护与抗振动要求，设计团队考虑在压铸件上直接嵌入金属螺纹嵌件或采用自冲铆接方式固定螺母板。请简述在该高功率密度、强振动、多热循环工况下，为何优先选择带径向膨胀结构的压铸嵌件而非自冲铆接，并从界面热匹配性、动态载荷下的预紧力保持能力、以及压铸工艺窗口对嵌件定位精度的影响三方面说明技术依据。</td><td>GPT5.5: 答案将M6螺纹套筒推荐扭矩写到85N·m且提出热胀冷缩自适应等不可靠设计依据，明显误导。</td></tr><tr><td>B2</td><td>Q075</td><td>请简述浇口设在薄壁区域末端时，为什么容易导致填充不足并影响外观。</td><td>Gemini3.1pro: 答案与题干存在逻辑矛盾。题干设定“浇口设在薄壁区域末端”，但第一层答案却解释为“熔体需先流经较长的厚壁路径再进入薄壁段”，完全背离了题干设定的充填路径。</td><td>nan</td><td>nan</td><td>nan</td></tr><tr><td>C1</td><td>Q065</td><td>请简单说说副车架在车辆转弯时主要承受的力类型及其作用方向。</td><td>Gemini3.1pro: 与Q0040高度重复。两题均考察压铸件机加工余量不宜过大的原因（保护致密表皮层，避免暴露内部气孔），设问角度与作答逻辑路径完全一致。</td><td>Q079</td><td>在压铸工艺中，筋位局部过厚会导致该区域冷却变慢，进而影响凝固顺序。这种冷却差异会引发哪一类典型铸造缺陷？</td><td>Gemini3.1pro: 与Q0078高度重复。两题均考察压铸件加强筋过厚导致局部冷却变慢（热节），进而引发缩孔缺陷的知识点，设问角度和作答路径几乎完全一致。</td></tr></tbody>
+  </table>
+</body>
+</html>

@@ -1,0 +1,72 @@
+﻿<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Round 6 Dashboard</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; margin: 24px; color: #1f2937; }
+    h1, h2, h3 { margin: 10px 0 12px; }
+    .cards { display: grid; grid-template-columns: repeat(3, minmax(140px, 220px)); gap: 12px; margin: 8px 0 18px; }
+    .card { border: 1px solid #e5e7eb; border-radius: 10px; padding: 12px; background: #fafafa; }
+    .card .k { font-size: 12px; color: #6b7280; }
+    .card .v { font-size: 24px; font-weight: 700; margin-top: 4px; }
+    table { border-collapse: collapse; width: 100%; margin: 8px 0 18px; }
+    th, td { border: 1px solid #e5e7eb; padding: 8px 10px; vertical-align: middle; }
+    th { background: #f9fafb; }
+    .legend span { margin-right: 12px; font-size: 13px; color: #374151; }
+    .mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; }
+    .ex { margin: 6px 0; color: #374151; }
+    .section-divider { border: 0; border-top: 2px solid #eef2f7; margin: 22px 0; }
+  </style>
+</head>
+<body>
+  <h1>Round 6 审核看板</h1>
+
+  <div class="cards">
+    <div class="card"><div class="k">A类错误</div><div class="v">2</div></div>
+    <div class="card"><div class="k">B类错误</div><div class="v">20</div></div>
+    <div class="card"><div class="k">C类错误</div><div class="v">0</div></div>
+  </div>
+
+  <h2>本轮题目主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">本轮题干问题已进一步收敛，仅 Gemini 判出少数 A4 问题，主要是题干过于书面化、维度过多，不利于口语直接作答。没有出现新的 C 类重复题判定，说明前几轮对重复题口径的校准已稳定生效。</div>
+<h2>本轮答案主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">本轮剩余问题主要集中在 B1 专业知识错误，包括定位自由度解释、热固性复材料与热熔机理、垂直度判断、控制臂受力、注塑筋厚、透气膜压差方向、铝硅合金流动性、DP 钢屈强比、回弹与弹性模量、尺寸链增减环等。</div>
+<h2>后续重新出内容时应补充的规则</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">【重新出题】<br/>如继续重出，题干要保持口语可问、单一主题、工况限定清晰，避免在一道题里同时要求候选人从多个复杂维度展开长篇分析。<br/><br/>【重出答案】<br/>重出答案时必须对底层机械原理和材料工艺常识做二次核对，特别是自由度约束、形位公差判断、材料弹性模量、铝硅合金性能、冲压回弹和注塑筋厚等高频错点。</div>
+
+  <hr class="section-divider" />
+
+  <h2>模型进度与删除率</h2>
+  <table>
+    <thead>
+      <tr><th>Model</th><th>批次完成</th><th>完成率</th><th>删除率</th><th>主错误</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>GPT5.5</td><td style='text-align:center'>1/1</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:54.2%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">54.2%</span></td><td style='text-align:center'>B</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>1/1</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:37.5%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">37.5%</span></td><td style='text-align:center'>B>A</td></tr>
+    </tbody>
+  </table>
+
+  <h2>批次状态矩阵</h2>
+  <div class="legend">
+    <span>✓ done</span><span>… running</span><span>○ pending</span><span>! blocked</span><span>x failed</span>
+  </div>
+  <table>
+    <thead><tr><th>Model</th><th>R6-B001</th></tr></thead>
+    <tbody><tr><td>GPT5.5</td><td style='text-align:center'>✓</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>✓</td></tr></tbody>
+  </table>
+
+  <h2>细分错误统计（A1/B1...）</h2>
+  <table>
+    <thead><tr><th>错误子类</th><th>数量</th></tr></thead>
+    <tbody><tr><td>A4</td><td style='text-align:center'>2</td></tr><tr><td>B1</td><td style='text-align:center'>20</td></tr></tbody>
+  </table>
+
+  <h3>细分错误示例（每类2条）</h3>
+  <table>
+    <thead><tr><th>错误子类</th><th>例1-题号</th><th>例1-题目</th><th>例1-理由</th><th>例2-题号</th><th>例2-题目</th><th>例2-理由</th></tr></thead>
+    <tbody><tr><td>A4</td><td>Q005</td><td>某新能源汽车电池包下壳体的注塑件在侧壁安装孔周围设置了放射状加强筋以提升螺栓紧固刚性，但量产中发现筋根部与基面交接处持续出现深度缩水凹陷，且同一模具在不同批次生产时凹陷程度波动明显。请结合注塑过程中熔体流动前沿温度梯度、筋位局部冷却速率差异、以及结晶性材料在非均匀约束下的收缩各向异性特征，分析该缩水缺陷产生波动性的根本原因，并说明在不变更模具水路和注塑工艺窗口的前提下，应如何重构加强筋的拓扑布局与截面渐变逻辑来稳定收缩行为。</td><td>Gemini3.1pro: 题干包含大量引导性专业术语（如“结合注塑过程中熔体流动前沿温度梯度...”），且要求分析过于复杂，不适合口语直接作答。应简化为“某注塑件加强筋根部出现深度缩水凹陷且批次间波动大，请分析原因并说明如何从结构上优化加强筋设计。”</td><td>Q006</td><td>某混合动力车型的电池包上盖采用碳纤维复合材料，需与铝合金托盘实现高强度、耐振动且不破坏纤维连续性的连接。请简述在满足量产自动化装配前提下，为何优先选用热熔嵌件而非自冲铆接，并从纤维层间损伤风险、热-机械耦合载荷下的失效起始位置、以及产线换型柔性三方面说明技术权衡依据。</td><td>GPT5.5: 答案称热熔嵌件会使碳纤维基体熔融并界面扩散，但又举环氧/氰酸酯等热固性基体，热固性复材不能熔融。；Gemini3.1pro: 题干要求“从纤维层间损伤风险、热-机械耦合载荷下的失效起始位置、以及产线换型柔性三方面说明”，指定多维度专业分析过于书面化，不适合口语作答。应简化为“请简述为何优先选用热熔嵌件而非自冲铆接”。</td></tr><tr><td>B1</td><td>Q003</td><td>某款电池包下壳体采用压铸铝件，设计时在底部设置了三个不共线的平面支撑点，同时又在侧壁增加了两个刚性定位销。请简单说说这种定位方式可能引发什么装配问题，以及根本原因是什么。</td><td>GPT5.5: 答案称三个底部平面支撑点还提供X/Y向冗余约束，平面支撑主要限制Z向及绕X/Y转动，定位自由度解释错误。</td><td>Q006</td><td>某混合动力车型的电池包上盖采用碳纤维复合材料，需与铝合金托盘实现高强度、耐振动且不破坏纤维连续性的连接。请简述在满足量产自动化装配前提下，为何优先选用热熔嵌件而非自冲铆接，并从纤维层间损伤风险、热-机械耦合载荷下的失效起始位置、以及产线换型柔性三方面说明技术权衡依据。</td><td>GPT5.5: 答案称热熔嵌件会使碳纤维基体熔融并界面扩散，但又举环氧/氰酸酯等热固性基体，热固性复材不能熔融。；Gemini3.1pro: 题干要求“从纤维层间损伤风险、热-机械耦合载荷下的失效起始位置、以及产线换型柔性三方面说明”，指定多维度专业分析过于书面化，不适合口语作答。应简化为“请简述为何优先选用热熔嵌件而非自冲铆接”。</td></tr></tbody>
+  </table>
+</body>
+</html>

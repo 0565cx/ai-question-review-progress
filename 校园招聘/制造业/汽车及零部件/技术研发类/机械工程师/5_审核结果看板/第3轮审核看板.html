@@ -1,0 +1,72 @@
+﻿<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Round 3 Dashboard</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; margin: 24px; color: #1f2937; }
+    h1, h2, h3 { margin: 10px 0 12px; }
+    .cards { display: grid; grid-template-columns: repeat(3, minmax(140px, 220px)); gap: 12px; margin: 8px 0 18px; }
+    .card { border: 1px solid #e5e7eb; border-radius: 10px; padding: 12px; background: #fafafa; }
+    .card .k { font-size: 12px; color: #6b7280; }
+    .card .v { font-size: 24px; font-weight: 700; margin-top: 4px; }
+    table { border-collapse: collapse; width: 100%; margin: 8px 0 18px; }
+    th, td { border: 1px solid #e5e7eb; padding: 8px 10px; vertical-align: middle; }
+    th { background: #f9fafb; }
+    .legend span { margin-right: 12px; font-size: 13px; color: #374151; }
+    .mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; }
+    .ex { margin: 6px 0; color: #374151; }
+    .section-divider { border: 0; border-top: 2px solid #eef2f7; margin: 22px 0; }
+  </style>
+</head>
+<body>
+  <h1>Round 3 审核看板</h1>
+
+  <div class="cards">
+    <div class="card"><div class="k">A类错误</div><div class="v">15</div></div>
+    <div class="card"><div class="k">B类错误</div><div class="v">183</div></div>
+    <div class="card"><div class="k">C类错误</div><div class="v">27</div></div>
+  </div>
+
+  <h2>本轮题目主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">本次三轮重审主要暴露的问题集中在汽车机械基础概念、标准适用对象和工艺场景混用。典型问题包括 IP/密封等级定义、OTS/PPAP/PSW 阶段关系、冲压件与注塑/压铸件脱模概念、未注公差标准 GB/T 1800 与 GB/T 1804 的适用范围，以及悬架/车身坐标、簧上簧下质量等结构常识。重复题仅在逐字或高度同构时采纳，已剔除 Gemini 对 R3-B024 的宽泛 C1 误判。</div>
+<h2>本轮答案主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">答案层面的主要错误是把专业定义写反、把适用对象套错或把工程因果关系反向解释。例如热膨胀配合逻辑、压铸冒口补缩、高硅铝合金流动性、弹性模量与回弹、试验问题闭环证据、DFMEA 影响层级等内容存在会误导候选人的硬错误。多数被删除项属于 B 类知识/逻辑错误，A 类多为题干与答案共同反向或场景前提不成立。</div>
+<h2>后续重新出内容时应补充的规则</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">【重新出题】<br/>重新出题时需先锁定岗位场景和工艺对象，避免把冲压、注塑、压铸、机加工、装配验证等术语混用。涉及标准时必须明确标准号和适用范围；涉及重复题时不要只换同义词或换零件名，应改变考察知识点或工程情境。<br/><br/>【重出答案】<br/>重出答案时应优先核对硬定义、物理方向、标准适用对象和工艺边界。多层答案中的案例必须与题干行业、零件、工艺一致；涉及验证/PPAP/DFMEA/DVP 的流程题，要区分阶段、文件和证据要求，避免把常见缩写和流程节点混写。</div>
+
+  <hr class="section-divider" />
+
+  <h2>模型进度与删除率</h2>
+  <table>
+    <thead>
+      <tr><th>Model</th><th>批次完成</th><th>完成率</th><th>删除率</th><th>主错误</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>GPT5.5</td><td style='text-align:center'>25/25</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:9.7%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">9.7%</span></td><td style='text-align:center'>B>A>C</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>25/25</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:13.0%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">13.0%</span></td><td style='text-align:center'>B>C>A</td></tr>
+    </tbody>
+  </table>
+
+  <h2>批次状态矩阵</h2>
+  <div class="legend">
+    <span>✓ done</span><span>… running</span><span>○ pending</span><span>! blocked</span><span>x failed</span>
+  </div>
+  <table>
+    <thead><tr><th>Model</th><th>R3-B001</th><th>R3-B002</th><th>R3-B003</th><th>R3-B004</th><th>R3-B005</th><th>R3-B006</th><th>R3-B007</th><th>R3-B008</th><th>R3-B009</th><th>R3-B010</th><th>R3-B011</th><th>R3-B012</th><th>R3-B013</th><th>R3-B014</th><th>R3-B015</th><th>R3-B016</th><th>R3-B017</th><th>R3-B018</th><th>R3-B019</th><th>R3-B020</th><th>R3-B021</th><th>R3-B022</th><th>R3-B023</th><th>R3-B024</th><th>R3-B025</th></tr></thead>
+    <tbody><tr><td>GPT5.5</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td></tr></tbody>
+  </table>
+
+  <h2>细分错误统计（A1/B1...）</h2>
+  <table>
+    <thead><tr><th>错误子类</th><th>数量</th></tr></thead>
+    <tbody><tr><td>A1</td><td style='text-align:center'>13</td></tr><tr><td>A2</td><td style='text-align:center'>2</td></tr><tr><td>B1</td><td style='text-align:center'>165</td></tr><tr><td>B2</td><td style='text-align:center'>2</td></tr><tr><td>B3</td><td style='text-align:center'>14</td></tr><tr><td>B4</td><td style='text-align:center'>2</td></tr><tr><td>C1</td><td style='text-align:center'>17</td></tr><tr><td>C2</td><td style='text-align:center'>10</td></tr></tbody>
+  </table>
+
+  <h3>细分错误示例（每类2条）</h3>
+  <table>
+    <thead><tr><th>错误子类</th><th>例1-题号</th><th>例1-题目</th><th>例1-理由</th><th>例2-题号</th><th>例2-题目</th><th>例2-理由</th></tr></thead>
+    <tbody><tr><td>A1</td><td>Q007</td><td>新能源汽车电池包内常用滑轨式快换机构实现模组抽拉维护。请简述当驱动手柄旋转时，该机构如何通过螺旋副与移动副的组合，将小角度转动转化为模组长距离直线运动。</td><td>GPT5.5: 题干写“通过螺旋副与移动副的组合，将小角度转动转化为模组长距离直线运动”，逻辑不严谨。普通螺旋副的轴向位移与转角及导程成正比，小角度转动只能产生很小位移，不能直接实现“长距离直线运动”；若要长行程，应说明多圈旋转、齿轮齿条/丝杠长行程机构或带增程机构。；Gemini3.1pro: 题干“将小角度转动转化为长距离直线运动”逻辑错误，螺旋副小角度无法实现长距离运动。</td><td>Q007</td><td>新能源汽车电池包内常用滑轨式快换机构实现模组抽拉维护。请简述当驱动手柄旋转时，该机构如何通过螺旋副与移动副的组合，将小角度转动转化为模组长距离直线运动。</td><td>GPT5.5: 题干写“通过螺旋副与移动副的组合，将小角度转动转化为模组长距离直线运动”，逻辑不严谨。普通螺旋副的轴向位移与转角及导程成正比，小角度转动只能产生很小位移，不能直接实现“长距离直线运动”；若要长行程，应说明多圈旋转、齿轮齿条/丝杠长行程机构或带增程机构。；Gemini3.1pro: 题干“将小角度转动转化为长距离直线运动”逻辑错误，螺旋副小角度无法实现长距离运动。</td></tr><tr><td>A2</td><td>Q031</td><td>一款面向全球市场的紧凑型SUV底盘副车架，在轻量化升级中将部分钢制连杆替换为高压铸铝件，需与车身安装点保持长期夹紧力并耐受高频路面激励。请简述为何在此高动态交变载荷与多材料共存场景下，选用带锁紧齿结构的金属嵌件注塑成型（用于塑料衬套安装座）比铆接更可靠，并从预紧力衰减机制、微动磨损抑制路径、以及低温冷缩工况下的界面应力分布角度说明判断逻辑。</td><td>GPT5.5: 题干场景“一款面向全球市场的紧凑型SUV底盘副车架……选用带锁紧齿结构的金属嵌件注塑成型（用于塑料衬套安装座）比铆接更可靠”过于偏门且不符合底盘副车架高动态承载的常见结构口径。副车架/控制臂衬套安装座通常为金属焊接、铸造、锻造或机加工结构，塑料衬套安装座注塑嵌件用于该高载荷底盘副车架连接并非机械工程师常见量产场景。</td><td>Q368</td><td>在零部件完成首轮试制并准备向整车厂提交PPAP时，机械工程师需要确认哪些设计输出文件已具备正式发布状态？请简述其中三项与结构设计直接相关的文件及其发布前提。</td><td>Gemini3.1pro: 题干设定“完成首轮试制并准备提交PPAP”违背APQP常识，PPAP必须使用正式量产工装生产的零件。</td></tr><tr><td>B1</td><td>Q005</td><td>汽车电动助力转向系统中的齿轮齿条机构，如何将转向电机的旋转运动转化为车轮的左右转向运动？请简述其中关键部件之间的运动传递关系。</td><td>GPT5.5: 参考答案第一层写“该小齿轮与固定在转向横拉杆上的齿条啮合”，表述错误。齿条不是固定在转向横拉杆上，而是齿条本体与小齿轮啮合，将旋转运动转为齿条横向直线运动，齿条两端再通过内/外球头、横拉杆带动转向节转动。</td><td>Q013</td><td>请简单说说螺栓连接中，双螺母防松的基本原理是什么？</td><td>GPT5.5: 参考答案第三层复杂问题写“某电驱减速器壳体铝压铸件M8螺纹孔在双螺母反复拆装3次后出现牙型损伤”。双螺母防松通常用于螺栓/螺柱上的两个螺母互锁，不适用于壳体内螺纹孔本身的“双螺母反复拆装”场景；正确复杂情况应围绕螺柱、外螺纹、锁紧螺母装配顺序或内螺纹有效啮合长度与嵌件方案展开。；Gemini3.1pro: 答案称“双螺母方案常见于底盘悬架支架”，底盘悬架属高频振动场景，双螺母不适用。</td></tr><tr><td>B2</td><td>Q962</td><td>当一个已量产的转向节零件因供应商模具磨损导致铸件关键尺寸超差，需要发起工程变更时，请简述你如何确定这次变更的验证范围，重点说明哪些试验或检查必须重新执行，哪些可以沿用历史数据。</td><td>Gemini3.1pro: 答案第二层中“RPN≥100”已过时，新版AIAG-VDA FMEA手册已使用AP（行动优先级）取代RPN作为风险评估指标。</td><td>Q982</td><td>请简单说说为什么降本方案验证必须包含对原设计失效模式（如DFMEA）的再评审。</td><td>GPT5.5: 答案称“FMEA-AI辅助分析工具”为主流主机厂和Tier1规模化应用并作为最优实践，口径过度前沿且不属常见工程最佳实践。</td></tr><tr><td>B3</td><td>Q118</td><td>在整车项目开发中，一个被多个总成共用的线束固定支架发生结构优化，图纸版本由A2升至A3。为保障下游焊接夹具、注塑模具和装配工艺文件均基于同一设计状态开展工作，BOM中该支架的版本字段应与哪些关键交付物保持严格一致？请简述。</td><td>GPT5.5: 题目问BOM版本字段应与哪些关键交付物保持一致，第一层只答“正式发布的工程图纸”，漏掉3D模型、ECN生效状态、工艺/检验/夹具模具依据等版本一致性对象。</td><td>Q138</td><td>请简单说说，方案可行性评审中‘拔模斜度’这一要求，主要是为了保障哪类制造工艺的顺利实施。</td><td>GPT5.5: 第一层称拔模斜度“主要是为了保障注塑成型工艺”，范围过窄；拔模斜度还直接服务压铸、铸造等需脱模的模具成型工艺，不能只限定为注塑。</td></tr><tr><td>B4</td><td>Q013</td><td>请简单说说螺栓连接中，双螺母防松的基本原理是什么？</td><td>GPT5.5: 参考答案第三层复杂问题写“某电驱减速器壳体铝压铸件M8螺纹孔在双螺母反复拆装3次后出现牙型损伤”。双螺母防松通常用于螺栓/螺柱上的两个螺母互锁，不适用于壳体内螺纹孔本身的“双螺母反复拆装”场景；正确复杂情况应围绕螺柱、外螺纹、锁紧螺母装配顺序或内螺纹有效啮合长度与嵌件方案展开。；Gemini3.1pro: 答案称“双螺母方案常见于底盘悬架支架”，底盘悬架属高频振动场景，双螺母不适用。</td><td>Q966</td><td>请简述在零部件材料替代时，为什么要重点关注热膨胀系数匹配？</td><td>Gemini3.1pro: 答案第三层异常情况中壳体“由铝替铜”不合理，电机壳体通常为铸铁或铝合金，极少使用纯铜，严重脱离实际场景。</td></tr><tr><td>C1</td><td>Q147</td><td>在整车总布置阶段，当校核某零部件与周边结构的装配空间时，如何通过识别其空间包络边界来判断是否存在运动干涉？请简单说说这个识别过程的关键依据。</td><td>Gemini3.1pro: 与R3-B003批次的Q0120题干完全一样，属于跨批次C1重复。</td><td>Q412</td><td>请简单说说齿轮传动中，主动轮与从动轮转向相反的情况出现在哪种啮合方式下。</td><td>Gemini3.1pro: 与Q0410完全重复</td></tr><tr><td>C2</td><td>Q025</td><td>在机械装配中，当一个零件的尺寸链需要通过多个基准依次传递时，基准传递对最终装配尺寸的公差累积会产生什么直接影响？</td><td>Gemini3.1pro: 与Q0023高度重复，均考察双销定位时未考虑中心距公差/未采用腰型孔导致的过定位及干涉。</td><td>Q043</td><td>某压铸铝合金支架在整车振动环境中服役一段时间后发生疲劳断裂，断口分析显示裂纹源位于一处未做倒圆处理的孔边缘。这种结构细节引发的失效，主要与哪种疲劳诱因相关？请简单说明该诱因如何加剧局部应力集中。</td><td>Gemini3.1pro: 与Q0042高度重复，均考察未倒圆/尖角等几何突变引发应力集中，进而导致疲劳断裂的机理。</td></tr></tbody>
+  </table>
+</body>
+</html>
