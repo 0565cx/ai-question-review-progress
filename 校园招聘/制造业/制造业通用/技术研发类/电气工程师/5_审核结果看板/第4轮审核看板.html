@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Round 4 Dashboard</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; margin: 24px; color: #1f2937; }
+    h1, h2, h3 { margin: 10px 0 12px; }
+    .cards { display: grid; grid-template-columns: repeat(3, minmax(140px, 220px)); gap: 12px; margin: 8px 0 18px; }
+    .card { border: 1px solid #e5e7eb; border-radius: 10px; padding: 12px; background: #fafafa; }
+    .card .k { font-size: 12px; color: #6b7280; }
+    .card .v { font-size: 24px; font-weight: 700; margin-top: 4px; }
+    table { border-collapse: collapse; width: 100%; margin: 8px 0 18px; }
+    th, td { border: 1px solid #e5e7eb; padding: 8px 10px; vertical-align: middle; }
+    th { background: #f9fafb; }
+    .legend span { margin-right: 12px; font-size: 13px; color: #374151; }
+    .mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; }
+    .ex { margin: 6px 0; color: #374151; }
+    .section-divider { border: 0; border-top: 2px solid #eef2f7; margin: 22px 0; }
+  </style>
+</head>
+<body>
+  <h1>Round 4 审核看板</h1>
+
+  <div class="cards">
+    <div class="card"><div class="k">A类错误</div><div class="v">6</div></div>
+    <div class="card"><div class="k">B类错误</div><div class="v">30</div></div>
+    <div class="card"><div class="k">C类错误</div><div class="v">0</div></div>
+  </div>
+
+  <h2>本轮题目主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">本轮题目侧问题主要集中在少量题干概念前提不严谨，尤其是保护接地、TN-S供电制式、测试对象边界等电气基础概念表述不够准确。整体未发现明显重复题，绝大多数题干场景仍属于制造业电气工程师常见现场，但个别题把系统类型或故障路径前提写得过于绝对，导致候选人即使按专业口径回答也可能被错误引导。后续重新出题时，应优先校准题干中的系统制式、标准适用范围、故障电流路径和测试对象，避免把不同供电系统、保护方式或EMC场景混为一谈。</div>
+<h2>本轮答案主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">本轮答案侧问题显著高于题干侧，主要集中在B1类知识性或逻辑性错误：多处将保护接地简单表述为“电流流向大地”，忽略TN系统中PE/PEN回到电源中性点形成低阻抗故障回路的关键机制；部分答案误用IEC/GB标准适用范围，或把RCD、绝缘监测、泄漏电流测试、耐压测试、等电位联结等概念混淆；还有答案把屏蔽接地、功能接地和保护接地的工程边界说得过于绝对。少数答案出现岗位口径偏移，使用PCB板级接地或泛化EMC表达替代产线电气设计口径，影响可评分性和现场真实性。</div>
+<h2>后续重新出内容时应补充的规则</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">【重新出题】<br/>重新出题时必须先明确供电系统类型（TN-S/TN-C-S/TT/IT）、设备对象、故障类型和保护器件，题干不得把“三相四线制TN-S”等概念混写；涉及接地、RCD、短路保护、EMC屏蔽、绝缘/耐压/泄漏测试时，要给出足够但不过度复杂的现场边界，禁止把标准条款、测试对象或故障电流路径写成绝对化错误前提。题干仍可使用“简述/说明/为什么”等口语化面试表达，但不得要求公式推导、符号含义、绘图或证明。<br/><br/>【重出答案】<br/>重出答案时每层必须按制造业电气工程师现场口径回答：第一层给准确概念和适用条件；第二层比较方案时必须说明适用系统、优缺点和工程限制，不能误引标准或把某一场景做成通用结论；第三层异常/复杂情况要真实可发生，并给出可执行排查或整改步骤。所有涉及保护接地、等电位联结、RCD、绝缘监测、屏蔽端接、耐压/泄漏测试的表述，应自检“标准是否适用、故障回路是否闭合、测试对象是否正确、是否混淆保护接地与功能接地”。</div>
+
+  <hr class="section-divider" />
+
+  <h2>模型进度与删除率</h2>
+  <table>
+    <thead>
+      <tr><th>Model</th><th>批次完成</th><th>完成率</th><th>删除率</th><th>主错误</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>GPT5.5</td><td style='text-align:center'>1/1</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:75.9%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">75.9%</span></td><td style='text-align:center'>B>A</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>1/1</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:51.7%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">51.7%</span></td><td style='text-align:center'>B>A</td></tr>
+    </tbody>
+  </table>
+
+  <h2>批次状态矩阵</h2>
+  <div class="legend">
+    <span>✓ done</span><span>… running</span><span>○ pending</span><span>! blocked</span><span>x failed</span>
+  </div>
+  <table>
+    <thead><tr><th>Model</th><th>R4-B001</th></tr></thead>
+    <tbody><tr><td>GPT5.5</td><td style='text-align:center'>✓</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>✓</td></tr></tbody>
+  </table>
+
+  <h2>细分错误统计（A1/B1...）</h2>
+  <table>
+    <thead><tr><th>错误子类</th><th>数量</th></tr></thead>
+    <tbody><tr><td>A1</td><td style='text-align:center'>6</td></tr><tr><td>B1</td><td style='text-align:center'>21</td></tr><tr><td>B2</td><td style='text-align:center'>4</td></tr><tr><td>B3</td><td style='text-align:center'>4</td></tr><tr><td>B6</td><td style='text-align:center'>1</td></tr></tbody>
+  </table>
+
+  <h3>细分错误示例（每类2条）</h3>
+  <table>
+    <thead><tr><th>错误子类</th><th>例1-题号</th><th>例1-题目</th><th>例1-理由</th><th>例2-题号</th><th>例2-题目</th><th>例2-理由</th></tr></thead>
+    <tbody><tr><td>A1</td><td>Q007</td><td>在使用三相四线制TN-S供电系统的生产设备中，当某台电机外壳因绝缘损坏带电时，保护接地如何促使断路器快速动作？请简述电流路径及触发保护的关键条件。</td><td>GPT5.5: 题干原文为“使用三相四线制TN-S供电系统”。TN-S系统要求中性导体N与保护导体PE全程分开；若同时存在三相、N和PE，通常应表述为三相五线制TN-S。题干把“三相四线制”与“TN-S”并列，概念不严谨；正确口径应改为“三相五线制TN-S系统”或明确为“三相三线+PE且无中性线的TN-S配电”。</td><td>Q009</td><td>某自动化产线新增一台IP54防护等级的变频驱动柜，其主回路采用TN-S系统供电，柜内同时布置了PLC控制回路与24V直流安全特低电压回路。请简述在依据GB/T 16895.1—2023执行接地与等电位联结设计时，为何该柜内PE导体、功能接地导体及SELV回路的保护导体三者必须物理隔离敷设，且不能共用同一端子排连接至柜体接地点。</td><td>GPT5.5: 题干原文要求说明“PE导体、功能接地导体及SELV回路的保护导体三者必须物理隔离敷设，且不能共用同一端子排连接至柜体接地点”。SELV回路本身通常不以“保护导体”作为电击防护必要条件，题干把“SELV回路的保护导体”作为必然对象并断言三者必须物理隔离、不得共端子，标准前提不严谨。参考答案-第一层又称“标准强制规定它们不得共用导体或共用连接点”，该绝对化说法不符合PE、FE和等电位联结在工业柜内按功能分排、最终纳入主等电位系统的常见做法。；Gemini3.1pro: 题干和答案把SELV回路说成存在“保护导体”并要求“PE导体、功能接地导体及SELV回路的保护导体三者必须物理隔离敷设”，概念不严谨。SELV安全特低电压回路通常依靠保护隔离，不以保护导体作为电击防护通路；正确口径应区分PE、功能接地、SELV/PELV回路参考点及等电位联结要求，不能把“SELV回路的保护导体”作为必然存在的独立保护路径。</td></tr><tr><td>B1</td><td>Q001</td><td>在一条多工位自动装配产线中，主控PLC通过安全继电器模块控制若干伺服电机的使能回路，同时该产线包含光栅、急停按钮和双手按钮三类安全输入。当原理图设计需拆解‘安全使能功能回路’时，为何不能将三类安全输入直接串联后接入安全继电器的输入端子？请简述功能回路拆解时需考虑的响应时间约束、故障掩模风险与安全等级匹配逻辑。</td><td>GPT5.5: 参考答案-第三层原文称“光栅输出在未被遮挡时随机出现OFF脉冲，引发使能频繁中断，但串联结构下该脉冲被急停常闭触点‘拉高’掩盖，安全继电器未动作”。串联安全回路中任一通道断开通常会使安全继电器失电或检测到输入断开，急停常闭触点不会把光栅OFF脉冲“拉高”并掩盖；正确口径应是直接串联会丢失双通道交叉监控、同步/时间窗检测和单个安全功能的独立诊断，而不是这种电气掩盖机理。；Gemini3.1pro: 参考答案第三层存在电气逻辑错误。原文称“光栅输出在未被遮挡时随机出现OFF脉冲……但串联结构下该脉冲被急停常闭触点‘拉高’掩盖，安全继电器未动作”，串联安全输入中任一通道打开通常会使安全继电器输入断开，不会被另一个常闭触点“拉高”掩盖；正确口径应说明串联会削弱独立诊断、双手同步校验和故障检测能力，而不是描述为OFF脉冲被急停触点掩盖。</td><td>Q002</td><td>在变频驱动系统中，电机电缆与控制信号线平行敷设时，常因共模电流在电缆屏蔽层上感应出干扰电压。请简述一种现场常用的、基于屏蔽与接地协同的共模干扰抑制方法及其作用原理。</td><td>GPT5.5: 参考答案-第一层原文称“采用单端接地的金属屏蔽电缆，并将屏蔽层仅在变频器侧……连接至变频器PE端子”，第二层又称“单端接地是最常用且首选方案”。在变频驱动系统抑制高频共模干扰时，电机电缆屏蔽层通常应以360度低阻抗方式两端端接并做好等电位联结；控制信号线才可能按信号类型选择单端或两端/电容端接。把“单端接地”作为变频系统共模抑制首选方案，容易放大高频共模电压，口径不符合当前EMC实践。</td></tr><tr><td>B2</td><td>Q002</td><td>在变频驱动系统中，电机电缆与控制信号线平行敷设时，常因共模电流在电缆屏蔽层上感应出干扰电压。请简述一种现场常用的、基于屏蔽与接地协同的共模干扰抑制方法及其作用原理。</td><td>GPT5.5: 参考答案-第一层原文称“采用单端接地的金属屏蔽电缆，并将屏蔽层仅在变频器侧……连接至变频器PE端子”，第二层又称“单端接地是最常用且首选方案”。在变频驱动系统抑制高频共模干扰时，电机电缆屏蔽层通常应以360度低阻抗方式两端端接并做好等电位联结；控制信号线才可能按信号类型选择单端或两端/电容端接。把“单端接地”作为变频系统共模抑制首选方案，容易放大高频共模电压，口径不符合当前EMC实践。</td><td>Q005</td><td>某汽车零部件产线的PLC控制系统中，变频器驱动电机产生的高频谐波通过接地系统耦合至同一接地网的视觉检测相机电源端，导致图像出现规律性条纹干扰。请说明在此场景下，接地分配设计中‘功能接地’与‘保护接地’共用同一接地极可能引发的具体干扰机理，并提出一种兼顾安全合规与抗干扰性能的接地结构改进方案。</td><td>GPT5.5: 参考答案-第二层原文称“将功能接地与保护接地物理分离并各自接入独立接地极，符合IEC 61000-5-2推荐原则”，并给出“土壤电阻率≤10Ω·m且两接地极间距≥3米”的条件。工业现场功能接地与保护接地应在主等电位系统中协调联结，随意采用独立接地极会引入危险电位差和抗扰问题；正确口径应是保护接地必须连续可靠，功能接地通过分区、单独导体、屏蔽端接和主等电位联结降低噪声，而不是简单分设独立接地极。</td></tr><tr><td>B3</td><td>Q010</td><td>在对一台工业变频器控制柜执行耐压测试时，测试电压应依据哪个国家标准确定？请简述确定该电压值时需重点考虑的两个实际因素。</td><td>GPT5.5: 参考答案-第一层原文把工业变频器控制柜耐压测试依据写成“GB/T 18488.2—2023《电动汽车用驱动电机系统 第2部分：试验方法》”。该标准面向电动汽车驱动电机系统，不是普通工业变频器控制柜耐压测试的通用国家标准依据；正确口径应优先按低压成套设备、机械电气设备或可调速电气传动系统适用标准及制造商型式试验要求确定测试电压。答案将汽车驱动系统标准作为主要依据，偏离题目场景。</td><td>Q023</td><td>一条带变频驱动的输送系统发生短路保护动作，复位后短暂运行又跳闸。已知该回路含电机、变频器、编码器反馈线及屏蔽电缆。请简述你如何依据电磁兼容性影响与接地路径完整性，判断短路是发生在功率回路还是信号回路，并说明验证逻辑。</td><td>GPT5.5: 参考答案-第二层原文把“断开编码器反馈线单独启机，若不再跳闸则指向信号回路问题”作为判断短路位置的方法，并用“PE线毫安级持续杂散电流”提示屏蔽层或信号地问题。变频驱动输送系统的短路保护动作通常首先对应功率侧过流、对地或输出短路，编码器线断开更多会触发反馈/速度异常而非证明“信号回路短路”；毫安级PE电流也不足以作为短路位置判据。正确口径应先读取保护代码、分离电机/电缆/变频器输出侧做绝缘与相间检查，再对编码器和屏蔽问题作为干扰或反馈故障另行验证。</td></tr><tr><td>B6</td><td>Q003</td><td>请简述为什么功率地通常需要更低的阻抗路径，而信号地更强调电位稳定性和噪声隔离？</td><td>GPT5.5: 参考答案-第二层原文把制造业电气系统接地方案写成“采用独立铜箔层+低阻过孔阵列实现功率地平面”“通过磁珠+电容组合滤波隔离不同地域”，并称“第一种方案在当前主流自动化设备中应用最广”。这属于PCB板级电子设计口径，不是制造业电气工程师在产线控制柜、驱动柜、PLC/伺服系统接地分配中的常用表达；正确口径应围绕PE/FE、等电位联结、屏蔽端接、动力与信号线分区、接地排路径阻抗等现场电气设计要点。</td><td></td><td></td><td></td></tr></tbody>
+  </table>
+</body>
+</html>
