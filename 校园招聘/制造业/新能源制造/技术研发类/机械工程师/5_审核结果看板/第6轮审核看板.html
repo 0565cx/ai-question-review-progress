@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>第6轮审核看板</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; margin: 24px; color: #1f2937; }
+    h1, h2, h3 { margin: 10px 0 12px; }
+    .cards { display: grid; grid-template-columns: repeat(3, minmax(140px, 220px)); gap: 12px; margin: 8px 0 18px; }
+    .card { border: 1px solid #e5e7eb; border-radius: 10px; padding: 12px; background: #fafafa; }
+    .card .k { font-size: 12px; color: #6b7280; }
+    .card .v { font-size: 24px; font-weight: 700; margin-top: 4px; }
+    table { border-collapse: collapse; width: 100%; margin: 8px 0 18px; }
+    th, td { border: 1px solid #e5e7eb; padding: 8px 10px; vertical-align: middle; }
+    th { background: #f9fafb; }
+    .legend span { margin-right: 12px; font-size: 13px; color: #374151; }
+    .mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; }
+    .ex { margin: 6px 0; color: #374151; }
+    .section-divider { border: 0; border-top: 2px solid #eef2f7; margin: 22px 0; }
+  </style>
+</head>
+<body>
+  <h1>第 6 轮审核看板</h1>
+
+  <div class="cards">
+    <div class="card"><div class="k">A类错误</div><div class="v">0</div></div>
+    <div class="card"><div class="k">B类错误</div><div class="v">38</div></div>
+    <div class="card"><div class="k">C类错误</div><div class="v">0</div></div>
+  </div>
+
+  <h2>本轮题目主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">第6轮送审题在题干层面整体可用性较高，未出现明显A类或C类高频问题。题干与机械工程师岗位技能点总体匹配，场景描述也基本处于常见工程应用语境。本轮主要风险集中在答案表达质量而非题干设计。</div>
+<h2>本轮答案主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">答案侧高频问题集中在B类，尤其是口语可答性与表达可执行性不足：部分三层答案偏模板化、信息密度过高或术语堆叠，候选人很难在面试口述场景下给出高质量对应作答。个别答案虽然方向正确，但层次边界不够清晰，导致第一层/第二层/第三层的区分度不足。</div>
+<h2>后续重新出内容时应补充的规则</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">【重新出题】<br/>若后续出现题干重出需求，需强约束题干仅保留单一核心考点，不引入公式推导、绘图、证明类口述不友好指令；题干场景必须是机械工程师高频工作场景，并与标注知识点一一对应。<br/><br/>【重出答案】<br/>重出答案新增硬性规则：1) 三层答案统一采用口语面试表达，不写公式、符号串、公差代号堆叠或文档化阈值清单，避免“技术报告腔”；2) 第一层只讲概念和原理，不展开大段机理推导；3) 第二层只做2-3个常见方案对比，按“适用场景-优缺点-推荐选择”一句一意，禁止跨岗位术语堆砌；4) 第三层仅保留1个高频异常和1个复杂工况，各自按“现象-排查-处理”三步描述，优先动作词和现场可执行表达；5) 量化信息只保留必要且可口述的1-2个关键指标，不连续给出多组阈值、公差带和符号化参数；6) 生成后必须通过口语可答性自检：候选人能在2-4分钟内复述核心思路，面试官可据此追问并评分。</div>
+
+  <hr class="section-divider" />
+
+  <h2>模型进度与删除率</h2>
+  <table>
+    <thead>
+      <tr><th>模型</th><th>批次完成</th><th>完成率</th><th>删除率</th><th>主要错误</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>GPT5.5</td><td style='text-align:center'>1/1</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:11.8%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">11.8%</span></td><td style='text-align:center'>B</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>1/1</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td style='text-align:center'>B</td></tr>
+    </tbody>
+  </table>
+
+  <h2>批次状态矩阵</h2>
+  <div class="legend">
+    <span>✓ 已完成</span><span>… 进行中</span><span>○ 待开始</span><span>! 阻塞</span><span>x 失败</span>
+  </div>
+  <table>
+    <thead><tr><th>模型</th><th>R6-B001</th></tr></thead>
+    <tbody><tr><td>GPT5.5</td><td style='text-align:center'>✓</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>✓</td></tr></tbody>
+  </table>
+
+  <h2>细分错误统计（A1/B1...）</h2>
+  <table>
+    <thead><tr><th>错误子类</th><th>数量</th></tr></thead>
+    <tbody><tr><td>B1</td><td style='text-align:center'>6</td></tr><tr><td>B5</td><td style='text-align:center'>34</td></tr></tbody>
+  </table>
+
+  <h3>细分错误示例（每类2条）</h3>
+  <table>
+    <thead><tr><th>错误子类</th><th>例1-题号</th><th>例1-题目</th><th>例1-理由</th><th>例2-题号</th><th>例2-题目</th><th>例2-理由</th></tr></thead>
+    <tbody><tr><td>B1</td><td>Q001</td><td>请简单说说齿轮传动为什么能保证严格的传动比。</td><td>GPT5.5: Answer layer-1 wrongly states gear meshing is pure rolling at all times; involute gears generally have sliding except near pitch point.；Gemini3.1pro: 答案包含大量符号、公差代号、量化阈值与书面化表达，不适合口语直接作答；应改为口语化表达并去除符号公式。</td><td>Q006</td><td>储能柜体的钣金外壳需通过IP54防护认证，长期暴露于沿海高盐雾环境，且要求表面喷涂后不影响内部EMC屏蔽层导通性。请简述你如何协同确定表面处理方案，并解释各环节的约束条件。</td><td>GPT5.5: Answer layer-1 misinterprets IP5X as blocking particles >=1mm; IP5X means dust-protected, not a 1mm threshold.；Gemini3.1pro: 答案包含大量符号、公差代号、量化阈值与书面化表达，不适合口语直接作答；应改为口语化表达并去除符号公式。</td></tr><tr><td>B5</td><td>Q001</td><td>请简单说说齿轮传动为什么能保证严格的传动比。</td><td>GPT5.5: Answer layer-1 wrongly states gear meshing is pure rolling at all times; involute gears generally have sliding except near pitch point.；Gemini3.1pro: 答案包含大量符号、公差代号、量化阈值与书面化表达，不适合口语直接作答；应改为口语化表达并去除符号公式。</td><td>Q002</td><td>储能柜体自动锁紧机构中，使用了凸轮推动摆臂、再通过连杆驱动锁舌伸缩的三构件组合。若凸轮与摆臂为高副接触，摆臂与连杆、连杆与锁舌均为转动副，且所有构件均在同一平面内运动，请简述该机构的自由度计算关键步骤。</td><td>Gemini3.1pro: 答案包含大量符号、公差代号、量化阈值与书面化表达，不适合口语直接作答；应改为口语化表达并去除符号公式。</td></tr></tbody>
+  </table>
+</body>
+</html>

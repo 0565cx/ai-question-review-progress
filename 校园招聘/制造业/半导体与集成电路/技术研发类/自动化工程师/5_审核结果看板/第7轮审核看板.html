@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Round 7 Dashboard</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; margin: 24px; color: #1f2937; }
+    h1, h2, h3 { margin: 10px 0 12px; }
+    .cards { display: grid; grid-template-columns: repeat(3, minmax(140px, 220px)); gap: 12px; margin: 8px 0 18px; }
+    .card { border: 1px solid #e5e7eb; border-radius: 10px; padding: 12px; background: #fafafa; }
+    .card .k { font-size: 12px; color: #6b7280; }
+    .card .v { font-size: 24px; font-weight: 700; margin-top: 4px; }
+    table { border-collapse: collapse; width: 100%; margin: 8px 0 18px; }
+    th, td { border: 1px solid #e5e7eb; padding: 8px 10px; vertical-align: middle; }
+    th { background: #f9fafb; }
+    .legend span { margin-right: 12px; font-size: 13px; color: #374151; }
+    .mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; }
+    .ex { margin: 6px 0; color: #374151; }
+    .section-divider { border: 0; border-top: 2px solid #eef2f7; margin: 22px 0; }
+  </style>
+</head>
+<body>
+  <h1>Round 7 审核看板</h1>
+
+  <div class="cards">
+    <div class="card"><div class="k">A类错误</div><div class="v">3</div></div>
+    <div class="card"><div class="k">B类错误</div><div class="v">27</div></div>
+    <div class="card"><div class="k">C类错误</div><div class="v">2</div></div>
+  </div>
+
+  <h2>本轮题目主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">本轮题干问题以少量高风险缺陷为主，集中在知识性表述不严谨（A1）以及少量不适合口语作答的表达要求（A4）。重复性问题仍有残留，出现了语义层面的同质化（C2），说明回流重写时对题干差异化控制不足。整体看题干问题数量不高，但一旦命中A/C类会直接进入重新出题链路，对回流效率影响较大。</div>
+<h2>本轮答案主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">答案侧仍是主要风险来源，B1在删除项中占绝对多数，表现为结论口径偏绝对、条件边界不完整、因果链条不够闭环，容易在面试评分中造成误导。这类问题虽不一定需要改题干，但会显著影响答案可采信度与可评分性，因此本轮大部分题目进入“保留题干重出答案”。</div>
+<h2>后续重新出内容时应补充的规则</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">【重新出题】<br/>重新出题需增加三条硬约束：一是题干必须可口语直接作答，禁止要求写公式、推导或绘图；二是每题需通过“岗位常见场景+知识点一致性”自检，避免偏门场景；三是回流前做语义去重，对题干做核心作答路径比对，命中高重合即改写。<br/><br/>【重出答案】<br/>重出答案需增加结构化校验：第一层给出可核验定义与边界，第二层提供至少两种常见方案并说明适用条件，第三层给出真实异常与复杂问题及处理步骤；同时禁止绝对化表述，要求给出前提条件、限制项与可评分要点清单。</div>
+
+  <hr class="section-divider" />
+
+  <h2>模型进度与删除率</h2>
+  <table>
+    <thead>
+      <tr><th>Model</th><th>批次完成</th><th>完成率</th><th>删除率</th><th>主错误</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>GPT5.5</td><td style='text-align:center'>1/1</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:84.8%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">84.8%</span></td><td style='text-align:center'>B>C</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>1/1</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:12.1%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">12.1%</span></td><td style='text-align:center'>A>C</td></tr>
+    </tbody>
+  </table>
+
+  <h2>批次状态矩阵</h2>
+  <div class="legend">
+    <span>✓ done</span><span>… running</span><span>○ pending</span><span>! blocked</span><span>x failed</span>
+  </div>
+  <table>
+    <thead><tr><th>Model</th><th>R7-B001</th></tr></thead>
+    <tbody><tr><td>GPT5.5</td><td style='text-align:center'>✓</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>✓</td></tr></tbody>
+  </table>
+
+  <h2>细分错误统计（A1/B1...）</h2>
+  <table>
+    <thead><tr><th>错误子类</th><th>数量</th></tr></thead>
+    <tbody><tr><td>A1</td><td style='text-align:center'>2</td></tr><tr><td>A4</td><td style='text-align:center'>1</td></tr><tr><td>B1</td><td style='text-align:center'>27</td></tr><tr><td>C2</td><td style='text-align:center'>2</td></tr></tbody>
+  </table>
+
+  <h3>细分错误示例（每类2条）</h3>
+  <table>
+    <thead><tr><th>错误子类</th><th>例1-题号</th><th>例1-题目</th><th>例1-理由</th><th>例2-题号</th><th>例2-题目</th><th>例2-理由</th></tr></thead>
+    <tbody><tr><td>A1</td><td>Q031</td><td>在晶圆厂实际量产中，当MES系统向光刻设备下发新Recipe后，设备返回校验失败，提示'对准精度补偿值超出允许范围'。已知该参数在设备本地界面显示正常，且工艺窗口文档明确允许±0.15μm。请简述你将如何系统性排查：需结合设备运动控制器的实时反馈分辨率、上位机下发时的浮点数截断规则、以及设备安全PLC对补偿值的硬性钳位逻辑三者之间的协同校验关系。</td><td>GPT5.5: ???S2F41?????S2F39?????????????????????????????????????????????PLC?????????；Gemini3.1pro: 题干引导过多，直接给出了排查的三个具体层面，属于提示答案，逻辑不严谨。应减少提示，让候选人自己发散。</td><td>Q032</td><td>在5纳米FinFET器件的电介质刻蚀工艺中，设备需严格按Recipe执行多步射频功率与气体流量的动态切换，但量产时发现某批次晶圆的刻蚀均匀性超标。已知自动化系统已正确下发Recipe参数且PLC动作时序无偏差，请简述你如何结合刻蚀工艺对等离子体稳态建立时间、气体驻留时间及腔室压力响应延迟三者的耦合关系，判断该异常根源是MES参数下发时机过早、EAP状态机未等待工艺稳态确认信号，还是传感器采样周期与工艺瞬态变化不匹配。</td><td>GPT5.5: ???StableFlag????????????????????????????????????????????????????????????????；Gemini3.1pro: 题干引导过多，直接给出了排查的三个具体层面，属于提示答案，逻辑不严谨。应减少提示，让候选人自己发散。</td></tr><tr><td>A4</td><td>Q010</td><td>某晶圆搬运机器人控制器仅支持Modbus RTU从站模式，而CIM系统的EAP网关只提供Modbus TCP主站接口。在不增加专用协议转换硬件的前提下，请设计一种符合工业现场可靠性和实时性要求的软件层桥接方案，并说明关键数据同步机制如何保障动作指令与状态反馈的时序一致性。</td><td>GPT5.5: ??????????????????????????????????Modbus?????????????SECS/GEM????????????；Gemini3.1pro: 题干存在让应聘者“设计/写出/绘制”等无法口语直接作答的要求。应改为口语化的提问方式。</td><td>nan</td><td>nan</td><td>nan</td></tr><tr><td>B1</td><td>Q001</td><td>半导体设备运行中，某腔室温度超限报警与机械手位置偏差报警同时触发，但二者涉及不同安全等级和响应时效。请说明你在HMI组态中会如何差异化呈现这两类报警，并解释这种呈现方式对现场快速处置的实际价值。</td><td>GPT5.5: ???????????????????????????????????????????????????????????HMI???????????????????????</td><td>Q002</td><td>当EAP系统需对同一台光刻设备并发下发温度设定值与曝光时间两个参数，而设备端出现后者被前者覆盖的现象，你如何结合SECS/GEM标准中Stream 2中的Equipment Constant机制、设备状态机当前所处阶段，以及参数下发事务的原子性保障要求，定位并解决该问题？请简述技术原理和现场验证方法。</td><td>GPT5.5: ???S2F39/S2F40?S2F42????????????????????????????????????????????????????????????????????</td></tr><tr><td>C2</td><td>Q033</td><td>在半导体光刻工艺中，对准偏差主要影响晶圆上哪一项关键质量指标？</td><td>nan</td><td>Q033</td><td>在半导体光刻工艺中，对准偏差主要影响晶圆上哪一项关键质量指标？</td><td>nan</td></tr></tbody>
+  </table>
+</body>
+</html>

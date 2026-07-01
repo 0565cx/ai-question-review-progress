@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Round 3 Dashboard</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; margin: 24px; color: #1f2937; }
+    h1, h2, h3 { margin: 10px 0 12px; }
+    .cards { display: grid; grid-template-columns: repeat(3, minmax(140px, 220px)); gap: 12px; margin: 8px 0 18px; }
+    .card { border: 1px solid #e5e7eb; border-radius: 10px; padding: 12px; background: #fafafa; }
+    .card .k { font-size: 12px; color: #6b7280; }
+    .card .v { font-size: 24px; font-weight: 700; margin-top: 4px; }
+    table { border-collapse: collapse; width: 100%; margin: 8px 0 18px; }
+    th, td { border: 1px solid #e5e7eb; padding: 8px 10px; vertical-align: middle; }
+    th { background: #f9fafb; }
+    .legend span { margin-right: 12px; font-size: 13px; color: #374151; }
+    .mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; }
+    .ex { margin: 6px 0; color: #374151; }
+    .section-divider { border: 0; border-top: 2px solid #eef2f7; margin: 22px 0; }
+  </style>
+</head>
+<body>
+  <h1>Round 3 审核看板</h1>
+
+  <div class="cards">
+    <div class="card"><div class="k">A类错误</div><div class="v">5</div></div>
+    <div class="card"><div class="k">B类错误</div><div class="v">53</div></div>
+    <div class="card"><div class="k">C类错误</div><div class="v">0</div></div>
+  </div>
+
+  <h2>本轮题目主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">Question-level issues are concentrated in prompt framing and knowledge-point alignment. A small number of stems are either slightly off the core QE workflow or phrased in a way that reduces direct oral answerability. Similar stems exist in a few adjacent knowledge points and should be further de-duplicated in the next rewrite cycle.</div>
+<h2>本轮答案主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">Answer-level issues are mainly about role-calibrated correctness and practical depth in layer-3 scenarios. Some answers are structurally complete but not strict enough on QE decision criteria or execution steps in real manufacturing quality contexts. B-category problems are slightly more frequent than A-category, so answer rewrite quality control should be prioritized.</div>
+<h2>后续重新出内容时应补充的规则</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">【重新出题】<br/>For rewritten questions, enforce a hard constraint of common quality-engineer scenarios + explicit knowledge point + oral-answerable wording. Disallow formula derivation, drawing requests, and over-written academic phrasing. If two stems drive almost identical response logic, merge or rewrite with clearly different business context.<br/><br/>【重出答案】<br/>For rewritten answers, validate each layer independently: layer-1 concept accuracy, layer-2 mainstream options with trade-offs, and layer-3 one high-frequency abnormal case plus one realistic complex case with executable steps. Avoid outdated methods, vague conclusions, and cross-role language drift.</div>
+
+  <hr class="section-divider" />
+
+  <h2>模型进度与删除率</h2>
+  <table>
+    <thead>
+      <tr><th>Model</th><th>批次完成</th><th>完成率</th><th>删除率</th><th>主错误</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>GPT5.5</td><td style='text-align:center'>12/12</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:11.7%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">11.7%</span></td><td style='text-align:center'>B>A</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>12/12</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:1.1%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">1.1%</span></td><td style='text-align:center'>A>B</td></tr>
+    </tbody>
+  </table>
+
+  <h2>批次状态矩阵</h2>
+  <div class="legend">
+    <span>✓ done</span><span>… running</span><span>○ pending</span><span>! blocked</span><span>x failed</span>
+  </div>
+  <table>
+    <thead><tr><th>Model</th><th>R3-B001</th><th>R3-B002</th><th>R3-B003</th><th>R3-B004</th><th>R3-B005</th><th>R3-B006</th><th>R3-B007</th><th>R3-B008</th><th>R3-B009</th><th>R3-B010</th><th>R3-B011</th><th>R3-B012</th></tr></thead>
+    <tbody><tr><td>GPT5.5</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td></tr></tbody>
+  </table>
+
+  <h2>细分错误统计（A1/B1...）</h2>
+  <table>
+    <thead><tr><th>错误子类</th><th>数量</th></tr></thead>
+    <tbody><tr><td>A1</td><td style='text-align:center'>1</td></tr><tr><td>A4</td><td style='text-align:center'>4</td></tr><tr><td>B1</td><td style='text-align:center'>42</td></tr><tr><td>B2</td><td style='text-align:center'>3</td></tr><tr><td>B3</td><td style='text-align:center'>7</td></tr><tr><td>B4</td><td style='text-align:center'>1</td></tr></tbody>
+  </table>
+
+  <h3>细分错误示例（每类2条）</h3>
+  <table>
+    <thead><tr><th>错误子类</th><th>例1-题号</th><th>例1-题目</th><th>例1-理由</th><th>例2-题号</th><th>例2-题目</th><th>例2-理由</th></tr></thead>
+    <tbody><tr><td>A1</td><td>Q041</td><td>一批5000台车载蓝牙模块来料检验采用AQL 0.25%，正常二级抽样。抽检中发现1个ESD防护失效（属致命缺陷）和2个外壳色差（属轻微缺陷）。该物料刚完成车规级AEC-Q200认证切换，且上月发生过同类ESD问题导致主机厂批量召回。请简述你对该批产品的接收决策、依据来源，以及必须同步启动的跨环节动作。</td><td>GPT5.5: The stem says a vehicle Bluetooth module completed an AEC-Q200 automotive certification switch. AEC-Q200 mainly applies to passive components, not a whole Bluetooth module as stated. The stem should refer to the applicable module/component automotive qualification and customer requirements.</td><td>nan</td><td>nan</td><td>nan</td></tr><tr><td>A4</td><td>Q050</td><td>产线反馈某型号智能音箱麦克风灵敏度良率突然下降，质量团队绘制近30批次的灵敏度实测值直方图后发现：图形整体右偏、拖尾严重，且超出上限的不良点集中出现在右侧尾部。请简述这一分布特征指向的主要制程问题类型，以及你优先验证的工艺参数。</td><td>Gemini3.1pro: 题干包含无法口语直接作答的要求：'绘制'。正确应为：使用口语化提问，如'请简述'。</td><td>Q208</td><td>客户投诉问题后，8D报告里要求明确写出‘D1成立小组’，这个小组通常由哪些角色组成？请简单说说。</td><td>Gemini3.1pro: 题干包含无法口语直接作答的要求：'写出'。正确应为：使用口语化提问，如'请简述'。</td></tr><tr><td>B1</td><td>Q001</td><td>请简述消费电子整机装配过程中，螺丝漏打或打滑可能引发的质量风险。</td><td>GPT5.5: The answer treats any missing or stripped screw as a severe AQL defect requiring zero-tolerance batch interception. Correct judgement depends on screw function, location, defect grade, customer standard and reliability impact; it cannot be generalized to all screw issues.</td><td>Q002</td><td>请简单说说，为什么手机外壳的尺寸公差和表面划痕会被列为关键质量特性？</td><td>GPT5.5: The answer says surface scratches may be A-class fatal or B-class serious defects and trigger rejection or full inspection. Correct grading depends on customer visual standard, limit sample, location, size and visibility; ordinary cosmetic scratches cannot be generically treated as fatal defects.</td></tr><tr><td>B2</td><td>Q007</td><td>某智能手表整机在包装出货前抽检发现表带扣合处存在轻微间隙，但功能测试、防水测试和跌落测试全部合格。作为质量判定人员，你需在4小时内决定是否放行该批次。请简述你会重点识别并验证哪些关键质量特性，并说明这些特性如何影响用户实际使用体验和长期质量风险。</td><td>GPT5.5: The third level suggests conditional release with an added user operation reminder label for a watch-band fit gap. A structural fit issue should be handled through limit samples, dimensional/durability verification, screening, rework or controlled MRB, not by substituting a user reminder for quality disposition.</td><td>Q273</td><td>在新产品导入的PVT阶段，质量阀点评审发现某关键芯片的供应商变更未经设计确认，但该芯片已贴装在全部试产整机中且功能测试合格。此时距离量产启动只剩3天，你会如何统筹决策是否放行？请简述你的判断逻辑、必须验证的动作及跨部门协同的关键节点。</td><td>GPT5.5: The answer first states that an unconfirmed supplier change cannot enter PVT release and the release flow must be paused, but then recommends conditional release plus production monitoring as the most practical option. For an unapproved key-chip supplier change, the required gate action is controlled change review/verification before release; the internal contradiction weakens the decision logic.</td></tr><tr><td>B3</td><td>Q030</td><td>某车载摄像头模组在制程终检中，抽样检出11处镜头镀膜划痕：其中4处位于视场边缘（光学MTF未下降），7处靠近中心区域（实测分辨率下降5%但仍在客户规格下限内）。AQL对‘影响成像性能’和‘纯外观’划痕分别设为0.65%和3.0%，样本量250。请简述你如何基于实测数据、客户规格边界及缺陷分级逻辑，决定该批是否放行。</td><td>GPT5.5: The question asks whether to release the lot based on measured data, customer specification boundary and defect classification. The answer does not give a clear release/reject decision and stays at process prerequisites, so it fails to complete the requested batch judgement.</td><td>Q055</td><td>在质量分析中，如果某型号手机的主板焊接不良、屏幕划伤、电池漏液三类问题的不良率分别是0.8%、0.3%、0.1%，按改善优先级排序，应最先处理哪一类？请简单说说理由。</td><td>GPT5.5: The question asks which of motherboard soldering defects, screen scratches and battery leakage should be handled first. The answer explains risk-based prioritization but never clearly states that battery leakage should be prioritized, so it does not answer the direct selection question.</td></tr><tr><td>B4</td><td>Q168</td><td>某无线耳机充电盒组装线在盖合工序加装了压力传感器防错，当盖合不到位时设备自动停机并提示异常。但近两周出现多次停机后复位即放行、未实际校验盖合状态的情况。请简单说说你将从哪两个关键环节验证该防错措施的闭环有效性。</td><td>Gemini3.1pro: 第三层未严格按照'1个异常情况概要...1个复杂问题概要...'的结构输出。正确应为：包含标准的异常和复杂问题结构。</td><td>nan</td><td>nan</td><td>nan</td></tr></tbody>
+  </table>
+</body>
+</html>
