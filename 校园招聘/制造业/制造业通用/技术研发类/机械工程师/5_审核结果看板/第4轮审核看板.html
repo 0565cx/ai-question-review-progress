@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Round 4 Dashboard</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; margin: 24px; color: #1f2937; }
+    h1, h2, h3 { margin: 10px 0 12px; }
+    .cards { display: grid; grid-template-columns: repeat(3, minmax(140px, 220px)); gap: 12px; margin: 8px 0 18px; }
+    .card { border: 1px solid #e5e7eb; border-radius: 10px; padding: 12px; background: #fafafa; }
+    .card .k { font-size: 12px; color: #6b7280; }
+    .card .v { font-size: 24px; font-weight: 700; margin-top: 4px; }
+    table { border-collapse: collapse; width: 100%; margin: 8px 0 18px; }
+    th, td { border: 1px solid #e5e7eb; padding: 8px 10px; vertical-align: middle; }
+    th { background: #f9fafb; }
+    .legend span { margin-right: 12px; font-size: 13px; color: #374151; }
+    .mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; }
+    .ex { margin: 6px 0; color: #374151; }
+    .section-divider { border: 0; border-top: 2px solid #eef2f7; margin: 22px 0; }
+  </style>
+</head>
+<body>
+  <h1>Round 4 审核看板</h1>
+
+  <div class="cards">
+    <div class="card"><div class="k">A类错误</div><div class="v">7</div></div>
+    <div class="card"><div class="k">B类错误</div><div class="v">20</div></div>
+    <div class="card"><div class="k">C类错误</div><div class="v">3</div></div>
+  </div>
+
+  <h2>本轮题目主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">本轮题干问题主要集中在两类：一是少量图纸、公差、焊接符号等机械工程专业表述存在知识性或逻辑性不一致，例如题干给出的实测数值与结论不匹配，或标准、公差范围引用不准确，容易导致候选人基于错误前提作答；二是个别题干要求候选人口头解释复杂符号、标注或图纸信息，已经超出面试口述可答范围，属于 A4 类风险。重复/同质化方面，少数题目围绕刚度不足、圆跳动与同轴度等相近判断路径展开，候选人会给出高度重合的答案，因此被标为 C2。总体看，题干大多数仍贴合机械工程师岗位，但需要进一步收紧数值条件、标准引用和同质化控制。</div>
+<h2>本轮答案主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">本轮答案问题以 B1 知识性错误和逻辑不严谨为主，是最主要的删除来源。典型表现包括把检测方法、形位公差、材料或工艺机理之间的关系说得过于绝对，或者在答案中推出与题干条件不一致的结论；部分答案虽然结构完整，但关键判断依据存在专业偏差，会误导候选人按错误工程逻辑回答。相比题干问题，答案错误数量更多，说明重出内容时需要加强参考答案的专业复核，尤其要核对标准值、检测结论、失效机理、工艺因果链和三层追问之间的一致性。</div>
+<h2>后续重新出内容时应补充的规则</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">【重新出题】<br/>重新出题时，应先核对题干中的尺寸、公差、材料牌号、工艺条件、检测结论和标准引用是否真实一致；禁止在题干中设置与结论矛盾的数值条件。涉及图纸符号、焊接标注、公差带、公式或复杂标准条文时，题干要转化为可口头讨论的工程判断场景，不能要求候选人记忆或解读复杂符号。相同知识点下的新题要改变核心场景、判断变量和作答路径，避免候选人复用同一套答案。<br/><br/>【重出答案】<br/>重出答案时，三层答案必须先做专业事实校验：第一层给出准确概念和适用边界，第二层列出常见工程方案并说明优劣及推荐理由，第三层只设置机械工程师真实会遇到的异常和复杂情况。答案中凡涉及标准、公差、检测方法、材料失效、加工工艺和装配验证的内容，必须核对因果链是否成立，避免绝对化、错用标准或与题干条件相冲突。</div>
+
+  <hr class="section-divider" />
+
+  <h2>模型进度与删除率</h2>
+  <table>
+    <thead>
+      <tr><th>Model</th><th>批次完成</th><th>完成率</th><th>删除率</th><th>主错误</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>GPT5.5</td><td style='text-align:center'>2/2</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:37.0%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">37.0%</span></td><td style='text-align:center'>B>A</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>2/2</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:27.8%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">27.8%</span></td><td style='text-align:center'>B>A>C</td></tr>
+    </tbody>
+  </table>
+
+  <h2>批次状态矩阵</h2>
+  <div class="legend">
+    <span>✓ done</span><span>… running</span><span>○ pending</span><span>! blocked</span><span>x failed</span>
+  </div>
+  <table>
+    <thead><tr><th>Model</th><th>R4-B001</th><th>R4-B002</th></tr></thead>
+    <tbody><tr><td>GPT5.5</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td></tr></tbody>
+  </table>
+
+  <h2>细分错误统计（A1/B1...）</h2>
+  <table>
+    <thead><tr><th>错误子类</th><th>数量</th></tr></thead>
+    <tbody><tr><td>A1</td><td style='text-align:center'>6</td></tr><tr><td>A4</td><td style='text-align:center'>1</td></tr><tr><td>B1</td><td style='text-align:center'>20</td></tr><tr><td>C2</td><td style='text-align:center'>3</td></tr></tbody>
+  </table>
+
+  <h3>细分错误示例（每类2条）</h3>
+  <table>
+    <thead><tr><th>错误子类</th><th>例1-题号</th><th>例1-题目</th><th>例1-理由</th><th>例2-题号</th><th>例2-题目</th><th>例2-理由</th></tr></thead>
+    <tbody><tr><td>A1</td><td>Q011</td><td>某精密夹具的定位销图纸中，销体外圆标注了直径公差φ12±0.005，同时在技术要求栏注明‘定位销与导向套配合间隙须控制在0.008～0.015mm之间’；而导向套内孔图纸未标注公差，仅在技术要求中写明‘内孔按H7制造’。若实测导向套内孔为φ12.018，定位销外径为φ12.004，此时虽单个尺寸均符合各自图样要求，但装配后出现卡滞。请从图面信息一致性角度，分析该问题根源，并说明机械工程师在设计协同阶段应如何提前规避此类矛盾。</td><td>GPT5.5: 题干给出的实测导向套内孔φ12.018、定位销外径φ12.004，实际间隙为0.014mm，处于题干限定的0.008～0.015mm范围内，却又说装配后卡滞，题干事实与结论自相矛盾；正确应给出确实低于最小间隙或存在形位/表面缺陷的条件。</td><td>Q020</td><td>某泵体铸件图纸中，主视图标注了Φ80H7孔的尺寸与公差，侧视图上该孔对应位置却以‘Φ80’无公差形式表达，且技术要求栏注明‘未注公差按GB/T 1800.2—2020中IT12执行’。若实测孔径为Φ80.15，符合IT12（±0.22）但超出H7（+0.021/0）范围，该尺寸是否合格？请从图面视图间信息冲突时的优先级规则和标准条款适用逻辑说明判断依据。</td><td>Gemini3.1pro: 题干中“超出H7（+0.021/0）范围”存在知识性错误。根据国家标准，直径80的H7公差应为+0.030/0，+0.021/0是直径18-30的H7公差。正确的应该是“超出H7（+0.030/0）范围”。</td></tr><tr><td>A4</td><td>Q041</td><td>一台高振动工况下的减速机箱体图纸中，轴承座加强板与壳体连接焊缝符号含基本符号（直角三角形）、引上线'6'、引下线'45°'、基准线尾部空心箭头，且在引上线旁标注'SE'，基准线下方标注'ISO 5817-C'。请简述该符号对焊缝成形质量的关键限制项、对应焊后应力释放的必要措施，以及在批量生产中如何通过该符号信息反推夹具定位公差的上限值。</td><td>Gemini3.1pro: 具体错的地方：题干中使用了极其繁杂的语言来描述一个焊接符号的几何形状和各类标注（如直角三角形、引上线、引下线等），并在设问中要求说明该符号的限制项，本质上是在口述考察“符号含义”，导致候选人无法在口语面试中仅凭听觉准确理解作答。正确的应该是：直接给出具体的工况和全熔透角焊缝的工艺场景要求，不要求候选人解析繁杂的符号拼接。</td><td></td><td></td><td></td></tr><tr><td>B1</td><td>Q007</td><td>在轴类零件加工中，图纸要求某段外圆柱面轴线相对于基准A（另一段外圆柱面）的同轴度公差为Φ0.02mm；实际检测时，操作人员将零件装夹在V型块上，以基准A为回转轴线，测量该外圆柱面的径向圆跳动值为0.018mm。请问该测量结果能否充分保证同轴度要求得到满足？请简述原因。</td><td>GPT5.5: 参考答案称“圆跳动合格时同轴度未必合格”。在以同一基准轴线评价同一圆柱面且圆跳动值小于同轴度公差值时，径向圆跳动通常同时约束了位置偏心和形状误差，不能直接得出圆跳动合格仍可能同轴度超差的结论；正确应区分检测长度、截面数量和总跳动/圆跳动条件。</td><td>Q015</td><td>在汽车发动机缸体上，气缸孔的位置度公差标注在相对于主轴承孔轴线和底面的基准体系下，这个位置度要求主要保障气缸与曲轴之间的哪种装配关系？请简述其对整机运行的影响。</td><td>GPT5.5: 参考答案称位置度主要保障“气缸中心线与曲轴旋转中心线的同轴关系”。发动机气缸孔轴线与曲轴轴线不是同轴关系，而是由缸孔相对主轴承孔轴线和底面基准保证垂直/位置关系及活塞连杆运动匹配；应改为控制缸孔相对曲轴轴线的空间位置和垂直度/偏置关系。</td></tr><tr><td>C2</td><td>Q003</td><td>请简述机械零件刚度不足时，最直接表现出来的物理现象是什么？</td><td>Gemini3.1pro: 与R4-Q001重复。两题分别从“弯曲或位移反映什么性能不足”和“刚度不足表现出什么物理现象”正反两面提问，回答者给出的核心要点（刚度定义及提升刚度的结构优化、材料升级等方案）高度重合。</td><td>Q008</td><td>某精密减速器输出轴与壳体轴承孔需保证长期运转下的同心稳定，设计图中在轴承孔上标注了以输出轴轴线为基准的同轴度公差，而实际检测时发现：各截面圆跳动均合格，但整轴旋转时轴承温升异常且寿命显著缩短。请简述该现象反映出的几何误差本质差异，并说明为何仅控制圆跳动不足以保障此工况下的配合稳定性。</td><td>Gemini3.1pro: 与R4-Q007重复。两题均考察“圆跳动合格不能充分保证同轴度要求”这一知识点，回答者给出的核心解释（圆跳动不包含轴线形状误差）高度重合。</td></tr></tbody>
+  </table>
+</body>
+</html>
