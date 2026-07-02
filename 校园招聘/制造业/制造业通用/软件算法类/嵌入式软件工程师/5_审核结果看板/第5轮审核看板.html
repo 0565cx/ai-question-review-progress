@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Round 5 Dashboard</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; margin: 24px; color: #1f2937; }
+    h1, h2, h3 { margin: 10px 0 12px; }
+    .cards { display: grid; grid-template-columns: repeat(3, minmax(140px, 220px)); gap: 12px; margin: 8px 0 18px; }
+    .card { border: 1px solid #e5e7eb; border-radius: 10px; padding: 12px; background: #fafafa; }
+    .card .k { font-size: 12px; color: #6b7280; }
+    .card .v { font-size: 24px; font-weight: 700; margin-top: 4px; }
+    table { border-collapse: collapse; width: 100%; margin: 8px 0 18px; }
+    th, td { border: 1px solid #e5e7eb; padding: 8px 10px; vertical-align: middle; }
+    th { background: #f9fafb; }
+    .legend span { margin-right: 12px; font-size: 13px; color: #374151; }
+    .mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; }
+    .ex { margin: 6px 0; color: #374151; }
+    .section-divider { border: 0; border-top: 2px solid #eef2f7; margin: 22px 0; }
+  </style>
+</head>
+<body>
+  <h1>Round 5 审核看板</h1>
+
+  <div class="cards">
+    <div class="card"><div class="k">A类错误</div><div class="v">10</div></div>
+    <div class="card"><div class="k">B类错误</div><div class="v">64</div></div>
+    <div class="card"><div class="k">C类错误</div><div class="v">3</div></div>
+  </div>
+
+  <h2>本轮题目主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">本轮题目主要出错点集中在题干工程事实边界和口语可答性两类。少量题干仍把嵌入式开发中的特定芯片、特定寄存器或特定规则口径写成通用结论，例如异常状态寄存器、MISRA C 规则编号、Boot 跳转前寄存器恢复等场景中存在事实不严谨或知识边界混淆。另有个别题干要求候选人列举具体寄存器项、写出 C 位操作表达式或处理公式/多项式，触发 A4 的口语面试不可直接作答规则。重复/同质化问题较少，但同一底层主题下仍需要进一步区分故障背景、作答目标和评价维度，避免候选人套用同一套驱动、RTOS 或通信诊断答案。</div>
+<h2>本轮答案主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">本轮答案问题明显多于题干问题，主要集中在 B1 知识性错误和 B5 表达可答性风险。B1 高频表现包括把 FreeRTOS 临界区、中断屏蔽范围、GPIO 寄存器原子操作、FPU 异常寄存器、Modbus 响应时序、MISRA C 规则等工程细节写得过于绝对或不准确；部分答案推荐的方案不符合嵌入式现场常见最佳实践，形成 B2。B3 主要表现为答案没有回应题干要求的校验环节、动态调度策略或故障定位路径，而转向泛化框架介绍。B5 问题来自答案中堆叠编译选项、宏定义、函数名、公式和英文缩写，导致口语面试表达不自然、难以评分。</div>
+<h2>后续重新出内容时应补充的规则</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">【重新出题】<br/>重新出题时应补充以下规则：题干不得要求候选人写代码表达式、列具体寄存器清单、写公式/多项式、绘图或推导；涉及 MCU、RTOS、Modbus、MISRA C、FPU、GPIO、Boot 跳转等知识时，必须核对术语和规则编号，不得把某平台特性写成通用规律；同一知识点连续出题时，必须改变设备场景、故障触发条件、候选人任务和评价标准，避免回答路径高度重合；题干应使用口语面试动词，如说明原因、分析风险、描述排查步骤、比较方案边界，而不是要求写出实现细节。<br/><br/>【重出答案】<br/>重出答案时应补充以下规则：所有芯片架构、寄存器字段、RTOS API、中断屏蔽范围、总线协议时序、MISRA C 规则编号和编译选项必须逐项核验，禁止用不确定经验替代事实；第二层答案要紧扣题干问的方案、校验点或排查路径，第三层必须给出真实常见异常和复杂条件，不得泛化为模板化优劣势；答案中可以保留必要术语，但应避免大量宏定义、函数名、编译参数、公式和英文缩写堆叠，改写为候选人能口头解释、面试官能评分的工程语言；安全、实时和通信相关方案必须说明适用边界、风险和验证方法。</div>
+
+  <hr class="section-divider" />
+
+  <h2>模型进度与删除率</h2>
+  <table>
+    <thead>
+      <tr><th>Model</th><th>批次完成</th><th>完成率</th><th>删除率</th><th>主错误</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>GPT5.5</td><td style='text-align:center'>3/3</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:50.0%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">50.0%</span></td><td style='text-align:center'>B>A</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>3/3</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:15.7%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">15.7%</span></td><td style='text-align:center'>B>C>A</td></tr>
+    </tbody>
+  </table>
+
+  <h2>批次状态矩阵</h2>
+  <div class="legend">
+    <span>✓ done</span><span>… running</span><span>○ pending</span><span>! blocked</span><span>x failed</span>
+  </div>
+  <table>
+    <thead><tr><th>Model</th><th>R5-B001</th><th>R5-B002</th><th>R5-B003</th></tr></thead>
+    <tbody><tr><td>GPT5.5</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td></tr></tbody>
+  </table>
+
+  <h2>细分错误统计（A1/B1...）</h2>
+  <table>
+    <thead><tr><th>错误子类</th><th>数量</th></tr></thead>
+    <tbody><tr><td>A1</td><td style='text-align:center'>8</td></tr><tr><td>A4</td><td style='text-align:center'>2</td></tr><tr><td>B1</td><td style='text-align:center'>51</td></tr><tr><td>B2</td><td style='text-align:center'>6</td></tr><tr><td>B3</td><td style='text-align:center'>4</td></tr><tr><td>B5</td><td style='text-align:center'>3</td></tr><tr><td>C2</td><td style='text-align:center'>3</td></tr></tbody>
+  </table>
+
+  <h3>细分错误示例（每类2条）</h3>
+  <table>
+    <thead><tr><th>错误子类</th><th>例1-题号</th><th>例1-题目</th><th>例1-理由</th><th>例2-题号</th><th>例2-题目</th><th>例2-理由</th></tr></thead>
+    <tbody><tr><td>A1</td><td>Q062</td><td>在工业变频器固件中，一个用于配置PWM占空比的宏定义被同时用于初始化和运行时动态调整，但实测发现后者在中断服务程序中调用时出现逻辑跳变。请简述该问题背后宏定义与函数式宏的关键差异，以及MISRA C Rule 20.3要求宏参数必须加括号的根本目的。</td><td>GPT5.5: 题干和答案均称“MISRA C Rule 20.3要求宏参数必须加括号”，宏参数加括号对应的常见MISRA C:2012规则是Rule 20.7，规则编号知识性错误。</td><td>Q081</td><td>某伺服驱动器固件在启用浮点运算单元后首次调用数学库函数即触发HardFault，复位日志显示PC停在一条VMOV指令，但该指令在仿真环境下可正常执行。请简述你如何通过分析异常发生时的CONTROL寄存器状态、FPCCR浮点异常标志位（即使已复位）的残留痕迹，以及栈中保存的前一帧FPSCR和S0-S15寄存器快照，确认是否因未正确使能浮点上下文或未配置FPU异常屏蔽导致非法状态传播。</td><td>GPT5.5: 题干要求依据“FPCCR浮点异常标志位（即使已复位）的残留痕迹”判断，但Cortex-M的浮点异常标志IOC、DZC等在FPSCR中，不在FPCCR；答案还写“FPCCR中的LSPACT和USERASID等位”，其中USERASID不是Cortex-M FPCCR字段，属于寄存器知识错误。</td></tr><tr><td>A4</td><td>Q057</td><td>某PLC扩展模块的配置寄存器支持多通道同步控制，其中第0～3位分别对应4路数字输出的极性反转使能，第8位为统一硬件锁存使能位。现场要求：仅当所有4路极性使能位全为1时，才允许置位锁存位；否则必须确保锁存位保持原值。请简述你如何设计一个无需分支判断、不依赖临时变量的单条C语言位操作表达式，完成该条件性置位，并解释其在多任务环境下为何能避免竞态。</td><td>GPT5.5: 题干要求“无需分支判断、不依赖临时变量的单条C语言位操作表达式”，属于要求写具体表达式/符号化实现，不适合口语面试；答案还称纯C读改写在FreeRTOS任务切换点之间执行即可避免竞态，无法保证寄存器原子性。</td><td>Q089</td><td>当Boot程序完成校验并准备跳转至应用程序时，除了设置主栈指针和程序计数器，还需要对哪些与CPU运行状态密切相关的寄存器进行恢复或初始化？请列举其中两项。</td><td>Gemini3.1pro: 题干要求“请列举其中两项”，属于让应聘者列出的无法口语直接作答的要求，应改为“请简述需要对哪些与CPU运行状态密切相关的寄存器进行恢复或初始化”。</td></tr><tr><td>B1</td><td>Q001</td><td>在电机驱动控制器的固件中，需要可靠地使能某个GPIO引脚的上拉功能，但不能影响同一寄存器中其他引脚的配置。请简述：如何用C语言位操作实现仅将该GPIO对应控制寄存器的第3位置1、其余位保持不变，并说明这一操作为何能避免误改相邻功能位。</td><td>Gemini3.1pro: 参考答案第二层称“首选第一种——即显式读-修改-写加volatile修饰的方案，这是制造业嵌入式固件长期验证的稳妥路径”存在知识性错误。在制造业中，针对GPIO控制寄存器，最稳妥且常用的最佳实践是使用硬件专用的置位/清零寄存器（如STM32的BSRR），以避免读-改-写带来的竞态风险，而不是使用读-改-写。</td><td>Q002</td><td>在工业传感器采集系统中，主循环负责更新当前温度采样值，而外部中断服务程序需读取该值触发超温报警。请简述此时应如何保护该共享变量的访问，以避免因中断打断主循环写入导致读到错误数据。</td><td>GPT5.5: 原文称“FreeRTOS的taskENTER_CRITICAL……对外部中断无效”，该说法不准确；FreeRTOS临界区在对应端口通常会屏蔽一定优先级范围内的中断，不能简单说对外部中断无效。</td></tr><tr><td>B2</td><td>Q001</td><td>在电机驱动控制器的固件中，需要可靠地使能某个GPIO引脚的上拉功能，但不能影响同一寄存器中其他引脚的配置。请简述：如何用C语言位操作实现仅将该GPIO对应控制寄存器的第3位置1、其余位保持不变，并说明这一操作为何能避免误改相邻功能位。</td><td>Gemini3.1pro: 参考答案第二层称“首选第一种——即显式读-修改-写加volatile修饰的方案，这是制造业嵌入式固件长期验证的稳妥路径”存在知识性错误。在制造业中，针对GPIO控制寄存器，最稳妥且常用的最佳实践是使用硬件专用的置位/清零寄存器（如STM32的BSRR），以避免读-改-写带来的竞态风险，而不是使用读-改-写。</td><td>Q007</td><td>某工业现场多台PLC通过Modbus RTU与主控单元通信，当主站连续下发功能码16（写多个寄存器）请求时，个别从站偶发响应超时并触发看门狗复位。抓包确认请求帧格式合法、CRC正确、地址匹配，且从站RAM未发生溢出。请简述你如何从功能码解析的执行路径出发，结合嵌入式资源约束与实时性要求，定位该异常是否源于对写入寄存器数量与起始地址组合的越界校验缺失，并说明你在解析阶段应设置的关键防护点及其设计依据。</td><td>GPT5.5: 第二层原文要求边界校验“无分支跳转、无函数调用、无内存访问”，但地址和数量校验必然需要比较分支且需读取寄存器映射边界；该最佳方案表述不符合实际工程。</td></tr><tr><td>B3</td><td>Q041</td><td>某产线控制器运行FreeRTOS，需同时处理伺服电机位置环控制（要求每2ms响应一次）、HMI界面刷新（每100ms一次）和以太网日志上传（不定期但需避免阻塞前两者）。当位置环任务因传感器噪声偶发超时，导致后续时间片被压缩，HMI出现卡顿。请简单说说，你如何利用时间片机制本身的特点，在不改变任务优先级的前提下，设计一种动态调整各任务时间片分配的策略，并说明该策略如何兼顾硬实时约束与交互体验。</td><td>GPT5.5: 题干要求“不改变任务优先级”并利用时间片机制动态调整分配，答案第二层却提出“动态修改uxTaskPrioritySet”，随后改为HMI自降级策略，并未回答时间片分配策略。；Gemini3.1pro: 参考答案第二层跑题且存在知识性错误。题干要求“利用时间片机制本身的特点...动态调整各任务时间片分配”，但FreeRTOS标准版不支持为不同任务动态分配不同的时间片长度（时间片固定为1个Tick）。答案给出的“HMI自动缩短本次渲染帧耗时”属于应用层的执行时间自适应，完全没有利用RTOS的时间片机制，答非所问。</td><td>Q046</td><td>某工厂产线设备在Modbus RTU通信中频繁出现功能码15（写多个线圈）响应超时，经抓包发现从站实际已正确执行写入但返回帧被主站丢弃。请分析该现象在功能码解析阶段最可能因哪一校验环节与硬件特性不匹配导致，并说明你将如何结合串口接收中断、帧间隔定时器与功能码语义约束，在无RTOS环境下设计轻量级解析状态机以确保响应帧的及时性与完整性。</td><td>GPT5.5: 题干描述主站丢弃从站返回帧，答案第一层却写成“从站解析响应帧时”T3.5不匹配，分析对象从主站接收侧跑偏到从站解析侧。</td></tr><tr><td>B5</td><td>Q081</td><td>某伺服驱动器固件在启用浮点运算单元后首次调用数学库函数即触发HardFault，复位日志显示PC停在一条VMOV指令，但该指令在仿真环境下可正常执行。请简述你如何通过分析异常发生时的CONTROL寄存器状态、FPCCR浮点异常标志位（即使已复位）的残留痕迹，以及栈中保存的前一帧FPSCR和S0-S15寄存器快照，确认是否因未正确使能浮点上下文或未配置FPU异常屏蔽导致非法状态传播。</td><td>Gemini3.1pro: 第三层答案中出现大量代码参数和宏定义如“-mfloat-abi=hard -mfpu=fpv4”、“configUSE_TASK_FPU_SUPPORT=1”、“portTASK_USES_FLOATING_POINT”等，英文缩写堆叠过多，明显不适合口语直接作答，应改为口语化的描述。</td><td>Q099</td><td>某智能电表通过DLMS/COSEM协议经窄带电力线载波通信上报计量数据，其帧结构中校验域采用CRC-CCITT（0xFFFF初始值），但实测发现电网谐波干扰易引发突发多位错误。当传统CRC无法保证此类错误检出率时，你将如何结合协议帧结构特点，在不改变物理层传输机制的前提下提升整体校验鲁棒性？请简述设计要点。</td><td>Gemini3.1pro: 第一层答案中出现公式“x^16+x^12+x^5+1”，不适合口语直接作答，应改为口语化的描述。</td></tr><tr><td>C2</td><td>Q012</td><td>若某Flash擦写操作后数据校验失败，构建最小化场景时是否需要包含其他外设的驱动代码？请简单说说。</td><td>Gemini3.1pro: 与Q0011重复。两者都是考察在构建最小化场景时是否需要保留无关的中断/外设驱动，核心要点和作答思路完全一致。</td><td>Q075</td><td>在读取智能电表通过Modbus RTU上报的电能累计值时，协议规定该64位无符号整数由八个连续字节组成，且采用大端序排列。若电表发送的字节序列为0x00、0x00、0x00、0x00、0x00、0x01、0x02、0x03，而解析程序运行在典型小端MCU上，应如何确保最终得到的数值等于十六进制0x0000000000010203？请简述核心转换逻辑。</td><td>Gemini3.1pro: 与Q0074重复。两者都是考察在小端MCU上接收大端传感器数据时的大小端转换（字节重排）处理，核心要点和作答思路完全一致，仅仅是数据长度（32位与64位）和具体数值的区别。</td></tr></tbody>
+  </table>
+</body>
+</html>
