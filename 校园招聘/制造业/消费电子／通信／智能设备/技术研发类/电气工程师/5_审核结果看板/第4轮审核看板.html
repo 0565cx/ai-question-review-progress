@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Round 4 Dashboard</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; margin: 24px; color: #1f2937; }
+    h1, h2, h3 { margin: 10px 0 12px; }
+    .cards { display: grid; grid-template-columns: repeat(3, minmax(140px, 220px)); gap: 12px; margin: 8px 0 18px; }
+    .card { border: 1px solid #e5e7eb; border-radius: 10px; padding: 12px; background: #fafafa; }
+    .card .k { font-size: 12px; color: #6b7280; }
+    .card .v { font-size: 24px; font-weight: 700; margin-top: 4px; }
+    table { border-collapse: collapse; width: 100%; margin: 8px 0 18px; }
+    th, td { border: 1px solid #e5e7eb; padding: 8px 10px; vertical-align: middle; }
+    th { background: #f9fafb; }
+    .legend span { margin-right: 12px; font-size: 13px; color: #374151; }
+    .mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; }
+    .ex { margin: 6px 0; color: #374151; }
+    .section-divider { border: 0; border-top: 2px solid #eef2f7; margin: 22px 0; }
+  </style>
+</head>
+<body>
+  <h1>Round 4 审核看板</h1>
+
+  <div class="cards">
+    <div class="card"><div class="k">A类错误</div><div class="v">1</div></div>
+    <div class="card"><div class="k">B类错误</div><div class="v">33</div></div>
+    <div class="card"><div class="k">C类错误</div><div class="v">1</div></div>
+  </div>
+
+  <h2>本轮题目主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">本轮题目侧主要问题集中在可口语作答性与题干同质化：少量题目出现要求候选人“画图/写公式/推导”等口语面试不友好的表达（A4），以及个别题目与同批题在作答思路高度重叠（C2）。这类问题会导致面试表现被表达形式而非岗位能力主导，影响题目区分度。</div>
+<h2>本轮答案主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">答案侧错误以B1为主、B5次之。高频表现是把条件性结论写成绝对结论、关键电路/参数因果关系解释不严谨，或将术语堆叠成难以口头复述的答案结构。该类问题会直接影响评分一致性：候选人答对核心原理也可能因参考答案口径偏差被误判。</div>
+<h2>后续重新出内容时应补充的规则</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">【重新出题】<br/>重新出题时增加偏门场景硬约束：1) 不得将消费类便携设备板级电源管理强行设定为隔离型反激/正激主拓扑；2) 不得把USB接口常规问题设定为“防反接”主风险；3) 不得把适配器侧原副边隔离要求直接嫁接到手表/耳机等终端板级充电链路；4) 不得把低噪声微弱信号采集写成明显非主流路径并称“常见方案”。已命中反例包括：R2-B004的“USB防反接”题、R1-B010/R1-B011的“手表充电=隔离反激”题、R1-B001的“PPG链路非主流常见化”题。题干必须限定为电气工程师在消费电子/通信智能设备中的高频可复现项目场景。<br/><br/>【重出答案】<br/>重出答案时采用“可口语复述三层结构”模板：第一层给定义与边界，第二层给常见方案比较与适用条件，第三层给1个高频异常+1个复杂约束及排查步骤。每层避免绝对化表述，关键参数必须注明前提条件与适用范围；并明确区分终端板级与适配器侧职责边界，防止把偏门场景继续写进答案导致B1/B5复发。</div>
+
+  <hr class="section-divider" />
+
+  <h2>模型进度与删除率</h2>
+  <table>
+    <thead>
+      <tr><th>Model</th><th>批次完成</th><th>完成率</th><th>删除率</th><th>主错误</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>GPT5.5</td><td style='text-align:center'>2/2</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:31.2%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">31.2%</span></td><td style='text-align:center'>B</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>2/2</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:12.5%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">12.5%</span></td><td style='text-align:center'>B>A>C</td></tr>
+    </tbody>
+  </table>
+
+  <h2>批次状态矩阵</h2>
+  <div class="legend">
+    <span>✓ done</span><span>… running</span><span>○ pending</span><span>! blocked</span><span>x failed</span>
+  </div>
+  <table>
+    <thead><tr><th>Model</th><th>R4-B001</th><th>R4-B002</th></tr></thead>
+    <tbody><tr><td>GPT5.5</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td></tr></tbody>
+  </table>
+
+  <h2>细分错误统计（A1/B1...）</h2>
+  <table>
+    <thead><tr><th>错误子类</th><th>数量</th></tr></thead>
+    <tbody><tr><td>A4</td><td style='text-align:center'>1</td></tr><tr><td>B1</td><td style='text-align:center'>27</td></tr><tr><td>B5</td><td style='text-align:center'>6</td></tr><tr><td>C2</td><td style='text-align:center'>1</td></tr></tbody>
+  </table>
+
+  <h3>细分错误示例（每类2条）</h3>
+  <table>
+    <thead><tr><th>错误子类</th><th>例1-题号</th><th>例1-题目</th><th>例1-理由</th><th>例2-题号</th><th>例2-题目</th><th>例2-理由</th></tr></thead>
+    <tbody><tr><td>A4</td><td>Q052</td><td>在绘制原理图时，当同一张图纸中存在多个不同电压等级的电源网络（比如3.3V、5V、12V）和多个地网络（如数字地、模拟地、屏蔽地），请简述如何通过网络标注方式清晰区分它们，避免混淆或误连。</td><td>Gemini3.1pro: 题干中包含“绘制”，要求候选人绘制，不适合口语直接作答。应修改为口语化提问。</td><td>nan</td><td>nan</td><td>nan</td></tr><tr><td>B1</td><td>Q001</td><td>当一个MCU接口需要驱动多个并联的数字输入引脚时，设计者有时会加入一个共射极晶体管作为驱动增强级。请简单说说，这个结构在这里主要解决了什么实际问题？</td><td>GPT5.5: 参考答案把“共射极晶体管作为驱动增强级”解释成可直接增强MCU高电平并联驱动能力，且第三层写“MCU输出高电平时，下游多个并联输入端实测电压低于阈值”。共射NPN驱动通常会反相并主要提供下拉/灌电流能力，不能按该表述直接解决多个数字输入高电平拉电流问题，答案对电路作用口径不严谨。</td><td>Q002</td><td>一款5G模组的射频前端接收链路中，低噪声放大器采用电流串联负反馈结构以提升输入阻抗匹配和稳定性。当实测发现其在特定频段增益突降且相位裕度不足时，请简述：你如何从负反馈类型对环路增益、频率响应零极点分布及稳定性判据的影响出发，定位反馈支路中关键器件（如源极电感或反馈电阻）的失效模式？</td><td>GPT5.5: 参考答案称“电流串联负反馈会提高输入阻抗、降低输出阻抗”，其中输出阻抗判断错误；电流取样负反馈通常提高输出阻抗，电压取样负反馈才降低输出阻抗。后续稳定性分析建立在错误反馈类型影响上。</td></tr><tr><td>B5</td><td>Q014</td><td>当把一个TTL输出电路连接到CMOS输入电路时，为什么有时需要加电平转换电路？请从高低电平阈值差异的角度简单说说。</td><td>Gemini3.1pro: 答案中存在大量代码块或英文缩写堆叠，整体已经明显不适合口语直接作答。</td><td>Q017</td><td>在低功耗穿戴设备中，为延长电池寿命，主控切换至深度睡眠模式后关闭部分电源域。此时若保留3.3V IO电源但主控核心电压降至0.8V，其GPIO输出电平可能无法可靠驱动外部3.3V TTL器件。请从CMOS输出级结构和阈值电压偏移角度，解释该失效机理。</td><td>GPT5.5: 参考答案称核心电压降至0.8V时PMOS源极3.3V、栅极0.8V会导致“实际栅源电压为负值且绝对值不足”，这是错误的电压判断，|Vgs|约2.5V通常并非不足。若IO电源保留，GPIO输出是否可靠主要取决于芯片是否有独立IO电平转换/保持结构，而不是按该PMOS弱导通模型解释。；Gemini3.1pro: 答案中存在大量代码块或英文缩写堆叠，整体已经明显不适合口语直接作答。</td></tr><tr><td>C2</td><td>Q034</td><td>请简单说说电压串联负反馈对放大器输入电阻和输出电阻的影响。</td><td>Gemini3.1pro: 题干语言不一样，但核心要点和作答思路与前题高度一致</td><td>nan</td><td>nan</td><td>nan</td></tr></tbody>
+  </table>
+</body>
+</html>

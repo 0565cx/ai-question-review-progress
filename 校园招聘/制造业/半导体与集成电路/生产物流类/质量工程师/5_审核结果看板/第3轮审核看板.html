@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Round 3 Dashboard</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; margin: 24px; color: #1f2937; }
+    h1, h2, h3 { margin: 10px 0 12px; }
+    .cards { display: grid; grid-template-columns: repeat(3, minmax(140px, 220px)); gap: 12px; margin: 8px 0 18px; }
+    .card { border: 1px solid #e5e7eb; border-radius: 10px; padding: 12px; background: #fafafa; }
+    .card .k { font-size: 12px; color: #6b7280; }
+    .card .v { font-size: 24px; font-weight: 700; margin-top: 4px; }
+    table { border-collapse: collapse; width: 100%; margin: 8px 0 18px; }
+    th, td { border: 1px solid #e5e7eb; padding: 8px 10px; vertical-align: middle; }
+    th { background: #f9fafb; }
+    .legend span { margin-right: 12px; font-size: 13px; color: #374151; }
+    .mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; }
+    .ex { margin: 6px 0; color: #374151; }
+    .section-divider { border: 0; border-top: 2px solid #eef2f7; margin: 22px 0; }
+  </style>
+</head>
+<body>
+  <h1>Round 3 审核看板</h1>
+
+  <div class="cards">
+    <div class="card"><div class="k">A类错误</div><div class="v">3</div></div>
+    <div class="card"><div class="k">B类错误</div><div class="v">43</div></div>
+    <div class="card"><div class="k">C类错误</div><div class="v">0</div></div>
+  </div>
+
+  <h2>本轮题目主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">第3轮主要题干问题集中在A4表达可口述性：少量题目仍要求候选人给出证明/公式化论证或书面化佐证材料，超出AI面试口语回答边界；另有个别题目在题干约束上过度强调文档产出，导致考察目标从质量工程判断偏向书面交付。整体上题干质量已明显收敛，问题占比低。</div>
+<h2>本轮答案主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">答案问题以B1知识与逻辑严谨性为主，表现为将特定场景经验当作通用结论、关键判定规则表述不完整或步骤顺序不严谨；其次有少量B3跑题和B4异常场景设置不合理。说明当前重出答案阶段仍需加强可验证、可追溯、可复核的质量工程口径约束。</div>
+<h2>后续重新出内容时应补充的规则</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">【重新出题】<br/>重出题干时加入硬性约束：禁止要求证明/推导/公式书写/图表绘制/书面报告附件；题干必须可在2-3分钟口述回答；场景限定为质量工程师高频业务（来料/过程/出货/客诉闭环、SPC、8D、MSA、失效分析），避免偏门场景。<br/><br/>【重出答案】<br/>重出答案时加入四步自检：1) 先给岗位口径定义与判定标准；2) 再给可执行步骤与先后顺序；3) 明确关键指标、阈值或记录要求来源；4) 补充1个常见异常与1个复杂问题及纠偏策略。禁止把假设值当标准结论，禁止与题干知识点不一致的扩展。</div>
+
+  <hr class="section-divider" />
+
+  <h2>模型进度与删除率</h2>
+  <table>
+    <thead>
+      <tr><th>Model</th><th>批次完成</th><th>完成率</th><th>删除率</th><th>主错误</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>GPT5.5</td><td style='text-align:center'>10/10</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:11.1%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">11.1%</span></td><td style='text-align:center'>B</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>10/10</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:1.1%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">1.1%</span></td><td style='text-align:center'>A>B</td></tr>
+    </tbody>
+  </table>
+
+  <h2>批次状态矩阵</h2>
+  <div class="legend">
+    <span>✓ done</span><span>… running</span><span>○ pending</span><span>! blocked</span><span>x failed</span>
+  </div>
+  <table>
+    <thead><tr><th>Model</th><th>R3-B001</th><th>R3-B002</th><th>R3-B003</th><th>R3-B004</th><th>R3-B005</th><th>R3-B006</th><th>R3-B007</th><th>R3-B008</th><th>R3-B009</th><th>R3-B010</th></tr></thead>
+    <tbody><tr><td>GPT5.5</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td></tr></tbody>
+  </table>
+
+  <h2>细分错误统计（A1/B1...）</h2>
+  <table>
+    <thead><tr><th>错误子类</th><th>数量</th></tr></thead>
+    <tbody><tr><td>A4</td><td style='text-align:center'>3</td></tr><tr><td>B1</td><td style='text-align:center'>40</td></tr><tr><td>B3</td><td style='text-align:center'>2</td></tr><tr><td>B4</td><td style='text-align:center'>1</td></tr></tbody>
+  </table>
+
+  <h3>细分错误示例（每类2条）</h3>
+  <table>
+    <thead><tr><th>错误子类</th><th>例1-题号</th><th>例1-题目</th><th>例1-理由</th><th>例2-题号</th><th>例2-题目</th><th>例2-理由</th></tr></thead>
+    <tbody><tr><td>A4</td><td>Q283</td><td>客户审核明确要求调阅某款车规级芯片量产前三个月的出货检验记录及对应批次的可靠性试验报告，但其中两批样品因实验室排期冲突，实际试验完成时间晚于出货日期。你手头有试验委托单、原始测试数据、签发后的报告扫描件，但缺少正式盖章版原件。面对审核员现场索要‘出货前已完成验证’的证据链，你会如何组织现有材料进行合理说明并证明质量受控？</td><td>Gemini3.1pro: 题干包含无法口语直接作答的要求: '证明'</td><td>Q298</td><td>某晶圆代工厂向汽车电子客户提交PPAP时，客户退回了全尺寸检验报告，指出报告中仅包含抽样批次的单次测量数据，未体现关键尺寸在整批晶圆上的分布趋势和过程能力指数。你作为质量工程师，需在48小时内完成整改并重新提交。请简述你会优先验证哪些检验数据维度，并说明为什么这些维度对证明量产过程稳定性最关键。</td><td>Gemini3.1pro: 题干包含无法口语直接作答的要求: '证明'</td></tr><tr><td>B1</td><td>Q003</td><td>请简单说说控制图上出现‘连续3个点中有2个落在同一侧的B区以外’，这属于哪一类常见异常模式？</td><td>GPT5.5: 原答案将“2/3点落在A区外”误称为链状异常；正确应区分Western Electric/Nelson类判异规则，不能把该规则直接命名为链状异常。</td><td>Q005</td><td>SPC异常报警后，确认数据采集无误且测量系统稳定，但现场操作员反馈‘这组数据是换班时手动记录的’，你会怎么处理这个异常点？请简述后续步骤。</td><td>GPT5.5: 原答案把经确认有效的手工记录数据直接要求隔离/剔除，并引用不存在的IATF附录要求；正确做法应先评估记录有效性和追溯性，不能简单判为无效数据。</td></tr><tr><td>B3</td><td>Q018</td><td>如果某批次产品共检验10万件，发现2件不良，对应的DPPM值是多少？请简述计算逻辑。</td><td>GPT5.5: 题干要求计算DPPM，原答案未给出关键结果20 DPPM；正确应用不良数/检验数×10^6得出20 DPPM并再进行解释。</td><td>Q124</td><td>在晶圆测试环节，如果某批次芯片的IV曲线在正向偏压区出现明显电流平台而非预期的指数上升，这通常反映器件可能存在什么类型的物理缺陷？请简述判断依据。</td><td>GPT5.5: 题干询问正向IV平台对应的物理缺陷，原答案未直接回答关键物理机理；正确应聚焦接触、金属化、结区或局部热效应等与IV平台相关的缺陷。</td></tr><tr><td>B4</td><td>Q241</td><td>某晶圆厂完成新工艺导入后，首批量产晶圆在封装厂上线时，连续三批出现同一层金属线宽偏移超规格，但厂内SPC监控显示该参数始终受控。你作为负责该批次质量确认的工程师，会优先从哪三个环节切入排查？请说明每个环节的验证逻辑和先后顺序理由。</td><td>Gemini3.1pro: 第三层未按要求包含异常情况和复杂问题概要</td><td>nan</td><td>nan</td><td>nan</td></tr></tbody>
+  </table>
+</body>
+</html>

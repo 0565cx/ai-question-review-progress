@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>第3轮审核看板</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; margin: 24px; color: #1f2937; }
+    h1, h2, h3 { margin: 10px 0 12px; }
+    .cards { display: grid; grid-template-columns: repeat(3, minmax(140px, 220px)); gap: 12px; margin: 8px 0 18px; }
+    .card { border: 1px solid #e5e7eb; border-radius: 10px; padding: 12px; background: #fafafa; }
+    .card .k { font-size: 12px; color: #6b7280; }
+    .card .v { font-size: 24px; font-weight: 700; margin-top: 4px; }
+    table { border-collapse: collapse; width: 100%; margin: 8px 0 18px; }
+    th, td { border: 1px solid #e5e7eb; padding: 8px 10px; vertical-align: middle; }
+    th { background: #f9fafb; }
+    .legend span { margin-right: 12px; font-size: 13px; color: #374151; }
+    .mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; }
+    .ex { margin: 6px 0; color: #374151; }
+    .section-divider { border: 0; border-top: 2px solid #eef2f7; margin: 22px 0; }
+  </style>
+</head>
+<body>
+  <h1>第 3 轮审核看板</h1>
+
+  <div class="cards">
+    <div class="card"><div class="k">A类错误</div><div class="v">20</div></div>
+    <div class="card"><div class="k">B类错误</div><div class="v">103</div></div>
+    <div class="card"><div class="k">C类错误</div><div class="v">0</div></div>
+  </div>
+
+  <h2>本轮题目主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">本轮题干问题以场景约束不充分和提问边界不清为主，少量题目出现A2场景偏门与A4口语作答不友好（要求写公式/证明）的情况。高频表现是题干过于抽象或脱离机械工程师常见工作语境，导致候选人回答方向发散、评分口径不稳定。</div>
+<h2>本轮答案主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">本轮答案问题显著集中在B类，尤其是B1知识性错误、B4复杂情境设置不合理、B3与题干范围不一致。典型影响是给出不准确技术结论、异常场景不贴近现场、以及三层答案层级断裂，直接降低可评分性与岗位专业性。</div>
+<h2>后续重新出内容时应补充的规则</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">【重新出题】<br/>重新出题应补充：1) 题干必须限定新能源制造机械岗位真实工况（设备、工序、失效模式）；2) 禁止要求写公式、推导、绘图、证明；3) 明确难度与建议作答时间匹配；4) 与知识点一一对应，避免泛问。<br/><br/>【重出答案】<br/>重出答案应补充：1) 第一层仅给可核验事实与定义，避免拍脑袋参数；2) 第二层必须对比2-3种常用方案并说明适用边界；3) 第三层异常/复杂问题需来自高频现场问题并给可执行处置步骤；4) 输出前执行B类自检（准确性、层级完整性、口语可答性、与题干一致性）。</div>
+
+  <hr class="section-divider" />
+
+  <h2>模型进度与删除率</h2>
+  <table>
+    <thead>
+      <tr><th>模型</th><th>批次完成</th><th>完成率</th><th>删除率</th><th>主要错误</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>GPT5.5</td><td style='text-align:center'>7/7</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:15.8%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">15.8%</span></td><td style='text-align:center'>B</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>7/7</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:31.5%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">31.5%</span></td><td style='text-align:center'>B>A</td></tr>
+    </tbody>
+  </table>
+
+  <h2>批次状态矩阵</h2>
+  <div class="legend">
+    <span>✓ 已完成</span><span>… 进行中</span><span>○ 待开始</span><span>! 阻塞</span><span>x 失败</span>
+  </div>
+  <table>
+    <thead><tr><th>模型</th><th>R3-B001</th><th>R3-B002</th><th>R3-B003</th><th>R3-B004</th><th>R3-B005</th><th>R3-B006</th><th>R3-B007</th></tr></thead>
+    <tbody><tr><td>GPT5.5</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td></tr></tbody>
+  </table>
+
+  <h2>细分错误统计（A1/B1...）</h2>
+  <table>
+    <thead><tr><th>错误子类</th><th>数量</th></tr></thead>
+    <tbody><tr><td>A2</td><td style='text-align:center'>18</td></tr><tr><td>A4</td><td style='text-align:center'>2</td></tr><tr><td>B1</td><td style='text-align:center'>55</td></tr><tr><td>B2</td><td style='text-align:center'>6</td></tr><tr><td>B3</td><td style='text-align:center'>20</td></tr><tr><td>B4</td><td style='text-align:center'>22</td></tr></tbody>
+  </table>
+
+  <h3>细分错误示例（每类2条）</h3>
+  <table>
+    <thead><tr><th>错误子类</th><th>例1-题号</th><th>例1-题目</th><th>例1-理由</th><th>例2-题号</th><th>例2-题目</th><th>例2-理由</th></tr></thead>
+    <tbody><tr><td>A2</td><td>Q009</td><td>储能柜体钣金外壳上设有多个嵌入式传感器安装槽和内部走线通道，当这些特征在主视图中被遮挡且需明确其深度与截面形状时，适合采用哪种断面表达方法？请说明适用原因。</td><td>Gemini3.1pro: 题干场景偏门，在常规机械工程师岗位中极少遇到。正确的应该是：替换为常规的设备维护或设计场景。</td><td>Q018</td><td>在电池模组装配工装的夹具设计中，若接触面要求高耐磨且便于后续表面处理，为何常选择20MnTiB合金结构钢而非普通Q235？请简述其工艺适配性优势。</td><td>Gemini3.1pro: 题干场景偏门，在常规机械工程师岗位中极少遇到。正确的应该是：替换为常规的设备维护或设计场景。</td></tr><tr><td>A4</td><td>Q209</td><td>锂电极耳裁切设备的刀座组件需满足刀刃直线度0.01mm、刀刃与送料轨道基准面平行度0.02mm、以及刀刃中心线对伺服电机输出轴同轴度Φ0.03mm三项关键要求。该组件由高精度机加刀座、轴承套、联轴器适配环和电机端盖四类零件装配而成，请简述你如何基于功能需求逆向推导基准体系层级，并说明第三基准必须关联哪一具体几何特征及其对装配累积误差的抑制作用。</td><td>Gemini3.1pro: 题目中包含公式推导或代码块要求，不适合口语作答。正确的应该是：改为描述机制而非公式。</td><td>Q258</td><td>请简单说说，导轨丝杠的基本额定寿命公式中，动载荷与额定寿命之间是什么数量关系？</td><td>Gemini3.1pro: 题目中包含要求口语作答不便的“公式公式”等字眼。正确的应该是：移除该字眼，改为口语化的场景询问。</td></tr><tr><td>B1</td><td>Q001</td><td>请简单说说齿轮传动为什么能保证严格的传动比。</td><td>GPT5.5: 参考答案第三层称“齿面磨损或装配偏载导致传动比短期波动”；正确应为齿轮名义传动比由齿数比决定，磨损主要造成齿侧间隙、传动误差、冲击和噪声，而不是改变严格的理论传动比。</td><td>Q002</td><td>光伏电池片串焊设备中，一个由伺服电机驱动、通过同步带带动多个并联夹爪运动的开合机构，其末端夹爪与连杆之间存在滚动接触。请简单说说，在计算该机构自由度时，滚动接触应视为哪种类型的运动副？为什么？</td><td>GPT5.5: 参考答案称滚动高副接触处“无约束法向位移”；正确应为高副以点/线接触形成法向约束，允许的是切向相对滚动/滑动。；Gemini3.1pro: 答案第一层逻辑不严谨，把特定条件下的配置当成了绝对标准。正确的应该是：说明这是某种特定环境下的配置，而非通用。</td></tr><tr><td>B2</td><td>Q032</td><td>储能柜体的钣金外壳需通过IP54防护认证，长期暴露于沿海高盐雾环境，且要求表面喷涂后不影响内部EMC屏蔽层导通性。请简述你如何协同确定表面处理方案，并解释各环节的约束条件。</td><td>GPT5.5: 参考答案优先推荐达克罗加导电胶点涂作为储能柜体钣金外壳的主表面处理方案；达克罗更常用于紧固件/小件防腐，柜体钣金通常应围绕前处理、喷粉/喷涂、导电接地区域遮蔽和EMC搭接结构综合设计。</td><td>Q042</td><td>在锂电设备的模组装配工位上，振动环境较强，螺栓连接频繁承受往复载荷。请简单说说，此时应优先选择哪种防松方式，并说明理由。</td><td>GPT5.5: 参考答案把“双螺母锁紧加弹簧垫圈组合”作为强振动往复载荷下的首选方案；弹簧垫圈在振动防松中的可靠性有限，强振动关键连接更应优先采用全金属锁紧螺母、楔形防松垫圈、螺纹锁固或预紧可控方案。；Gemini3.1pro: 第三层给出的异常情况过于极端，不符合实际工作内容。正确的应该是：提出常见的物料不足或设备过热异常。</td></tr><tr><td>B3</td><td>Q005</td><td>储能柜体自动锁紧机构中，使用了凸轮推动摆臂、再通过连杆驱动锁舌伸缩的三构件组合。若凸轮与摆臂为高副接触，摆臂与连杆、连杆与锁舌均为转动副，且所有构件均在同一平面内运动，请简述该机构的自由度计算关键步骤。</td><td>GPT5.5: 参考答案未完整列出凸轮、摆臂、连杆、锁舌与机架之间的必要运动副，尤其未说明锁舌导向移动副和凸轮/摆臂支承约束，不能据此完成自由度计算或判断锁止可行性。</td><td>Q025</td><td>某电池PACK自动组装线的快换治具要求兼顾轻量化、耐磨性与尺寸稳定性。现有方案使用阳极氧化处理的6063铝合金，但现场反馈氧化层在频繁插拔后局部剥落并引发卡滞。请从铝合金基体组织、氧化膜生长机制与机械交互磨损三者的耦合关系出发，分析失效主因，并简述更合理的表面处理路径选择依据。</td><td>GPT5.5: 参考答案称6063铝合金是“热处理不可强化型铝镁硅合金”；正确应为6063属于Al-Mg-Si系可热处理强化铝合金，常见T5/T6状态。；Gemini3.1pro: 答案跑题，与题干引导的知识范围不完全一致。正确的应该是：答案应紧扣题干要求的知识点进行展开。</td></tr><tr><td>B4</td><td>Q020</td><td>请简述铝合金在机械结构件中常用的三种典型牌号及其主要应用特点。</td><td>Gemini3.1pro: 第三层给出的异常情况过于极端，不符合实际工作内容。正确的应该是：提出常见的物料不足或设备过热异常。</td><td>Q030</td><td>储能柜体的冷轧钢板外壳需通过表面处理实现防锈、导电性兼容和喷粉涂层结合力三重目标，一般会选用哪种前处理工艺？请简述该工艺如何同时支撑这三项功能需求。</td><td>GPT5.5: 参考答案把锌系磷化/钝化整体处理描述为可稳定兼顾接地导通；正确应说明防腐转化膜和喷粉层会影响导电，接地点通常需遮蔽、去膜、导电垫圈/螺柱或专用接地结构保证低阻导通。；Gemini3.1pro: 第三层给出的异常情况过于极端，不符合实际工作内容。正确的应该是：提出常见的物料不足或设备过热异常。</td></tr></tbody>
+  </table>
+</body>
+</html>

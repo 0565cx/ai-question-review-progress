@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Round 3 Dashboard</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; margin: 24px; color: #1f2937; }
+    h1, h2, h3 { margin: 10px 0 12px; }
+    .cards { display: grid; grid-template-columns: repeat(3, minmax(140px, 220px)); gap: 12px; margin: 8px 0 18px; }
+    .card { border: 1px solid #e5e7eb; border-radius: 10px; padding: 12px; background: #fafafa; }
+    .card .k { font-size: 12px; color: #6b7280; }
+    .card .v { font-size: 24px; font-weight: 700; margin-top: 4px; }
+    table { border-collapse: collapse; width: 100%; margin: 8px 0 18px; }
+    th, td { border: 1px solid #e5e7eb; padding: 8px 10px; vertical-align: middle; }
+    th { background: #f9fafb; }
+    .legend span { margin-right: 12px; font-size: 13px; color: #374151; }
+    .mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; }
+    .ex { margin: 6px 0; color: #374151; }
+    .section-divider { border: 0; border-top: 2px solid #eef2f7; margin: 22px 0; }
+  </style>
+</head>
+<body>
+  <h1>Round 3 审核看板</h1>
+
+  <div class="cards">
+    <div class="card"><div class="k">A类错误</div><div class="v">30</div></div>
+    <div class="card"><div class="k">B类错误</div><div class="v">99</div></div>
+    <div class="card"><div class="k">C类错误</div><div class="v">42</div></div>
+  </div>
+
+  <h2>本轮题目主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">第3轮题干问题主要集中在A4与A3。A4表现为题目要求候选人“写出/推导/证明/绘制”等内容，不符合口语化面试作答场景；A3表现为题干与目标知识点或岗位工作场景的映射偏移。另有少量C类同质题，虽然措辞不同，但候选人作答要点高度重合，导致题库区分度下降。</div>
+<h2>本轮答案主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">答案问题以B类为主，重点是B3与B4。部分第二层、第三层答案过于泛化，没有紧贴题干给定的业务约束；部分异常/复杂场景给出的处理路径频次低、可落地性弱，与新能源制造业嵌入式软件岗位常见实践存在偏差。三层结构整体完整，但岗位口径一致性与可评分性仍需加强。</div>
+<h2>后续重新出内容时应补充的规则</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">【重新出题】<br/>重出题目时增加硬约束：禁止出现“写出公式、推导、证明、绘图”等非口语作答要求；题干必须绑定具体岗位场景（如MCU外设驱动、RTOS调度、现场总线通信、量产调试、故障定位）；单题只考察一个主知识点，避免跨域混问。生成后增加A/C自检：题干可口述、知识点不偏移、与现有题库不构成C2同质。<br/><br/>【重出答案】<br/>重出答案时按三层分别校验：第一层确保概念准确、术语统一；第二层围绕同一场景给出2-3种可行方案及取舍依据；第三层仅保留岗位高频异常与复杂问题，输出可执行排查步骤、关键观测指标与回退策略。增加B类自检：不跑题、不使用过时做法、场景可复现、表达便于面试评分。</div>
+
+  <hr class="section-divider" />
+
+  <h2>模型进度与删除率</h2>
+  <table>
+    <thead>
+      <tr><th>Model</th><th>批次完成</th><th>完成率</th><th>删除率</th><th>主错误</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>GPT5.5</td><td style='text-align:center'>19/19</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:2.5%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">2.5%</span></td><td style='text-align:center'>B>A</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>19/19</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:19.6%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">19.6%</span></td><td style='text-align:center'>B>C>A</td></tr>
+    </tbody>
+  </table>
+
+  <h2>批次状态矩阵</h2>
+  <div class="legend">
+    <span>✓ done</span><span>… running</span><span>○ pending</span><span>! blocked</span><span>x failed</span>
+  </div>
+  <table>
+    <thead><tr><th>Model</th><th>R3-B001</th><th>R3-B002</th><th>R3-B003</th><th>R3-B004</th><th>R3-B005</th><th>R3-B006</th><th>R3-B007</th><th>R3-B008</th><th>R3-B009</th><th>R3-B010</th><th>R3-B011</th><th>R3-B012</th><th>R3-B013</th><th>R3-B014</th><th>R3-B015</th><th>R3-B016</th><th>R3-B017</th><th>R3-B018</th><th>R3-B019</th></tr></thead>
+    <tbody><tr><td>GPT5.5</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td></tr></tbody>
+  </table>
+
+  <h2>细分错误统计（A1/B1...）</h2>
+  <table>
+    <thead><tr><th>错误子类</th><th>数量</th></tr></thead>
+    <tbody><tr><td>A1</td><td style='text-align:center'>27</td></tr><tr><td>A2</td><td style='text-align:center'>3</td></tr><tr><td>B1</td><td style='text-align:center'>67</td></tr><tr><td>B2</td><td style='text-align:center'>2</td></tr><tr><td>B3</td><td style='text-align:center'>27</td></tr><tr><td>B6</td><td style='text-align:center'>3</td></tr><tr><td>C2</td><td style='text-align:center'>42</td></tr></tbody>
+  </table>
+
+  <h3>细分错误示例（每类2条）</h3>
+  <table>
+    <thead><tr><th>错误子类</th><th>例1-题号</th><th>例1-题目</th><th>例1-理由</th><th>例2-题号</th><th>例2-题目</th><th>例2-理由</th></tr></thead>
+    <tbody><tr><td>A1</td><td>Q079</td><td>BMS在高压下电过程中，通常要求先断开主正继电器，再断开主负继电器。请简单说说这样设计的主要目的。</td><td>GPT5.5: 题干原文预设“高压下电通常要求先断开主正继电器，再断开主负继电器”，这不是通用BMS规则，断开顺序取决于接触器拓扑、预充/泄放路径、负载类型和安全需求；参考答案又把主负拉弧等解释固化为普遍原则。正确应改为询问继电器断开顺序如何按具体高压架构设计和验证。</td><td>Q118</td><td>在储能系统中，BAU作为BMS的底层采集单元，需要与BCU和BMU协同工作。请简述BAU在整套BMS架构中的功能定位，以及它与BCU之间数据流向和交互时机的设计依据。</td><td>Gemini3.1pro: 题干中“BAU作为BMS的底层采集单元”存在知识性错误。正确的应该是什么：底层采集单元应为BMU，BAU通常作为簇级管理单元或主控单元。</td></tr><tr><td>A2</td><td>Q151</td><td>车载VCU软件需集成多个供应商提供的诊断服务模块（如UDS刷写、故障码读取），各模块函数签名、错误码定义和资源占用方式不统一。请简述你如何设计统一的诊断接口封装层，在保障功能完整性的前提下，实现模块热插拔和运行时动态加载。</td><td>Gemini3.1pro: 题干场景偏门，不是岗位常见、常用的最佳实践。题干要求在车载VCU软件中实现“模块热插拔和运行时动态加载”。在实际的新能源车载VCU（基于AUTOSAR Classic平台和ISO 26262标准开发）中，软件模块均是静态链接并在编译期固化至Flash中的。受限于功能安全要求、内存保护机制以及硬实时性，车规级控制器严禁在运行时进行代码层面的“热插拔”和“动态加载”。此场景严重脱离行业实际。正确的应该是：考核如何通过函数指针注册表或统一抽象接口在初始化阶段（编译期绑定）实现多供应商模块的灵活集成和解耦。</td><td>Q196</td><td>在充电桩与电池管理系统之间通过CAN FD协议进行充电启动前的握手交互时，为什么不能仅靠单次发送‘准备就绪’报文就进入充电状态？请简单说说握手流程中必须包含的反馈环节及其作用。</td><td>Gemini3.1pro: 题干场景偏门或存在知识性错误。题干设定“在充电桩与电池管理系统之间通过CAN FD协议进行充电启动前的握手交互”，但在当前新能源汽车与充电桩的实际通信标准（如GB/T 27930）中，普遍使用的是经典CAN 2.0B协议（250kbps），而不是CAN FD协议。正确的应该是“通过CAN协议进行充电启动前的握手交互”。</td></tr><tr><td>B1</td><td>Q001</td><td>BMS故障分级时，为什么需要将绝缘故障列为二级或以上级别？</td><td>GPT5.5: 参考答案第二层原文称“按ISO 6469-3或GB/T 31467.3将绝缘电阻低于阈值（如500Ω/V）直接归为二级故障”。这些标准和阈值不能直接推出项目内“二级故障”分级，正确应说明绝缘故障等级需结合项目故障分级定义、安全目标、绝缘阈值和保护动作策略确定。</td><td>Q002</td><td>请简述BMS中故障分级通常分为哪三个等级？</td><td>Gemini3.1pro: 参考答案第一层将一级故障定义为最严重、三级为最轻微，这与国标GB/T 32960（3级为最高严重故障）相反。虽然部分企业内部标准如此，但作为通用面试题，将此假定作为绝对正确的唯一标准存在知识性/逻辑不严谨。</td></tr><tr><td>B2</td><td>Q084</td><td>请简述BMS中绝缘故障判定的基本原理。</td><td>GPT5.5: 参考答案将“改进型桥式平衡法”描述为“2023年后新平台首选/主流”的绝缘检测方案，该行业结论缺乏通用性。实际常见方案包括非平衡桥、交流/低频注入、专用绝缘监测器或厂商AFE方案，选择取决于高压拓扑、成本、法规和检测精度，不能把某一种桥式方法说成普遍最佳实践。</td><td>Q104</td><td>BMU采集的电压、温度等原始数据需经校验后上传至上级模块，请简单说说BMU在数据链路中承担哪些关键校验职责，以及这些校验为何不宜由BCU统一完成？</td><td>GPT5.5: 参考答案把“双核BMU由协核做数据有效性验证/独立ASIL-B协处理器”描述为储能BMS数据校验最常用方案，这不符合常见量产实践。BMU侧通常做范围、CRC、开路、合理性和时序校验，再由BCU/主控聚合复核与仲裁；双核或专用协处理器不是普遍最佳实践。</td></tr><tr><td>B3</td><td>Q099</td><td>BMU采集的数据中，哪些属于直接测量信号？请列举两项。</td><td>Gemini3.1pro: 第二层答案给出了判断信号是否为直接测量的方法，而非技术方案或方法的优劣势分析。正确的应该是什么：第二层应围绕BMU数据采集的具体技术方案（如集中式采样、分布式采样等）进行优劣势分析。</td><td>Q101</td><td>BMU模块在实际硬件部署中一般直接连接电芯采样线束和均衡电路，请简单说说它为何不承担高压上下电控制或绝缘检测这类功能？</td><td>Gemini3.1pro: 第二层答案仅给出了一种分层方案的分析，未提供多个技术方案的优劣势对比。正确的应该是什么：第二层应围绕高压控制和绝缘检测在BMS架构中的不同部署方案（如集中式、分布式等）进行优劣势分析。</td></tr><tr><td>B6</td><td>Q065</td><td>在BMS实际量产项目中，使用NTC热敏电阻采集电芯温度时，常出现同一组采样通道在高低温环境下一致性变差、校准后仍存在系统性偏差。请简述你从硬件接口设计、软件补偿策略和标定流程三个层面，如何协同解决这一问题。</td><td>Gemini3.1pro: 答案中包含大量硬件底层设计内容（如‘硬件上常用高精度低温漂电阻+恒流源激励替代分压’），超出了嵌入式软件工程师的业务口径范围，属于硬件工程师的电路设计职责。面试答案应侧重于软件侧的算法处理与控制。</td><td>Q066</td><td>某储能项目BMS在-20℃低温启动阶段，多个温度点连续出现跳变超±5℃且无规律，但硬件复位后短暂恢复正常。排除传感器失效后，请从ADC采样链路、电源噪声耦合、热敏电阻自热效应及软件滤波机制四个维度，分析最可能的根因并说明验证思路。</td><td>Gemini3.1pro: 答案中要求候选人进行‘电源轨纹波实测’‘验证LDO负载调整率不足引起的PSRR劣化’等底层硬件信号与物理特性测试，属于硬件测试工程师的职责，严重脱离了嵌入式软件工程师的口径。</td></tr><tr><td>C2</td><td>Q051</td><td>在储能系统实际运行中，BMS需要对电池包不同层级的电流进行监测并触发分级过流保护。请简述你如何设计软件逻辑来区分瞬时过流、短时过流和持续过流三类事件，并说明每类事件对应的保护动作及决策依据。</td><td>nan</td><td>Q080</td><td>在高压上下电流程中，BMS需对继电器吸合/断开状态进行反馈确认。请说明仅依赖驱动信号而不校验实际触点状态可能带来什么具体风险。</td><td>nan</td></tr></tbody>
+  </table>
+</body>
+</html>

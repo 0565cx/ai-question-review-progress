@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Round 6 Dashboard</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; margin: 24px; color: #1f2937; }
+    h1, h2, h3 { margin: 10px 0 12px; }
+    .cards { display: grid; grid-template-columns: repeat(3, minmax(140px, 220px)); gap: 12px; margin: 8px 0 18px; }
+    .card { border: 1px solid #e5e7eb; border-radius: 10px; padding: 12px; background: #fafafa; }
+    .card .k { font-size: 12px; color: #6b7280; }
+    .card .v { font-size: 24px; font-weight: 700; margin-top: 4px; }
+    table { border-collapse: collapse; width: 100%; margin: 8px 0 18px; }
+    th, td { border: 1px solid #e5e7eb; padding: 8px 10px; vertical-align: middle; }
+    th { background: #f9fafb; }
+    .legend span { margin-right: 12px; font-size: 13px; color: #374151; }
+    .mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; }
+    .ex { margin: 6px 0; color: #374151; }
+    .section-divider { border: 0; border-top: 2px solid #eef2f7; margin: 22px 0; }
+  </style>
+</head>
+<body>
+  <h1>Round 6 审核看板</h1>
+
+  <div class="cards">
+    <div class="card"><div class="k">A类错误</div><div class="v">0</div></div>
+    <div class="card"><div class="k">B类错误</div><div class="v">35</div></div>
+    <div class="card"><div class="k">C类错误</div><div class="v">1</div></div>
+  </div>
+
+  <h2>本轮题目主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">第6轮题干层面整体可用性较高，仅出现1条C2同质化问题。主要表现为同一知识点下题干问法变化不大，但候选人作答路径和核心要点几乎一致，导致区分度不足。其余题干未出现明显A类硬错误，说明题干知识方向和场景设置已基本稳定。</div>
+<h2>本轮答案主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">本轮问题高度集中在B1（35次）：答案将SECS/GEM消息号、报文用途、状态语义和协议层边界混用，把约定俗成口径写成标准强制要求，或把错误消息对照关系写入解法步骤。这类错误会直接误导候选人的工程判断，即便题干正确也会导致整题删除。另有少量重复性风险由C2触发。</div>
+<h2>后续重新出内容时应补充的规则</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">【重新出题】<br/>重出题时优先避免同质化：同一技能下至少改变场景约束、故障条件或决策目标中的两项，确保候选人作答路径可区分；新增“反同质化自检”规则，要求与当前题库逐题比对核心作答要点，发现高度重合则改写题干。另增“标准约束表述规则”：题干中涉及协议/标准时，必须区分“标准强制要求”和“厂商常见实现”，禁止把可配置实现写成唯一必选做法。<br/><br/>【重出答案】<br/>重出答案时增加“协议真实性自检清单”：逐条核对SECS/GEM消息编号-用途映射、状态字段语义、标准必选与工程惯例边界；禁止把未证实字段名当标准字段，禁止把命令消息当配置消息；每题提交前增加一次“是否会误导现场调试”反向审阅。另增“口径规范规则”：凡属于实现差异/厂商口径可变的点，必须明确标注为“可配置/常见实践”，不得表述为“标准强制/唯一正确答案”；若无法确认标准强制性，必须降级为风险提示而非确定结论。</div>
+
+  <hr class="section-divider" />
+
+  <h2>模型进度与删除率</h2>
+  <table>
+    <thead>
+      <tr><th>Model</th><th>批次完成</th><th>完成率</th><th>删除率</th><th>主错误</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>GPT5.5</td><td style='text-align:center'>2/2</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:76.7%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">76.7%</span></td><td style='text-align:center'>B</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>0/2</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:0%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">0.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:7.0%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">7.0%</span></td><td style='text-align:center'>B>C</td></tr>
+    </tbody>
+  </table>
+
+  <h2>批次状态矩阵</h2>
+  <div class="legend">
+    <span>✓ done</span><span>… running</span><span>○ pending</span><span>! blocked</span><span>x failed</span>
+  </div>
+  <table>
+    <thead><tr><th>Model</th><th>R6-B001</th><th>R6-B002</th></tr></thead>
+    <tbody><tr><td>GPT5.5</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>○</td><td style='text-align:center'>○</td></tr></tbody>
+  </table>
+
+  <h2>细分错误统计（A1/B1...）</h2>
+  <table>
+    <thead><tr><th>错误子类</th><th>数量</th></tr></thead>
+    <tbody><tr><td>B1</td><td style='text-align:center'>35</td></tr><tr><td>C2</td><td style='text-align:center'>1</td></tr></tbody>
+  </table>
+
+  <h3>细分错误示例（每类2条）</h3>
+  <table>
+    <thead><tr><th>错误子类</th><th>例1-题号</th><th>例1-题目</th><th>例1-理由</th><th>例2-题号</th><th>例2-题目</th><th>例2-理由</th></tr></thead>
+    <tbody><tr><td>B1</td><td>Q001</td><td>当EAP系统需对同一台光刻设备并发下发温度设定值与曝光时间两个参数，而设备端出现后者被前者覆盖的现象，你如何结合SECS/GEM标准中Stream 2中的Equipment Constant机制、设备状态机当前所处阶段，以及参数下发事务的原子性保障要求，定位并解决该问题？请简述技术原理和现场验证方法。</td><td>GPT5.5: 参考答案原文称“S2F41（Set Equipment Constant）”用于Equipment Constant设置，且称“S2F39=ONLINE”“S2F17查询当前状态”；SECS/GEM中S2F41是Host Command Send，设备常量设置应使用S2F15/S2F16等相关消息，S2F17也不是设备状态查询，因此协议语义错误。</td><td>Q002</td><td>半导体设备运行中，某腔室温度超限报警与机械手位置偏差报警同时触发，但二者涉及不同安全等级和响应时效。请说明你在HMI组态中会如何差异化呈现这两类报警，并解释这种呈现方式对现场快速处置的实际价值。</td><td>GPT5.5: 参考答案原文称依据“SEMI E10定义的报警严重性等级（Critical/High/Medium/Low）”，并称报警由“SECS/GEM S7F17”上报；SEMI E10主要是设备可靠性/状态统计口径，GEM报警通常通过S5F1/S5F2等报警消息处理，S7F17不属于报警上报消息。</td></tr><tr><td>C2</td><td>Q021</td><td>请简述对准偏差与晶圆上图形重叠精度之间的关系。</td><td>GPT5.5: 第一层概念正确，但参考答案原文称手动触发“S2F42确认ACK码为S2F43且DATA=0x00”；S2F42是S2F41的确认响应，不存在再由S2F43作为ACK的配对关系。；Gemini3.1pro: 与Q018考察核心知识点重复，候选人会给出相同的核心要点。</td><td>nan</td><td>nan</td><td>nan</td></tr></tbody>
+  </table>
+</body>
+</html>

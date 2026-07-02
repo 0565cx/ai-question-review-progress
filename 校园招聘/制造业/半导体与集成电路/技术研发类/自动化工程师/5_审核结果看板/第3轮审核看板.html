@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Round 3 Dashboard</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; margin: 24px; color: #1f2937; }
+    h1, h2, h3 { margin: 10px 0 12px; }
+    .cards { display: grid; grid-template-columns: repeat(3, minmax(140px, 220px)); gap: 12px; margin: 8px 0 18px; }
+    .card { border: 1px solid #e5e7eb; border-radius: 10px; padding: 12px; background: #fafafa; }
+    .card .k { font-size: 12px; color: #6b7280; }
+    .card .v { font-size: 24px; font-weight: 700; margin-top: 4px; }
+    table { border-collapse: collapse; width: 100%; margin: 8px 0 18px; }
+    th, td { border: 1px solid #e5e7eb; padding: 8px 10px; vertical-align: middle; }
+    th { background: #f9fafb; }
+    .legend span { margin-right: 12px; font-size: 13px; color: #374151; }
+    .mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; }
+    .ex { margin: 6px 0; color: #374151; }
+    .section-divider { border: 0; border-top: 2px solid #eef2f7; margin: 22px 0; }
+  </style>
+</head>
+<body>
+  <h1>Round 3 审核看板</h1>
+
+  <div class="cards">
+    <div class="card"><div class="k">A类错误</div><div class="v">20</div></div>
+    <div class="card"><div class="k">B类错误</div><div class="v">567</div></div>
+    <div class="card"><div class="k">C类错误</div><div class="v">1</div></div>
+  </div>
+
+  <h2>本轮题目主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">本轮题目侧的高频问题集中在 A3（题干偏离知识点）和少量 A4/C2。典型表现是题干把自动化工程师岗位应考察的产线控制、设备联调、故障闭环等核心能力，偏移到过于泛化或跨岗位的知识问答，导致候选人作答方向与岗位能力画像不一致。少量题目还出现需要候选人口头表达公式/推导或输出图示结构的要求，降低了口语面试可答性；另有个别题目与已有题在作答核心要点上高度重合，产生同质化风险。</div>
+<h2>本轮答案主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">本轮答案侧问题以 B2/B4/B1 为主。B2 主要表现为方案口径偏旧或偏门，未体现自动化工程师在当前半导体制造场景中常见的主流实践；B4 主要出现在第三层异常与复杂问题设计不贴近真实产线，问题触发条件与排障路径不够工程化；B1 则体现为部分结论绝对化、因果链条不完整，缺少关键边界条件。整体看，答案的岗位贴合度与可评分性存在波动，尤其在第二、三层需要更强调“场景约束 + 取舍依据 + 可执行步骤”。</div>
+<h2>后续重新出内容时应补充的规则</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">【重新出题】<br/>重出题目时应强约束题干与知识点一一对应：每题只锚定一个主知识点和一个典型业务场景，优先覆盖设备联机、产线节拍、PLC/SCADA/MES 协同、报警处置、良率改进等高频任务；禁止把考察目标扩展到跨岗泛化知识。题干表达必须口语可答，禁止要求候选人写公式、推导、绘图或解释符号。出题前增加去重自检：检查与已有题在“核心作答要点”上的重合度，避免同质化改写。<br/><br/>【重出答案】<br/>重出答案时按三层结构分别约束：第一层给出准确术语与适用边界；第二层至少提供 2 种常见方案并明确优劣与选型依据；第三层必须基于半导体制造真实异常（如传感器漂移、通讯抖动、设备节拍失衡、误报警）给出可落地排障步骤。统一要求答案避免绝对化结论，补充前提条件、监控指标与验证方式；用岗位语言描述可执行动作，减少空泛原则与过时方案。</div>
+
+  <hr class="section-divider" />
+
+  <h2>模型进度与删除率</h2>
+  <table>
+    <thead>
+      <tr><th>Model</th><th>批次完成</th><th>完成率</th><th>删除率</th><th>主错误</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>GPT5.5</td><td style='text-align:center'>20/20</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:70.7%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">70.7%</span></td><td style='text-align:center'>B>A>C</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>20/20</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:5.2%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">5.2%</span></td><td style='text-align:center'>B>A</td></tr>
+    </tbody>
+  </table>
+
+  <h2>批次状态矩阵</h2>
+  <div class="legend">
+    <span>✓ done</span><span>… running</span><span>○ pending</span><span>! blocked</span><span>x failed</span>
+  </div>
+  <table>
+    <thead><tr><th>Model</th><th>R3-B001</th><th>R3-B002</th><th>R3-B003</th><th>R3-B004</th><th>R3-B005</th><th>R3-B006</th><th>R3-B007</th><th>R3-B008</th><th>R3-B009</th><th>R3-B010</th><th>R3-B011</th><th>R3-B012</th><th>R3-B013</th><th>R3-B014</th><th>R3-B015</th><th>R3-B016</th><th>R3-B017</th><th>R3-B018</th><th>R3-B019</th><th>R3-B020</th></tr></thead>
+    <tbody><tr><td>GPT5.5</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td></tr></tbody>
+  </table>
+
+  <h2>细分错误统计（A1/B1...）</h2>
+  <table>
+    <thead><tr><th>错误子类</th><th>数量</th></tr></thead>
+    <tbody><tr><td>A3</td><td style='text-align:center'>19</td></tr><tr><td>A4</td><td style='text-align:center'>1</td></tr><tr><td>B1</td><td style='text-align:center'>545</td></tr><tr><td>B2</td><td style='text-align:center'>2</td></tr><tr><td>B3</td><td style='text-align:center'>1</td></tr><tr><td>B4</td><td style='text-align:center'>19</td></tr><tr><td>C2</td><td style='text-align:center'>1</td></tr></tbody>
+  </table>
+
+  <h3>细分错误示例（每类2条）</h3>
+  <table>
+    <thead><tr><th>错误子类</th><th>例1-题号</th><th>例1-题目</th><th>例1-理由</th><th>例2-题号</th><th>例2-题目</th><th>例2-理由</th></tr></thead>
+    <tbody><tr><td>A3</td><td>Q022</td><td>请简单说说伺服系统中‘原点偏移量’这个参数的作用是什么？</td><td>Gemini3.1pro: 题干询问原点偏移量的作用，但知识点是回零流程设计，略有偏离，正确的应该是直接询问回零流程中的偏移补偿步骤。</td><td>Q088</td><td>请简单说说，当使用两线制压力传感器时，其供电与信号传输共用同一对导线，这种设计依赖什么基本电路原理？</td><td>GPT5.5: 证据：参考答案第一层将两线制压力传感器解释为“恒流源回路原理”并强调电流被动态维持恒定。正确口径：典型两线制 4-20mA 变送器是在同一回路中调制电流大小承载测量值，并不是保持恒定电流。；Gemini3.1pro: 题干询问的内容与知识点略有偏离，实际面试中极少这样提问，属于逻辑不严谨的凑数题，建议直接询问核心排查步骤。</td></tr><tr><td>A4</td><td>Q320</td><td>在验证设备EAP通信模块的功能时，需要确认参数下发后设备能正确执行且反馈结果与预期一致。请简述你如何设计一次最小闭环的功能测试，来证明该模块的数据交互逻辑是可靠的。</td><td>GPT5.5: 证据：题干写有“在验证设备EAP通信模块的功能时，需要确认参数下发后设备能正确执行且反馈结果与预期一致。请简述你如何设计一次最小闭环的功能测试，来证明该模块的数据交互逻辑是可靠的。”，要求候选人口头作答公式、推导、证明、绘图或符号含义类内容。正确口径是改成可口述的工程判断或概念解释题。</td><td>nan</td><td>nan</td><td>nan</td></tr><tr><td>B1</td><td>Q002</td><td>请简述梯形图里‘上升沿脉冲’触点的作用及其触发条件。</td><td>GPT5.5: 参考答案第一层把上升沿触发条件写成“当前扫描周期为0、上一扫描周期为0，且当前周期变为1”，同一句中当前周期既为0又变为1，逻辑自相矛盾；正确应为上一周期为0、当前周期为1时触发。</td><td>Q005</td><td>请简单说说状态机设计里‘状态转移条件’通常由什么信号决定。</td><td>GPT5.5: 参考答案第三层将“PLC未收到EAP下发的S2F33晶圆ID确认ACK”和“S2F34应答超时”作为晶圆ID确认流程，SECS/GEM中S2F33/S2F34并不是晶圆ID确认ACK，应改为按实际设备/载具ID读取与事件上报流程描述。</td></tr><tr><td>B2</td><td>Q054</td><td>在半导体产线设备的主回路原理图中，若发现某台真空泵电机回路同时配置了塑壳断路器、接触器、热继电器和变频器，且现场运行中频繁出现过流跳闸但电机温升正常，请从主回路器件选型与配合角度，分析可能的设计缺陷及验证思路。</td><td>GPT5.5: 参考答案第三层建议在EAP联机调试阶段“通过PLC强制屏蔽”热继电器硬接线信号，这是不安全且不符合现场保护回路处理原则的做法；正确应停机整改保护器件选型/接线，不能屏蔽硬件保护信号继续调试。</td><td>Q071</td><td>某台晶圆搬运设备的安全回路采用双通道设计，其中一路因传感器接线松动导致信号丢失。请简单说说，符合故障安全原则的回路应如何响应，以及这种响应体现了哪一条基本安全设计思想。</td><td>Gemini3.1pro: 第二层给出的方案三在当前先进工艺节点中已较少使用，正确的应该是重点补充基于EtherCAT绝对值编码器的恢复方案。</td></tr><tr><td>B3</td><td>Q080</td><td>当HMI中多个参数需协同校验（例如升温速率与最高温度存在逻辑约束），应如何在不依赖后台程序的前提下，在组态软件中实现这类联动校验？请简单说说实现思路。</td><td>GPT5.5: 题干明确要求“不依赖后台程序”在HMI组态软件中实现联动校验，参考答案第三种却推荐把约束逻辑下放至PLC DB块作为首选，偏离题干限定范围；应重点说明HMI内置表达式、变量联动和脚本校验。</td><td>nan</td><td>nan</td><td>nan</td></tr><tr><td>B4</td><td>Q007</td><td>在半导体设备的PLC控制中，当多个传感器信号需要同时触发一个动作，但要求只有全部信号有效时才执行，这种逻辑在梯形图中通常用什么基本元件实现？请简述其工作条件。</td><td>Gemini3.1pro: 第三层给出的复杂问题过于偏门，不符合自动化工程师日常排查的常见场景，正确的应该是结合常见的IO模块通信延迟进行分析。</td><td>Q103</td><td>请简述EAP设备联机时，参数下发的基本流程顺序。</td><td>GPT5.5: 证据：参考答案写到“端触发Recipe下发请求→CIM系统校验设备在线状态与权限→调用SECS/GEM协议发起S2F41（Send Recipe）命令→设备端返回S2F42（Recipe Acknowledge）确认应答→CIM系统比对下发参数与本地Recipe版本→更新设备参数缓存并同步至PLC/”。正确口径：S2F41/S2F42 是 Host Command 及应答，不是通用 Recipe Data、状态字段或报警事件上报通道；参数、设备常量、Process Program 与事件报告应按各自机制区分。；Gemini3.1pro: 参考答案第三层中给出的复杂问题过于偏门，不符合自动化工程师日常排查的常见场景，正确的应该是结合常见的通信延迟或干涉进行分析。</td></tr><tr><td>C2</td><td>Q063</td><td>门禁互锁信号接入PLC时，为何通常不直接使用普通数字输入点，而要通过安全控制器或带认证的安全输入模块？请简述这样做的核心目的。</td><td>GPT5.5: 与question_id=61同为“门禁互锁为什么要通过安全PLC/安全输入模块而不是普通PLC/DI点”的问法，候选人几乎会给出同一套关于安全等级、双通道诊断、故障安全和认证模块的回答；按顺序保留前题，删除本题。</td><td>nan</td><td>nan</td><td>nan</td></tr></tbody>
+  </table>
+</body>
+</html>

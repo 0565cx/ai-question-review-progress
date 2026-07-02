@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>第7轮审核看板</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; margin: 24px; color: #1f2937; }
+    h1, h2, h3 { margin: 10px 0 12px; }
+    .cards { display: grid; grid-template-columns: repeat(3, minmax(140px, 220px)); gap: 12px; margin: 8px 0 18px; }
+    .card { border: 1px solid #e5e7eb; border-radius: 10px; padding: 12px; background: #fafafa; }
+    .card .k { font-size: 12px; color: #6b7280; }
+    .card .v { font-size: 24px; font-weight: 700; margin-top: 4px; }
+    table { border-collapse: collapse; width: 100%; margin: 8px 0 18px; }
+    th, td { border: 1px solid #e5e7eb; padding: 8px 10px; vertical-align: middle; }
+    th { background: #f9fafb; }
+    .legend span { margin-right: 12px; font-size: 13px; color: #374151; }
+    .mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; }
+    .ex { margin: 6px 0; color: #374151; }
+    .section-divider { border: 0; border-top: 2px solid #eef2f7; margin: 22px 0; }
+  </style>
+</head>
+<body>
+  <h1>第 7 轮审核看板</h1>
+
+  <div class="cards">
+    <div class="card"><div class="k">A类错误</div><div class="v">3</div></div>
+    <div class="card"><div class="k">B类错误</div><div class="v">12</div></div>
+    <div class="card"><div class="k">C类错误</div><div class="v">3</div></div>
+  </div>
+
+  <h2>本轮题目主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">第7轮题干问题主要集中在三类：少量知识表达不严谨（A1），以及2道要求解释符号含义的口语不可答题（A4）；另有3道高同质题（C2），集中在防松、钢材选型和折弯半径等基础主题。整体需要继续强化题干口语作答约束与同质化控制。</div>
+<h2>本轮答案主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">本轮高频风险为B1（11次），主要表现为把经验值当定论、关键前提遗漏或机理链条不完整；另有1次B2，体现为方案建议与当前工程实践不一致。说明回流内容在答案端的技术正确性与边界条件完整性仍是主要短板。</div>
+<h2>后续重新出内容时应补充的规则</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">【重新出题】<br/>重出题目需增加硬约束：1) 禁止要求解释公式/符号/推导/绘图；2) 增加语义去重门槛，候选人核心作答思路高度一致即判同质；3) 题干必须绑定工况边界（载荷、材料、精度、温度、节拍等）。<br/><br/>【重出答案】<br/>重出答案需增加自检清单：1) 每层写明前提与适用边界；2) 关键结论给出因果链，不得仅给经验口号；3) 参数需标注来源或范围；4) 第二、三层覆盖常见异常与复杂约束下可执行方案。</div>
+
+  <hr class="section-divider" />
+
+  <h2>模型进度与删除率</h2>
+  <table>
+    <thead>
+      <tr><th>模型</th><th>批次完成</th><th>完成率</th><th>删除率</th><th>主要错误</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>GPT5.5</td><td style='text-align:center'>1/1</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:38.2%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">38.2%</span></td><td style='text-align:center'>B>A</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>1/1</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:14.7%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">14.7%</span></td><td style='text-align:center'>C>A</td></tr>
+    </tbody>
+  </table>
+
+  <h2>批次状态矩阵</h2>
+  <div class="legend">
+    <span>✓ 已完成</span><span>… 进行中</span><span>○ 待开始</span><span>! 阻塞</span><span>x 失败</span>
+  </div>
+  <table>
+    <thead><tr><th>模型</th><th>R7-B001</th></tr></thead>
+    <tbody><tr><td>GPT5.5</td><td style='text-align:center'>✓</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>✓</td></tr></tbody>
+  </table>
+
+  <h2>细分错误统计（A1/B1...）</h2>
+  <table>
+    <thead><tr><th>错误子类</th><th>数量</th></tr></thead>
+    <tbody><tr><td>A1</td><td style='text-align:center'>1</td></tr><tr><td>A4</td><td style='text-align:center'>2</td></tr><tr><td>B1</td><td style='text-align:center'>11</td></tr><tr><td>B2</td><td style='text-align:center'>1</td></tr><tr><td>C2</td><td style='text-align:center'>3</td></tr></tbody>
+  </table>
+
+  <h3>细分错误示例（每类2条）</h3>
+  <table>
+    <thead><tr><th>错误子类</th><th>例1-题号</th><th>例1-题目</th><th>例1-理由</th><th>例2-题号</th><th>例2-题目</th><th>例2-理由</th></tr></thead>
+    <tbody><tr><td>A1</td><td>Q015</td><td>储能系统液冷板流道压装工装的定位销安装孔，其轴线需同时满足相对于基准面的垂直度和相对于另一基准轴线的位置度，且两项公差均采用最大实体要求。当销孔实际尺寸因加工偏小而偏离最大实体状态时，请简述此时两项形位公差的动态容许值变化逻辑，并说明该特性对批量装配中夹具重复定位精度的实际保障意义。</td><td>GPT5.5: 题干及答案对孔的最大实体状态理解错误：题干说“销孔实际尺寸因加工偏小而偏离最大实体状态”，答案又说“孔越小允许偏差越大”。正确应为对孔类内尺寸，最大实体状态是最小孔径；孔加工偏小是接近最大实体状态而不是偏离，随孔变大偏离最大实体时才产生附加/补偿公差。</td><td>nan</td><td>nan</td><td>nan</td></tr><tr><td>A4</td><td>Q032</td><td>请简述在机械工程图中，尺寸公差标注里的‘H7’代号中，字母‘H’表示什么含义？</td><td>Gemini3.1pro: 错误：题干原文“‘H7’代号中，字母‘H’表示什么含义”要求解释符号含义，不符合口语作答要求。正确：应结合实际配合工况（如轴承装配）提问选型逻辑，或者直接删除。</td><td>Q033</td><td>在新能源设备的机械结构工程图中，某处电池模组安装面标注了‘∥0.05 A’。请简述这个几何公差符号中‘∥’和‘0.05 A’分别代表什么含义，以及该要求对后续装配精度控制的实际作用。</td><td>Gemini3.1pro: 错误：题干原文“‘∥’和‘0.05 A’分别代表什么含义”要求解释符号含义，不符合口语作答要求。正确：应结合实际电池模组安装平行度问题，提问装配精度的控制方法，或者直接删除。</td></tr><tr><td>B1</td><td>Q003</td><td>储能柜体自动锁紧机构中，使用了凸轮推动摆臂、再通过连杆驱动锁舌伸缩的三构件组合。若凸轮与摆臂为高副接触，摆臂与连杆、连杆与锁舌均为转动副，且所有构件均在同一平面内运动，请简述该机构的自由度计算关键步骤。</td><td>GPT5.5: 参考答案第二层写到“凸轮固定不计、摆臂/连杆/锁舌共3个活动件”，这会漏算凸轮这一运动输入构件；正确应把凸轮、摆臂、连杆、锁舌等活动构件及其与机架/相邻构件形成的低副、高副一并纳入自由度分析，不能把凸轮当固定件排除。</td><td>Q008</td><td>某电池PACK自动组装线的快换治具要求兼顾轻量化、耐磨性与尺寸稳定性。现有方案使用阳极氧化处理的6063铝合金，但现场反馈氧化层在频繁插拔后局部剥落并引发卡滞。请从铝合金基体组织、氧化膜生长机制与机械交互磨损三者的耦合关系出发，分析失效主因，并简述更合理的表面处理路径选择依据。</td><td>GPT5.5: 参考答案第一层称“6063铝合金本身是热处理不可强化的变形铝材”，这是材料属性错误；正确应为6063属于Al-Mg-Si系可热处理强化铝合金，可通过固溶时效获得T5/T6等状态。</td></tr><tr><td>B2</td><td>Q018</td><td>在锂电模组PACK线的自动拧紧工位中，用于固定模组端板的M12高强度螺栓连接，在产线连续运行三个月后出现多处松动，导致端板间隙超差并引发模组绝缘失效。请简述你如何系统性分析该松动问题的成因，并说明在振动+热循环+空间受限三重约束下，应优先选择哪种防松方式组合及其技术依据。</td><td>GPT5.5: 参考答案推荐“带金属变形齿形垫圈+润滑剂”作为振动、热循环、空间受限下M12高强度螺栓的优先防松组合，方案口径不够可靠；齿形/咬入类垫圈在高强度连接中可能损伤接触面并引入嵌入松弛，热循环和振动下通常应优先考虑楔形防松垫圈、全金属锁紧螺母/螺纹锁固剂、预紧力-转角控制及定期残余预紧力验证等成熟组合。</td><td>nan</td><td>nan</td><td>nan</td></tr><tr><td>C2</td><td>Q018</td><td>在锂电模组PACK线的自动拧紧工位中，用于固定模组端板的M12高强度螺栓连接，在产线连续运行三个月后出现多处松动，导致端板间隙超差并引发模组绝缘失效。请简述你如何系统性分析该松动问题的成因，并说明在振动+热循环+空间受限三重约束下，应优先选择哪种防松方式组合及其技术依据。</td><td>GPT5.5: 参考答案推荐“带金属变形齿形垫圈+润滑剂”作为振动、热循环、空间受限下M12高强度螺栓的优先防松组合，方案口径不够可靠；齿形/咬入类垫圈在高强度连接中可能损伤接触面并引入嵌入松弛，热循环和振动下通常应优先考虑楔形防松垫圈、全金属锁紧螺母/螺纹锁固剂、预紧力-转角控制及定期残余预紧力验证等成熟组合。</td><td>Q021</td><td>在锂电极片辊压设备的机架结构中，需兼顾高刚性与焊接后尺寸稳定性，为何常选用Q355B而非Q235B钢材？请简述其在热影响区变形控制和焊后应力释放方面的材料特性依据。</td><td>GPT5.5: 参考答案称Q355B相比Q235B“碳当量更低、焊后残余应力更容易通过自身弹性回复释放”不正确；Q355B通常因合金元素和强度等级更高，碳当量一般不低于Q235B，焊接性虽可满足但需控制热输入，且钢材刚性主要由弹性模量和截面决定，不能把Q355B说成天然更高刚性、残余应力更易释放。</td></tr></tbody>
+  </table>
+</body>
+</html>
