@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Round 4 Dashboard</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; margin: 24px; color: #1f2937; }
+    h1, h2, h3 { margin: 10px 0 12px; }
+    .cards { display: grid; grid-template-columns: repeat(3, minmax(140px, 220px)); gap: 12px; margin: 8px 0 18px; }
+    .card { border: 1px solid #e5e7eb; border-radius: 10px; padding: 12px; background: #fafafa; }
+    .card .k { font-size: 12px; color: #6b7280; }
+    .card .v { font-size: 24px; font-weight: 700; margin-top: 4px; }
+    table { border-collapse: collapse; width: 100%; margin: 8px 0 18px; }
+    th, td { border: 1px solid #e5e7eb; padding: 8px 10px; vertical-align: middle; }
+    th { background: #f9fafb; }
+    .legend span { margin-right: 12px; font-size: 13px; color: #374151; }
+    .mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; }
+    .ex { margin: 6px 0; color: #374151; }
+    .section-divider { border: 0; border-top: 2px solid #eef2f7; margin: 22px 0; }
+  </style>
+</head>
+<body>
+  <h1>Round 4 审核看板</h1>
+
+  <div class="cards">
+    <div class="card"><div class="k">A类错误</div><div class="v">18</div></div>
+    <div class="card"><div class="k">B类错误</div><div class="v">71</div></div>
+    <div class="card"><div class="k">C类错误</div><div class="v">20</div></div>
+  </div>
+
+  <h2>本轮题目主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">本轮题目主要出错点集中在三类：第一，少量题干存在嵌入式软硬件依赖关系表述过度绝对或逻辑不严谨的问题，例如把特定 MCU 初始化顺序、寄存器访问行为、实时系统裕量概念写成普遍结论；第二，个别题干仍出现不适合口语面试直接作答的要求，例如要求候选人给出一条 C 语言位操作语句，触发 A4 规则；第三，部分题目与同批题在共享变量保护、驱动抽象封装、控制流程设计等知识点上作答路径高度重合，容易让候选人给出同一套核心答案，因此被判为 C2。整体看，题干问题数量低于答案问题，但需要继续控制同知识点下题目场景和追问角度的差异度。</div>
+<h2>本轮答案主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">本轮答案主要出错点以 B1 为主，表现为参考答案中存在事实性或工程口径错误，例如把英飞凌 AURIX TC3xx 误归为 ARM Cortex-M4/M7，或把 RTOS 软件定时器回调用作阻塞式采集、安全急停确定性基准等不符合常见工程实践的方案。少量 B2 问题体现为答案推荐了偏门或不稳妥的实现路径，尤其在实时任务、软件定时器、安全相关逻辑中没有区分诊断辅助与安全主路径。B3 问题主要是答案没有回应题干要求的输入组合、失效原因分层或防护措施，而转向测试框架、方案对比等跑题内容。整体答案层级结构基本保留，但事实准确性、岗位工程口径和题干匹配度仍是重出答案时的核心风险。</div>
+<h2>后续重新出内容时应补充的规则</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">【重新出题】<br/>重新出题时应补充以下规则：题干不得要求候选人写代码语句、列公式、绘图、说明符号含义或推导过程；涉及 MCU、RTOS、Flash、PWM、中断、看门狗、安全急停等知识时，不得把特定芯片、特定 RTOS 或特定工程约束写成普遍规律；同一知识点连续出题时，必须显式改变业务场景、故障触发条件、评价目标和候选人作答路径，避免多个题最终都要求回答同一套机制或方案；题干问法要清楚区分“解释概念”“分析原因”“设计防护措施”“比较方案”四类任务，不能把索要具体数值或代码实现伪装成口语化问题。<br/><br/>【重出答案】<br/>重出答案时应补充以下规则：所有芯片架构、RTOS 机制、软件定时器上下文、安全等级、总线/寄存器行为等事实必须逐项核对，禁止把不确定经验写成绝对结论；实时控制和安全相关答案要优先采用行业常见稳妥路径，例如短回调、任务通知、硬件定时器、看门狗或安全监控链路，并说明软件方案的适用边界；第二层必须回答题干要求的方案、输入组合或原因分层，第三层必须给出真实常见异常和复杂条件，不得泛化为框架介绍或模板化优劣势；每层答案都应围绕题干核心动词展开，避免出现与问题范围不一致的方案对比、平台假设或过度扩展。</div>
+
+  <hr class="section-divider" />
+
+  <h2>模型进度与删除率</h2>
+  <table>
+    <thead>
+      <tr><th>Model</th><th>批次完成</th><th>完成率</th><th>删除率</th><th>主错误</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>GPT5.5</td><td style='text-align:center'>9/9</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:25.2%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">25.2%</span></td><td style='text-align:center'>B>A>C</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>9/9</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:10.2%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">10.2%</span></td><td style='text-align:center'>C>B>A</td></tr>
+    </tbody>
+  </table>
+
+  <h2>批次状态矩阵</h2>
+  <div class="legend">
+    <span>✓ done</span><span>… running</span><span>○ pending</span><span>! blocked</span><span>x failed</span>
+  </div>
+  <table>
+    <thead><tr><th>Model</th><th>R4-B001</th><th>R4-B002</th><th>R4-B003</th><th>R4-B004</th><th>R4-B005</th><th>R4-B006</th><th>R4-B007</th><th>R4-B008</th><th>R4-B009</th></tr></thead>
+    <tbody><tr><td>GPT5.5</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td></tr></tbody>
+  </table>
+
+  <h2>细分错误统计（A1/B1...）</h2>
+  <table>
+    <thead><tr><th>错误子类</th><th>数量</th></tr></thead>
+    <tbody><tr><td>A1</td><td style='text-align:center'>17</td></tr><tr><td>A4</td><td style='text-align:center'>1</td></tr><tr><td>B1</td><td style='text-align:center'>66</td></tr><tr><td>B2</td><td style='text-align:center'>3</td></tr><tr><td>B3</td><td style='text-align:center'>2</td></tr><tr><td>C2</td><td style='text-align:center'>20</td></tr></tbody>
+  </table>
+
+  <h3>细分错误示例（每类2条）</h3>
+  <table>
+    <thead><tr><th>错误子类</th><th>例1-题号</th><th>例1-题目</th><th>例1-理由</th><th>例2-题号</th><th>例2-题目</th><th>例2-理由</th></tr></thead>
+    <tbody><tr><td>A1</td><td>Q013</td><td>在MCU上电后执行板级初始化时，为何需要先配置系统时钟源并稳定锁相环，再初始化GPIO端口功能？请简述这一顺序背后的硬件依赖关系。</td><td>GPT5.5: 题干预设“必须先配置系统时钟源并稳定PLL，再初始化GPIO”的硬件依赖关系不严谨；多数MCU可在默认上电时钟下开启GPIO外设时钟并完成基础GPIO配置，PLL稳定不是初始化GPIO的普遍前置条件。答案进一步称未锁定PLL时对GPIO寄存器“任何写操作都可能被忽略、触发总线错误”，也过度绝对。</td><td>Q015</td><td>请简单说说，实时系统中时序裕量为正值，表示该任务的执行时间还有多少余量？</td><td>Gemini3.1pro: 题干逻辑不严谨，询问“还有多少余量”看似索要具体数值，实则要求解释含义，正确应改为“代表什么含义？”。</td></tr><tr><td>A4</td><td>Q004</td><td>在工业控制设备的嵌入式固件中，经常需要安全地关闭某个外设时钟使能位，同时不改变同一寄存器中其他外设的使能状态。请简述：如何用一条C语言位操作语句实现仅将某寄存器的第5位清零、其余位保持不变，并说明该操作的核心原理。</td><td>GPT5.5: 题干要求“用一条C语言位操作语句实现仅将某寄存器的第5位清零”，属于要求写代码语句，不能纯口语直接作答，应改为口头说明按位与和掩码原理；答案还称“MISRA C:2023规则8.5关于位操作可追溯性”及“所有主流MCU均生成单周期位清除指令”，表述不准确，编译结果和MISRA条款不能这样绝对化。</td><td></td><td></td><td></td></tr><tr><td>B1</td><td>Q004</td><td>在工业控制设备的嵌入式固件中，经常需要安全地关闭某个外设时钟使能位，同时不改变同一寄存器中其他外设的使能状态。请简述：如何用一条C语言位操作语句实现仅将某寄存器的第5位清零、其余位保持不变，并说明该操作的核心原理。</td><td>GPT5.5: 题干要求“用一条C语言位操作语句实现仅将某寄存器的第5位清零”，属于要求写代码语句，不能纯口语直接作答，应改为口头说明按位与和掩码原理；答案还称“MISRA C:2023规则8.5关于位操作可追溯性”及“所有主流MCU均生成单周期位清除指令”，表述不准确，编译结果和MISRA条款不能这样绝对化。</td><td>Q006</td><td>在电机控制器固件中，PWM输出模块完成一次占空比更新后，需要触发电流采样任务。请简单说说，为什么用回调函数方式通知采样任务启动，比让PWM模块直接调用采样函数更有利于后续增加温度保护或故障诊断等新功能。</td><td>GPT5.5: 第二层称“基于ARM Cortex-M4/M7的英飞凌TC3xx”，原文把英飞凌AURIX TC3xx误归为ARM Cortex-M4/M7平台；TC3xx是TriCore架构，正确应按AURIX/TriCore平台表述。</td></tr><tr><td>B2</td><td>Q201</td><td>在工业设备的嵌入式控制器中，使用RTOS创建软件定时器来周期性采集传感器数据时，为什么通常会把数据采集动作放在定时器回调函数里，而不是在回调中仅设置标志位再由主循环处理？请简述这样做的主要考虑。</td><td>GPT5.5: 答案原文把‘纯回调执行采集’称为软件定时器主流选择，但RTOS软件定时器回调通常运行在定时器服务任务上下文，要求短小且不可阻塞；传感器I2C/SPI采集更常见做法是在回调中通知高优先级任务或触发硬件/DMA。正确应避免在软件定时器回调里执行可能阻塞的采集。</td><td>Q210</td><td>在安全相关的急停逻辑中，一个软件定时器用于实现300毫秒内未收到有效安全信号则强制停机，该定时器必须满足IEC 61508 SIL2级时间确定性要求。请简述你在创建该定时器时，如何通过初始化参数选择、回调函数约束及运行时校验机制共同保障其超时行为不被其他软件定时器或任务抢占干扰。</td><td>GPT5.5: 第二层原文把FreeRTOS软件定时器作为SIL2急停300ms监控的首选，并要求单独服务任务，但普通RTOS软件定时器受定时器服务队列和任务调度影响，难以作为安全急停确定性基准；正确应优先使用独立硬件定时器/安全监控/看门狗路径，软件定时器最多作诊断辅助。</td></tr><tr><td>B3</td><td>Q026</td><td>在电机控制固件中，一个速度调节函数包含两个嵌套的if判断：先判断当前转速是否超限，再判断是否启用紧急制动。要达到分支覆盖，测试时至少需要设计几组不同的输入组合？请结合嵌入式实时系统对确定性响应的要求，简述每组输入对应触发的执行路径。</td><td>Gemini3.1pro: 答案跑题。题干询问“设计几组不同的输入组合”及“每组输入对应触发的执行路径”，但第二层给出了“三种主流单元测试框架方案”（如硬件在环、CppUTest等），没有围绕输入组合设计进行深入分析。</td><td>Q151</td><td>在安全关键型工业控制器中，应用固件可能被分段存储于不同Flash区域，且入口地址需从配置区动态读取。当该配置区本身存在冗余备份但校验通过后仍出现跳转异常，请分析可能导致地址校验失效的三个不同层级原因，并对应说明你在启动流程中应嵌入的针对性防护措施。</td><td>Gemini3.1pro: 题干明确要求“分析可能导致地址校验失效的三个不同层级原因”，但答案第一层只给出了一个原因（机制本质），第二层直接变成了“对比三种工程方案”，完全没有回答出三个不同层级的原因，属于严重跑题。正确的应该是分别列出三个层级的原因（如物理层、逻辑层、系统层等）并给出对应防护措施。</td></tr><tr><td>C2</td><td>Q005</td><td>在电机驱动控制器中，主程序周期性更新目标转速变量，而硬件定时器中断服务程序需读取该变量来调整PWM占空比。请简述为确保该变量在中断与主程序间被正确访问，应采取的核心防护机制及其作用原理。</td><td>Gemini3.1pro: 重复对象：R4-Q0002，均考察共享变量在中断和主程序间的原子性保护方案，候选人作答思路基本一致。</td><td>Q014</td><td>在为不同型号的微控制器开发电机控制固件时，如何通过驱动抽象层统一管理各芯片对PWM定时器寄存器的配置方式？请简单说说这种抽象通常怎样封装寄存器操作细节。</td><td>Gemini3.1pro: 重复对象：R4-Q0008，均考察底层驱动的抽象接口封装（如函数指针表、HAL封装等），作答套路相同。</td></tr></tbody>
+  </table>
+</body>
+</html>
