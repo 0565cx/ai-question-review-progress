@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Round 3 Dashboard</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; margin: 24px; color: #1f2937; }
+    h1, h2, h3 { margin: 10px 0 12px; }
+    .cards { display: grid; grid-template-columns: repeat(3, minmax(140px, 220px)); gap: 12px; margin: 8px 0 18px; }
+    .card { border: 1px solid #e5e7eb; border-radius: 10px; padding: 12px; background: #fafafa; }
+    .card .k { font-size: 12px; color: #6b7280; }
+    .card .v { font-size: 24px; font-weight: 700; margin-top: 4px; }
+    table { border-collapse: collapse; width: 100%; margin: 8px 0 18px; }
+    th, td { border: 1px solid #e5e7eb; padding: 8px 10px; vertical-align: middle; }
+    th { background: #f9fafb; }
+    .legend span { margin-right: 12px; font-size: 13px; color: #374151; }
+    .mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; }
+    .ex { margin: 6px 0; color: #374151; }
+    .section-divider { border: 0; border-top: 2px solid #eef2f7; margin: 22px 0; }
+  </style>
+</head>
+<body>
+  <h1>Round 3 审核看板</h1>
+
+  <div class="cards">
+    <div class="card"><div class="k">A类错误</div><div class="v">3</div></div>
+    <div class="card"><div class="k">B类错误</div><div class="v">40</div></div>
+    <div class="card"><div class="k">C类错误</div><div class="v">3</div></div>
+  </div>
+
+  <h2>本轮题目主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">三轮重新从 122 道回流题开始审核，GPT5.5 与 Gemini3.1pro 两个模型均完成全量批次。题干侧问题总体少于答案侧，主要集中在少量 A1 题干前提或逻辑不严谨，以及少量 C2 重复：部分题目虽然表述不同，但候选人的核心作答路径、关键步骤和评价点高度相近，因此按重复处理。尾批样本很小，单批删除率不作为质量漂移依据。</div>
+<h2>本轮答案主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">答案侧问题以 B1 为主，集中在车规嵌入式、MISRA C、AUTOSAR、诊断通信、功能安全等标准或机制口径的表述不准、过度绝对化、编造认证/最佳实践结论、或与题干数值和前提冲突。少量 B3 属于答案没有准确落到题干追问范围。仅 B 类错误的题目进入保留题干重出答案，避免把可用题干误判为必须重出题。</div>
+<h2>后续重新出内容时应补充的规则</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">【重新出题】<br/>重新出题时优先修正 A/C 类问题：题干前提必须能被工程事实支持，避免绝对化标准口径；同知识点重出时要改变核心作答路径和评价点，不能只换场景词。涉及 A4 时严格避免要求候选人口头面试中写公式、推导、画图、解释符号含义或输出代码。<br/><br/>【重出答案】<br/>重出答案时第一层先给出稳定、可口述的核心事实；第二层说明常见工程方案和取舍，但不要编造唯一最佳实践、认证结论或固定阈值；第三层异常和复杂案例必须与题干场景、数值边界、协议/标准事实一致，避免英文缩写堆叠和过度工具链化表达。</div>
+
+  <hr class="section-divider" />
+
+  <h2>模型进度与删除率</h2>
+  <table>
+    <thead>
+      <tr><th>Model</th><th>批次完成</th><th>完成率</th><th>删除率</th><th>主错误</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>GPT5.5</td><td style='text-align:center'>4/4</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:34.4%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">34.4%</span></td><td style='text-align:center'>B>A>C</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>4/4</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:3.3%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">3.3%</span></td><td style='text-align:center'>B>C</td></tr>
+    </tbody>
+  </table>
+
+  <h2>批次状态矩阵</h2>
+  <div class="legend">
+    <span>✓ done</span><span>… running</span><span>○ pending</span><span>! blocked</span><span>x failed</span>
+  </div>
+  <table>
+    <thead><tr><th>Model</th><th>R3-B001</th><th>R3-B002</th><th>R3-B003</th><th>R3-B004</th></tr></thead>
+    <tbody><tr><td>GPT5.5</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td></tr></tbody>
+  </table>
+
+  <h2>细分错误统计（A1/B1...）</h2>
+  <table>
+    <thead><tr><th>错误子类</th><th>数量</th></tr></thead>
+    <tbody><tr><td>A1</td><td style='text-align:center'>3</td></tr><tr><td>B1</td><td style='text-align:center'>38</td></tr><tr><td>B3</td><td style='text-align:center'>1</td></tr><tr><td>C2</td><td style='text-align:center'>2</td></tr></tbody>
+  </table>
+
+  <h3>细分错误示例（每类2条）</h3>
+  <table>
+    <thead><tr><th>错误子类</th><th>例1-题号</th><th>例1-题目</th><th>例1-理由</th><th>例2-题号</th><th>例2-题目</th><th>例2-理由</th></tr></thead>
+    <tbody><tr><td>A1</td><td>R3-Q005</td><td>在遵循MISRA C规范的嵌入式开发中，如果对一个无符号整型变量执行左移操作，位移量等于或超过该类型总位数（例如对uint8_t左移8位），这种写法会触发未定义行为。请简单说说，为什么这类操作在车规级软件中尤其需要避免？</td><td>GPT5.5: 题干存在C语言知识性错误。原文说“对uint8_t左移8位，这种写法会触发未定义行为”，但C语言表达式会先进行整数提升，移位位数是否越界取决于提升后的左操作数宽度；uint8_t左移8位不必然是C标准未定义行为。正确应区分C标准的整数提升规则与MISRA essential type模型下对移位宽度的限制。</td><td>R3-Q083</td><td>请简单说说NvM模块如何通过‘写保护’机制防止掉电过程中数据被意外覆盖。</td><td>GPT5.5: 题干原文为“请简单说说NvM模块如何通过‘写保护’机制防止掉电过程中数据被意外覆盖”，把NvM写保护直接表述成掉电保护机制。正确应为NvM写保护主要用于阻止对受保护Block的写入/擦写请求；掉电一致性通常依赖冗余Block、CRC、写入状态标志、Fee/EA原子化写入和上电恢复策略，而不是单靠写保护机制防止掉电覆盖。</td></tr><tr><td>B1</td><td>R3-Q002</td><td>在车规级嵌入式系统中，某模块需将ADC采集的12位电压值（范围0~4095）映射为百分比显示（0~100），开发人员使用无符号整型计算后强制转换为有符号char类型存入诊断数据流。请简述该类型转换可能引发的MISRA C合规风险、运行时异常表现，以及为何不能仅靠编译器警告消除隐患。</td><td>GPT5.5: 参考答案与题干数值范围矛盾。题干限定“映射为百分比显示（0~100）”，但答案写“当映射结果为128及以上时，强制转signed char产生符号位翻转”，0~100不会达到128，典型signed char范围也可表示0~100；正确应说明该转换主要是MISRA essential type/诊断数据语义一致性和显式类型约束风险，而不是超范围变负值。</td><td>R3-Q015</td><td>请简述原理图上某个信号名称后紧跟‘/12’这样的斜杠加数字，通常表示该信号属于什么类型的物理连接？</td><td>GPT5.5: 参考答案把原理图标注解释错。答案写“斜杠后的数字代表该总线包含的信号线数量”“典型如ADDR/12表示12位地址总线”，但原理图中信号名后类似“/12”的标注通常应按图纸规范理解为跨页/页码引用或网络连接索引，位宽总线更常见写法是DATA[11:0]、ADDR[12]等。正确答案应说明需查该原理图软件的交叉引用/页间连接规则，不能直接判定为12位总线。</td></tr><tr><td>B3</td><td>R3-Q077</td><td>多个车型共用同一套AUTOSAR基础软件包，但不同车型选用的MCU外设资源存在差异——例如ADC通道数量、PWM输出引脚位置、CAN控制器数量不同。请简单说说，MCAL抽象机制如何支持这种‘同软件包、异硬件’的量产需求，以及在配置阶段必须严格管控哪三类接口一致性约束，才能避免底层驱动与上层模块出现功能错位。</td><td>GPT5.5: 题干要求说明“配置阶段必须严格管控哪三类接口一致性约束”，但参考答案没有正面列出三类约束，只泛泛描述ARXML生成、配置集和条件编译，并在第三层举ADC通道和寄存器映射例子。正确应明确列出并解释至少三类一致性，如逻辑通道/硬件通道映射一致性、端口/引脚复用与电气能力一致性、控制器实例/上层通信对象或信号接口一致性、配置版本与生成代码接口一致性。</td><td>nan</td><td>nan</td><td>nan</td></tr><tr><td>C2</td><td>R3-Q020</td><td>在AUTOSAR分层架构中，MCAL层通过硬件抽象机制屏蔽底层寄存器差异。请简单说说，当同一款CAN驱动模块需要适配两款引脚功能相同但寄存器地址布局不同的车规级MCU时，MCAL的抽象机制具体体现在哪一层的接口设计上，以及它如何让上层通信栈无需修改代码就能完成移植。</td><td>Gemini3.1pro: 与Q017重复，均考察MCAL硬件抽象及标准化API机制，核心答题思路一致</td><td>R3-Q038</td><td>某域控制器升级AUTOSAR基础软件后，原有应用层代码中一个含6个uint8_t字段和1个uint32_t字段的结构体，在调用MCAL驱动接口时触发硬件异常。请简述，你将从哪些关键维度分析该结构体内存布局变化与底层外设寄存器访问之间的耦合关系，并说明验证路径。</td><td>GPT5.5: 与R3-Q003均考察结构体字段顺序、类型大小、对齐/填充、字段偏移不一致导致接口解析或驱动访问异常，候选人会给出同一套offsetof/静态断言/调试器查看布局/统一头文件或对齐策略的作答思路，属于同质重复题，保留顺序更早的R3-Q003。；Gemini3.1pro: 与Q004重复，均考察对寄存器读-修改-写（R-M-W）操作在中断/多任务并发下的原子性风险及临界区保护方案，核心答题思路一致</td></tr></tbody>
+  </table>
+</body>
+</html>
