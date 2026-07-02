@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Round 3 Dashboard</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; margin: 24px; color: #1f2937; }
+    h1, h2, h3 { margin: 10px 0 12px; }
+    .cards { display: grid; grid-template-columns: repeat(3, minmax(140px, 220px)); gap: 12px; margin: 8px 0 18px; }
+    .card { border: 1px solid #e5e7eb; border-radius: 10px; padding: 12px; background: #fafafa; }
+    .card .k { font-size: 12px; color: #6b7280; }
+    .card .v { font-size: 24px; font-weight: 700; margin-top: 4px; }
+    table { border-collapse: collapse; width: 100%; margin: 8px 0 18px; }
+    th, td { border: 1px solid #e5e7eb; padding: 8px 10px; vertical-align: middle; }
+    th { background: #f9fafb; }
+    .legend span { margin-right: 12px; font-size: 13px; color: #374151; }
+    .mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; }
+    .ex { margin: 6px 0; color: #374151; }
+    .section-divider { border: 0; border-top: 2px solid #eef2f7; margin: 22px 0; }
+  </style>
+</head>
+<body>
+  <h1>Round 3 审核看板</h1>
+
+  <div class="cards">
+    <div class="card"><div class="k">A类错误</div><div class="v">26</div></div>
+    <div class="card"><div class="k">B类错误</div><div class="v">74</div></div>
+    <div class="card"><div class="k">C类错误</div><div class="v">32</div></div>
+  </div>
+
+  <h2>本轮题目主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">三轮题干侧问题集中在两类：一是A1类虚构不存在的“统一故障代码/标准诊断代码”（如把F003、C8921、6001等当作主流PLC通用规范）；二是批次间/批次内的重复或近重复题（C1/C2，尤其是同一知识点换问法或题干完全重复）。整体题干能落在汽车自动化工程师的实际场景，但仍有个别题把厂商专有代码、特定协议细节当作行业通用知识；后续出题需先建立去重清单，并严禁虚构统一代码体系。</div>
+<h2>本轮答案主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">答案侧最突出的是B1类知识/逻辑错误：伪造“主流统一定义”的故障代码含义；把RT/IRT、显式/隐式报文、SM/DC（EtherCAT概念误用于PROFINET）等机制混淆或说反；把特定方案泛化为行业通用结论；给出未经实测的优先级/参数判断；以及节拍计算等逻辑错误（串行不可并行却只取最大工位耗时）。需减少绝对化与臆测，改以工艺机理、诊断路径与可验证证据组织作答。</div>
+<h2>后续重新出内容时应补充的规则</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">【重新出题】<br/>重新出题时先建同岗同知识点去重清单，避免题干完全重复或换问法重复。严禁在题干中虚构“统一标准故障代码”，涉及故障码时必须限定具体厂商、具体系列或诊断手册。题干应明确设备对象、异常现象与需解释的机制/决策点，不要把PLC、机器人控制器、安全控制、总线协议的职责与通用性混写。<br/><br/>【重出答案】<br/>重出答案时，三层答案要逐层正面覆盖题干问点。不得伪造跨品牌统一的故障码含义，不得混淆RT/IRT、显式/隐式报文、不同总线的同步机制；涉及节拍、优先级、同步精度时要先给出正确机理再给可验证证据与排查顺序。禁止“主流都采用、必然、免维护”等绝对化表述，除非题干明确给出依据。</div>
+
+  <hr class="section-divider" />
+
+  <h2>模型进度与删除率</h2>
+  <table>
+    <thead>
+      <tr><th>Model</th><th>批次完成</th><th>完成率</th><th>删除率</th><th>主错误</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>GPT5.5</td><td style='text-align:center'>14/14</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:15.4%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">15.4%</span></td><td style='text-align:center'>B>A</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>14/14</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:9.4%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">9.4%</span></td><td style='text-align:center'>C>A>B</td></tr>
+    </tbody>
+  </table>
+
+  <h2>批次状态矩阵</h2>
+  <div class="legend">
+    <span>✓ done</span><span>… running</span><span>○ pending</span><span>! blocked</span><span>x failed</span>
+  </div>
+  <table>
+    <thead><tr><th>Model</th><th>R3-B001</th><th>R3-B002</th><th>R3-B003</th><th>R3-B004</th><th>R3-B005</th><th>R3-B006</th><th>R3-B007</th><th>R3-B008</th><th>R3-B009</th><th>R3-B010</th><th>R3-B011</th><th>R3-B012</th><th>R3-B013</th><th>R3-B014</th></tr></thead>
+    <tbody><tr><td>GPT5.5</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td></tr></tbody>
+  </table>
+
+  <h2>细分错误统计（A1/B1...）</h2>
+  <table>
+    <thead><tr><th>错误子类</th><th>数量</th></tr></thead>
+    <tbody><tr><td>A1</td><td style='text-align:center'>26</td></tr><tr><td>B1</td><td style='text-align:center'>63</td></tr><tr><td>B2</td><td style='text-align:center'>1</td></tr><tr><td>B3</td><td style='text-align:center'>10</td></tr><tr><td>C1</td><td style='text-align:center'>7</td></tr><tr><td>C2</td><td style='text-align:center'>25</td></tr></tbody>
+  </table>
+
+  <h3>细分错误示例（每类2条）</h3>
+  <table>
+    <thead><tr><th>错误子类</th><th>例1-题号</th><th>例1-题目</th><th>例1-理由</th><th>例2-题号</th><th>例2-题目</th><th>例2-理由</th></tr></thead>
+    <tbody><tr><td>A1</td><td>R3-Q0001</td><td>在汽车制造产线的自动化设备中，当发现某台焊接机器人本体外壳出现轻微麻电现象时，请简述这通常说明接地回路存在什么问题？</td><td>Gemini3.1pro: 题干标注为简单难度，但包含了具体的业务场景（汽车制造产线焊接机器人麻电），不符合简单难度无场景、纯理论考察的定义；正确的应该是去除场景，改为纯理论提问。</td><td>R3-Q0002</td><td>在汽车焊装产线的电气控制系统中，主回路负责驱动焊枪电机，控制回路负责发出启停指令。请简单说说这两个回路之间最核心的依赖关系是什么？</td><td>Gemini3.1pro: 题干标注为简单难度，但包含了具体的业务场景（汽车焊装产线电气控制系统），不符合简单难度无场景、纯理论考察的定义；正确的应该是去除场景，改为纯理论提问。</td></tr><tr><td>B1</td><td>R3-Q0007</td><td>在焊装车间一台新安装的机器人工作站通电调试时，发现设备外壳偶尔有麻电感，经检查接地线已连接至车间接地排，但接地电阻测试值为8欧姆。请说明这可能带来什么安全风险，以及为什么这个阻值不满足汽车制造现场的接地保护要求。</td><td>GPT5.5: 参考答案把“保护接地电阻≤4欧姆”表述为汽车制造现场的固定强制要求，并进一步说该限值是“剩余电流动作保护装置可靠脱扣、响应时间≤0.1秒”的技术前提，口径过于绝对且不严谨。保护接地是否合格应结合接地系统形式、保护装置动作条件、回路阻抗和适用标准判断，不能简单以4欧姆作为所有设备PE回路的统一强制阈值。</td><td>R3-Q0015</td><td>某焊装产线的机器人夹具在抓取车身侧围板时，原配的电感式接近传感器在高温焊接飞溅环境下频繁失效。现场更换为耐高温型后，又出现对非金属定位销无响应的问题。请从接近传感器的检测原理出发，说明应如何系统性判断并选择适合该工况的传感器类型，并解释关键决策依据。</td><td>GPT5.5: 参考答案称“电感式接近传感器仅能检测导磁金属物体”不准确。电感式接近传感器检测的是能产生涡流的金属目标，并非只能检测导磁金属；铝、铜、不锈钢等非铁磁或弱磁金属也可检测，只是检测距离有修正系数。正确说法应为电感式主要检测金属目标，不能直接检测非金属定位销。</td></tr><tr><td>B2</td><td>R3-Q0313</td><td>一条输送线PLC采用步进式顺序控制，在运行至第7步（精定位夹紧）时，检测传感器连续3次失效反馈，同时下游工位发出阻塞信号。面对传感异常与机械协同冲突双重中断，你如何设计带容错机制的中断响应流程，既保障人身安全又避免整线非计划停机？请简述核心设计思路。</td><td>GPT5.5: 参考答案把“传感器连续3次失效反馈+下游阻塞”这类过程异常的第一层响应设计为“强制触发安全急停回路并锁定夹紧执行器动力输出”，方案过重且不符合题干“避免整线非计划停机”的目标。正确应先按异常等级安全停住相关工位、保持夹紧或进入受控暂停，结合冗余传感器/伺服反馈/下游阻塞状态判断是否局部降级或人工介入，只有出现人身风险或危险运动失控时才触发急停。</td><td>nan</td><td>nan</td><td>nan</td></tr><tr><td>B3</td><td>R3-Q0185</td><td>某汽车焊装产线的机器人点焊工作站连续三个月MTBF呈下降趋势，同期设备运行时间、负载率和环境温湿度均无明显变化，但现场发现焊接飞溅清理频次由每日1次增加至每班次2次。请结合MTBF的统计定义和汽车制造现场实际，分析飞溅清理频次上升与MTBF下降之间可能存在的因果关系，并说明这种关系为何不能仅通过设备出厂测试数据来识别。</td><td>Gemini3.1pro: 参考答案未响应题干的完整要求。题干要求“说明这种关系为何不能仅通过设备出厂测试数据来识别”，但三层参考答案均未解释出厂测试与现场实施工况（如飞溅积累、材料变化）的差异，存在漏答跑题。正确的参考答案应补充相关机理解释。</td><td>R3-Q0236</td><td>某零部件检测专机集成视觉相机、气动执行机构和激光测距传感器，设备验收时发现当拧紧工位启动大功率电磁阀瞬间，相机图像出现条纹干扰且PLC输入点偶发丢失。请简述你从接地与保护回路角度出发，如何定位干扰源路径，并说明为何将传感器信号线与动力线同槽敷设会加剧该问题。</td><td>Gemini3.1pro: 参考答案跑题且存在遗漏。题干要求“说明为何将传感器信号线与动力线同槽敷设会加剧该问题”，但第一层和整体解答中仅阐述了排查地电位差的方案，未能解释动力线同槽敷设带来的分布电容与电磁耦合（串扰）加剧机理。正确答案应当补充说明线缆平行敷设对耦合干扰的物理影响。</td></tr><tr><td>C1</td><td>R3-Q0128</td><td>某焊装车间的机器人工作站中，两台不同品牌的PLC通过工业以太网交换机互联，执行协同搬运任务时频繁出现指令丢失和响应延迟。现场排查发现两台PLC的IP地址均配置为192.168.1.100，但各自网关设置不同。请简述你如何判断该IP冲突是否已实际触发ARP表项混乱，并说明为何仅修改其中一台PLC的IP可能仍无法立即恢复通信稳定性。</td><td>Gemini3.1pro: 与 R3-Q0117 题干内容完全重复。</td><td>R3-Q0150</td><td>涂胶机器人执行闭合环形轨迹（如车窗密封胶）时，实际胶线在轨迹接缝处出现微小间隙。已确认示教路径首尾点位置重合且姿态连续，也排除了胶阀启停延迟。从机器人轨迹插补原理出发，哪种路径过渡模式设置不当容易导致此类现象？请简单说说。</td><td>Gemini3.1pro: 与 R3-Q0146 题干内容完全重复。</td></tr><tr><td>C2</td><td>R3-Q0011</td><td>某总装线拧紧工位的电控柜内，断路器在设备正常运行数小时后无征兆跳闸，复位后短期内再次跳闸。已确认负载电流未超额定值且无短路。请简单说说，此时应重点核查断路器的哪个保护特性参数？该参数与设备长期稳定运行之间存在怎样的匹配关系？</td><td>Gemini3.1pro: 题干与R3-Q0010重复，从回答者角度看，候选人都会给出关于断路器热脱扣特性、反时限曲线及温升累积等同一套核心要点和作答思路。</td><td>R3-Q0021</td><td>在汽车焊装产线的一台机器人工作站中，急停按钮触发后，设备动力电源被切断，但PLC仍保持供电运行。请简述这种设计下，为何必须确保急停信号通过硬接线直接接入安全继电器或安全控制器，而不是仅通过PLC普通输入点采集？</td><td>Gemini3.1pro: 题干与R3-Q0012重复，从回答者角度看，候选人都会给出关于急停回路为何必须使用硬接线而非依赖PLC软件控制的同一套核心要点和作答思路。</td></tr></tbody>
+  </table>
+</body>
+</html>

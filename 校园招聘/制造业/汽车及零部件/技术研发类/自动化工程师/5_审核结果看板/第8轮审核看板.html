@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Round 8 Dashboard</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; margin: 24px; color: #1f2937; }
+    h1, h2, h3 { margin: 10px 0 12px; }
+    .cards { display: grid; grid-template-columns: repeat(3, minmax(140px, 220px)); gap: 12px; margin: 8px 0 18px; }
+    .card { border: 1px solid #e5e7eb; border-radius: 10px; padding: 12px; background: #fafafa; }
+    .card .k { font-size: 12px; color: #6b7280; }
+    .card .v { font-size: 24px; font-weight: 700; margin-top: 4px; }
+    table { border-collapse: collapse; width: 100%; margin: 8px 0 18px; }
+    th, td { border: 1px solid #e5e7eb; padding: 8px 10px; vertical-align: middle; }
+    th { background: #f9fafb; }
+    .legend span { margin-right: 12px; font-size: 13px; color: #374151; }
+    .mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; }
+    .ex { margin: 6px 0; color: #374151; }
+    .section-divider { border: 0; border-top: 2px solid #eef2f7; margin: 22px 0; }
+  </style>
+</head>
+<body>
+  <h1>Round 8 审核看板</h1>
+
+  <div class="cards">
+    <div class="card"><div class="k">A类错误</div><div class="v">6</div></div>
+    <div class="card"><div class="k">B类错误</div><div class="v">36</div></div>
+    <div class="card"><div class="k">C类错误</div><div class="v">0</div></div>
+  </div>
+
+  <h2>本轮题目主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">第8轮审核七轮重出后回流的 22 题。题目侧出现积极变化：A 类错误从七轮的 22 降到本轮 6，说明上游在题干侧有改进（部分生造故障码、逻辑矛盾被纠正）。但仍有残留：部分题干依然给未限定品牌型号的 PLC 配上 16#8002/16#4001/16#8100/16#5003 等不可通用的故障码（A1）；CiA402 状态字 bit7 被误定义为“已使能”（应为 Operation enabled=bit2，bit7=Warning）；Gemini 还指出点焊题把“熔核/焊点”误写为“焊缝”（A1 名词概念错）。总体：题干生造故障码的毛病减轻但未清除。</div>
+<h2>本轮答案主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">答案侧是本轮绝对重灾区（家族计数 B 36、A 6，重出答案占 16/22），两模型大量互相印证的 B1：(1) 品牌工具张冠李戴——用罗克韦尔 CCW 诊断三菱 FX5U、CX-Designer（欧姆龙 HMI 软件）当作 PLC 扫描诊断工具、PowerFlex 的 EtherNet/IP 拿去对 PROFINET 诊断字段；(2) 型号能力错——1756 无源背板说“升级固件”、1769-IF4（模拟量）接光电开关、1734-OB8S（安全输出）接限位输入、欧姆龙 F39（光幕附件）当安全继电器、Studio 5000 里用不存在的 GetTagAttribute（应 GSV）；(3) 标准误用/臆造——IEC 61800-5-2 用于散热风道、ISO 13849-1 用于示教限速（应 ISO 10218-1）及非安全回路可靠性、臆造《汽车产线 PLC 通讯健壮性设计规范》条款；(4) 安全逻辑错——把点焊加压超时（工艺异常）接入 STO 安全回路、光幕 OSSD 被遮挡误判为“门已关”、STO/SS1 当输入信号、用 PL d/SIL2 说明气动动作重复精度。答案侧未收敛且错误更密。</div>
+<h2>后续重新出内容时应补充的规则</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">【重新出题】<br/>重新出题（6 题）：(1) 仍严禁生造未经手册核实的厂商故障码（本轮 16#8002/4001/8100/5003 仍是虚构），未指定品牌就不给代码；(2) 总线状态字/控制字 bit 按 CiA402 真实定义（Operation enabled=bit2）；(3) 点焊用“熔核/焊点”而非“焊缝”。<br/><br/>【重出答案】<br/>重出答案（16 题，本轮重点）：(1) 品牌-软件-型号必须严格配对——三菱 GX Works3、欧姆龙 CX-Programmer/Sysmac（CX-Designer 只是 HMI）、罗克韦尔 Studio 5000(中大型)/CCW(Micro800)；指令用真实存在的（GSV 而非 GetTagAttribute）；型号能力核实（模拟量模块不接开关量、安全输出模块不接输入、无源背板不升级固件）；(2) 标准对口不凑——示教安全用 ISO 10218-1、驱动安全才用 IEC 61800-5-2、不引虚构条款、PL e↔SIL3；(3) 安全与工艺不混——工艺超时/质量异常走报警联锁而非 STO；光幕 OSSD 遮挡必须导向安全断开；PL/SIL 只说安全可靠性不说工艺重复精度；(4) 每条结论需手册/标准原文依据。重要：连续两轮两模型几乎全删，且本轮错误集中到答案品牌口径/标准臆造，强烈建议转人工或在出答案环节加入“品牌工具与型号能力清单校验”后再回流。</div>
+
+  <hr class="section-divider" />
+
+  <h2>模型进度与删除率</h2>
+  <table>
+    <thead>
+      <tr><th>Model</th><th>批次完成</th><th>完成率</th><th>删除率</th><th>主错误</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>GPT5.5</td><td style='text-align:center'>1/1</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:90.9%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">90.9%</span></td><td style='text-align:center'>B>A</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>1/1</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td style='text-align:center'>B>A</td></tr>
+    </tbody>
+  </table>
+
+  <h2>批次状态矩阵</h2>
+  <div class="legend">
+    <span>✓ done</span><span>… running</span><span>○ pending</span><span>! blocked</span><span>x failed</span>
+  </div>
+  <table>
+    <thead><tr><th>Model</th><th>R8-B001</th></tr></thead>
+    <tbody><tr><td>GPT5.5</td><td style='text-align:center'>✓</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>✓</td></tr></tbody>
+  </table>
+
+  <h2>细分错误统计（A1/B1...）</h2>
+  <table>
+    <thead><tr><th>错误子类</th><th>数量</th></tr></thead>
+    <tbody><tr><td>A1</td><td style='text-align:center'>6</td></tr><tr><td>B1</td><td style='text-align:center'>36</td></tr></tbody>
+  </table>
+
+  <h3>细分错误示例（每类2条）</h3>
+  <table>
+    <thead><tr><th>错误子类</th><th>例1-题号</th><th>例1-题目</th><th>例1-理由</th><th>例2-题号</th><th>例2-题目</th><th>例2-理由</th></tr></thead>
+    <tbody><tr><td>A1</td><td>R8-Q0001</td><td>PLC运行中STOP灯常亮，编程软件显示错误代码'16#8002'，这通常表示CPU无法访问哪一类模块？</td><td>GPT5.5: 题干原文“诊断缓冲区提示错误代码'16#8002'”把未限定品牌/型号的PLC故障码直接定义为“CPU无法访问哪一类模块”，代码口径不真实且不可通用；答案又引用“FX5U”“CCW诊断显示16#8002”，三菱FX5U与罗克韦尔CCW口径混用。正确应按具体PLC品牌和型号查官方诊断代码，不能生造通用16#8002硬件故障码。；Gemini3.1pro: 参考答案第三层中称“CCW诊断显示16#8002”，将罗克韦尔的CCW软件用于诊断三菱FX5U PLC，属品牌工具张冠李戴。正确应使用三菱的GX Works3软件。</td><td>R8-Q0002</td><td>PLC运行过程中突然停机，诊断缓冲区出现错误代码'16#4001'，这通常与哪一类通信接口的物理连接异常直接相关？</td><td>GPT5.5: 题干原文“诊断缓冲区出现错误代码'16#4001'”并将其定义为通信接口物理连接异常，但未限定控制器品牌型号，且答案称“16#4001在罗克韦尔自动化Studio 5000平台中，明确对应ControlLogix或CompactLogix系列PLC的EtherNet/IP通信端口链路层故障”。该故障码定义不符合罗克韦尔Logix平台常见诊断口径，属于生造/误配PLC故障代码。正确应依据具体模块状态、端口Link状态和Studio 5000模块诊断信息定位，而不是用16#4001作为硬件链路故障码。；Gemini3.1pro: 参考答案第三层中称“依据IEC 61800-5-2第7.4.3条要求核查机柜散热风道”，IEC 61800-5-2为驱动器安全功能标准，与散热风道无关，属标准臆造与误用。正确的散热要求应参考IEC 60204-1等控制柜标准。</td></tr><tr><td>B1</td><td>R8-Q0001</td><td>PLC运行中STOP灯常亮，编程软件显示错误代码'16#8002'，这通常表示CPU无法访问哪一类模块？</td><td>GPT5.5: 题干原文“诊断缓冲区提示错误代码'16#8002'”把未限定品牌/型号的PLC故障码直接定义为“CPU无法访问哪一类模块”，代码口径不真实且不可通用；答案又引用“FX5U”“CCW诊断显示16#8002”，三菱FX5U与罗克韦尔CCW口径混用。正确应按具体PLC品牌和型号查官方诊断代码，不能生造通用16#8002硬件故障码。；Gemini3.1pro: 参考答案第三层中称“CCW诊断显示16#8002”，将罗克韦尔的CCW软件用于诊断三菱FX5U PLC，属品牌工具张冠李戴。正确应使用三菱的GX Works3软件。</td><td>R8-Q0002</td><td>PLC运行过程中突然停机，诊断缓冲区出现错误代码'16#4001'，这通常与哪一类通信接口的物理连接异常直接相关？</td><td>GPT5.5: 题干原文“诊断缓冲区出现错误代码'16#4001'”并将其定义为通信接口物理连接异常，但未限定控制器品牌型号，且答案称“16#4001在罗克韦尔自动化Studio 5000平台中，明确对应ControlLogix或CompactLogix系列PLC的EtherNet/IP通信端口链路层故障”。该故障码定义不符合罗克韦尔Logix平台常见诊断口径，属于生造/误配PLC故障代码。正确应依据具体模块状态、端口Link状态和Studio 5000模块诊断信息定位，而不是用16#4001作为硬件链路故障码。；Gemini3.1pro: 参考答案第三层中称“依据IEC 61800-5-2第7.4.3条要求核查机柜散热风道”，IEC 61800-5-2为驱动器安全功能标准，与散热风道无关，属标准臆造与误用。正确的散热要求应参考IEC 60204-1等控制柜标准。</td></tr></tbody>
+  </table>
+</body>
+</html>

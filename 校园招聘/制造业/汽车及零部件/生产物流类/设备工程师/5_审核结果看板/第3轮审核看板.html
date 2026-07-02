@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Round 3 Dashboard</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; margin: 24px; color: #1f2937; }
+    h1, h2, h3 { margin: 10px 0 12px; }
+    .cards { display: grid; grid-template-columns: repeat(3, minmax(140px, 220px)); gap: 12px; margin: 8px 0 18px; }
+    .card { border: 1px solid #e5e7eb; border-radius: 10px; padding: 12px; background: #fafafa; }
+    .card .k { font-size: 12px; color: #6b7280; }
+    .card .v { font-size: 24px; font-weight: 700; margin-top: 4px; }
+    table { border-collapse: collapse; width: 100%; margin: 8px 0 18px; }
+    th, td { border: 1px solid #e5e7eb; padding: 8px 10px; vertical-align: middle; }
+    th { background: #f9fafb; }
+    .legend span { margin-right: 12px; font-size: 13px; color: #374151; }
+    .mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; }
+    .ex { margin: 6px 0; color: #374151; }
+    .section-divider { border: 0; border-top: 2px solid #eef2f7; margin: 22px 0; }
+  </style>
+</head>
+<body>
+  <h1>Round 3 审核看板</h1>
+
+  <div class="cards">
+    <div class="card"><div class="k">A类错误</div><div class="v">37</div></div>
+    <div class="card"><div class="k">B类错误</div><div class="v">58</div></div>
+    <div class="card"><div class="k">C类错误</div><div class="v">31</div></div>
+  </div>
+
+  <h2>本轮题目主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">三轮（二轮重出回流，506题）题干层面问题集中在两类。A1 编造/错配国家标准号约33处：把与场景无关的标准强行作为设备、安全或精度判定依据，如用 GB/T 11345（焊缝超声检测）判齿条安装水平度、用 GB/T 14549（电网谐波）规定冷却系统基准、用 GB/T 16857.2（坐标测量机）当作机器人重复定位精度标准、用 GB/T 4728.5（半导体管符号）定义熔断器符号，以及把医疗场所标准 GB/T 16895.8 套用到工业接地等；这类题干会误导作答并破坏可信度，影响面覆盖标准/安全/验收类题目。A3 题干偏离知识点约5处：题干问定义而知识点要求考趋势判断/异常识别/能力提升，问答错位。C2 重复/同质化约25处：端子编号位置标识、PLC输出指示灯亮但负载不动作、旋转转直线优先丝杠、张紧/垂直度校正等知识点高度同质，仅题面换皮。难度与作答时长未见系统性异常。</div>
+<h2>本轮答案主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">参考答案是三轮最大问题来源，B 类约56处。B1 知识性错误约46处最突出：OEE 与可用率×性能率×合格率三率乘积不自洽（如标73%而三率乘积仅64%）、节拍52秒/台误算成每分钟11.5台（应约1.15台）、H7/g6 间隙配合被解释为过盈/微预紧、平带靠两侧平面传动、伺服闭环编码器A/B相接反仍能正常启停、保护导体截面/颜色与安全等级(Cat./PL/SIL)及标准条款张冠李戴、把安全输出模块当输入模块、磨粒磨损误判为粘着磨损等。B3 答非所问约8处：题目要求给出两个关联校验指标/三者取舍/为何不选更大丝杠等，答案未正面回应或给出与MTBF重复的指标。另有个别 B2（方案不切实际，如定制非标法兰电机）、B4（场景不合理）。影响面集中在指标计算、标准引用、公差配合、电气与传动机理等专业判断，直接削弱评分基准与岗位专业性。</div>
+<h2>后续重新出内容时应补充的规则</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">【重新出题】<br/>1) 题干引用国标/行标必须满足编号—名称—适用对象三者一致且真实有效，禁止把无关领域标准（焊缝超声、电网谐波、坐标测量机、半导体符号、医疗场所等）嫁接到设备运维/安全/精度/验收判定；不确定时不得编造标准号。2) 题干须与知识点严格对齐：考‘趋势判断/异常识别/能力提升’就不能只问定义。3) 同一知识点避免高度同质重复（端子位置标识、PLC输出不动作、旋转转直线选丝杠等同类只保留一题）。4) 数值型题干内部自洽：OEE=可用率×性能率×合格率、节拍与产能(台/分钟=60/秒每台)换算、各参数量级一致。5) 题干场景须符合真实工况（区分压缩空气与氮气、各介质对应真实负载）。<br/><br/>【重出答案】<br/>1) 关键概念/公式/标准须逐项事实核验：OEE三率乘积、MTBF/MTTR口径与独立性、节拍↔产能换算、公差配合(H/g为间隙配合，最小/最大间隙判可换性)、伺服闭环编码器相序(A/B接反→飞车报警而非正常启停)、保护导体颜色(黄绿专用PE)/截面与功能安全等级(Cat./PL/SIL需双通道+诊断覆盖)、安全I/O输入与输出模块区分。2) 答案必须正面回答题目所问的具体指标/取舍/原因，且补充指标须与MTBF等已有指标相互独立。3) 防松件(锁固胶/楔形垫圈/全金属锁紧螺母)、密封失效迹象、磨损形貌(磨粒/粘着/点蚀)等专业概念不得混称。4) 禁止用‘隐含要求/虚构条款/编造阈值(如统一500ms、采样≤100ms)’支撑结论；阈值须来自风险评估、技术协议或企业规范。5) 维修流程类答案区分‘恢复运行前验证(安全确认/复位/试运行/首件)’与‘事后闭环归档’，分类口径准确。</div>
+
+  <hr class="section-divider" />
+
+  <h2>模型进度与删除率</h2>
+  <table>
+    <thead>
+      <tr><th>Model</th><th>批次完成</th><th>完成率</th><th>删除率</th><th>主错误</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>GPT5.5</td><td style='text-align:center'>13/13</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:15.4%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">15.4%</span></td><td style='text-align:center'>B>A>C</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>13/13</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:9.5%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">9.5%</span></td><td style='text-align:center'>C>A>B</td></tr>
+    </tbody>
+  </table>
+
+  <h2>批次状态矩阵</h2>
+  <div class="legend">
+    <span>✓ done</span><span>… running</span><span>○ pending</span><span>! blocked</span><span>x failed</span>
+  </div>
+  <table>
+    <thead><tr><th>Model</th><th>R3-B001</th><th>R3-B002</th><th>R3-B003</th><th>R3-B004</th><th>R3-B005</th><th>R3-B006</th><th>R3-B007</th><th>R3-B008</th><th>R3-B009</th><th>R3-B010</th><th>R3-B011</th><th>R3-B012</th><th>R3-B013</th></tr></thead>
+    <tbody><tr><td>GPT5.5</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td></tr></tbody>
+  </table>
+
+  <h2>细分错误统计（A1/B1...）</h2>
+  <table>
+    <thead><tr><th>错误子类</th><th>数量</th></tr></thead>
+    <tbody><tr><td>A1</td><td style='text-align:center'>32</td></tr><tr><td>A2</td><td style='text-align:center'>1</td></tr><tr><td>A3</td><td style='text-align:center'>5</td></tr><tr><td>B1</td><td style='text-align:center'>48</td></tr><tr><td>B2</td><td style='text-align:center'>1</td></tr><tr><td>B3</td><td style='text-align:center'>8</td></tr><tr><td>B4</td><td style='text-align:center'>1</td></tr><tr><td>C2</td><td style='text-align:center'>31</td></tr></tbody>
+  </table>
+
+  <h3>细分错误示例（每类2条）</h3>
+  <table>
+    <thead><tr><th>错误子类</th><th>例1-题号</th><th>例1-题目</th><th>例1-理由</th><th>例2-题号</th><th>例2-题目</th><th>例2-理由</th></tr></thead>
+    <tbody><tr><td>A1</td><td>Q002</td><td>某焊装产线机器人第七轴地轨采用齿轮齿条传动，运行中出现定位重复性偏差增大且齿面存在单侧异常磨损。已知齿条安装基准面水平度符合GB/T 11345—2018中B级要求，齿轮箱输出轴与齿条法向夹角实测为92.3度。请结合传动副啮合几何关系，说明该角度偏差如何影响载荷分布，并指出最应优先校验的两个安装关联要素。</td><td>GPT5.5: 题干引用“齿条安装基准面水平度符合GB/T 11345—2018中B级要求”存在知识性错误。GB/T 11345—2018对应焊缝超声检测相关标准，不是齿条安装基准面水平度或安装精度等级标准，不能作为该机械安装条件的判定依据。正确应引用设备安装精度、几何公差或厂家安装规范中的水平度/垂直度要求。；Gemini3.1pro: 题干中引用的GB/T 11345—2018是《无损检测 焊缝超声检测 技术、检测等级和评定》标准，与齿条安装基准面水平度无关。存在严重的知识性错误。</td><td>Q002</td><td>某焊装产线机器人第七轴地轨采用齿轮齿条传动，运行中出现定位重复性偏差增大且齿面存在单侧异常磨损。已知齿条安装基准面水平度符合GB/T 11345—2018中B级要求，齿轮箱输出轴与齿条法向夹角实测为92.3度。请结合传动副啮合几何关系，说明该角度偏差如何影响载荷分布，并指出最应优先校验的两个安装关联要素。</td><td>GPT5.5: 题干引用“齿条安装基准面水平度符合GB/T 11345—2018中B级要求”存在知识性错误。GB/T 11345—2018对应焊缝超声检测相关标准，不是齿条安装基准面水平度或安装精度等级标准，不能作为该机械安装条件的判定依据。正确应引用设备安装精度、几何公差或厂家安装规范中的水平度/垂直度要求。；Gemini3.1pro: 题干中引用的GB/T 11345—2018是《无损检测 焊缝超声检测 技术、检测等级和评定》标准，与齿条安装基准面水平度无关。存在严重的知识性错误。</td></tr><tr><td>A2</td><td>Q083</td><td>查看一份压铸单元电控柜的端子接线图时，你注意到安全继电器输出侧的急停回路中，两根黄绿双色线分别接入不同编号的接地端子，且未在图中标注共用同一接地参考点。依据GB/T 16895.8—2022《低压电气装置 第7-710部分：特殊装置或场所的要求 医疗场所》，虽该标准不直接适用于制造业，但其对保护接地连续性的核心要求与GB 50168—2018一致。请说明：此时应重点核查图纸中哪两个技术要素，才能确认该接地路径满足等电位联结要求？</td><td>GPT5.5: 题干将急停回路中的两根黄绿双色线作为等电位联结路径来审查，并引用GB/T 16895.8—2022医疗场所特殊装置标准作为制造业压铸单元接地判断依据，场景和标准适用性错误。黄绿双色应专用于保护导体，急停控制回路不应以黄绿线作为普通安全信号线；制造业电控柜接地应依据适用的低压电气装置、机械电气安全和施工验收标准，而不是医疗场所标准。；Gemini3.1pro: 题干引用了医疗场所的标准（GB/T 16895.8—2022）作为工业现场接地的引子，逻辑牵强且场景极度偏门，正确的应直接引用适用的工业制造业标准。</td><td>nan</td><td>nan</td><td>nan</td></tr><tr><td>A3</td><td>Q481</td><td>请简单说说MTBF这个指标代表什么含义？</td><td>Gemini3.1pro: 题干偏离知识点。题干仅询问MTBF指标的含义，而知识点为“MTBF趋势判断”，题干未能体现对趋势判断的考察。正确应该提问如何根据MTBF的变化趋势来判断设备状态。</td><td>Q487</td><td>请简单说说，设备稼动率指的是什么？</td><td>Gemini3.1pro: 题干偏离知识点。题干仅询问设备稼动率的定义，而知识点为“稼动率异常识别”，题干未能体现对异常识别的考察。正确应该提问如何识别设备稼动率的异常情况。</td></tr><tr><td>B1</td><td>Q012</td><td>在汽车制造产线的机器人焊接工位，安全门开关与机器人运动控制之间设置了联锁保护。当安全门被意外打开时，机器人应立即停止所有轴的运动。请简述这一联锁保护逻辑中，安全门开关信号通常接入哪个核心安全控制单元，并说明该单元如何确保停机动作满足GB/T 16855.1—2018对‘类别3’安全相关控制功能的要求。</td><td>GPT5.5: 参考答案对GB/T 16855.1—2018类别3的解释错误。原文称类别3是“单通道+检测+自动诊断”的结构要求，但类别3安全相关控制功能通常要求冗余结构，单一故障不应导致安全功能丧失，并在合理可行时检测故障；不是单通道结构。正确答案应说明双通道/冗余、故障容错与诊断覆盖等要求。</td><td>Q038</td><td>请简单说说，依据GB/T 11348.2—2016标准，联轴器同轴度检测主要关注哪两个方向的偏移量？</td><td>GPT5.5: 参考答案对联轴器同轴度检测方向解释错误。原文称主要关注“径向偏移量”和“轴向偏移量（即角度偏差）”，但联轴器对中通常关注径向/平行偏差与角向偏差，轴向间距是另一类安装尺寸，不等同于角度偏差；且题干引用的GB/T 11348.2属于机械振动测量评价相关标准，并非联轴器同轴度检测标准。正确应区分径向偏差、角向偏差和轴向间距。；Gemini3.1pro: 题干和答案引用的GB/T 11348.2—2016标准名称和适用范围错误。GB/T 11348.2是关于大型汽轮发电机组转轴径向振动的标准，而不是“在轴承座上测量和评价机器的振动 第2部分：功率大于15 kW的往复式压缩机”。</td></tr><tr><td>B2</td><td>Q435</td><td>某压铸单元升级伺服液压合模系统，供应商推荐的标准伺服电机法兰接口与现场原有减速机底座螺栓孔位错位2毫米。虽可通过加装过渡垫片解决，但会增加振动传递风险。你如何权衡‘现场快速适配’和‘产线长期运行可靠性’之间的矛盾？请说明优先级依据。</td><td>Gemini3.1pro: 答案第二层建议“协调供应商提供非标法兰电机”作为最优方案不符合工业现场实际。伺服电机法兰是高度标准化的部件，定制非标电机周期长、成本高，且严重不利于后期备件替换；正确的做法通常是设计高刚性的过渡法兰盘进行转接。</td><td>nan</td><td>nan</td><td>nan</td></tr><tr><td>B3</td><td>Q249</td><td>总装线上用于升降座椅托盘的装置，由电机带动丝杠运动，实现精准上下移动，这类机构叫什么？</td><td>GPT5.5: 题目问“由电机带动丝杠运动，实现精准上下移动，这类机构叫什么”，核心应回答“丝杠升降机构/电动丝杠升降机构/丝杠螺母直线执行机构”。答案第一层只给出泛化名称“电动升降执行机构”，没有准确回答该结构名称，偏离题目要求。</td><td>Q338</td><td>冲压线气动平衡缸在节拍提升后出现下行不同步、轻微抖动，经确认气源总管压力达标但波动频率升高，这种现象通常与气路系统中哪个部件的状态密切相关？请说明该部件失效如何导致压力波动并影响执行机构动作。</td><td>GPT5.5: 题目问气动平衡缸节拍提升后下行不同步、抖动且总管压力达标但波动频率升高，通常应重点关联储气缓冲能力、调压阀/减压阀、节流阀、管路通径、阀组响应或用气峰值匹配等压力稳定部件。答案将核心部件指向空气干燥器/冷干机，主要讨论水分和露点，偏离了压力波动频率升高与执行机构同步性的关键诊断范围。</td></tr><tr><td>B4</td><td>Q117</td><td>在设备导入验收阶段，‘工艺接口条件’中的‘公用介质接口’主要指哪些现场供给要素？请简单说说。</td><td>GPT5.5: 第三层复杂问题把“多台设备共用同一氮气主管”与“总装线新增AGV充电站与气动拧紧机同时用气”联系起来，场景不合理。AGV充电站不使用氮气，气动拧紧机通常使用压缩空气而非氮气；该异常不符合设备工程师在公用介质接口验收中的真实工作内容。正确应讨论压缩空气、冷却水、电力、氮气等各自对应的真实设备负载和流量/压力/纯度风险。</td><td>nan</td><td>nan</td><td>nan</td></tr><tr><td>C2</td><td>Q031</td><td>在汽车制造产线中，某台压铸机因模具定位销磨损导致铸件尺寸超差停机，维修更换了定位销并校准了夹紧力。依据GB/T 19001—2016《质量管理体系 要求》第8.5.2条款及JB/T 5059—2018《机械设备维修技术规范》第5.3.4条关于维修记录的规定，请简述该次维修记录中必须体现的四个不可省略的技术要素，并说明每一要素对后续设备状态评估与工艺稳定性保障的具体作用。</td><td>Gemini3.1pro: 题干语言不一样，但考察的核心知识点高度一致，都是关于设备维修记录中必须包含的关键要素，属于C2重复，保留前一题R3Q0024。</td><td>Q042</td><td>在汽车零部件装配线的皮带输送设备运行中，发现皮带向驱动轮右侧持续偏移，且驱动轮与从动轮轴线已确认平行。此时你首先会检查哪两个关键安装参数？请简述判断依据。</td><td>Gemini3.1pro: 题干语言不一样，但从回答者角度看，候选人几乎会给出同一套答案内容、同一套核心要点（张紧轮对称性、滚筒/托辊垂直度），属于C2重复，保留前一题R3Q0041。</td></tr></tbody>
+  </table>
+</body>
+</html>

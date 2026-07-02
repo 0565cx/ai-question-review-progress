@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Round 5 Dashboard</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; margin: 24px; color: #1f2937; }
+    h1, h2, h3 { margin: 10px 0 12px; }
+    .cards { display: grid; grid-template-columns: repeat(3, minmax(140px, 220px)); gap: 12px; margin: 8px 0 18px; }
+    .card { border: 1px solid #e5e7eb; border-radius: 10px; padding: 12px; background: #fafafa; }
+    .card .k { font-size: 12px; color: #6b7280; }
+    .card .v { font-size: 24px; font-weight: 700; margin-top: 4px; }
+    table { border-collapse: collapse; width: 100%; margin: 8px 0 18px; }
+    th, td { border: 1px solid #e5e7eb; padding: 8px 10px; vertical-align: middle; }
+    th { background: #f9fafb; }
+    .legend span { margin-right: 12px; font-size: 13px; color: #374151; }
+    .mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; }
+    .ex { margin: 6px 0; color: #374151; }
+    .section-divider { border: 0; border-top: 2px solid #eef2f7; margin: 22px 0; }
+  </style>
+</head>
+<body>
+  <h1>Round 5 审核看板</h1>
+
+  <div class="cards">
+    <div class="card"><div class="k">A类错误</div><div class="v">4</div></div>
+    <div class="card"><div class="k">B类错误</div><div class="v">24</div></div>
+    <div class="card"><div class="k">C类错误</div><div class="v">0</div></div>
+  </div>
+
+  <h2>本轮题目主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">第5轮审核四轮重出后回流的 49 题（9 重新出题 + 40 重出答案）。题目层面问题不多，主要是 Gemini 指出的 4 道 A1：题干描述 PLC（西门子 S7-1200、三菱 FX5U、欧姆龙 CP1E）「面板/显示屏直接显示故障码」，但这些机型本体无显示屏或无该指示灯，属硬件常识性错误 + 故障码强行映射的伪命题（如 Q0010 16#8001、Q0011 Err.0004、Q0014 F3 指示灯、Q0015 16#0007）；并伴随「考背十六进制故障码」这类偏门设问。说明「重新出题」类回流仍有少量题干设定与硬件实际不符。</div>
+<h2>本轮答案主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">答案层面仍是本轮主问题且未收敛。GPT5.5 判出 24 道显式 B1 + 9 道「疑似无」并入删除，集中表现：(1) 故障码臆断——西门子 16#8001/80A2、三菱 Err.0004/4120、罗克韦尔 16#0004、倍福 AX5805 被写死为某具体模块/通道故障；(2) 协议口径错误——把 RPI/Remanent 说成 PROFINET 周期、称 PROFINET RT 走 TCP/IP、EtherCAT 用 PDO/Mailbox 传图像；(3) 安全逻辑——STO/急停/安全光栅 OSSD/抱闸时序错误、把安全停机让位于工艺连续性；(4) 与题干矛盾——节拍不可并行约束下仍给并行方案（B3）、飞溅+熔深不足归因自相矛盾；(5) 把功能安全/通信标准（GB/T 16855.1、ISO 13850、IEC 62061、GSDML）强行套到节拍瓶颈分析上。说明本轮重出答案在事实与安全口径上仍大面积不达标。</div>
+<h2>后续重新出内容时应补充的规则</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">【重新出题】<br/>重新出题：(1) 题干硬件设定必须符合实际——无显示屏的 PLC（S7-1200/FX5U/CP1E 等）不得写「面板显示故障码」，改为「通过编程软件/诊断缓冲区读到」或按实际指示灯状态描述；(2) 不考死记十六进制故障码，改考给出故障现象与诊断上下文后的排查思路；(3) 中等难度题继续禁冲突/取舍情境。<br/><br/>【重出答案】<br/>重出答案（在四轮规则基础上加强）：(1) 凡涉厂商故障码禁止写死『某码=某具体故障』，必须注明需结合手册/诊断缓冲区/连接诊断确认；(2) 协议术语严格区分——PROFINET 用 Update Time/看门狗/IRT/GSDML，EtherNet/IP 才用 RPI/QoS/IGMP，EtherCAT 用 SyncManager/DC；图像不走 EtherCAT PDO/Mailbox；(3) 安全硬约束——STO 仅切转矩不防溜车，垂直轴配抱闸/配重，安全光栅双通道 OSSD 接安全继电器，安全功能优先于工艺；(4) 节拍/瓶颈分析只用节拍口径（目标节拍、各工位CT、缓存、阻塞/饥饿），不得套功能安全/通信标准；(5) 答案必须先判题干约束可行性再作答，保证与题干一致（如不可并行就不给并行方案、飞溅与熔深不足归因不自相矛盾）；(6) 每条结论给出标准/手册依据并自检。</div>
+
+  <hr class="section-divider" />
+
+  <h2>模型进度与删除率</h2>
+  <table>
+    <thead>
+      <tr><th>Model</th><th>批次完成</th><th>完成率</th><th>删除率</th><th>主错误</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>GPT5.5</td><td style='text-align:center'>2/2</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:67.3%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">67.3%</span></td><td style='text-align:center'>B</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>2/2</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:8.2%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">8.2%</span></td><td style='text-align:center'>A</td></tr>
+    </tbody>
+  </table>
+
+  <h2>批次状态矩阵</h2>
+  <div class="legend">
+    <span>✓ done</span><span>… running</span><span>○ pending</span><span>! blocked</span><span>x failed</span>
+  </div>
+  <table>
+    <thead><tr><th>Model</th><th>R5-B001</th><th>R5-B002</th></tr></thead>
+    <tbody><tr><td>GPT5.5</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td></tr></tbody>
+  </table>
+
+  <h2>细分错误统计（A1/B1...）</h2>
+  <table>
+    <thead><tr><th>错误子类</th><th>数量</th></tr></thead>
+    <tbody><tr><td>A1</td><td style='text-align:center'>4</td></tr><tr><td>B1</td><td style='text-align:center'>22</td></tr><tr><td>B3</td><td style='text-align:center'>2</td></tr></tbody>
+  </table>
+
+  <h3>细分错误示例（每类2条）</h3>
+  <table>
+    <thead><tr><th>错误子类</th><th>例1-题号</th><th>例1-题目</th><th>例1-理由</th><th>例2-题号</th><th>例2-题目</th><th>例2-理由</th></tr></thead>
+    <tbody><tr><td>A1</td><td>R5-Q0010</td><td>西门子S7-1200 PLC显示故障代码'16#8001'，这表示哪个硬件模块发生了通信错误？</td><td>GPT5.5: 参考答案对西门子S7-1200故障代码'16#8001'未给出对应诊断口径，却扩展为PROFINET IO设备、GSDML、RPI超时和IEC 62061安全要求，存在代码含义和排查依据混淆。正确作答应先说明该代码在具体指令/诊断上下文中的官方含义，再结合诊断缓冲区、模块状态和硬件组态定位，不能将其直接泛化为任意PROFINET通信异常。；Gemini3.1pro: 题干中说“西门子S7-1200 PLC显示故障代码'16#8001'”，但S7-1200系列主机没有自带显示屏，无法直接显示故障代码（需通过TIA Portal软件读取）；且'16#8001'并不直接对应特定的硬件模块，题干预设存在知识性错误和逻辑误导。正确的应该是基于实际可通过软件读取的报错现象进行提问。</td><td>R5-Q0011</td><td>三菱FX5U系列PLC面板报出'Err.0004'，该代码对应哪种输入端口的短路或过载状态？</td><td>GPT5.5: 参考答案没有回答题干所问“三菱FX5U Err.0004对应哪种输入端口短路或过载”，而是笼统说需结合手册，并编造/泛化了“输入滤波诊断功能”“ISO 13850响应时效”等不相关内容。正确答案应围绕FX5U该错误码在对应手册中的具体诊断对象、端口类型和验证路径说明。；Gemini3.1pro: 题干中说“三菱FX5U系列PLC面板报出'Err.0004'”，但FX5U系列PLC主机没有显示面板，无法直接报出'Err.0004'代码；且题干预设该代码对应输入端口短路或过载，存在逻辑误导。正确的应该是基于FX5U实际的LED指示灯状态或软件读取的错误代码进行提问。</td></tr><tr><td>B1</td><td>R5-Q0001</td><td>请简单说说接触器在控制电路中，为什么通常不直接用来切断短路电流？</td><td>GPT5.5: 参考答案将接触器表述为“不具备短路分断能力（Icu/Ics）”并称“不符合GB/T 14048.4对接触器额定短路分断能力的强制性要求”，口径不准确。接触器本身不是短路保护器件，通常应与断路器或熔断器等短路保护器件配合，关注的是短路保护配合和条件短路电流等，不应把断路器的Icu/Ics分断能力口径直接套到接触器上。</td><td>R5-Q0003</td><td>请简单说说，节拍瓶颈识别中，为什么需要对比各工位的实际循环时间与产线目标节拍？</td><td>GPT5.5: 参考答案把节拍瓶颈识别与GB/T 16855.1的“性能等级PLr需匹配过程风险”、ISO 13850紧急停止原则、GSDML文件、IEC 62061安全生命周期、RPI参数和看门狗阈值等安全/通信标准强行关联。正确口径应围绕目标节拍、各工位循环时间、有效/无效时间划分、缓存与物流耦合来分析，不能用功能安全标准替代节拍分析依据。</td></tr><tr><td>B3</td><td>R5-Q0008</td><td>在一条包含多工位输送线、自动拧紧机和视觉检测站的汽车装配产线中，当某工位发生故障停机时，下游设备必须立即停止但上游设备需延时停机以排空工件；同时，安全门打开时所有相关设备必须强制断电。请简述如何利用电气互锁原理统筹设计这两类不同响应特性的停机逻辑，并说明关键互锁触点的串联/并联配置依据。</td><td>GPT5.5: 题目要求说明两类停机逻辑的互锁统筹设计，并解释关键互锁触点的串联/并联配置依据；参考答案主要泛泛讲安全继电器、安全PLC和安全门优先级，未清楚回答故障停机下游立即停、上游延时排空与安全门强制断电分别应如何串联、并联、分级旁路或优先级覆盖。正确答案应明确人员安全链串联最高优先级，工艺故障链按上下游分段互锁与延时输出处理，二者不能混在同一路可旁路回路中。</td><td>R5-Q0040</td><td>在一条包含焊接机器人、搬运机器人和视觉检测工位的汽车焊装产线中，若整体节拍要求为60秒/台，但焊接工位实际耗时55秒、搬运工位12秒、视觉检测8秒，且三者存在物理空间约束无法并行作业，你会如何重新分配各工位任务或调整控制逻辑来满足节拍？请简述关键设计思路。</td><td>GPT5.5: 题干明确说明焊接、搬运、视觉三者存在物理空间约束无法并行作业，参考答案却把“将视觉检测移至搬运过程中同步执行”“搬运准备与焊接收尾重叠”作为最优路径，直接违背题干约束。正确答案应在无法并行的前提下提出减少焊接非增值时间、拆分/外移工序、增加工位或改变布局等方案，而不是依赖并行动作。</td></tr></tbody>
+  </table>
+</body>
+</html>
