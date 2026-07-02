@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Round 4 Dashboard</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; margin: 24px; color: #1f2937; }
+    h1, h2, h3 { margin: 10px 0 12px; }
+    .cards { display: grid; grid-template-columns: repeat(3, minmax(140px, 220px)); gap: 12px; margin: 8px 0 18px; }
+    .card { border: 1px solid #e5e7eb; border-radius: 10px; padding: 12px; background: #fafafa; }
+    .card .k { font-size: 12px; color: #6b7280; }
+    .card .v { font-size: 24px; font-weight: 700; margin-top: 4px; }
+    table { border-collapse: collapse; width: 100%; margin: 8px 0 18px; }
+    th, td { border: 1px solid #e5e7eb; padding: 8px 10px; vertical-align: middle; }
+    th { background: #f9fafb; }
+    .legend span { margin-right: 12px; font-size: 13px; color: #374151; }
+    .mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; }
+    .ex { margin: 6px 0; color: #374151; }
+    .section-divider { border: 0; border-top: 2px solid #eef2f7; margin: 22px 0; }
+  </style>
+</head>
+<body>
+  <h1>Round 4 审核看板</h1>
+
+  <div class="cards">
+    <div class="card"><div class="k">A类错误</div><div class="v">8</div></div>
+    <div class="card"><div class="k">B类错误</div><div class="v">41</div></div>
+    <div class="card"><div class="k">C类错误</div><div class="v">12</div></div>
+  </div>
+
+  <h2>本轮题目主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">本轮题目侧主要问题集中在不适合口语面试的题干要求、少量题干场景偏离自动化工程师常见工作边界，以及与前序题目作答思路高度同质的重复题。细分统计显示：B1 30题、C2 12题、A1 5题、B6 3题、B5 3题、B3 3题。需要重点避免把工程计算、图纸/公式推导、过细供应商工艺追溯等内容包装成口头问答题。</div>
+<h2>本轮答案主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">本轮答案侧主要问题集中在第三层异常/复杂场景不够贴近自动化工程师现场职责、解决方案过度偏理论或偏供应商质量/机械加工侧，以及个别答案存在知识性表述不严谨、作答层次与题干引导不匹配。后续答案应更强调 PLC、运动控制、传感器、安全回路、现场调试与故障定位等岗位可验证经验。</div>
+<h2>后续重新出内容时应补充的规则</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">【重新出题】<br/>重新出题时，题干必须能口语直接作答，禁止要求写公式、绘图、推导、建模或符号说明；场景应限定在自动化工程师常见的设备调试、PLC/运动控制、传感器、安全回路、产线节拍与故障排查，不要转向供应商内部工艺、深度机械计算或流程工业长距离仪表场景；同一知识点下要检查候选人作答路径是否重复。<br/><br/>【重出答案】<br/>重出答案时，三层答案要与题干知识边界一致：第一层给出准确概念和适用条件，第二层比较岗位常见方案并说明选择理由，第三层只写自动化工程师现场最常见的异常和复杂情况；禁止虚构标准机制、过度绝对化结论、不可执行的检测手段或明显偏离岗位职责的处理方案。</div>
+
+  <hr class="section-divider" />
+
+  <h2>模型进度与删除率</h2>
+  <table>
+    <thead>
+      <tr><th>Model</th><th>批次完成</th><th>完成率</th><th>删除率</th><th>主错误</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>GPT5.5</td><td style='text-align:center'>4/4</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:30.5%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">30.5%</span></td><td style='text-align:center'>B>C>A</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>4/4</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:11.3%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">11.3%</span></td><td style='text-align:center'>B>A>C</td></tr>
+    </tbody>
+  </table>
+
+  <h2>批次状态矩阵</h2>
+  <div class="legend">
+    <span>✓ done</span><span>… running</span><span>○ pending</span><span>! blocked</span><span>x failed</span>
+  </div>
+  <table>
+    <thead><tr><th>Model</th><th>R4-B001</th><th>R4-B002</th><th>R4-B003</th><th>R4-B004</th></tr></thead>
+    <tbody><tr><td>GPT5.5</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td></tr></tbody>
+  </table>
+
+  <h2>细分错误统计（A1/B1...）</h2>
+  <table>
+    <thead><tr><th>错误子类</th><th>数量</th></tr></thead>
+    <tbody><tr><td>A1</td><td style='text-align:center'>5</td></tr><tr><td>A2</td><td style='text-align:center'>1</td></tr><tr><td>A3</td><td style='text-align:center'>1</td></tr><tr><td>A4</td><td style='text-align:center'>1</td></tr><tr><td>B1</td><td style='text-align:center'>30</td></tr><tr><td>B3</td><td style='text-align:center'>3</td></tr><tr><td>B4</td><td style='text-align:center'>2</td></tr><tr><td>B5</td><td style='text-align:center'>3</td></tr><tr><td>B6</td><td style='text-align:center'>3</td></tr><tr><td>C2</td><td style='text-align:center'>12</td></tr></tbody>
+  </table>
+
+  <h3>细分错误示例（每类2条）</h3>
+  <table>
+    <thead><tr><th>错误子类</th><th>例1-题号</th><th>例1-题目</th><th>例1-理由</th><th>例2-题号</th><th>例2-题目</th><th>例2-理由</th></tr></thead>
+    <tbody><tr><td>A1</td><td>Q012</td><td>某汽车零部件产线的PLC与多台伺服驱动器通过EtherCAT总线通信，近期出现周期性通信中断，现场排查发现部分驱动器IP地址被手动配置为相同值，但网络中未启用DHCP且无集中地址管理。请说明在这种工业实时总线下，地址冲突如何引发通信异常的具体机理，并解释为何仅靠Ping检测难以及时发现该问题。</td><td>GPT5.5: 题干把驱动器IP地址重复设定为引发EtherCAT实时总线周期性通信中断的直接机理，但EtherCAT过程数据通信不依赖IP地址；正确应区分EtherCAT站地址/拓扑通信与设备IP服务，不能要求候选人解释错误前提。</td><td>Q091</td><td>在自动化产线中，某关键工位需同时接入温度、光电和接近开关三类传感器，但现场控制柜的模拟量输入模块已满，数字量输入点位也所剩无几。已知这三类传感器均支持NPN/PNP双模式输出及多种信号类型（如4-20mA、0-10V、NAMUR、干接点）。请简述你如何统筹选择各传感器的信号输出类型，并说明背后对测量精度、抗干扰能力、布线成本与后续维护可扩展性的综合权衡依据。</td><td>GPT5.5: 题干称温度、光电和接近开关三类传感器均支持NPN/PNP双模式及4-20mA、0-10V、NAMUR、干接点等多种输出，前提过度泛化且不符合常见传感器类型边界；同时又设定模拟量和数字量点位不足，导致作答被迫建立在不严谨前提上。</td></tr><tr><td>A2</td><td>Q146</td><td>某金属结构件焊接产线拟升级为自动焊，但现场发现不同批次工件的装配间隙偏差达±0.8mm，夹具重复定位精度为±0.3mm，而所选焊枪最小起弧间隙要求为±0.2mm。请简述你将如何综合工艺公差链、设备能力与质量验收标准，判断该自动化方案是否具备工程落地前提。</td><td>Gemini3.1pro: 焊接间隙公差与夹具重复定位的叠加分析更偏向于焊接工艺工程师或机械结构工程师，自动化工程师较少绝对主导此类公差链评估。</td><td></td><td></td><td></td></tr><tr><td>A3</td><td>Q081</td><td>请简单说说故障树分析中，‘顶事件’是指什么？</td><td>Gemini3.1pro: 题干偏离自动化工程师的核心技能，故障树顶事件界定偏向于可靠性或质量工程师范畴，超出口语化技能考核边界。</td><td></td><td></td><td></td></tr><tr><td>A4</td><td>Q086</td><td>在一条多工位连续输送的装配产线上，PLC需同时采集12个接近开关信号和8个气缸到位反馈信号，但当前I/O模块物理点数已满，且部分输入通道存在共地限制、抗干扰能力差异及响应时间要求不一的情况。请简述你如何统筹规划这20个信号的I/O点位映射策略，并说明关键决策依据。</td><td>Gemini3.1pro: 题干信息过于冗长且包含多个具体数字约束条件，不适合在口语面试中直接作答，应聘者难以瞬间理清所有限制条件。</td><td></td><td></td><td></td></tr><tr><td>B1</td><td>Q008</td><td>在工厂产线的PLC与HMI设备通过以太网通信时，发现其中一台设备偶尔失联，且日志显示IP地址重复警告；已确认所有设备均采用静态IP配置、子网掩码相同、未启用DHCP服务。此时，应优先检查哪类地址冲突，并说明判断依据。</td><td>GPT5.5: 题干已明确“日志显示IP地址重复警告、静态IP、无DHCP”，答案却要求优先检查“MAC地址复用或误配置”，把主要排查方向从IP/ARP冲突带偏为MAC冲突；正确应优先核对重复IP、ARP表和设备地址台账。</td><td>Q011</td><td>某汽车零部件产线的PLC与多台伺服驱动器通过EtherCAT总线通信，运行中突发全部驱动器周期性失步并报通信超时，但主站CPU负载正常、拓扑扫描显示所有节点在线。请简述你如何结合总线诊断数据、同步机制特性及物理连接特征，分层次定位根本原因，并说明恢复稳定通信的关键干预措施。</td><td>GPT5.5: 答案将EtherCAT通信超时归因到“终端电阻缺失/统一启用两端终端电阻”，但EtherCAT基于以太网物理层，现场RJ45/M12链路不按RS485那样配置终端电阻；正确应重点查线缆屏蔽、连接器、端口错误计数、DC同步和从站故障计数。</td></tr><tr><td>B3</td><td>Q025</td><td>一条自动检测工位上线前做了过程能力验证，计算得到某关键尺寸的CPK值为1.0。请简单说说这个数值反映的是该检测过程满足公差要求的哪种能力，以及在实际生产中是否建议直接放行该工位投入量产。</td><td>GPT5.5: 题干要求判断CPK=1.0是否建议直接放行量产，答案没有明确给出“不建议直接放行/需整改或追加验证”的结论；且CPK=1.0通常仅为临界能力，低于常用量产放行要求（如1.33），答案跑偏到验证方式比较。</td><td>Q145</td><td>请简单说说视觉系统通过以太网与PLC交互时，通常采用哪种标准协议？</td><td>GPT5.5: 题干询问视觉系统以太网与PLC交互通常采用哪种标准协议，答案却首先回答“TCP/IP自定义私有协议，不是通用工业标准”，没有正面给出标准协议口径；正确应围绕EtherNet/IP、PROFINET、Modbus TCP等常见标准工业通信协议说明。</td></tr><tr><td>B4</td><td>Q117</td><td>一条多工位注塑机辅机联动系统中，机械手取件动作仅在合模完成、冷却时间到且顶针完全退回后才被允许；但顶针若开始伸出，机械手必须立即中止所有移动指令。请简单说说，这类存在时序先后与即时阻断双重要求的场景，PLC顺序控制中的动作条件互锁应如何分层设置，以兼顾安全性与流程连续性。</td><td>Gemini3.1pro: 第三层复杂情况不合理。气缸背压泄漏一般导致回位变慢，而不是导致传感器提前误感应，物理状态冲突描述不合常理。</td><td>Q136</td><td>当使用工业以太网抓包工具捕获到CANopen主站发给从站的SDO下载请求报文，但未收到应答，此时应重点检查报文中哪两个关键字段的取值是否符合规范？请简单说说理由。</td><td>Gemini3.1pro: 第三层中描述的“子索引为0从站直接丢弃不回复”不符合CANopen规范，主站误将数组子索引设为0时通常会返回中止(Abort)报文。</td></tr><tr><td>B5</td><td>Q021</td><td>请简述MTBF这个指标反映的是设备哪方面的性能表现？</td><td>Gemini3.1pro: 参考答案中存在代码块，整体明显不适合口语直接作答。正确的应该提取核心逻辑口语化表达。</td><td>Q022</td><td>在评估一台自动化产线输送设备的稳定运行能力时，MTBF主要用来衡量什么？</td><td>Gemini3.1pro: 参考答案中存在代码块，整体明显不适合口语直接作答。正确的应该提取核心逻辑口语化表达。</td></tr><tr><td>B6</td><td>Q005</td><td>请简述在位置控制模式下，编码器反馈对伺服系统实现精确定位起什么作用？</td><td>Gemini3.1pro: 参考答案给出的内容包含“前端”、“后端”等词汇，不是自动化工程师该岗位口径下的表达，应修改为自动化相关的控制系统表达。</td><td>Q046</td><td>请简单说说安全继电器在检测到故障时，为什么必须通过双通道切断输出？</td><td>Gemini3.1pro: 参考答案给出的内容包含“前端”、“后端”等词汇，不是自动化工程师该岗位口径下的表达，应修改为自动化相关的控制系统表达。</td></tr><tr><td>C2</td><td>Q004</td><td>为什么在启停阶段需要设置加减速曲线？请简述原因。</td><td>GPT5.5: 与Q0002均围绕加减速曲线在启停阶段避免冲击、振动和定位不准的作用，候选人核心作答高度重合；保留顺序靠前的Q0002。</td><td>Q005</td><td>请简述在位置控制模式下，编码器反馈对伺服系统实现精确定位起什么作用？</td><td>GPT5.5: 与Q0003均考查编码器反馈在伺服闭环中校正位置/速度/方向偏差的作用，核心作答路径高度重合；保留顺序靠前的Q0003。</td></tr></tbody>
+  </table>
+</body>
+</html>
