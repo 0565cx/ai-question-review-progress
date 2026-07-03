@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Round 7 Dashboard</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; margin: 24px; color: #1f2937; }
+    h1, h2, h3 { margin: 10px 0 12px; }
+    .cards { display: grid; grid-template-columns: repeat(3, minmax(140px, 220px)); gap: 12px; margin: 8px 0 18px; }
+    .card { border: 1px solid #e5e7eb; border-radius: 10px; padding: 12px; background: #fafafa; }
+    .card .k { font-size: 12px; color: #6b7280; }
+    .card .v { font-size: 24px; font-weight: 700; margin-top: 4px; }
+    table { border-collapse: collapse; width: 100%; margin: 8px 0 18px; }
+    th, td { border: 1px solid #e5e7eb; padding: 8px 10px; vertical-align: middle; }
+    th { background: #f9fafb; }
+    .legend span { margin-right: 12px; font-size: 13px; color: #374151; }
+    .mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; }
+    .ex { margin: 6px 0; color: #374151; }
+    .section-divider { border: 0; border-top: 2px solid #eef2f7; margin: 22px 0; }
+  </style>
+</head>
+<body>
+  <h1>Round 7 审核看板</h1>
+
+  <div class="cards">
+    <div class="card"><div class="k">A类错误</div><div class="v">1</div></div>
+    <div class="card"><div class="k">B类错误</div><div class="v">47</div></div>
+    <div class="card"><div class="k">C类错误</div><div class="v">0</div></div>
+  </div>
+
+  <h2>本轮题目主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">本轮题干问题主要集中在安全标准与工程前提错误，数量少于答案问题但影响较大。典型表现包括把伺服驱动器启动冲击描述成类似工频电机的长时间大电流冲击，以及机构自由度、按钮安全回路等题干前提不符合真实设备工作机理。题干若内置错误标准、错误信号量级或错误机构描述，会导致候选人只能在错误前提下作答，后续重新出题必须先校验工程场景是否真实成立。</div>
+<h2>本轮答案主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">本轮答案错误高度集中在 B1 知识性错误，两个模型均给出高删题率。主要问题包括标准编号误用、材料参数捏造、气动和真空阀型错误、螺纹/孔轴公差混用、密封配合口径错误、工业通信状态码错误、EMC 高频接地原则错误、机器人 TCP 三点法与工件坐标系混淆、CPK 与 MTTFd 等统计和安全参数解释错误。整体说明回流内容虽然数量减少，但答案专业准确性仍未稳定。</div>
+<h2>后续重新出内容时应补充的规则</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">【重新出题】<br/>重新出题前必须先做题干事实校验：安全题要区分 ISO 13849-1、IEC 60204-1、ISO 13855、ISO 13857 的适用边界；电气题不得写入未经验证的固定阈值、伪标准条款或不真实电流/电压场景；机械题要明确分析对象，是工件约束、执行机构自由度还是定位结构，不得混写；通信题必须明确协议层字段含义和总线物理限制。<br/><br/>【重出答案】<br/>重出答案时必须逐条核验专业事实：材料热膨胀、弹性模量等参数必须对应具体材料牌号；气动/真空元件必须区分二通、三通、五通、比例阀、真空发生器和破真空回路；螺纹公差、孔轴公差、密封件压缩量不得混用；高频 EMC 屏蔽接地与低频单点接地必须分场景说明；机器人工具坐标 TCP 标定、工件坐标标定、CPK、MTTFd、PLd 等概念必须按标准定义作答。答案应减少看似专业但实际不适用的标准堆砌。</div>
+
+  <hr class="section-divider" />
+
+  <h2>模型进度与删除率</h2>
+  <table>
+    <thead>
+      <tr><th>Model</th><th>批次完成</th><th>完成率</th><th>删除率</th><th>主错误</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>GPT5.5</td><td style='text-align:center'>1/1</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:75.0%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">75.0%</span></td><td style='text-align:center'>B</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>1/1</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:96.4%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">96.4%</span></td><td style='text-align:center'>B>A</td></tr>
+    </tbody>
+  </table>
+
+  <h2>批次状态矩阵</h2>
+  <div class="legend">
+    <span>✓ done</span><span>… running</span><span>○ pending</span><span>! blocked</span><span>x failed</span>
+  </div>
+  <table>
+    <thead><tr><th>Model</th><th>R7-B001</th></tr></thead>
+    <tbody><tr><td>GPT5.5</td><td style='text-align:center'>✓</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>✓</td></tr></tbody>
+  </table>
+
+  <h2>细分错误统计（A1/B1...）</h2>
+  <table>
+    <thead><tr><th>错误子类</th><th>数量</th></tr></thead>
+    <tbody><tr><td>A1</td><td style='text-align:center'>1</td></tr><tr><td>B1</td><td style='text-align:center'>45</td></tr><tr><td>B3</td><td style='text-align:center'>2</td></tr></tbody>
+  </table>
+
+  <h3>细分错误示例（每类2条）</h3>
+  <table>
+    <thead><tr><th>错误子类</th><th>例1-题号</th><th>例1-题目</th><th>例1-理由</th><th>例2-题号</th><th>例2-题目</th><th>例2-理由</th></tr></thead>
+    <tbody><tr><td>A1</td><td>Q014</td><td>在一台用于手机摄像头模组精密组装的自动化设备中，其电控柜内需为三台2.5千瓦伺服驱动器配置主电源通断控制。现场已知：电网短路容量为15kA，伺服驱动器启动时存在3倍额定电流持续80毫秒的冲击，且设备要求满足IEC 60204-1规定的Class 10脱扣特性以兼顾保护灵敏性与抗误动能力。请简述你如何综合考虑断路器的短路分断能力、瞬时脱扣阈值与接触器的接通分断能力匹配关系，并说明为何不能仅依据额定电流选型。</td><td>GPT5.5: 参考答案混淆断路器/接触器选型标准和脱扣概念：原文称“IEC 60204-1规定的Class 10脱扣特性”和“≤10秒内不误动，≤0.1秒内可靠脱扣”，但Class 10通常是电动机过载继电器/保护器脱扣等级口径，不是IEC 60204-1给出的断路器通用脱扣曲线；接触器也不应承担短路分断能力，短路保护需由断路器/熔断器及配合协调完成。正确应按预期短路电流选择分断能力，按伺服冲击电流校核瞬时脱扣和上级保护配合，接触器按AC-3/AC-4或厂商伺服负载数据校核接通分断能力。；Gemini3.1pro: 题干和答案均存在知识性错误。题干描述“伺服驱动器启动时存在3倍额定电流持续80毫秒的冲击”违背常识，伺服驱动器内部有软启电路，不会像工频异步电机那样产生持续几十毫秒的启动冲击电流；答案中提到的“IEC 60204-1规定的Class 10脱扣特性”也是错误的，Class 10是IEC 60947-4-1中针对热继电器的定义。</td><td>nan</td><td>nan</td><td>nan</td></tr><tr><td>B1</td><td>Q001</td><td>在电子组装产线的自动螺丝锁付工站中，双手操作安全回路需同时满足：①两个启动按钮必须在500毫秒内被按下且持续按压；②任一按钮松开或单按钮持续按压超3秒，必须立即切断伺服使能并触发安全停止；③当其中一个按钮因机械卡滞无法复位时，系统仍需确保另一按钮单独操作无效。请简述你如何通过安全控制器的输入信号采样策略、双通道状态比对逻辑及超时故障判据三方面协同设计，来可靠实现这三项要求。</td><td>GPT5.5: 参考答案第三层存在知识性和逻辑错误：原文称“左侧按钮信号在安全IO端子处测得对地电压达2.8V，超出24VDC安全输入低电平阈值（≤5V）”，但2.8V并未超出≤5V的低电平阈值；原文还把ISO 13857用于按钮线路最小间距和屏蔽接地要求，ISO 13857是防止上肢/下肢触及危险区的安全距离标准，不是电缆布线间距标准。正确应按安全输入模块阈值、EMC布线规范和设备厂商安全输入要求说明。；Gemini3.1pro: 答案存在标准术语混淆错误。答案中提到的“Category 4级安全停机”混淆了ISO 13849-1的硬件架构类别（Category 4）与IEC 60204-1的停机类别（Stop Category 0/1/2）。正确的表达应为“触发0类或1类安全停机”。</td><td>Q001</td><td>在电子组装产线的自动螺丝锁付工站中，双手操作安全回路需同时满足：①两个启动按钮必须在500毫秒内被按下且持续按压；②任一按钮松开或单按钮持续按压超3秒，必须立即切断伺服使能并触发安全停止；③当其中一个按钮因机械卡滞无法复位时，系统仍需确保另一按钮单独操作无效。请简述你如何通过安全控制器的输入信号采样策略、双通道状态比对逻辑及超时故障判据三方面协同设计，来可靠实现这三项要求。</td><td>GPT5.5: 参考答案第三层存在知识性和逻辑错误：原文称“左侧按钮信号在安全IO端子处测得对地电压达2.8V，超出24VDC安全输入低电平阈值（≤5V）”，但2.8V并未超出≤5V的低电平阈值；原文还把ISO 13857用于按钮线路最小间距和屏蔽接地要求，ISO 13857是防止上肢/下肢触及危险区的安全距离标准，不是电缆布线间距标准。正确应按安全输入模块阈值、EMC布线规范和设备厂商安全输入要求说明。；Gemini3.1pro: 答案存在标准术语混淆错误。答案中提到的“Category 4级安全停机”混淆了ISO 13849-1的硬件架构类别（Category 4）与IEC 60204-1的停机类别（Stop Category 0/1/2）。正确的表达应为“触发0类或1类安全停机”。</td></tr><tr><td>B3</td><td>Q006</td><td>某出口至欧盟的智能终端组装专机在第三方CE认证机构审核时，被指出安全控制系统未满足PLd性能等级要求。该系统包含急停、光幕和双手按钮三类安全功能，其中光幕用于人员进入危险区防护。请简述你将如何结合ISO 13849-1的架构类别、平均危险失效间隔时间及诊断覆盖率三个核心参数，系统性判定当前光幕回路是否达到PLd，并说明需实测或查证的两项关键现场数据。</td><td>Gemini3.1pro: 答案没有正面回答题干提出的“说明需实测或查证的两项关键现场数据”这一核心问题，第一层和第二层均在泛泛而谈验证路径和参数概念，属于答非所问。</td><td>Q023</td><td>伺服电机与减速机配合使用时，若发现设备启停阶段出现轻微抖动，且已排除机械刚性和编码器干扰因素，从机电接口匹配角度，你首先会检查哪两个关键参数的匹配关系？请简单说说原因。</td><td>GPT5.5: 参考答案没有回答“启停阶段轻微抖动且已排除机械刚性和编码器干扰后，从机电接口匹配角度首先检查哪两个关键参数”的核心。原文优先检查“额定输出转矩与额定输入转矩、最大允许转速与额定输入转速”，这些是基础边界校核，但启停抖动更应优先检查电机转子惯量与负载/减速机折算惯量比、减速机背隙/扭转刚度或联轴器同轴度等动态匹配参数。正确答案应聚焦惯量匹配和背隙/扭转刚度等导致启停振动的机电接口因素。；Gemini3.1pro: 答案存在知识性错误并偏离工程实际。设备在“启停阶段出现轻微抖动”且排除刚性问题后，机电匹配上最核心、首要检查的参数是“负载惯量与电机转子惯量的比值（惯量比）”。而答案给出的“额定转矩”和“最大转速”是稳态参数，不匹配会导致过载报警，但不会是导致“启停抖动”的首要原因。</td></tr></tbody>
+  </table>
+</body>
+</html>

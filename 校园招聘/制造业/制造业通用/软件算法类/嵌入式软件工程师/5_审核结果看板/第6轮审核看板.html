@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Round 6 Dashboard</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; margin: 24px; color: #1f2937; }
+    h1, h2, h3 { margin: 10px 0 12px; }
+    .cards { display: grid; grid-template-columns: repeat(3, minmax(140px, 220px)); gap: 12px; margin: 8px 0 18px; }
+    .card { border: 1px solid #e5e7eb; border-radius: 10px; padding: 12px; background: #fafafa; }
+    .card .k { font-size: 12px; color: #6b7280; }
+    .card .v { font-size: 24px; font-weight: 700; margin-top: 4px; }
+    table { border-collapse: collapse; width: 100%; margin: 8px 0 18px; }
+    th, td { border: 1px solid #e5e7eb; padding: 8px 10px; vertical-align: middle; }
+    th { background: #f9fafb; }
+    .legend span { margin-right: 12px; font-size: 13px; color: #374151; }
+    .mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; }
+    .ex { margin: 6px 0; color: #374151; }
+    .section-divider { border: 0; border-top: 2px solid #eef2f7; margin: 22px 0; }
+  </style>
+</head>
+<body>
+  <h1>Round 6 审核看板</h1>
+
+  <div class="cards">
+    <div class="card"><div class="k">A类错误</div><div class="v">2</div></div>
+    <div class="card"><div class="k">B类错误</div><div class="v">30</div></div>
+    <div class="card"><div class="k">C类错误</div><div class="v">1</div></div>
+  </div>
+
+  <h2>本轮题目主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">GPT5.5: 本轮题干问题集中在通信协议状态和底层硬件机制的前提设置不严谨，例如把同CPU软件写缓存场景误设为必然缓存不一致、把CAN特殊ID或格式错误描述成确定性状态迁移问题。另有少量题目与前序缓存一致性题高度同质，候选人会给出同一套缓存行对齐、invalidate、内存屏障和DMA完成中断处理思路。<br/><br/>Gemini3.1pro: 题干主要错误在于对MISRA C标准条款的引用不准确，混淆了未定义行为的具体分类条款。</div>
+<h2>本轮答案主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">GPT5.5: 答案主要问题是底层事实错误和规则编号错误，包括Cortex-M xPSR/NMI/EXC_RETURN含义、CAN CRC/DLC/bus-off阈值、Modbus功能码响应结构、二维数组退化类型、MISRA规则口径等。部分答案还使用过度泛化或虚构的工程依据，例如把接收滤波配置说成会造成CAN位同步失败，或把硬件暂态归因于符号扩展电路。<br/><br/>Gemini3.1pro: 答案的主要错误体现为底层协议和计算机基础原理的严重幻觉，如：混淆Modbus响应帧结构、弄错DMA写入侧的缓存一致性要求、曲解CAN控制场CRC校验范围、混淆二维数组的指针退化规律，以及错将HardFault的特殊返回码EXC_RETURN解释为函数返回指令报错。</div>
+<h2>后续重新出内容时应补充的规则</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">【重新出题】<br/>重新出题时必须先核对协议标准和芯片架构事实，尤其是CAN错误状态/CRC覆盖范围、Modbus功能码响应格式、Cortex-M向量表和异常返回编码；缓存一致性题必须明确写入方是DMA、另一核心还是同CPU软件，避免前提缺失。重复题需在同一轮内按知识点和作答路径去重，缓存一致性、CAN错误处理等高频点不得换场景重复出同一问法。<br/><br/>后续生成题目时，须强化对底层协议（Modbus/CAN）规范文件的强校验，避免编造字段；在涉及缓存一致性（DMA与Cache）和指针/数组等C语言核心机制时，务必核对体系结构手册和ISO C标准，禁止模型套用表面相近但原理相悖的模板。<br/><br/>【重出答案】<br/>重出答案时必须引用正确标准口径但避免写错条款编号；对MISRA题应区分C标准行为、MISRA essential type规则和项目合规建议。协议题答案要先给出规范事实，再给工程排查步骤；不得把请求帧字段写成响应帧字段，不得虚构硬件寄存器、认证结论或不符合MCU执行模型的异常机制。<br/><br/>后续生成题目时，须强化对底层协议（Modbus/CAN）规范文件的强校验，避免编造字段；在涉及缓存一致性（DMA与Cache）和指针/数组等C语言核心机制时，务必核对体系结构手册和ISO C标准，禁止模型套用表面相近但原理相悖的模板。</div>
+
+  <hr class="section-divider" />
+
+  <h2>模型进度与删除率</h2>
+  <table>
+    <thead>
+      <tr><th>Model</th><th>批次完成</th><th>完成率</th><th>删除率</th><th>主错误</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>GPT5.5</td><td style='text-align:center'>2/2</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:38.2%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">38.2%</span></td><td style='text-align:center'>B>A>C</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>2/2</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:21.8%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">21.8%</span></td><td style='text-align:center'>B>A</td></tr>
+    </tbody>
+  </table>
+
+  <h2>批次状态矩阵</h2>
+  <div class="legend">
+    <span>✓ done</span><span>… running</span><span>○ pending</span><span>! blocked</span><span>x failed</span>
+  </div>
+  <table>
+    <thead><tr><th>Model</th><th>R6-B001</th><th>R6-B002</th></tr></thead>
+    <tbody><tr><td>GPT5.5</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td></tr></tbody>
+  </table>
+
+  <h2>细分错误统计（A1/B1...）</h2>
+  <table>
+    <thead><tr><th>错误子类</th><th>数量</th></tr></thead>
+    <tbody><tr><td>A1</td><td style='text-align:center'>2</td></tr><tr><td>B1</td><td style='text-align:center'>29</td></tr><tr><td>B3</td><td style='text-align:center'>1</td></tr><tr><td>C2</td><td style='text-align:center'>1</td></tr></tbody>
+  </table>
+
+  <h3>细分错误示例（每类2条）</h3>
+  <table>
+    <thead><tr><th>错误子类</th><th>例1-题号</th><th>例1-题目</th><th>例1-理由</th><th>例2-题号</th><th>例2-题目</th><th>例2-理由</th></tr></thead>
+    <tbody><tr><td>A1</td><td>Q022</td><td>在汽车电子控制器的量产固件中，MISRA C明确禁止在表达式中直接修改同一变量的值（如x = x++ + 1），即使编译器能生成可执行代码。请简述该规则所防范的核心执行不确定性，并说明当该代码运行于带优先级抢占的RTOS环境下、且x为跨任务共享的传感器校准参数时，为何可能导致校准值失效而非简单数值错误。</td><td>Gemini3.1pro: 题干和答案对MISRA C的规则引用存在偏差。直接在表达式中多次修改同一变量（如x=x+++1）是C语言未定义行为，属于Rule 1.3或Rule 13.3范畴，而答案引用的Rule 13.4是禁止使用赋值操作符的结果。应修正规则编号描述。</td><td>Q043</td><td>工业网关设备中，网络协议栈将解析后的报文有效载荷存入一片启用缓存的SRAM区域，随后通知应用任务处理。若应用任务启动前未做额外操作，可能读到旧数据。请简述此时软件需执行的核心缓存管理动作及其必要性。</td><td>GPT5.5: 题干称「网络协议栈将解析后的报文有效载荷存入启用缓存的SRAM区域，随后通知应用任务处理」且应用读取前未额外操作就可能读旧数据，但未说明DMA、另一核心或非一致性硬件写入。若协议栈和应用任务在同一CPU缓存一致域内由软件写读，同一缓存中的数据不会因启用缓存而读旧。正确题干应限定为DMA/外设或跨核写入共享缓冲区后CPU读取。；Gemini3.1pro: 答案存在逻辑错误。题干描述网络协议栈将解析后的报文...存入SRAM，说明是CPU在执行写入。在单核架构下，CPU写完后数据在缓存中，应用任务直接读即可，不需要执行缓存行无效化操作。如果是MAC的DMA直接写入才需无效化，强行无效化可能导致丢失最新数据。</td></tr><tr><td>B1</td><td>Q004</td><td>在某款工业电机控制器的固件中，开发团队用宏定义实现了一个带参数检查的电流限幅功能，但上线后发现当传入表达式如'adc_value * 2 + 1'时，限幅结果异常偏高。请分析该现象背后的宏展开机制风险，并结合MISRA C Rule 20.3和Rule 20.5，说明为何仅给参数加括号仍不足够，还需避免宏体中多次求值。</td><td>GPT5.5: 答案原文称「MISRA C Rule 20.3禁止宏定义中出现未加括号的参数引用」且「Rule 20.5要求宏体中每个参数最多只展开一次」。该规则编号与MISRA C常见条款不符：宏参数加括号通常对应Rule 20.7，多次求值风险不能归为Rule 20.5，正确应说明宏参数括号与副作用控制的真实MISRA条款或改为不引用错误规则号。；Gemini3.1pro: 答案引用的MISRA C规则号错误。要求宏参数加括号的是Rule 20.7，而不是Rule 20.3；关于参数多次展开属于通用副作用规范，Rule 20.5是禁止使用#undef。应修正规则编号或改为一般性描述。</td><td>Q004</td><td>在某款工业电机控制器的固件中，开发团队用宏定义实现了一个带参数检查的电流限幅功能，但上线后发现当传入表达式如'adc_value * 2 + 1'时，限幅结果异常偏高。请分析该现象背后的宏展开机制风险，并结合MISRA C Rule 20.3和Rule 20.5，说明为何仅给参数加括号仍不足够，还需避免宏体中多次求值。</td><td>GPT5.5: 答案原文称「MISRA C Rule 20.3禁止宏定义中出现未加括号的参数引用」且「Rule 20.5要求宏体中每个参数最多只展开一次」。该规则编号与MISRA C常见条款不符：宏参数加括号通常对应Rule 20.7，多次求值风险不能归为Rule 20.5，正确应说明宏参数括号与副作用控制的真实MISRA条款或改为不引用错误规则号。；Gemini3.1pro: 答案引用的MISRA C规则号错误。要求宏参数加括号的是Rule 20.7，而不是Rule 20.3；关于参数多次展开属于通用副作用规范，Rule 20.5是禁止使用#undef。应修正规则编号或改为一般性描述。</td></tr><tr><td>B3</td><td>Q045</td><td>在工业现场使用PWM控制电磁阀通断时，发现阀门响应存在明显滞后，且关闭后仍有微弱保持力，请简述此时应优先核查PWM输出引脚配置中的哪一项关键功能，并说明其影响机制。</td><td>GPT5.5: 题干问「PWM输出引脚配置中的哪一项关键功能」导致阀门滞后和关闭后微弱保持力，答案却主要讨论输出比较寄存器同步更新/预装载。该内容属于定时器比较寄存器更新机制，不是输出引脚配置；微弱保持力更应优先核查输出模式、开漏/推挽、上下拉、默认电平和关断态泄放路径。答案与题干要求的引脚配置范围不一致。</td><td>nan</td><td>nan</td><td>nan</td></tr><tr><td>C2</td><td>Q031</td><td>在多核工业控制器中，一个实时任务通过DMA将ADC采样数据写入共享缓冲区，另一个高优先级控制任务从该缓冲区读取最新数据执行闭环运算。若实测发现控制任务偶尔读到DMA刚写入但尚未同步到其所在核心缓存的旧数据，你将如何综合考虑缓存行对齐、内存屏障插入时机与DMA完成中断处理顺序，设计一套轻量可靠的缓存一致性保障机制？请简述你的设计思路和关键权衡点。</td><td>Gemini3.1pro: 答案存在知识性错误。通过DMA将ADC采样数据写入共享缓冲区是外设直接将数据写入主存，CPU写入侧没有产生脏缓存，因此强制在DMA写入侧执行clean操作毫无意义。只需要在读取端执行Invalidate即可。</td><td>nan</td><td>nan</td><td>nan</td></tr></tbody>
+  </table>
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Round 6 Dashboard</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; margin: 24px; color: #1f2937; }
+    h1, h2, h3 { margin: 10px 0 12px; }
+    .cards { display: grid; grid-template-columns: repeat(3, minmax(140px, 220px)); gap: 12px; margin: 8px 0 18px; }
+    .card { border: 1px solid #e5e7eb; border-radius: 10px; padding: 12px; background: #fafafa; }
+    .card .k { font-size: 12px; color: #6b7280; }
+    .card .v { font-size: 24px; font-weight: 700; margin-top: 4px; }
+    table { border-collapse: collapse; width: 100%; margin: 8px 0 18px; }
+    th, td { border: 1px solid #e5e7eb; padding: 8px 10px; vertical-align: middle; }
+    th { background: #f9fafb; }
+    .legend span { margin-right: 12px; font-size: 13px; color: #374151; }
+    .mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; }
+    .ex { margin: 6px 0; color: #374151; }
+    .section-divider { border: 0; border-top: 2px solid #eef2f7; margin: 22px 0; }
+  </style>
+</head>
+<body>
+  <h1>Round 6 审核看板</h1>
+
+  <div class="cards">
+    <div class="card"><div class="k">A类错误</div><div class="v">2</div></div>
+    <div class="card"><div class="k">B类错误</div><div class="v">43</div></div>
+    <div class="card"><div class="k">C类错误</div><div class="v">0</div></div>
+  </div>
+
+  <h2>本轮题目主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">本轮题干问题数量相对少于答案问题，但集中在安全回路、机构自由度等题干前提不成立或工程场景不真实的问题。典型表现包括把按钮触点毫欧级电阻变化描述成会导致安全继电器误判，以及把夹具气动手指的运动方向和整体自由度关系写得几何逻辑不通。这类题干会让候选人在错误工程前提下作答，应优先回到真实设备结构、真实信号量级和标准安全功能边界重新设计题目。</div>
+<h2>本轮答案主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">本轮答案主要问题集中在知识性错误和工程口径混用，尤其是把标准编号、材料参数、阀类选型、机械配合、公差代号、工业通信状态码和EMC接地原则写错。高频问题包括将PEEK热膨胀系数写到不真实量级，将H7/g6等孔轴公差用于螺纹或橡胶密封件，将两位五通阀用于真空比例控制，将旋转轴承当作直线导轨支承，将高频屏蔽单点接地作为通用原则，以及把PLd/MTTFd、Class 10、CIP状态码等标准口径写错。整体说明回流内容仍存在明显专业幻觉和参数捏造。</div>
+<h2>后续重新出内容时应补充的规则</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">【重新出题】<br/>重新出题时必须先验证题干工程场景是否真实成立：安全回路要符合实际电压、电阻、响应时间和标准功能块逻辑；机械结构题要明确分析对象和运动副，不得把工件约束状态、执行机构自由度和夹紧动作混为一谈；涉及标准、通信状态码、材料参数和电气选型时，题干不得写入未经核验的固定数值或伪标准条款。<br/><br/>【重出答案】<br/>重出答案时必须建立专业事实自检清单：标准口径要区分 ISO 13849-1、ISO 13855、ISO 13857、IEC 60947、IEC 61800、EtherNet/IP CIP 等各自适用范围；材料参数必须按具体牌号和增强方向核验；气动/真空元件要区分二位五通换向阀、真空阀、比例阀和真空发生器；机械配合要区分孔轴公差、螺纹公差、橡胶密封压缩量和直线导轨支承；EMC接地要区分低频单点接地与高频360度屏蔽搭接。答案不得用听起来专业但不适用的术语堆砌替代真实工程判断。</div>
+
+  <hr class="section-divider" />
+
+  <h2>模型进度与删除率</h2>
+  <table>
+    <thead>
+      <tr><th>Model</th><th>批次完成</th><th>完成率</th><th>删除率</th><th>主错误</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>GPT5.5</td><td style='text-align:center'>1/1</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:81.8%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">81.8%</span></td><td style='text-align:center'>B</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>1/1</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:54.5%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">54.5%</span></td><td style='text-align:center'>B>A</td></tr>
+    </tbody>
+  </table>
+
+  <h2>批次状态矩阵</h2>
+  <div class="legend">
+    <span>✓ done</span><span>… running</span><span>○ pending</span><span>! blocked</span><span>x failed</span>
+  </div>
+  <table>
+    <thead><tr><th>Model</th><th>R6-B001</th></tr></thead>
+    <tbody><tr><td>GPT5.5</td><td style='text-align:center'>✓</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>✓</td></tr></tbody>
+  </table>
+
+  <h2>细分错误统计（A1/B1...）</h2>
+  <table>
+    <thead><tr><th>错误子类</th><th>数量</th></tr></thead>
+    <tbody><tr><td>A1</td><td style='text-align:center'>2</td></tr><tr><td>B1</td><td style='text-align:center'>41</td></tr><tr><td>B3</td><td style='text-align:center'>2</td></tr></tbody>
+  </table>
+
+  <h3>细分错误示例（每类2条）</h3>
+  <table>
+    <thead><tr><th>错误子类</th><th>例1-题号</th><th>例1-题目</th><th>例1-理由</th><th>例2-题号</th><th>例2-题目</th><th>例2-理由</th></tr></thead>
+    <tbody><tr><td>A1</td><td>Q008</td><td>在消费电子产线的精密点胶设备中，双手操作启动回路需满足ISO 13851标准要求：两个按钮必须在0.5秒内被同时按下且持续按压，才能使伺服电机进入运动使能状态；若任一按钮提前松开或延迟按下超过阈值，系统必须立即切断安全输出并保持锁定。现该设备已采用双通道安全继电器实现基本双手控制，但验收时发现：当其中一个按钮的常闭触点因粉尘污染导致接触电阻增大（未完全断开），而另一按钮正常动作时，安全继电器仍误判为有效双手操作。请简述你如何从输入信号检测机制、通道监控策略及故障响应逻辑三个层面，重构安全回路设计以确保在接触不良类渐进性故障下仍满足PLd等级要求。</td><td>GPT5.5: 答案提出用“毫欧级触点电阻在线测量”“每200毫秒1mA恒流源采样”作为满足ISO 13851/PLd的主要路径，并称存在“可靠断开隐含阻抗限值”，该口径不符合常见双手控制安全回路设计。正确应重点采用符合ISO 13851的双手控制安全功能块、双通道互监控、同步时间检测、交叉短路检测、反馈回路和手动复位锁定，而不是把接触电阻趋势算法作为核心合规依据。；Gemini3.1pro: 题干与答案存在严重的脱离实际与知识性错误。题干称按钮触点电阻增大至500毫欧导致误判，实际上24V工业安全回路对几百毫欧的微小接触电阻变化完全不敏感（电压降仅毫伏级），根本不会导致安全继电器状态误判。答案提出的“内置毫欧级触点电阻在线测量的安全控制器”在标准工业界并不存在。</td><td>Q028</td><td>在消费电子组装产线中，一个用于手机壳体定位的夹具由底座、两个气动手指和一个旋转气缸组成：底座固定在机架上；两个气动手指分别沿垂直方向夹紧壳体左右两侧，运动受气缸活塞杆约束；旋转气缸驱动壳体绕竖直轴转动。请判断该夹具整体机构的自由度，并简述判断依据。</td><td>GPT5.5: 答案判断夹具整体机构自由度为1，并把两个气动手指的直线运动“最终耦合”为仅保留旋转自由度，忽略了两个气动手指本身各自受活塞杆驱动的移动自由度。若按机构运动副分析，两个夹紧直线运动与旋转气缸转动均是机构中的独立驱动/运动自由度；若按被夹持工件约束状态分析，也应明确分析对象，否则不能直接说整体机构自由度为1。；Gemini3.1pro: 题干描述存在几何矛盾（“沿垂直方向夹紧壳体左右两侧”逻辑不通）；且答案第一层判断“机构自由度为1”存在知识错误，两个气动手指的开合动作本身占据1个自由度，旋转气缸占据1个自由度，整个执行机构的自由度应为2。</td></tr><tr><td>B1</td><td>Q001</td><td>在一条高速精密组装产线中，设备需同步控制十余台伺服电机完成微米级定位，并实时采集多路高帧率视觉检测数据。若现场已部署支持实时以太网的PLC与机器人控制器，但新增的第三方贴装模组仅提供传统现场总线接口，且要求运动指令下发延迟稳定低于200微秒、数据更新抖动小于50纳秒——你将如何设计通信架构实现该混合接口场景下的确定性协同？请说明所选总线类型及其关键机制如何保障上述时序指标。</td><td>GPT5.5: 答案把“EtherCAT耦合器桥接第三方Modbus RTU或CANopen设备”描述为可保障“200微秒指令延迟与50纳秒级抖动”，并称“无需额外时间同步配置”，该结论不严谨。传统Modbus RTU等现场总线通常无法满足纳秒级抖动和200微秒稳定运动指令延迟；正确应说明硬实时运动控制需放在实时以太网/本地运动控制闭环内，传统总线设备只能做非关键数据或需更换/增加支持确定性同步的接口模块。</td><td>Q002</td><td>某出口至欧盟的智能终端组装专机在第三方CE认证机构审核时，被指出安全控制系统未满足PLd性能等级要求。该系统包含急停、光幕和双手按钮三类安全功能，其中光幕用于人员进入危险区防护。请简述你将如何结合ISO 13849-1的架构类别、平均危险失效间隔时间及诊断覆盖率三个核心参数，系统性判定当前光幕回路是否达到PLd，并说明需实测或查证的两项关键现场数据。</td><td>GPT5.5: 答案称可“直接采用光幕厂商提供的符合EN ISO 13855的PL声明文件”，但EN ISO 13855主要用于防护装置安全距离/人员接近速度计算，不是光幕PL等级声明的核心标准；光幕及安全回路PLd应结合ISO 13849-1、IEC 61496等资料核验架构类别、MTTFd、DC、CCF及现场接线。答案还把现场粉尘对MTTFd的影响表述得过度绝对。</td></tr><tr><td>B3</td><td>Q003</td><td>在机器人示教抓取与放置点位时，为什么通常需要分别设定接近点、工作点和回退点？请简述原因。</td><td>Gemini3.1pro: 第二层内容跑题，题目问的是“为什么要设定接近点、工作点和回退点（原因）”，第二层回答的却是“三种示教方法（手动三点、视觉引导、路径约束）及其优劣势”，答非所问。正确应该围绕这些点位的设定场景进行延伸。</td><td>Q026</td><td>伺服电机与减速机配合使用时，若发现设备启停阶段出现轻微抖动，且已排除机械刚性和编码器干扰因素，从机电接口匹配角度，你首先会检查哪两个关键参数的匹配关系？请简单说说原因。</td><td>GPT5.5: 题目限定“已排除机械刚性和编码器干扰”，要求从机电接口匹配角度判断启停抖动，答案首先检查“电机额定输出扭矩与减速机额定输入扭矩、最高转速与允许输入转速”，偏离抖动诊断重点。正确更应优先检查负载惯量折算与电机惯量比、减速机回程间隙/扭转刚度、联轴器同轴度及伺服增益与减速比匹配等与启停振荡直接相关的参数。；Gemini3.1pro: 第一层存在知识性错误。设备启停阶段出现轻微抖动（且已排除刚性和干扰），最核心的机电匹配原因是“负载惯量与电机转子惯量比”不匹配。第一层回答的却是“扭矩匹配”和“转速匹配”，这两个参数不匹配会导致过载报错或超速，并不会直接表现为启停微抖动。</td></tr></tbody>
+  </table>
+</body>
+</html>
