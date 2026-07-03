@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Round 6 Dashboard</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; margin: 24px; color: #1f2937; }
+    h1, h2, h3 { margin: 10px 0 12px; }
+    .cards { display: grid; grid-template-columns: repeat(3, minmax(140px, 220px)); gap: 12px; margin: 8px 0 18px; }
+    .card { border: 1px solid #e5e7eb; border-radius: 10px; padding: 12px; background: #fafafa; }
+    .card .k { font-size: 12px; color: #6b7280; }
+    .card .v { font-size: 24px; font-weight: 700; margin-top: 4px; }
+    table { border-collapse: collapse; width: 100%; margin: 8px 0 18px; }
+    th, td { border: 1px solid #e5e7eb; padding: 8px 10px; vertical-align: middle; }
+    th { background: #f9fafb; }
+    .legend span { margin-right: 12px; font-size: 13px; color: #374151; }
+    .mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; }
+    .ex { margin: 6px 0; color: #374151; }
+    .section-divider { border: 0; border-top: 2px solid #eef2f7; margin: 22px 0; }
+  </style>
+</head>
+<body>
+  <h1>Round 6 审核看板</h1>
+
+  <div class="cards">
+    <div class="card"><div class="k">A类错误</div><div class="v">3</div></div>
+    <div class="card"><div class="k">B类错误</div><div class="v">37</div></div>
+    <div class="card"><div class="k">C类错误</div><div class="v">0</div></div>
+  </div>
+
+  <h2>本轮题目主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">Round 6 question issues are limited but still present. A small set of prompts has inaccurate or over-simplified technical assumptions, which can mislead candidate reasoning. Most question stems are now role-relevant and scenario-realistic, so question quality has improved compared with earlier rounds.</div>
+<h2>本轮答案主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">The dominant defect is B1 accuracy/logic errors in reference answers. Typical patterns include treating conditional heuristics as absolute facts, over-simplifying low-level mechanisms, and missing operational boundaries for embedded diagnostics. This means answer reliability remains the primary risk for this round.</div>
+<h2>后续重新出内容时应补充的规则</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">【重新出题】<br/>For rewrite_question items: constrain scenario boundaries, avoid hidden assumptions, and phrase prompts to require reasoning under explicit conditions rather than fixed numeric conclusions.<br/><br/>【重出答案】<br/>For rewrite_answer items: enforce claim-evidence structure, state prerequisites for protocol/register/concurrency claims, include alternatives with trade-offs in layer 2, provide executable troubleshooting sequence in layer 3, and run an oral-answer readability self-check before acceptance.</div>
+
+  <hr class="section-divider" />
+
+  <h2>模型进度与删除率</h2>
+  <table>
+    <thead>
+      <tr><th>Model</th><th>批次完成</th><th>完成率</th><th>删除率</th><th>主错误</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>GPT5.5</td><td style='text-align:center'>1/1</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:60.0%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">60.0%</span></td><td style='text-align:center'>B>A</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>1/1</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:66.7%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">66.7%</span></td><td style='text-align:center'>B>A</td></tr>
+    </tbody>
+  </table>
+
+  <h2>批次状态矩阵</h2>
+  <div class="legend">
+    <span>✓ done</span><span>… running</span><span>○ pending</span><span>! blocked</span><span>x failed</span>
+  </div>
+  <table>
+    <thead><tr><th>Model</th><th>R6-B001</th></tr></thead>
+    <tbody><tr><td>GPT5.5</td><td style='text-align:center'>✓</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>✓</td></tr></tbody>
+  </table>
+
+  <h2>细分错误统计（A1/B1...）</h2>
+  <table>
+    <thead><tr><th>错误子类</th><th>数量</th></tr></thead>
+    <tbody><tr><td>A1</td><td style='text-align:center'>3</td></tr><tr><td>B1</td><td style='text-align:center'>34</td></tr><tr><td>B2</td><td style='text-align:center'>3</td></tr></tbody>
+  </table>
+
+  <h3>细分错误示例（每类2条）</h3>
+  <table>
+    <thead><tr><th>错误子类</th><th>例1-题号</th><th>例1-题目</th><th>例1-理由</th><th>例2-题号</th><th>例2-题目</th><th>例2-理由</th></tr></thead>
+    <tbody><tr><td>A1</td><td>Q007</td><td>请简述CAN通信中，节点完成初始化后进入正常工作状态前，必须经历的握手流程是什么？</td><td>GPT5.5: 题干预设CAN节点初始化后进入正常工作前必须经历“握手流程”，这一前提不严谨。经典CAN没有应用层握手流程；节点是否可通信主要由控制器初始化、总线同步和错误状态管理决定，不能称为必须的握手流程。；Gemini3.1pro: 答案第一层存在知识性错误。根据CAN标准，节点从Bus Off状态恢复或完成初始化进入错误主动态，需要检测到128次11个连续的隐性位（即总共1408个隐性位），而不是答案所说的“至少128个隐性位”。</td><td>Q014</td><td>当充电桩在参数配置阶段收到BMS返回的‘参数不接受’响应时，软件应如何判断是电压电流限值超限还是通信数据校验失败？请简单说说判断依据。</td><td>Gemini3.1pro: 题干和答案均存在常识错误。在GB/T 27930充电协议的参数配置阶段，充电桩和BMS分别广播自身的能力和参数（CML和BCP），协议中根本不存在名为“参数不接受”的独立响应报文，也不存在题干描述的直接返回限值超限等错误码的应答机制。若参数不匹配，会导致后续无法互发就绪（BRO/CRO），最终超时发错误报文。</td></tr><tr><td>B1</td><td>Q001</td><td>BCU在BMS系统中是否参与SOC估算？如果参与，请说明其作用；如果不参与，请说明该功能通常由哪个单元实现及其原因。</td><td>GPT5.5: 参考答案将“BCU不参与SOC估算、通常由BMU实现”作为绝对结论不准确。实际主从BMS中BMU通常负责电芯采样，SOC估算/融合常由BCU或主控BMS结合电流、温度和BMU采样数据完成，不能简单说BCU不参与。；Gemini3.1pro: 参考答案第一层中描述“BCU不参与SOC估算，通常由BMU实现”存在常识错误。在储能BMS中，SOC估算需要电池簇的总电流数据，而总电流由主控级（如BCU或更高层）采集，BMU（从控级）仅采集单体电压和温度，无法独立进行SOC估算。</td><td>Q001</td><td>BCU在BMS系统中是否参与SOC估算？如果参与，请说明其作用；如果不参与，请说明该功能通常由哪个单元实现及其原因。</td><td>GPT5.5: 参考答案将“BCU不参与SOC估算、通常由BMU实现”作为绝对结论不准确。实际主从BMS中BMU通常负责电芯采样，SOC估算/融合常由BCU或主控BMS结合电流、温度和BMU采样数据完成，不能简单说BCU不参与。；Gemini3.1pro: 参考答案第一层中描述“BCU不参与SOC估算，通常由BMU实现”存在常识错误。在储能BMS中，SOC估算需要电池簇的总电流数据，而总电流由主控级（如BCU或更高层）采集，BMU（从控级）仅采集单体电压和温度，无法独立进行SOC估算。</td></tr><tr><td>B2</td><td>Q009</td><td>请简述充电参数配置阶段中，充电桩向BMS请求电池充电需求参数时，通常需要获取的三个关键参数。</td><td>Gemini3.1pro: 答案第二层偏离行业常识。充电桩与BMS之间的通信严格遵守GB/T 27930标准，完全基于CAN通信。答案中提及“采用OCPP协议扩展的JSON-RPC远程调用”和“通过Modbus RTU或TCP方式”是充电桩与云端后台或内部电表的通信协议，绝不可能用于与汽车BMS的底层参数协商。</td><td>Q019</td><td>光伏逆变器主控芯片的故障保护寄存器中，包含过压、过流、过温、通信超时等多个独立标志位，每个标志位占用1比特且位置固定。当软件需实时轮询该寄存器并分别响应各类故障时，采用位域结构体访问各标志位，相比每次读取寄存器后用位掩码逐一判断，对保障保护动作的及时性和代码可读性有何影响？请简述。</td><td>GPT5.5: 参考答案把位域结构体作为当前主流MCU平台下更优选择不稳妥。硬件寄存器位域布局与访问方式受编译器实现影响，可能产生不可控读改写；功能安全场景通常更推荐一次性读取volatile快照后用掩码解析。；Gemini3.1pro: 答案存在事实错误。在C语言中，通过位掩码（如 val = reg; if(val & MASK)）读取寄存器到局部变量判断，能确保物理寄存器只被读取一次；而使用位域结构体去依次判断不同的字段，如果编译器不优化，反而极易导致生成多次读取同一个硬件寄存器的指令，降低实时性且可能发生状态竞态。</td></tr></tbody>
+  </table>
+</body>
+</html>

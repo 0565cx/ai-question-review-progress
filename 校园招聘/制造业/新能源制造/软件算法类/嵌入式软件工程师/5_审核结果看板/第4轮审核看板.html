@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Round 4 Dashboard</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; margin: 24px; color: #1f2937; }
+    h1, h2, h3 { margin: 10px 0 12px; }
+    .cards { display: grid; grid-template-columns: repeat(3, minmax(140px, 220px)); gap: 12px; margin: 8px 0 18px; }
+    .card { border: 1px solid #e5e7eb; border-radius: 10px; padding: 12px; background: #fafafa; }
+    .card .k { font-size: 12px; color: #6b7280; }
+    .card .v { font-size: 24px; font-weight: 700; margin-top: 4px; }
+    table { border-collapse: collapse; width: 100%; margin: 8px 0 18px; }
+    th, td { border: 1px solid #e5e7eb; padding: 8px 10px; vertical-align: middle; }
+    th { background: #f9fafb; }
+    .legend span { margin-right: 12px; font-size: 13px; color: #374151; }
+    .mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; }
+    .ex { margin: 6px 0; color: #374151; }
+    .section-divider { border: 0; border-top: 2px solid #eef2f7; margin: 22px 0; }
+  </style>
+</head>
+<body>
+  <h1>Round 4 审核看板</h1>
+
+  <div class="cards">
+    <div class="card"><div class="k">A类错误</div><div class="v">9</div></div>
+    <div class="card"><div class="k">B类错误</div><div class="v">56</div></div>
+    <div class="card"><div class="k">C类错误</div><div class="v">0</div></div>
+  </div>
+
+  <h2>本轮题目主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">本轮题目侧问题主要集中在 A4（口语作答性不足）与少量 A1（知识或边界不严谨）。高频表现是题干要求候选人写公式、字节映射、结构图或代码级步骤，超出口头面试问答场景；另有少量题目在 BAU/BMU/BCU 层级职责描述上混淆，导致考察目标偏移。总体看，场景工程真实性尚可，但提问方式需要进一步口语化和边界化。</div>
+<h2>本轮答案主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">本轮答案问题以 B5 和 B1 为主。B5 主要表现为答案夹杂过多代码块、寄存器细节、英文缩写堆叠或协议字节流，明显不适合口语直接作答；B1 主要表现为把场景假设写成绝对结论，或将故障分级、参数口径写死且缺少适用条件。说明回流答案在“可说性”和“条件边界”上仍不稳定，需要增强岗位口径一致性与可评分性。</div>
+<h2>后续重新出内容时应补充的规则</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">【重新出题】<br/>重新出题时增加硬约束：禁止要求写公式、推导、绘图或代码实现；每题只考一个核心能力点；题干必须明确系统边界与角色边界（如 BMU/BCU 职责）；场景需来自新能源制造嵌入式软件工程师的高频工作流，避免协议细枝末节堆砌。<br/><br/>【重出答案】<br/>重出答案时按三层模板输出，并优先给出口头可表达版本；禁止长代码段、寄存器表、十六进制报文大段粘贴；所有结论必须标注前提条件与适用边界，避免绝对化表述；第三层异常/复杂问题需贴近 BMS、CAN、充电协同等高频场景，并给出可落地评分点。</div>
+
+  <hr class="section-divider" />
+
+  <h2>模型进度与删除率</h2>
+  <table>
+    <thead>
+      <tr><th>Model</th><th>批次完成</th><th>完成率</th><th>删除率</th><th>主错误</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>GPT5.5</td><td style='text-align:center'>5/5</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:14.9%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">14.9%</span></td><td style='text-align:center'>B>A</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>5/5</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:25.5%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">25.5%</span></td><td style='text-align:center'>B>A</td></tr>
+    </tbody>
+  </table>
+
+  <h2>批次状态矩阵</h2>
+  <div class="legend">
+    <span>✓ done</span><span>… running</span><span>○ pending</span><span>! blocked</span><span>x failed</span>
+  </div>
+  <table>
+    <thead><tr><th>Model</th><th>R4-B001</th><th>R4-B002</th><th>R4-B003</th><th>R4-B004</th><th>R4-B005</th></tr></thead>
+    <tbody><tr><td>GPT5.5</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td></tr></tbody>
+  </table>
+
+  <h2>细分错误统计（A1/B1...）</h2>
+  <table>
+    <thead><tr><th>错误子类</th><th>数量</th></tr></thead>
+    <tbody><tr><td>A1</td><td style='text-align:center'>2</td></tr><tr><td>A4</td><td style='text-align:center'>7</td></tr><tr><td>B1</td><td style='text-align:center'>22</td></tr><tr><td>B5</td><td style='text-align:center'>34</td></tr></tbody>
+  </table>
+
+  <h3>细分错误示例（每类2条）</h3>
+  <table>
+    <thead><tr><th>错误子类</th><th>例1-题号</th><th>例1-题目</th><th>例1-理由</th><th>例2-题号</th><th>例2-题目</th><th>例2-理由</th></tr></thead>
+    <tbody><tr><td>A1</td><td>Q095</td><td>在大型储能电站的BMS系统中，BAU需同时接入数十节电芯的电压/温度采样，并通过CAN总线上报至BCU。当现场出现BAU上报数据周期性延迟、BCU侧接收帧丢失率升高，且部分BAU在高温环境下复位频繁时，请简述你如何从BAU层级关系出发，分析该问题可能涉及的硬件耦合、通信负载与层级协同三方面根本原因，并说明验证思路。</td><td>GPT5.5: 题干把BAU描述为“同时接入数十节电芯的电压/温度采样”的底层采样单元，并要求分析BAU与BCU上报关系，混淆了BAU/BMU层级边界；电芯级采样通常由BMU承担，BAU不宜被定义为直接采集数十节电芯的单元。；Gemini3.1pro: 答案包含大量代码块或英文缩写，不适合口语直接作答，正确应该是精简为口语化表述。</td><td>Q153</td><td>在储能系统BMS与PCS通信中，CAN总线上同时存在IEC61850-10报文和自定义的电池簇状态帧，二者均采用0x55 0xAA作为帧头但帧尾标识不同：前者用0xCC 0xDD，后者用0xEE 0xFF。现场出现高频误解析导致SOC跳变。请说明你如何设计一种抗干扰的帧边界识别机制，需综合考虑CAN消息ID过滤、字节流连续性检测、帧头后特征字段验证及帧尾校验通过率阈值，并解释该机制为何能兼顾解析实时性与保护逻辑的准确性。</td><td>GPT5.5: 题干称CAN总线上同时存在IEC61850-10报文并采用0x55 0xAA帧头，协议场景错误；IEC 61850相关报文通常运行在以太网/MMS/GOOSE等体系，不应作为CAN字节流帧头帧尾协议来设计解析机制。；Gemini3.1pro: 答案包含大量代码块或英文缩写，不适合口语直接作答，正确应该是精简为口语化表述。</td></tr><tr><td>A4</td><td>Q070</td><td>充电桩控制器与车载BMS通过CAN总线交互充电参数，协议约定16位无符号电流值以大端序存放。当控制器使用GD32芯片（小端序）接收该字段，并用联合体方式将接收到的两个字节映射到uint16_t变量时，若未做字节序处理，实际解析出的电流值会怎样？请简述其数值偏差特征及根本原因。</td><td>Gemini3.1pro: 题干包含不适合口语表达的要求，正确应该将其改为适合口语作答的描述。</td><td>Q073</td><td>在新能源设备控制器开发中，CAN通信报文的信号映射常通过DBC文件定义。当DBC中某电流信号被定义为无符号16位整型、缩放因子0.01、偏移量-500时，接收端解析该信号的核心依据是什么？请简述这个依据如何指导实际代码中的数值转换。</td><td>Gemini3.1pro: 题干包含不适合口语表达的要求，正确应该将其改为适合口语作答的描述。</td></tr><tr><td>B1</td><td>Q001</td><td>在BMS软件中，一级故障一般对应什么类型的保护动作？</td><td>GPT5.5: 参考答案将“一级故障”描述为“告警提示、记录故障信息、限制功率输出或降额运行，而非触发高压继电器断开”，与同批故障分级口径中一级/严重故障应对应更强保护动作的表述不一致，容易误导故障分级与保护动作映射。</td><td>Q004</td><td>请简单说说BMS中三级故障最典型的触发条件是什么？</td><td>GPT5.5: 参考答案把“三级故障”定义为“最高等级的保护性故障”，但同批次故障分级内容对一级/二级/三级严重程度存在相反表述，导致故障等级语义不自洽，无法作为稳定答案使用。</td></tr><tr><td>B5</td><td>Q017</td><td>BMU模块在实际硬件部署中一般直接连接电芯采样线束和均衡电路，请简单说说它为何不承担高压上下电控制或绝缘检测这类功能？</td><td>Gemini3.1pro: 答案包含大量代码块或英文缩写，不适合口语直接作答，正确应该是精简为口语化表述。</td><td>Q019</td><td>BMU采集的电压、温度等原始数据需经校验后上传至上级模块，请简单说说BMU在数据链路中承担哪些关键校验职责，以及这些校验为何不宜由BCU统一完成？</td><td>Gemini3.1pro: 答案包含大量代码块或英文缩写，不适合口语直接作答，正确应该是精简为口语化表述。</td></tr></tbody>
+  </table>
+</body>
+</html>

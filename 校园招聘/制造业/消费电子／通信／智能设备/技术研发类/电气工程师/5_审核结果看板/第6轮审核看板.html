@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Round 6 Dashboard</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; margin: 24px; color: #1f2937; }
+    h1, h2, h3 { margin: 10px 0 12px; }
+    .cards { display: grid; grid-template-columns: repeat(3, minmax(140px, 220px)); gap: 12px; margin: 8px 0 18px; }
+    .card { border: 1px solid #e5e7eb; border-radius: 10px; padding: 12px; background: #fafafa; }
+    .card .k { font-size: 12px; color: #6b7280; }
+    .card .v { font-size: 24px; font-weight: 700; margin-top: 4px; }
+    table { border-collapse: collapse; width: 100%; margin: 8px 0 18px; }
+    th, td { border: 1px solid #e5e7eb; padding: 8px 10px; vertical-align: middle; }
+    th { background: #f9fafb; }
+    .legend span { margin-right: 12px; font-size: 13px; color: #374151; }
+    .mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; }
+    .ex { margin: 6px 0; color: #374151; }
+    .section-divider { border: 0; border-top: 2px solid #eef2f7; margin: 22px 0; }
+  </style>
+</head>
+<body>
+  <h1>Round 6 审核看板</h1>
+
+  <div class="cards">
+    <div class="card"><div class="k">A类错误</div><div class="v">1</div></div>
+    <div class="card"><div class="k">B类错误</div><div class="v">34</div></div>
+    <div class="card"><div class="k">C类错误</div><div class="v">0</div></div>
+  </div>
+
+  <h2>本轮题目主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">本轮题干问题整体占比低，仅发现1道题存在题干层面的知识性或逻辑性风险（A类）。其余题目在岗位场景、知识点匹配和口语作答性方面总体可用。高频风险并不在题干设计，而主要体现在答案质量不足导致整题被删除。</div>
+<h2>本轮答案主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">本轮删除的主要原因集中在B1（答案知识性错误或逻辑不严谨）。高频表现包括：将条件性结论表述为绝对结论、关键前提缺失导致因果链断裂、第三层异常/复杂情境处理给出不完整或不可执行方案、参数与工程约束未自洽。该类问题会直接影响可评分性与岗位专业可信度。</div>
+<h2>后续重新出内容时应补充的规则</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">【重新出题】<br/>仅对A/C类题执行重写。重写时强制加入岗位真实约束（设备边界、测试条件、可观测信号），避免抽象化或泛化题干；禁止引导候选人口述公式推导/绘图等非口语任务；每题需明确单一核心考点并与技能/知识点一一对应。<br/><br/>【重出答案】<br/>对B类题保留题干重出答案。第一层必须给出可验证定义+适用边界；第二层必须比较至少两种工程方案并给出取舍依据；第三层必须提供1个高频异常和1个复杂情境的可执行排查路径（现象→定位→修复→验证）；禁止把假设值当绝对标准，禁止与岗位口径不一致的泛化表述。</div>
+
+  <hr class="section-divider" />
+
+  <h2>模型进度与删除率</h2>
+  <table>
+    <thead>
+      <tr><th>Model</th><th>批次完成</th><th>完成率</th><th>删除率</th><th>主错误</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>GPT5.5</td><td style='text-align:center'>1/1</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:72.0%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">72.0%</span></td><td style='text-align:center'>B</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>1/1</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:68.0%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">68.0%</span></td><td style='text-align:center'>B>A</td></tr>
+    </tbody>
+  </table>
+
+  <h2>批次状态矩阵</h2>
+  <div class="legend">
+    <span>✓ done</span><span>… running</span><span>○ pending</span><span>! blocked</span><span>x failed</span>
+  </div>
+  <table>
+    <thead><tr><th>Model</th><th>R6-B001</th></tr></thead>
+    <tbody><tr><td>GPT5.5</td><td style='text-align:center'>✓</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>✓</td></tr></tbody>
+  </table>
+
+  <h2>细分错误统计（A1/B1...）</h2>
+  <table>
+    <thead><tr><th>错误子类</th><th>数量</th></tr></thead>
+    <tbody><tr><td>A1</td><td style='text-align:center'>1</td></tr><tr><td>B1</td><td style='text-align:center'>34</td></tr></tbody>
+  </table>
+
+  <h3>细分错误示例（每类2条）</h3>
+  <table>
+    <thead><tr><th>错误子类</th><th>例1-题号</th><th>例1-题目</th><th>例1-理由</th><th>例2-题号</th><th>例2-题目</th><th>例2-理由</th></tr></thead>
+    <tbody><tr><td>A1</td><td>Q006</td><td>在Wi-Fi模组的射频前端供电管理中，LDO使能信号通过NPN三极管反相驱动。调试时发现LDO无法开启，实测三极管基极-发射极电压为0.65V、集电极-发射极电压为3.3V（电源电压），且集电极接LDO的EN引脚。请结合三极管各工作区的典型压降特征，判断其当前工作区，并说明这一状态对后级电路功能产生的直接影响及根本成因。</td><td>GPT5.5: 题中VBE=0.65V已接近正向导通，而VCE=3.3V说明三极管未饱和、可能处于放大区/驱动不足或集电极开路状态。参考答案判为截止，并称“未形成有效导通路径”，与VBE测量值矛盾。；Gemini3.1pro: 题干逻辑不严谨，通常LDO的EN引脚为高电平有效，当Vce=3.3V时EN为高电平，LDO应该开启，但题干却说“LDO无法开启”；若LDO为低电平有效，则不符合常规设计且未作说明。</td><td>nan</td><td>nan</td><td>nan</td></tr><tr><td>B1</td><td>Q002</td><td>某蓝牙耳机充电仓的过流保护电路使用PNP三极管作为开关控制充电通路。测试发现：输入正常但充电MOSFET始终关断，测量得发射极电压为5.0V、基极电压为4.3V、集电极电压为0.1V。请依据三极管放大、饱和、截止区的电压关系判据，分析该三极管当前工作区，并推断导致该异常状态的关键设计或器件问题。</td><td>GPT5.5: 参考答案将“发射极电压5.0V、基极4.3V、集电极0.1V”的PNP三极管判为饱和，并称“集电结正偏（Vc-Vb=-4.2V）”。PNP饱和需发射结和集电结均正偏，实际Vc远低于Vb时集电结为反偏，更符合放大区/非饱和状态，工作区判断错误。；Gemini3.1pro: 第一层知识性错误，PNP三极管Vc=0.1V，Vb=4.3V时，Vc<Vb，集电结为反偏，三极管处于放大区，而答案错误地认为是集电结正偏且处于饱和区。正确的应该是：该三极管处于放大区。</td><td>Q002</td><td>某蓝牙耳机充电仓的过流保护电路使用PNP三极管作为开关控制充电通路。测试发现：输入正常但充电MOSFET始终关断，测量得发射极电压为5.0V、基极电压为4.3V、集电极电压为0.1V。请依据三极管放大、饱和、截止区的电压关系判据，分析该三极管当前工作区，并推断导致该异常状态的关键设计或器件问题。</td><td>GPT5.5: 参考答案将“发射极电压5.0V、基极4.3V、集电极0.1V”的PNP三极管判为饱和，并称“集电结正偏（Vc-Vb=-4.2V）”。PNP饱和需发射结和集电结均正偏，实际Vc远低于Vb时集电结为反偏，更符合放大区/非饱和状态，工作区判断错误。；Gemini3.1pro: 第一层知识性错误，PNP三极管Vc=0.1V，Vb=4.3V时，Vc<Vb，集电结为反偏，三极管处于放大区，而答案错误地认为是集电结正偏且处于饱和区。正确的应该是：该三极管处于放大区。</td></tr></tbody>
+  </table>
+</body>
+</html>

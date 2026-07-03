@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Round 5 Dashboard</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; margin: 24px; color: #1f2937; }
+    h1, h2, h3 { margin: 10px 0 12px; }
+    .cards { display: grid; grid-template-columns: repeat(3, minmax(140px, 220px)); gap: 12px; margin: 8px 0 18px; }
+    .card { border: 1px solid #e5e7eb; border-radius: 10px; padding: 12px; background: #fafafa; }
+    .card .k { font-size: 12px; color: #6b7280; }
+    .card .v { font-size: 24px; font-weight: 700; margin-top: 4px; }
+    table { border-collapse: collapse; width: 100%; margin: 8px 0 18px; }
+    th, td { border: 1px solid #e5e7eb; padding: 8px 10px; vertical-align: middle; }
+    th { background: #f9fafb; }
+    .legend span { margin-right: 12px; font-size: 13px; color: #374151; }
+    .mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; }
+    .ex { margin: 6px 0; color: #374151; }
+    .section-divider { border: 0; border-top: 2px solid #eef2f7; margin: 22px 0; }
+  </style>
+</head>
+<body>
+  <h1>Round 5 审核看板</h1>
+
+  <div class="cards">
+    <div class="card"><div class="k">A类错误</div><div class="v">5</div></div>
+    <div class="card"><div class="k">B类错误</div><div class="v">37</div></div>
+    <div class="card"><div class="k">C类错误</div><div class="v">0</div></div>
+  </div>
+
+  <h2>本轮题目主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">本轮题目问题主要集中在两类：一是题干存在事实设定不严谨或系统架构描述错误（A1），例如把模块职责、层级关系或协议语义写反，导致候选人会在错误前提下作答；二是少量题目出现了不适合口语面试的“计算/解析字节流/公式化推导”式要求（A4），与口语作答场景不匹配。整体看，题干级错误数量不高，但一旦出现会直接破坏考察有效性，必须优先清理。</div>
+<h2>本轮答案主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">答案侧是本轮最主要风险点，B类错误远高于A/C类，且以B1为主：不少答案把工程经验结论写成绝对规则，或把特定项目约束当成通用标准，存在知识性与逻辑性偏差；另有少量B3表现为题干问A、答案答B，出现口径漂移。这类问题会显著影响可评分性与岗位专业性，建议下游重出时优先加强“事实依据+边界条件+适用场景”三要素。</div>
+<h2>后续重新出内容时应补充的规则</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">【重新出题】<br/>重新出题需增加约束：1) 禁止要求候选人口头完成十六进制逐位解析、公式推导、绘图等非口语任务；2) 题干中的系统角色、模块边界、协议名词必须先做事实自检，避免架构关系写反；3) 题干必须与知识点一一对应，避免同题混入多个不相关考察目标；4) 场景优先选择该岗位高频任务（联调、故障诊断、策略权衡），避免偏门极端案例。<br/><br/>【重出答案】<br/>重出答案需执行四项自检：1) 每层答案都要可追溯到岗位通行实践或明确标准，禁止“拍脑袋阈值”；2) 回答必须严格贴合题干问法，避免扩写到无关子系统；3) 对结论增加边界条件与适用前提，避免把条件结论绝对化；4) 第三层异常与复杂问题必须来自岗位真实高频问题，并给出可执行排查路径，不写空泛建议。</div>
+
+  <hr class="section-divider" />
+
+  <h2>模型进度与删除率</h2>
+  <table>
+    <thead>
+      <tr><th>Model</th><th>批次完成</th><th>完成率</th><th>删除率</th><th>主错误</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>GPT5.5</td><td style='text-align:center'>2/2</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:43.6%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">43.6%</span></td><td style='text-align:center'>B>A</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>2/2</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:32.7%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">32.7%</span></td><td style='text-align:center'>B>A</td></tr>
+    </tbody>
+  </table>
+
+  <h2>批次状态矩阵</h2>
+  <div class="legend">
+    <span>✓ done</span><span>… running</span><span>○ pending</span><span>! blocked</span><span>x failed</span>
+  </div>
+  <table>
+    <thead><tr><th>Model</th><th>R5-B001</th><th>R5-B002</th></tr></thead>
+    <tbody><tr><td>GPT5.5</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td></tr></tbody>
+  </table>
+
+  <h2>细分错误统计（A1/B1...）</h2>
+  <table>
+    <thead><tr><th>错误子类</th><th>数量</th></tr></thead>
+    <tbody><tr><td>A1</td><td style='text-align:center'>3</td></tr><tr><td>A4</td><td style='text-align:center'>2</td></tr><tr><td>B1</td><td style='text-align:center'>36</td></tr><tr><td>B3</td><td style='text-align:center'>1</td></tr></tbody>
+  </table>
+
+  <h3>细分错误示例（每类2条）</h3>
+  <table>
+    <thead><tr><th>错误子类</th><th>例1-题号</th><th>例1-题目</th><th>例1-理由</th><th>例2-题号</th><th>例2-题目</th><th>例2-理由</th></tr></thead>
+    <tbody><tr><td>A1</td><td>Q028</td><td>在直流充电桩与电池管理系统通过CAN FD通信时，协议定义了一个包含多个32位浮点数的状态数据帧，要求按IEEE 754标准以大端序序列化。当发现SOC估算值在不同厂商BMS间出现系统性偏差（如恒定偏移0.5%），且硬件采样和算法逻辑已确认无误，请简述你如何从大小端转换与浮点数内存布局耦合的角度定位该问题，并说明需验证的关键环节。</td><td>Gemini3.1pro: 题干逻辑不严谨。题干中提到SOC出现恒定偏移0.5%，却要求从大小端转换的角度定位问题。实际上，IEEE 754浮点数如果发生大小端解析错误，会导致指数和尾数完全错乱，解析出的数值会发生剧烈跳变（如极大值或极小值），不可能仅仅表现为0.5%的恒定偏移。正确的应该是什么：将题干中的现象改为“数值出现剧烈跳变或解析为无效值”，或者改变考察方向。</td><td>Q050</td><td>在集中式储能系统的BMS架构中，BAU作为最底层的采样单元，需通过级联方式连接至BCU，并承担电芯电压、温度及均衡控制功能。当系统扩容至200节电芯、BAU数量增至16个后，出现部分BAU通信超时、均衡动作不同步、且BCU无法准确识别某BAU离线状态的现象。请简述你如何基于BAU在BMS四级架构（BMU-BCU-BAU-电芯）中的层级定位与职责边界，从拓扑结构约束、指令分发机制和状态同步粒度三个维度，分析该问题的根本成因及设计改进方向。</td><td>GPT5.5: 题干称BAU是集中式储能BMS最底层采样单元，并给出“BMU-BCU-BAU-电芯”的四级架构层级。常见BMS命名中BAU通常不是位于电芯之上的最底层采样单元，该层级关系与BMU/BCU/BAU职责边界不严谨，题干基础设定错误。</td></tr><tr><td>A4</td><td>Q051</td><td>在车载控制器解析CAN报文时，DBC文件定义某电池单体电压信号为12位无符号数、起始位位于第3字节的第0位（即bit 24）、小端格式。若接收到的8字节CAN帧数据按传输顺序为0x00 0x00 0x0A 0x0B 0x0C 0x0D 0x0E 0x0F，请简述如何根据小端格式定位该信号所跨的字节范围，并说明从这组字节中提取原始数值的关键步骤。</td><td>Gemini3.1pro: 题干中包含具体的8字节十六进制数组（如0x00 0x00 0x0A...），在口语面试中候选人难以听清并记住这些具体数值，不适合口语直接作答。正确的应该是什么：去掉具体的十六进制数组，改为考察概念和提取步骤。</td><td>Q052</td><td>车载VCU从CAN总线接收电机扭矩指令信号，DBC中定义其为16位有符号数、起始位24、大端格式。实际接收到的8字节报文按CAN帧字节序为0x01 0x02 0x03 0x04 0x05 0x06 0x07 0x08。请简述该信号在报文中占据的具体字节位置，以及按大端格式读取并还原为有符号整数时，需对哪两个字节做何种顺序组合和符号扩展处理。</td><td>GPT5.5: 参考答案称起始位24“对应第3个字节（索引2）”。若按题干说明bit编号从0起，bit24应落在第4个字节（索引3），答案对字节位置的基本定位错误。；Gemini3.1pro: 题干中包含具体的8字节十六进制数组（如0x01 0x02 0x03...），在口语面试中候选人难以听清并记住这些具体数值，不适合口语直接作答。正确的应该是什么：去掉具体的十六进制数组，改为考察概念和提取步骤。</td></tr><tr><td>B1</td><td>Q002</td><td>某储能项目中，BMS检测到电芯SOC估算偏差超过15%且伴随采样通道校准失败，但此时系统正处于恒流充电阶段。请简述你如何综合考虑功能安全要求、运行工况约束和硬件局限性，确定该组合故障的分级归属及对应的保护策略触发条件。</td><td>GPT5.5: 参考答案将该组合故障直接归属为“ASIL C级”并称为系统级故障，原文把BMS业务故障分级与ISO 26262 ASIL等级强绑定。故障等级应按项目安全目标、危害分析和BMS故障策略确定，不能仅凭SOC偏差和校准失败直接定为ASIL C。</td><td>Q005</td><td>BCU在BMS系统中是否参与SOC估算？如果参与，请说明其作用；如果不参与，请说明该功能通常由哪个单元实现及其原因。</td><td>GPT5.5: 参考答案称“BCU不直接参与SOC估算”“SOC功能通常由BMU实现”“BMU是唯一可信数据源和计算载体”。实际主流BMS中SOC估算常由BCU/主控基于BMU采样数据完成，BMU通常负责采样与上报，答案对BCU/BMU职责边界表述错误。</td></tr><tr><td>B3</td><td>Q019</td><td>在直流充电桩与电动汽车BMS通信过程中，充电参数配置阶段需要向BMS发送哪些关键参数？请简述这些参数在充电控制中的作用。</td><td>GPT5.5: 题目问充电参数配置阶段充电桩向BMS发送哪些关键参数，参考答案却列出“电池当前SOC、最低/最高单体电压”等通常由BMS侧上报或用于BMS自身判断的数据，回答方向与充电桩发送参数职责不一致。</td><td>nan</td><td>nan</td><td>nan</td></tr></tbody>
+  </table>
+</body>
+</html>
