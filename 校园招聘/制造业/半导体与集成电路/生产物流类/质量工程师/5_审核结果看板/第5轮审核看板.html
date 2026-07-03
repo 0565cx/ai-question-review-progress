@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Round 5 Dashboard</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; margin: 24px; color: #1f2937; }
+    h1, h2, h3 { margin: 10px 0 12px; }
+    .cards { display: grid; grid-template-columns: repeat(3, minmax(140px, 220px)); gap: 12px; margin: 8px 0 18px; }
+    .card { border: 1px solid #e5e7eb; border-radius: 10px; padding: 12px; background: #fafafa; }
+    .card .k { font-size: 12px; color: #6b7280; }
+    .card .v { font-size: 24px; font-weight: 700; margin-top: 4px; }
+    table { border-collapse: collapse; width: 100%; margin: 8px 0 18px; }
+    th, td { border: 1px solid #e5e7eb; padding: 8px 10px; vertical-align: middle; }
+    th { background: #f9fafb; }
+    .legend span { margin-right: 12px; font-size: 13px; color: #374151; }
+    .mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; }
+    .ex { margin: 6px 0; color: #374151; }
+    .section-divider { border: 0; border-top: 2px solid #eef2f7; margin: 22px 0; }
+  </style>
+</head>
+<body>
+  <h1>Round 5 审核看板</h1>
+
+  <div class="cards">
+    <div class="card"><div class="k">A类错误</div><div class="v">0</div></div>
+    <div class="card"><div class="k">B类错误</div><div class="v">45</div></div>
+    <div class="card"><div class="k">C类错误</div><div class="v">5</div></div>
+  </div>
+
+  <h2>本轮题目主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">第5轮题干侧的主要问题是同质化重复（C2），集中出现在过程能力与SPC判断类题目：题干写法不同，但候选人核心作答路径基本一致，导致题库区分度下降。另一个共性风险是题干给定条件与答案处置逻辑不一致，例如题干已限定测量系统稳定，答案仍使用绝对化剔除口径，削弱了题目对候选人分析能力的有效考察。整体看，题干设计应减少同一判断目标的改写复用，并强化场景边界与提问目标的一致性。</div>
+<h2>本轮答案主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">答案侧高频问题是B1（事实或逻辑错误）：包括DPPM计算数值错误、过程能力指标解释口径不严谨、Nelson规则条目表述错误等。这些错误直接影响可评分性，会造成候选人答对却被误判或沿错误答案作答却得分。从三层结构看，当前主要短板不在层级完整性，而在第一层结论准确性和第三层异常规则的专业性校验，建议在生成后增加逐条事实核验。</div>
+<h2>后续重新出内容时应补充的规则</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">【重新出题】<br/>重新出题时补充4条硬约束：1) 同一知识点仅保留一个核心判断任务，出题前必须做候选人作答思路去重，命中同一路径即判C2；2) 题干必须显式给出场景边界，禁止题干条件与答案处置逻辑冲突；3) 题干聚焦单一判断目标，不把概念解释、数值计算、异常处置混成一题；4) 题干用语必须口语可答，避免把判定标准写成含混或绝对化表达。<br/><br/>【重出答案】<br/>重出答案时补充5条规则：1) 涉及计算必须给出正确公式与最终数值并做反算校验；2) 涉及SPC/过程能力/Nelson等规则时必须按标准条款逐条核验，禁止模糊改写；3) 第一层先给结论再给依据，避免把经验判断写成绝对标准；4) 第三层异常与复杂情形必须与题干边界一致，不得扩展到无关处置；5) 交付前执行自检清单：事实准确性、口径一致性、与题干匹配度、可评分性。</div>
+
+  <hr class="section-divider" />
+
+  <h2>模型进度与删除率</h2>
+  <table>
+    <thead>
+      <tr><th>Model</th><th>批次完成</th><th>完成率</th><th>删除率</th><th>主错误</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>GPT5.5</td><td style='text-align:center'>1/1</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td style='text-align:center'>B>C</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>1/1</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:91.7%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">91.7%</span></td><td style='text-align:center'>B>C</td></tr>
+    </tbody>
+  </table>
+
+  <h2>批次状态矩阵</h2>
+  <div class="legend">
+    <span>✓ done</span><span>… running</span><span>○ pending</span><span>! blocked</span><span>x failed</span>
+  </div>
+  <table>
+    <thead><tr><th>Model</th><th>R5-B001</th></tr></thead>
+    <tbody><tr><td>GPT5.5</td><td style='text-align:center'>✓</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>✓</td></tr></tbody>
+  </table>
+
+  <h2>细分错误统计（A1/B1...）</h2>
+  <table>
+    <thead><tr><th>错误子类</th><th>数量</th></tr></thead>
+    <tbody><tr><td>B1</td><td style='text-align:center'>45</td></tr><tr><td>C2</td><td style='text-align:center'>5</td></tr></tbody>
+  </table>
+
+  <h3>细分错误示例（每类2条）</h3>
+  <table>
+    <thead><tr><th>错误子类</th><th>例1-题号</th><th>例1-题目</th><th>例1-理由</th><th>例2-题号</th><th>例2-题目</th><th>例2-理由</th></tr></thead>
+    <tbody><tr><td>B1</td><td>Q001</td><td>SPC异常报警后，确认数据采集无误且测量系统稳定，但现场操作员反馈‘这组数据是换班时手动记录的’，你会怎么处理这个异常点？请简述后续步骤。</td><td>GPT5.5: 参考答案将“手动记录”直接等同于可归因特殊原因并要求“需立即剔除”，但题干已说明“确认数据采集无误且测量系统稳定”；正确做法应先核验手工记录是否存在抄录/流程违规并做影响评估，不能仅凭手动记录绝对剔除。</td><td>Q002</td><td>如果某批次产品共检验10万件，发现2件不良，对应的DPPM值是多少？请简述计算逻辑。</td><td>GPT5.5: 参考答案把“2件不良 ÷ 10万件 × 100万”算成200，实际应为20 DPPM；数值计算错误。；Gemini3.1pro: 参考答案第一层中计算存在知识性错误。2件不良/10万件总数×100万=20，而不是200。正确的应该是DPPM值为20。</td></tr><tr><td>C2</td><td>Q014</td><td>Ppk数值低于1.33时，通常说明什么？请简单说说。</td><td>GPT5.5: 参考答案称“Ppk远低于Cpk（如差值＞0.5）提示过程中心偏移”，但Ppk与Cpk差异主要反映长期波动/过程稳定性或数据窗口差异，中心偏移会同时影响两者；过程能力解释不严谨。；Gemini3.1pro: 题目与前述题目重复（C2）。</td><td>Q016</td><td>当过程能力分析显示Ppk为0.8，这个结果反映的是过程的哪方面表现？请简述。</td><td>GPT5.5: 与前面“Ppk低于1.33通常说明什么”的核心作答高度重合，均考察Ppk低于阈值代表过程能力不足；同时参考答案把Cpk显著高于Ppk解释为“过程中心严重偏移”、把Nelson规则第7条表述为偏移复判，均不准确。；Gemini3.1pro: 题目与前述题目重复（C2）。且参考答案第三层中“Nelson规则第7条（连续15点落在中心线同一侧）”存在知识性错误，Nelson规则第7条应为“连续15个点落在中心线两侧的1σ区内”，而不是落在同一侧。</td></tr></tbody>
+  </table>
+</body>
+</html>

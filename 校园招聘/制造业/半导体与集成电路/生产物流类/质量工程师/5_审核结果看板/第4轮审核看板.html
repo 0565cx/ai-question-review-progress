@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Round 4 Dashboard</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; margin: 24px; color: #1f2937; }
+    h1, h2, h3 { margin: 10px 0 12px; }
+    .cards { display: grid; grid-template-columns: repeat(3, minmax(140px, 220px)); gap: 12px; margin: 8px 0 18px; }
+    .card { border: 1px solid #e5e7eb; border-radius: 10px; padding: 12px; background: #fafafa; }
+    .card .k { font-size: 12px; color: #6b7280; }
+    .card .v { font-size: 24px; font-weight: 700; margin-top: 4px; }
+    table { border-collapse: collapse; width: 100%; margin: 8px 0 18px; }
+    th, td { border: 1px solid #e5e7eb; padding: 8px 10px; vertical-align: middle; }
+    th { background: #f9fafb; }
+    .legend span { margin-right: 12px; font-size: 13px; color: #374151; }
+    .mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; }
+    .ex { margin: 6px 0; color: #374151; }
+    .section-divider { border: 0; border-top: 2px solid #eef2f7; margin: 22px 0; }
+  </style>
+</head>
+<body>
+  <h1>Round 4 审核看板</h1>
+
+  <div class="cards">
+    <div class="card"><div class="k">A类错误</div><div class="v">8</div></div>
+    <div class="card"><div class="k">B类错误</div><div class="v">19</div></div>
+    <div class="card"><div class="k">C类错误</div><div class="v">8</div></div>
+  </div>
+
+  <h2>本轮题目主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">第4轮题干侧问题集中在两类：一是A1知识性或口径绝对化（例如把企业内部时限当作行业统一标准），二是C2同质化重复（题干措辞变化但候选人的核心作答路径基本一致）。从结果看，重复问题多出现在同一技能点的不同场景改写，导致题库表面多样但有效区分度不足。另有少量题干与答案耦合过强，题干中直接给出固定结论，弱化了候选人的分析空间。</div>
+<h2>本轮答案主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">答案侧以B1为主，表现为术语归类不准、规则名称混用或将经验性结论表述成确定性标准；其次出现少量B3，体现为题目要求数值结果但答案只给计算逻辑、未给最终结论。整体上，三层答案结构大多完整，但第一层的事实性准确度与边界条件说明仍是主要短板。这些问题会直接影响评分一致性，尤其在质量工程岗位场景中容易造成‘会说流程但说不准判定依据’的误判。</div>
+<h2>后续重新出内容时应补充的规则</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">【重新出题】<br/>重新出题时要增加三条硬约束：1) 禁止要求唯一固定时限、固定阈值，除非题干明确给出企业制度或标准来源；2) 同一知识点最多保留一题核心问法，场景改写前先做‘候选人作答思路去重’；3) 题干必须只问一个核心判断目标，避免把定义、计算、处置流程混在同一道题里。出题后自检清单需覆盖：是否存在绝对化口径、是否与已保留题C2重复、是否可口语作答。<br/><br/>【重出答案】<br/>重出答案时要增加四条规则：1) 第一层必须先给明确结论，再给依据；2) 涉及公式或计算题必须给最终数值与关键计算式；3) 术语或判异规则必须标注常见标准口径（如Western Electric/Nelson），避免自造命名；4) 第二三层必须围绕题干边界，不得扩展到无关流程。答案自检需逐项检查‘事实准确性、口径一致性、可评分性、与题干匹配度’。</div>
+
+  <hr class="section-divider" />
+
+  <h2>模型进度与删除率</h2>
+  <table>
+    <thead>
+      <tr><th>Model</th><th>批次完成</th><th>完成率</th><th>删除率</th><th>主错误</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>GPT5.5</td><td style='text-align:center'>2/2</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:46.7%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">46.7%</span></td><td style='text-align:center'>B>A>C</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>2/2</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:31.1%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">31.1%</span></td><td style='text-align:center'>C>B>A</td></tr>
+    </tbody>
+  </table>
+
+  <h2>批次状态矩阵</h2>
+  <div class="legend">
+    <span>✓ done</span><span>… running</span><span>○ pending</span><span>! blocked</span><span>x failed</span>
+  </div>
+  <table>
+    <thead><tr><th>Model</th><th>R4-B001</th><th>R4-B002</th></tr></thead>
+    <tbody><tr><td>GPT5.5</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td></tr></tbody>
+  </table>
+
+  <h2>细分错误统计（A1/B1...）</h2>
+  <table>
+    <thead><tr><th>错误子类</th><th>数量</th></tr></thead>
+    <tbody><tr><td>A1</td><td style='text-align:center'>8</td></tr><tr><td>B1</td><td style='text-align:center'>18</td></tr><tr><td>B3</td><td style='text-align:center'>1</td></tr><tr><td>C2</td><td style='text-align:center'>8</td></tr></tbody>
+  </table>
+
+  <h3>细分错误示例（每类2条）</h3>
+  <table>
+    <thead><tr><th>错误子类</th><th>例1-题号</th><th>例1-题目</th><th>例1-理由</th><th>例2-题号</th><th>例2-题目</th><th>例2-理由</th></tr></thead>
+    <tbody><tr><td>A1</td><td>Q008</td><td>量产初期同一供应商连续两批来料出现相同外观缺陷，按异常升级要求，应在多少个工作日内启动跨部门评审？</td><td>GPT5.5: 题干要求给出“应在多少个工作日内”但未给定企业程序、客户协议或具体异常升级标准，参考答案将“2个工作日”说成行业强制节点依据不足；正确应以内部异常升级程序/客户质量协议规定为准。；Gemini3.1pro: 题干和答案中绝对化地要求‘2个工作日内’启动跨部门评审，这属于特定企业的内部规定，并非半导体行业通用的强制标准。正确的应该是：询问通用的异常升级流程或升级原则，而非具体的内部时效规定。</td><td>Q008</td><td>量产初期同一供应商连续两批来料出现相同外观缺陷，按异常升级要求，应在多少个工作日内启动跨部门评审？</td><td>GPT5.5: 题干要求给出“应在多少个工作日内”但未给定企业程序、客户协议或具体异常升级标准，参考答案将“2个工作日”说成行业强制节点依据不足；正确应以内部异常升级程序/客户质量协议规定为准。；Gemini3.1pro: 题干和答案中绝对化地要求‘2个工作日内’启动跨部门评审，这属于特定企业的内部规定，并非半导体行业通用的强制标准。正确的应该是：询问通用的异常升级流程或升级原则，而非具体的内部时效规定。</td></tr><tr><td>B1</td><td>Q001</td><td>请简单说说控制图上出现‘连续3个点中有2个落在同一侧的B区以外’，这属于哪一类常见异常模式？</td><td>GPT5.5: 参考答案将“连续3个点中有2个落在同一侧的B区以外”判为“链状异常模式/Juran准则第4条”不准确；该规则通常属于同侧接近控制限的均值偏移/异常判异信号，链状异常通常指连续多点位于中心线同侧。；Gemini3.1pro: 参考答案第一层将‘连续3个点中有2个落在同一侧的B区以外’称为‘链状异常模式’有误。正确的应该是：该规则属于‘趋势或偏移预警’（如Nelson规则5或Western Electric规则），而‘链状异常模式’（Run/Chain）通常指连续7个或8个点落在中心线同一侧。</td><td>Q001</td><td>请简单说说控制图上出现‘连续3个点中有2个落在同一侧的B区以外’，这属于哪一类常见异常模式？</td><td>GPT5.5: 参考答案将“连续3个点中有2个落在同一侧的B区以外”判为“链状异常模式/Juran准则第4条”不准确；该规则通常属于同侧接近控制限的均值偏移/异常判异信号，链状异常通常指连续多点位于中心线同侧。；Gemini3.1pro: 参考答案第一层将‘连续3个点中有2个落在同一侧的B区以外’称为‘链状异常模式’有误。正确的应该是：该规则属于‘趋势或偏移预警’（如Nelson规则5或Western Electric规则），而‘链状异常模式’（Run/Chain）通常指连续7个或8个点落在中心线同一侧。</td></tr><tr><td>B3</td><td>Q005</td><td>如果某批次产品共检验10万件，发现2件不良，对应的DPPM值是多少？请简述计算逻辑。</td><td>GPT5.5: 题目询问“DPPM值是多少”，参考答案只说明换算逻辑，未给出关键结论：2/100000×1000000=20 DPPM。；Gemini3.1pro: 参考答案第一层未直接给出计算结果（20 DPPM），仅说明了计算逻辑，且表述不够严谨。正确的应该是：直接给出计算结果20 DPPM，并说明计算逻辑（2/100000 * 1000000 = 20）。</td><td>nan</td><td>nan</td><td>nan</td></tr><tr><td>C2</td><td>Q004</td><td>请简单说说Ppk这个指标在质量监控中代表什么含义？</td><td>Gemini3.1pro: 题干语言不一样，但从回答者角度看，候选人几乎会给出同一套答案内容、同一套核心要点、同一套作答思路，与Q3重复。</td><td>Q019</td><td>在IATF16949体系审核中，当发现某条晶圆制造产线的自动测试设备嵌入式软件未纳入变更控制流程，且该软件直接影响关键电性参数判定结果，作为质量工程师，你将如何界定这一问题的严重程度，并说明依据标准条款及闭环逻辑。</td><td>Gemini3.1pro: 题干语言不一样，但考察的核心要点、作答思路与Q18完全一致，均是关于IATF16949中测试软件未纳入变更控制的应对。</td></tr></tbody>
+  </table>
+</body>
+</html>
