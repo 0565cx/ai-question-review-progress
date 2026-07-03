@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Round 3 Dashboard</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; margin: 24px; color: #1f2937; }
+    h1, h2, h3 { margin: 10px 0 12px; }
+    .cards { display: grid; grid-template-columns: repeat(3, minmax(140px, 220px)); gap: 12px; margin: 8px 0 18px; }
+    .card { border: 1px solid #e5e7eb; border-radius: 10px; padding: 12px; background: #fafafa; }
+    .card .k { font-size: 12px; color: #6b7280; }
+    .card .v { font-size: 24px; font-weight: 700; margin-top: 4px; }
+    table { border-collapse: collapse; width: 100%; margin: 8px 0 18px; }
+    th, td { border: 1px solid #e5e7eb; padding: 8px 10px; vertical-align: middle; }
+    th { background: #f9fafb; }
+    .legend span { margin-right: 12px; font-size: 13px; color: #374151; }
+    .mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; }
+    .ex { margin: 6px 0; color: #374151; }
+    .section-divider { border: 0; border-top: 2px solid #eef2f7; margin: 22px 0; }
+  </style>
+</head>
+<body>
+  <h1>Round 3 审核看板</h1>
+
+  <div class="cards">
+    <div class="card"><div class="k">A类错误</div><div class="v">5</div></div>
+    <div class="card"><div class="k">B类错误</div><div class="v">26</div></div>
+    <div class="card"><div class="k">C类错误</div><div class="v">34</div></div>
+  </div>
+
+  <h2>本轮题目主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">重跑后本轮题干侧问题主要集中在同质化重复与场景边界偏移。部分题目虽然表述不同，但候选人作答路径高度重合，区分度不足（C2）；另有少量题目存在场景设定偏门或题干表达不适合口语作答（A2/A4），会影响设备工程师岗位下的稳定评估。整体看，题干问题占比低于答案问题，但重复控制仍需加强。</div>
+<h2>本轮答案主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">答案侧仍是主要风险来源，B类问题最集中，具体表现为机理解释不完整、方案取舍依据不足、与题干知识范围不一致或岗位口径偏移（B1/B2/B3/B6）。部分答案给出结论但缺少可验证的判断条件与执行边界，导致可评分性和现场可操作性下降。与重跑前相比，本轮删除覆盖更充分，答案质量风险识别更稳定。</div>
+<h2>后续重新出内容时应补充的规则</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">【重新出题】<br/>重新出题必须执行反同质化约束：同一技能点下禁止仅做同义改写；题干需明确设备对象、工艺约束、决策目标和评判标准；优先采用设备工程师常见维护/异常处理场景，避免跨岗语境与偏门设定；出现公式推导、图形绘制等非口语要求时一律改写为可口头作答表达。<br/><br/>【重出答案】<br/>重出答案必须三层对齐并可评分：第一层给准确定义与关键机理，第二层给多方案对比及适用边界，第三层给异常或复杂条件下的排查路径与闭环动作；禁止只给结论、模板化口号或不加条件的绝对化表述；统一设备工程师岗位口径，补充关键参数、判据与风险控制点。</div>
+
+  <hr class="section-divider" />
+
+  <h2>模型进度与删除率</h2>
+  <table>
+    <thead>
+      <tr><th>Model</th><th>批次完成</th><th>完成率</th><th>删除率</th><th>主错误</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>GPT5.5</td><td style='text-align:center'>14/14</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:3.4%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">3.4%</span></td><td style='text-align:center'>B>C>A</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>14/14</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:8.2%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">8.2%</span></td><td style='text-align:center'>C>B>A</td></tr>
+    </tbody>
+  </table>
+
+  <h2>批次状态矩阵</h2>
+  <div class="legend">
+    <span>✓ done</span><span>… running</span><span>○ pending</span><span>! blocked</span><span>x failed</span>
+  </div>
+  <table>
+    <thead><tr><th>Model</th><th>R3-B001</th><th>R3-B002</th><th>R3-B003</th><th>R3-B004</th><th>R3-B005</th><th>R3-B006</th><th>R3-B007</th><th>R3-B008</th><th>R3-B009</th><th>R3-B010</th><th>R3-B011</th><th>R3-B012</th><th>R3-B013</th><th>R3-B014</th></tr></thead>
+    <tbody><tr><td>GPT5.5</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td></tr></tbody>
+  </table>
+
+  <h2>细分错误统计（A1/B1...）</h2>
+  <table>
+    <thead><tr><th>错误子类</th><th>数量</th></tr></thead>
+    <tbody><tr><td>A1</td><td style='text-align:center'>4</td></tr><tr><td>A4</td><td style='text-align:center'>1</td></tr><tr><td>B1</td><td style='text-align:center'>19</td></tr><tr><td>B2</td><td style='text-align:center'>2</td></tr><tr><td>B3</td><td style='text-align:center'>2</td></tr><tr><td>B5</td><td style='text-align:center'>2</td></tr><tr><td>B6</td><td style='text-align:center'>1</td></tr><tr><td>C2</td><td style='text-align:center'>34</td></tr></tbody>
+  </table>
+
+  <h3>细分错误示例（每类2条）</h3>
+  <table>
+    <thead><tr><th>错误子类</th><th>例1-题号</th><th>例1-题目</th><th>例1-理由</th><th>例2-题号</th><th>例2-题目</th><th>例2-理由</th></tr></thead>
+    <tbody><tr><td>A1</td><td>Q262</td><td>某刻蚀设备在完成腔体清洁后，后续批次晶圆出现环状微刮伤，显微观察显示刮痕深度小于50纳米、方向与晶圆旋转方向一致，且仅出现在直径90mm以外区域。请说明你如何通过设备运动学特征和部件磨损状态交叉验证刮伤来源。</td><td>GPT5.5: 题干写“方向与晶圆旋转方向一致”，答案又围绕“晶圆台旋转速度”“旋转相位”展开。刻蚀设备中晶圆通常由静电吸盘固定，工艺中不以晶圆旋转作为常规运动特征；刮伤来源应从机械手取放、升降销、ESC边缘、护圈复位等接触/时序问题验证，不能建立在晶圆旋转运动上。</td><td>Q397</td><td>离子注入设备运行中，如果束流强度突然下降且伴随离子源腔体真空度异常升高，最可能的原因是什么？请简单说说。</td><td>GPT5.5: 题干说“束流强度突然下降且伴随离子源腔体真空度异常升高”。按中文工程语境，“真空度升高”通常表示压力降低/更真空，常见方向应优先怀疑源气供应不足、MFC/气路堵塞或电离条件异常；答案却解释为“放气量骤增”“返流气体增多”等压力升高/真空变差机理，和题干现象方向相反。</td></tr><tr><td>A4</td><td>Q527</td><td>产线为应对紧急订单延长Pad单次使用寿命至80小时，期间WIWNU逐步恶化，Pad Condition Monitor显示全盘摩擦力方差扩大，但平均值未超阈值。请简述你如何依据Pad表层聚氨酯微观相分离进程与机械磨损的非线性叠加效应，评估此时Pad是否已进入失效临界状态，并说明依赖哪三个不可逆的现场可观测劣化迹象。</td><td>GPT5.5: 题干要求说明“依赖哪三个不可逆的现场可观测劣化迹象”，但答案没有明确列出三个不可逆迹象，只给出摩擦力方差、形貌扫描思路以及第三层的“环状微裂纹”单一异常。答案未回应题干关键要求，正确答案应明确列出如不可擦除微裂纹、永久压缩/塌陷、纹理沟槽不可恢复变浅或局部翘边等三个可观测不可逆劣化证据。；Gemini3.1pro: 题干使用了“聚氨酯微观相分离进程与机械磨损的非线性叠加效应”等过于学术化、书面化的复杂表达，不适合口语直接作答。</td><td>nan</td><td>nan</td><td>nan</td></tr><tr><td>B1</td><td>Q002</td><td>在晶圆厂实际运行中，某薄膜设备的晶圆传输模块突然出现卡顿，机械手未到位但传感器信号正常，你判断可能涉及哪三个关键子系统？请简述每个子系统在此类故障中的典型表现。</td><td>Gemini3.1pro: 作为首查项的结论使用了未经验证的绝对化表述："三者中，运动控制逻辑子系统问题占比最高且恢复最快，应作为首查项"。设备故障分布受机型、维护状态与工况影响，不能给出固定占比结论；应改为按故障树和实时信号做并行排查。</td><td>Q004</td><td>在薄膜沉积设备中，工艺模块需要实时控制的三个关键物理量是什么？请简述它们各自对成膜质量的影响。</td><td>GPT5.5: 参考答案将薄膜沉积设备工艺模块的三个关键物理量固定为“腔室温度、反应气体流量、以及射频功率（或等离子体功率）”，但通用薄膜沉积设备中腔室压力/真空度、气体配比、温度、功率等随CVD/PVD/ALD类型不同而变化，不能把这三项作为普适答案；题目问“需要实时控制的三个关键物理量”也过度绝对。正确应按具体沉积类型说明压力、温度、气体流量/配比、功率等控制对象及适用边界。</td></tr><tr><td>B2</td><td>Q355</td><td>当一台正在量产的刻蚀机因静电吸盘漏电报警停机，而该机台承担关键层刻蚀任务、产线无法等待备件到货。请简述你将采取的应急处置策略，并说明如何在保障安全与工艺窗口的前提下，临时恢复运行并同步锁定根本失效机制。</td><td>GPT5.5: 答案把“在吸盘边缘清洁后涂覆符合UL94-V0等级的临时绝缘胶”列为应急处置。静电吸盘处于真空、高压、RF和洁净制程环境，普通临时绝缘胶存在放气、污染、热应力和击穿风险，不是当前岗位常见合规恢复手段；正确策略应是隔离风险、转机分流或在批准工程验证下执行低风险诊断，不能用临时胶恢复关键层量产。</td><td>Q524</td><td>某8英寸扩散炉在量产中连续三批出现方块电阻离散度超标，排查发现各温区实测温度波动在±0.5℃内且符合校准规范，但热电偶反馈值与红外测温仪在石英管内壁同位置测量值存在1.2℃系统性偏差，且该偏差随升温速率加快而增大。请简述你如何判断该偏差是否源于温区控制失效，并说明验证路径和关键证据。</td><td>GPT5.5: 答案把“临时屏蔽热电偶信号，改用红外测温数据闭环控制做短时验证”列为验证方法。扩散炉温控属于高温关键安全/制程闭环，临时屏蔽控制反馈并改用便携红外数据闭环控制不属于常规合规现场验证，且红外测管壁与热电偶测点物理对象不同；应做阶跃升温、热像扫描、热电偶安装/响应标定和算法参数核查。</td></tr><tr><td>B3</td><td>Q066</td><td>在执行设备预防性维护前，需要确认哪些基本安全事项？请简单说说。</td><td>Gemini3.1pro: 答案中"在当前产线多机台并行、新人占比高的招聘场景下最稳妥可靠"与题目“PM前安全事项”无关，出现跑题信息。应聚焦LOTO、能量隔离、EHS与许可流程。</td><td>Q527</td><td>产线为应对紧急订单延长Pad单次使用寿命至80小时，期间WIWNU逐步恶化，Pad Condition Monitor显示全盘摩擦力方差扩大，但平均值未超阈值。请简述你如何依据Pad表层聚氨酯微观相分离进程与机械磨损的非线性叠加效应，评估此时Pad是否已进入失效临界状态，并说明依赖哪三个不可逆的现场可观测劣化迹象。</td><td>GPT5.5: 题干要求说明“依赖哪三个不可逆的现场可观测劣化迹象”，但答案没有明确列出三个不可逆迹象，只给出摩擦力方差、形貌扫描思路以及第三层的“环状微裂纹”单一异常。答案未回应题干关键要求，正确答案应明确列出如不可擦除微裂纹、永久压缩/塌陷、纹理沟槽不可恢复变浅或局部翘边等三个可观测不可逆劣化证据。；Gemini3.1pro: 题干使用了“聚氨酯微观相分离进程与机械磨损的非线性叠加效应”等过于学术化、书面化的复杂表达，不适合口语直接作答。</td></tr><tr><td>B5</td><td>Q258</td><td>某薄膜沉积设备连续产出晶圆，在load port入口处出现固定角度的弧形刮痕，你第一步会确认什么物理接触点？为什么这个点最可能引发此类缺陷？</td><td>Gemini3.1pro: 答案中存在不自然的中英混杂（如“observed 刮痕”），影响口语表达</td><td>Q525</td><td>CMP设备连续运行中，Pad Condition Monitor实时显示中心区域摩擦力持续上升，但同一时段抛光后晶圆的厚度均匀性变差，且Pad表面目视可见中心区发亮、无纹理。请简述你如何结合Pad热致形变特性与conditioning工艺参数响应关系，判断当前异常是glazing主导还是Pad压缩疲劳所致，并说明最关键的两个现场验证动作。</td><td>Gemini3.1pro: 答案中大量夹杂英文词汇如Pad Condition Monitor, glazing, conditioning, conditioner diamond tip, WAA等，整体已经明显不适合口语直接作答。</td></tr><tr><td>B6</td><td>Q050</td><td>设备点检前，为什么必须确认当前使用的点检基准表是最新有效版本？</td><td>Gemini3.1pro: 答案将半导体设备点检场景表述为"满足GMP文档可追溯要求"，属于跨行业口径挪用，不是设备工程师在半导体产线的标准表达。应使用Fab文控/MES/EAM追溯口径。</td><td>nan</td><td>nan</td><td>nan</td></tr><tr><td>C2</td><td>Q071</td><td>设备完成预防性维护后，复机前需要确认哪些最基本的状态？请简单说说。</td><td>GPT5.5: 与前序Q0070均在问PM后复机前需要确认的核心/基本状态，候选人会给出同一套安全联锁、关键参数、物理状态/系统就绪的作答框架，属于回答思路高度重复，保留顺序在前的Q0070。</td><td>Q076</td><td>设备完成预防性维护后，复机前需要确认哪些关键项目才能确保安全稳定运行？请简述。</td><td>GPT5.5: 与前序Q0070/Q0071同属“PM后复机前确认哪些项目/状态”问题，核心答案仍是安全联锁、关键参数、机械/物理状态、报警日志等复机确认项，作答要点高度重合，保留顺序在前的Q0070。</td></tr></tbody>
+  </table>
+</body>
+</html>
