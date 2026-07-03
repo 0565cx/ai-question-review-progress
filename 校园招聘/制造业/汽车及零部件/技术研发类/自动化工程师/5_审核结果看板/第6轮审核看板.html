@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Round 6 Dashboard</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; margin: 24px; color: #1f2937; }
+    h1, h2, h3 { margin: 10px 0 12px; }
+    .cards { display: grid; grid-template-columns: repeat(3, minmax(140px, 220px)); gap: 12px; margin: 8px 0 18px; }
+    .card { border: 1px solid #e5e7eb; border-radius: 10px; padding: 12px; background: #fafafa; }
+    .card .k { font-size: 12px; color: #6b7280; }
+    .card .v { font-size: 24px; font-weight: 700; margin-top: 4px; }
+    table { border-collapse: collapse; width: 100%; margin: 8px 0 18px; }
+    th, td { border: 1px solid #e5e7eb; padding: 8px 10px; vertical-align: middle; }
+    th { background: #f9fafb; }
+    .legend span { margin-right: 12px; font-size: 13px; color: #374151; }
+    .mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; }
+    .ex { margin: 6px 0; color: #374151; }
+    .section-divider { border: 0; border-top: 2px solid #eef2f7; margin: 22px 0; }
+  </style>
+</head>
+<body>
+  <h1>Round 6 审核看板</h1>
+
+  <div class="cards">
+    <div class="card"><div class="k">A类错误</div><div class="v">11</div></div>
+    <div class="card"><div class="k">B类错误</div><div class="v">21</div></div>
+    <div class="card"><div class="k">C类错误</div><div class="v">0</div></div>
+  </div>
+
+  <h2>本轮题目主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">第6轮审核五轮重出后回流的 33 题（4 重新出题 + 29 重出答案）。题目侧问题这轮明显增多，Gemini 抳出 10 题：(1) A1 生造厂商故障码——三菱 FX5U「Err.0001」、西门子 S7-1200「16#8004」实为 TCON 等通信指令状态码却被当成IO硬件断连、欧姆龙 CP1E「0101」、未指定型号却问「16#0003」、倍福「AX5805」本是 TwinSAFE 硬件型号而非故障码；(2) A4 题干过度书面化/模板化——在问题里堆砌排查依据和参数清单（“从协议帧结构/使能机制/实时性约束出发”），像念说明书、不适合口语面试。说明「重新出题」类回流仍在造不存在的故障码、且题干过度堆参数。</div>
+<h2>本轮答案主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">答案侧 GPT5.5 仍判 B1 为主（21 道），老问题持续复现且未收敛：(1) 故障码臆断（FX5U Err.0001、S7 16#8004/80A2、罗克韦尔 16#0004、iQ-R 4120）；(2) 软件/协议口径错（把罗克韦尔写成 Automation Studio 而非 Studio 5000、把倍福 EtherCAT 的 ESI 描述文件误作 PROFINET 的 GSDML、PROFINET 状态字位号错）；(3) 安全逻辑（安全光栅常闭串联/STO/急停时序/安全门软互锁延迟停机）；(4) 与题干矛盾（节拍不可并行 B3、飞溅+熔深不足归因矛盾）；(5) 自适应控制「延长保压时间」补偿熔核（应为延长通电时间/加大电流，Gemini 也抳到这条）。说明重出答案在事实与安全口径上仍大面积不达标。</div>
+<h2>后续重新出内容时应补充的规则</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">【重新出题】<br/>重新出题：(1) 严禁生造厂商故障码——FX5U/CP1E/S7-1200 等代码必须用手册真实代码且含上下文，否则不给代码、改考故障现象与排查思路；不得把通信指令状态码（如 TCON STATUS）当硬件断连码；(2) 题干口语化，禁止在问题里堆排查依据/参数清单/作答框架（A4），一题只问一个核心点；(3) 中等难度继续禁冲突/取舍情境。<br/><br/>【重出答案】<br/>重出答案（沿用并强化）：(1) 故障码不写死映射，注明需结合手册/诊断缓冲区/连接诊断；(2) 软件与协议口径准确——罗克韦尔用 Studio 5000，倍福 EtherCAT 用 ESI，PROFINET 用 Update Time/看门狗，EtherNet/IP 才用 RPI；状态字位号按手册；(3) 安全硬约束——安全光栅双通道 OSSD、STO 不防溜车、安全功能优先于工艺，不得用普通PLC软逻辑延迟安全停机；(4) 点焊自适应补偿靠调电流/通电时间而非保压时间；(5) 节拍分析只用节拍口径且先判题干可行性；(6) 每条结论给标准/手册依据并自检。</div>
+
+  <hr class="section-divider" />
+
+  <h2>模型进度与删除率</h2>
+  <table>
+    <thead>
+      <tr><th>Model</th><th>批次完成</th><th>完成率</th><th>删除率</th><th>主错误</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>GPT5.5</td><td style='text-align:center'>1/1</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:63.6%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">63.6%</span></td><td style='text-align:center'>B>A</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>1/1</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:33.3%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">33.3%</span></td><td style='text-align:center'>A>B</td></tr>
+    </tbody>
+  </table>
+
+  <h2>批次状态矩阵</h2>
+  <div class="legend">
+    <span>✓ done</span><span>… running</span><span>○ pending</span><span>! blocked</span><span>x failed</span>
+  </div>
+  <table>
+    <thead><tr><th>Model</th><th>R6-B001</th></tr></thead>
+    <tbody><tr><td>GPT5.5</td><td style='text-align:center'>✓</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>✓</td></tr></tbody>
+  </table>
+
+  <h2>细分错误统计（A1/B1...）</h2>
+  <table>
+    <thead><tr><th>错误子类</th><th>数量</th></tr></thead>
+    <tbody><tr><td>A1</td><td style='text-align:center'>7</td></tr><tr><td>A4</td><td style='text-align:center'>4</td></tr><tr><td>B1</td><td style='text-align:center'>20</td></tr><tr><td>B3</td><td style='text-align:center'>1</td></tr></tbody>
+  </table>
+
+  <h3>细分错误示例（每类2条）</h3>
+  <table>
+    <thead><tr><th>错误子类</th><th>例1-题号</th><th>例1-题目</th><th>例1-理由</th><th>例2-题号</th><th>例2-题目</th><th>例2-理由</th></tr></thead>
+    <tbody><tr><td>A1</td><td>R6-Q0001</td><td>FX5U系列PLC在运行中STOP指示灯常亮，且编程软件读取到错误代码'Err.0001'，该代码对应哪种基础电源状态异常？</td><td>GPT5.5: 参考答案把“Err.0001”解释为“主电源输入侧的状态异常”，且又说“该代码不直接等同于某一固定故障”，前后不一致；FX5U诊断代码应以三菱手册中对应错误名称和详细诊断内容为准，不能把单一代码直接归结为固定的主电源输入异常。；Gemini3.1pro: 题干中三菱FX5U的错误代码格式通常为特定数字（如2400等），不存在官方标准下的“Err.0001”专指基础电源异常，属于生造故障代码的知识性错误；正确的错误代码应符合对应厂商手册规范。</td><td>R6-Q0002</td><td>当S7-1200 PLC的编程软件中诊断缓冲区显示错误代码'16#8004'，这通常表示哪个硬件部件与CPU之间的通信出现了问题？</td><td>GPT5.5: 参考答案将“16#8004”直接解释为“CPU与分布式I/O模块之间的通信异常”，但西门子诊断代码必须结合具体诊断条目、事件类别和设备对象判断，不能仅凭该十六进制码固定映射到ET 200SP/ET 200MP通信故障。；Gemini3.1pro: 题干中S7-1200的“16#8004”通常是开放式以太网通信指令（如TCON）的STATUS输出代码（连接出错），而非专门指代分布式IO模块物理断连，将指令状态码生搬硬套到硬件诊断存在知识性错误。</td></tr><tr><td>A4</td><td>R6-Q0009</td><td>某汽车焊装线PLC使用西门子S7-1500系列，运行中偶发‘80A2’故障代码，现象为机器人夹具到位信号在HMI上延迟2秒才更新，但现场传感器动作正常、IO模块状态灯实时响应。请简述你如何结合该故障代码指向的分布式IO（ET 200SP）过程数据传输超时阈值、PROFINET通信循环时间与实际网络负载的偏差、以及PLC主站对非周期性诊断报文的处理优先级配置，分层排查并确认是网络拓扑瓶颈还是诊断缓冲区溢出导致的信号滞后。</td><td>GPT5.5: 参考答案把“80A2”直接定义为“S7-1500主站记录的ET 200SP分布式IO相关诊断事件代码”，并进一步绑定“过程数据传输超时”“非周期性诊断报文优先级”等机制，但该代码含义需由TIA Portal诊断缓冲区的具体事件说明确认，不能按题干给定逻辑直接成立。；Gemini3.1pro: 题干极其冗长且书面化，问题部分强行堆砌技术参数和排查依据（如“结合该故障代码指向的...偏差、以及...”），像宣读产品说明书，完全不适合口语直接提问；应改为自然、简明的口语表达。</td><td>R6-Q0012</td><td>某总装拧紧工位PLC采用罗克韦尔ControlLogix平台，持续报出‘16#0004’模块级故障代码，对应数字量输入模块第3通道信号在节拍切换瞬间丢失约15毫秒，示波器确认现场开关触点无抖动，且同一模块其余通道稳定。请说明你如何利用该故障代码关联的模块固件版本已知的输入滤波寄存器默认值、PLC任务扫描周期与硬件中断响应延迟的叠加效应、以及底板背板总线在高密度IO刷新下的数据仲裁机制，判断问题根源在于滤波参数配置不当还是背板带宽饱和。</td><td>GPT5.5: 参考答案使用“罗克韦尔Automation Studio模块配置指南”这一错误软件口径，罗克韦尔ControlLogix通常使用Studio 5000 Logix Designer；同时将“16#0004”固定关联输入滤波寄存器和背板仲裁机制，缺少对应模块和手册依据。；Gemini3.1pro: 题干极其冗长且书面化，在提问中直接罗列所有的排查思路和底层机制参数（如“利用该故障代码关联的...叠加效应、以及...”），严重违背口语面试的互动习惯；应删除冗余限定。</td></tr><tr><td>B1</td><td>R6-Q0001</td><td>FX5U系列PLC在运行中STOP指示灯常亮，且编程软件读取到错误代码'Err.0001'，该代码对应哪种基础电源状态异常？</td><td>GPT5.5: 参考答案把“Err.0001”解释为“主电源输入侧的状态异常”，且又说“该代码不直接等同于某一固定故障”，前后不一致；FX5U诊断代码应以三菱手册中对应错误名称和详细诊断内容为准，不能把单一代码直接归结为固定的主电源输入异常。；Gemini3.1pro: 题干中三菱FX5U的错误代码格式通常为特定数字（如2400等），不存在官方标准下的“Err.0001”专指基础电源异常，属于生造故障代码的知识性错误；正确的错误代码应符合对应厂商手册规范。</td><td>R6-Q0002</td><td>当S7-1200 PLC的编程软件中诊断缓冲区显示错误代码'16#8004'，这通常表示哪个硬件部件与CPU之间的通信出现了问题？</td><td>GPT5.5: 参考答案将“16#8004”直接解释为“CPU与分布式I/O模块之间的通信异常”，但西门子诊断代码必须结合具体诊断条目、事件类别和设备对象判断，不能仅凭该十六进制码固定映射到ET 200SP/ET 200MP通信故障。；Gemini3.1pro: 题干中S7-1200的“16#8004”通常是开放式以太网通信指令（如TCON）的STATUS输出代码（连接出错），而非专门指代分布式IO模块物理断连，将指令状态码生搬硬套到硬件诊断存在知识性错误。</td></tr><tr><td>B3</td><td>R6-Q0018</td><td>请简单说说接触器的额定工作电压与被控负载电源电压不匹配时，可能引发的最直接问题是什么？</td><td>GPT5.5: 题干问“接触器的额定工作电压与被控负载电源电压不匹配”，这是主触点/负载侧额定工作电压问题；参考答案却回答“线圈无法可靠吸合或保持吸合”，混淆了线圈额定控制电压与触点额定工作电压，答案跑题。</td><td>nan</td><td>nan</td><td>nan</td></tr></tbody>
+  </table>
+</body>
+</html>

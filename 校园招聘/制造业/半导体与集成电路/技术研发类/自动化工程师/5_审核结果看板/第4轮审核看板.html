@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>第4轮审核看板</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; margin: 24px; color: #1f2937; }
+    h1, h2, h3 { margin: 10px 0 12px; }
+    .cards { display: grid; grid-template-columns: repeat(3, minmax(140px, 220px)); gap: 12px; margin: 8px 0 18px; }
+    .card { border: 1px solid #e5e7eb; border-radius: 10px; padding: 12px; background: #fafafa; }
+    .card .k { font-size: 12px; color: #6b7280; }
+    .card .v { font-size: 24px; font-weight: 700; margin-top: 4px; }
+    table { border-collapse: collapse; width: 100%; margin: 8px 0 18px; }
+    th, td { border: 1px solid #e5e7eb; padding: 8px 10px; vertical-align: middle; }
+    th { background: #f9fafb; }
+    .legend span { margin-right: 12px; font-size: 13px; color: #374151; }
+    .mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; }
+    .ex { margin: 6px 0; color: #374151; }
+    .section-divider { border: 0; border-top: 2px solid #eef2f7; margin: 22px 0; }
+  </style>
+</head>
+<body>
+  <h1>第 4 轮审核看板</h1>
+
+  <div class="cards">
+    <div class="card"><div class="k">A类错误</div><div class="v">0</div></div>
+    <div class="card"><div class="k">B类错误</div><div class="v">141</div></div>
+    <div class="card"><div class="k">C类错误</div><div class="v">0</div></div>
+  </div>
+
+  <h2>本轮题目主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">本轮题干侧未出现集中 A/C 类问题，主要删除来自答案侧判定。题干整体可用于口语面试，但建议继续收敛提问边界，降低不同模型对同一题的解释偏差。</div>
+<h2>本轮答案主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">本轮高频问题仍集中在 B 类。经 v2 校准后，GPT5.5 已从过严状态回落，不再出现全量删除；但与 Gemini 的删题率仍有差距，说明口径一致性仍需持续观察。</div>
+<h2>后续重新出内容时应补充的规则</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">【重新出题】<br/>重新出题时保持岗位常见场景与口语可答性，避免暗含公式推导、绘图、符号解释等书面化要求；一题聚焦一个明确知识边界。<br/><br/>【重出答案】<br/>重出答案允许少量行业术语，但要控制术语密度与缩写堆叠；三层答案都应简洁、可口述、可评分，避免冗长协议报文枚举。</div>
+
+  <hr class="section-divider" />
+
+  <h2>模型进度与删除率</h2>
+  <table>
+    <thead>
+      <tr><th>模型</th><th>批次完成</th><th>完成率</th><th>删除率</th><th>主要错误</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>GPT5.5</td><td style='text-align:center'>14/14</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:22.3%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">22.3%</span></td><td style='text-align:center'>B</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>14/14</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:2.9%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">2.9%</span></td><td style='text-align:center'>B</td></tr>
+    </tbody>
+  </table>
+
+  <h2>批次状态矩阵</h2>
+  <div class="legend">
+    <span>✓ 已完成</span><span>… 进行中</span><span>○ 待开始</span><span>! 阻塞</span><span>x 失败</span>
+  </div>
+  <table>
+    <thead><tr><th>模型</th><th>R4-B001</th><th>R4-B002</th><th>R4-B003</th><th>R4-B004</th><th>R4-B005</th><th>R4-B006</th><th>R4-B007</th><th>R4-B008</th><th>R4-B009</th><th>R4-B010</th><th>R4-B011</th><th>R4-B012</th><th>R4-B013</th><th>R4-B014</th></tr></thead>
+    <tbody><tr><td>GPT5.5</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td></tr></tbody>
+  </table>
+
+  <h2>细分错误统计（A1/B1...）</h2>
+  <table>
+    <thead><tr><th>错误子类</th><th>数量</th></tr></thead>
+    <tbody><tr><td>B1</td><td style='text-align:center'>8</td></tr><tr><td>B2</td><td style='text-align:center'>8</td></tr><tr><td>B5</td><td style='text-align:center'>129</td></tr></tbody>
+  </table>
+
+  <h3>细分错误示例（每类2条）</h3>
+  <table>
+    <thead><tr><th>错误子类</th><th>例1-题号</th><th>例1-题目</th><th>例1-理由</th><th>例2-题号</th><th>例2-题目</th><th>例2-理由</th></tr></thead>
+    <tbody><tr><td>B1</td><td>Q025</td><td>请简述EAP设备联机时，用于上报设备当前运行状态（如运行、暂停、故障）的数据字段，在SECS/GEM标准中通常称为什么？</td><td>GPT5.5: 明确知识或口径错误：S2F41=Status Variable Request; S2F42=Status Variable Response。证据点：SxFy报文号=0、参数/报文标记=1、英文缩写=0。已超出可视为“少量术语可口述”的范围。</td><td>Q028</td><td>请简述EAP设备联机时，参数下发的基本流程顺序。</td><td>GPT5.5: 明确知识或口径错误：S2F41 set recipe data naming; S2F42 acknowledge set recipe data naming。证据点：SxFy报文号=0、参数/报文标记=2、英文缩写=0。已超出可视为“少量术语可口述”的范围。</td></tr><tr><td>B2</td><td>Q126</td><td>在半导体设备控制程序中，当设备从运行状态切换到暂停状态时，为什么不能直接停止所有运动轴，而需要执行特定的状态过渡逻辑？请简单说说。</td><td>Gemini3.1pro: 参考答案存在缺失(NaN)。</td><td>Q279</td><td>刻蚀设备执行多步Recipe时，某一步骤的腔体压力稳定时间超出工艺窗口上限，但传感器读数和PID调节曲线均正常。请简述你会如何结合刻蚀反应气体流量动态特性、真空泵响应延迟与PLC扫描周期之间的耦合关系，定位该超时问题的根因。</td><td>GPT5.5: 超过口语可答阈值（B5）。证据点：SxFy报文号=0，参数/报文标记=0，英文缩写块=0，连续枚举结构=6，答案长度=1174。需大量逐条解释协议和细参数，明显影响口头作答流畅性与可答性。；Gemini3.1pro: 参考答案存在缺失(NaN)。</td></tr><tr><td>B5</td><td>Q008</td><td>当一台晶圆传输机械手在执行多段协同动作时，某关键位置传感器失效但系统仍需维持安全停机而非急停，此时PLC报警逻辑应如何分层定义‘降级运行模式’的触发条件与抑制规则？请说明你划分报警等级的核心依据。</td><td>GPT5.5: 超过口语可答阈值（B5）。证据点：SxFy报文号=0，参数/报文标记=2，英文缩写块=0，连续枚举结构=6，答案长度=1066。需大量逐条解释协议和细参数，明显影响口头作答流畅性与可答性。</td><td>Q016</td><td>请简单说说HMI组态中报警确认功能的主要作用是什么？</td><td>GPT5.5: 超过口语可答阈值（B5）。证据点：SxFy报文号=0，参数/报文标记=10，英文缩写块=0，连续枚举结构=5，答案长度=878。需大量逐条解释协议和细参数，明显影响口头作答流畅性与可答性。</td></tr></tbody>
+  </table>
+</body>
+</html>

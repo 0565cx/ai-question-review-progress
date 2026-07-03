@@ -1,0 +1,72 @@
+﻿<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Round 4 Dashboard</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; margin: 24px; color: #1f2937; }
+    h1, h2, h3 { margin: 10px 0 12px; }
+    .cards { display: grid; grid-template-columns: repeat(3, minmax(140px, 220px)); gap: 12px; margin: 8px 0 18px; }
+    .card { border: 1px solid #e5e7eb; border-radius: 10px; padding: 12px; background: #fafafa; }
+    .card .k { font-size: 12px; color: #6b7280; }
+    .card .v { font-size: 24px; font-weight: 700; margin-top: 4px; }
+    table { border-collapse: collapse; width: 100%; margin: 8px 0 18px; }
+    th, td { border: 1px solid #e5e7eb; padding: 8px 10px; vertical-align: middle; }
+    th { background: #f9fafb; }
+    .legend span { margin-right: 12px; font-size: 13px; color: #374151; }
+    .mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; }
+    .ex { margin: 6px 0; color: #374151; }
+    .section-divider { border: 0; border-top: 2px solid #eef2f7; margin: 22px 0; }
+  </style>
+</head>
+<body>
+  <h1>Round 4 审核看板</h1>
+
+  <div class="cards">
+    <div class="card"><div class="k">A类错误</div><div class="v">8</div></div>
+    <div class="card"><div class="k">B类错误</div><div class="v">82</div></div>
+    <div class="card"><div class="k">C类错误</div><div class="v">17</div></div>
+  </div>
+
+  <h2>本轮题目主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">四轮题目层面的主要问题集中在重复/同质化题干和少量题干概念错误。Gemini 检出多处 C1/C2，说明三轮回流后仍有同一考点换问法、同一作答链路重复进入题库的情况；另有少量 A 类问题，主要是题干把直流快充与交流 CP 信号混用、或要求解释图形符号等不适合口头面试的内容。</div>
+<h2>本轮答案主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">四轮答案层面的主要错误仍以 B1 知识性错误为主。高频问题包括标准引用错配或虚构条款、直流快充接口信号与 GB/T 27930/ISO 15118 口径混用、HVIL/绝缘监测/碰撞断电逻辑混淆、高压预充和下电时序错误、UDS 服务号与 LIN/CAN 基础概念错误、保险丝线束选型和 IP 等级解释不准确。GPT5.5 对答案知识硬伤检出较集中，Gemini 对重复题和标准引用问题更敏感。</div>
+<h2>后续重新出内容时应补充的规则</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">【重新出题】<br/>重新出题前必须先做题干、考点、场景、答案推理链四维去重，尤其是保险丝选型、接地干扰、LIN/CAN/UDS、直流快充信号和连接器标准相关题。直流快充、交流慢充、HVIL、绝缘监测、预充/下电等主题必须明确系统边界和适用标准，不得把不同接口或协议的信号混用。题干不得要求解释图形符号、画图或推导公式。<br/><br/>【重出答案】<br/>重出答案时必须逐条校验标准名称、标准适用范围、服务号、接口针脚、信号名称和动作时序。不要编造标准条款或把企业经验写成国家标准要求；不确定的阈值不要绝对化。三层答案要围绕题干问点展开，第一层直接回答，第二层给工程依据，第三层给真实量产场景中的异常与处理。</div>
+
+  <hr class="section-divider" />
+
+  <h2>模型进度与删除率</h2>
+  <table>
+    <thead>
+      <tr><th>Model</th><th>批次完成</th><th>完成率</th><th>删除率</th><th>主错误</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>GPT5.5</td><td style='text-align:center'>5/5</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:30.7%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">30.7%</span></td><td style='text-align:center'>B>A</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>5/5</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:23.3%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">23.3%</span></td><td style='text-align:center'>B>C>A</td></tr>
+    </tbody>
+  </table>
+
+  <h2>批次状态矩阵</h2>
+  <div class="legend">
+    <span>✓ done</span><span>… running</span><span>○ pending</span><span>! blocked</span><span>x failed</span>
+  </div>
+  <table>
+    <thead><tr><th>Model</th><th>R4-B001</th><th>R4-B002</th><th>R4-B003</th><th>R4-B004</th><th>R4-B005</th></tr></thead>
+    <tbody><tr><td>GPT5.5</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td></tr></tbody>
+  </table>
+
+  <h2>细分错误统计（A1/B1...）</h2>
+  <table>
+    <thead><tr><th>错误子类</th><th>数量</th></tr></thead>
+    <tbody><tr><td>A1</td><td style='text-align:center'>6</td></tr><tr><td>A4</td><td style='text-align:center'>2</td></tr><tr><td>B1</td><td style='text-align:center'>76</td></tr><tr><td>B3</td><td style='text-align:center'>5</td></tr><tr><td>B5</td><td style='text-align:center'>1</td></tr><tr><td>C1</td><td style='text-align:center'>2</td></tr><tr><td>C2</td><td style='text-align:center'>15</td></tr></tbody>
+  </table>
+
+  <h3>细分错误示例（每类2条）</h3>
+  <table>
+    <thead><tr><th>错误子类</th><th>例1-题号</th><th>例1-题目</th><th>例1-理由</th><th>例2-题号</th><th>例2-题目</th><th>例2-理由</th></tr></thead>
+    <tbody><tr><td>A1</td><td>Q086</td><td>某车灯回路在实车验证中出现保险丝偶发熔断，但负载功率始终未超设计值，且线束温升正常。若排查确认无短路，仅存在间歇性接地电阻升高现象，这种工况下保险丝的保护逻辑为何可能失效？请简述其与热积累特性的关系。</td><td>GPT5.5: 题干原文称“仅存在间歇性接地电阻升高现象”却要求解释“保险丝偶发熔断”，逻辑上高阻接地通常降低主回路电流，不足以直接解释保险熔断。答案又称“主回路电流未显著超过额定值”且“保险丝因热惯性无法响应”，与题干熔断现象相矛盾；应改为接地短路、绝缘间歇击穿或负载浪涌等能造成过流的场景。</td><td>Q100</td><td>某新能源车型前舱线束中，一个用于电池管理系统采样信号的端子，在实车耐久测试后期出现接触电阻阶跃式增长，而该端子标称载流仅0.5安培，远低于回路实际电流。请结合端子金属材料应力松弛、微动磨损与长期振动谱特征，说明为何低载流端子仍可能因机械失效引发温升异常，并指出在选型阶段应重点关注哪两类非电气参数。</td><td>GPT5.5: 题干原文称“该端子标称载流仅0.5安培，远低于回路实际电流”，这本身已是端子载流选型不满足实际电流的电气过载问题；答案却转为论述“低载流端子虽电流负荷小”“即使毫安级采样电流也会在局部产生显著焦耳热”，没有回应题干中实际电流高于标称载流的核心矛盾。</td></tr><tr><td>A4</td><td>Q005</td><td>请简单说说电气原理图中‘接地符号’通常用什么图形表示，它代表电路中的哪个物理连接点？</td><td>Gemini3.1pro: 题干要求候选人解释“‘接地符号’通常用什么图形表示”，违反了“凡题干要求候选人说出、列出、解释符号含义、绘制图形，一律标记A4”的强制规则。此类纯视觉图形认知无法通过口头有效作答，应改为考察接地设计的工程原理。</td><td>Q006</td><td>请简述电气原理图中‘保险丝’的图形符号由哪两部分构成，它们分别对应其什么基本电气特性？</td><td>Gemini3.1pro: 题干要求候选人简述“‘保险丝’的图形符号由哪两部分构成”，违反了“要求解释符号的图形构成一律标记A4”的口语化作答限制。面试无法有效考察图形记忆，应改为考察保险丝的保护机制或选型原则。</td></tr><tr><td>B1</td><td>Q013</td><td>某纯电车型在快充过程中，车载充电机接地端子与车身搭铁点之间测得120mV直流压降，同时乘员舱内音响系统出现持续底噪。已知该搭铁点还承载空调压缩机、DCDC变换器的接地回路。请从多负载共用接地路径的电流叠加效应、不同负载工作时序导致的瞬态压降叠加、以及金属接触界面氧化层在微安级漏电流下的非线性导通特性三个维度，说明你如何判断这个压降是否构成设计风险，并指出验证该风险最关键的实车测试工况。</td><td>GPT5.5: 第一层原文称“120mV压降本身不直接超出……通常要求关键信号参考地压降≤50mV”，前后矛盾；120mV已经高于50mV限值，应判断为超出敏感参考地常用控制目标并构成风险。</td><td>Q014</td><td>某整车在低温环境下多次出现前照灯回路保险丝熔断，实测灯泡和线束无短路，且常温下工作正常。请结合卤素灯冷态电阻特性、电源系统压降、保险丝热积累效应及整车接地路径变化，说明该故障背后真正的短路风险触发机制，并指出设计阶段应如何通过回路保护协同验证来提前识别这一风险。</td><td>GPT5.5: 第一层原文称“低温时……线束导体电阻上升”，金属导体电阻通常随温度降低而降低；低温下更主要的问题是蓄电池内阻升高、灯丝冷态低阻浪涌及接触界面异常，而不是铜导线电阻上升。</td></tr><tr><td>B3</td><td>Q025</td><td>在整车线束设计中，当某段导线需要穿过发动机舱高温区域时，工程师通常会对其额定电流进行降额使用。请简单说说，这种降额主要依据导线哪一物理特性随温度升高而发生的变化？</td><td>GPT5.5: 题干问“额定电流降额主要依据导线哪一物理特性随温度升高而发生的变化”，答案却主要回答“绝缘层材料耐热等级及绝缘性能/机械强度衰减”，未正面回答导体电阻率升高、载流能力/温升裕度变化等与载流降额直接相关的物理依据。</td><td>Q058</td><td>某车型雨刮电机回路采用继电器控制，但实车验证中发现雨刮关闭后偶尔出现‘抖动复位’现象。从继电器控制逻辑角度分析，这很可能与哪个关键时序参数设置不当有关？请说明该参数影响的物理过程及典型调整方向。</td><td>GPT5.5: 题干问雨刮关闭后“抖动复位”的继电器控制逻辑关键时序，答案聚焦“继电器释放时间过长”并解释残留导通，但雨刮复位抖动更核心通常是停位/回位开关、保持供电、制动/续流和关断时序配合，答案没有围绕复位控制闭环展开，范围跑偏。</td></tr><tr><td>B5</td><td>Q114</td><td>整车中一个车窗升降电机在堵转工况下电流会急剧上升，但保险丝并未熔断，而同一回路的其他用电器却出现供电异常。请从负载工作特性角度分析可能原因，并说明如何通过负载特性匹配来避免这类问题。</td><td>Gemini3.1pro: 答案中存在大量英文缩写堆叠（如LVDS、AVB、MAC、PHY、QoS、PTP、TSN、HDI、DMA、PCIe、AXI等），整体已经明显不适合口语直接作答。</td><td>nan</td><td>nan</td><td>nan</td></tr><tr><td>C1</td><td>Q158</td><td>请简述充电过程中发生异常中断（如用户主动终止充电）时，整车控制器依据哪些关键信号来判断是否启动安全下电时序，并执行高压断电。</td><td>Gemini3.1pro: 题干和R4Q0153完全一样。</td><td>Q159</td><td>请简述充电通信协议里，定义车辆与充电桩之间电压、电流调节指令交互的那部分核心机制叫什么？</td><td>Gemini3.1pro: 题干和R4Q0154完全一样。</td></tr><tr><td>C2</td><td>Q016</td><td>在整车低压电气系统中，一个由点火开关控制的雨刮电机回路，其保险丝额定电流按稳态工作电流的1.5倍选取。当雨刮器处于自动间歇模式时，实际电流呈现周期性脉冲特征，峰值远高于稳态值。此时保险丝保护逻辑应主要依据哪种电流参数来确保可靠保护？请简述判断理由。</td><td>Gemini3.1pro: 核心考核点与 R4Q0014 高度重复。两者均考核保险丝应对瞬态浪涌或脉冲电流时，需要依据冷态电阻与 I²t 特性进行保护匹配的底层物理机制，候选人作答指向完全一致。</td><td>Q018</td><td>某车型新增一个后视镜加热回路，负载为双侧镜面加热丝并联，单侧电阻2.5欧姆，系统电压12V。设计时按总功率匹配选用了30A保险丝。实车测试中发现低温启动时保险丝偶发熔断，而加热丝无短路。请简述该现象与保险丝保护逻辑中哪一关键特性直接相关，并说明原因。</td><td>GPT5.5: 题干给出双侧2.5Ω并联、12V，稳态总电流约9.6A；第三层原文称低温电阻下降约30%后“启动瞬时电流达38A左右”，计算明显不成立，约应为13.7A，不足以支撑30A保险丝偶发熔断的论证。；Gemini3.1pro: 核心考核点与 R4Q0014 高度重复。题干考核大功率负载低温启动浪涌引发保险丝偶发熔断的匹配问题，同样是指向保险丝应对瞬态大电流的耐受特性（冷态浪涌与 I²t）。</td></tr></tbody>
+  </table>
+</body>
+</html>

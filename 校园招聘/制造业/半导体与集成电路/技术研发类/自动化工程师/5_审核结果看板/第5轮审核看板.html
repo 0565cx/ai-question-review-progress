@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Round 5 Dashboard</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; margin: 24px; color: #1f2937; }
+    h1, h2, h3 { margin: 10px 0 12px; }
+    .cards { display: grid; grid-template-columns: repeat(3, minmax(140px, 220px)); gap: 12px; margin: 8px 0 18px; }
+    .card { border: 1px solid #e5e7eb; border-radius: 10px; padding: 12px; background: #fafafa; }
+    .card .k { font-size: 12px; color: #6b7280; }
+    .card .v { font-size: 24px; font-weight: 700; margin-top: 4px; }
+    table { border-collapse: collapse; width: 100%; margin: 8px 0 18px; }
+    th, td { border: 1px solid #e5e7eb; padding: 8px 10px; vertical-align: middle; }
+    th { background: #f9fafb; }
+    .legend span { margin-right: 12px; font-size: 13px; color: #374151; }
+    .mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; }
+    .ex { margin: 6px 0; color: #374151; }
+    .section-divider { border: 0; border-top: 2px solid #eef2f7; margin: 22px 0; }
+  </style>
+</head>
+<body>
+  <h1>Round 5 审核看板</h1>
+
+  <div class="cards">
+    <div class="card"><div class="k">A类错误</div><div class="v">5</div></div>
+    <div class="card"><div class="k">B类错误</div><div class="v">38</div></div>
+    <div class="card"><div class="k">C类错误</div><div class="v">1</div></div>
+  </div>
+
+  <h2>本轮题目主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">本轮题干问题以可答性与任务边界表述不清为主，少量题存在题干与知识点映射不充分或场景限定过弱，导致同类答案可覆盖多个题目。A/C类占比不高，但一旦出现会直接影响题目可复用性，因此已优先归入“需要重新出题”。</div>
+<h2>本轮答案主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">本轮高频问题集中在B类：部分答案存在结论口径过于绝对、工程条件缺失、最佳实践与当前半导体自动化现场不完全匹配等情况；另有少量三层答案在异常与复杂问题展开上不够闭环，导致可评分性下降。</div>
+<h2>后续重新出内容时应补充的规则</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">【重新出题】<br/>重出题目时需明确岗位场景、约束条件与交付对象，避免宽泛问法；题干禁止引导候选人输出公式推导或图形绘制；同知识点题目需增加可区分业务前提，降低C2同质化风险。<br/><br/>【重出答案】<br/>重出答案时需给出可落地的工程条件、边界与取舍理由，避免绝对化陈述；三层答案需补齐“异常/复杂问题-具体表现-诊断路径-处置策略”的完整链路，并保持岗位术语一致。</div>
+
+  <hr class="section-divider" />
+
+  <h2>模型进度与删除率</h2>
+  <table>
+    <thead>
+      <tr><th>Model</th><th>批次完成</th><th>完成率</th><th>删除率</th><th>主错误</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>GPT5.5</td><td style='text-align:center'>4/4</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:15.2%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">15.2%</span></td><td style='text-align:center'>B>A>C</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>4/4</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:16.7%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">16.7%</span></td><td style='text-align:center'>B</td></tr>
+    </tbody>
+  </table>
+
+  <h2>批次状态矩阵</h2>
+  <div class="legend">
+    <span>✓ done</span><span>… running</span><span>○ pending</span><span>! blocked</span><span>x failed</span>
+  </div>
+  <table>
+    <thead><tr><th>Model</th><th>R5-B001</th><th>R5-B002</th><th>R5-B003</th><th>R5-B004</th></tr></thead>
+    <tbody><tr><td>GPT5.5</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td></tr></tbody>
+  </table>
+
+  <h2>细分错误统计（A1/B1...）</h2>
+  <table>
+    <thead><tr><th>错误子类</th><th>数量</th></tr></thead>
+    <tbody><tr><td>A1</td><td style='text-align:center'>5</td></tr><tr><td>B1</td><td style='text-align:center'>36</td></tr><tr><td>B3</td><td style='text-align:center'>1</td></tr><tr><td>B5</td><td style='text-align:center'>1</td></tr><tr><td>C2</td><td style='text-align:center'>1</td></tr></tbody>
+  </table>
+
+  <h3>细分错误示例（每类2条）</h3>
+  <table>
+    <thead><tr><th>错误子类</th><th>例1-题号</th><th>例1-题目</th><th>例1-理由</th><th>例2-题号</th><th>例2-题目</th><th>例2-理由</th></tr></thead>
+    <tbody><tr><td>A1</td><td>Q016</td><td>HSMS协议规定连接建立时必须使用的端口号是多少？请直接说出数字。</td><td>GPT5.5: 题干问“HSMS协议规定连接建立时必须使用的端口号”，前提错误；HSMS连接端口可配置，5000只是常见默认/惯例端口，不是协议强制必须使用的端口。</td><td>Q018</td><td>一条量产产线中，光刻设备需按工艺类型区分上报‘对准失败’事件：对ArF浸没式工艺要求毫秒级上报并附带图像特征码，而对KrF干式工艺仅需秒级上报且无需附加数据。请简述你如何利用SECS/GEM协议中的事件参数模板、报告速率分级和条件使能机制，实现这一差异化事件策略。</td><td>GPT5.5: 题干要求利用“事件参数模板、报告速率分级和条件使能机制”实现差异化事件策略，其中“报告速率分级”并非SECS/GEM事件报告配置中的标准机制，且毫秒级图像特征码随事件上报不符合常规GEM事件报告边界。</td></tr><tr><td>B1</td><td>Q001</td><td>请简述EAP设备联机时，用于上报设备当前运行状态（如运行、暂停、故障）的数据字段，在SECS/GEM标准中通常称为什么？</td><td>GPT5.5: 参考答案将SECS/GEM中上报运行/暂停/故障状态的字段表述为“统一称为设备状态变量”，并进一步称“EQPSTAT”为GEM标准定义字段；SECS/GEM通常通过状态变量/事件报告承载设备状态，具体SVID/名称由设备定义，不应把EQPSTAT说成统一标准字段。</td><td>Q004</td><td>半导体设备运行中，某腔室温度超限报警与机械手位置偏差报警同时触发，但二者涉及不同安全等级和响应时效。请说明你在HMI组态中会如何差异化呈现这两类报警，并解释这种呈现方式对现场快速处置的实际价值。</td><td>Gemini3.1pro: 参考答案中存在知识性错误或逻辑不严谨的描述。正确的应该是给出准确的技术定义和参数范围。</td></tr><tr><td>B3</td><td>Q109</td><td>产线中多台同类清洗设备的单片作业时间数据，在过去五天内呈现各自独立但整体同步的缓慢上升趋势，每天平均增幅约0.15秒。请简单说说你如何确认这不是随机波动而是真实存在的异常趋势。</td><td>GPT5.5: 题目要求说明如何确认“不是随机波动而是真实异常趋势”，答案主要罗列控制日志、环境/药液等根因排查路径，缺少趋势显著性、跨设备同步性、控制图/回归斜率等直接判别依据，作答重心跑题。</td><td>nan</td><td>nan</td><td>nan</td></tr><tr><td>B5</td><td>Q065</td><td>在半导体设备调试中，当工艺Recipe中的温度设定值从250℃调整为260℃时，除了验证温控系统能否稳定达到新设定值，还需要重点验证哪些与设备动作和工艺稳定性直接相关的参数？请简述验证逻辑。</td><td>GPT5.5: 第二层原文出现乱码“���依赖日志完整性与采样精度”，影响口语作答流畅性和正式题库可用性。</td><td>nan</td><td>nan</td><td>nan</td></tr><tr><td>C2</td><td>Q007</td><td>EAP向设备下发参数前，一般会先触发一次设备状态查询。请简述这次查询的核心目的，以及它如何影响后续参数下发的执行流程。</td><td>GPT5.5: 与R5Q0006都围绕EAP参数下发前的设备就绪/状态查询依据展开，候选人作答核心都会落在通信、远程/就绪状态、报警/工艺条件确认及是否放行下发，作答路径高度重复。</td><td>nan</td><td>nan</td><td>nan</td></tr></tbody>
+  </table>
+</body>
+</html>

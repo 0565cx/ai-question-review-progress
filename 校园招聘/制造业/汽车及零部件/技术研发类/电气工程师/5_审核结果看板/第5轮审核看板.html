@@ -1,0 +1,72 @@
+﻿<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Round 5 Dashboard</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; margin: 24px; color: #1f2937; }
+    h1, h2, h3 { margin: 10px 0 12px; }
+    .cards { display: grid; grid-template-columns: repeat(3, minmax(140px, 220px)); gap: 12px; margin: 8px 0 18px; }
+    .card { border: 1px solid #e5e7eb; border-radius: 10px; padding: 12px; background: #fafafa; }
+    .card .k { font-size: 12px; color: #6b7280; }
+    .card .v { font-size: 24px; font-weight: 700; margin-top: 4px; }
+    table { border-collapse: collapse; width: 100%; margin: 8px 0 18px; }
+    th, td { border: 1px solid #e5e7eb; padding: 8px 10px; vertical-align: middle; }
+    th { background: #f9fafb; }
+    .legend span { margin-right: 12px; font-size: 13px; color: #374151; }
+    .mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; }
+    .ex { margin: 6px 0; color: #374151; }
+    .section-divider { border: 0; border-top: 2px solid #eef2f7; margin: 22px 0; }
+  </style>
+</head>
+<body>
+  <h1>Round 5 审核看板</h1>
+
+  <div class="cards">
+    <div class="card"><div class="k">A类错误</div><div class="v">5</div></div>
+    <div class="card"><div class="k">B类错误</div><div class="v">38</div></div>
+    <div class="card"><div class="k">C类错误</div><div class="v">2</div></div>
+  </div>
+
+  <h2>本轮题目主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">五轮输入84题，当前轮次可保留48题，需要重新出题6题，保留题干重出答案30题。五轮题目层面的主要问题集中在重复/同质化题干和少量题干概念错误。Gemini 检出多处 C1/C2，说明四轮回流后仍有同一考点换问法、同一作答链路重复进入题库的情况；另有少量 A 类问题，主要是题干把直流快充与交流 CP 信号混用、或要求解释图形符号等不适合口头面试的内容。</div>
+<h2>本轮答案主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">五轮答案错误仍以B1知识性错误为主，集中在标准名称、适用范围、条款号和工程时序的错配或幻觉。五轮答案层面的主要错误仍以 B1 知识性错误为主。高频问题包括标准引用错配或虚构条款、直流快充接口信号与 GB/T 27930/ISO 15118 口径混用、HVIL/绝缘监测/碰撞断电逻辑混淆、高压预充和下电时序错误、UDS 服务号与 LIN/CAN 基础概念错误、保险丝线束选型和 IP 等级解释不准确。GPT5.5 对答案知识硬伤检出较集中，Gemini 对重复题和标准引用问题更敏感。</div>
+<h2>后续重新出内容时应补充的规则</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">【重新出题】<br/>重新出题前必须先做题干、考点、场景、答案推理链四维去重，尤其是保险丝选型、接地干扰、LIN/CAN/UDS、直流快充信号和连接器标准相关题。直流快充、交流慢充、HVIL、绝缘监测、预充/下电等主题必须明确系统边界和适用标准，不得把不同接口或协议的信号混用。题干不得要求解释图形符号、画图或推导公式。<br/><br/>【重出答案】<br/>重出答案时必须逐条校验标准名称、标准适用范围、服务号、接口针脚、信号名称和动作时序。不要编造标准条款或把企业经验写成国家标准要求；不确定的阈值不要绝对化。三层答案要围绕题干问点展开，第一层直接回答，第二层给工程依据，第三层给真实量产场景中的异常与处理。</div>
+
+  <hr class="section-divider" />
+
+  <h2>模型进度与删除率</h2>
+  <table>
+    <thead>
+      <tr><th>Model</th><th>批次完成</th><th>完成率</th><th>删除率</th><th>主错误</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>GPT5.5</td><td style='text-align:center'>3/3</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:39.3%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">39.3%</span></td><td style='text-align:center'>B>A>C</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>3/3</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:14.3%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">14.3%</span></td><td style='text-align:center'>B>A>C</td></tr>
+    </tbody>
+  </table>
+
+  <h2>批次状态矩阵</h2>
+  <div class="legend">
+    <span>✓ done</span><span>… running</span><span>○ pending</span><span>! blocked</span><span>x failed</span>
+  </div>
+  <table>
+    <thead><tr><th>Model</th><th>R5-B001</th><th>R5-B002</th><th>R5-B003</th></tr></thead>
+    <tbody><tr><td>GPT5.5</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td></tr></tbody>
+  </table>
+
+  <h2>细分错误统计（A1/B1...）</h2>
+  <table>
+    <thead><tr><th>错误子类</th><th>数量</th></tr></thead>
+    <tbody><tr><td>A1</td><td style='text-align:center'>2</td></tr><tr><td>A3</td><td style='text-align:center'>1</td></tr><tr><td>A4</td><td style='text-align:center'>2</td></tr><tr><td>B1</td><td style='text-align:center'>38</td></tr><tr><td>C2</td><td style='text-align:center'>2</td></tr></tbody>
+  </table>
+
+  <h3>细分错误示例（每类2条）</h3>
+  <table>
+    <thead><tr><th>错误子类</th><th>例1-题号</th><th>例1-题目</th><th>例1-理由</th><th>例2-题号</th><th>例2-题目</th><th>例2-理由</th></tr></thead>
+    <tbody><tr><td>A1</td><td>Q083</td><td>线束连接器插拔寿命验证试验需执行哪项国家标准？请简述该标准中规定的关键试验条件（至少两项）及其与实车使用场景的对应关系。</td><td>GPT5.5: 题干存在错误前提，且参考答案进一步固化了错误标准口径。原文题干问“线束连接器插拔寿命验证试验需执行哪项国家标准”，将连接器插拔寿命验证限定为唯一国家标准是不严谨的；汽车线束连接器插拔耐久/机械寿命通常需结合项目客户规范、企业规范、行业标准及通用连接器试验方法，不能简单指定单一GB/T作为必然执行依据。原文答案称“需执行国家标准GB/T 32087-2015《汽车用低压电线束连接器》”，并给出“第6.4节”“每分钟6～10次”“500次后插入力下降35%，超出标准限值（≤20%）”“要求的1000次”等具体条款和限值，均缺少可靠标准依据，疑似把标准名称、章节、次数和限值编造为确定结论。正确口径应说明：插拔寿命验证应先依据整车厂/客户技术规范和连接器供应商规范确定试验次数、插拔速度、插拔力变化、接触电阻、外观/锁止状态等判定项；若引用国家或行业标准，应准确核对标准名称、适用范围、版本和条款，不能把未核实的标准号和限值作为面试题标准答案。；Gemini3.1pro: 参考答案存在严重的知识性错误与幻觉。第一层指出“需执行国家标准GB/T 32087-2015《汽车用低压电线束连接器》”，实际上我国汽车低压线束连接器常用的主流行业标准为QC/T 1067系列（如QC/T 1067.1-2017），并不存在GB/T 32087-2015这一汽车低压连接器国家标准。此为典型的AI幻觉虚构标准号与标准名称。正确应当引用真实的连接器试验标准如QC/T 1067或GMW3191等。</td><td>Q084</td><td>在整车线束设计中，当需要确定某段低压导线的截面积时，主要依据哪个国家标准来查表选取？请简述该标准中影响截面积选择的两个关键参数。</td><td>GPT5.5: 题干将低压导线截面积确定表述为“主要依据哪个国家标准来查表选取”，存在不严谨甚至错误的单一标准前提；整车低压导线截面积选择不是只靠某个国家标准直接查表完成，而应结合回路工作电流、熔断保护配合、允许压降、环境温度、线束捆扎散热、敷设区域、端子和连接器能力、整车厂设计规范及验证结果综合确定。参考答案进一步称“主要依据国家标准GB/T 25085—2023《道路车辆 60V和600V单芯电线》”“是整车线束工程数据输出阶段开展导线选型的强制性引用标准”，该口径错误：GB/T推荐性标准主要规定道路车辆单芯电线的结构、尺寸、材料和性能要求，不能等同于整车回路线径设计的强制查表规范。答案还编造或过度具体化“附录B中的载流能力对照表”“40℃、85℃、105℃三档给出降额系数”“条款5.4执行捆扎修正”“附录C的封闭空间载流修正流程”“第7.3款执行脉冲载流等效折算”等内容。正确口径应为：GB/T 25085可作为电线产品规格和性能依据之一，截面积设计需按整车厂线束设计规范/平台选型库，结合载流、压降、温升、保护匹配和布置工况校核，必要时通过温升和短路保护验证确认。；Gemini3.1pro: 参考答案存在大量对标准条款的虚构与幻觉。第二层提及“GB/T 25085—2023附录B中的载流能力对照表”，第三层提及“附录C的‘封闭空间载流修正流程’”以及“按GB/T 25085—2023第7.3款执行脉冲载流等效折算”，均为AI虚构编造的具体条款号与内容流程。标准原文中并不存在这些生造的名词与对应条款。正确应当给出真实可查的选型技术依据，不可捏造附录和子条款。</td></tr><tr><td>A3</td><td>Q082</td><td>请简述连接器防护等级IP数值中，第一位数字代表什么含义？</td><td>GPT5.5: 参考答案对IP代码含义存在明确知识性错误。原文第三层称“某BCM连接器标称IPX4，实测第一位数字缺失，未识别其无防固体异物能力”，这里把IP代码中的“X”解释成“无防固体异物能力”是错误的；IP代码中X表示该位未规定或未测试，不等同于防护能力为0。原文还称“在零部件数据表审核环节增加IP代码双字段校验（必须同时标注两位数字）”，也不准确，工程文件可以因未声明某一类防护而使用X位，关键是明确需求和验证边界。正确口径应为：第一位数字表示防止固体异物接近/进入的防护等级，0到6等级递增；若标为X，只能说明该位未声明或未验证，不能直接判定为无防固体异物能力。；Gemini3.1pro: 题干偏离知识点且违反A4禁用词规则，答案存在幻觉(B1)。知识点为“降本与优化分析-连接器规格优化”，但题干“简述连接器防护等级IP数值中第一位数字代表什么含义”仅为单纯的概念解释，未考察优化分析和降本的业务场景（A3）；此外要求解释IP符号含义违反了A4规则。最后，第二层答案中“已被多个主机厂纳入《整车线束接口防护设计指南》第3.2节强制要求”为AI幻觉虚构的行业标准名称及具体条款号（B1）。正确应设计具化的降本优化应用场景提问。</td><td>nan</td><td>nan</td><td>nan</td></tr><tr><td>A4</td><td>Q003</td><td>请简单说说电气原理图中‘电源正极’符号通常用什么图形表示，它代表电路中哪个物理连接点？</td><td>Gemini3.1pro: 题干要求候选人说出电气原理图中的符号图形表示，违反A4规则（要求解释图形或符号）。</td><td>Q004</td><td>请简单说说电气原理图中‘继电器线圈’的图形符号由哪两部分组成，它们分别对应其什么基本工作原理？</td><td>GPT5.5: 原文称继电器线圈图形符号“由左侧的矩形框和右侧的标注文字两部分组成”，并把标注文字解释为工作原理的一部分。正确口径应是继电器线圈符号本体表示电磁线圈/绕组，器件代号或文字标注是元件编号/功能标识，不属于线圈图形符号的基本组成，也不对应基本工作原理。；Gemini3.1pro: 题干要求候选人说出电气原理图中图形符号的组成部分，违反A4规则（要求解释图形或符号）。</td></tr><tr><td>B1</td><td>Q004</td><td>请简单说说电气原理图中‘继电器线圈’的图形符号由哪两部分组成，它们分别对应其什么基本工作原理？</td><td>GPT5.5: 原文称继电器线圈图形符号“由左侧的矩形框和右侧的标注文字两部分组成”，并把标注文字解释为工作原理的一部分。正确口径应是继电器线圈符号本体表示电磁线圈/绕组，器件代号或文字标注是元件编号/功能标识，不属于线圈图形符号的基本组成，也不对应基本工作原理。；Gemini3.1pro: 题干要求候选人说出电气原理图中图形符号的组成部分，违反A4规则（要求解释图形或符号）。</td><td>Q006</td><td>请简单说说，在车载网络通信中，识别一个信号来自哪个控制单元，主要依据的是报文中的哪个标识信息？</td><td>GPT5.5: 原文称信号来源主要依据“源地址标识”，并把“唯一CAN ID或以太网MAC地址”混为同一类来源标识；第二层还称CAN ID“高8位通常映射为发送节点逻辑地址”。正确口径应是车载网络中信号来源通常依据通信矩阵/DBC中报文发送方、报文ID及信号发送节点定义来识别，CAN报文ID不等同于统一的源地址字段，也不存在通用的高8位发送节点映射规则。</td></tr><tr><td>C2</td><td>Q008</td><td>请简述汽车低压电气系统中，保险丝的额定电流选择依据是什么？</td><td>Gemini3.1pro: 题干与R5Q0005语义高度重复，同为考察汽车电气系统中保险丝额定电流的选择依据，属于C2重复问题。</td><td>Q008</td><td>请简述汽车低压电气系统中，保险丝的额定电流选择依据是什么？</td><td>Gemini3.1pro: 题干与R5Q0005语义高度重复，同为考察汽车电气系统中保险丝额定电流的选择依据，属于C2重复问题。</td></tr></tbody>
+  </table>
+</body>
+</html>

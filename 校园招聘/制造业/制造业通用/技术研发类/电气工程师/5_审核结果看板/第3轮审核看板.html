@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Round 3 Dashboard</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; margin: 24px; color: #1f2937; }
+    h1, h2, h3 { margin: 10px 0 12px; }
+    .cards { display: grid; grid-template-columns: repeat(3, minmax(140px, 220px)); gap: 12px; margin: 8px 0 18px; }
+    .card { border: 1px solid #e5e7eb; border-radius: 10px; padding: 12px; background: #fafafa; }
+    .card .k { font-size: 12px; color: #6b7280; }
+    .card .v { font-size: 24px; font-weight: 700; margin-top: 4px; }
+    table { border-collapse: collapse; width: 100%; margin: 8px 0 18px; }
+    th, td { border: 1px solid #e5e7eb; padding: 8px 10px; vertical-align: middle; }
+    th { background: #f9fafb; }
+    .legend span { margin-right: 12px; font-size: 13px; color: #374151; }
+    .mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; }
+    .ex { margin: 6px 0; color: #374151; }
+    .section-divider { border: 0; border-top: 2px solid #eef2f7; margin: 22px 0; }
+  </style>
+</head>
+<body>
+  <h1>Round 3 审核看板</h1>
+
+  <div class="cards">
+    <div class="card"><div class="k">A类错误</div><div class="v">1</div></div>
+    <div class="card"><div class="k">B类错误</div><div class="v">28</div></div>
+    <div class="card"><div class="k">C类错误</div><div class="v">0</div></div>
+  </div>
+
+  <h2>本轮题目主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">本轮题干问题数量较少，主要集中在技术对象前提不严谨，例如将变频器驱动与伺服定位单元混用。其余多数题干能够对应电气工程师的工作场景，但在接地、屏蔽、短路和安规测试场景中，题干应进一步明确系统制式、设备类型和测试边界，避免候选人被引导到错误标准或错误回路机理。</div>
+<h2>本轮答案主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">本轮被删题主要是B类答案错误，高频问题包括：把PE或大地误写为正常工作/故障电流的简单返回路径；将屏蔽层单端或双端接地绝对化；把泄漏电流测试和绝缘/耐压测试混淆；引用不适用的GB/IEC标准或给出90%、4欧等缺乏依据的固定数值。这些错误会直接影响面试评分的专业性和现场安全可靠性判断。</div>
+<h2>后续重新出内容时应补充的规则</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">【重新出题】<br/>重新出题时，若涉及伺服、变频器、安全回路或短路故障，必须先锁定设备架构和系统制式，例如TN-S/TT/IT、伺服驱动器还是变频器、相间短路还是接地故障。禁止在题干中混用不同系统概念，也不要设置需要候选人画图、推导公式或记忆冷门条款的口试题。<br/><br/>【重出答案】<br/>重出答案时，每个标准或数值必须标明适用边界，不得把单一经验值写成通用强制要求。接地和屏蔽答案需同时区分保护接地、功能接地、信号参考地和屏蔽EMC端接；安规测试答案需区分接地连续性、绝缘电阻、耐压和泄漏电流四类测试的测量条件和判据。</div>
+
+  <hr class="section-divider" />
+
+  <h2>模型进度与删除率</h2>
+  <table>
+    <thead>
+      <tr><th>Model</th><th>批次完成</th><th>完成率</th><th>删除率</th><th>主错误</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>GPT5.5</td><td style='text-align:center'>10/10</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:7.9%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">7.9%</span></td><td style='text-align:center'>B>A</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>10/10</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:7.7%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">7.7%</span></td><td style='text-align:center'>B>A</td></tr>
+    </tbody>
+  </table>
+
+  <h2>批次状态矩阵</h2>
+  <div class="legend">
+    <span>✓ done</span><span>… running</span><span>○ pending</span><span>! blocked</span><span>x failed</span>
+  </div>
+  <table>
+    <thead><tr><th>Model</th><th>R3-B001</th><th>R3-B002</th><th>R3-B003</th><th>R3-B004</th><th>R3-B005</th><th>R3-B006</th><th>R3-B007</th><th>R3-B008</th><th>R3-B009</th><th>R3-B010</th></tr></thead>
+    <tbody><tr><td>GPT5.5</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td></tr></tbody>
+  </table>
+
+  <h2>细分错误统计（A1/B1...）</h2>
+  <table>
+    <thead><tr><th>错误子类</th><th>数量</th></tr></thead>
+    <tbody><tr><td>A1</td><td style='text-align:center'>1</td></tr><tr><td>B1</td><td style='text-align:center'>26</td></tr><tr><td>B2</td><td style='text-align:center'>1</td></tr><tr><td>B3</td><td style='text-align:center'>1</td></tr></tbody>
+  </table>
+
+  <h3>细分错误示例（每类2条）</h3>
+  <table>
+    <thead><tr><th>错误子类</th><th>例1-题号</th><th>例1-题目</th><th>例1-理由</th><th>例2-题号</th><th>例2-题目</th><th>例2-理由</th></tr></thead>
+    <tbody><tr><td>A1</td><td>Q212</td><td>针对一台带有变频器驱动、制动电阻、抱闸控制和位置反馈的伺服定位单元，在原理图功能回路拆解过程中，为何必须将抱闸释放条件与速度阈值、变频器运行状态、安全使能信号进行逻辑组合，而不是仅依赖变频器就绪信号？请简述其背后的安全功能耦合关系。</td><td>GPT5.5: 引用题干"针对一台带有变频器驱动、制动电阻、抱闸控制和位置反馈的伺服定位单元，在原理图功能回路拆解过程中，为何必须将抱闸释放条件与速度阈值、变频器运行状态、安全使能信号进行逻辑组合，而不是仅依赖变频器就绪信号？请简述其背后的安全功能耦合关系。"；引用答案"因为在电气原理设计中，抱闸属于安全相关执行元件，其释放必须同时满足运动可控前提——即轴实际无危险转速、驱动器处于有效运行指令状态、且整机安全链已激活；变频器就绪信号仅表示设备通电自检通过，不反映实时速度、未涵盖急停或安全继电器断开等故障态，..."；问题：题干把“变频器驱动”和“伺服定位单元”混用，技术对象不严谨；正确应明确是伺服驱动器闭环定位，还是变频器闭环控制架构。；Gemini3.1pro: 引用题干"针对一台带有变频器驱动、制动电阻、抱闸控制和位置反馈的伺服定位单元，在原理图功能回路拆解过程中，为何必须将抱闸释放条件与速度阈值、变频器运行状态、安全使能信号进行逻辑组合，而不是仅依赖变频器就绪信号？请简述其背后的安全功能耦合关系。"；引用答案"因为在电气原理设计中，抱闸属于安全相关执行元件，其释放必须同时满足运动可控前提——即轴实际无危险转速、驱动器处于有效运行指令状态、且整机安全链已激活；变频器就绪信号仅表示设备通电自检通过，不反映实时速度、未涵盖急停或安全继电器断开等故障态，..."；问题：题干把“变频器驱动”和“伺服定位单元”混用，技术对象不严谨；正确应明确是伺服驱动器闭环定位，还是变频器闭环控制架构。</td><td></td><td></td><td></td></tr><tr><td>B1</td><td>Q019</td><td>请简述为什么功率地通常需要更低的阻抗路径，而信号地更强调电位稳定性和噪声隔离？</td><td>GPT5.5: 引用题干"请简述为什么功率地通常需要更低的阻抗路径，而信号地更强调电位稳定性和噪声隔离？"；引用答案"功率地承担设备主回路电流的返回路径，其低阻抗要求是为了抑制大电流瞬变引起的电压降，避免影响功率器件开关特性和热稳定性；信号地则为模拟与数字电路提供参考基准，其核心诉求是维持局部电位一致性，并阻断功率回路噪声通过共阻抗耦合至敏感电路。"；问题：答案把PE/接地当成正常工作电流或故障电流依赖大地返回的路径，会误导TN-S/PE回路机理；正确应区分保护导体、功能接地和电源中性点返回路径。；Gemini3.1pro: 引用题干"请简述为什么功率地通常需要更低的阻抗路径，而信号地更强调电位稳定性和噪声隔离？"；引用答案"功率地承担设备主回路电流的返回路径，其低阻抗要求是为了抑制大电流瞬变引起的电压降，避免影响功率器件开关特性和热稳定性；信号地则为模拟与数字电路提供参考基准，其核心诉求是维持局部电位一致性，并阻断功率回路噪声通过共阻抗耦合至敏感电路。"；问题：答案把PE/接地当成正常工作电流或故障电流依赖大地返回的路径，会误导TN-S/PE回路机理；正确应区分保护导体、功能接地和电源中性点返回路径。</td><td>Q034</td><td>某汽车零部件产线的PLC控制系统中，变频器驱动电机产生的高频谐波通过接地系统耦合至同一接地网的视觉检测相机电源端，导致图像出现规律性条纹干扰。请说明在此场景下，接地分配设计中‘功能接地’与‘保护接地’共用同一接地极可能引发的具体干扰机理，并提出一种兼顾安全合规与抗干扰性能的接地结构改进方案。</td><td>GPT5.5: 引用题干"某汽车零部件产线的PLC控制系统中，变频器驱动电机产生的高频谐波通过接地系统耦合至同一接地网的视觉检测相机电源端，导致图像出现规律性条纹干扰。请说明在此场景下，接地分配设计中‘功能接地’与‘保护接地’共用同一接地极可能引发的具体干扰机理，并..."；引用答案"当功能接地（如PLC、相机等敏感电子设备的信号参考地）与保护接地（如变频器外壳、电机接地端子等安全保护地）共用同一接地极时，变频器高频谐波电流会经PE导体和接地极阻抗产生压降，该压降叠加在功能接地参考点上，形成共模干扰电压，直接串入相机供电..."；问题：答案引用的标准或条款与题干场景不匹配或过度绝对，导致结论不可靠；正确应依据机械电气安全、低压成套、变频驱动和EMC的适用范围分别判断。；Gemini3.1pro: 引用题干"某汽车零部件产线的PLC控制系统中，变频器驱动电机产生的高频谐波通过接地系统耦合至同一接地网的视觉检测相机电源端，导致图像出现规律性条纹干扰。请说明在此场景下，接地分配设计中‘功能接地’与‘保护接地’共用同一接地极可能引发的具体干扰机理，并..."；引用答案"当功能接地（如PLC、相机等敏感电子设备的信号参考地）与保护接地（如变频器外壳、电机接地端子等安全保护地）共用同一接地极时，变频器高频谐波电流会经PE导体和接地极阻抗产生压降，该压降叠加在功能接地参考点上，形成共模干扰电压，直接串入相机供电..."；问题：答案引用的标准或条款与题干场景不匹配或过度绝对，导致结论不可靠；正确应依据机械电气安全、低压成套、变频驱动和EMC的适用范围分别判断。</td></tr><tr><td>B2</td><td>Q191</td><td>某自动化装配线因增加高功率伺服驱动器，导致原有配电回路短路电流计算值超出断路器分断能力，原理图已调整为加装限流电抗器。请说明你将通过哪些实测与仿真相结合的方法，确认该变更不会引发保护选择性失效。</td><td>GPT5.5: 引用题干"某自动化装配线因增加高功率伺服驱动器，导致原有配电回路短路电流计算值超出断路器分断能力，原理图已调整为加装限流电抗器。请说明你将通过哪些实测与仿真相结合的方法，确认该变更不会引发保护选择性失效。"；引用答案"需验证加装限流电抗器后，各级断路器在故障时仍能按设计顺序动作：上游断路器不先于下游跳闸，且下游断路器能在其额定分断能力范围内可靠切断故障电流。"；问题：答案建议用现场短路实测或断开反馈线试运行来快速判断，存在明显安全风险；正确应用受控试验、保护注入、仿真和分段隔离排查。</td><td></td><td></td><td></td></tr><tr><td>B3</td><td>Q202</td><td>某产线改造项目中，新增大功率电阻焊机导致原有配电柜内母排温升超标，但电流实测未超额定值。请从供电回路设计角度，分析可能被忽视的谐波与集肤效应叠加影响，并说明原理图中应体现的关键设计修正措施。</td><td>GPT5.5: 引用题干"某产线改造项目中，新增大功率电阻焊机导致原有配电柜内母排温升超标，但电流实测未超额定值。请从供电回路设计角度，分析可能被忽视的谐波与集肤效应叠加影响，并说明原理图中应体现的关键设计修正措施。"；引用答案"电阻焊机属于典型非线性冲击性负载，其工作时产生大量低次谐波（尤其是3次、5次）和短时高幅值脉冲电流；这些谐波电流在母排中叠加基波后，因集肤效应加剧，使有效导电截面积减小，导致实际热损耗显著升高，而普通电流表仅反映有效值，无法体现谐波引起的附..."；问题：答案把结构/工艺图或装配规范内容写成电气原理图的关键修正措施，与题干要求的供电回路设计分析不一致。；Gemini3.1pro: 引用题干"某产线改造项目中，新增大功率电阻焊机导致原有配电柜内母排温升超标，但电流实测未超额定值。请从供电回路设计角度，分析可能被忽视的谐波与集肤效应叠加影响，并说明原理图中应体现的关键设计修正措施。"；引用答案"电阻焊机属于典型非线性冲击性负载，其工作时产生大量低次谐波（尤其是3次、5次）和短时高幅值脉冲电流；这些谐波电流在母排中叠加基波后，因集肤效应加剧，使有效导电截面积减小，导致实际热损耗显著升高，而普通电流表仅反映有效值，无法体现谐波引起的附..."；问题：答案把结构/工艺图或装配规范内容写成电气原理图的关键修正措施，与题干要求的供电回路设计分析不一致。</td><td></td><td></td><td></td></tr></tbody>
+  </table>
+</body>
+</html>

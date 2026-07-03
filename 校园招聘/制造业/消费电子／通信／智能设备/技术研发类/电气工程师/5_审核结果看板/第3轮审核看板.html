@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Round 3 Dashboard</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; margin: 24px; color: #1f2937; }
+    h1, h2, h3 { margin: 10px 0 12px; }
+    .cards { display: grid; grid-template-columns: repeat(3, minmax(140px, 220px)); gap: 12px; margin: 8px 0 18px; }
+    .card { border: 1px solid #e5e7eb; border-radius: 10px; padding: 12px; background: #fafafa; }
+    .card .k { font-size: 12px; color: #6b7280; }
+    .card .v { font-size: 24px; font-weight: 700; margin-top: 4px; }
+    table { border-collapse: collapse; width: 100%; margin: 8px 0 18px; }
+    th, td { border: 1px solid #e5e7eb; padding: 8px 10px; vertical-align: middle; }
+    th { background: #f9fafb; }
+    .legend span { margin-right: 12px; font-size: 13px; color: #374151; }
+    .mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; }
+    .ex { margin: 6px 0; color: #374151; }
+    .section-divider { border: 0; border-top: 2px solid #eef2f7; margin: 22px 0; }
+  </style>
+</head>
+<body>
+  <h1>Round 3 审核看板</h1>
+
+  <div class="cards">
+    <div class="card"><div class="k">A类错误</div><div class="v">2</div></div>
+    <div class="card"><div class="k">B类错误</div><div class="v">43</div></div>
+    <div class="card"><div class="k">C类错误</div><div class="v">59</div></div>
+  </div>
+
+  <h2>本轮题目主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">本轮题目端问题主要集中在重复/同质化（C1/C2）与少量知识性表述错误（A1）。经人工校准，包含“在绘制/绘图过程中如何处理”的方法类题，不应按A4删除，相关误判已回滚。</div>
+<h2>本轮答案主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">答案端仍以B1为主，典型表现为结论绝对化、机理解释不严谨或与题干边界不完全一致。第二层方案对比深度和第三层异常处置的可执行性仍有提升空间。</div>
+<h2>后续重新出内容时应补充的规则</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">【重新出题】<br/>后续重出题重点放在去重：同一技能下避免仅换措辞导致作答路径重复；保留“在某场景下如何绘图/标注”的方法题，但不要要求候选人现场绘制图形。<br/><br/>【重出答案】<br/>答案重出时强化B1校验：每条关键结论需能被工程原理验证；第二层至少给出可比较方案及适用边界；第三层给出真实异常和可执行排查步骤。</div>
+
+  <hr class="section-divider" />
+
+  <h2>模型进度与删除率</h2>
+  <table>
+    <thead>
+      <tr><th>Model</th><th>批次完成</th><th>完成率</th><th>删除率</th><th>主错误</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>GPT5.5</td><td style='text-align:center'>21/21</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:3.6%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">3.6%</span></td><td style='text-align:center'>B</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>21/21</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:9.3%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">9.3%</span></td><td style='text-align:center'>C>B>A</td></tr>
+    </tbody>
+  </table>
+
+  <h2>批次状态矩阵</h2>
+  <div class="legend">
+    <span>✓ done</span><span>… running</span><span>○ pending</span><span>! blocked</span><span>x failed</span>
+  </div>
+  <table>
+    <thead><tr><th>Model</th><th>R3-B001</th><th>R3-B002</th><th>R3-B003</th><th>R3-B004</th><th>R3-B005</th><th>R3-B006</th><th>R3-B007</th><th>R3-B008</th><th>R3-B009</th><th>R3-B010</th><th>R3-B011</th><th>R3-B012</th><th>R3-B013</th><th>R3-B014</th><th>R3-B015</th><th>R3-B016</th><th>R3-B017</th><th>R3-B018</th><th>R3-B019</th><th>R3-B020</th><th>R3-B021</th></tr></thead>
+    <tbody><tr><td>GPT5.5</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td></tr></tbody>
+  </table>
+
+  <h2>细分错误统计（A1/B1...）</h2>
+  <table>
+    <thead><tr><th>错误子类</th><th>数量</th></tr></thead>
+    <tbody><tr><td>A1</td><td style='text-align:center'>2</td></tr><tr><td>B1</td><td style='text-align:center'>43</td></tr><tr><td>C1</td><td style='text-align:center'>48</td></tr><tr><td>C2</td><td style='text-align:center'>11</td></tr></tbody>
+  </table>
+
+  <h3>细分错误示例（每类2条）</h3>
+  <table>
+    <thead><tr><th>错误子类</th><th>例1-题号</th><th>例1-题目</th><th>例1-理由</th><th>例2-题号</th><th>例2-题目</th><th>例2-理由</th></tr></thead>
+    <tbody><tr><td>A1</td><td>Q011</td><td>某TWS耳机语音增强模块中，麦克风输出信号经共射放大后驱动长走线至主控芯片，出现高频失真与底噪抬升。工程师考虑在共射级后增加共集放大电路，但发现整体增益未达预期且启动时偶发振荡。请从偏置稳定性、密勒效应及源极/发射极跟随特性角度，分析该问题的根本成因及系统级改进思路。</td><td>Gemini3.1pro: 题干中提到“源极/发射极跟随特性”，但共集放大电路使用的是三极管，只有发射极跟随特性，没有源极。应该改为“发射极跟随特性”。</td><td>Q074</td><td>请简单说说，为什么在保持阻抗不变的前提下，线宽变宽通常需要同时减小介质厚度？</td><td>GPT5.5: 第一层称线宽变宽时要“减小介质厚度”以保持阻抗不变，方向错误；线宽变宽会降低阻抗，介质厚度减小也会降低阻抗，正确补偿通常应增大介质厚度或调整介电常数/参考结构。；Gemini3.1pro: 题干和答案均存在严重的知识性错误。特性阻抗与线宽成反比，与介质厚度成正比。当线宽变宽时，阻抗会下降；为了保持阻抗不变，必须“增加”介质厚度，而不是“减小”。</td></tr><tr><td>B1</td><td>Q006</td><td>当一个MCU接口需要驱动多个并联的数字输入引脚时，设计者有时会加入一个共射极晶体管作为驱动增强级。请简单说说，这个结构在这里主要解决了什么实际问题？</td><td>GPT5.5: 参考答案将共射极晶体管用于增强多个数字输入驱动能力时，未交代共射级反相/开集电极输出特性，且第三层把“输出高电平偏低”归因于共射级饱和不足，逻辑与常见NPN共射驱动机理不一致；正确应说明其多用于下拉/灌电流或开集电极驱动，并需配合上拉与反相逻辑。</td><td>Q010</td><td>某蓝牙耳机主控板的麦克风前置放大电路在量产中出现批量增益衰减和失真度上升问题，已确认运放本身无批次异常。请简述：你将如何基于负反馈类型（电压串联/电流并联等）对输入阻抗、输出阻抗、带宽及非线性失真的不同影响，逆向分析反馈网络中电阻或电容元件参数漂移带来的综合效应？</td><td>GPT5.5: 参考答案称“带宽随闭环增益升高而展宽”，这与运放增益带宽积约束相反；闭环增益升高通常会降低可用带宽。正确应基于反馈比、环路增益和GBW分析增益衰减与失真。</td></tr><tr><td>C1</td><td>Q141</td><td>请简单说说运放电路中‘虚短’和‘虚断’分别指的是什么？</td><td>Gemini3.1pro: 题干与前序题目重复："请简单说说运放电路中‘虚短’和‘虚断’分别指的是什么？..."，按规则保留前一题，删除当前重复题。</td><td>Q154</td><td>请简单说说负反馈有哪四种基本类型，以及它们分别对放大器的输入和输出电阻有什么影响？</td><td>Gemini3.1pro: 题干与前序题目重复："请简单说说负反馈有哪四种基本类型，以及它们分别对放大器的输入和输出电阻有什么影响？..."，按规则保留前一题，删除当前重复题。</td></tr><tr><td>C2</td><td>Q176</td><td>在消费电子设备的电源管理电路中，常使用三极管作为开关控制LED或蜂鸣器等负载。请简单说说，如何通过测量三极管三个电极之间的电压，来判断它当前工作在放大区还是饱和区？</td><td>Gemini3.1pro: 题干与前序题目高度同质，候选人作答核心要点基本一致（相似度0.99），按规则删除后序题。</td><td>Q191</td><td>在消费电子设备的电源控制电路中，常使用三极管作为开关元件驱动LED或继电器。请简单说说，如何通过测量三极管三个电极之间的电压，来判断它当前工作在放大区还是饱和区？</td><td>Gemini3.1pro: 题干与前序题目高度同质，候选人作答核心要点基本一致（相似度0.94），按规则删除后序题。</td></tr></tbody>
+  </table>
+</body>
+</html>

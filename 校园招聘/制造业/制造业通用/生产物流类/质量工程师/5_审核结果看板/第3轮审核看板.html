@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Round 3 Dashboard</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; margin: 24px; color: #1f2937; }
+    h1, h2, h3 { margin: 10px 0 12px; }
+    .cards { display: grid; grid-template-columns: repeat(3, minmax(140px, 220px)); gap: 12px; margin: 8px 0 18px; }
+    .card { border: 1px solid #e5e7eb; border-radius: 10px; padding: 12px; background: #fafafa; }
+    .card .k { font-size: 12px; color: #6b7280; }
+    .card .v { font-size: 24px; font-weight: 700; margin-top: 4px; }
+    table { border-collapse: collapse; width: 100%; margin: 8px 0 18px; }
+    th, td { border: 1px solid #e5e7eb; padding: 8px 10px; vertical-align: middle; }
+    th { background: #f9fafb; }
+    .legend span { margin-right: 12px; font-size: 13px; color: #374151; }
+    .mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; }
+    .ex { margin: 6px 0; color: #374151; }
+    .section-divider { border: 0; border-top: 2px solid #eef2f7; margin: 22px 0; }
+  </style>
+</head>
+<body>
+  <h1>Round 3 审核看板</h1>
+
+  <div class="cards">
+    <div class="card"><div class="k">A类错误</div><div class="v">10</div></div>
+    <div class="card"><div class="k">B类错误</div><div class="v">71</div></div>
+    <div class="card"><div class="k">C类错误</div><div class="v">2</div></div>
+  </div>
+
+  <h2>本轮题目主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">本轮经保留题全量重审后，题干主要风险不只是 AQL/SPC 概念边界，还包括把 GB/T 2828.1 加严/放宽转移条件简化、把 p 控制图套用计量型 A/B/C 区判异、把 Cpk/Ppk 门槛写成绝对结论，以及在 PPAP 未批准、客户授权未明确或让步放行场景中给出过于模糊的题干条件。</div>
+<h2>本轮答案主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">本轮答案错误以 B 类为主：一是精确标准条款错引或疑似编造，把 IATF/APQP/PPAP 条款号当作关键依据；二是将 MSA GR&amp;R 10%/30%、Cpk/Ppk 1.33 等门槛绝对化，忽略客户要求、特殊特性和过程稳定性前提；三是在客户书面批准、PPAP 放行或让步接收边界不清时给出可切换/可放行的误导性建议。</div>
+<h2>后续重新出内容时应补充的规则</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">【重新出题】<br/>重新出题时必须明确标准版本、适用前提、客户特殊要求和批准状态。涉及抽样转移规则不得简化为单个批次数条件；涉及 PPAP/变更/让步放行时必须说明客户书面批准和内部授权的边界。<br/><br/>【重出答案】<br/>重出答案时禁止使用无法核实的精确条款号作为核心依据。必须先给出标准判定逻辑，再说明适用条件、客户要求、书面批准/让步流程和例外处理边界。Cpk/Ppk/MSA 等门槛不能脱离数据前提和客户要求直接下结论。</div>
+
+  <hr class="section-divider" />
+
+    <hr class="section-divider" />
+  <h2>保留题全量重审与最终删题率</h2>
+  <div class="cards">
+    <div class="card"><div class="k">最终交付删题率</div><div class="v">13.65%</div></div>
+    <div class="card"><div class="k">最终删除数</div><div class="v">83/608</div></div>
+    <div class="card"><div class="k">分流结果</div><div class="v" style="font-size:18px;">525 / 12 / 71</div></div>
+  </div>
+  <div style="border:1px solid #f59e0b;background:#fffbeb;border-radius:8px;padding:12px;line-height:1.7;">
+    <p><strong>全量重审：</strong>已按 Skill “只有肯定无才保留”口径重审当前最终保留的 568 题，新增 43 条需删除题。</p>
+    <p><strong>主要问题：</strong>精确标准条款错引/疑似编造、PPAP 未批准变更切换、客户授权/让步边界不清、MSA GR&R 和 Cpk/Ppk 门槛绝对化、GB/T 2828.1 转移规则简化。</p>
+    <p><strong>最终结论：</strong>删除 83/608=13.65%；可保留 525、需重新出题 12、保留题干重出答案 71，行数守恒。</p>
+  </div>
+
+<h2>模型进度与质量漂移触发状态</h2>
+<p style="color:#6b7280;margin-top:-8px;">说明：此处仅展示模型是否触发质量漂移，不展示原始删题率数字；最终交付删题率统一为 83/608=13.65%。</p>
+<table>
+  <thead>
+    <tr><th>Model</th><th>批次完成</th><th>完成率</th><th>质量漂移状态</th><th>主错误</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>GPT5.5</td><td style='text-align:center'>16/16</td><td style='text-align:center'>100.0%</td><td style='text-align:center'>低于 5% 告警，已全量重审</td><td style='text-align:center'>B>A>C</td></tr>
+    <tr><td>Gemini3.1pro</td><td style='text-align:center'>16/16</td><td style='text-align:center'>100.0%</td><td style='text-align:center'>低于 5% 告警，已全量重审</td><td style='text-align:center'>B>A>C</td></tr>
+  </tbody>
+</table>
+
+  <h2>批次状态矩阵</h2>
+  <div class="legend">
+    <span>✓ done</span><span>… running</span><span>○ pending</span><span>! blocked</span><span>x failed</span>
+  </div>
+  <table>
+    <thead><tr><th>Model</th><th>R3-B001</th><th>R3-B002</th><th>R3-B003</th><th>R3-B004</th><th>R3-B005</th><th>R3-B006</th><th>R3-B007</th><th>R3-B008</th><th>R3-B009</th><th>R3-B010</th><th>R3-B011</th><th>R3-B012</th><th>R3-B013</th><th>R3-B014</th><th>R3-B015</th><th>R3-B016</th></tr></thead>
+    <tbody><tr><td>GPT5.5</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td></tr></tbody>
+  </table>
+
+  <h2>细分错误统计（A1/B1...）</h2>
+  <table>
+    <thead><tr><th>错误子类</th><th>数量</th></tr></thead>
+    <tbody><tr><td>A1</td><td style='text-align:center'>9</td></tr><tr><td>A4</td><td style='text-align:center'>1</td></tr><tr><td>B1</td><td style='text-align:center'>69</td></tr><tr><td>B2</td><td style='text-align:center'>1</td></tr><tr><td>B3</td><td style='text-align:center'>1</td></tr><tr><td>C1</td><td style='text-align:center'>1</td></tr><tr><td>C2</td><td style='text-align:center'>1</td></tr></tbody>
+  </table>
+
+  <h3>细分错误示例（每类2条）</h3>
+  <table>
+    <thead><tr><th>错误子类</th><th>例1-题号</th><th>例1-题目</th><th>例1-理由</th><th>例2-题号</th><th>例2-题目</th><th>例2-理由</th></tr></thead>
+    <tbody><tr><td>A1</td><td>Q009</td><td>当同一工序的控制图在一天内先后出现‘连续2个点距中心线距离大于2倍标准差’和‘连续3个点中有2个落在中心线同一侧的外1/3区域’，你会优先关注哪类模式？为什么？请简单说说。</td><td>Gemini3.1pro: 题干将“连续2个点距中心线距离大于2倍标准差”和“连续3个点中有2个落在中心线同一侧的外1/3区域”并列为两种模式，但实际上外1/3区域就是距中心线大于2倍标准差的A区，这两者描述的是同一个判异准则。</td><td>Q010</td><td>某电子装配工序的焊接虚焊率用p控制图监控，近10个子组中出现两次‘连续3点中有2点落在中心线同一侧的B区以外’，同时第8点还触发了‘单点超出A区上界’。此时产线正执行客户加急订单，停机验证将影响交付。请简述你如何权衡响应优先级，并说明依据控制图信号组合所推断的过程风险本质。</td><td>Gemini3.1pro: 题干在p控制图（不良率控制图）中使用了“B区”、“A区”等基于正态分布的计量型控制图判异准则，这是知识性错误。p控制图通常不划分A、B、C区进行判异。</td></tr><tr><td>A4</td><td>Q144</td><td>客户反馈某电子组件焊接后功能 intermittent 失效，D4阶段发现AOI未报警、X光检测无虚焊，但失效件在高低温循环后复现。你如何设计一个最小干预的现场验证，区分是焊点界面金属间化合物生长异常，还是PCB基材热膨胀系数匹配偏差所致？请说明验证对象选择、条件设置和结果判读方式。</td><td>GPT5.5: 题干原文“功能 intermittent 失效”混入不必要英文，影响中文口语面试表达流畅性；正确应写为“功能间歇性失效”。</td><td>本轮仅1条</td><td>该错误子类在本轮删除题中仅出现1条，无第2个不同样例。</td><td>数量不足，未虚构样例。</td></tr><tr><td>B1</td><td>Q001</td><td>如果控制图中某一点落在控制限之外，但相邻两点都在中心线同侧且靠近控制限，质量人员首先应关注哪类异常信号？请简述。</td><td>Gemini3.1pro: 答案第一层将“连续3点中有2点落在A区或更外”的模式错误地称为“趋势类异常信号”，这属于知识性错误。正确的应该是“接近控制限的异常模式或2/3A模式”。</td><td>Q007</td><td>一张已稳定运行的焊接强度控制图中，连续14个点交替上下波动，每个点都落在相邻点的另一侧。你认为这反映了什么过程状态？请简述你的依据。</td><td>Gemini3.1pro: 答案第一层将“连续14点交替上下”错误地称为“链状模式警戒信号”，实际上这属于“交替模式”。链状模式通常指连续点在中心线同一侧。</td></tr><tr><td>B2</td><td>Q405</td><td>当同一型号的电子元器件在IQC检验中，连续三批出现尺寸超差但功能测试全部合格，而产线反馈该物料装机后不良率未上升，你会如何调整后续的来料检验逻辑？请简述判断依据和具体调整动作。</td><td>该题删除原因在旧日志中存在编码损坏，以正式合并表为准。</td><td>本轮仅1条</td><td>该错误子类在本轮删除题中仅出现1条，无第2个不同样例。</td><td>数量不足，未虚构样例。</td></tr><tr><td>B3</td><td>Q223</td><td>某汽车零部件供应商的进货检验标准中，对关键尺寸的AQL值设定为0.65%，但最近半年内三次出现同一批次因该尺寸批量超差导致主机厂生产线停线。现场确认是加工设备磨损导致系统性偏移，且维修后仍存在短期波动。这种情况下，你认为是否应立即修订检验标准？请简述触发修订的核心依据、需同步验证的关键环节，以及修订前如何临时保障交付质量。</td><td>GPT5.5: 题干要求判断“是否应立即修订检验标准”，参考答案开头写“不应立即修订检验标准”，但后文又提出“在检验标准中增设过程状态标识”，前后矛盾且未正面回应标准失效风险；半年三次同尺寸批量超差导致停线，正确应至少启动检验标准/控制计划复审修订，并在修订前临时加严或全检。</td><td>本轮仅1条</td><td>该错误子类在本轮删除题中仅出现1条，无第2个不同样例。</td><td>数量不足，未虚构样例。</td></tr><tr><td>C1</td><td>Q388</td><td>在批量来料检验中，采用GB/T 2828.1正常检验一次抽样方案时，若连续5批中有2批被拒收，转为加严检验后又出现1批拒收，此时应如何决策？请简述后续检验方式调整的依据和风险权衡。</td><td>Gemini3.1pro: 与本批次第25题完全重复。</td><td>本轮仅1条</td><td>该错误子类在本轮删除题中仅出现1条，无第2个不同样例。</td><td>数量不足，未虚构样例。</td></tr><tr><td>C2</td><td>Q389</td><td>请简单说说‘允收数Ac’和‘拒收数Re’之间的关系。</td><td>nan</td><td>本轮仅1条</td><td>该错误子类在本轮删除题中仅出现1条，无第2个不同样例。</td><td>数量不足，未虚构样例。</td></tr></tbody>
+  </table>
+</body>
+</html>

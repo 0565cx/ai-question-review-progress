@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Round 4 Dashboard</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; margin: 24px; color: #1f2937; }
+    h1, h2, h3 { margin: 10px 0 12px; }
+    .cards { display: grid; grid-template-columns: repeat(3, minmax(140px, 220px)); gap: 12px; margin: 8px 0 18px; }
+    .card { border: 1px solid #e5e7eb; border-radius: 10px; padding: 12px; background: #fafafa; }
+    .card .k { font-size: 12px; color: #6b7280; }
+    .card .v { font-size: 24px; font-weight: 700; margin-top: 4px; }
+    table { border-collapse: collapse; width: 100%; margin: 8px 0 18px; }
+    th, td { border: 1px solid #e5e7eb; padding: 8px 10px; vertical-align: middle; }
+    th { background: #f9fafb; }
+    .legend span { margin-right: 12px; font-size: 13px; color: #374151; }
+    .mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; }
+    .ex { margin: 6px 0; color: #374151; }
+    .section-divider { border: 0; border-top: 2px solid #eef2f7; margin: 22px 0; }
+  </style>
+</head>
+<body>
+  <h1>Round 4 审核看板</h1>
+
+  <div class="cards">
+    <div class="card"><div class="k">A类错误</div><div class="v">1</div></div>
+    <div class="card"><div class="k">B类错误</div><div class="v">38</div></div>
+    <div class="card"><div class="k">C类错误</div><div class="v">9</div></div>
+  </div>
+
+  <h2>本轮题目主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">第4轮审核的是三轮重出后回流的 121 题（55 道重新出题 + 66 道重出答案）。题目层面问题集中在两点：一是知识点同质化/重复，Gemini 严格查重命中 8 道 C2，高频主题是安全回路（急停双通道、串联互锁）、电感式接近传感器磁导率影响、机器人碰撞回零、产线节拍/瓶颈判断，被换皮重复出题（如 Q0007≈Q0005、Q0034≈Q0031、Q0040≈Q0039、Q0050/Q0074 互锁、Q0060 双通道、Q0076 接触器熔焊、Q0079 磁导率）；二是个别题干本身是伪命题，如 Q0003「接触器主触点为什么不能用于电动机启动回路」，主触点本就用于电机主回路通断，属 A1。整体看题干结构与难度基本规范，重复同质化是题目侧主要扣分点。</div>
+<h2>本轮答案主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">答案层面是本轮主问题，删除 49 题中错误大类 B 占 38，且高度集中在「重出答案」批次（B003 几乎全是 B1）。典型表现四类：(1) 编造/臆断厂商故障码定义——把西门子 16#8001/80A2、三菱 Err.0004/4120、欧姆龙 0302、罗克韦尔 16#0007/16#0004、倍福 AX5805 等武断定性为某具体模块/通道故障，而这些码必须结合手册、诊断缓冲区、连接诊断才能解释；(2) 协议术语混用——把 EtherCAT 的 SyncManager/分布式时钟 DC/隐式报文套到 PROFINET 失步排查上，把 PROFIdrive 控制字 Bit7（故障复位）误为控制源优先级；(3) 安全逻辑错误——STO 只切断转矩却被当作防溜车措施、安全光栅 OSSD 双通道被写成取普通常闭触点串联、把工艺连续性置于人员安全之上（延迟停机）；(4) 与题干矛盾或自洽错误——节拍硬约束下仍给并行方案、瓶颈/在制品堆积方向判断反了、反向电动势未吸收却被解释为故障率更低。说明下游重出答案在事实准确性和安全规范上仍不达标。</div>
+<h2>后续重新出内容时应补充的规则</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">【重新出题】<br/>重新出题需做主题级查重：对急停双通道、串联互锁、接近传感器磁导率、机器人碰撞回零、节拍/瓶颈判断这几个已高频出现的知识点建立去重清单，禁止换措辞重复出同一考点；题干表述须经事实校验，杜绝 Q0003 式伪命题（不要把正常工程做法写成『为什么不能』）；中等难度题严禁引入冲突/取舍/系统性设计情境，冲突类题应标困难难度。<br/><br/>【重出答案】<br/>重出答案必须满足：(1) 凡涉及具体厂商故障码，禁止写死『某码=某具体故障』，必须注明需结合设备手册/诊断缓冲区/连接诊断确认，或改为通用排查步骤；(2) 协议术语严格对应——PROFINET 用 RPI/IRT/更新时间/看门狗/GSDML/拓扑，EtherNet/IP 用 RPI/QoS/DSCP/IGMP，EtherCAT 才用 SyncManager/DC，不得跨协议套用；PROFIdrive 控制字按手册位定义；(3) 安全规范硬约束——STO 仅切转矩不防溜车，垂直/重力轴必须配抱闸/配重/机械支撑，安全光栅走双通道 OSSD 接安全继电器/安全PLC，安全功能优先级高于工艺连续性，不得延迟人员安全相关停机；(4) 答案须先判断题干约束下的可行性再给方案，保证与题干（节拍、物理约束、瓶颈方向）逻辑一致；(5) 每层答案给出标准/原理依据，正确引用 GB/T 16855.1(ISO 13849-1)、IEC 62061、ISO 13850/13851 等，避免张冠李戴。</div>
+
+  <hr class="section-divider" />
+
+  <h2>模型进度与删除率</h2>
+  <table>
+    <thead>
+      <tr><th>Model</th><th>批次完成</th><th>完成率</th><th>删除率</th><th>主错误</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>GPT5.5</td><td style='text-align:center'>4/4</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:37.2%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">37.2%</span></td><td style='text-align:center'>B>A>C</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>4/4</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:6.6%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">6.6%</span></td><td style='text-align:center'>C</td></tr>
+    </tbody>
+  </table>
+
+  <h2>批次状态矩阵</h2>
+  <div class="legend">
+    <span>✓ done</span><span>… running</span><span>○ pending</span><span>! blocked</span><span>x failed</span>
+  </div>
+  <table>
+    <thead><tr><th>Model</th><th>R4-B001</th><th>R4-B002</th><th>R4-B003</th><th>R4-B004</th></tr></thead>
+    <tbody><tr><td>GPT5.5</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td></tr></tbody>
+  </table>
+
+  <h2>细分错误统计（A1/B1...）</h2>
+  <table>
+    <thead><tr><th>错误子类</th><th>数量</th></tr></thead>
+    <tbody><tr><td>A1</td><td style='text-align:center'>1</td></tr><tr><td>B1</td><td style='text-align:center'>38</td></tr><tr><td>C2</td><td style='text-align:center'>9</td></tr></tbody>
+  </table>
+
+  <h3>细分错误示例（每类2条）</h3>
+  <table>
+    <thead><tr><th>错误子类</th><th>例1-题号</th><th>例1-题目</th><th>例1-理由</th><th>例2-题号</th><th>例2-题目</th><th>例2-理由</th></tr></thead>
+    <tbody><tr><td>A1</td><td>R4-Q0003</td><td>请简单说说接触器的主触点为什么不能用于频繁通断大电流的电动机启动回路？</td><td>GPT5.5: 题干原文“接触器的主触点为什么不能用于频繁通断大电流的电动机启动回路”表述错误。接触器主触点本来就是用于电动机等主回路通断的元件，只要按AC-3/AC-4等使用类别、额定电流和操作频率正确选型，就可以用于频繁启停工况；正确问法应是为什么不能用普通或选型不匹配的接触器长期频繁通断大电流电机负载。</td><td>nan</td><td>nan</td><td>nan</td></tr><tr><td>B1</td><td>R4-Q0004</td><td>请简单说说，在电气控制系统中，主回路和控制回路之间最根本的供电与动作关系是什么？</td><td>GPT5.5: 参考答案原文“二者在物理上必须隔离供电，控制回路电源不得取自主回路母线直供”过于绝对。工程中控制回路电源常可由主电源经隔离变压器或开关电源转换后供给，并不是一律不得取自主回路上级电源；正确表述应强调控制电压需经合适隔离、保护和降压后形成独立控制电源。</td><td>R4-Q0007</td><td>在汽车总装线的输送设备上，急停按钮按下后，要求所有驱动电机立即断电停机，同时安全门锁保持锁定状态。请简述为什么急停回路必须采用双通道、冗余接线方式，并说明这种设计如何保障人员在设备停机过程中的安全。</td><td>GPT5.5: 参考答案原文“GB/T 16857标准”用于说明急停双通道安全回路依据不准确。该类安全相关控制系统通常应引用GB/T 16855.1/ISO 13849-1、IEC 62061及ISO 13850等；GB/T 16857并不是该处急停回路类别4设计的正确核心依据。；Gemini3.1pro: 与R4-Q0005重复，考察急停回路双通道的原理和方案几乎完全一致。</td></tr><tr><td>C2</td><td>R4-Q0007</td><td>在汽车总装线的输送设备上，急停按钮按下后，要求所有驱动电机立即断电停机，同时安全门锁保持锁定状态。请简述为什么急停回路必须采用双通道、冗余接线方式，并说明这种设计如何保障人员在设备停机过程中的安全。</td><td>GPT5.5: 参考答案原文“GB/T 16857标准”用于说明急停双通道安全回路依据不准确。该类安全相关控制系统通常应引用GB/T 16855.1/ISO 13849-1、IEC 62061及ISO 13850等；GB/T 16857并不是该处急停回路类别4设计的正确核心依据。；Gemini3.1pro: 与R4-Q0005重复，考察急停回路双通道的原理和方案几乎完全一致。</td><td>R4-Q0034</td><td>在汽车总装线机器人拧紧工作站中，机器人因工件偏移发生碰撞后触发急停，示教器显示‘伺服报警：位置偏差过大’。请简单说说，此时为什么不能直接复位报警并启动自动循环，而必须先执行轴回零操作？</td><td>Gemini3.1pro: 与R4-Q0031重复，都是考察工业机器人碰撞后必须确认机械零点（回零操作）的原因，作答核心要点完全一致。</td></tr></tbody>
+  </table>
+</body>
+</html>

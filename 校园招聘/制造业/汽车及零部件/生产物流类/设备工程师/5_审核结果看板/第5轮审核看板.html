@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Round 5 Dashboard</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; margin: 24px; color: #1f2937; }
+    h1, h2, h3 { margin: 10px 0 12px; }
+    .cards { display: grid; grid-template-columns: repeat(3, minmax(140px, 220px)); gap: 12px; margin: 8px 0 18px; }
+    .card { border: 1px solid #e5e7eb; border-radius: 10px; padding: 12px; background: #fafafa; }
+    .card .k { font-size: 12px; color: #6b7280; }
+    .card .v { font-size: 24px; font-weight: 700; margin-top: 4px; }
+    table { border-collapse: collapse; width: 100%; margin: 8px 0 18px; }
+    th, td { border: 1px solid #e5e7eb; padding: 8px 10px; vertical-align: middle; }
+    th { background: #f9fafb; }
+    .legend span { margin-right: 12px; font-size: 13px; color: #374151; }
+    .mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; }
+    .ex { margin: 6px 0; color: #374151; }
+    .section-divider { border: 0; border-top: 2px solid #eef2f7; margin: 22px 0; }
+  </style>
+</head>
+<body>
+  <h1>Round 5 审核看板</h1>
+
+  <div class="cards">
+    <div class="card"><div class="k">A类错误</div><div class="v">16</div></div>
+    <div class="card"><div class="k">B类错误</div><div class="v">35</div></div>
+    <div class="card"><div class="k">C类错误</div><div class="v">2</div></div>
+  </div>
+
+  <h2>本轮题目主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">五轮（四轮重出回流，56题）题干层面被判删约10题，集中在A4与A1。A4约6处：题干仍要求口头解释电气编号/图形符号含义，如端子编号X3:5的数字5(R5Q0001)、XT1(R5Q0005)、X4数字序列(R5Q0007)、隔离开关QS符号结构(R5Q0004)、输出点位Q2.3(R5Q0039)、三相异步电机图形符号构成元素(R5Q0040)，均属解释符号含义、无法口语直接作答。A1约5处：一是题干硬伤的事实错误，最典型R5Q0050把焊装节拍设成‘每分钟12台车体’(5秒/台)，严重违背汽车焊装主线40~60秒/台常识；二是把不对应标准强行写进题干前提，如R5Q0012用GB/T 15706(机械安全设计通则)当拧紧设备试运行异常记录因果链依据、R5Q0014用JB/T 16452当冲压设备试运行异常记录依据、R5Q0039称Q2.3是‘按IEC 61131-3标准格式’；三是逻辑前提不足，如R5Q0022未给企业备件分级规则却要求给出唯一等级。C2同质约3处：端子编号含义(R5Q0007与R5Q0001)、整改效果验证(R5Q0008与R5Q0006)、试运行问题记录(R5Q0014与R5Q0012)换皮重复。</div>
+<h2>本轮答案主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">参考答案仍是五轮最大问题来源：并轮判删39题中B类达33题，其中B1知识性/逻辑错误约31处最突出。典型B1：电气物理错误——R5Q0017称50毫欧接触电阻在10mA下形成‘显著压降’(实际仅约0.5mV，应为欧姆级或开路才致使能失败)；R5Q0052把‘实际距离与指令脉冲严重不符且电机能正常启停’归因编码器A/B相接反(相接反会正反馈飞车/报警，应归因电子齿轮比/脉冲当量)。概念混淆——R5Q0002把垂直度异常误述为交线方向直线度偏差；R5Q0026答示教轨迹偏差主要影响‘重复定位精度’(应为轨迹/路径跟随准确性)；R5Q0054把位置度公差收紧说成孔销间隙减小趋向过盈(位置度控制孔位偏差，不改变孔径，因果倒置)；R5Q0036称行程时间变长导致性能率‘被低估’(实为性能率真实下降)。标准张冠李戴——R5Q0053用GB/T 1182(几何公差标注规则)当未注几何公差默认值依据(应为GB/T 1184)；R5Q0041对PE保护导体截面规则自相矛盾。机理/最佳实践偏离(B2约4处)——R5Q0045气动接头换件把批次号当首要核对项(应核型号/接口/密封)；R5Q0047气源压力高频波动归因空气干燥器(应查储气罐/调压阀/流量阀)；R5Q0049把坑口圆润无划痕的疲劳点蚀误判为微动磨损；R5Q0043把安全信号线套用浅蓝/黄绿颜色规则。B3跑题约5处——R5Q0015要求答两个坐标系转换却只答一个、R5Q0055问恢复运行前关键动作却答事后记录与SOP更新、R5Q0056完全未回答‘为何不直接选更高导程或更大直径丝杠’的核心设问。B5约2处为缩写/标准堆叠影响口语作答(R5Q0012、R5Q0014)。两模型互补明显：GPT5.5深挖答案级B1(判删34)，Gemini额外抓到节拍违常识(R5Q0050)与点蚀形貌误判(R5Q0049)等硬错。</div>
+<h2>后续重新出内容时应补充的规则</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">【重新出题】<br/>1) 彻底禁止A4：题干不得要求口头解释或书写电气编号/图形符号含义(端子X3:5/XT1/X4序列、隔离开关QS、输出点Q2.3、三相电机符号等)，应改为现场定位、故障排查或功能应用场景。2) 题干事实必须过常识关：节拍↔产能换算(台/分钟=60÷每台秒)，焊装主线40~60秒/台量级，禁止出现5秒/台一类违背行业常识的设定。3) 引用国标/行标必须真实且编号-名称-适用对象一致：禁止把GB/T 15706、JB/T 16452、IEC 61131-3等错配为试运行异常记录或地址格式依据；不确定时不给标准号。4) 题干须给足前提：要求给唯一分级/等级前必须提供分级规则，避免逻辑前提不足。5) 同一知识点(端子编号含义、整改效果验证、试运行问题记录)只保留顺序在前的一题，杜绝C2换皮重复。<br/><br/>【重出答案】<br/>1) 物理与电气量级必须核验：接触电阻×电流的压降量级(50mΩ×10mA≈0.5mV不可能致使能失败)、伺服闭环A/B相接反=飞车报警而非正常启停(距离不符归因电子齿轮比/脉冲当量/丢脉冲)。2) 概念不得混淆：垂直度≠直线度、示教轨迹偏差影响轨迹/路径准确性而非重复定位精度、位置度公差控制孔位偏差不改变孔径间隙(收紧→对中更好→降低偏载磨损)、行程时间变长=性能率真实下降而非被低估。3) 标准与口径准确：未注几何公差依据GB/T 1184(GB/T 1182仅为标注规则)、PE截面按GB/T 16895系列(相导体≤16mm²时PE等截面)、安全信号线颜色不套用浅蓝/黄绿(黄绿专用PE、浅蓝为N)。4) 贴合工程最佳实践：标准件(气动接头)按型号/接口/密封/耐压替换而非批次号优先、气源压力波动先查储气罐/调压阀/流量阀、疲劳点蚀与微动磨损按形貌区分。5) 答案必须正面回答题目所问：要求答两个对象就给两个、问恢复运行前动作就答安全确认/解除LOTO/试车确认、问为何不选某方案就给出该方案的弊端，禁止跑题或只罗列替代方案。6) 控制缩写与标准堆叠，保证口语可作答。</div>
+
+  <hr class="section-divider" />
+
+  <h2>模型进度与删除率</h2>
+  <table>
+    <thead>
+      <tr><th>Model</th><th>批次完成</th><th>完成率</th><th>删除率</th><th>主错误</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>GPT5.5</td><td style='text-align:center'>2/2</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:60.7%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">60.7%</span></td><td style='text-align:center'>B>A</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>2/2</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:33.9%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">33.9%</span></td><td style='text-align:center'>B>A>C</td></tr>
+    </tbody>
+  </table>
+
+  <h2>批次状态矩阵</h2>
+  <div class="legend">
+    <span>✓ done</span><span>… running</span><span>○ pending</span><span>! blocked</span><span>x failed</span>
+  </div>
+  <table>
+    <thead><tr><th>Model</th><th>R5-B001</th><th>R5-B002</th></tr></thead>
+    <tbody><tr><td>GPT5.5</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td></tr></tbody>
+  </table>
+
+  <h2>细分错误统计（A1/B1...）</h2>
+  <table>
+    <thead><tr><th>错误子类</th><th>数量</th></tr></thead>
+    <tbody><tr><td>A1</td><td style='text-align:center'>5</td></tr><tr><td>A4</td><td style='text-align:center'>12</td></tr><tr><td>B1</td><td style='text-align:center'>37</td></tr><tr><td>B2</td><td style='text-align:center'>4</td></tr><tr><td>B3</td><td style='text-align:center'>5</td></tr><tr><td>B5</td><td style='text-align:center'>2</td></tr><tr><td>C2</td><td style='text-align:center'>3</td></tr></tbody>
+  </table>
+
+  <h3>细分错误示例（每类2条）</h3>
+  <table>
+    <thead><tr><th>错误子类</th><th>例1-题号</th><th>例1-题目</th><th>例1-理由</th><th>例2-题号</th><th>例2-题目</th><th>例2-理由</th></tr></thead>
+    <tbody><tr><td>A1</td><td>Q012</td><td>某新导入的总装线拧紧设备在试运行中，连续5个工件的同一关键力矩点出现±8%的离散波动（工艺要求±3%），且每次波动起始时刻均滞后于PLC主站同步时钟17～23毫秒。请简述你将如何结构化记录该问题现象，确保所记信息能支撑对现场总线周期抖动、拧紧轴伺服响应延迟与扭矩传感器动态标定漂移三者的耦合分析，并满足GB/T 15706—2019对安全相关控制系统异常事件记录的因果链完整性要求。</td><td>GPT5.5: 题干和答案把GB/T 15706—2019当作拧紧设备试运行异常事件记录规范，标准依据不对应；答案缩写堆叠影响口语作答。</td><td>Q014</td><td>某冲压自动线新导入的多工位拆垛机器人在试运行第3班次后，第7工位夹爪释放板料时偶发微小位移（约0.15mm），导致后续定位销插入偏差超差；该现象仅在环境温度升至28℃以上且连续运行超4小时后复现。请简述你将如何设计问题记录条目，使记录内容既覆盖机器人关节编码器温漂补偿状态、气动夹爪保压回路压力衰减曲线及产线主时钟与IO控制器间PTP同步误差等变量的时间关联性，又能满足JB/T 16452—2021对冲压设备试运行异常记录中‘可复现边界条件’的量化追溯要求。</td><td>GPT5.5: 题干和答案把JB/T 16452—2021当作冲压设备试运行异常记录依据，疑似不对应；答案缩写堆叠口语作答负担过重。；Gemini3.1pro: 与Q12高度相似，均考察试运行异常问题记录结构化设计，候选人给出同一套核心要点，属C2重复。</td></tr><tr><td>A4</td><td>Q001</td><td>电气图纸中，端子编号‘X3:5’里的数字‘5’通常表示该端子在端子排上的什么位置？请简单说说。</td><td>GPT5.5: 题干要求解释端子编号X3:5中数字5的含义，属于解释符号/编号含义，按规则标记A4并删除。；Gemini3.1pro: 题干要求解释端子编号X3:5中数字5的含义，属于解释符号含义，不适合口语直接作答。</td><td>Q001</td><td>电气图纸中，端子编号‘X3:5’里的数字‘5’通常表示该端子在端子排上的什么位置？请简单说说。</td><td>GPT5.5: 题干要求解释端子编号X3:5中数字5的含义，属于解释符号/编号含义，按规则标记A4并删除。；Gemini3.1pro: 题干要求解释端子编号X3:5中数字5的含义，属于解释符号含义，不适合口语直接作答。</td></tr><tr><td>B1</td><td>Q002</td><td>在汽车焊装产线中，某台机器人本体底座安装后，发现末端执行器重复定位出现规律性偏移。现场使用水平仪确认底座无倾斜，但用直角尺配合塞尺检测底座安装面与立柱基准面交线处间隙时，发现上下两端间隙差值达0.12mm。请简述这一测量现象所反映的垂直度异常本质，以及它对机器人运行精度可能产生的具体影响。</td><td>GPT5.5: 第一层把垂直度异常说成交线方向的直线度偏差不严谨，应为安装面与基准面之间的垂直度/角度偏差。</td><td>Q004</td><td>在汽车制造产线设备的电气图纸主回路中，若看到一个三极开关器件，其每极符号由一个矩形框加右侧单向箭头组成，且标注为‘QS’。请简单说说，你如何根据这个符号的结构特征和它在主回路中的典型位置关系，判断它是用于隔离电源的隔离开关，而不是断路器或负荷开关？</td><td>GPT5.5: 题干要求解释QS电气图形符号结构和含义应标A4；答案称QS必位于主回路最前端且下游无其他主开关过于绝对。；Gemini3.1pro: 题干要求根据矩形框加右侧单向箭头等符号结构特征判断元件类型，本质是解释图形符号含义，属A4。</td></tr><tr><td>B2</td><td>Q043</td><td>请简单说说，依据《GB/T 5226.1—2018 机械电气安全 机械电气设备 第1部分：通用技术条件》，电气图纸中安全相关电路的导线颜色应符合什么基本规定？</td><td>GPT5.5: 答案把浅蓝色中性线颜色误套到安全信号线，并绝对禁止同线槽；还引用Desigo CC等偏门工具，偏离设备电气图纸审查常见做法。；Gemini3.1pro: GB/T 5226.1对安全信号电路无专属强制颜色，答案生搬硬套要求安全信号线用浅蓝/黄绿区分，应按企业规范用红/蓝等控制线。</td><td>Q045</td><td>在设备点检过程中发现某气动接头需要更换，现场有多个同型号编号的备件，为确保替换后功能正常，应优先核对哪一项标识？</td><td>GPT5.5: 气动接头换件首要应核对型号规格/接口/密封/耐压等功能适配，答案却把批次号当首要核对项，批次号仅用于追溯。；Gemini3.1pro: 气动接头为通用标准件，现场换件应优先核对型号/螺纹规格/接管外径等物理参数，答案却把批次号当首要核对项，脱离运维实际。</td></tr><tr><td>B3</td><td>Q015</td><td>某汽车焊装产线新增视觉引导机器人进行门盖涂胶作业，完成手眼标定后，在静态标定板上重复定位精度达标，但在实际工件上涂胶轨迹持续偏移约2.1毫米且方向一致。已知工件定位由夹具+视觉粗定位共同约束，夹具重复定位精度±0.15毫米，视觉粗定位残差均值为±0.8毫米。请简述你将如何结合机器人基坐标系、工具坐标系、工件坐标系与相机坐标系的层级映射关系，系统性排查该偏差根源，并说明需重点验证哪两个坐标系之间的转换关系及其物理依据。</td><td>GPT5.5: 题干要求说明两个坐标系转换关系，答案只明确给出一个（相机到工件），未按要求回答两个。</td><td>Q045</td><td>在设备点检过程中发现某气动接头需要更换，现场有多个同型号编号的备件，为确保替换后功能正常，应优先核对哪一项标识？</td><td>GPT5.5: 气动接头换件首要应核对型号规格/接口/密封/耐压等功能适配，答案却把批次号当首要核对项，批次号仅用于追溯。；Gemini3.1pro: 气动接头为通用标准件，现场换件应优先核对型号/螺纹规格/接管外径等物理参数，答案却把批次号当首要核对项，脱离运维实际。</td></tr><tr><td>B5</td><td>Q012</td><td>某新导入的总装线拧紧设备在试运行中，连续5个工件的同一关键力矩点出现±8%的离散波动（工艺要求±3%），且每次波动起始时刻均滞后于PLC主站同步时钟17～23毫秒。请简述你将如何结构化记录该问题现象，确保所记信息能支撑对现场总线周期抖动、拧紧轴伺服响应延迟与扭矩传感器动态标定漂移三者的耦合分析，并满足GB/T 15706—2019对安全相关控制系统异常事件记录的因果链完整性要求。</td><td>GPT5.5: 题干和答案把GB/T 15706—2019当作拧紧设备试运行异常事件记录规范，标准依据不对应；答案缩写堆叠影响口语作答。</td><td>Q014</td><td>某冲压自动线新导入的多工位拆垛机器人在试运行第3班次后，第7工位夹爪释放板料时偶发微小位移（约0.15mm），导致后续定位销插入偏差超差；该现象仅在环境温度升至28℃以上且连续运行超4小时后复现。请简述你将如何设计问题记录条目，使记录内容既覆盖机器人关节编码器温漂补偿状态、气动夹爪保压回路压力衰减曲线及产线主时钟与IO控制器间PTP同步误差等变量的时间关联性，又能满足JB/T 16452—2021对冲压设备试运行异常记录中‘可复现边界条件’的量化追溯要求。</td><td>GPT5.5: 题干和答案把JB/T 16452—2021当作冲压设备试运行异常记录依据，疑似不对应；答案缩写堆叠口语作答负担过重。；Gemini3.1pro: 与Q12高度相似，均考察试运行异常问题记录结构化设计，候选人给出同一套核心要点，属C2重复。</td></tr><tr><td>C2</td><td>Q007</td><td>在标准电气图纸里，同一功能模块内多个端子若编号为‘X4:1’‘X4:2’‘X4:3’，这些编号中的数字序列主要体现端子之间的什么关系？请简单说说。</td><td>GPT5.5: 题干要求解释X4编号数字序列含义应标A4；且与R5Q0001作答高度重复，后出现按C2删除。；Gemini3.1pro: 题干要求解释端子编号数字序列符号的含义，属于解释符号含义，不适合口语直接作答。</td><td>Q008</td><td>请简述在设备故障整改后，验证改善效果是否有效的最基本方法是什么？</td><td>Gemini3.1pro: 与Q6高度相似，均考察故障整改后改善效果验证方法，候选人会给出同一套作答思路，属C2重复。</td></tr></tbody>
+  </table>
+</body>
+</html>

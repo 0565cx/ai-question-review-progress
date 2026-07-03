@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Round 3 Dashboard</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; margin: 24px; color: #1f2937; }
+    h1, h2, h3 { margin: 10px 0 12px; }
+    .cards { display: grid; grid-template-columns: repeat(3, minmax(140px, 220px)); gap: 12px; margin: 8px 0 18px; }
+    .card { border: 1px solid #e5e7eb; border-radius: 10px; padding: 12px; background: #fafafa; }
+    .card .k { font-size: 12px; color: #6b7280; }
+    .card .v { font-size: 24px; font-weight: 700; margin-top: 4px; }
+    table { border-collapse: collapse; width: 100%; margin: 8px 0 18px; }
+    th, td { border: 1px solid #e5e7eb; padding: 8px 10px; vertical-align: middle; }
+    th { background: #f9fafb; }
+    .legend span { margin-right: 12px; font-size: 13px; color: #374151; }
+    .mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; }
+    .ex { margin: 6px 0; color: #374151; }
+    .section-divider { border: 0; border-top: 2px solid #eef2f7; margin: 22px 0; }
+  </style>
+</head>
+<body>
+  <h1>Round 3 审核看板</h1>
+
+  <div class="cards">
+    <div class="card"><div class="k">A类错误</div><div class="v">10</div></div>
+    <div class="card"><div class="k">B类错误</div><div class="v">144</div></div>
+    <div class="card"><div class="k">C类错误</div><div class="v">1</div></div>
+  </div>
+
+  <h2>本轮题目主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">本轮题干问题以知识边界和工程约束不准确为主，A类问题共10处，集中在题干把不成立的前提写成常规判断、缺少必要条件却要求候选人给出唯一结论、或将定位/夹紧/传感器选型等工程判断泛化为固定规则。少量重复/同质化问题也出现，例如同一类铝合金表面处理题在不同表述下会引导候选人给出几乎相同的答案。整体看，题干设计需要更明确限定现场条件、标准适用边界和岗位口径，避免用过度绝对的问法压缩真实工程判断空间。</div>
+<h2>本轮答案主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">本轮答案问题明显高于题干问题，B类错误共144处，其中B1知识性错误117处，是最主要风险。高频表现包括安全标准适用对象或条款引用错误，PLC、EtherCAT、CANopen、伺服、电批、传感器等控制链路概念混淆，材料和表面处理特性表述过度绝对，气动/同步带/丝杠/机构自由度等机械基础判断不准确。另有B3跑题问题将校园招聘/社会招聘等场景标签当作技术方案评价依据，B5问题则表现为答案堆叠英文缩写、标准号、函数名或参数名，影响口语作答和面试可评分性。</div>
+<h2>后续重新出内容时应补充的规则</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">【重新出题】<br/>重新出题时必须先校验题干前提是否成立，并补足必要约束：设备类型、控制方式、传感器/执行器边界、标准适用范围、工况条件和是否允许改硬件等。禁止把需要现场数据判断的问题写成唯一结论题；涉及安全标准、材料牌号、表面处理、机构自由度、OEE统计、伺服/总线同步等内容时，题干不得暗含错误前提。重复出题时要按候选人作答路径去重，避免只是替换对象名但考察点和答案结构完全相同。<br/><br/>【重出答案】<br/>重出答案时必须逐条覆盖题干限定条件，并先做事实自检：标准号和适用对象是否正确，技术量级是否合理，执行机构/动力源/传动件/控制器职责是否区分清楚，材料磁性、硬度、绝缘性、表面处理适配性是否准确。答案要减少英文缩写和函数名堆叠，用中文口语化说明原理、判断依据和工程边界；涉及异常与复杂问题时，不要过度具体归因到单一部件或单一环节，除非题干给出足够证据。</div>
+
+  <hr class="section-divider" />
+
+  <h2>模型进度与删除率</h2>
+  <table>
+    <thead>
+      <tr><th>Model</th><th>批次完成</th><th>完成率</th><th>删除率</th><th>主错误</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>GPT5.5</td><td style='text-align:center'>19/19</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:13.7%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">13.7%</span></td><td style='text-align:center'>B>A</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>19/19</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:11.9%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">11.9%</span></td><td style='text-align:center'>B>A>C</td></tr>
+    </tbody>
+  </table>
+
+  <h2>批次状态矩阵</h2>
+  <div class="legend">
+    <span>✓ done</span><span>… running</span><span>○ pending</span><span>! blocked</span><span>x failed</span>
+  </div>
+  <table>
+    <thead><tr><th>Model</th><th>R3-B001</th><th>R3-B002</th><th>R3-B003</th><th>R3-B004</th><th>R3-B005</th><th>R3-B006</th><th>R3-B007</th><th>R3-B008</th><th>R3-B009</th><th>R3-B010</th><th>R3-B011</th><th>R3-B012</th><th>R3-B013</th><th>R3-B014</th><th>R3-B015</th><th>R3-B016</th><th>R3-B017</th><th>R3-B018</th><th>R3-B019</th></tr></thead>
+    <tbody><tr><td>GPT5.5</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td></tr></tbody>
+  </table>
+
+  <h2>细分错误统计（A1/B1...）</h2>
+  <table>
+    <thead><tr><th>错误子类</th><th>数量</th></tr></thead>
+    <tbody><tr><td>A1</td><td style='text-align:center'>10</td></tr><tr><td>B1</td><td style='text-align:center'>117</td></tr><tr><td>B2</td><td style='text-align:center'>7</td></tr><tr><td>B3</td><td style='text-align:center'>6</td></tr><tr><td>B4</td><td style='text-align:center'>2</td></tr><tr><td>B5</td><td style='text-align:center'>12</td></tr><tr><td>C2</td><td style='text-align:center'>1</td></tr></tbody>
+  </table>
+
+  <h3>细分错误示例（每类2条）</h3>
+  <table>
+    <thead><tr><th>错误子类</th><th>例1-题号</th><th>例1-题目</th><th>例1-理由</th><th>例2-题号</th><th>例2-题目</th><th>例2-理由</th></tr></thead>
+    <tbody><tr><td>A1</td><td>Q052</td><td>在自动化设备调试中，当需要将光电开关的检测信号接入PLC数字量输入模块时，请简述为什么通常选择NPN型输出的传感器，而不是PNP型？</td><td>GPT5.5: 题干原文“为什么通常选择NPN型输出的传感器，而不是PNP型”缺少PLC数字量输入模块是漏型还是源型的前提，却把NPN作为通常选择。NPN/PNP选择必须由PLC输入模块接线方式、供电公共端和现场标准决定，不能脱离输入类型泛化为通常选NPN。</td><td>Q082</td><td>为保证精密注塑件在检测工位上的重复定位精度，夹紧力方向为何常采用‘垂直压向主定位销’的方式？请简述该布置对定位稳定性的影响。</td><td>Gemini3.1pro: 题干中“垂直压向主定位销”错误，夹紧力应压向定位基准面而非定位销，否则会导致销受损及定位偏差。</td></tr><tr><td>B1</td><td>Q019</td><td>请简述在自动化产线布局中，为什么需要考虑设备之间的安全间距？</td><td>GPT5.5: 参考答案第三层引用原文“IEC 61496-1:2023附录B的‘接近速度+反应时间+附加裕量’复合判定法”作为安全间距验收依据不准确；机械安全距离/防护装置定位应按ISO 13855等安全距离标准，并结合ISO 13857等防止人体进入危险区标准，而IEC 61496主要规范电敏保护设备本身，答案标准口径错误。</td><td>Q031</td><td>某精密装配专机原采用进口高精度谐波减速器，现拟替换为国产同类产品。请简单说说，除了额定扭矩和传动比外，你还必须验证哪两项动态性能指标？并解释这两项指标如何影响设备在高速启停节拍下的重复定位精度。</td><td>GPT5.5: 参考答案把国产谐波减速器动态验证项写成“角加速度响应带宽”，并解释为“输出角加速度达到稳态值90%所需的时间上限”。该指标不是谐波减速器国产替代中常用的部件级动态性能指标；除额定扭矩和传动比外，更应验证回差/空程、扭转刚度、传动误差、启停温升下刚度保持等指标。</td></tr><tr><td>B2</td><td>Q151</td><td>某台通信模块测试治具的控制柜中，PLC输出端子直接驱动24V电磁阀线圈，但未经过中间继电器。请简述这种接法是否属于控制回路的典型设计？为什么？</td><td>Gemini3.1pro: 利用PLC晶体管输出直接驱动低功耗气动电磁阀是现代工业标准与典型设计，称其违规且不典型脱离实际。</td><td>Q218</td><td>在机器人抓取与放置操作中，示教点位时为什么要设置至少三个姿态点？请简述原因。</td><td>GPT5.5: 题干问抓取放置点位，答案混淆三点路径示教与工具坐标系姿态解算，回答焦点偏离。</td></tr><tr><td>B3</td><td>Q002</td><td>某产线计划将耳机充电仓的超声波焊接工序自动化，但现有焊头磨损周期仅为800次，更换需停机15分钟。请简单说说，在开展需求可行性评估时，你会依据哪两个与设备综合效率相关的实测数据来判断该工序自动化的经济性是否成立。</td><td>Gemini3.1pro: 原文“前者更适合校园招聘新人快速上手、社会招聘工程师快速验证”。此处将“校园招聘/社会招聘”等招聘场景标签作为技术方案可行性评估的依据，属于跑题和评价口径错误。</td><td>Q026</td><td>请简单说说电气原理图设计时，为何要预先规划I/O点数并留有一定余量？</td><td>Gemini3.1pro: 原文“第三种方式在社会招聘与校招通用场景下落地最稳”。将“社会招聘与校招通用”等招聘场景标签作为技术方案的评价和落地口径，属于明显的跑题错误。</td></tr><tr><td>B4</td><td>Q089</td><td>当型材框架需集成多品牌机器人、视觉相机和气动执行器，且各部件接口公差带不统一时，请简述你如何通过型材选型、连接方式与公差分配策略，在不依赖机加工件的前提下，确保整机装配后重复定位精度优于±0.05mm。</td><td>GPT5.5: 题干要求不依赖机加工件，答案推荐标准化过渡法兰盘等方案，措施与题干约束不一致。</td><td>Q409</td><td>在手机摄像头模组组装专机中，精密夹具需保证0.02毫米以内的定位重复性。当发现夹具长期运行后因导轨磨损导致定位误差缓慢增大，且无法停机更换部件，你通常会采用哪种结构层面的补偿方式？请简述该方式如何在不改变硬件的前提下动态修正定位偏差。</td><td>GPT5.5: 题干要求不改变硬件动态修正，答案提出新增/设置弹性预紧结构，措施与约束不一致。</td></tr><tr><td>B5</td><td>Q172</td><td>一条5G模组测试产线中，高频信号发生器与工控机共用接地排，但工控机USB接口频繁识别失败，且示波器观测到地线上存在125MHz左右的尖峰噪声。请分析该噪声最可能的产生源头、传播路径，以及为何会通过USB接口表现出来。</td><td>Gemini3.1pro: 答案中堆叠了大量英文缩写和专业参数（如 5G NR Sub-6GHz、USB 2.0、D+D-、USB-HUB、USB over Fiber、CW、CRC、USB 3.0、DC-2GHz、IEC 61000-4-5 等），中英混杂，影响口头表达的流畅性。正确的应该是什么：应减少具体的频段数值和标准号等生硬的英文缩写，用更口语化的语言描述高频干扰和接口类型。</td><td>Q174</td><td>当伺服驱动器与PLC通过EtherCAT通信时，若上位系统要求单次指令同时完成位置移动和速度限制，此时应选用哪种控制模式？请说明该模式如何满足这一需求。</td><td>Gemini3.1pro: 答案中包含大量英文缩写和专有名词（如 CSP模式、Cycle Synchronous Position mode、PT模式、Profile Position、HM模式、Homing、TwinCAT Motion、MC_Power/MC_MoveAbsolute、PDO、Target Velocity、DC Sync 等），中英混杂严重，不适合口语直接作答。正确的应该是什么：应精简英文全称和具体的函数名/变量名，用通俗的中文口语表达控制模式和参数映射的概念。</td></tr><tr><td>C2</td><td>Q464</td><td>请简述铝合金零件在自动化设备机架中常用的一种表面处理方式及其主要作用。</td><td>Gemini3.1pro: 与Q0463高度同质，都是问铝合金结构件/零件在自动化设备中常用的表面处理方式（阳极氧化），候选人会给出相同的答案。</td><td></td><td></td><td></td></tr></tbody>
+  </table>
+</body>
+</html>

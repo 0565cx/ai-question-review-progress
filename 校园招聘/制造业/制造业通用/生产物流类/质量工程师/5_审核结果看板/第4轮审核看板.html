@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Round 4 Dashboard</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; margin: 24px; color: #1f2937; }
+    h1, h2, h3 { margin: 10px 0 12px; }
+    .cards { display: grid; grid-template-columns: repeat(3, minmax(140px, 220px)); gap: 12px; margin: 8px 0 18px; }
+    .card { border: 1px solid #e5e7eb; border-radius: 10px; padding: 12px; background: #fafafa; }
+    .card .k { font-size: 12px; color: #6b7280; }
+    .card .v { font-size: 24px; font-weight: 700; margin-top: 4px; }
+    table { border-collapse: collapse; width: 100%; margin: 8px 0 18px; }
+    th, td { border: 1px solid #e5e7eb; padding: 8px 10px; vertical-align: middle; }
+    th { background: #f9fafb; }
+    .legend span { margin-right: 12px; font-size: 13px; color: #374151; }
+    .mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; }
+    .ex { margin: 6px 0; color: #374151; }
+    .section-divider { border: 0; border-top: 2px solid #eef2f7; margin: 22px 0; }
+  </style>
+</head>
+<body>
+  <h1>Round 4 审核看板</h1>
+
+  <div class="cards">
+    <div class="card"><div class="k">A类错误</div><div class="v">13</div></div>
+    <div class="card"><div class="k">B类错误</div><div class="v">34</div></div>
+    <div class="card"><div class="k">C类错误</div><div class="v">1</div></div>
+  </div>
+
+  <h2>本轮题目主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">本轮题目层面的主要问题集中在抽样检验和过程控制场景的前提设置不准确：部分题干直接把GB/T 2828.1的转移规则、AQL适用边界、SPC判异信号或PPAP提交等级设成了错误前提，导致候选人即使按专业口径回答也会被引向错误结论。另有少量题目把客户让步、放宽检验、加严检验和安全特性管控混在同一决策中，场景风险边界不清，难以形成可评分的标准答案。</div>
+<h2>本轮答案主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">本轮答案错误以B1知识性错误为主，集中表现为GB/T 2828.1加严/放宽转移条件写错、把AQL误解为单批合格线或错误风险类型、把PPAP等级一/三/五的提交差异说反、对MSA偏倚或GRR阈值的适用条件交代不清，以及把SPC控制图异常信号与过程失控、测量系统异常之间的判定关系混淆。部分答案还出现未经客户书面批准即建议让步、临时放行或替代验证的表述，合规边界偏松。</div>
+<h2>后续重新出内容时应补充的规则</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">【重新出题】<br/>重新出题时必须先校验专业前提：GB/T 2828.1题目要明确当前检验状态、连续批次数、不接收批定义、是否允许转移规则；PPAP题目要区分提交等级的真实差异；SPC题目要使用常见判异准则，不要把错误规则写进题干。题干如涉及客户特殊要求、安全特性或让步放行，必须写清书面批准、控制计划/PPAP约束和适用边界，避免让候选人在错误前提下作答。<br/><br/>【重出答案】<br/>重出答案时必须逐项核对标准口径和适用条件：AQL、Ac/Re、正常/加严/放宽转移、MSA接受准则、Cpk/Ppk前提、PPAP提交等级、IATF变更和产品安全要求均不得用绝对化或凭经验的说法替代。第二层列举几种方法必须数量一致、优缺点清楚；第三层异常/复杂问题必须给出可执行且合规的证据链，涉及让步或客户要求时必须强调书面批准和追溯留痕。</div>
+
+  <hr class="section-divider" />
+
+  <h2>模型进度与删除率</h2>
+  <table>
+    <thead>
+      <tr><th>Model</th><th>批次完成</th><th>完成率</th><th>删除率</th><th>主错误</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>GPT5.5</td><td style='text-align:center'>3/3</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:41.0%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">41.0%</span></td><td style='text-align:center'>B>A>C</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>3/3</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:32.5%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">32.5%</span></td><td style='text-align:center'>B>A</td></tr>
+    </tbody>
+  </table>
+
+  <h2>批次状态矩阵</h2>
+  <div class="legend">
+    <span>✓ done</span><span>… running</span><span>○ pending</span><span>! blocked</span><span>x failed</span>
+  </div>
+  <table>
+    <thead><tr><th>Model</th><th>R4-B001</th><th>R4-B002</th><th>R4-B003</th></tr></thead>
+    <tbody><tr><td>GPT5.5</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td></tr></tbody>
+  </table>
+
+  <h2>细分错误统计（A1/B1...）</h2>
+  <table>
+    <thead><tr><th>错误子类</th><th>数量</th></tr></thead>
+    <tbody><tr><td>A1</td><td style='text-align:center'>13</td></tr><tr><td>B1</td><td style='text-align:center'>34</td></tr><tr><td>C2</td><td style='text-align:center'>1</td></tr></tbody>
+  </table>
+
+  <h3>细分错误示例（每类2条）</h3>
+  <table>
+    <thead><tr><th>错误子类</th><th>例1-题号</th><th>例1-题目</th><th>例1-理由</th><th>例2-题号</th><th>例2-题目</th><th>例2-理由</th></tr></thead>
+    <tbody><tr><td>A1</td><td>Q001</td><td>在监控某零件关键尺寸的过程控制图上，发现最近5个点持续上升，且全部落在中心线以上但未超控制限。你通常会怎么判断这个趋势？请简单说说。</td><td>Gemini3.1pro: 题干和答案存在知识性错误，SPC判异准则中，连续上升或下降的判定标准通常是6点或7点，而不是5点。</td><td>Q013</td><td>一批用于汽车制动系统的密封圈在来料检验中，尺寸公差项目全部合格，但材料硬度检测有3个样本略低于标准下限0.5HRA——该偏差未超出工艺验证允许的放宽范围，且历史批次从未因此引发失效。此时你是否判定整批合格？请简述依据合格判定原则作出取舍的关键判断点。</td><td>Gemini3.1pro: 题干中描述橡胶密封圈的材料硬度检测单位为“HRA”（洛氏硬度），存在常识性错误，橡胶通常使用邵氏硬度（Shore A）。</td></tr><tr><td>B1</td><td>Q001</td><td>在监控某零件关键尺寸的过程控制图上，发现最近5个点持续上升，且全部落在中心线以上但未超控制限。你通常会怎么判断这个趋势？请简单说说。</td><td>GPT5.5: 答案原文“连续5点上升属于典型非随机趋势”“AIAG或ISO 7870中明确的‘连续5点单向递增’规则”过度绝对；常用SPC判异通常以6点连续递增/递减或更多同侧点作为判异，5点只能作为预警并结合企业准则调查，不能直接判失控。；Gemini3.1pro: 题干和答案存在知识性错误，SPC判异准则中，连续上升或下降的判定标准通常是6点或7点，而不是5点。</td><td>Q003</td><td>如果控制图中某一点落在控制限之外，但相邻两点都在中心线同侧且靠近控制限，质量人员首先应关注哪类异常信号？请简述。</td><td>GPT5.5: 答案原文“首先应关注趋势类异常信号”“第三点超出控制限所构成的复合型趋势信号”不当；单点超出控制限本身就是首要特殊原因信号，近控制限还需按2/3点超2σ等规则确认，不能泛称趋势。</td></tr><tr><td>C2</td><td>Q080</td><td>请简单说说，在抽样检验中，当实际发现的不合格品数量等于允收数时，这批产品应该被接收还是拒收？</td><td>nan</td><td>nan</td><td>nan</td><td>nan</td></tr></tbody>
+  </table>
+</body>
+</html>

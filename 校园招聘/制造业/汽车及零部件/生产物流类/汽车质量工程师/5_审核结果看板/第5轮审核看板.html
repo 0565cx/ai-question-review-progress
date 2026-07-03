@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Round 5 Dashboard</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; margin: 24px; color: #1f2937; }
+    h1, h2, h3 { margin: 10px 0 12px; }
+    .cards { display: grid; grid-template-columns: repeat(3, minmax(140px, 220px)); gap: 12px; margin: 8px 0 18px; }
+    .card { border: 1px solid #e5e7eb; border-radius: 10px; padding: 12px; background: #fafafa; }
+    .card .k { font-size: 12px; color: #6b7280; }
+    .card .v { font-size: 24px; font-weight: 700; margin-top: 4px; }
+    table { border-collapse: collapse; width: 100%; margin: 8px 0 18px; }
+    th, td { border: 1px solid #e5e7eb; padding: 8px 10px; vertical-align: middle; }
+    th { background: #f9fafb; }
+    .legend span { margin-right: 12px; font-size: 13px; color: #374151; }
+    .mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; }
+    .ex { margin: 6px 0; color: #374151; }
+    .section-divider { border: 0; border-top: 2px solid #eef2f7; margin: 22px 0; }
+  </style>
+</head>
+<body>
+  <h1>Round 5 审核看板</h1>
+
+  <div class="cards">
+    <div class="card"><div class="k">A类错误</div><div class="v">0</div></div>
+    <div class="card"><div class="k">B类错误</div><div class="v">33</div></div>
+    <div class="card"><div class="k">C类错误</div><div class="v">0</div></div>
+  </div>
+
+  <h2>本轮题目主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">本轮（五轮）共复审四轮回流的 27 题，最终没有再出现需要重新出题的题目，说明题干层面的知识前提、模块归属、重复度和表达问题已经基本清零。五轮之后“需要重新出题”从上一轮的 4 题降到 0，说明当前尾部问题不再发生在题干本身，而是已经完全收缩到参考答案的事实准确性上。换句话说，题库已经进入最后的答案精修阶段，题目设计层面的系统性风险基本出清。</div>
+<h2>本轮答案主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">本轮删除全部为答案类问题：B 类 21 题，其中 B1 有 20 余题、B5 仅 1 题。高频问题仍然是汽车质量体系和标准方法中的硬知识错误，包括 IATF16949 条款号错配、VDA6.3 模块和评分逻辑混淆、APQP 阶段归属错误、GB/T 2828.1 抽样转移规则条件写错，以及 SPC 判异规则阈值说错。另有 1 题出现 B5，即答案混入了明显的系统提示词文本，已经不适合口语直接作答。整体上，五轮剩余问题已经收敛成“标准事实写错”与“答案污染”两类非常明确、可机械核验的尾部错误。</div>
+<h2>后续重新出内容时应补充的规则</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">【重新出题】<br/>本轮后已无需要重新出题项。后续若继续出题，只需保持现有题干质检规则：凡涉及标准条款、抽样转移、评分档位、阶段名称等事实性前提，出题前先做一次题干事实校验，避免把错误规则写进题目。<br/><br/>【重出答案】<br/>后续重出答案时建议补四条硬规则：1）所有 IATF16949、VDA6.3、APQP、GB/T 2828.1、SPC 判异规则都必须逐条核对条款号、模块名、阶段名和阈值，不确定时只写原则不写编号；2）凡涉及抽样转移条件、连续批次数、趋势点数、AQL/ppm 换算等，必须先验算再写答案；3）禁止把整体审核等级、项目管理模块、功能安全等级等相近概念错套到不对应的场景里；4）生成后增加“系统提示词污染检查”，若答案里出现提示词、角色说明、输出示例等非业务文本，一律删除重出。</div>
+
+  <hr class="section-divider" />
+
+  <h2>模型进度与删除率</h2>
+  <table>
+    <thead>
+      <tr><th>Model</th><th>批次完成</th><th>完成率</th><th>删除率</th><th>主错误</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>GPT5.5</td><td style='text-align:center'>1/1</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:66.7%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">66.7%</span></td><td style='text-align:center'>B</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>1/1</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:55.6%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">55.6%</span></td><td style='text-align:center'>B</td></tr>
+    </tbody>
+  </table>
+
+  <h2>批次状态矩阵</h2>
+  <div class="legend">
+    <span>✓ done</span><span>… running</span><span>○ pending</span><span>! blocked</span><span>x failed</span>
+  </div>
+  <table>
+    <thead><tr><th>Model</th><th>R5-B001</th></tr></thead>
+    <tbody><tr><td>GPT5.5</td><td style='text-align:center'>✓</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>✓</td></tr></tbody>
+  </table>
+
+  <h2>细分错误统计（A1/B1...）</h2>
+  <table>
+    <thead><tr><th>错误子类</th><th>数量</th></tr></thead>
+    <tbody><tr><td>B1</td><td style='text-align:center'>32</td></tr><tr><td>B5</td><td style='text-align:center'>1</td></tr></tbody>
+  </table>
+
+  <h3>细分错误示例（每类2条）</h3>
+  <table>
+    <thead><tr><th>错误子类</th><th>例1-题号</th><th>例1-题目</th><th>例1-理由</th><th>例2-题号</th><th>例2-题目</th><th>例2-理由</th></tr></thead>
+    <tbody><tr><td>B1</td><td>Q003</td><td>在汽车零部件来料检验中，若某供应商连续十批产品按加严检验方案全部被接收，且期间无不合格判定，此时应如何调整检验严格度？请简述对应的抽样转移规则及触发条件。</td><td>GPT5.5: 参考答案原文称“连续10批初次检验均被接收，且无任何不合格判定时，满足从加严检验向正常检验转移的基本条件”，把加严检验转正常检验的触发批次数说错。按GB/T 2828.1抽样转移规则，加严检验恢复正常检验通常是“连续5批被接收”后恢复正常，不是连续10批。；Gemini3.1pro: 第一层中提到“当连续10批初次检验均被接收...满足从加严检验向正常检验转移的基本条件”，正确的应该是GB/T 2828.1加严转正常的条件为连续5批初检接收，而非10批。</td><td>Q003</td><td>在汽车零部件来料检验中，若某供应商连续十批产品按加严检验方案全部被接收，且期间无不合格判定，此时应如何调整检验严格度？请简述对应的抽样转移规则及触发条件。</td><td>GPT5.5: 参考答案原文称“连续10批初次检验均被接收，且无任何不合格判定时，满足从加严检验向正常检验转移的基本条件”，把加严检验转正常检验的触发批次数说错。按GB/T 2828.1抽样转移规则，加严检验恢复正常检验通常是“连续5批被接收”后恢复正常，不是连续10批。；Gemini3.1pro: 第一层中提到“当连续10批初次检验均被接收...满足从加严检验向正常检验转移的基本条件”，正确的应该是GB/T 2828.1加严转正常的条件为连续5批初检接收，而非10批。</td></tr><tr><td>B5</td><td>Q008</td><td>IATF16949标准与ISO9001标准之间是什么关系？请简单说说。</td><td>Gemini3.1pro: 第三层答案末尾混入了大量系统提示词（如“你是一位经验丰富的资深面试官...输出示例”等内容），明显不适合口语直接作答，正确的应该是仅输出实际业务参考答案内容。</td><td>nan</td><td>nan</td><td>nan</td></tr></tbody>
+  </table>
+</body>
+</html>

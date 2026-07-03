@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Round 3 Dashboard</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; margin: 24px; color: #1f2937; }
+    h1, h2, h3 { margin: 10px 0 12px; }
+    .cards { display: grid; grid-template-columns: repeat(3, minmax(140px, 220px)); gap: 12px; margin: 8px 0 18px; }
+    .card { border: 1px solid #e5e7eb; border-radius: 10px; padding: 12px; background: #fafafa; }
+    .card .k { font-size: 12px; color: #6b7280; }
+    .card .v { font-size: 24px; font-weight: 700; margin-top: 4px; }
+    table { border-collapse: collapse; width: 100%; margin: 8px 0 18px; }
+    th, td { border: 1px solid #e5e7eb; padding: 8px 10px; vertical-align: middle; }
+    th { background: #f9fafb; }
+    .legend span { margin-right: 12px; font-size: 13px; color: #374151; }
+    .mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; }
+    .ex { margin: 6px 0; color: #374151; }
+    .section-divider { border: 0; border-top: 2px solid #eef2f7; margin: 22px 0; }
+  </style>
+</head>
+<body>
+  <h1>Round 3 审核看板</h1>
+
+  <div class="cards">
+    <div class="card"><div class="k">A类错误</div><div class="v">5</div></div>
+    <div class="card"><div class="k">B类错误</div><div class="v">80</div></div>
+    <div class="card"><div class="k">C类错误</div><div class="v">80</div></div>
+  </div>
+
+  <h2>本轮题目主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">本轮题干问题主要集中在两类：一是少量题干把自动化工程师面试题设计成过长的系统级诊断或多约束综合分析，要求候选人在口头场景中同时说明状态划分、异常迁移、通信边界、工程依据等多个环节，容易超出口语面试可答范围；二是 C2 重复/同质化较突出，部分题目虽措辞不同，但候选人会围绕同一套控制逻辑、传感器作用、伺服反馈或通信诊断要点作答，区分度不足。后续重新出题需要压缩单题任务边界，避免把多个追问压进一个题干，并对同知识点下的题干考点做去重设计。</div>
+<h2>本轮答案主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">本轮答案问题以 B 类为主，尤其是 B1 知识性或逻辑不严谨、B6 岗位口径偏移较多。典型表现包括把 PLC 扫描周期、现场实时响应、安全回路、通信功能码、传感器接线与模块容量等概念混用，或用开发岗/算法岗表达替代自动化工程师现场调试、选型、接线、诊断的工作口径。部分答案第三层给出的异常处理不贴近产线实际，容易把不可操作或不常见的方案作为最佳实践。后续重出答案应加强工程可执行性、岗位职责边界和控制/电气基础概念的逐条校验。</div>
+<h2>后续重新出内容时应补充的规则</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">【重新出题】<br/>重新出题时，每道题只聚焦一个明确知识点和一个可口头说明的工程场景；避免题干同时要求定位多个故障源、解释多个协议边界或完成复杂系统设计。题干不得要求写公式、绘图、推导或展开过多步骤。对同一知识点批量出题时，应先列出差异化考点，例如概念识别、现场选型、故障诊断、调试验证分别出题，禁止仅替换设备名或场景名形成同质题。<br/><br/>【重出答案】<br/>重出答案时，三层答案必须分别覆盖基础概念、常见方案对比和真实产线异常处理；每个结论要能对应自动化工程师常见职责，如 PLC/伺服/传感器/通信/安全回路的选型、接线、调试、诊断和维护。禁止把开发算法、供应商制造过程或纯理论标准解读作为主要答案。涉及标准、协议、功能码、I/O 模块、NPN/PNP、4-20mA/0-10V 等内容时，必须逐项核对适用对象、工程边界和可操作性，避免概念混用。</div>
+
+  <hr class="section-divider" />
+
+  <h2>模型进度与删除率</h2>
+  <table>
+    <thead>
+      <tr><th>Model</th><th>批次完成</th><th>完成率</th><th>删除率</th><th>主错误</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>GPT5.5</td><td style='text-align:center'>20/20</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:7.4%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">7.4%</span></td><td style='text-align:center'>B>A</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>20/20</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:13.1%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">13.1%</span></td><td style='text-align:center'>C>B>A</td></tr>
+    </tbody>
+  </table>
+
+  <h2>批次状态矩阵</h2>
+  <div class="legend">
+    <span>✓ done</span><span>… running</span><span>○ pending</span><span>! blocked</span><span>x failed</span>
+  </div>
+  <table>
+    <thead><tr><th>Model</th><th>R3-B001</th><th>R3-B002</th><th>R3-B003</th><th>R3-B004</th><th>R3-B005</th><th>R3-B006</th><th>R3-B007</th><th>R3-B008</th><th>R3-B009</th><th>R3-B010</th><th>R3-B011</th><th>R3-B012</th><th>R3-B013</th><th>R3-B014</th><th>R3-B015</th><th>R3-B016</th><th>R3-B017</th><th>R3-B018</th><th>R3-B019</th><th>R3-B020</th></tr></thead>
+    <tbody><tr><td>GPT5.5</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td></tr></tbody>
+  </table>
+
+  <h2>细分错误统计（A1/B1...）</h2>
+  <table>
+    <thead><tr><th>错误子类</th><th>数量</th></tr></thead>
+    <tbody><tr><td>A1</td><td style='text-align:center'>5</td></tr><tr><td>B1</td><td style='text-align:center'>59</td></tr><tr><td>B2</td><td style='text-align:center'>1</td></tr><tr><td>B4</td><td style='text-align:center'>1</td></tr><tr><td>B6</td><td style='text-align:center'>19</td></tr><tr><td>C2</td><td style='text-align:center'>80</td></tr></tbody>
+  </table>
+
+  <h3>细分错误示例（每类2条）</h3>
+  <table>
+    <thead><tr><th>错误子类</th><th>例1-题号</th><th>例1-题目</th><th>例1-理由</th><th>例2-题号</th><th>例2-题目</th><th>例2-理由</th></tr></thead>
+    <tbody><tr><td>A1</td><td>Q006</td><td>某汽车零部件装配线需按节拍自动执行上料、定位、压装、检测、下料五个工序，其中压装工序存在力值超限需紧急回退的可能，且检测结果不合格时要触发返工分支。请简述如何设计状态机来统一管理主流程、异常处理与返工路径，重点说明状态划分依据、不同异常事件下的迁移逻辑，以及如何避免状态爆炸。</td><td>Gemini3.1pro: 题干过于冗长复杂，包含7个以上的连环发问，要求候选人同时回答状态机目的、分支、梯形图实现流程、异常响应、返回路径、划分依据、迁移逻辑、避免状态爆炸等，超出了口语面试的正常记忆和表达极限。正确的应该拆分为多个独立的短问题。</td><td>Q088</td><td>某产线设备集成项目中，主站通过Modbus RTU同时轮询多个从站，其中一台温控仪表在接收功能码0x10写多个寄存器后，偶发返回0x03非法数据地址响应，但该仪表对功能码0x06写单个寄存器始终成功。请简述你将如何结合功能码0x10的地址范围校验逻辑、从站寄存器映射实际物理布局，以及批量写入时地址连续性与内存分页边界的关系，定位该异常是源于主站地址计算偏差还是从站固件对跨页写入的支持缺陷。</td><td>GPT5.5: 题干和答案对互锁与急停/安全回路边界混同，可能把普通 PLC 逻辑等同安全控制。</td></tr><tr><td>B1</td><td>Q005</td><td>在一条多工位连续输送的装配产线上，PLC需同时采集12个接近开关信号和8个气缸到位反馈信号，但当前I/O模块物理点数已满，且部分输入通道存在共地限制、抗干扰能力差异及响应时间要求不一的情况。请简述你如何统筹规划这20个信号的I/O点位映射策略，并说明关键决策依据。</td><td>Gemini3.1pro: 答案第二层中第四种方案提出把接近开关信号整合到共地组内，但这并不能解决20个信号接入16个通道的物理通道数不足问题，共地只是共用COM端，依然需要独立的输入通道。正确的做法应是采用传感器串并联逻辑组合、矩阵扫描接入或利用通信协议扩展。</td><td>Q035</td><td>在一条多工位装配线上，某伺服轴需同时满足：频繁启停的定位精度要求（±0.02mm），以及连续往复运动时的动态刚性需求（抵抗机械振动导致的位置漂移）。若仅使用单一伺服控制模式难以兼顾，请简述应如何分阶段配置位置模式与转矩模式，并说明切换边界判定所依赖的实时运动参数及其工程依据。</td><td>GPT5.5: 参考答案将 PLC 任务周期/扫描周期与现场实时响应机理混同，结论容易误导控制诊断。</td></tr><tr><td>B2</td><td>Q453</td><td>某包装产线使用光电传感器检测透明塑料瓶的有无，但常因反光和环境光变化导致误判。请简单说说选型时应优先关注传感器的哪两类特性，并解释它们如何影响检测可靠性。</td><td>GPT5.5: 参考答案对 Modbus 功能码适用对象描述错误，读线圈/离散输入/寄存器边界混乱。</td><td></td><td></td><td></td></tr><tr><td>B4</td><td>Q063</td><td>在自动化产线中，某关键工位需同时接入温度、光电和接近开关三类传感器，但现场控制柜的模拟量输入模块已满，数字量输入点位也所剩无几。已知这三类传感器均支持NPN/PNP双模式输出及多种信号类型（如4-20mA、0-10V、NAMUR、干接点）。请简述你如何统筹选择各传感器的信号输出类型，并说明背后对测量精度、抗干扰能力、布线成本与后续维护可扩展性的综合权衡依据。</td><td>Gemini3.1pro: 第三层异常情况解决思路中提出“干接点线改用双绞屏蔽线并单端接地”。在工业现场，接近开关（尤其是PNP/NPN型）通常自带模压电缆，极少有采用双绞屏蔽线的。要求将干接点线改用双绞屏蔽线不符合实际产线的操作规范。正确的做法应该是规范走线，将模拟量与开关量分槽敷设或保持足够的物理间距。</td><td></td><td></td><td></td></tr><tr><td>B6</td><td>Q153</td><td>在自动化产线中，视觉系统需要将相机拍摄到的工件图像坐标转换为机器人可执行的物理坐标。请简述实现这一转换时，为何必须先完成相机标定，以及标定过程中最直接影响定位精度的一个关键参数。</td><td>Gemini3.1pro: 答案给出的内容包含开发岗或其它岗位的口径表达</td><td>Q176</td><td>同一型号工件在不同产线段的视觉检测中，前端工位漏检率偏高而末端工位误检率偏高，两处使用的相机、镜头、光源型号及算法模型完全一致。请分析造成这种空间分布性偏差最可能的三个物理耦合因素，并说明每个因素如何分别影响成像质量与特征稳定性。</td><td>Gemini3.1pro: 答案给出的内容包含开发岗或其它岗位的口径表达</td></tr><tr><td>C2</td><td>Q019</td><td>加减速曲线如何影响电机驱动的负载冲击？请简单说说。</td><td>Gemini3.1pro: 与Q0018重复。两道题都在考察加减速曲线对机械结构和运动平稳性的影响，候选人会给出同一套核心要点和作答思路。</td><td>Q034</td><td>请简单说说编码器在伺服控制回路中提供的是哪一类实时信息？</td><td>Gemini3.1pro: 与Q0032重复。两道题都在考察编码器反馈信号的作用，候选人会给出同一套核心要点和作答思路。</td></tr></tbody>
+  </table>
+</body>
+</html>

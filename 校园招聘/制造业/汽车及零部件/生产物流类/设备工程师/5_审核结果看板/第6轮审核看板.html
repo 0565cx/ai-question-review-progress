@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Round 6 Dashboard</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; margin: 24px; color: #1f2937; }
+    h1, h2, h3 { margin: 10px 0 12px; }
+    .cards { display: grid; grid-template-columns: repeat(3, minmax(140px, 220px)); gap: 12px; margin: 8px 0 18px; }
+    .card { border: 1px solid #e5e7eb; border-radius: 10px; padding: 12px; background: #fafafa; }
+    .card .k { font-size: 12px; color: #6b7280; }
+    .card .v { font-size: 24px; font-weight: 700; margin-top: 4px; }
+    table { border-collapse: collapse; width: 100%; margin: 8px 0 18px; }
+    th, td { border: 1px solid #e5e7eb; padding: 8px 10px; vertical-align: middle; }
+    th { background: #f9fafb; }
+    .legend span { margin-right: 12px; font-size: 13px; color: #374151; }
+    .mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; }
+    .ex { margin: 6px 0; color: #374151; }
+    .section-divider { border: 0; border-top: 2px solid #eef2f7; margin: 22px 0; }
+  </style>
+</head>
+<body>
+  <h1>Round 6 审核看板</h1>
+
+  <div class="cards">
+    <div class="card"><div class="k">A类错误</div><div class="v">7</div></div>
+    <div class="card"><div class="k">B类错误</div><div class="v">15</div></div>
+    <div class="card"><div class="k">C类错误</div><div class="v">1</div></div>
+  </div>
+
+  <h2>本轮题目主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">六轮（五轮重出回流，39题）题干层面并轮判删约7题，集中在A4与A1。A4约4处：题干仍要求口头解释电气图纸编号/图形符号含义——X5代表什么物理部件(R6Q0002)、端子编号X2:8冒号分隔哪两部分(R6Q0003)、编号末尾数字4表示什么属性(R6Q0005)、电源进线符号的基本特征(R6Q0006)，均属解释符号含义、无法口语直接作答。A1约3处为题干硬伤：最典型R6Q0024给出‘OEE=71%，可用率83%、性能率85%、合格率92%’，但三者乘积≈64.9%≠71%，核心数据内部自相矛盾；R6Q0004把伺服电机写成接触器主触点直接接电机端子的主回路(伺服应由驱动器U/V/W供电)，题干知识口径错误；R6Q0021把安全回路所有常闭触点一概要求‘强制导向结构’，概念过度泛化(强制导向用于安全继电器多组联动触点，安全门/急停输入常见要求是正向断开)。C2同质1处：端子编号含义题(R6Q0005)与前序X2:8题作答要点重复。</div>
+<h2>本轮答案主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">参考答案仍是六轮主要问题来源：并轮判删20题中B类16题，其中B1知识性/逻辑错误16处。OEE口径错误突出——R6Q0029称换模时间‘不参与可用率计算、只影响性能率合格率’(换模/设置调整属可用率损失，应SMED改善)；R6Q0024答案把微小停机/缓停/降速说成侵蚀可用率(实为性能率损失)。标准/概念绝对化——R6Q0020把24V 0V接PE一律判为违规混接(需结合SELV/PELV/隔离/EMC判断)；R6Q0027把GB/T 34035强制操作前提写成停机+安全回路闭合+LOTO的逐字固定条件(应强调授权/风险评估/受控记录/不致危险运动)；R6Q0028把安全相关电路导线颜色与PE黄绿混在一起并称安全信号线统一黑色。机理误判——R6Q0032把压缩空气储气罐失效说成‘内部气囊破损’(气囊为蓄能器结构，储气罐无气囊)；R6Q0033把坑口圆润无划痕的微坑(应为点蚀/腐蚀点蚀)判为微动磨损；R6Q0035把‘距离与指令脉冲严重不符但能正常启停’归因编码器A/B相反接(应查联轴器松动/虚接/丢脉冲/电子齿轮比)。B3跑题6处——R6Q0013只答径向偏差+端面间隙漏掉超差的角向偏差、R6Q0023答导程精度等级而非导程/传动比、R6Q0031把地基承载面当最终装配基准、R6Q0034光照变化却优先排查手眼标定、R6Q0037恢复运行前关键动作答成文档签署。两模型互补：GPT5.5深挖答案级B1(判删17)，Gemini独立复核出OEE概念错与多道A4符号题。</div>
+<h2>后续重新出内容时应补充的规则</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">【重新出题】<br/>1) 彻底禁止A4：题干不得要求口头解释或描述电气编号/图形符号(X5、X2:8冒号、末位数字、电源进线符号等)的含义或特征，改为现场定位/排障/功能应用场景。2) 题干数据必须自洽：OEE=可用率×性能率×合格率，给出四个数必须乘积一致(83%×85%×92%≈64.9%不能写成71%)；任何给定参数组合都要先自验算。3) 题干知识口径准确：伺服电机由驱动器U/V/W供电，不得写成接触器主触点直接接电机端子；不得把‘强制导向’泛化为所有安全回路常闭触点的强制要求(区分安全继电器强制导向与安全输入正向断开)。4) 同一知识点(端子编号含义等)只保留顺序在前一题，杜绝C2换皮重复。<br/><br/>【重出答案】<br/>1) OEE口径必须准确：换模/设置调整=可用率损失(SMED改善)，微小停机/缓停/降速=性能率损失，不得颠倒；区分可用率/性能率/合格率归属。2) 标准与概念不得绝对化：24V 0V与PE连接需结合SELV/PELV/隔离/EMC判断而非一律违规；强制操作前提应表述为授权/风险评估/受控记录/不致危险运动，不写成标准逐字固定条件；导线颜色黄绿专用PE、浅蓝为N，安全信号线按控制电路类别规范标识。3) 机理须准确：压缩空气储气罐无内部气囊(勿套用蓄能器结构)；坑口圆润无划痕优先点蚀/腐蚀点蚀而非微动磨损；伺服距离与脉冲不符且能启停应归因联轴器松动/虚接/丢脉冲/电子齿轮比而非A/B相反接。4) 答案须正面、完整回答题目所问：超差的角向偏差不能漏、问校核哪一项机械参数就答导程/传动比、最终装配基准用功能定位基准而非地基承载面、光照偏差优先查相机标定/畸变/曝光/光源、恢复运行前先安全确认/解除LOTO/试运行验证而非文档签署。</div>
+
+  <hr class="section-divider" />
+
+  <h2>模型进度与删除率</h2>
+  <table>
+    <thead>
+      <tr><th>Model</th><th>批次完成</th><th>完成率</th><th>删除率</th><th>主错误</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>GPT5.5</td><td style='text-align:center'>1/1</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:43.6%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">43.6%</span></td><td style='text-align:center'>B>A>C</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>1/1</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:15.4%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">15.4%</span></td><td style='text-align:center'>A>B</td></tr>
+    </tbody>
+  </table>
+
+  <h2>批次状态矩阵</h2>
+  <div class="legend">
+    <span>✓ done</span><span>… running</span><span>○ pending</span><span>! blocked</span><span>x failed</span>
+  </div>
+  <table>
+    <thead><tr><th>Model</th><th>R6-B001</th></tr></thead>
+    <tbody><tr><td>GPT5.5</td><td style='text-align:center'>✓</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>✓</td></tr></tbody>
+  </table>
+
+  <h2>细分错误统计（A1/B1...）</h2>
+  <table>
+    <thead><tr><th>错误子类</th><th>数量</th></tr></thead>
+    <tbody><tr><td>A1</td><td style='text-align:center'>3</td></tr><tr><td>A4</td><td style='text-align:center'>4</td></tr><tr><td>B1</td><td style='text-align:center'>17</td></tr><tr><td>B3</td><td style='text-align:center'>6</td></tr><tr><td>C2</td><td style='text-align:center'>1</td></tr></tbody>
+  </table>
+
+  <h3>细分错误示例（每类2条）</h3>
+  <table>
+    <thead><tr><th>错误子类</th><th>例1-题号</th><th>例1-题目</th><th>例1-理由</th><th>例2-题号</th><th>例2-题目</th><th>例2-理由</th></tr></thead>
+    <tbody><tr><td>A1</td><td>Q004</td><td>在汽车制造产线设备的电气主回路图纸中，若某台伺服电机的供电回路中，电源侧依次接入了隔离开关、熔断器和接触器，而接触器主触点输出端直接连接电机接线端子。请简单说说，当现场该电机完全无响应且测量确认输入电源正常时，你优先检查这三类器件中的哪一个？并说明依据。</td><td>GPT5.5: 题干把伺服电机写成接触器主触点直接接电机端子的主回路不严谨，伺服应由驱动器U/V/W供电；答案以优先查接触器为核心，未围绕驱动器使能/报警/安全链排查。</td><td>Q021</td><td>请简述电气图纸中，安全回路的常闭触点为什么必须采用强制导向结构？</td><td>GPT5.5: 把安全回路所有常闭触点一概要求强制导向不严谨，强制导向用于安全继电器多组联动触点，安全门/急停输入常见要求是正向断开。</td></tr><tr><td>A4</td><td>Q002</td><td>电气图纸上标注的端子编号‘X5:12’，其中‘X5’通常代表什么类型的物理部件？请简述。</td><td>Gemini3.1pro: 题干要求解释电气图纸符号X5代表什么类型物理部件，属解释图纸符号含义，违反口语化作答规则。</td><td>Q003</td><td>在电气图纸中，端子编号‘X2:8’里的冒号‘:’主要用来分隔哪两个部分？请简单说说。</td><td>Gemini3.1pro: 题干要求解释端子编号X2:8冒号分隔哪两部分，属解释图纸符号含义，违反口语化作答规则。</td></tr><tr><td>B1</td><td>Q004</td><td>在汽车制造产线设备的电气主回路图纸中，若某台伺服电机的供电回路中，电源侧依次接入了隔离开关、熔断器和接触器，而接触器主触点输出端直接连接电机接线端子。请简单说说，当现场该电机完全无响应且测量确认输入电源正常时，你优先检查这三类器件中的哪一个？并说明依据。</td><td>GPT5.5: 题干把伺服电机写成接触器主触点直接接电机端子的主回路不严谨，伺服应由驱动器U/V/W供电；答案以优先查接触器为核心，未围绕驱动器使能/报警/安全链排查。</td><td>Q013</td><td>某汽车总装线输送辊道驱动系统中，电机与减速机通过鼓形齿式联轴器连接。运行中发现减速机高速轴轴承温度持续偏高，且振动频谱中出现2倍电源频率与齿轮啮合频率的耦合边带。现场实测两轴同轴度偏差为0.12mm（径向）、0.6°（角向），同时联轴器端面间隙比制造商推荐值小0.4mm。请简述该故障最可能的力学成因，并说明在不更换联轴器的前提下，应优先调整哪两个参数及其对载荷分布影响的技术逻辑。</td><td>GPT5.5: 已明确角向偏差0.6°超差，答案只说优先调径向偏差和端面间隙，遗漏鼓形齿对角向偏差高度相关的校正。</td></tr><tr><td>B3</td><td>Q013</td><td>某汽车总装线输送辊道驱动系统中，电机与减速机通过鼓形齿式联轴器连接。运行中发现减速机高速轴轴承温度持续偏高，且振动频谱中出现2倍电源频率与齿轮啮合频率的耦合边带。现场实测两轴同轴度偏差为0.12mm（径向）、0.6°（角向），同时联轴器端面间隙比制造商推荐值小0.4mm。请简述该故障最可能的力学成因，并说明在不更换联轴器的前提下，应优先调整哪两个参数及其对载荷分布影响的技术逻辑。</td><td>GPT5.5: 已明确角向偏差0.6°超差，答案只说优先调径向偏差和端面间隙，遗漏鼓形齿对角向偏差高度相关的校正。</td><td>Q020</td><td>某汽车总装线输送设备的变频器驱动电机发生频繁接地故障报警，现场检查发现：控制柜内PE排已连接至车间主接地极，但柜内所有24V直流电源模块、PLC输入模块、光电传感器和安全继电器的负端（0V）均通过导线就近接至同一PE排。请简述：这种接法是否构成保护接地与功能接地混接？依据GB/T 16895.21—2020《低压电气装置 第4-41部分：安全防护 电击防护》第411.3.1条及附录B关于‘保护导体与功能导体分离’的要求，你应如何判断其风险本质，并说明需核查的两个关键物理隔离条件。</td><td>GPT5.5: 24V 0V接PE是否违规需结合SELV/PELV/隔离/EMC判断，答案绝对判定为违规混接；且未回答需核查的两个物理隔离条件。</td></tr><tr><td>C2</td><td>Q005</td><td>当电气图纸中出现端子编号‘XT3:4’时，编号末尾的数字‘4’一般表示该端子在对应部件上的什么属性？请简单说说。</td><td>GPT5.5: 与第3题(X2:8冒号分隔)从作答角度同一套核心要点(端子排编号+端子序号位置)，本题仅换数字4，后出重复。；Gemini3.1pro: 题干要求解释端子编号末尾数字4表示什么属性，属解释符号含义，违反口语化作答规则。</td><td>nan</td><td>nan</td><td>nan</td></tr></tbody>
+  </table>
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Round 3 Dashboard</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; margin: 24px; color: #1f2937; }
+    h1, h2, h3 { margin: 10px 0 12px; }
+    .cards { display: grid; grid-template-columns: repeat(3, minmax(140px, 220px)); gap: 12px; margin: 8px 0 18px; }
+    .card { border: 1px solid #e5e7eb; border-radius: 10px; padding: 12px; background: #fafafa; }
+    .card .k { font-size: 12px; color: #6b7280; }
+    .card .v { font-size: 24px; font-weight: 700; margin-top: 4px; }
+    table { border-collapse: collapse; width: 100%; margin: 8px 0 18px; }
+    th, td { border: 1px solid #e5e7eb; padding: 8px 10px; vertical-align: middle; }
+    th { background: #f9fafb; }
+    .legend span { margin-right: 12px; font-size: 13px; color: #374151; }
+    .mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; }
+    .ex { margin: 6px 0; color: #374151; }
+    .section-divider { border: 0; border-top: 2px solid #eef2f7; margin: 22px 0; }
+  </style>
+</head>
+<body>
+  <h1>Round 3 审核看板</h1>
+
+  <div class="cards">
+    <div class="card"><div class="k">A类错误</div><div class="v">8</div></div>
+    <div class="card"><div class="k">B类错误</div><div class="v">49</div></div>
+    <div class="card"><div class="k">C类错误</div><div class="v">4</div></div>
+  </div>
+
+  <h2>本轮题目主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">本轮题干问题集中在少量复杂机械工程场景上：一是个别题干存在公差/基准关系等知识设定不严谨，容易让候选人围绕错误前提作答；二是材料相变、热处理机理等题干偏向材料研发深水区，不够贴近通用机械工程师的常见面试场景；三是少数题目要求围绕图样标注、符号或绘图式表达展开，口语面试可答性不足；另外有少量题干虽措辞不同，但候选人的核心作答路径高度重复。</div>
+<h2>本轮答案主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">本轮答案问题明显多于题干问题，主要集中在参考答案的知识准确性和岗位口径。高频 B1 表现为把不严谨的材料、装配、公差或失效机理写成确定结论，或沿用题干中的错误基准关系；B6 表现为答案掺入软件算法、管理化或非机械工程师表达，偏离机械结构、制造、装配、检验和维护的岗位语境；B5 表现为英文缩写、结构化符号或复杂表达堆叠，影响候选人口头作答和评分；另有少量答案未正面回应题干要求，或给出偏门/过时工艺方案。</div>
+<h2>后续重新出内容时应补充的规则</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">【重新出题】<br/>重新出题时应把题干限定在机械工程师常见工作任务中，如结构设计、材料选型的工程应用、装配定位、公差分析、设备维护、失效排查和生产制造协同；避免把材料微观机理、图纸符号推导、绘图说明或公式计算作为主要作答目标。涉及公差、基准、同轴度、平面度、尺寸链等概念时，必须先校验图样术语和基准关系是否成立；相近知识点要从不同应用场景、不同决策目标或不同异常约束切开，避免候选人复用同一套答案。<br/><br/>【重出答案】<br/>重出答案时三层内容要分别承担概念说明、工程方案比较和异常/复杂情况处理，不要把未经验证的材料机理、装配关系或工艺结论写成绝对事实。答案必须使用机械工程师口径，从结构、载荷、刚度/强度、制造工艺、装配检测、维护参数和工程权衡展开；减少公式、英文缩写和符号堆叠，确保可口语作答、可评分。每道题答案应逐项回应题干给出的限制条件，第三层异常场景要真实且与岗位工作内容匹配。</div>
+
+  <hr class="section-divider" />
+
+  <h2>模型进度与删除率</h2>
+  <table>
+    <thead>
+      <tr><th>Model</th><th>批次完成</th><th>完成率</th><th>删除率</th><th>主错误</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>GPT5.5</td><td style='text-align:center'>8/8</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:11.6%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">11.6%</span></td><td style='text-align:center'>B>C>A</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>8/8</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:6.8%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">6.8%</span></td><td style='text-align:center'>B>A</td></tr>
+    </tbody>
+  </table>
+
+  <h2>批次状态矩阵</h2>
+  <div class="legend">
+    <span>✓ done</span><span>… running</span><span>○ pending</span><span>! blocked</span><span>x failed</span>
+  </div>
+  <table>
+    <thead><tr><th>Model</th><th>R3-B001</th><th>R3-B002</th><th>R3-B003</th><th>R3-B004</th><th>R3-B005</th><th>R3-B006</th><th>R3-B007</th><th>R3-B008</th></tr></thead>
+    <tbody><tr><td>GPT5.5</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td></tr></tbody>
+  </table>
+
+  <h2>细分错误统计（A1/B1...）</h2>
+  <table>
+    <thead><tr><th>错误子类</th><th>数量</th></tr></thead>
+    <tbody><tr><td>A1</td><td style='text-align:center'>3</td></tr><tr><td>A2</td><td style='text-align:center'>2</td></tr><tr><td>A4</td><td style='text-align:center'>3</td></tr><tr><td>B1</td><td style='text-align:center'>30</td></tr><tr><td>B2</td><td style='text-align:center'>1</td></tr><tr><td>B3</td><td style='text-align:center'>2</td></tr><tr><td>B5</td><td style='text-align:center'>6</td></tr><tr><td>B6</td><td style='text-align:center'>10</td></tr><tr><td>C2</td><td style='text-align:center'>4</td></tr></tbody>
+  </table>
+
+  <h3>细分错误示例（每类2条）</h3>
+  <table>
+    <thead><tr><th>错误子类</th><th>例1-题号</th><th>例1-题目</th><th>例1-理由</th><th>例2-题号</th><th>例2-题目</th><th>例2-理由</th></tr></thead>
+    <tbody><tr><td>A1</td><td>Q073</td><td>一张减速器箱体图纸中，底面平面度标为‘0.03｜A’，基准A定义为底面本身；同时技术要求栏写明‘底面作为装配基准，需保证与电机安装面贴合，局部间隙≤0.05mm’。若实测底面存在0.04mm平面度误差但呈单向倾斜，导致局部区域与基准平板间隙达0.06mm，而其余区域贴合良好。此时应如何判定该底面是否满足图样全部技术要求？请结合公差带定义、实际装配功能约束及图面文字与符号信息的协同解释逻辑进行分析。</td><td>GPT5.5: 题干把平面度写成带基准且以自身为基准，平面度是形状公差，不应引用自身基准；答案也沿用错误设定。</td><td>Q074</td><td>某泵体零件的止口端面与内孔需要协同定位轴承，图纸标注内孔轴线相对于止口端面回转轴线的同轴度公差。若实际生产中改用在止口端面支撑、旋转内孔并测量其圆跳动的方式进行检验，这种做法对控制装配后的轴承偏载风险是否充分？请简述理由。</td><td>GPT5.5: 题干称内孔轴线相对于止口端面回转轴线的同轴度，止口端面本身不能作为同轴度轴线；答案基准关系错误。</td></tr><tr><td>A2</td><td>Q020</td><td>某精密传动箱体需在-40℃至80℃宽温域下长期服役，同时承受周期性冲击载荷，设计要求屈服强度≥320MPa且低温冲击功≥15J。现有T6态6061与T73态7075两种铝合金方案，若实测发现T6态6061在低温段出现沿晶断裂倾向，而T73态7075在高温段发生应力松弛导致预紧力衰减。请从析出相类型、分布均匀性及热稳定性三方面，说明应如何权衡选材并给出工艺优化方向。</td><td>Gemini3.1pro: 题干场景偏门，涉及过深的材料微观组织分析，不是机械工程师常规面试题。正确做法：聚焦机械设计与应用。</td><td>Q226</td><td>一款高精度液压阀芯（材质9Cr18马氏体不锈钢）经淬火+深冷+回火后尺寸稳定性不达标，装配后出现微量卡滞。请简述你如何结合材料相变特性与残余应力演化规律，判断当前热处理路径的合理性，并提出针对性优化方向。</td><td>Gemini3.1pro: 题干场景偏门，涉及过深的材料微观组织分析，不是机械工程师常规面试题。正确做法：聚焦机械设计与应用。</td></tr><tr><td>A4</td><td>Q062</td><td>当绘制一个具有内腔、底面凸台及侧面工艺槽的箱体类零件时，主视图已体现主要装配方向和外形特征，为何常选用A-A全剖视图放在主视图正下方，而不是在主视图上直接画局部剖？请说明这样安排更利于读图人员理解的核心原因。</td><td>Gemini3.1pro: 题干要求公式、计算公式、符号含义、推导、证明、绘图等，不适合口语面试。正确做法：改为概念性或思路性提问。</td><td>Q063</td><td>在一张装配图中，某个螺栓连接处标注了‘M12×1.5-6g’，而对应螺母零件图上只标出内螺纹的基本尺寸和公差带代号。为什么装配图中必须明确写出螺栓的完整螺纹标记，而不能仅靠螺母零件图上的信息来判断该连接能否正确装配？请简述原因。</td><td>Gemini3.1pro: 题干要求公式、计算公式、符号含义、推导、证明、绘图等，不适合口语面试。正确做法：改为概念性或思路性提问。</td></tr><tr><td>B1</td><td>Q020</td><td>某精密传动箱体需在-40℃至80℃宽温域下长期服役，同时承受周期性冲击载荷，设计要求屈服强度≥320MPa且低温冲击功≥15J。现有T6态6061与T73态7075两种铝合金方案，若实测发现T6态6061在低温段出现沿晶断裂倾向，而T73态7075在高温段发生应力松弛导致预紧力衰减。请从析出相类型、分布均匀性及热稳定性三方面，说明应如何权衡选材并给出工艺优化方向。</td><td>GPT5.5: 参考答案将6061-T6低温沿晶断裂、7075-T73在80℃以上η相回溶导致应力松弛等作为确定结论，材料机理判断失真。</td><td>Q068</td><td>在汽车发动机缸体上，气缸孔的位置度公差标注在相对于主轴承孔轴线和底面的基准体系下，这个位置度要求主要保障气缸与曲轴之间的哪种装配关系？请简述其对整机运行的影响。</td><td>GPT5.5: 参考答案称气缸中心线与曲轴旋转中心线存在同轴关系；实际二者不是同轴关系，空间基准关系表述错误。</td></tr><tr><td>B2</td><td>Q237</td><td>某工业设备外壳由铝合金薄板与不锈钢支架组成，工作环境存在轻微振动。若采用嵌件连接方式固定面板螺钉，嵌件通常应预埋在哪个部件上？请简单说说理由。</td><td>GPT5.5: 铝合金薄板与不锈钢支架嵌件连接，答案提出热熔压入铝合金薄板；热熔嵌件主要用于塑料，工艺路线不符合机械工程常规。</td><td></td><td></td><td></td></tr><tr><td>B3</td><td>Q103</td><td>某精密齿轮箱的输出轴端跳动超差，该跳动由箱体轴承孔位置度、轴承外圈配合面圆柱度、轴承内圈与轴配合面同轴度、以及轴肩端面垂直度四个要素共同影响。请简述你如何运用极值法公差叠加逻辑，识别其中对封闭环跳动贡献最大的尺寸环，并说明在不增加检测成本的前提下，应优先收紧哪个环的公差及其工程依据。</td><td>GPT5.5: 题干要求识别贡献最大的尺寸环并说明优先收紧哪个环，答案仅泛泛说明原则，未结合给定环给出可判定结论。</td><td>Q237</td><td>某工业设备外壳由铝合金薄板与不锈钢支架组成，工作环境存在轻微振动。若采用嵌件连接方式固定面板螺钉，嵌件通常应预埋在哪个部件上？请简单说说理由。</td><td>GPT5.5: 铝合金薄板与不锈钢支架嵌件连接，答案提出热熔压入铝合金薄板；热熔嵌件主要用于塑料，工艺路线不符合机械工程常规。</td></tr><tr><td>B5</td><td>Q106</td><td>请简单说说，当工程图上标注的版本号更新后，BOM里对应零件的版本信息是否需要同步更新？为什么？</td><td>Gemini3.1pro: 答案中存在大量公式推导或英文缩写堆叠，不适合口语直接作答。正确做法：口语化表达，减少复杂公式和缩写。</td><td>Q107</td><td>请简述：如果某零件的工程图已升版但BOM未更新，可能带来哪些最直接的生产执行风险？</td><td>Gemini3.1pro: 答案中存在大量公式推导或英文缩写堆叠，不适合口语直接作答。正确做法：口语化表达，减少复杂公式和缩写。</td></tr><tr><td>B6</td><td>Q009</td><td>某自动化产线的精密定位平台在长期运行后出现重复定位偏差增大，检测发现导轨支承刚度下降但材料未屈服。请简述你如何区分刚度失效与强度失效的工程表征，并说明在寿命中期维护中，应依据哪些实测参数来重新校核刚度与强度的设计边界。</td><td>Gemini3.1pro: 答案给出的内容包含软件算法口径，不符合纯机械工程师岗位口径。正确做法：从机械结构或机电协同角度回答。</td><td>Q022</td><td>在汽车发动机缸盖螺栓装配过程中，常采用扭矩-转角法拧紧。请简述这种方法如何通过控制螺栓的轴向预紧力来提升防松可靠性。</td><td>Gemini3.1pro: 答案给出的内容包含软件算法口径，不符合纯机械工程师岗位口径。正确做法：从机械结构或机电协同角度回答。</td></tr><tr><td>C2</td><td>Q046</td><td>请简述刚度不足会导致机械部件发生哪种类型的失效？</td><td>GPT5.5: 与第43题同为刚度不足导致何种失效的概念题，作答思路几乎相同，属重复题。</td><td>Q088</td><td>请简单说说：当多个零件依次装配形成间隙时，这个间隙尺寸在尺寸链中属于哪一类环？</td><td>GPT5.5: 与第80题同为多个零件形成的装配间隙属于尺寸链封闭环的问题，候选人答案高度一致，属重复题。</td></tr></tbody>
+  </table>
+</body>
+</html>

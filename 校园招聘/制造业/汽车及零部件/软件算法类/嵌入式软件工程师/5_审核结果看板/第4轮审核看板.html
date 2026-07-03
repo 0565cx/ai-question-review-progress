@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Round 4 Dashboard</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; margin: 24px; color: #1f2937; }
+    h1, h2, h3 { margin: 10px 0 12px; }
+    .cards { display: grid; grid-template-columns: repeat(3, minmax(140px, 220px)); gap: 12px; margin: 8px 0 18px; }
+    .card { border: 1px solid #e5e7eb; border-radius: 10px; padding: 12px; background: #fafafa; }
+    .card .k { font-size: 12px; color: #6b7280; }
+    .card .v { font-size: 24px; font-weight: 700; margin-top: 4px; }
+    table { border-collapse: collapse; width: 100%; margin: 8px 0 18px; }
+    th, td { border: 1px solid #e5e7eb; padding: 8px 10px; vertical-align: middle; }
+    th { background: #f9fafb; }
+    .legend span { margin-right: 12px; font-size: 13px; color: #374151; }
+    .mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; }
+    .ex { margin: 6px 0; color: #374151; }
+    .section-divider { border: 0; border-top: 2px solid #eef2f7; margin: 22px 0; }
+  </style>
+</head>
+<body>
+  <h1>Round 4 审核看板</h1>
+
+  <div class="cards">
+    <div class="card"><div class="k">A类错误</div><div class="v">3</div></div>
+    <div class="card"><div class="k">B类错误</div><div class="v">16</div></div>
+    <div class="card"><div class="k">C类错误</div><div class="v">1</div></div>
+  </div>
+
+  <h2>本轮题目主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">四轮共审核 44 道回流题，两个模型均完成全量审核。题干侧主要问题集中在少量 A1 和 C 类判断：部分题干混淆协议机制或工程边界，少量题与既有题在候选人核心作答路径上高度重合。尾批仅 4 题，单批删除率波动大，因此作为风险观察而非单独推翻整轮。</div>
+<h2>本轮答案主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">答案侧错误仍以 B1 为主，集中在汽车嵌入式协议细节、LIN/CAN/ISO-TP、AUTOSAR 存储与诊断刷写等事实口径错误，以及将不恰当的工程机制套入答案。仅 B 类错误的题目进入保留题干重出答案；含 A/C 的题进入需要重新出题。</div>
+<h2>后续重新出内容时应补充的规则</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">【重新出题】<br/>重新出题时要先校准协议机制和工程边界，避免把 CAN 仲裁、流控、ISO-TP 方向/定时器、LIN 物理层等概念混用；同知识点题目必须改变核心作答路径，不能只换措辞。<br/><br/>【重出答案】<br/>重出答案时要逐项核对标准术语和角色关系，尤其是发送方/接收方、定时器归属、物理层电气特性、诊断刷写状态机等；答案应保留口语可答结构，避免编造固定阈值、认证结论或复杂但不成立的异常场景。</div>
+
+  <hr class="section-divider" />
+
+  <h2>模型进度与删除率</h2>
+  <table>
+    <thead>
+      <tr><th>Model</th><th>批次完成</th><th>完成率</th><th>删除率</th><th>主错误</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>GPT5.5</td><td style='text-align:center'>2/2</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:36.4%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">36.4%</span></td><td style='text-align:center'>B>A>C</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>2/2</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:6.8%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">6.8%</span></td><td style='text-align:center'>B>A</td></tr>
+    </tbody>
+  </table>
+
+  <h2>批次状态矩阵</h2>
+  <div class="legend">
+    <span>✓ done</span><span>… running</span><span>○ pending</span><span>! blocked</span><span>x failed</span>
+  </div>
+  <table>
+    <thead><tr><th>Model</th><th>R4-B001</th><th>R4-B002</th></tr></thead>
+    <tbody><tr><td>GPT5.5</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td></tr></tbody>
+  </table>
+
+  <h2>细分错误统计（A1/B1...）</h2>
+  <table>
+    <thead><tr><th>错误子类</th><th>数量</th></tr></thead>
+    <tbody><tr><td>A1</td><td style='text-align:center'>2</td></tr><tr><td>B1</td><td style='text-align:center'>14</td></tr><tr><td>B3</td><td style='text-align:center'>1</td></tr><tr><td>C2</td><td style='text-align:center'>1</td></tr></tbody>
+  </table>
+
+  <h3>细分错误示例（每类2条）</h3>
+  <table>
+    <thead><tr><th>错误子类</th><th>例1-题号</th><th>例1-题目</th><th>例1-理由</th><th>例2-题号</th><th>例2-题目</th><th>例2-理由</th></tr></thead>
+    <tbody><tr><td>A1</td><td>R4-Q006</td><td>在车规级嵌入式系统中，某模块需将ADC采集的12位电压值（范围0~4095）映射为百分比显示（0~100），开发人员使用无符号整型计算后强制转换为有符号char类型存入诊断数据流。请简述该类型转换可能引发的MISRA C合规风险、运行时异常表现，以及为何不能仅靠编译器警告消除隐患。</td><td>GPT5.5: 删除原因：题干原文“将ADC采集的12位电压值（范围0~4095）映射为百分比显示（0~100）……强制转换为有符号char类型”后再要求说明运行时异常风险，前提不严谨；signed char至少可表示-127到127，0~100本身不会因符号位被解释为负数。参考答案原文“4095经计算得100，但强制转signed char后因高位截断被解释为-28”也不正确；正确应说明若值已被可靠裁剪到0~100，主要风险是类型语义和MISRA合规性，不是100转换为signed char后变负，只有超出SCHAR_MAX或接口约定不一致时才会产生转换/解析风险。</td><td>R4-Q042</td><td>当同一CAN网络中多个ECU同时响应诊断请求，且其中两个ECU均需发送超过8字节的多帧响应时，请说明ISO 15765协议如何通过首帧内容和流控帧交互来避免连续帧发送冲突，并解释若某一ECU未按流控帧指示的间隔发送连续帧，接收端将如何识别并处理该异常。</td><td>GPT5.5: 题干原文“ISO 15765协议如何通过首帧内容和流控帧交互来避免连续帧发送冲突”把ISO-TP流控说成可以避免多个ECU连续帧发送冲突。正确应是：ISO 15765-2的首帧主要携带总长度，流控帧只对某一条诊断连接的发送节奏（BS/STmin/FS）进行控制；多ECU并发响应需要通过唯一寻址/CAN ID配置和CAN仲裁区分，不能依靠首帧内容和流控帧本身消除多个发送方冲突。；Gemini3.1pro: 题干存在A1知识性错误：题干提到“通过首帧内容和流控帧交互来避免连续帧发送冲突”，实际上连续帧在CAN总线上的发送冲突是由CAN协议的仲裁机制解决的，而不是ISO 15765的流控帧。流控帧仅用于流量控制和防接收缓冲区溢出。参考答案存在B1知识性错误：第三层提到“两ECU使用相同功能寻址响应，首帧ID相同”，在CAN网络中，严禁不同节点使用相同的发送ID，同时发送相同ID但数据不同的报文会引发位错误（Bit Error）并导致节点报错，而不是仅仅“流控帧误匹配”。正确应为：各ECU必须分配唯一的物理响应CAN ID，流控通过接收端的缓冲管理实现。</td></tr><tr><td>B1</td><td>R4-Q004</td><td>在车规级ECU开发中，一个用于CAN报文收发的结构体需严格匹配硬件寄存器布局，且必须满足32位字对齐要求。当该结构体包含多个不同长度的字段（如uint8_t、uint16_t、uint32_t）时，请简述你如何系统性地确保其内存布局既符合硬件访问约束，又兼顾编译器优化与跨平台一致性，并说明关键验证手段。</td><td>GPT5.5: 删除原因：参考答案原文“GCC高优化下可能重排字段或合并相邻小字段”存在知识性错误；C语言结构体成员顺序不会因GCC优化等级被任意重排或合并，正确应说明结构体成员顺序由声明顺序决定，风险主要来自填充、对齐、packed导致的非对齐访问、ABI/编译器扩展差异，并通过offsetof/static_assert、编译器文档和目标平台寄存器定义验证布局。</td><td>R4-Q007</td><td>请简述原理图上某个信号名称后紧跟‘/12’这样的斜杠加数字，通常表示该信号属于什么类型的物理连接？</td><td>GPT5.5: 删除原因：参考答案原文“/12表示该信号是一个总线信号……由12根并行信号线构成”过度断定且通常不成立；原理图中信号名后的斜杠加数字常可能是跨页引用、页码/网标引用、连接器或图纸规则标识，不能仅凭“/12”判定为12根并行总线。正确应结合该图纸的图例、网络标签规则和连接器/页间引用说明确认其含义。</td></tr><tr><td>B3</td><td>R4-Q029</td><td>多个车型共用同一套AUTOSAR基础软件包，但不同车型选用的MCU外设资源存在差异——例如ADC通道数量、PWM输出引脚位置、CAN控制器数量不同。请简单说说，MCAL抽象机制如何支持这种‘同软件包、异硬件’的量产需求，以及在配置阶段必须严格管控哪三类接口一致性约束，才能避免底层驱动与上层模块出现功能错位。</td><td>GPT5.5: 删除原因：题干要求说明“配置阶段必须严格管控哪三类接口一致性约束”，参考答案原文主要在讲“配置协同方式”和平台化管理方法，没有正面列出三类接口一致性约束。正确应明确回答三类约束，例如：逻辑通道到物理引脚/控制器/通道的资源映射一致性，MCAL标准API与配置数据类型/实例ID的一致性，RTE/CanIf/PduR/Com等上层信号路由与车型通信矩阵、功能角色绑定的一致性。</td><td>nan</td><td>nan</td><td>nan</td></tr><tr><td>C2</td><td>R4-Q041</td><td>LIN通信中，主节点如何识别并管理多个从节点的地址？请简述其基本机制。</td><td>GPT5.5: C2；Gemini3.1pro: 参考答案存在B1知识性错误：第三层答案描述两个从节点同时响应时会“造成LIN收发器输出电流超限、电压跌落，进而触发主节点通信超时重启”。LIN总线物理层采用开漏（Open-Drain）结构，多个节点同时发送显性电平（拉低到地）时表现为线与逻辑，上拉电阻会限制最大电流，完全在收发器的正常承受范围内，绝不会导致“输出电流超限、电压跌落”。实际现象应是报文冲突导致校验和错误，主节点丢弃该帧。正确应为：多个节点同时响应会导致总线数据发生线与冲突，主节点接收到的报文校验失败，进而报告通信异常或丢帧。</td><td>nan</td><td>nan</td><td>nan</td></tr></tbody>
+  </table>
+</body>
+</html>

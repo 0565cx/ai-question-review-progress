@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Round 5 Dashboard</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; margin: 24px; color: #1f2937; }
+    h1, h2, h3 { margin: 10px 0 12px; }
+    .cards { display: grid; grid-template-columns: repeat(3, minmax(140px, 220px)); gap: 12px; margin: 8px 0 18px; }
+    .card { border: 1px solid #e5e7eb; border-radius: 10px; padding: 12px; background: #fafafa; }
+    .card .k { font-size: 12px; color: #6b7280; }
+    .card .v { font-size: 24px; font-weight: 700; margin-top: 4px; }
+    table { border-collapse: collapse; width: 100%; margin: 8px 0 18px; }
+    th, td { border: 1px solid #e5e7eb; padding: 8px 10px; vertical-align: middle; }
+    th { background: #f9fafb; }
+    .legend span { margin-right: 12px; font-size: 13px; color: #374151; }
+    .mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; }
+    .ex { margin: 6px 0; color: #374151; }
+    .section-divider { border: 0; border-top: 2px solid #eef2f7; margin: 22px 0; }
+  </style>
+</head>
+<body>
+  <h1>Round 5 审核看板</h1>
+
+  <div class="cards">
+    <div class="card"><div class="k">A类错误</div><div class="v">3</div></div>
+    <div class="card"><div class="k">B类错误</div><div class="v">31</div></div>
+    <div class="card"><div class="k">C类错误</div><div class="v">1</div></div>
+  </div>
+
+  <h2>本轮题目主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">本轮题干问题主要集中在标准依据或前提条件错误，以及机器人示教、机构自由度等基础概念表述不准确。典型表现包括把 ISO 13850 写成规定最大允许停止时间、把抓取放置示教点位说成单点只能确定位置、把夹具整体自由度直接简化为 1 等。这类问题会让候选人在错误前提下作答，或把原本应考察工程判断的题目变成纠正题干概念错误。</div>
+<h2>本轮答案主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">本轮答案问题明显多于题干问题，集中在电气安全标准口径混用、元件选型逻辑错误、工业通信状态码错误、屏蔽接地高频原则错误、机械/气动元件基础概念混淆等方面。高频例子包括把 CIP 状态码 0x0001 解释为成功、把 PLd 对应 MTTFd 写成 3 到 10 年、把螺纹配合写成 H7/g6、把变频器接触器类别写成 AC-6b、把真空吸附力调节简单归因于普通电磁阀 PWM 驱动。这些错误会直接影响答案准确性和岗位专业可信度。</div>
+<h2>后续重新出内容时应补充的规则</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">【重新出题】<br/>重新出题时必须先核验题干中的标准编号、状态码、性能等级、工况参数和术语前提；涉及 ISO/IEC/EN/GB 标准时，只能提出该标准真实覆盖的内容，不得把相近标准的计算口径混用。机器人示教、PLC 扫描、EtherCAT、CIP、CPK、机构自由度等基础概念题，应避免设置本身错误或过度绝对化的前提。<br/><br/>【重出答案】<br/>重出答案时必须逐条校验关键数值和工程口径：安全等级按 ISO 13849-1 与 IEC 62061 分开表述，电机保护与接触器按使用类别和整定逻辑回答，屏蔽接地要区分低频单点与高频低阻抗端接，真空/气动控制要区分开关阀、比例阀和真空调压方案，机器人坐标系要区分 TCP、工具坐标和工件坐标。答案不要为了显得专业而堆砌不适用标准或不真实的固定阈值。</div>
+
+  <hr class="section-divider" />
+
+  <h2>模型进度与删除率</h2>
+  <table>
+    <thead>
+      <tr><th>Model</th><th>批次完成</th><th>完成率</th><th>删除率</th><th>主错误</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>GPT5.5</td><td style='text-align:center'>2/2</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:62.7%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">62.7%</span></td><td style='text-align:center'>B>A</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>2/2</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:5.9%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">5.9%</span></td><td style='text-align:center'>A>B>C</td></tr>
+    </tbody>
+  </table>
+
+  <h2>批次状态矩阵</h2>
+  <div class="legend">
+    <span>✓ done</span><span>… running</span><span>○ pending</span><span>! blocked</span><span>x failed</span>
+  </div>
+  <table>
+    <thead><tr><th>Model</th><th>R5-B001</th><th>R5-B002</th></tr></thead>
+    <tbody><tr><td>GPT5.5</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td></tr></tbody>
+  </table>
+
+  <h2>细分错误统计（A1/B1...）</h2>
+  <table>
+    <thead><tr><th>错误子类</th><th>数量</th></tr></thead>
+    <tbody><tr><td>A1</td><td style='text-align:center'>2</td></tr><tr><td>A4</td><td style='text-align:center'>1</td></tr><tr><td>B1</td><td style='text-align:center'>25</td></tr><tr><td>B3</td><td style='text-align:center'>5</td></tr><tr><td>B5</td><td style='text-align:center'>1</td></tr><tr><td>C2</td><td style='text-align:center'>1</td></tr></tbody>
+  </table>
+
+  <h3>细分错误示例（每类2条）</h3>
+  <table>
+    <thead><tr><th>错误子类</th><th>例1-题号</th><th>例1-题目</th><th>例1-理由</th><th>例2-题号</th><th>例2-题目</th><th>例2-理由</th></tr></thead>
+    <tbody><tr><td>A1</td><td>Q005</td><td>某产线新增一台用于PCB板自动插件的自动化设备，已通过内部FAT测试，但在客户现场SAT阶段被安全工程师指出：急停回路未采用双通道冗余设计，且未验证从触发急停到运动部件完全停止的时间是否满足ISO 13850规定的‘最大允许停止时间’。请简述你将如何系统性地开展该设备的安全风险再评估与合规整改，重点说明需复核的三个关键边界条件及其依据标准条款。</td><td>GPT5.5: 题干称ISO 13850规定急停“最大允许停止时间”，ISO 13850主要规定急停功能设计原则，停止时间/安全距离通常需结合风险评估及ISO 13855等标准计算，题干标准依据错误。</td><td>Q034</td><td>在机器人抓取与放置操作中，示教点位时为什么要设置至少三个姿态点？请简述原因。</td><td>GPT5.5: 题干称抓取与放置示教点位至少三个姿态点的原因，但机器人单个示教点通常已经包含位置和姿态六自由度信息；“单个点位仅能确定位置”这一前提错误。</td></tr><tr><td>A4</td><td>Q050</td><td>在一条同时集成多品牌伺服驱动器、视觉相机和PLC的智能装配产线中，若需实现运动控制周期≤1ms且各节点时间戳同步误差<1微秒，你将如何选择主干工业总线？请结合其底层通信机制与时间同步原理，说明为何其他常见总线难以满足该严苛时序要求。</td><td>Gemini3.1pro: 题干表述略显生硬且包含要求列出过细参数的倾向，不适合纯口语直接作答。</td><td>nan</td><td>nan</td><td>nan</td></tr><tr><td>B1</td><td>Q001</td><td>请简述电气间隙和爬电距离在绝缘设计中的主要区别。</td><td>GPT5.5: 参考答案第二层将电气间隙/爬电距离的查表依据写成“IEC 61000-4-5和GB/T 16836”，前者是浪涌抗扰度标准，不能作为绝缘配合查表依据；应按IEC 60664/GB/T 16935等绝缘配合标准结合电压、污染等级、材料组别确定。</td><td>Q002</td><td>在消费电子产线的精密点胶设备中，双手操作启动回路需满足ISO 13851标准要求：两个按钮必须在0.5秒内被同时按下且持续按压，才能使伺服电机进入运动使能状态；若任一按钮提前松开或延迟按下超过阈值，系统必须立即切断安全输出并保持锁定。现该设备已采用双通道安全继电器实现基本双手控制，但验收时发现：当其中一个按钮的常闭触点因粉尘污染导致接触电阻增大（未完全断开），而另一按钮正常动作时，安全继电器仍误判为有效双手操作。请简述你如何从输入信号检测机制、通道监控策略及故障响应逻辑三个层面，重构安全回路设计以确保在接触不良类渐进性故障下仍满足PLd等级要求。</td><td>GPT5.5: 参考答案称“符合IEC 62061对PLd下单点故障不导致危险的要求”，PLd属于ISO 13849-1性能等级口径，不是IEC 62061的SIL/SIL CL口径，标准体系混用会误导安全回路设计依据。</td></tr><tr><td>B3</td><td>Q016</td><td>某精密装配专机原采用进口高精度谐波减速器，现拟替换为国产同类产品。请简单说说，除了额定扭矩和传动比外，你还必须验证哪两项动态性能指标？并解释这两项指标如何影响设备在高速启停节拍下的重复定位精度。</td><td>GPT5.5: 题目要求国产谐波减速器替代时验证两项动态性能指标，参考答案给出“回差”和“角加速度响应能力”；后者不是谐波减速器常规核心验收指标，通常更应关注传动误差、扭转刚度、空程/回差、效率与温升等。</td><td>Q020</td><td>在自动化设备的钣金机架设计中，当需要连接两块厚度为2毫米的冷轧钢板且要求拆装频繁时，通常会选用哪种连接方式？请简述这种连接方式在实际装配中的一个关键操作要点。</td><td>GPT5.5: 题干问两块2mm冷轧钢板且频繁拆装的连接方式，第一层却写自攻螺钉配合通孔+螺母或焊接/压铆螺母，自攻螺钉与通孔螺母方案混杂，且与第二层推荐压铆螺母不一致。</td></tr><tr><td>B5</td><td>Q045</td><td>在自动化设备中，当伺服驱动器与PLC通过屏蔽双绞线通信时，屏蔽层应在哪一端接地？请简单说说这样做的主要抗干扰原因。</td><td>GPT5.5: 参考答案对伺服驱动器与PLC屏蔽双绞线通信一概要求PLC侧单点接地并否定驱动器端接地；高频屏蔽与伺服/编码器通信常要求低阻抗端接或两端360度屏蔽连接，不能简单固定为PLC侧单点接地。；Gemini3.1pro: 参考答案中存在较多英文缩写和参数堆叠，不利于口语化表达，建议精简专业术语的口语描述。</td><td>nan</td><td>nan</td><td>nan</td></tr><tr><td>C2</td><td>Q027</td><td>某通信模块测试专机需同时控制8路真空吸盘吸附不同尺寸PCB板，要求各吸盘可独立启停、吸附力分级调节，且整机EMC等级达Class B。请简述你如何设计电磁阀的驱动与控制逻辑结构，并解释为何必须采用带PWM调压功能的固态驱动而非传统继电器直接控制。</td><td>GPT5.5: 参考答案要求采用带PWM调压功能的固态驱动直接控制电磁阀来实现真空吸力分级调节，普通开关电磁阀不等同于比例真空调压元件；吸附力调节应通过比例阀、真空调压、真空传感闭环等实现。；Gemini3.1pro: 与Q13考察场景和核心知识点高度重合，候选人作答思路雷同。</td><td>nan</td><td>nan</td><td>nan</td></tr></tbody>
+  </table>
+</body>
+</html>

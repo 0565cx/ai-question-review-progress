@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Round 7 Dashboard</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; margin: 24px; color: #1f2937; }
+    h1, h2, h3 { margin: 10px 0 12px; }
+    .cards { display: grid; grid-template-columns: repeat(3, minmax(140px, 220px)); gap: 12px; margin: 8px 0 18px; }
+    .card { border: 1px solid #e5e7eb; border-radius: 10px; padding: 12px; background: #fafafa; }
+    .card .k { font-size: 12px; color: #6b7280; }
+    .card .v { font-size: 24px; font-weight: 700; margin-top: 4px; }
+    table { border-collapse: collapse; width: 100%; margin: 8px 0 18px; }
+    th, td { border: 1px solid #e5e7eb; padding: 8px 10px; vertical-align: middle; }
+    th { background: #f9fafb; }
+    .legend span { margin-right: 12px; font-size: 13px; color: #374151; }
+    .mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; }
+    .ex { margin: 6px 0; color: #374151; }
+    .section-divider { border: 0; border-top: 2px solid #eef2f7; margin: 22px 0; }
+  </style>
+</head>
+<body>
+  <h1>Round 7 审核看板</h1>
+
+  <div class="cards">
+    <div class="card"><div class="k">A类错误</div><div class="v">22</div></div>
+    <div class="card"><div class="k">B类错误</div><div class="v">29</div></div>
+    <div class="card"><div class="k">C类错误</div><div class="v">0</div></div>
+  </div>
+
+  <h2>本轮题目主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">第7轮审核六轮重出后回流的 22 题。本轮出现拐点：两个模型首次高度一致地几乎全删（GPT5.5 删 21/22、Gemini 删 22/22，重合 21 题），本轮 0 题可保留。题目侧 A1 集中爆发：大量生造厂商 PLC 故障码——三菱 FX5U「Err.0010」「Err.1604」、欧姆龙 CP1E「0203」「0x0035」、西门子 S7-1200「16#8001」「16#8091」、罗克韦尔 Micro850「Error 0x8007」均为虚构码；且出现 S7-1200 不支持 PROFINET IRT、CANopen 状态字 bit 定义错（bit0 才是 Ready to switch on、故障复位是控制字 bit7）等知识性/逻辑错误。未指定型号却问固定故障码含义的题也反复出现。说明「重新出题」类回流仍在批量生造不存在的故障码。</div>
+<h2>本轮答案主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">答案侧 B 类错误密集（家族计数 B 29、A 22），两模型互相印证：(1) 软件/品牌口径错——Micro850 应用 CCW 而非 Studio 5000、把变频器系列 PowerFlex 误作点焊过程监控通道、欧姆龙地址写成三菱 Y000 格式、FX5U 用 BFM/TO 旧指令；(2) 标准误用/臆造——ISO 13849 用于节拍缓冲、ISO 13857 用于抱闸滑移时间、IEC 61800-7 用于点焊控制器、PL e 误对 SIL2（应对 SIL3）、虚构 GB/T 条款；(3) 安全常识错——急停/安全门打开后为保工艺连续性让焊枪完成动作、用常闭点作启动按钮、示教前要求安全门“正常闭合”、安全防抖≥3000ms 延迟安全响应；(4) 点焊节拍归因错——把“保压时间波动”当主要节拍瓶颈（实应是加压/Squeeze）。答案侧同样未收敛且多为严重错。</div>
+<h2>后续重新出内容时应补充的规则</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">【重新出题】<br/>重新出题（本轮起必须硬性执行）：(1) 严禁出现任何未经手册核实的厂商故障码——FX5U/CP1E/S7-1200/Micro850 等统一不写代码，改考故障现象与排查思路；(2) 不得给不支持某功能的型号配该功能（如 S7-1200 不支持 IRT）；(3) 总线状态字/控制字 bit 定义必须按 CiA402/PROFIdrive 真实规范；(4) 题干口语化，不堆排查依据。<br/><br/>【重出答案】<br/>重出答案（本轮起必须硬性执行）：(1) 软件与品牌口径按真——Micro800 用 CCW、罗克韦尔中大型用 Studio 5000、欧姆龙用 100.00 地址与 CX/Sysmac、FX5U 用 U\G 标签；PowerFlex 是变频器不是焊控；(2) 标准不凑——ISO 13849-1/IEC 62061/IEC 61800-5-2 用于安全，PL e↔SIL3、PL d↔SIL2；不引虚构条款；(3) 安全优先于工艺——急停/安全门触发立即 STO/SS1，不得延迟；启动按钮用常开；(4) 点焊节拍瓶颈为加压/运动，自适应调电流/通电时间；(5) 每条结论需手册/标准原文依据。重要：本轮两模型几乎全删且高度一致，说明上游自动重出未改善，建议转人工介入或修复出题端生成逻辑后再回流。</div>
+
+  <hr class="section-divider" />
+
+  <h2>模型进度与删除率</h2>
+  <table>
+    <thead>
+      <tr><th>Model</th><th>批次完成</th><th>完成率</th><th>删除率</th><th>主错误</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>GPT5.5</td><td style='text-align:center'>1/1</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:95.5%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">95.5%</span></td><td style='text-align:center'>B>A</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>1/1</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td style='text-align:center'>B>A</td></tr>
+    </tbody>
+  </table>
+
+  <h2>批次状态矩阵</h2>
+  <div class="legend">
+    <span>✓ done</span><span>… running</span><span>○ pending</span><span>! blocked</span><span>x failed</span>
+  </div>
+  <table>
+    <thead><tr><th>Model</th><th>R7-B001</th></tr></thead>
+    <tbody><tr><td>GPT5.5</td><td style='text-align:center'>✓</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>✓</td></tr></tbody>
+  </table>
+
+  <h2>细分错误统计（A1/B1...）</h2>
+  <table>
+    <thead><tr><th>错误子类</th><th>数量</th></tr></thead>
+    <tbody><tr><td>A1</td><td style='text-align:center'>22</td></tr><tr><td>B1</td><td style='text-align:center'>27</td></tr><tr><td>B3</td><td style='text-align:center'>2</td></tr></tbody>
+  </table>
+
+  <h3>细分错误示例（每类2条）</h3>
+  <table>
+    <thead><tr><th>错误子类</th><th>例1-题号</th><th>例1-题目</th><th>例1-理由</th><th>例2-题号</th><th>例2-题目</th><th>例2-理由</th></tr></thead>
+    <tbody><tr><td>A1</td><td>R7-Q0001</td><td>S7-1200 PLC诊断缓冲区出现错误代码'16#8001'，这通常表示CPU无法访问哪一类本地硬件模块？</td><td>GPT5.5: 题干把西门子 S7-1200 诊断缓冲区错误代码原文“16#8001”直接定义为“CPU无法访问哪一类本地硬件模块”，属于故障码硬映射臆断。S7-1200 诊断应以 TIA Portal 完整诊断条目、模块诊断文本、事件ID和硬件组态共同确认，不能仅凭“16#8001”断定为右侧本地SB/SM/CM模块不可访问。；Gemini3.1pro: 参考答案第一层中“特指安装在CPU右侧导轨上的信号板（SB）”存在知识性错误。S7-1200的信号板（SB）是直接安装在CPU正面插槽内的，而不是安装在右侧导轨上（右侧为信号模块SM，左侧为通信模块CM）。</td><td>R7-Q0002</td><td>在一条由多台协作机器人组成的汽车零部件装配线中，某工站包含拧紧、涂胶、视觉检测三个工序，当前节拍为95秒，但产线目标节拍是75秒。已知拧紧和涂胶设备存在物理干涉区，视觉检测需等待涂胶完成且固化时间不可压缩。你会如何通过调整工序执行顺序、信号交互逻辑和缓冲策略来达成目标节拍？请简述关键设计思路。</td><td>GPT5.5: 题干给出“当前节拍为95秒，但产线目标节拍是75秒”，同时限定“拧紧和涂胶设备存在物理干涉区”“视觉检测需等待涂胶完成且固化时间不可压缩”，却要求仅通过“调整工序执行顺序、信号交互逻辑和缓冲策略来达成目标节拍”。在缺少各工序时长和可并行边界的情况下，不能保证从95秒降到75秒；若不可并行工序和固化硬约束本身超过75秒，正确方案应是先量化瓶颈，再考虑增加并行工位、设备能力或工艺变更，而不是预设可由逻辑调整达成。；Gemini3.1pro: 参考答案第三层中称“按ISO 13849-1要求，在输送线与本工站间部署带自适应滤波的节拍均衡缓冲器”，存在严重的知识性错误。ISO 13849-1是关于机械安全控制系统的标准（SRP/CS），与生产线的节拍均衡策略或物理缓冲器部署毫无关联，属于标准的生搬硬套。</td></tr><tr><td>B1</td><td>R7-Q0001</td><td>S7-1200 PLC诊断缓冲区出现错误代码'16#8001'，这通常表示CPU无法访问哪一类本地硬件模块？</td><td>GPT5.5: 题干把西门子 S7-1200 诊断缓冲区错误代码原文“16#8001”直接定义为“CPU无法访问哪一类本地硬件模块”，属于故障码硬映射臆断。S7-1200 诊断应以 TIA Portal 完整诊断条目、模块诊断文本、事件ID和硬件组态共同确认，不能仅凭“16#8001”断定为右侧本地SB/SM/CM模块不可访问。；Gemini3.1pro: 参考答案第一层中“特指安装在CPU右侧导轨上的信号板（SB）”存在知识性错误。S7-1200的信号板（SB）是直接安装在CPU正面插槽内的，而不是安装在右侧导轨上（右侧为信号模块SM，左侧为通信模块CM）。</td><td>R7-Q0002</td><td>在一条由多台协作机器人组成的汽车零部件装配线中，某工站包含拧紧、涂胶、视觉检测三个工序，当前节拍为95秒，但产线目标节拍是75秒。已知拧紧和涂胶设备存在物理干涉区，视觉检测需等待涂胶完成且固化时间不可压缩。你会如何通过调整工序执行顺序、信号交互逻辑和缓冲策略来达成目标节拍？请简述关键设计思路。</td><td>GPT5.5: 题干给出“当前节拍为95秒，但产线目标节拍是75秒”，同时限定“拧紧和涂胶设备存在物理干涉区”“视觉检测需等待涂胶完成且固化时间不可压缩”，却要求仅通过“调整工序执行顺序、信号交互逻辑和缓冲策略来达成目标节拍”。在缺少各工序时长和可并行边界的情况下，不能保证从95秒降到75秒；若不可并行工序和固化硬约束本身超过75秒，正确方案应是先量化瓶颈，再考虑增加并行工位、设备能力或工艺变更，而不是预设可由逻辑调整达成。；Gemini3.1pro: 参考答案第三层中称“按ISO 13849-1要求，在输送线与本工站间部署带自适应滤波的节拍均衡缓冲器”，存在严重的知识性错误。ISO 13849-1是关于机械安全控制系统的标准（SRP/CS），与生产线的节拍均衡策略或物理缓冲器部署毫无关联，属于标准的生搬硬套。</td></tr><tr><td>B3</td><td>R7-Q0015</td><td>请简单说说接触器的额定工作电压与被控负载电源电压不匹配时，可能引发的最直接问题是什么？</td><td>GPT5.5: 题干问“接触器的额定工作电压与被控负载电源电压不匹配”时，核心是主触点额定工作电压/使用类别与负载侧电压、电流和分断能力是否匹配。参考答案后文却把问题转成“隔离变压器适配控制回路电压”“24V DC控制线圈+400V AC主回路”“线圈实际需230V AC”，混淆了主触点额定工作电压与线圈控制电压。正确答案应区分主回路触点参数和线圈电压，主触点错配会导致分断能力不足、拉弧、触点熔焊，线圈电压错配则会导致吸合不可靠或线圈烧毁。；Gemini3.1pro: 题干明确提问的是“接触器的额定工作电压（主触点）与被控负载电源电压不匹配”导致的问题，但参考答案第三层举例“误用24V DC控制线圈+400V AC主回路...接触器线圈实际需230V AC”，大篇幅讨论了线圈控制电压与PLC输出不匹配的故障现象，严重偏离了题干引导的知识范围。</td><td>R7-Q0015</td><td>请简单说说接触器的额定工作电压与被控负载电源电压不匹配时，可能引发的最直接问题是什么？</td><td>GPT5.5: 题干问“接触器的额定工作电压与被控负载电源电压不匹配”时，核心是主触点额定工作电压/使用类别与负载侧电压、电流和分断能力是否匹配。参考答案后文却把问题转成“隔离变压器适配控制回路电压”“24V DC控制线圈+400V AC主回路”“线圈实际需230V AC”，混淆了主触点额定工作电压与线圈控制电压。正确答案应区分主回路触点参数和线圈电压，主触点错配会导致分断能力不足、拉弧、触点熔焊，线圈电压错配则会导致吸合不可靠或线圈烧毁。；Gemini3.1pro: 题干明确提问的是“接触器的额定工作电压（主触点）与被控负载电源电压不匹配”导致的问题，但参考答案第三层举例“误用24V DC控制线圈+400V AC主回路...接触器线圈实际需230V AC”，大篇幅讨论了线圈控制电压与PLC输出不匹配的故障现象，严重偏离了题干引导的知识范围。</td></tr></tbody>
+  </table>
+</body>
+</html>

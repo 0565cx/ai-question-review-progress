@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Round 5 Dashboard</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; margin: 24px; color: #1f2937; }
+    h1, h2, h3 { margin: 10px 0 12px; }
+    .cards { display: grid; grid-template-columns: repeat(3, minmax(140px, 220px)); gap: 12px; margin: 8px 0 18px; }
+    .card { border: 1px solid #e5e7eb; border-radius: 10px; padding: 12px; background: #fafafa; }
+    .card .k { font-size: 12px; color: #6b7280; }
+    .card .v { font-size: 24px; font-weight: 700; margin-top: 4px; }
+    table { border-collapse: collapse; width: 100%; margin: 8px 0 18px; }
+    th, td { border: 1px solid #e5e7eb; padding: 8px 10px; vertical-align: middle; }
+    th { background: #f9fafb; }
+    .legend span { margin-right: 12px; font-size: 13px; color: #374151; }
+    .mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; }
+    .ex { margin: 6px 0; color: #374151; }
+    .section-divider { border: 0; border-top: 2px solid #eef2f7; margin: 22px 0; }
+  </style>
+</head>
+<body>
+  <h1>Round 5 审核看板</h1>
+
+  <div class="cards">
+    <div class="card"><div class="k">A类错误</div><div class="v">11</div></div>
+    <div class="card"><div class="k">B类错误</div><div class="v">3</div></div>
+    <div class="card"><div class="k">C类错误</div><div class="v">0</div></div>
+  </div>
+
+  <h2>本轮题目主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">本轮题干问题主要集中在两类：一类是复杂焊缝符号、复合标注、箭头和引线组合被直接放入口语题干，要求候选人解释符号组合含义，不适合无图纸辅助的面试口头作答；另一类是少量工程图与公差题存在数值自相矛盾或尺寸链逻辑前提错误，例如实测值等于上限却被描述为超出、平面度已超差却被描述为未超差。整体看，题干专业方向仍集中在机械工程师高频场景，但需要减少符号识读型题干，改为文字化工程情境分析。</div>
+<h2>本轮答案主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">本轮答案问题少于题干问题，但仍有关键知识点错误：例如将发动机气缸孔与曲轴旋转轴线关系误写为同轴关系，或把 BW 解释为特定电阻对焊工艺，以及对塞焊符号含义的解释不严谨。这些问题会误导候选人建立错误的机械设计、焊接工艺或几何公差判断口径。后续答案应重点复核术语边界、标准代号与工艺方法的对应关系、以及三层答案与题干条件的一致性。</div>
+<h2>后续重新出内容时应补充的规则</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">【重新出题】<br/>重新出题时，涉及焊缝、图纸、公差或标准代号的题目，应把必要工程条件转写为可口头理解的文字场景，不要要求候选人解释符号、箭头、引线、复杂标注组合或图形含义。题干中的实测数值、公差上下限、失效现象必须逐项自检，确保数值结论和工程因果一致；同一知识点下要改变核心判断变量，避免只替换符号描述而形成同质题。<br/><br/>【重出答案】<br/>重出答案时，第一层先给出准确概念和适用边界，第二层给出机械工程师常用方案及取舍，第三层只设置真实现场异常和复杂问题。凡涉及焊接符号、GD&amp;T、公差配合、材料表面处理、螺栓强度和尺寸链分析的内容，必须核对标准术语、适用场景和因果链，避免把接头形式、焊接方法、检测基准或强度指标混用。</div>
+
+  <hr class="section-divider" />
+
+  <h2>模型进度与删除率</h2>
+  <table>
+    <thead>
+      <tr><th>Model</th><th>批次完成</th><th>完成率</th><th>删除率</th><th>主错误</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>GPT5.5</td><td style='text-align:center'>1/1</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:42.3%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">42.3%</span></td><td style='text-align:center'>A>B</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>1/1</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:30.8%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">30.8%</span></td><td style='text-align:center'>A</td></tr>
+    </tbody>
+  </table>
+
+  <h2>批次状态矩阵</h2>
+  <div class="legend">
+    <span>✓ done</span><span>… running</span><span>○ pending</span><span>! blocked</span><span>x failed</span>
+  </div>
+  <table>
+    <thead><tr><th>Model</th><th>R5-B001</th></tr></thead>
+    <tbody><tr><td>GPT5.5</td><td style='text-align:center'>✓</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>✓</td></tr></tbody>
+  </table>
+
+  <h2>细分错误统计（A1/B1...）</h2>
+  <table>
+    <thead><tr><th>错误子类</th><th>数量</th></tr></thead>
+    <tbody><tr><td>A1</td><td style='text-align:center'>3</td></tr><tr><td>A4</td><td style='text-align:center'>8</td></tr><tr><td>B1</td><td style='text-align:center'>3</td></tr></tbody>
+  </table>
+
+  <h3>细分错误示例（每类2条）</h3>
+  <table>
+    <thead><tr><th>错误子类</th><th>例1-题号</th><th>例1-题目</th><th>例1-理由</th><th>例2-题号</th><th>例2-题目</th><th>例2-理由</th></tr></thead>
+    <tbody><tr><td>A1</td><td>Q006</td><td>某汽车转向节图纸中，主视图标注了安装轴承的Φ45k6轴颈尺寸，侧视图同一位置却以Φ45±0.02形式表达；技术要求栏写明‘所有未注尺寸公差按GB/T 1800.2—2020中IT13执行’。实测该轴颈为Φ45.018，符合IT13但超出k6上偏差+0.018。当供应商依据侧视图尺寸加工并提交检验报告时，装配后轴承出现过盈不足、运转异响。请从工程图多视图间技术要求与图面标注的一致性角度，说明设计人员应如何界定该尺寸的有效公差依据，并指出在图纸审核环节需重点核查的协同控制点。</td><td>GPT5.5: 题干原文写“实测该轴颈为Φ45.018，符合IT13但超出k6上偏差+0.018”，存在数值判定错误：若上偏差为+0.018，则Φ45.018正好等于上限，不是“超出”；同时题干又说“装配后轴承出现过盈不足”，但轴颈位于或超过上限通常不会导致过盈不足，失效因果不一致。正确应将实测值设为低于k6下限或把失效现象改为过盈过大、压装异常等与尺寸偏大匹配的问题。</td><td>Q007</td><td>某工业机器人关节壳体图纸中，端盖安装面标注了平面度0.01mm，且指定以底面A为基准；而同一视图中，该安装面的轮廓度要求标注为0.03mm，未注明基准。技术要求栏统一说明‘形位公差未注基准时，默认采用主基准A’。实测该面相对于基准A的平面度为0.012mm、轮廓度为0.028mm，两项均未超各自公差带，但装配后端盖螺栓预紧力离散度超标。请从图面技术要求与几何公差标注的逻辑闭环角度，分析该失效是否源于图面信息自洽性缺陷，并说明机械工程师在图纸发布前应如何验证基准引用与公差控制目标的匹配关系。</td><td>GPT5.5: 题干原文写“平面度0.01mm”且“实测该面相对于基准A的平面度为0.012mm、轮廓度为0.028mm，两项均未超各自公差带”，其中0.012mm已经大于0.01mm，不能称为未超公差带。正确应改为平面度实测值≤0.01mm，或明确平面度已超差后再分析装配失效。</td></tr><tr><td>A4</td><td>Q005</td><td>请简述焊缝符号中基本符号‘△’对应的是哪一种常见焊缝形式？</td><td>Gemini3.1pro: 题干要求解释“△”符号含义，违反了“凡题干要求候选人说出、列出、写出或解释符号、符号含义等内容，一律标记A4并删除”的强制规则。建议修改为直接给出口语化的焊接结构特征进行提问。</td><td>Q008</td><td>某压力容器筒体与封头环焊缝图纸中，焊缝符号包含直角三角形基本符号、引上线标注'12'、引下线标注'30°'、基准线尾部带实心箭头指向接头根部侧，并在基准线上方附加'Z'符号及'ISO 15614-1'标准代号。请简述该符号组合隐含的接头准备方式、对焊接顺序的刚性约束，以及在筒体分段组焊后整体热处理前，如何依据此符号判断是否允许跳过局部消应力处理。</td><td>GPT5.5: 题干原文要求候选人根据“焊缝符号包含直角三角形基本符号、引上线标注'12'、引下线标注'30°'、基准线尾部带实心箭头……附加'Z'符号及'ISO 15614-1'标准代号”，说明“该符号组合隐含的接头准备方式、对焊接顺序的刚性约束”。这不是普通工程场景描述，而是要求口头解析复杂焊缝符号组合和标注含义，触发A4。正确应先用文字直接给出接头形式、坡口、热处理和工艺评定条件，再考察工艺控制分析。；Gemini3.1pro: 题干用大量文字描述了极其复杂的焊缝复合符号（含直角三角形、引线数字、箭头方向及附加符号等）并要求应聘者解释其隐含含义。这不仅违反了“解释符号含义一律删除”的A4规则，且在口语面试中根本无法被候选人听懂和准确记忆。正确的做法是直接描述具体的坡口准备及工艺条件来提问。</td></tr><tr><td>B1</td><td>Q011</td><td>在汽车发动机缸体上，气缸孔的位置度公差标注在相对于主轴承孔轴线和底面的基准体系下，这个位置度要求主要保障气缸与曲轴之间的哪种装配关系？请简述其对整机运行的影响。</td><td>GPT5.5: 参考答案原文称位置度要求保障“气缸中心线与曲轴旋转中心线在垂直于底面方向上的同轴关系”。发动机缸体中气缸孔轴线与曲轴主轴承孔/曲轴旋转轴线通常不是同轴关系，而是按设计基准保持空间位置、垂直/偏置关系及活塞连杆运动几何关系；用“同轴关系”解释位置度功能会误导候选人。正确应表述为保障气缸孔轴线相对主轴承孔轴线和底面基准的位置关系，避免活塞、连杆和曲轴运动链偏载、磨损和振动。</td><td>Q016</td><td>审查一份压力容器部件图纸时，看到焊缝符号基准线上方标注‘BW’、下方标注‘8’，且无虚线和箭头折线。请简单说说‘BW’代表的焊接方法类别，该标注对焊缝成型位置和坡口加工方式提出了什么基本要求。</td><td>GPT5.5: 参考答案原文称“‘BW’是……电阻对焊（Butt Welding）的缩写，特指两工件端面在压力和电流作用下整体加热、顶锻成型的固态连接方式”。在工程图和焊接语境中BW通常表示对接焊/对接焊缝（butt weld / butt welding），不能直接等同为电阻对焊这种特定焊接方法；“特指压力和电流作用下”的说法把接头/焊缝形式误解释为具体电阻焊工艺。正确应说明BW为对接焊相关标识，具体焊接方法应由工艺文件或焊接方法代号另行规定。</td></tr></tbody>
+  </table>
+</body>
+</html>

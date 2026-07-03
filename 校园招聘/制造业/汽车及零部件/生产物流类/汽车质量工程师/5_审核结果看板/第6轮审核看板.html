@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Round 6 Dashboard</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; margin: 24px; color: #1f2937; }
+    h1, h2, h3 { margin: 10px 0 12px; }
+    .cards { display: grid; grid-template-columns: repeat(3, minmax(140px, 220px)); gap: 12px; margin: 8px 0 18px; }
+    .card { border: 1px solid #e5e7eb; border-radius: 10px; padding: 12px; background: #fafafa; }
+    .card .k { font-size: 12px; color: #6b7280; }
+    .card .v { font-size: 24px; font-weight: 700; margin-top: 4px; }
+    table { border-collapse: collapse; width: 100%; margin: 8px 0 18px; }
+    th, td { border: 1px solid #e5e7eb; padding: 8px 10px; vertical-align: middle; }
+    th { background: #f9fafb; }
+    .legend span { margin-right: 12px; font-size: 13px; color: #374151; }
+    .mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; }
+    .ex { margin: 6px 0; color: #374151; }
+    .section-divider { border: 0; border-top: 2px solid #eef2f7; margin: 22px 0; }
+  </style>
+</head>
+<body>
+  <h1>Round 6 审核看板</h1>
+
+  <div class="cards">
+    <div class="card"><div class="k">A类错误</div><div class="v">0</div></div>
+    <div class="card"><div class="k">B类错误</div><div class="v">29</div></div>
+    <div class="card"><div class="k">C类错误</div><div class="v">0</div></div>
+  </div>
+
+  <h2>本轮题目主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">本轮（六轮）复审五轮回流的 21 题后，仍然没有新增“需要重新出题”项，题干类问题继续保持清零。也就是说，题库已经稳定进入纯答案修正尾声：题干设计、知识前提、场景真实性、重复度和表达可答性都没有再暴露新的系统性问题。当前剩余问题不再涉及题目本身，而是少数答案在标准条款、模块引用或回答完整性上的硬错。</div>
+<h2>本轮答案主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">本轮删除全部是答案类问题，共剩 17 题待重出，其中绝大多数是 B1，只有 1 题出现 B3。B1 仍高度集中在 IATF16949、VDA6.3、GB/T 2828.1、APQP 和 SPC 判异规则等高可核验知识点：不是条款号写错，就是模块/阶段归属弄反，或把抽样转移条件、AQL/ppm、趋势判异阈值写错。唯一的 B3 则说明个别答案虽然方向相关，但没有正面回答题干明确要求的“三项立即启动的系统性控制措施”。总体上，这批剩余题已经非常集中，属于典型的标准事实和答题对齐问题。</div>
+<h2>后续重新出内容时应补充的规则</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">【重新出题】<br/>本轮后仍无需要重新出题项，题干维度规则保持不变即可。后续若继续生成题干，只需继续保证标准事实前提不写错，并维持当前无重复、无跑偏、可口答的出题质量。<br/><br/>【重出答案】<br/>后续重出答案时建议继续加强四项刚性规则：1）所有 IATF16949、VDA6.3、APQP、GB/T 2828.1、SPC 规则都必须逐条核对条款号、模块名、阶段名、触发条件和判异阈值；2）禁止把项目管理模块、整体等级、抽样管理条件等相近概念误套到现场过程或单项评分场景；3）凡题干明确要求列出“几项措施/几条依据/几个步骤”，答案必须逐项正面作答，不能改写成泛泛方法比较；4）对于安全件、特殊特性、追溯和放行边界等高风险主题，优先使用标准中的正式术语和边界条件，不做绝对化、泛化或编造性扩写。</div>
+
+  <hr class="section-divider" />
+
+  <h2>模型进度与删除率</h2>
+  <table>
+    <thead>
+      <tr><th>Model</th><th>批次完成</th><th>完成率</th><th>删除率</th><th>主错误</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>GPT5.5</td><td style='text-align:center'>1/1</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:61.9%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">61.9%</span></td><td style='text-align:center'>B</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>1/1</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:76.2%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">76.2%</span></td><td style='text-align:center'>B</td></tr>
+    </tbody>
+  </table>
+
+  <h2>批次状态矩阵</h2>
+  <div class="legend">
+    <span>✓ done</span><span>… running</span><span>○ pending</span><span>! blocked</span><span>x failed</span>
+  </div>
+  <table>
+    <thead><tr><th>Model</th><th>R6-B001</th></tr></thead>
+    <tbody><tr><td>GPT5.5</td><td style='text-align:center'>✓</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>✓</td></tr></tbody>
+  </table>
+
+  <h2>细分错误统计（A1/B1...）</h2>
+  <table>
+    <thead><tr><th>错误子类</th><th>数量</th></tr></thead>
+    <tbody><tr><td>B1</td><td style='text-align:center'>28</td></tr><tr><td>B3</td><td style='text-align:center'>1</td></tr></tbody>
+  </table>
+
+  <h3>细分错误示例（每类2条）</h3>
+  <table>
+    <thead><tr><th>错误子类</th><th>例1-题号</th><th>例1-题目</th><th>例1-理由</th><th>例2-题号</th><th>例2-题目</th><th>例2-理由</th></tr></thead>
+    <tbody><tr><td>B1</td><td>Q001</td><td>在VDA6.3过程审核中，若某工序的‘人员’要素审核发现操作工未按作业指导书要求执行防错验证步骤，但该工序后续设置了100%自动检测并拦截所有同类缺陷，此时该要素的符合性评分应如何判定？请简述依据。</td><td>GPT5.5: 参考答案原文称“依据VDA6.3:2023第5.2.2条对‘人员’要素的评分逻辑”且“直接导致该子条款不得分”。这里把VDA6.3条款号和评分逻辑写错：VDA6.3过程审核中人员相关要求不应引用为“第5.2.2条”，且发现未执行作业指导书要求应按具体审核问题、证据和风险在0/4/6/8/10等评分尺度中判定，不能笼统写成“直接不得分”。正确应说明结果被后道自动检测拦截不能替代人员按规定执行，但评分需依据对应过程审核问题和不符合程度判定。；Gemini3.1pro: VDA6.3条款引用错误。答案中称“第5.2.2条对‘人员’要素的评分逻辑”以及“结合P2.2‘过程落实’与P2.3‘人员能力’”，但VDA6.3中人员要素对应的条款是P6.3（或P6.1），P2属于项目管理模块，不存在P2.2和P2.3对应人员能力的说法。正确的应引用P6相关条款。</td><td>Q001</td><td>在VDA6.3过程审核中，若某工序的‘人员’要素审核发现操作工未按作业指导书要求执行防错验证步骤，但该工序后续设置了100%自动检测并拦截所有同类缺陷，此时该要素的符合性评分应如何判定？请简述依据。</td><td>GPT5.5: 参考答案原文称“依据VDA6.3:2023第5.2.2条对‘人员’要素的评分逻辑”且“直接导致该子条款不得分”。这里把VDA6.3条款号和评分逻辑写错：VDA6.3过程审核中人员相关要求不应引用为“第5.2.2条”，且发现未执行作业指导书要求应按具体审核问题、证据和风险在0/4/6/8/10等评分尺度中判定，不能笼统写成“直接不得分”。正确应说明结果被后道自动检测拦截不能替代人员按规定执行，但评分需依据对应过程审核问题和不符合程度判定。；Gemini3.1pro: VDA6.3条款引用错误。答案中称“第5.2.2条对‘人员’要素的评分逻辑”以及“结合P2.2‘过程落实’与P2.3‘人员能力’”，但VDA6.3中人员要素对应的条款是P6.3（或P6.1），P2属于项目管理模块，不存在P2.2和P2.3对应人员能力的说法。正确的应引用P6相关条款。</td></tr><tr><td>B3</td><td>Q005</td><td>某量产车型的制动软管供应商在批量供货中被发现，其出厂检验报告未包含耐压和爆破压力两项安全特性数据，但该供应商声称‘客户图纸未标注公差，且历史批次从未出现失效’。作为质量体系执行者，你需判断该做法是否符合IATF16949对产品安全要求的管控逻辑，请简述你的判定依据及必须立即启动的三项系统性控制措施。</td><td>Gemini3.1pro: 跑题。题干明确要求“简述你的判定依据及必须立即启动的三项系统性控制措施”，但第一层和第二层答案并没有明确列出“必须立即启动的三项系统性控制措施”，而是列举了四种应对路径并选择了一种最优方案，未正面回答题干要求。正确的应该是直接列出三项具体的控制措施。</td><td>nan</td><td>nan</td><td>nan</td></tr></tbody>
+  </table>
+</body>
+</html>

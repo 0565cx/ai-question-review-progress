@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Round 4 Dashboard</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; margin: 24px; color: #1f2937; }
+    h1, h2, h3 { margin: 10px 0 12px; }
+    .cards { display: grid; grid-template-columns: repeat(3, minmax(140px, 220px)); gap: 12px; margin: 8px 0 18px; }
+    .card { border: 1px solid #e5e7eb; border-radius: 10px; padding: 12px; background: #fafafa; }
+    .card .k { font-size: 12px; color: #6b7280; }
+    .card .v { font-size: 24px; font-weight: 700; margin-top: 4px; }
+    table { border-collapse: collapse; width: 100%; margin: 8px 0 18px; }
+    th, td { border: 1px solid #e5e7eb; padding: 8px 10px; vertical-align: middle; }
+    th { background: #f9fafb; }
+    .legend span { margin-right: 12px; font-size: 13px; color: #374151; }
+    .mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; }
+    .ex { margin: 6px 0; color: #374151; }
+    .section-divider { border: 0; border-top: 2px solid #eef2f7; margin: 22px 0; }
+  </style>
+</head>
+<body>
+  <h1>Round 4 审核看板</h1>
+
+  <div class="cards">
+    <div class="card"><div class="k">A类错误</div><div class="v">18</div></div>
+    <div class="card"><div class="k">B类错误</div><div class="v">63</div></div>
+    <div class="card"><div class="k">C类错误</div><div class="v">4</div></div>
+  </div>
+
+  <h2>本轮题目主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">四轮（三轮重出回流，109题）题干层面问题集中在A1与A4。A1编造/错配标准约14处：把不存在或不对口的标准强行作为判定依据，如用GB/T 23570《金属切削机床精度检验通则》判大型压力机导轨垂直度、膜片式联轴器却要求依据GB/T 5272《梅花形弹性联轴器》、以及编造GB/T 23657、GB/T 34035、GB/T 26579、GB/T 38899、JB/T 16452等并不存在的国标号作为题干前提，直接误导作答并破坏可信度。A4约4处：题干要求口头解释端子编号/电气符号（如X1:3、QF、| |断点、Q2.3）含义，属于解释符号含义，无法口语直接作答。另有少量题干逻辑不严谨（如把要候选人作答的指标在提问中提前剧透形成同义反复、孔位径向错位却称用垫片解决、题干已确认线圈得电却仍要求查接线端子等自相矛盾）。C2同质约3处：重复定位精度定义、整改有效性验证等知识点换皮重复。</div>
+<h2>本轮答案主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">参考答案仍是四轮最大问题来源，B类约48题、其中B1知识性错误约46处最突出。典型错误：节拍换算错误（60秒÷12台被算成50秒/台，应为5秒/台）；伺服闭环编码器A/B相接反被解释为仍能正常启停（实际会正反馈飞车/报警，距离不符应对应电子齿轮比/脉冲当量错误）；OEE口径混淆（把安全急停停机归为性能率损失，实为可用率损失；把换模/换型调整说成不影响可用率的计划内停机）；PE保护导体截面规则错误（相导体≤16mm²时PE应等截面，答案称不小于一半）；电气符号知识错误（三相异步电机主回路符号主体为圆圈M/3~，答案称为三根平行短线/矩形框；浅蓝色被规定为安全信号线统一色，实为中性线N专属）；功能安全错误（ISO 13849-1类别3检测到单一故障必须导向安全状态，答案称不要求立即停机）；磨损形貌误判（坑口圆润的疲劳点蚀被判为微动磨损）；机理张冠李戴（机械压力机滑块加减速由主传动刚性决定，答案用液压内泄解释；变频器转速抖动归因载波频率而非V/F/PID）；以及把超期服役失效误导向来料批次追溯、把标准化气动接头替换说成必须优先核对批次号等脱离工程实际。B3约2处：题干要求评估是否具备实施条件/构建再发防止对策，答案却只论述分析定位过程，未正面回答。影响面集中在指标计算、标准引用、电气与传动机理、功能安全判断，直接削弱评分基准。</div>
+<h2>后续重新出内容时应补充的规则</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">【重新出题】<br/>1) 题干引用国标/行标必须真实且编号-名称-适用对象三者一致：禁止编造(如GB/T 23657、GB/T 34035、GB/T 26579、GB/T 38899、JB/T 16452等)或错配(金属切削机床通则判压力机、梅花联轴器标准判膜片联轴器)；不确定时不得给标准号，更不得要求候选人背诵条款号。2) 禁止A4：不得要求口头解释端子编号/电气图形符号(X1:3、QF、| |、Q2.3等)的含义或书写符号。3) 题干自洽：不得把待考指标在提问中剧透形成同义反复；不得设置与已知条件矛盾的前提(已确认线圈得电仍查端子、径向孔位错位用垫片解决等)。4) 同一知识点(重复定位精度定义、整改有效性验证等)只保留一题，避免C2同质。<br/><br/>【重出答案】<br/>1) 数值与单位必须核验：节拍↔产能换算(台/分钟=60/每台秒)、各参数量级一致，禁止低级算错。2) 机理须准确：伺服闭环编码器A/B接反=正反馈飞车报警(距离不符应归因电子齿轮比/脉冲当量或丢脉冲)；机械压力机滑块运动由主传动刚性决定，勿用液压内泄解释；变频器转速抖动优先V/F曲线/PID/转矩提升而非载波频率；疲劳点蚀与微动磨损形貌区分。3) 标准与安全口径准确：OEE可用率与性能率损失区分(急停=可用率损失、换模=换型调整损失计入可用率)；PE截面按GB/T 16895.3(相导体≤16mm²时PE等截面)；电气符号(三相电机圆圈M/3~)、导线颜色(黄绿专用PE、浅蓝为N)；ISO 13849-1类别3单一故障须导向安全状态；PL由类别/MTTFd/DCavg/CCF决定而非响应时间。4) 答案须正面回答题目所问(是否具备实施条件要给结论、要求再发防止对策就给对策)，并贴合工程实际(标准件按规格/接口替换、寿命到期失效归因PM计划而非来料批次)。</div>
+
+  <hr class="section-divider" />
+
+  <h2>模型进度与删除率</h2>
+  <table>
+    <thead>
+      <tr><th>Model</th><th>批次完成</th><th>完成率</th><th>删除率</th><th>主错误</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>GPT5.5</td><td style='text-align:center'>3/3</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:33.9%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">33.9%</span></td><td style='text-align:center'>B>C</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>3/3</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:44.0%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">44.0%</span></td><td style='text-align:center'>B>A>C</td></tr>
+    </tbody>
+  </table>
+
+  <h2>批次状态矩阵</h2>
+  <div class="legend">
+    <span>✓ done</span><span>… running</span><span>○ pending</span><span>! blocked</span><span>x failed</span>
+  </div>
+  <table>
+    <thead><tr><th>Model</th><th>R4-B001</th><th>R4-B002</th><th>R4-B003</th></tr></thead>
+    <tbody><tr><td>GPT5.5</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td></tr></tbody>
+  </table>
+
+  <h2>细分错误统计（A1/B1...）</h2>
+  <table>
+    <thead><tr><th>错误子类</th><th>数量</th></tr></thead>
+    <tbody><tr><td>A1</td><td style='text-align:center'>14</td></tr><tr><td>A4</td><td style='text-align:center'>4</td></tr><tr><td>B1</td><td style='text-align:center'>61</td></tr><tr><td>B3</td><td style='text-align:center'>2</td></tr><tr><td>C2</td><td style='text-align:center'>4</td></tr></tbody>
+  </table>
+
+  <h3>细分错误示例（每类2条）</h3>
+  <table>
+    <thead><tr><th>错误子类</th><th>例1-题号</th><th>例1-题目</th><th>例1-理由</th><th>例2-题号</th><th>例2-题目</th><th>例2-理由</th></tr></thead>
+    <tbody><tr><td>A1</td><td>Q013</td><td>在冲压生产线中，某台大型多工位压力机的滑块导轨安装面与机身基准面之间垂直度出现异常，导致模具导向精度下降、板件拉延起皱。请简述你如何利用现场常备的直角尺、塞尺和等高垫块，在设备停机状态下，通过测量导轨面与基准面交线处的间隙变化趋势，判断该垂直度是否已超出GB/T 23570—2018《金属切削机床 精度检验通则》中对大型压力机导轨安装面垂直度的验收要求。</td><td>GPT5.5: GB/T 23570-2018《金属切削机床精度检验通则》被当作大型压力机导轨垂直度验收依据，标准对象错配；应依据压力机说明书/技术协议/压力机精度标准。；Gemini3.1pro: 大型多工位压力机属锻压机械，不适用GB/T 23570-2018《金属切削机床精度检验通则》，标准适用对象错误。</td><td>Q035</td><td>某汽车零部件产线导入一台新压铸机，在最终验收阶段发现：设备厂商仅提供了出厂检验报告和电气原理图，但未提供经双方签字确认的‘液压系统保压测试记录’、未附带与现场实际安装一致的PLC程序源代码及版本校验单、也未提交按GB/T 23657—2019《工业自动化系统与集成 设备验收规范》要求编制的‘功能安全验证证据包’（含SIL2等级相关测试用例与结果）。请简述这三类资料缺失分别会导致验收交付控制中哪三个关键环节失效，并说明每项失效对后续稳定运行可能引发的具体风险。</td><td>Gemini3.1pro: 捏造标准，不存在GB/T 23657-2019《工业自动化系统与集成 设备验收规范》。</td></tr><tr><td>A4</td><td>Q016</td><td>端子编号如‘X1:3’中的‘X1’代表什么？请简单说说。</td><td>GPT5.5: 称依据IEC 61439规定X前缀统一指代外部信号端子排，标准不含此规定；X1一般表示端子排编号，含义以图纸图例与企业编码为准。；Gemini3.1pro: 题干要求解释X1端子编号符号含义，属解释符号含义，无法口语直接作答。</td><td>Q017</td><td>在电气图纸中，端子编号里的冒号‘:’前面部分通常表示什么？请简述。</td><td>GPT5.5: 把冒号前泛化为设备或功能单元代号；X1:3中冒号前X1通常为端子排/接线排编号，冒号后为端子序号。；Gemini3.1pro: 要求解释冒号前符号含义无法口语作答；且答案将冒号前误释为设备/功能单元代号（实为端子排代号），知识性错误。</td></tr><tr><td>B1</td><td>Q002</td><td>请简述电气安全边界在设备运维中，主要用来界定哪两类人员与带电部分之间的最小允许距离？</td><td>GPT5.5: 参考答案把电气安全边界解释为作业人员与巡视人员两类人员与带电部分的最小允许距离并强行对应限制接近/禁止接近边界，概念错误；电气安全边界应按电压等级、作业性质和人员资质划分接近/限制接近/禁止接近等边界。</td><td>Q006</td><td>在产线设备运维中，对冲压机主驱动电机、焊装机器人减速器、总装线伺服阀这三类备件进行关键性分级时，除考虑设备停机损失外，还需依据其失效后是否会导致整线停产来判断。请简述这一判断依据在实际分级中的具体应用逻辑。</td><td>GPT5.5: 第二层把MTBF（小时/天）与产线节拍周期（秒/台）直接比较，量纲与含义不符；应比较失效影响范围、恢复时间、替代能力、库存采购周期及是否瓶颈/单点。</td></tr><tr><td>B3</td><td>Q041</td><td>某焊装产线一台机器人侧围定位工装需加装新型浮动补偿机构，改造方案要求停线6小时。当前该工装对应工序节拍为85秒/台，日产量320台，线边在制品库存仅可支撑1.5小时连续生产；同时下游总装线已启用JIT模式，无缓冲库存。请简述你将如何基于设备可用性、产线节拍刚性、物料齐套率及质量风险传导路径这四个维度，评估此次停线是否具备实施条件。</td><td>Gemini3.1pro: 答案跑题，题干要求评估是否具备实施条件，第二层却答改造实施管控方案，未给判定结论；第三层EtherCAT v2.4为虚构版本号。</td><td>Q046</td><td>某焊装产线机器人涂胶工位连续三周出现胶条断续缺陷，点检确认胶枪密封圈更换频次已按厂家手册缩短30%，但故障率未降反升；同步发现胶泵出口压力波动标准差较历史均值扩大2.1倍。请简述你如何基于设备失效物理模型，结合维修记录、工艺参数与材料批次数据，构建再发防止对策，并说明为何不能仅依赖提高备件更换频率。</td><td>Gemini3.1pro: 题干要求构建再发防止对策，答案全程论述如何分析定位根因，未给出任何实质性再发防止对策。</td></tr><tr><td>C2</td><td>Q043</td><td>设备故障整改完成后，验证改善效果是否真实有效，最直接的依据是什么？</td><td>GPT5.5: 与R4Q0040同质，均为整改/再发防止后如何验证有效，核心答案一致；保留在前的R4Q0040。</td><td>Q044</td><td>在设备故障复盘改进中，判断一项整改措施是否真正解决了根本原因，应重点核对什么？</td><td>GPT5.5: 与R4Q0040、R4Q0043高度同质；保留在前的R4Q0040。；Gemini3.1pro: 与R4Q0043高度重复，均问整改后如何验证有效/根因是否解决，核心答案一致。</td></tr></tbody>
+  </table>
+</body>
+</html>

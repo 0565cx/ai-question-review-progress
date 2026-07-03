@@ -1,0 +1,72 @@
+﻿<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Round 3 Dashboard</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; margin: 24px; color: #1f2937; }
+    h1, h2, h3 { margin: 10px 0 12px; }
+    .cards { display: grid; grid-template-columns: repeat(3, minmax(140px, 220px)); gap: 12px; margin: 8px 0 18px; }
+    .card { border: 1px solid #e5e7eb; border-radius: 10px; padding: 12px; background: #fafafa; }
+    .card .k { font-size: 12px; color: #6b7280; }
+    .card .v { font-size: 24px; font-weight: 700; margin-top: 4px; }
+    table { border-collapse: collapse; width: 100%; margin: 8px 0 18px; }
+    th, td { border: 1px solid #e5e7eb; padding: 8px 10px; vertical-align: middle; }
+    th { background: #f9fafb; }
+    .legend span { margin-right: 12px; font-size: 13px; color: #374151; }
+    .mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; }
+    .ex { margin: 6px 0; color: #374151; }
+    .section-divider { border: 0; border-top: 2px solid #eef2f7; margin: 22px 0; }
+  </style>
+</head>
+<body>
+  <h1>Round 3 审核看板</h1>
+
+  <div class="cards">
+    <div class="card"><div class="k">A类错误</div><div class="v">9</div></div>
+    <div class="card"><div class="k">B类错误</div><div class="v">134</div></div>
+    <div class="card"><div class="k">C类错误</div><div class="v">68</div></div>
+  </div>
+
+  <h2>本轮题目主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">三轮题目层面的主要问题集中在重复题和少量题干场景不稳定。Gemini 在 B013-B020 多次识别出 C1/C2 重复，说明回流内容仍需要按题干、核心考点、业务场景和答案推理链进行去重；另有少量 A 类问题，主要是题干概念不准或把普通模块误称为域控制器，容易让候选人作答方向偏移。</div>
+<h2>本轮答案主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">三轮答案层面的主要错误以 B1 知识性错误为主，集中在 UDS 服务号、LIN/CAN 通信术语、直流快充与交流 CP/CC 信号混用、高压上下电和预充时序、保险丝与线束标准引用错配、IP 防护等级及连接器可靠性解释等方面。GPT5.5 对 B 类知识硬伤检出更集中，Gemini 对重复题和明显概念错误更敏感。</div>
+<h2>后续重新出内容时应补充的规则</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">【重新出题】<br/>重新出题前必须先按题干、场景、核心知识点和答案推理链去重。直流快充、交流慢充、高压互锁、LIN/CAN/UDS、保险丝线径、连接器 IP 等主题必须明确适用标准和工况，禁止混用不同系统的信号线、报文或标准。题干应适合口头面试回答，不要求画复杂电路图或依赖隐藏图纸。<br/><br/>【重出答案】<br/>重出答案时第一层必须直接回答题干问点，第二层给出可核验的工程依据，第三层复杂场景不得引入错误标准号、虚构阈值或过度绝对化结论。涉及诊断服务、充电接口、预充时序、保险选型和防护等级时，要逐项校对术语、信号名称、服务号、触点功能和测试条件。</div>
+
+  <hr class="section-divider" />
+
+  <h2>模型进度与删除率</h2>
+  <table>
+    <thead>
+      <tr><th>Model</th><th>批次完成</th><th>完成率</th><th>删除率</th><th>主错误</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>GPT5.5</td><td style='text-align:center'>21/21</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:12.5%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">12.5%</span></td><td style='text-align:center'>B>C</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>21/21</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:13.7%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">13.7%</span></td><td style='text-align:center'>C>B>A</td></tr>
+    </tbody>
+  </table>
+
+  <h2>批次状态矩阵</h2>
+  <div class="legend">
+    <span>✓ done</span><span>… running</span><span>○ pending</span><span>! blocked</span><span>x failed</span>
+  </div>
+  <table>
+    <thead><tr><th>Model</th><th>R3-B001</th><th>R3-B002</th><th>R3-B003</th><th>R3-B004</th><th>R3-B005</th><th>R3-B006</th><th>R3-B007</th><th>R3-B008</th><th>R3-B009</th><th>R3-B010</th><th>R3-B011</th><th>R3-B012</th><th>R3-B013</th><th>R3-B014</th><th>R3-B015</th><th>R3-B016</th><th>R3-B017</th><th>R3-B018</th><th>R3-B019</th><th>R3-B020</th><th>R3-B021</th></tr></thead>
+    <tbody><tr><td>GPT5.5</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td></tr></tbody>
+  </table>
+
+  <h2>细分错误统计（A1/B1...）</h2>
+  <table>
+    <thead><tr><th>错误子类</th><th>数量</th></tr></thead>
+    <tbody><tr><td>A1</td><td style='text-align:center'>5</td></tr><tr><td>A4</td><td style='text-align:center'>4</td></tr><tr><td>B1</td><td style='text-align:center'>124</td></tr><tr><td>B2</td><td style='text-align:center'>2</td></tr><tr><td>B3</td><td style='text-align:center'>4</td></tr><tr><td>B4</td><td style='text-align:center'>4</td></tr><tr><td>C1</td><td style='text-align:center'>39</td></tr><tr><td>C2</td><td style='text-align:center'>29</td></tr></tbody>
+  </table>
+
+  <h3>细分错误示例（每类2条）</h3>
+  <table>
+    <thead><tr><th>错误子类</th><th>例1-题号</th><th>例1-题目</th><th>例1-理由</th><th>例2-题号</th><th>例2-题目</th><th>例2-理由</th></tr></thead>
+    <tbody><tr><td>A1</td><td>Q345</td><td>某车型在高温高湿环境下批量交付后，出现空调压缩机间歇性不工作，万用表测量压缩机线圈两端电压正常，但实测电流为零。已排除控制信号异常和压缩机本体故障，请简述你如何通过分段隔离与回路状态反推，定位该断路故障在整车线束中的具体位置，并说明为何不能仅依赖通断测试来确认。</td><td>Gemini3.1pro: 题干知识性错误：根据欧姆定律，如果线束存在高阻断路点，压缩机线圈两端的电压应接近0V，因为高阻抗会分担掉绝大部分电压。题干描述‘万用表测量压缩机线圈两端电压正常（12V），但实测电流为零’且‘已排除压缩机本体故障’，这在物理上是不可能的。正确的应该是：测量压缩机线圈两端电压接近0V，而测量供电线束对地电压正常，从而判断线束存在断路。</td><td>Q348</td><td>某车型在量产前EMC测试中发现，当空调压缩机启停瞬间，车身控制模块出现偶发复位。经排查，电源线与接地路径均符合设计规范，但压缩机驱动回路的瞬态电压尖峰超出ISO 7637-2 Pulse 5a限值。请结合电气安全标准对瞬态过电压的防护要求，说明你在原理设计阶段会从哪三个关键环节进行系统性优化，并解释每个环节如何协同实现功能安全与硬件鲁棒性的双重目标。</td><td>Gemini3.1pro: 题干知识性错误：空调压缩机（感性负载）启停瞬间产生的瞬态电压尖峰属于感性负载断开引起的干扰，对应ISO 7637-2中的Pulse 1或Pulse 2a/2b。Pulse 5a是抛负载（发电机正在充电时蓄电池突然断开）产生的脉冲，能量极大，不可能由压缩机启停产生。正确的应该是：压缩机驱动回路的瞬态电压尖峰超出ISO 7637-2 Pulse 1或Pulse 2a限值。</td></tr><tr><td>A4</td><td>Q055</td><td>某车型在低温环境下频繁出现雨刮器电机启动失败，但常温下工作正常；测量发现电机端电压在低温启动瞬间跌落至9.2V，低于10.5V的可靠动作阈值。请结合负载的冷态电阻特性、电池输出能力随温度变化规律，以及线束压降的电流-温度耦合关系，说明该失效的根本机理，并指出在原理设计阶段应如何协同评估这三者来避免此类问题。</td><td>Gemini3.1pro: 题干要求候选人解释K1-85/86这两个数字代表的物理连接关系，属于解释符号含义，不适合口语直接作答。正确的应该是考察具体工程应用而非解释符号含义。</td><td>Q056</td><td>在整车电气原理图发布后，回路清单作为关键交付物之一，其中的‘回路功能描述’和‘线径规格’两项信息，分别支撑工程师在哪个具体工作环节中做出什么判断？请简单说说。</td><td>Gemini3.1pro: 题干要求候选人简述继电器线圈的图形符号由哪两部分组成，属于解释图形符号含义，不适合口语直接作答。正确的应该是考察具体工程应用而非解释图形符号构成。</td></tr><tr><td>B1</td><td>Q004</td><td>在整车开发中，某新车型ICD文件明确要求空调压缩机控制器的‘高压互锁状态’信号必须通过独立双线回路接入车身域控制器，且两路信号需具备反相逻辑关系。当实际线束图纸中该信号仅设计为单线接入，且ICD未说明反相逻辑的实现位置时，你将如何结合功能安全等级、高压系统失效模式和线束物理实现约束，判断该ICD条款是否可被合理裁剪，并说明裁剪决策所需的关键输入证据。</td><td>GPT5.5: 答案把单线高压互锁状态信号的可裁剪验证写成需通过ISO 26262 Part 6 CL3级验证和误码率低于1e-9每小时，但该题讨论的是离散高压互锁状态硬线接口，不能用通信误码率作为单线替代双线反相安全机制的关键判据，且CL3级验证表述不符合常用功能安全验证口径。正确应围绕安全需求分解、诊断覆盖率、独立性、故障检测时间和接口变更评审证据判断。</td><td>Q018</td><td>请简单说说整车低压电源路径中，蓄电池正极出发后最先经过的关键保护器件是什么？</td><td>GPT5.5: 第三层答案称高压系统绝缘电阻测试要求大于1兆欧每伏，该绝缘要求数量级错误，汽车高压安全标准通常按欧每伏量级设置最低绝缘电阻要求，而不是兆欧每伏。正确应说明高低压分界通常以60V直流为边界，并按适用标准校核绝缘、互锁、标识和防护要求。</td></tr><tr><td>B2</td><td>Q458</td><td>在雨刮器低速档与高速档共用同一电机的控制回路中，如何通过电路设计实现两种转速的切换？请简述核心元件及其作用。</td><td>GPT5.5: 答案把继电器加附加电阻降压作为当前主流高低速雨刮方案不合适。汽车雨刮高低速常见方案是电机内部高低速绕组或抽头、电子控制或PWM调速；串联附加电阻长期发热大、效率低，作为主流推荐方案偏过时。</td><td>Q805</td><td>新能源车型高压配电盒与电池包之间采用多芯液冷连接器，因热管理需求增加，原规格连接器温升接近限值。在不改变接口尺寸和装配空间的前提下，你将从哪些维度协同优化连接器内部结构与端子选型以满足新热负荷要求？请简述核心优化方向及验证必要性。</td><td>Gemini3.1pro: 第三层复杂问题的解决思路偏门，不符合当前汽车行业的最佳实践。在连接器本体集成“相变材料储热单元”属于极特殊的方案，成本和可靠性在量产车中极难落地。正确的应该是：从整车热管理策略角度出发，优化BMS的充电电流请求曲线与热管理水泵启动逻辑的协同，在冷机快充初期限制峰值电流或提前唤醒水泵。</td></tr><tr><td>B3</td><td>Q107</td><td>某车灯回路在实车验证中出现保险丝偶发熔断，但负载功率始终未超设计值，且线束温升正常。若排查确认无短路，仅存在间歇性接地电阻升高现象，这种工况下保险丝的保护逻辑为何可能失效？请简述其与热积累特性的关系。</td><td>GPT5.5: 题干明确是车灯回路保险丝偶发熔断，但答案第一层却解释为接地电阻升高使主回路电流降低、保险丝无法响应，未正面解释为何会出现偶发熔断以及热积累边界如何被异常工况触发，答案与题干现象不匹配。正确应围绕间歇性接地异常导致接触点发热、回路电流波形波动、局部高阻与负载控制策略共同改变保险丝热积累条件来分析。</td><td>Q189</td><td>某新车型试制阶段，座椅滑轨线束分支在振动试验后出现端子退针，复测发现该分支在布线夹具中被强制拉伸1.2mm，而设计预留的工艺余量仅0.8mm。请简述你如何重构分支尺寸控制逻辑，使其既能满足动态工况下的形变裕度，又不因过度冗余导致走向干涉，并指出必须同步更新的两个上游协同输入项。</td><td>Gemini3.1pro: 答案未正面完整回答题干。题干要求“指出必须同步更新的两个上游协同输入项”，但第一层和第二层参考答案中均未明确指出并列举这两个输入项具体是什么，存在遗漏和跑题。</td></tr><tr><td>B4</td><td>Q147</td><td>整车线束设计中，某段导线在常温下标称载流量为20安培，但实际应用在仪表台下方密实捆扎的线束束内。此时为何需按14安培进行选型？请简述这一降额决定所依据的关键工程因素。</td><td>GPT5.5: 第三层复杂问题称该导线同时承载CAN信号与电源，降额后导线截面积减小导致压降超限，这一复杂场景不合理：同一根导线不应同时承担CAN通信信号与电源供电，且按14A进行降额选型并不等同于减小导线截面积。正确的复杂场景应围绕密实捆扎、邻近热源、导线根数、持续负载占空比和散热不足导致温升超限展开。</td><td>Q151</td><td>同一根导线在整车不同位置使用时，设计允许电流不同：例如在座椅调节电机回路中取12安培，在空调鼓风机回路中却只取9安培。这种差异并非源于负载功率变化，而是与安装条件相关。请简述造成这种差异的两个关键安装约束因素。</td><td>GPT5.5: 第三层复杂问题称该导线同时承载CAN信号与电源，降额后电压降超限引发仪表黑屏，这种同一根导线同时承担CAN信号与电源的场景不符合线束导线选型常规，也与题干要求的安装条件差异不匹配。正确应继续围绕环境温度、束内根数、捆扎密度、邻近热源、通风散热和工作制差异解释允许电流不同。</td></tr><tr><td>C1</td><td>Q047</td><td>某车型量产阶段出现雨刮器低速档间歇性失效，测量发现雨刮电机接地线束插接件处存在50mV交流压降，而同车其他用电器工作正常。请从接地回路的电流路径分割、接触阻抗频变特性及负载动态响应三者耦合的角度，说明你如何判断该压降是否属于接地设计缺陷，并给出验证这一判断的关键测试条件。</td><td>Gemini3.1pro: 与R3-B001批次的R3Q0012完全重复。</td><td>Q048</td><td>整车在颠簸路面行驶时，仪表盘偶发黑屏重启，诊断显示MCU供电纹波正常但其接地引脚对车身基准地存在瞬态尖峰（峰值达800mV/10μs）。请结合接地回路的分布电感效应、瞬态电流路径突变与金属连接点微动磨损的物理关联，说明你为何不优先排查电源滤波，而是聚焦于接地路径的机械稳定性，并指出最有效的现场复现验证方式。</td><td>Gemini3.1pro: 与R3-B001批次的R3Q0011完全重复。</td></tr><tr><td>C2</td><td>Q043</td><td>整车低压电气系统中，多个用电器共用同一接地回路时，若其中一个用电器工作电流突然增大，其他共地用电器出现功能异常。请从直流电路的电流路径唯一性和接地电阻压降角度，简述这种现象产生的根本原因。</td><td>GPT5.5: 与R3Q0041高度同质化重复。两题核心作答思路均是大电流负载通过公共接地路径寄生电阻产生压降，抬高其他共地用电器的参考地或降低有效工作电压，从而导致功能异常；候选人核心回答要点几乎一致，应保留顺序更早的R3Q0041。；Gemini3.1pro: 与R3-B002批次的R3Q0041重复。两题均考察大电流负载在共用接地路径上产生的压降对其他用电器的影响，候选人作答思路和核心要点几乎一致。</td><td>Q043</td><td>整车低压电气系统中，多个用电器共用同一接地回路时，若其中一个用电器工作电流突然增大，其他共地用电器出现功能异常。请从直流电路的电流路径唯一性和接地电阻压降角度，简述这种现象产生的根本原因。</td><td>GPT5.5: 与R3Q0041高度同质化重复。两题核心作答思路均是大电流负载通过公共接地路径寄生电阻产生压降，抬高其他共地用电器的参考地或降低有效工作电压，从而导致功能异常；候选人核心回答要点几乎一致，应保留顺序更早的R3Q0041。；Gemini3.1pro: 与R3-B002批次的R3Q0041重复。两题均考察大电流负载在共用接地路径上产生的压降对其他用电器的影响，候选人作答思路和核心要点几乎一致。</td></tr></tbody>
+  </table>
+</body>
+</html>

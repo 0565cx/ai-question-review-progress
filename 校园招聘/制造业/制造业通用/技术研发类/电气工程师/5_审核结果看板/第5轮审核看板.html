@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Round 5 Dashboard</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; margin: 24px; color: #1f2937; }
+    h1, h2, h3 { margin: 10px 0 12px; }
+    .cards { display: grid; grid-template-columns: repeat(3, minmax(140px, 220px)); gap: 12px; margin: 8px 0 18px; }
+    .card { border: 1px solid #e5e7eb; border-radius: 10px; padding: 12px; background: #fafafa; }
+    .card .k { font-size: 12px; color: #6b7280; }
+    .card .v { font-size: 24px; font-weight: 700; margin-top: 4px; }
+    table { border-collapse: collapse; width: 100%; margin: 8px 0 18px; }
+    th, td { border: 1px solid #e5e7eb; padding: 8px 10px; vertical-align: middle; }
+    th { background: #f9fafb; }
+    .legend span { margin-right: 12px; font-size: 13px; color: #374151; }
+    .mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; }
+    .ex { margin: 6px 0; color: #374151; }
+    .section-divider { border: 0; border-top: 2px solid #eef2f7; margin: 22px 0; }
+  </style>
+</head>
+<body>
+  <h1>Round 5 审核看板</h1>
+
+  <div class="cards">
+    <div class="card"><div class="k">A类错误</div><div class="v">1</div></div>
+    <div class="card"><div class="k">B类错误</div><div class="v">21</div></div>
+    <div class="card"><div class="k">C类错误</div><div class="v">0</div></div>
+  </div>
+
+  <h2>本轮题目主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">本轮题目整体贴近制造业电气工程师现场工作，场景具体，重复和题干口语适配问题较少。主要题干风险集中在个别题把短路、保护动作或EMC干扰机理预设为确定结论，容易引导候选人沿错误方向作答；其中涉及变频驱动、保护误动作和标准适用边界的题目需要重新核准。</div>
+<h2>本轮答案主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">本轮答案问题明显多于题干问题，集中在标准适用范围错误、TN/RCD/PE保护机理混淆、变频电缆屏蔽和功能接地口径错误，以及把危险或非常规测试方式写成首选方案。答案重写时需要逐条核对标准对象、故障电流路径、保护器件动作条件和现场测试安全边界。</div>
+<h2>后续重新出内容时应补充的规则</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">【重新出题】<br/>重新出题时必须明确系统制式、故障类型、保护器件类型、测试对象和适用标准范围；避免把尚需判断的EMC/保护动作机理直接写成题干前提，禁止用不适用标准号制造专业感。<br/><br/>【重出答案】<br/>重出答案时必须先校验标准适用对象，再按故障电流路径、回路阻抗、保护器件动作特性、规定切断时间和测试安全措施展开；变频与EMC答案必须区分保护接地、功能接地、屏蔽层360度搭接、信号参考地和高频共模回流路径。</div>
+
+  <hr class="section-divider" />
+
+  <h2>模型进度与删除率</h2>
+  <table>
+    <thead>
+      <tr><th>Model</th><th>批次完成</th><th>完成率</th><th>删除率</th><th>主错误</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>GPT5.5</td><td style='text-align:center'>1/1</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:87.0%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">87.0%</span></td><td style='text-align:center'>B>A</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>1/1</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:8.7%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">8.7%</span></td><td style='text-align:center'>B</td></tr>
+    </tbody>
+  </table>
+
+  <h2>批次状态矩阵</h2>
+  <div class="legend">
+    <span>✓ done</span><span>… running</span><span>○ pending</span><span>! blocked</span><span>x failed</span>
+  </div>
+  <table>
+    <thead><tr><th>Model</th><th>R5-B001</th></tr></thead>
+    <tbody><tr><td>GPT5.5</td><td style='text-align:center'>✓</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>✓</td></tr></tbody>
+  </table>
+
+  <h2>细分错误统计（A1/B1...）</h2>
+  <table>
+    <thead><tr><th>错误子类</th><th>数量</th></tr></thead>
+    <tbody><tr><td>A1</td><td style='text-align:center'>1</td></tr><tr><td>B1</td><td style='text-align:center'>20</td></tr><tr><td>B3</td><td style='text-align:center'>1</td></tr></tbody>
+  </table>
+
+  <h3>细分错误示例（每类2条）</h3>
+  <table>
+    <thead><tr><th>错误子类</th><th>例1-题号</th><th>例1-题目</th><th>例1-理由</th><th>例2-题号</th><th>例2-题目</th><th>例2-理由</th></tr></thead>
+    <tbody><tr><td>A1</td><td>Q006</td><td>某三相四线制TN-S供电系统中，一台大功率伺服驱动器在启动瞬间频繁触发上级断路器短路跳闸，但现场测量主回路绝缘正常、接线无松动，且故障仅发生在带载加速阶段。请说明：此时最可能被忽视的短路风险来源是什么？并从驱动器功率器件换流特性、PE线高频阻抗变化与断路器磁脱扣响应带宽三者耦合关系角度，简述其导致误动作的机理。</td><td>GPT5.5: The question premise conflates high-frequency common-mode/EMC disturbance or protection misoperation with a short-circuit risk, and forces a doubtful PE impedance plus magnetic-trip bandwidth mechanism.</td><td>nan</td><td>nan</td><td>nan</td></tr><tr><td>B1</td><td>Q001</td><td>在对一台由三相五线制TN-S系统供电的数控机床进行接地连续性测试时，发现机柜门与主PE排之间的电阻为0.3Ω，但门内嵌入式HMI触摸屏金属背板与PE排之间测得1.2Ω。请简述你如何判断该HMI背板是否构成独立的保护导体可触及部分，并说明此时应优先核查哪些机械连接结构、紧固工艺及镀层处理因素，才能确认测试结果是否真实反映接地有效性。</td><td>GPT5.5: The answer treats the HMI back plate as an independent exposed conductive part using absolute size and 0.1 ohm rules. It should first verify accessibility and then apply the relevant equipment protective bonding standard.</td><td>Q002</td><td>在采用TN-S供电系统的工厂车间里，一台金属外壳的数控机床发生相线碰壳故障，保护接地线是如何配合断路器实现人身防护的？请简述故障电流路径及断路器动作的必要条件。</td><td>GPT5.5: The TN-S fault current path is wrongly described as returning through the transformer neutral earth electrode, and the 1.3x instantaneous trip rule is not a general criterion. It should be checked by metallic fault loop impedance and the breaker time-current curve.</td></tr><tr><td>B3</td><td>Q020</td><td>当对带有变频驱动器的三相电机系统执行整机绝缘电阻测试时，标准要求断开驱动器电源端子，但现场为缩短停机时间未执行该操作。请简述这种违规操作可能引发的三类测试误判风险，并说明每类风险背后的电气原理。</td><td>GPT5.5: The answer does not actually provide three misjudgment risks and their principles. It mostly lists handling methods and only develops false-low insulation and drifting readings, missing a complete three-risk response.</td><td>nan</td><td>nan</td><td>nan</td></tr></tbody>
+  </table>
+</body>
+</html>

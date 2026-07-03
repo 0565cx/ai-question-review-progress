@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Round 5 Dashboard</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; margin: 24px; color: #1f2937; }
+    h1, h2, h3 { margin: 10px 0 12px; }
+    .cards { display: grid; grid-template-columns: repeat(3, minmax(140px, 220px)); gap: 12px; margin: 8px 0 18px; }
+    .card { border: 1px solid #e5e7eb; border-radius: 10px; padding: 12px; background: #fafafa; }
+    .card .k { font-size: 12px; color: #6b7280; }
+    .card .v { font-size: 24px; font-weight: 700; margin-top: 4px; }
+    table { border-collapse: collapse; width: 100%; margin: 8px 0 18px; }
+    th, td { border: 1px solid #e5e7eb; padding: 8px 10px; vertical-align: middle; }
+    th { background: #f9fafb; }
+    .legend span { margin-right: 12px; font-size: 13px; color: #374151; }
+    .mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; }
+    .ex { margin: 6px 0; color: #374151; }
+    .section-divider { border: 0; border-top: 2px solid #eef2f7; margin: 22px 0; }
+  </style>
+</head>
+<body>
+  <h1>Round 5 审核看板</h1>
+
+  <div class="cards">
+    <div class="card"><div class="k">A类错误</div><div class="v">4</div></div>
+    <div class="card"><div class="k">B类错误</div><div class="v">35</div></div>
+    <div class="card"><div class="k">C类错误</div><div class="v">0</div></div>
+  </div>
+
+  <h2>本轮题目主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">本轮题干问题主要集中在抽样检验转移规则前提设置不严谨，以及少量题干内部逻辑自相矛盾。典型表现是把“未超过接收准则”的批次同时描述为触发不接收转移规则，或在未给出 Ac/Re、批次接收状态等必要条件时要求候选人判断加严、放宽或恢复正常检验。题干整体仍较贴近质量工程师场景，但涉及 GB/T 2828.1、PPAP、SPC 等标准时，需要确保条件、术语和触发规则在题干中完整且一致。</div>
+<h2>本轮答案主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">本轮答案错误以 B1 知识性错误为主，集中出现在 GB/T 2828.1 正常、加严、放宽检验转移规则，AQL/Ac/Re 概念解释，SPC 控制图判异规则，Ppk/Cpk 含义，以及 IATF 16949 条款号引用。多题答案将单批不接收误判为可直接触发加严，将加严直接转放宽，或引用不存在/不对应的 IATF 条款，说明答案在标准条款和质量工具基础概念上需要更严格逐条校验。</div>
+<h2>后续重新出内容时应补充的规则</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">【重新出题】<br/>重新出题时，题干必须显式给出抽样方案关键条件，如检验状态、连续批次接收/不接收历史、样本量、Ac/Re、AQL、缺陷等级和客户特殊要求；不得把“未超 AQL”和“不接收批”混用。涉及 GB/T 2828.1、SPC、PPAP、IATF 16949 的题目，应先核对标准语境，避免要求候选人在信息不足或前提错误的场景下判断。<br/><br/>【重出答案】<br/>重出答案时，必须逐条核验 GB/T 2828.1 转移规则、AQL/Ac/Re 定义、SPC 判异准则、Ppk/Cpk 区别和 IATF 16949 条款号；所有标准条款引用必须能对应到真实要求。答案三层应保持题干范围内作答，第一层先给准确定义和判断依据，第二层说明实际处理逻辑，第三层只补充岗位常见异常与复杂限制，不得用错误条款或过度绝对化要求支撑结论。</div>
+
+  <hr class="section-divider" />
+
+  <h2>模型进度与删除率</h2>
+  <table>
+    <thead>
+      <tr><th>Model</th><th>批次完成</th><th>完成率</th><th>删除率</th><th>主错误</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>GPT5.5</td><td style='text-align:center'>2/2</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:37.2%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">37.2%</span></td><td style='text-align:center'>B>A</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>2/2</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:48.8%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">48.8%</span></td><td style='text-align:center'>B>A</td></tr>
+    </tbody>
+  </table>
+
+  <h2>批次状态矩阵</h2>
+  <div class="legend">
+    <span>✓ done</span><span>… running</span><span>○ pending</span><span>! blocked</span><span>x failed</span>
+  </div>
+  <table>
+    <thead><tr><th>Model</th><th>R5-B001</th><th>R5-B002</th></tr></thead>
+    <tbody><tr><td>GPT5.5</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td></tr></tbody>
+  </table>
+
+  <h2>细分错误统计（A1/B1...）</h2>
+  <table>
+    <thead><tr><th>错误子类</th><th>数量</th></tr></thead>
+    <tbody><tr><td>A1</td><td style='text-align:center'>4</td></tr><tr><td>B1</td><td style='text-align:center'>35</td></tr><tr><td>B3</td><td style='text-align:center'>1</td></tr></tbody>
+  </table>
+
+  <h3>细分错误示例（每类2条）</h3>
+  <table>
+    <thead><tr><th>错误子类</th><th>例1-题号</th><th>例1-题目</th><th>例1-理由</th><th>例2-题号</th><th>例2-题目</th><th>例2-理由</th></tr></thead>
+    <tbody><tr><td>A1</td><td>Q006</td><td>某汽车零部件产线连续12批产品均被接收，当前处于正常检验状态，依据GB/T 2828.1-2023，第13批开始执行加严检验。但第13批首件巡检即发现1个关键尺寸超差（属致命缺陷），且该特性在控制计划中列为安全特性。请简述你如何判定本批过程巡检抽样结果的有效性，并说明后续巡检策略调整的依据和具体动作。</td><td>GPT5.5: 题干原文称“连续12批产品均被接收，当前处于正常检验状态，依据GB/T 2828.1-2023，第13批开始执行加严检验”，该前提错误；连续接收不会触发加严检验，正常转加严应由规定数量的不接收批触发。参考答案又沿用“加严检验启动后首次抽样”的错误前提，因此答案判定依据也错误。</td><td>Q008</td><td>某汽车零部件供应商依据GB/T 2828.1实施正常检验，当前处于连续接收第12批的状态。第13批初检发现3个严重缺陷（A类），未超AQL但触发了‘5批中累计2批不接收’的转移规则；同时客户在PPAP批准文件中明确要求：对涉及制动功能的尺寸特性，一旦单批出现≥2个A类缺陷，须启动复判。你如何协调国标转移规则与客户特殊要求，设计具备可操作性的复判规则？请简述你的核心逻辑和关键控制点。</td><td>GPT5.5: 题干原文称“第13批初检发现3个严重缺陷（A类），未超AQL但触发了‘5批中累计2批不接收’的转移规则”，逻辑矛盾且概念错误。AQL不是单批缺陷数是否超限的直接说法，转移规则统计的是不接收批，不是同一批内缺陷个数；若“未超”接收准则，则该批不能同时作为不接收批触发该规则。；Gemini3.1pro: 题干存在逻辑矛盾（A1），题干称‘未超AQL但触发了5批中累计2批不接收的转移规则’，既然未超AQL即为接收批，不可能触发不接收的转移规则。正确的应该是设定缺陷数超过了拒收数导致批次不接收。</td></tr><tr><td>B1</td><td>Q002</td><td>某电子装配厂对连续生产的电路板实施逐批抽样检验，依据GB/T 2828.1正常检验一次抽样方案（AQL=0.65%，n=50），前5批全部接收；第6批发现2个焊点虚焊缺陷，超出接收数；第7批又发现1个同类缺陷。此时检验状态应如何调整？请结合转移规则、不接收批定义及合格判定原则，说明是否继续使用正常检验，以及后续批次的判定逻辑。</td><td>GPT5.5: 参考答案第一层原文称“第6批因缺陷数超过接收数……触发从正常检验转为加严检验”，这是GB/T 2828.1转移规则错误。正常检验转加严通常要求在连续不超过5批中有2批不接收，单独第6批不接收不能直接触发加严；前5批接收也不能直接作为放宽或加严转换依据。；Gemini3.1pro: 参考答案第一层有知识性错误，依据GB/T 2828.1，从正常检验转为加严检验的条件是‘连续5批或不到5批中，有2批初次检验不接收’。题目中仅第6批1批不接收，不能触发加严检验。正确的应该是继续保持正常检验。</td><td>Q002</td><td>某电子装配厂对连续生产的电路板实施逐批抽样检验，依据GB/T 2828.1正常检验一次抽样方案（AQL=0.65%，n=50），前5批全部接收；第6批发现2个焊点虚焊缺陷，超出接收数；第7批又发现1个同类缺陷。此时检验状态应如何调整？请结合转移规则、不接收批定义及合格判定原则，说明是否继续使用正常检验，以及后续批次的判定逻辑。</td><td>GPT5.5: 参考答案第一层原文称“第6批因缺陷数超过接收数……触发从正常检验转为加严检验”，这是GB/T 2828.1转移规则错误。正常检验转加严通常要求在连续不超过5批中有2批不接收，单独第6批不接收不能直接触发加严；前5批接收也不能直接作为放宽或加严转换依据。；Gemini3.1pro: 参考答案第一层有知识性错误，依据GB/T 2828.1，从正常检验转为加严检验的条件是‘连续5批或不到5批中，有2批初次检验不接收’。题目中仅第6批1批不接收，不能触发加严检验。正确的应该是继续保持正常检验。</td></tr><tr><td>B3</td><td>Q030</td><td>在接收一批外购金属结构件时，检验标准规定AQL为1.0%，实际抽检发现不合格品数刚好等于接收数。请简单说说，此时这批货是否可以接收？为什么？</td><td>GPT5.5: 参考答案第一层开头原文称“不能直接判定接收”，后文又称“题干中‘等于接收数’即指等于Ac，因此符合接收条件”，前后自相矛盾。正确表述应为：在已明确不合格品数等于接收数Ac时，按一次抽样方案应接收；若达到拒收数Re才拒收。</td><td>nan</td><td>nan</td><td>nan</td></tr></tbody>
+  </table>
+</body>
+</html>

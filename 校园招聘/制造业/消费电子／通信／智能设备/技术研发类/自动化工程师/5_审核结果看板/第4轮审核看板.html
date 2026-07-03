@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Round 4 Dashboard</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; margin: 24px; color: #1f2937; }
+    h1, h2, h3 { margin: 10px 0 12px; }
+    .cards { display: grid; grid-template-columns: repeat(3, minmax(140px, 220px)); gap: 12px; margin: 8px 0 18px; }
+    .card { border: 1px solid #e5e7eb; border-radius: 10px; padding: 12px; background: #fafafa; }
+    .card .k { font-size: 12px; color: #6b7280; }
+    .card .v { font-size: 24px; font-weight: 700; margin-top: 4px; }
+    table { border-collapse: collapse; width: 100%; margin: 8px 0 18px; }
+    th, td { border: 1px solid #e5e7eb; padding: 8px 10px; vertical-align: middle; }
+    th { background: #f9fafb; }
+    .legend span { margin-right: 12px; font-size: 13px; color: #374151; }
+    .mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; }
+    .ex { margin: 6px 0; color: #374151; }
+    .section-divider { border: 0; border-top: 2px solid #eef2f7; margin: 22px 0; }
+  </style>
+</head>
+<body>
+  <h1>Round 4 审核看板</h1>
+
+  <div class="cards">
+    <div class="card"><div class="k">A类错误</div><div class="v">11</div></div>
+    <div class="card"><div class="k">B类错误</div><div class="v">44</div></div>
+    <div class="card"><div class="k">C类错误</div><div class="v">1</div></div>
+  </div>
+
+  <h2>本轮题目主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">本轮题干问题主要集中在安全标准与工程概念误用、场景前提不严谨、以及少量重复同质化。典型表现包括把 ISO 13857 误写为响应时间或肢体进入时间窗口标准，把双手控制、急停、强制导向触点、EDM 反馈等安全概念混用；也有题干给出固定化或绝对化的工程结论，例如协作机器人共享空间速度固定上限、普通 PLC 主循环实现急停保护等，容易引导候选人按错误安全口径作答。重复问题主要出现在安全继电器/双通道冗余/强制导向触点等知识点上，后序题虽然措辞不同，但候选人会给出高度相同的答案框架。</div>
+<h2>本轮答案主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">本轮答案错误以 B1 知识性和逻辑口径错误为主，集中在机械定位自由度、公差链、气动/真空控制、工业通信、伺服与功能安全标准解释。典型问题包括把三点支撑的自由度约束解释错、把菱形销作用说成释放绕法向旋转自由度、把 EtherCAT 套用终端电阻排查、把 Cpk=1 直接推导为均值偏移、把 PLd 等同于特定 MTTFd 区间。部分答案还存在危险或不合规的工程建议，例如伺服过热时短接控制信号、将安全相关逻辑依赖普通 PLC 扫描顺序，需重出时重点校正为可落地且符合安全规范的自动化工程口径。</div>
+<h2>后续重新出内容时应补充的规则</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">【重新出题】<br/>重新出题时必须先校验安全标准、材料/电气/机械术语和场景前提：ISO 13850 用于急停，ISO 13851 用于双手控制，ISO 13855 关联保护装置安全距离与接近速度，ISO 13857 关注人体可触及安全距离，ISO 13849-1 关注 PL/类别/MTTFd/DC/CCF。题干不得把硬件特性写成软件逻辑，不得要求普通 PLC 承担人员安全急停功能，不得给出单一固定数值作为所有协作或安全场景的通用答案。生成前还要做同质化检查，安全继电器、强制导向触点、双通道冗余等题目每个知识点只保留一个核心问法。<br/><br/>【重出答案】<br/>重出答案时必须逐条核对工程事实和岗位口径：机械定位需区分支撑、定位、夹紧和自由度约束；电气安全需区分急停、安全继电器、安全 PLC、STO、EDM 反馈和普通 PLC 控制；工业通信需按协议真实机制解释，避免把 CAN/RS-485 的终端电阻等口径套到 EtherCAT。第二层方案比较要给出常见可落地做法，不得推荐短接安全/控制信号等危险旁路；第三层异常和复杂问题要能由自动化工程师在设计、调试、验收或运维中处理，避免虚构标准机制或绝对化厂商/标准要求。</div>
+
+  <hr class="section-divider" />
+
+  <h2>模型进度与删除率</h2>
+  <table>
+    <thead>
+      <tr><th>Model</th><th>批次完成</th><th>完成率</th><th>删除率</th><th>主错误</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>GPT5.5</td><td style='text-align:center'>4/4</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:34.0%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">34.0%</span></td><td style='text-align:center'>B>A>C</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>4/4</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:11.6%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">11.6%</span></td><td style='text-align:center'>B>A</td></tr>
+    </tbody>
+  </table>
+
+  <h2>批次状态矩阵</h2>
+  <div class="legend">
+    <span>✓ done</span><span>… running</span><span>○ pending</span><span>! blocked</span><span>x failed</span>
+  </div>
+  <table>
+    <thead><tr><th>Model</th><th>R4-B001</th><th>R4-B002</th><th>R4-B003</th><th>R4-B004</th></tr></thead>
+    <tbody><tr><td>GPT5.5</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td></tr></tbody>
+  </table>
+
+  <h2>细分错误统计（A1/B1...）</h2>
+  <table>
+    <thead><tr><th>错误子类</th><th>数量</th></tr></thead>
+    <tbody><tr><td>A1</td><td style='text-align:center'>11</td></tr><tr><td>B1</td><td style='text-align:center'>39</td></tr><tr><td>B2</td><td style='text-align:center'>1</td></tr><tr><td>B3</td><td style='text-align:center'>4</td></tr><tr><td>C2</td><td style='text-align:center'>1</td></tr></tbody>
+  </table>
+
+  <h3>细分错误示例（每类2条）</h3>
+  <table>
+    <thead><tr><th>错误子类</th><th>例1-题号</th><th>例1-题目</th><th>例1-理由</th><th>例2-题号</th><th>例2-题目</th><th>例2-理由</th></tr></thead>
+    <tbody><tr><td>A1</td><td>Q008</td><td>在精密组装设备中，双手操作启动需同时按下两个独立按钮才能激活压合气缸，且任一按钮松开即立即停止动作。现场发现当其中一个按钮触点发生熔焊粘连时，仅靠另一个按钮仍能意外触发压合。请简述你如何在不增加新传感器的前提下，通过安全继电器的逻辑配置与回路架构设计，确保该双手控制功能在触点熔焊、线路短接及按钮复位弹簧失效三类典型故障下，始终满足ISO 13850规定的急停响应时间≤200ms且无单点失效风险。</td><td>GPT5.5: The question frames two-hand control as needing to satisfy ISO 13850 emergency-stop response requirements. Two-hand control is governed by two-hand/safety-control standards such as ISO 13851/ISO 13849; using ISO 13850 as the core requirement is a knowledge error in the question.</td><td>Q044</td><td>智能穿戴设备组装线的真空吸盘支架需在洁净环境下反复启停吸附，既要避免金属碎屑污染又要保证磁性传感器不受干扰。请简述为何选择SUS430不锈钢而非SUS304，并从铁素体组织特性、非磁性保持能力、钝化膜耐蚀性及洁净室兼容性角度说明判断依据。</td><td>GPT5.5: The question asks why SUS430 should be chosen to avoid magnetic sensor interference and describes it as maintaining nonmagnetic/weak-magnetic behavior. SUS430 is ferritic stainless steel and is magnetic; the question premise is wrong.</td></tr><tr><td>B1</td><td>Q002</td><td>在手机精密组装线的真空吸附治具中，需同时控制8路真空吸盘的启停，且每路吸力需独立可调、响应时间小于30毫秒；现场存在强电磁干扰，气源压力波动±15%。请简述你如何选择电磁阀的控制方式（如单电控/双电控、先导式/直动式）、驱动电路设计要点及与PLC输出模块的匹配逻辑，以兼顾快速响应、抗干扰稳定性和压力波动下的吸力一致性。</td><td>GPT5.5: Answer requires a double-solenoid 5-port direct-acting valve for a vacuum suction cup circuit. Vacuum suction control normally uses suitable 2/2 or 3/2 vacuum/ejector/proportional pressure components; the stated valve type is not a necessary or generally correct solution for this scenario.</td><td>Q003</td><td>在智能手机主板自动光学检测设备中，需设计一款可安装于六轴机械臂末端的轻量化视觉定位模组，其整体尺寸限制为60×60×45毫米，整机质量须≤320克，同时要求在0.5g加速度振动工况下，镜头光轴相对基准面的位移波动≤±1.5微米。请简述你如何从材料选型、拓扑构型、薄壁筋格布局与微预紧装配四个维度协同优化，确保结构刚度、动态稳定性与轻量化的综合达成。</td><td>GPT5.5: The answer specifies M2.5 screws with 2.5-3.5 N*m tightening torque. That is far above normal M2.5 screw torque and would risk stripping, yielding, or deforming the micro module.</td></tr><tr><td>B2</td><td>Q090</td><td>当一条高速组装产线因某台贴片机的伺服驱动器突发过热报警导致整线停机，而备用模块需4小时后才能送达，你作为现场负责人，会如何分阶段组织故障应对？请简述关键动作和决策依据。</td><td>GPT5.5: 参考答案把“临时短接驱动器控制信号，由PLC强制输出固定位置指令”列为单点旁路模式。现场伺服驱动器过热停机时短接控制信号属于危险旁路做法，可能绕过保护和安全功能；正确做法应隔离故障、确认安全状态、按SOP降级或停机等待备件，不应把短接安全/控制信号作为可选方案。</td><td></td><td></td><td></td></tr><tr><td>B3</td><td>Q023</td><td>在精密组装工位中，需要稳定检测微米级金属弹片的有无与姿态，周围存在伺服电机高频振动。选用哪种类型的位置传感器更可靠？请简述关键考虑因素。</td><td>GPT5.5: The answer selects an inductive proximity sensor as the reliable solution for both presence and posture of micron-level metal springs. A single proximity sensor can detect presence/distance but cannot reliably determine posture; the answer does not match the posture-detection requirement.</td><td>Q045</td><td>在自动化设备的直线模组中，如果导轨需要承受较高侧向力且运行精度要求达到±0.02毫米，通常应选用哪种类型轴承？请简述其结构特点如何支撑这一工况。</td><td>GPT5.5: The question concerns a linear guide needing high side-load capacity and precision, but the answer recommends double-row angular-contact or four-point contact rotary bearings. It does not answer the linear guide/linear bearing selection requirement.</td></tr><tr><td>C2</td><td>Q116</td><td>安全继电器内部通常包含两套独立的触点回路，请简单说说这样设计的主要目的。</td><td>GPT5.5: 与前序Q0114高度同质。Q0114问“安全继电器相比普通继电器多实现的关键安全功能”，Q0116问“内部两套独立触点回路的主要目的”，候选人都会围绕双通道冗余、触点粘连/单点故障仍能切断安全回路作答，核心答案重复，保留顺序在前的Q0114。</td><td></td><td></td><td></td></tr></tbody>
+  </table>
+</body>
+</html>

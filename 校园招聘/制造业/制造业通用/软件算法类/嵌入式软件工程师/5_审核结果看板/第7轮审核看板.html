@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Round 7 Dashboard</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; margin: 24px; color: #1f2937; }
+    h1, h2, h3 { margin: 10px 0 12px; }
+    .cards { display: grid; grid-template-columns: repeat(3, minmax(140px, 220px)); gap: 12px; margin: 8px 0 18px; }
+    .card { border: 1px solid #e5e7eb; border-radius: 10px; padding: 12px; background: #fafafa; }
+    .card .k { font-size: 12px; color: #6b7280; }
+    .card .v { font-size: 24px; font-weight: 700; margin-top: 4px; }
+    table { border-collapse: collapse; width: 100%; margin: 8px 0 18px; }
+    th, td { border: 1px solid #e5e7eb; padding: 8px 10px; vertical-align: middle; }
+    th { background: #f9fafb; }
+    .legend span { margin-right: 12px; font-size: 13px; color: #374151; }
+    .mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; }
+    .ex { margin: 6px 0; color: #374151; }
+    .section-divider { border: 0; border-top: 2px solid #eef2f7; margin: 22px 0; }
+  </style>
+</head>
+<body>
+  <h1>Round 7 审核看板</h1>
+
+  <div class="cards">
+    <div class="card"><div class="k">A类错误</div><div class="v">12</div></div>
+    <div class="card"><div class="k">B类错误</div><div class="v">19</div></div>
+    <div class="card"><div class="k">C类错误</div><div class="v">1</div></div>
+  </div>
+
+  <h2>本轮题目主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">GPT5.5: 本批题干问题主要集中在协议或规范前提被写错，例如CAN位填充、DLC/CRC关系、格式错误状态转换、TCP SYN失败状态、MISRA规则号与宏风险对应关系等。未发现当前24题范围内需要按C类删除的重复题。<br/><br/>Gemini3.1pro: 部分题目在底层硬件机制上存在常识性错误，例如CAN总线位填充机制、Cortex-A MMU与Cache的关联、Cortex-M异常类型等。</div>
+<h2>本轮答案主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">GPT5.5: 答案问题集中在关键知识点误判：DMA写入后的cache维护把invalidate写成clean，CAN验收滤波被误说成会产生错误帧，二维数组退化类型写错，EXC_RETURN含义被解释为普通函数返回，Bus-Off触发条件把REC也纳入。<br/><br/>Gemini3.1pro: 参考答案中存在对C语言标准（如数组指针退化）、MISRA C规则编号引用错误，以及对通信协议（如CAN总线错误状态机）细节理解不准确的问题。</div>
+<h2>后续重新出内容时应补充的规则</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">【重新出题】<br/>重新出题时必须先校验协议/标准前提是否成立，尤其是CAN错误状态、帧结构、CRC覆盖范围、TCP状态机、MISRA规则编号、ARM异常入口语义等；题干不得把不存在的固定状态转换或非法工程现象作为既定事实。<br/><br/>建议在生成硬件底层和协议细节相关的题目时，加强对官方参考手册（如ARM Architecture Reference Manual, ISO 11898）的校验；引用MISRA C规则时需确保规则编号与内容完全对应。<br/><br/>【重出答案】<br/>重出答案时要求逐条核对标准术语和方向性操作：DMA读写方向对应clean/invalidate，二维数组参数类型必须与C语言退化规则一致，CAN Bus-Off只由TEC阈值触发，EXC_RETURN只表示异常返回编码；涉及规则号时必须给出准确版本和条款。<br/><br/>建议在生成硬件底层和协议细节相关的题目时，加强对官方参考手册（如ARM Architecture Reference Manual, ISO 11898）的校验；引用MISRA C规则时需确保规则编号与内容完全对应。</div>
+
+  <hr class="section-divider" />
+
+  <h2>模型进度与删除率</h2>
+  <table>
+    <thead>
+      <tr><th>Model</th><th>批次完成</th><th>完成率</th><th>删除率</th><th>主错误</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>GPT5.5</td><td style='text-align:center'>1/1</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:79.2%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">79.2%</span></td><td style='text-align:center'>B>A</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>1/1</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:54.2%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">54.2%</span></td><td style='text-align:center'>B>A>C</td></tr>
+    </tbody>
+  </table>
+
+  <h2>批次状态矩阵</h2>
+  <div class="legend">
+    <span>✓ done</span><span>… running</span><span>○ pending</span><span>! blocked</span><span>x failed</span>
+  </div>
+  <table>
+    <thead><tr><th>Model</th><th>R7-B001</th></tr></thead>
+    <tbody><tr><td>GPT5.5</td><td style='text-align:center'>✓</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>✓</td></tr></tbody>
+  </table>
+
+  <h2>细分错误统计（A1/B1...）</h2>
+  <table>
+    <thead><tr><th>错误子类</th><th>数量</th></tr></thead>
+    <tbody><tr><td>A1</td><td style='text-align:center'>12</td></tr><tr><td>B1</td><td style='text-align:center'>18</td></tr><tr><td>B3</td><td style='text-align:center'>1</td></tr><tr><td>C2</td><td style='text-align:center'>1</td></tr></tbody>
+  </table>
+
+  <h3>细分错误示例（每类2条）</h3>
+  <table>
+    <thead><tr><th>错误子类</th><th>例1-题号</th><th>例1-题目</th><th>例1-理由</th><th>例2-题号</th><th>例2-题目</th><th>例2-理由</th></tr></thead>
+    <tbody><tr><td>A1</td><td>Q002</td><td>在基于Cortex-M7的工业PLC主控板上，ADC采样数据由DMA直接写入DDR内存的环形缓冲区，而控制算法任务运行在同核心的非缓存可配置区域外。实测发现当控制算法读取缓冲区头部时，偶尔获取到DMA刚更新但未刷新到L1数据缓存的陈旧值。请简述你如何结合DMA写操作完成中断、数据缓存清理指令执行时机与环形缓冲区指针同步机制，设计一套低开销且确定性高的缓存一致性保障方案，并说明为何不选择全局缓存维护或禁用数据缓存。</td><td>GPT5.5: 题干称DMA刚更新但未刷新到L1数据缓存并要求用数据缓存清理指令解决DMA写入后的陈旧值；正确应是DMA写内存不会刷新CPU L1缓存，读前应invalidate对应D-cache并配合屏障，clean可能把CPU脏缓存写回并覆盖DMA新数据。；Gemini3.1pro: 与Q0001高度重复</td><td>Q003</td><td>在工业现场控制器中，MISRA C Rule 20.7要求所有预处理器宏定义必须带括号包裹其参数和整个表达式。请简述该规则在涉及带副作用的实参（如i++）且宏用于中断服务程序与主循环共享变量的场景下，如何防止因宏展开顺序引发的不可重现竞态行为，并说明为何这种错误在基于Cortex-M内核的实时系统中难以通过常规调试手段定位。</td><td>GPT5.5: 题干把MISRA C Rule 20.7的括号要求说成可防止i++等带副作用实参因宏展开顺序产生竞态；正确应是20.7主要约束宏参数括号，不能解决参数多次求值，后者应避免多次引用参数或改用inline函数。；Gemini3.1pro: MISRA C Rule 20.7不能解决i++多次求值问题</td></tr><tr><td>B1</td><td>Q003</td><td>在工业现场控制器中，MISRA C Rule 20.7要求所有预处理器宏定义必须带括号包裹其参数和整个表达式。请简述该规则在涉及带副作用的实参（如i++）且宏用于中断服务程序与主循环共享变量的场景下，如何防止因宏展开顺序引发的不可重现竞态行为，并说明为何这种错误在基于Cortex-M内核的实时系统中难以通过常规调试手段定位。</td><td>GPT5.5: 题干把MISRA C Rule 20.7的括号要求说成可防止i++等带副作用实参因宏展开顺序产生竞态；正确应是20.7主要约束宏参数括号，不能解决参数多次求值，后者应避免多次引用参数或改用inline函数。；Gemini3.1pro: MISRA C Rule 20.7不能解决i++多次求值问题</td><td>Q006</td><td>某工业控制终端采用双核ARM Cortex-A处理器，运行实时任务的核需要持续读取另一核通过DMA更新的共享状态缓冲区。实测发现，在关闭MMU且使用write-back缓存策略时，状态读取偶尔出现陈旧数据。请说明你将如何结合缓存维护指令的执行时机、内存屏障的插入位置以及共享缓冲区的内存属性配置，系统性解决该缓存不一致问题，并解释每项措施在硬件流水线中的作用依据。</td><td>GPT5.5: 答案称DMA完成后执行clean+invalidate；正确应区分DMA方向：DMA写内存后CPU读侧应invalidate并用DSB等保证顺序，clean会把CPU缓存脏数据写回内存，可能覆盖DMA新数据，不能作为DMA写后读取的通用处理。；Gemini3.1pro: Cortex-A关闭MMU无法使能数据缓存write-back</td></tr><tr><td>B3</td><td>Q016</td><td>在工业现场使用PWM控制电磁阀通断时，发现阀门响应存在明显滞后，且关闭后仍有微弱保持力，请简述此时应优先核查PWM输出引脚配置中的哪一项关键功能，并说明其影响机制。</td><td>GPT5.5: 题干问PWM输出引脚配置导致滞后和关闭后保持力，答案却讨论输出比较影子寄存器/同步更新，这是定时器比较值更新策略而非引脚配置；更应核查复用输出模式、空闲/关断电平、极性、上下拉或刹车关断态。</td><td>nan</td><td>nan</td><td>nan</td></tr><tr><td>C2</td><td>Q002</td><td>在基于Cortex-M7的工业PLC主控板上，ADC采样数据由DMA直接写入DDR内存的环形缓冲区，而控制算法任务运行在同核心的非缓存可配置区域外。实测发现当控制算法读取缓冲区头部时，偶尔获取到DMA刚更新但未刷新到L1数据缓存的陈旧值。请简述你如何结合DMA写操作完成中断、数据缓存清理指令执行时机与环形缓冲区指针同步机制，设计一套低开销且确定性高的缓存一致性保障方案，并说明为何不选择全局缓存维护或禁用数据缓存。</td><td>GPT5.5: 题干称DMA刚更新但未刷新到L1数据缓存并要求用数据缓存清理指令解决DMA写入后的陈旧值；正确应是DMA写内存不会刷新CPU L1缓存，读前应invalidate对应D-cache并配合屏障，clean可能把CPU脏缓存写回并覆盖DMA新数据。；Gemini3.1pro: 与Q0001高度重复</td><td>nan</td><td>nan</td><td>nan</td></tr></tbody>
+  </table>
+</body>
+</html>

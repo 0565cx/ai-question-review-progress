@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Round 6 Dashboard</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; margin: 24px; color: #1f2937; }
+    h1, h2, h3 { margin: 10px 0 12px; }
+    .cards { display: grid; grid-template-columns: repeat(3, minmax(140px, 220px)); gap: 12px; margin: 8px 0 18px; }
+    .card { border: 1px solid #e5e7eb; border-radius: 10px; padding: 12px; background: #fafafa; }
+    .card .k { font-size: 12px; color: #6b7280; }
+    .card .v { font-size: 24px; font-weight: 700; margin-top: 4px; }
+    table { border-collapse: collapse; width: 100%; margin: 8px 0 18px; }
+    th, td { border: 1px solid #e5e7eb; padding: 8px 10px; vertical-align: middle; }
+    th { background: #f9fafb; }
+    .legend span { margin-right: 12px; font-size: 13px; color: #374151; }
+    .mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; }
+    .ex { margin: 6px 0; color: #374151; }
+    .section-divider { border: 0; border-top: 2px solid #eef2f7; margin: 22px 0; }
+  </style>
+</head>
+<body>
+  <h1>Round 6 审核看板</h1>
+
+  <div class="cards">
+    <div class="card"><div class="k">A类错误</div><div class="v">0</div></div>
+    <div class="card"><div class="k">B类错误</div><div class="v">23</div></div>
+    <div class="card"><div class="k">C类错误</div><div class="v">0</div></div>
+  </div>
+
+  <h2>本轮题目主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">Round 6 question stems are generally usable after calibration. The remaining risks are mainly incomplete or ambiguous conditions around GB/T 2828.1 sampling status, consecutive batch history, Ac/Re, AQL, and customer-specific requirements. Future regenerated questions should keep the manufacturing quality scenario but state the inspection status and decision constraints precisely.</div>
+<h2>本轮答案主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">Round 6 answer issues are concentrated in B1 factual errors. The most frequent problems are incorrect GB/T 2828.1 switching rules, confusing normal-to-tightened and normal-to-reduced inspection, wrong Ac/Re acceptance logic, incorrect AQL risk interpretation, and inaccurate APQP, PPAP, Ppk/Cpk, SPC, or IATF references. These errors directly affect the quality engineer scoring standard, so most problematic items should keep the question and regenerate the answer.</div>
+<h2>后续重新出内容时应补充的规则</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">【重新出题】<br/>When regenerating questions, explicitly provide inspection state, consecutive accepted or rejected batch history, sample size, Ac/Re, AQL, defect class, customer requirements, and whether substitutions are allowed. Do not combine contradictory conditions or mix standard switching rules with customer-internal recheck rules.<br/><br/>【重出答案】<br/>When regenerating answers, verify GB/T 2828.1 switching rules and acceptance logic first: d &lt;= Ac means accept and d &gt;= Re means reject; tightened inspection is not triggered by a single rejected batch; reduced inspection is not triggered by only five accepted batches; tightened inspection cannot directly switch to reduced inspection. Also verify APQP, PPAP, Ppk/Cpk, SPC, and IATF references before writing the three answer layers.</div>
+
+  <hr class="section-divider" />
+
+  <h2>模型进度与删除率</h2>
+  <table>
+    <thead>
+      <tr><th>Model</th><th>批次完成</th><th>完成率</th><th>删除率</th><th>主错误</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>GPT5.5</td><td style='text-align:center'>1/1</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:44.0%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">44.0%</span></td><td style='text-align:center'>B</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>1/1</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:48.0%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">48.0%</span></td><td style='text-align:center'>B</td></tr>
+    </tbody>
+  </table>
+
+  <h2>批次状态矩阵</h2>
+  <div class="legend">
+    <span>✓ done</span><span>… running</span><span>○ pending</span><span>! blocked</span><span>x failed</span>
+  </div>
+  <table>
+    <thead><tr><th>Model</th><th>R6-B001</th></tr></thead>
+    <tbody><tr><td>GPT5.5</td><td style='text-align:center'>✓</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>✓</td></tr></tbody>
+  </table>
+
+  <h2>细分错误统计（A1/B1...）</h2>
+  <table>
+    <thead><tr><th>错误子类</th><th>数量</th></tr></thead>
+    <tbody><tr><td>B1</td><td style='text-align:center'>23</td></tr></tbody>
+  </table>
+
+  <h3>细分错误示例（每类2条）</h3>
+  <table>
+    <thead><tr><th>错误子类</th><th>例1-题号</th><th>例1-题目</th><th>例1-理由</th><th>例2-题号</th><th>例2-题目</th><th>例2-理由</th></tr></thead>
+    <tbody><tr><td>B1</td><td>Q002</td><td>某电子装配产线执行GB/T 2828.1-2023正常检验，当前批次为连续第8批接收批；客户明确要求关键功能焊点缺陷（属严重缺陷）AQL=0.1%，且该特性在PPAP批准的控制计划中列为特殊特性；本次巡检按样本量n=50抽取，接收数Ac=0。现场发现1个虚焊（属严重缺陷），但该缺陷未出现在首件与末件中，且前3小时过程SPC监控显示该焊点参数均值偏移0.8σ但仍在控制限内。请简述你如何综合判定本次巡检抽样结果，并说明是否继续执行当前抽样方案及调整依据。</td><td>GPT5.5: 参考答案原文称“当严重缺陷在正常检验中出现不合格（d≥1，而Ac=0）……必须立即启动加严检验”，该转移规则错误。GB/T 2828.1正常检验转加严通常依据连续若干批中出现规定数量的不接收批，不是单批Ac=0检出1件即必然立即转加严；单批结论应为本批不接收并启动不合格处置。；Gemini3.1pro: 正常检验转加严检验的转移规则错误。依据GB/T 2828.1，条件是“连续5批或不到5批中有2批初次检验不被接收”，而非题干答案所述的“出现不合格无论历史情况必须立即启动加严”。</td><td>Q002</td><td>某电子装配产线执行GB/T 2828.1-2023正常检验，当前批次为连续第8批接收批；客户明确要求关键功能焊点缺陷（属严重缺陷）AQL=0.1%，且该特性在PPAP批准的控制计划中列为特殊特性；本次巡检按样本量n=50抽取，接收数Ac=0。现场发现1个虚焊（属严重缺陷），但该缺陷未出现在首件与末件中，且前3小时过程SPC监控显示该焊点参数均值偏移0.8σ但仍在控制限内。请简述你如何综合判定本次巡检抽样结果，并说明是否继续执行当前抽样方案及调整依据。</td><td>GPT5.5: 参考答案原文称“当严重缺陷在正常检验中出现不合格（d≥1，而Ac=0）……必须立即启动加严检验”，该转移规则错误。GB/T 2828.1正常检验转加严通常依据连续若干批中出现规定数量的不接收批，不是单批Ac=0检出1件即必然立即转加严；单批结论应为本批不接收并启动不合格处置。；Gemini3.1pro: 正常检验转加严检验的转移规则错误。依据GB/T 2828.1，条件是“连续5批或不到5批中有2批初次检验不被接收”，而非题干答案所述的“出现不合格无论历史情况必须立即启动加严”。</td></tr></tbody>
+  </table>
+</body>
+</html>

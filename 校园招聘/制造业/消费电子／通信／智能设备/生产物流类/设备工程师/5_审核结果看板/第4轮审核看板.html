@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Round 4 Dashboard</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; margin: 24px; color: #1f2937; }
+    h1, h2, h3 { margin: 10px 0 12px; }
+    .cards { display: grid; grid-template-columns: repeat(3, minmax(140px, 220px)); gap: 12px; margin: 8px 0 18px; }
+    .card { border: 1px solid #e5e7eb; border-radius: 10px; padding: 12px; background: #fafafa; }
+    .card .k { font-size: 12px; color: #6b7280; }
+    .card .v { font-size: 24px; font-weight: 700; margin-top: 4px; }
+    table { border-collapse: collapse; width: 100%; margin: 8px 0 18px; }
+    th, td { border: 1px solid #e5e7eb; padding: 8px 10px; vertical-align: middle; }
+    th { background: #f9fafb; }
+    .legend span { margin-right: 12px; font-size: 13px; color: #374151; }
+    .mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; }
+    .ex { margin: 6px 0; color: #374151; }
+    .section-divider { border: 0; border-top: 2px solid #eef2f7; margin: 22px 0; }
+  </style>
+</head>
+<body>
+  <h1>Round 4 审核看板</h1>
+
+  <div class="cards">
+    <div class="card"><div class="k">A类错误</div><div class="v">1</div></div>
+    <div class="card"><div class="k">B类错误</div><div class="v">32</div></div>
+    <div class="card"><div class="k">C类错误</div><div class="v">0</div></div>
+  </div>
+
+  <h2>本轮题目主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">本轮题目层面的主要问题集中在少量特种设备与安全合规场景：个别题干把普通老化箱、电加热改造或0.8MPa气动系统直接等同于特种设备监管对象，缺少容积、介质、设计参数和设备类别边界，容易把候选人引向错误法规判断。其余多数题干能落在设备工程师常见的机电、气动、PLC、OEE、TPM和导入验收场景中，口语作答性整体可接受，未发现明显大面积重复题。</div>
+<h2>本轮答案主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">本轮答案主要问题有三类：第一，法规和标准引用不准确，典型如把IPC-A-610用于PCB电气间隙、轴承配合或视觉标定阈值，把压力容器登记要求写得过度绝对；第二，设备基础知识存在明确错误，典型如把三线制接近开关归为无源型，并混淆NPN/PNP与PLC源型/漏型输入匹配；第三，Q64-Q75多题的第一层只写“通过”、第二层为空，第三层才残留部分答案，属于明显未完成的分层答案，无法作为面试参考答案使用。</div>
+<h2>后续重新出内容时应补充的规则</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">【重新出题】<br/>重新出题时，涉及特种设备、功能安全、设备登记和法规合规的题干必须给足监管边界条件，例如设备类别、压力、容积、介质、内径、是否简单压力容器、是否属重大改造、适用地区和验收阶段；不要仅凭单一压力值、加热功率或未张贴登记标志就诱导唯一合规结论。题干应让候选人说明判定路径，而不是默认错误法规前提。<br/><br/>【重出答案】<br/>重出答案时必须完整填充三层答案，禁止在第一层/第二层填写“通过”或留空。标准和法规引用必须与领域匹配：PCB电气间隙优先使用客户设计规则、IPC-2221等设计规范；功能安全优先使用ISO 13849、IEC 62061、ISO 13850等；轴承、气动、视觉标定不得随意套用IPC-A-610。传感器题需明确三线制接近开关通常为有源电子输出，并准确区分NPN/PNP与PLC输入类型。</div>
+
+  <hr class="section-divider" />
+
+  <h2>模型进度与删除率</h2>
+  <table>
+    <thead>
+      <tr><th>Model</th><th>批次完成</th><th>完成率</th><th>删除率</th><th>主错误</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>GPT5.5</td><td style='text-align:center'>2/2</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:26.7%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">26.7%</span></td><td style='text-align:center'>B>A</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>2/2</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:16.0%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">16.0%</span></td><td style='text-align:center'>B</td></tr>
+    </tbody>
+  </table>
+
+  <h2>批次状态矩阵</h2>
+  <div class="legend">
+    <span>✓ done</span><span>… running</span><span>○ pending</span><span>! blocked</span><span>x failed</span>
+  </div>
+  <table>
+    <thead><tr><th>Model</th><th>R4-B001</th><th>R4-B002</th></tr></thead>
+    <tbody><tr><td>GPT5.5</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td></tr></tbody>
+  </table>
+
+  <h2>细分错误统计（A1/B1...）</h2>
+  <table>
+    <thead><tr><th>错误子类</th><th>数量</th></tr></thead>
+    <tbody><tr><td>A1</td><td style='text-align:center'>1</td></tr><tr><td>B1</td><td style='text-align:center'>20</td></tr><tr><td>B3</td><td style='text-align:center'>12</td></tr></tbody>
+  </table>
+
+  <h3>细分错误示例（每类2条）</h3>
+  <table>
+    <thead><tr><th>错误子类</th><th>例1-题号</th><th>例1-题目</th><th>例1-理由</th><th>例2-题号</th><th>例2-题目</th><th>例2-理由</th></tr></thead>
+    <tbody><tr><td>A1</td><td>Q012</td><td>一条量产中的5G通信模块测试线，其老化箱设备因扩容改造加装了两组独立温控单元，每组均含电加热器（额定功率12kW）和强制风冷系统，但原设备铭牌未更新、无新的特种设备使用登记信息。现该设备已连续运行72小时，请简述你判断其当前是否具备继续运行条件的核心依据，并说明必须立即补做的三项合规动作及其先后逻辑。</td><td>GPT5.5: 题干将普通老化箱加装12kW电加热器和风冷系统与“特种设备使用登记”直接关联，场景本身缺少其属于特种设备的必要条件；参考答案进一步认定其属于特种设备重大改造并要求监督检验，法规适用错误。</td><td>nan</td><td>nan</td><td>nan</td></tr><tr><td>B1</td><td>Q007</td><td>在一款5G通信模块的自动化组装线导入验收阶段，DFM评审发现治具定位销与PCB板上新增的毫米波天线馈点铜箔存在0.15mm间隙，小于工艺允许的最小安全距离。此时产线已排定两周后量产，且该PCB由客户锁定不可更改。请简述你会从哪三个关键维度组织跨部门DFM复评，并说明每个维度你重点验证什么、依据什么标准或数据做决策。</td><td>GPT5.5: 参考答案引用“IPC-A-610 Class 2中0.2mm最小电气间隙要求”作为PCB馈点与治具定位销安全间隙判据不准确；IPC-A-610不是PCB设计电气间隙/DFM安全距离的主要判定标准，应以客户工艺规范、PCB设计规则或IPC-2221等设计类标准为准。</td><td>Q010</td><td>某自动化组装线新导入一台气动式高速压合设备，其气源系统含储气罐且工作压力达0.8MPa。依据现行特种设备管理要求，该储气罐在投用前需满足哪几项基本合规条件？请简述。</td><td>GPT5.5: 参考答案仅因工作压力0.8MPa就断定储气罐必须办理使用登记、监督检验和R1类人员持证，忽略压力容器是否纳入监管还需结合容积、内径、介质、简单压力容器豁免等条件，合规结论过度绝对。</td></tr><tr><td>B3</td><td>Q064</td><td>在电子制造产线的设备预防性维护中，备件分级常按失效影响和采购周期划分。请简述B类备件的典型特征，并说明为什么这类备件需要设定合理安全库存，但不宜过度储备。</td><td>GPT5.5: 参考答案第一层仅填写“通过”，第二层为空，第三层才给出部分内容，未按题目要求完整回答B类备件典型特征及为何要设安全库存但不宜过度储备，答案层级缺失。</td><td>Q065</td><td>某智能终端产线的OEE长期卡在65%，拆解显示可用率仅52%、性能率105%、合格率118%。其中性能率和合格率均超100%，但现场实际存在大量返工和节拍不稳现象。请结合OEE三个构成要素的物理含义与产线真实运行逻辑，说明这种异常组合反映出哪类典型管理问题，并解释为什么不能简单归因为‘设备跑得快’或‘产品做得好’。</td><td>GPT5.5: 参考答案第一层仅填写“通过”，第二层为空，第三层只解释OEE三要素理论上限，未完整回答异常组合反映的数据采集/基准管理问题及为什么不能归因于设备跑得快或产品做得好。</td></tr></tbody>
+  </table>
+</body>
+</html>

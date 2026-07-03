@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Round 5 Dashboard</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; margin: 24px; color: #1f2937; }
+    h1, h2, h3 { margin: 10px 0 12px; }
+    .cards { display: grid; grid-template-columns: repeat(3, minmax(140px, 220px)); gap: 12px; margin: 8px 0 18px; }
+    .card { border: 1px solid #e5e7eb; border-radius: 10px; padding: 12px; background: #fafafa; }
+    .card .k { font-size: 12px; color: #6b7280; }
+    .card .v { font-size: 24px; font-weight: 700; margin-top: 4px; }
+    table { border-collapse: collapse; width: 100%; margin: 8px 0 18px; }
+    th, td { border: 1px solid #e5e7eb; padding: 8px 10px; vertical-align: middle; }
+    th { background: #f9fafb; }
+    .legend span { margin-right: 12px; font-size: 13px; color: #374151; }
+    .mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; }
+    .ex { margin: 6px 0; color: #374151; }
+    .section-divider { border: 0; border-top: 2px solid #eef2f7; margin: 22px 0; }
+  </style>
+</head>
+<body>
+  <h1>Round 5 审核看板</h1>
+
+  <div class="cards">
+    <div class="card"><div class="k">A类错误</div><div class="v">3</div></div>
+    <div class="card"><div class="k">B类错误</div><div class="v">15</div></div>
+    <div class="card"><div class="k">C类错误</div><div class="v">3</div></div>
+  </div>
+
+  <h2>本轮题目主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">本轮GPT5.5审出的问题题干主要集中在两类：一类是协议或概念口径本身有歧义，例如EtherNet/IP服务代码0x00、漫反射光电检测距离与安装高度、MTBF计算数据口径；另一类是重复题，MTBF基础含义题在不同表述下核心作答高度重合。部分场景题还存在定位基准、工业通信机制等工程判断前提不稳的问题。</div>
+<h2>本轮答案主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">答案主要错误集中在工业通信协议细节、统计/财务概念和控制策略口径：如Modbus输入寄存器地址段、0x10响应帧结构、PROFINET实时IO机制、CPK与GRR混淆、折旧费用归类、转矩模式用于位置刚性等。另有若干答案给出的现场措施方向相反或过于绝对，例如过载时缩短加速时间、接地系统简单切分等。</div>
+<h2>后续重新出内容时应补充的规则</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">【重新出题】<br/>重新出题时应先校验题干中的数据口径、协议术语和岗位场景是否自洽；涉及MTBF/CPK/工业通信/安全回路等知识点时，题干必须给出可判断的有效条件，避免把维修时长当运行间隔、把状态码当服务码、把非通用规律写成固定规则。重复知识点应控制题干差异，确保候选人作答路径明显不同。<br/><br/>【重出答案】<br/>重出答案时必须逐条核对协议帧结构、寄存器地址段、实时通信机制、控制模式边界和财务/统计概念；现场解决措施要符合工程方向，例如过载优先降低加速度或延长加速时间，PE/等电位联结不能简单割裂，位置刚性不能依赖单纯转矩模式。答案应明确“正确机制是什么”和“不能这么做的原因”。</div>
+
+  <hr class="section-divider" />
+
+  <h2>模型进度与删除率</h2>
+  <table>
+    <thead>
+      <tr><th>Model</th><th>批次完成</th><th>完成率</th><th>删除率</th><th>主错误</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>GPT5.5</td><td style='text-align:center'>2/2</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:32.7%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">32.7%</span></td><td style='text-align:center'>B>A>C</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>0/2</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:0%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">0.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:0%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">0.0%</span></td><td style='text-align:center'>none</td></tr>
+    </tbody>
+  </table>
+
+  <h2>批次状态矩阵</h2>
+  <div class="legend">
+    <span>✓ done</span><span>… running</span><span>○ pending</span><span>! blocked</span><span>x failed</span>
+  </div>
+  <table>
+    <thead><tr><th>Model</th><th>R5-B001</th><th>R5-B002</th></tr></thead>
+    <tbody><tr><td>GPT5.5</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>!</td><td style='text-align:center'>!</td></tr></tbody>
+  </table>
+
+  <h2>细分错误统计（A1/B1...）</h2>
+  <table>
+    <thead><tr><th>错误子类</th><th>数量</th></tr></thead>
+    <tbody><tr><td>A1</td><td style='text-align:center'>3</td></tr><tr><td>B1</td><td style='text-align:center'>15</td></tr><tr><td>C2</td><td style='text-align:center'>3</td></tr></tbody>
+  </table>
+
+  <h3>细分错误示例（每类2条）</h3>
+  <table>
+    <thead><tr><th>错误子类</th><th>例1-题号</th><th>例1-题目</th><th>例1-理由</th><th>例2-题号</th><th>例2-题目</th><th>例2-理由</th></tr></thead>
+    <tbody><tr><td>A1</td><td>Q046</td><td>请简单说说漫反射式光电传感器的检测距离和安装高度之间有什么基本规律？</td><td>GPT5.5: Diffuse photoelectric sensing distance vs mounting height is not a universal fixed rule; it depends on target reflectivity, angle, background and sensitivity.</td><td>Q050</td><td>对一个EtherNet/IP显式消息通信失败的场景进行报文分析时，发现响应报文的通用报文头中服务代码为0x00，这表示什么含义？请结合实际调试过程说明它对故障定位的提示作用。</td><td>GPT5.5: EtherNet/IP/CIP 0x00 is typically General Status success, not a service code; question and answer mix service code with status code.</td></tr><tr><td>B1</td><td>Q002</td><td>请简述加减速曲线在运动控制中主要解决什么问题？</td><td>GPT5.5: Acceleration-overload fix says to shorten acceleration time; correct action is to lengthen accel/decel or reduce jerk and inspect load/mechanics.</td><td>Q006</td><td>在一条使用Profinet协议连接PLC与十余台现场设备的产线中，新增一台智能传感器后，部分原有设备出现偶发性通信超时，而网络拓扑和线缆均无物理异常。经初步排查，该传感器与某台变频器被配置了相同的IP地址。请说明这种地址冲突在Profinet实时通信场景下会如何影响报文传输的确定性，并解释为何交换机端口学习到的MAC地址会频繁跳变，进而导致PLC周期性收不到预期设备的响应。</td><td>GPT5.5: IP conflict explanation incorrectly says switch MAC table flaps for the same MAC. The usual issue is unstable ARP IP-to-MAC binding.</td></tr><tr><td>C2</td><td>Q010</td><td>某电子组装车间对贴片机实施可靠性管理，定期统计其从一次维修完成到下一次故障发生之间的运行时长，并计算这些时长的平均值。请简单说说，这个平均值直接反映的是设备在正常生产状态下哪一项关键能力？</td><td>nan</td><td>Q011</td><td>在汽车零部件产线中，一台伺服压装机近半年内发生三次非计划停机，每次故障前的连续运行时长分别为280小时、310小时和290小时。请简单说说，将这三个数值取平均后得到的指标，主要用来衡量设备哪方面的实际运行稳定性？</td><td>nan</td></tr></tbody>
+  </table>
+</body>
+</html>
