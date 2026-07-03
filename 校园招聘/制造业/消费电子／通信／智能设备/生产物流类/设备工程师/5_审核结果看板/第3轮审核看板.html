@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Round 3 Dashboard</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; margin: 24px; color: #1f2937; }
+    h1, h2, h3 { margin: 10px 0 12px; }
+    .cards { display: grid; grid-template-columns: repeat(3, minmax(140px, 220px)); gap: 12px; margin: 8px 0 18px; }
+    .card { border: 1px solid #e5e7eb; border-radius: 10px; padding: 12px; background: #fafafa; }
+    .card .k { font-size: 12px; color: #6b7280; }
+    .card .v { font-size: 24px; font-weight: 700; margin-top: 4px; }
+    table { border-collapse: collapse; width: 100%; margin: 8px 0 18px; }
+    th, td { border: 1px solid #e5e7eb; padding: 8px 10px; vertical-align: middle; }
+    th { background: #f9fafb; }
+    .legend span { margin-right: 12px; font-size: 13px; color: #374151; }
+    .mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; }
+    .ex { margin: 6px 0; color: #374151; }
+    .section-divider { border: 0; border-top: 2px solid #eef2f7; margin: 22px 0; }
+  </style>
+</head>
+<body>
+  <h1>Round 3 审核看板</h1>
+
+  <div class="cards">
+    <div class="card"><div class="k">A类错误</div><div class="v">3</div></div>
+    <div class="card"><div class="k">B类错误</div><div class="v">63</div></div>
+    <div class="card"><div class="k">C类错误</div><div class="v">9</div></div>
+  </div>
+
+  <h2>本轮题目主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">本轮题干问题主要集中在少量逻辑前提错误、指标计算自相矛盾和同质化重复题。典型表现包括 OEE 构成数据与综合 OEE 不匹配、备件分级前提与采购策略结论冲突，以及测试治具结构类题目从候选人作答角度高度相似。A 类问题数量较少，但会直接影响题目可答性和评分有效性；C 类问题主要影响题库覆盖面，容易让候选人用同一套定位、压接、信号转接等答案反复作答。</div>
+<h2>本轮答案主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">本轮答案问题是主要风险来源，集中在 B1/B2/B4。高频问题包括安全回路、压力容器、特种设备、传感器类型、设备能力指数、DFM 标准引用等专业口径不准确；部分答案给出不安全或不合规的现场处置建议，例如旁路安全门锁触点；少数第三层异常/复杂场景套用重工业或实验室手段，超出消费电子设备工程师常规排障边界。整体看，题干大多可保留，主要需要重出或修正参考答案。</div>
+<h2>后续重新出内容时应补充的规则</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">【重新出题】<br/>重新出题时应先校验题干中的数字、指标和分类前提，避免 OEE/GRR/CmK 等指标自相矛盾；同一知识点下不得连续生成候选人会用同一套答案结构作答的题目；涉及安全、法规、特种设备和压力容器时，题干应给足边界条件，不要把不满足监管条件的普通设备写成法定特种设备。<br/><br/>【重出答案】<br/>重出答案时必须逐条核对标准和术语适用范围，安全回路不得出现短接、旁路、临时跨接等危险建议；压力容器、急停、ISO/IEC/IPC 等标准引用必须与对象匹配；第三层异常/复杂场景应贴近消费电子产线常见排障，不要泛化到重工业、实验室分析或不可由设备工程师常规执行的手段。每层答案应具备可评分要点，避免过短、过泛或层级错位。</div>
+
+  <hr class="section-divider" />
+
+  <h2>模型进度与删除率</h2>
+  <table>
+    <thead>
+      <tr><th>Model</th><th>批次完成</th><th>完成率</th><th>删除率</th><th>主错误</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>GPT5.5</td><td style='text-align:center'>20/20</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:8.8%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">8.8%</span></td><td style='text-align:center'>B>C</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>20/20</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:8.9%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">8.9%</span></td><td style='text-align:center'>B>C>A</td></tr>
+    </tbody>
+  </table>
+
+  <h2>批次状态矩阵</h2>
+  <div class="legend">
+    <span>✓ done</span><span>… running</span><span>○ pending</span><span>! blocked</span><span>x failed</span>
+  </div>
+  <table>
+    <thead><tr><th>Model</th><th>R3-B001</th><th>R3-B002</th><th>R3-B003</th><th>R3-B004</th><th>R3-B005</th><th>R3-B006</th><th>R3-B007</th><th>R3-B008</th><th>R3-B009</th><th>R3-B010</th><th>R3-B011</th><th>R3-B012</th><th>R3-B013</th><th>R3-B014</th><th>R3-B015</th><th>R3-B016</th><th>R3-B017</th><th>R3-B018</th><th>R3-B019</th><th>R3-B020</th></tr></thead>
+    <tbody><tr><td>GPT5.5</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td></tr></tbody>
+  </table>
+
+  <h2>细分错误统计（A1/B1...）</h2>
+  <table>
+    <thead><tr><th>错误子类</th><th>数量</th></tr></thead>
+    <tbody><tr><td>A1</td><td style='text-align:center'>3</td></tr><tr><td>B1</td><td style='text-align:center'>47</td></tr><tr><td>B2</td><td style='text-align:center'>5</td></tr><tr><td>B3</td><td style='text-align:center'>6</td></tr><tr><td>B4</td><td style='text-align:center'>3</td></tr><tr><td>B5</td><td style='text-align:center'>2</td></tr><tr><td>C2</td><td style='text-align:center'>9</td></tr></tbody>
+  </table>
+
+  <h3>细分错误示例（每类2条）</h3>
+  <table>
+    <thead><tr><th>错误子类</th><th>例1-题号</th><th>例1-题目</th><th>例1-理由</th><th>例2-题号</th><th>例2-题目</th><th>例2-理由</th></tr></thead>
+    <tbody><tr><td>A1</td><td>Q29</td><td>一条消费电子组装线的OEE连续三个月维持在71%，拆解发现可用率68%、性能率95%、合格率92%。现场反馈设备频繁短停但无故障报警，且每次停机后重启就能恢复。你判断问题最可能出在哪一环节？请结合OEE三个构成要素的定义和产线实际运行特征说明理由。</td><td>Gemini3.1pro: 题干中OEE计算逻辑错误，时间开动率68%、性能开动率71%、合格品率95%的乘积不可能为92%。</td><td>Q31</td><td>在产线设备预防性维护中，备件分级常依据失效后果和获取难度综合判定。请简述C类备件的典型特征，以及为什么这类备件通常不设安全库存，而是采用按需采购方式管理。</td><td>Gemini3.1pro: 题干逻辑错误，失效突发且采购周期长的备件若会导致停机，不应归为C类备件，也不应采用按需采购模式。</td></tr><tr><td>B1</td><td>Q18</td><td>在产线设备上，光电开关检测到物体时输出低电平，断开时输出高电平，这种信号属于哪种常见类型？请简单说说。</td><td>GPT5.5: 答案将‘检测到物体时输出低电平，断开时输出高电平’直接判为‘NPN型常开’，但该逻辑更符合NPN常闭/低有效描述，传感器类型判断错误。</td><td>Q20</td><td>在消费电子产线的一台自动光学检测设备电气原理图中，你发现PLC输出端接了一个由两个常闭触点串联组成的急停回路，其中一个触点来自机械式急停按钮，另一个来自安全门限位开关；同时该回路还并联了一条经由安全继电器的反馈路径。请简单说说，仅通过观察这个回路中各触点的类型、连接方式和供电逻辑标注，你如何判断它是否构成符合功能安全要求的‘双通道冗余切断’结构。</td><td>GPT5.5: 第三层称安全继电器反馈触点为Q1/Q2且将双常闭串联直接讨论成双通道冗余，安全回路术语与判定口径不严谨。</td></tr><tr><td>B2</td><td>Q66</td><td>在产线日常巡检中，发现一台自动光学检测设备的防护门联锁功能失效：关门后设备仍能运行，且急停按钮也未同步触发。请简述你判断该联锁失效是否属于安全回路硬性失效的依据和现场快速验证方法。</td><td>GPT5.5: 第二层提出‘临时跨接已确认完好的门锁触点’作为优先旁路排除法，容易绕过安全回路，现场安全处置口径不当。 | Gemini3.1pro: 第二层中提出“旁路排除法——临时跨接已确认完好的门锁触点，观察设备是否仍运行”，这属于严重的安全违规操作（短接安全回路），极易引发人身伤害。</td><td>Q118</td><td>测试工位的夹具在气缸驱动闭合后，PLC输出信号正常、电磁阀动作可听声，但夹爪未动作，请简述你依据气动回路与执行机构的联动关系，会重点检查哪几个物理节点。</td><td>GPT5.5: 第二层建议‘用手指堵住电磁阀出口快速感知气流’，不符合安全与规范排障方式，存在作业风险。 | Gemini3.1pro: 第二层建议‘用手指堵住电磁阀出口快速感知气流’，不符合安全与规范排障方式，存在作业风险。</td></tr><tr><td>B3</td><td>Q130</td><td>请说明为什么在精密组装设备的齿轮传动部位，通常需要加装防护罩。</td><td>GPT5.5: 题目问齿轮传动部位加装防护罩的原因，第一层未回答防止卷入、夹伤、异物飞溅等核心作用，答案跑题。 | Gemini3.1pro: 题目问齿轮传动部位加装防护罩的原因，第一层未回答防止卷入、夹伤、异物飞溅等核心作用，答案跑题。</td><td>Q137</td><td>设备点检时发现同步带出现明显齿形磨损，这通常说明什么问题？</td><td>GPT5.5: 题目问齿形磨损通常说明什么问题，第一层只说异常磨损需停机评估，未明确常见根因如张紧、对中、带轮/异物问题，答案可评分性不足。 | Gemini3.1pro: 题目问齿形磨损通常说明什么问题，第一层只说异常磨损需停机评估，未明确常见根因如张紧、对中、带轮/异物问题，答案可评分性不足。</td></tr><tr><td>B4</td><td>Q1</td><td>在一条自动化组装线上，伺服电机通过同步带带动转盘旋转，转盘上安装有多个工位治具。当发现某个工位到位精度下降、出现轻微偏移时，请结合运动链与传动路径，简述你将从哪些关键环节排查问题。</td><td>Gemini3.1pro: 第三层异常情况不合理，同步带局部磨损通常会导致打滑、跳齿或整体传动误差，不会固定表现为转盘特定角度区间重复偏移。</td><td>Q41</td><td>某智能终端组装线的自动锁付机在连续运行2小时后，主轴电机区域发出低频‘嗡—嗡—’持续异响，同时机身轻微共振，但设备仍能完成锁付动作且扭矩值达标。请简述你如何快速判断该异响是否由轴承疲劳失效引发，并说明需重点验证的三个机械特征依据。</td><td>Gemini3.1pro: 第三层复杂问题不合理，消费电子组装线的自动锁付机（通常是微型伺服电批）主轴直连，不需要激光校准同轴度，这是重工业设备的维护手段套用。</td></tr><tr><td>B5</td><td>Q145</td><td>设备点检表中要求对带传动机构进行‘张紧力检查’。在不使用专用张力计的前提下，一线技术人员常用哪种简便方法判断同步带张紧是否合适？请说明操作要点和判断依据。</td><td>GPT5.5: 题目要求不用专用张力计的一线简便方法，答案给出‘施加约2～5公斤稳定压力、跨距1%～1.5%’等半定量口径，现场口语答题可操作性差。 | Gemini3.1pro: 题目要求不用专用张力计的一线简便方法，答案给出‘施加约2～5公斤稳定压力、跨距1%～1.5%’等半定量口径，现场口语答题可操作性差。</td><td>Q345</td><td>产线测试工站的PLC输出模块控制气动阀动作，近期频繁出现‘输出端无电压’报警，万用表测得模块输出端对地电压为0V，但模块供电和通信均正常。请简单说说，你接下来会重点检查哪一段电气回路来确认是否存在断路。</td><td>GPT5.5: 按压挠度法答案要求‘施加2-5公斤稳定压力’但无张力计条件下难以口语/现场精确执行，评分依据不稳定。 | Gemini3.1pro: 按压挠度法答案要求‘施加2-5公斤稳定压力’但无张力计条件下难以口语/现场精确执行，评分依据不稳定。</td></tr><tr><td>C2</td><td>Q92</td><td>请简述PCB板在测试治具中实现精确定位的常见结构方式，比如靠什么部件来保证位置不偏移。</td><td>GPT5.5: 与后续测试治具结构题高度同质，候选人作答均围绕定位销、压接/压紧、信号转接/探针接触展开，核心答案重复。 | Gemini3.1pro: 与后续测试治具结构题高度同质，候选人作答均围绕定位销、压接/压紧、信号转接/探针接触展开，核心答案重复。</td><td>Q98</td><td>测试工装治具常用于电路板功能检测，请简单说说它内部通常包含哪三类基本结构模块，并分别说明它们在检测过程中的作用。</td><td>GPT5.5: 与Q92同属测试工装治具基本结构，回答者几乎会给出同一套‘定位、压接、信号转接’答案。 | Gemini3.1pro: 与Q92同属测试工装治具基本结构，回答者几乎会给出同一套‘定位、压接、信号转接’答案。</td></tr></tbody>
+  </table>
+</body>
+</html>

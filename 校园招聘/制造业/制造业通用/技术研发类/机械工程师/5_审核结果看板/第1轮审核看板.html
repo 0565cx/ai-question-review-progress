@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Round 1 Dashboard</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; margin: 24px; color: #1f2937; }
+    h1, h2, h3 { margin: 10px 0 12px; }
+    .cards { display: grid; grid-template-columns: repeat(3, minmax(140px, 220px)); gap: 12px; margin: 8px 0 18px; }
+    .card { border: 1px solid #e5e7eb; border-radius: 10px; padding: 12px; background: #fafafa; }
+    .card .k { font-size: 12px; color: #6b7280; }
+    .card .v { font-size: 24px; font-weight: 700; margin-top: 4px; }
+    table { border-collapse: collapse; width: 100%; margin: 8px 0 18px; }
+    th, td { border: 1px solid #e5e7eb; padding: 8px 10px; vertical-align: middle; }
+    th { background: #f9fafb; }
+    .legend span { margin-right: 12px; font-size: 13px; color: #374151; }
+    .mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; }
+    .ex { margin: 6px 0; color: #374151; }
+    .section-divider { border: 0; border-top: 2px solid #eef2f7; margin: 22px 0; }
+  </style>
+</head>
+<body>
+  <h1>Round 1 审核看板</h1>
+
+  <div class="cards">
+    <div class="card"><div class="k">A类错误</div><div class="v">61</div></div>
+    <div class="card"><div class="k">B类错误</div><div class="v">65</div></div>
+    <div class="card"><div class="k">C类错误</div><div class="v">12</div></div>
+  </div>
+
+  <h2>本轮题目主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">本轮题干问题主要集中在三类：一是题干把错误前提写入问题，例如几何关系、定位约束、焊缝方向或材料回弹特性本身不成立；二是题干要求候选人解释公式、符号含义或图纸焊缝符号，触发 A4 口语不可答规则；三是部分题目与前序题在核心要点和作答结构上高度重合，构成 C2 重复。整体看，机械工程师题库在材料、焊接、图纸、公差和工艺场景上需要更严格地区分“可分类作答的宽泛题”和“暗含错误唯一前提的题”。</div>
+<h2>本轮答案主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">本轮答案问题主要集中在材料与工艺机理错误、标准误引和强度/刚度概念混淆。例如把换钢种当作提升弹性刚度的主要手段、把 7 系铝合金用于长期高温场景、误引 ISO 标准、混淆热处理与表面处理边界等。经校准后，各模型对“表达略不完整但主体正确”的题保持保留，对会误导评分或工程判断的实质性 B1 错误进行删除。</div>
+<h2>后续重新出内容时应补充的规则</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">【重新出题】<br/>重新出题时应避免把错误前提写入题干；涉及焊缝符号、图纸符号、公式推导、符号含义、绘图等内容应改成可口语描述的工程判断题；同一知识点下应控制题目差异，避免只更换场景词但答案结构高度重复；宽泛题要明确允许分类讨论，不能预设唯一错误路径。<br/><br/>【重出答案】<br/>重出答案时应补充材料牌号、热处理、焊接、公差、标准引用的适用边界；严禁把强度、刚度、硬度、疲劳、回弹等概念混用；标准号必须核验用途；三层答案应保留口语可答性，第二层方案对比和第三层异常处理必须围绕题干场景，避免过度泛化或引入错误工艺。</div>
+
+  <hr class="section-divider" />
+
+  <h2>模型进度与删除率</h2>
+  <table>
+    <thead>
+      <tr><th>Model</th><th>批次完成</th><th>完成率</th><th>删除率</th><th>主错误</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>GPT5.4</td><td style='text-align:center'>1/1</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:7.4%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">7.4%</span></td><td style='text-align:center'>B>A>C</td></tr><tr><td>GPT5.5</td><td style='text-align:center'>1/1</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:9.6%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">9.6%</span></td><td style='text-align:center'>A>B>C</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>1/1</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:8.2%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">8.2%</span></td><td style='text-align:center'>A>B>C</td></tr><tr><td>Opus4.8</td><td style='text-align:center'>1/1</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:7.6%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">7.6%</span></td><td style='text-align:center'>B>A>C</td></tr><tr><td>Sonnet4.6</td><td style='text-align:center'>1/1</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:6.2%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">6.2%</span></td><td style='text-align:center'>B>C>A</td></tr>
+    </tbody>
+  </table>
+
+  <h2>批次状态矩阵</h2>
+  <div class="legend">
+    <span>✓ done</span><span>… running</span><span>○ pending</span><span>! blocked</span><span>x failed</span>
+  </div>
+  <table>
+    <thead><tr><th>Model</th><th>R1-ALL</th></tr></thead>
+    <tbody><tr><td>GPT5.4</td><td style='text-align:center'>✓</td></tr><tr><td>GPT5.5</td><td style='text-align:center'>✓</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>✓</td></tr><tr><td>Opus4.8</td><td style='text-align:center'>✓</td></tr><tr><td>Sonnet4.6</td><td style='text-align:center'>✓</td></tr></tbody>
+  </table>
+
+  <h2>细分错误统计（A1/B1...）</h2>
+  <table>
+    <thead><tr><th>错误子类</th><th>数量</th></tr></thead>
+    <tbody><tr><td>A</td><td style='text-align:center'>5</td></tr><tr><td>A1</td><td style='text-align:center'>15</td></tr><tr><td>A4</td><td style='text-align:center'>41</td></tr><tr><td>B1</td><td style='text-align:center'>58</td></tr><tr><td>B3</td><td style='text-align:center'>7</td></tr><tr><td>C2</td><td style='text-align:center'>12</td></tr></tbody>
+  </table>
+
+  <h3>细分错误示例（每类2条）</h3>
+  <table>
+    <thead><tr><th>错误子类</th><th>例1-题号</th><th>例1-题目</th><th>例1-理由</th><th>例2-题号</th><th>例2-题目</th><th>例2-理由</th></tr></thead>
+    <tbody><tr><td>A</td><td>Q034</td><td>某自动化产线输送机构的支撑臂在长期运行后出现微小但持续的弹性变形累积，导致定位偏差超出公差范围。此时应重点校核材料的哪类力学性能指标？请简单说说该指标如何影响实际服役表现。</td><td>Gemini3.1pro: 事实性概念错误。弹性变形在物理学中是瞬时且可完全恢复的，不会随长期运行产生“持续的弹性变形累积”。若发生持续累积变形应为塑性变形、蠕变或微动磨损，将其错误归因为“弹性模量”不足违背了基础力学常识。</td><td>Q036</td><td>一台数控机床主轴箱体在加工高刚性工件时，局部接触面出现轻微压陷痕迹，但无塑性变形或断裂。这提示设计中可能忽略了哪一类承载能力约束？请说明该约束在静载工况下的核心考量因素。</td><td>Gemini3.1pro: 物理概念自相矛盾。出现“压陷痕迹”意味着卸载后变形未恢复，即已经发生了局部的塑性变形（接触强度不足）。题目却宣称“无塑性变形”，并错误地将其归因为“接触刚度约束”不足，违背材料力学常识。</td></tr><tr><td>A1</td><td>Q024</td><td>一条输送线使用双摇杆机构驱动翻转臂完成工件姿态切换，调试中发现当输入角速度恒定时，翻转臂末端执行器的角加速度在特定位置突变，导致工件滑移。请简单说说这一加速度突变是由哪种运动学约束条件打破引起的，并说明在不改变机构类型的前提下，可通过调整哪两个结构参数来平抑该突变。</td><td>GPT5.4: 题干问“这一加速度突变是由哪种运动学约束条件打破引起的”本身逻辑不严谨。双摇杆机构在理想运动学中约束并未被“打破”，加速度异常通常与传动角过小、接近极限/奇异构型、间隙、柔性和惯性耦合有关；应改为询问“与传动角变化、极限位置或机构尺寸参数导致的运动放大效应有什么关系”。；Sonnet4.6: 题干要求说明'由哪种运动学约束条件打破引起'，但标准双摇杆四杆机构加速度突变的运动学本质是传动角趋小、奇异位形下输出角速比急剧变化，并不存在一个被'打破'的特定约束条件，题干概念不清晰（A1）；参考答案第一层将其解释为'运动副间隙与连杆刚性约束协同作用'引发'运动确定性丧失'，将物理非理想因素引入纯运动学分析框架，逻辑混乱；且'角加速度理论值趋于无穷或符号反转'对非奇异四杆机构不成立（B1）。</td><td>Q034</td><td>某自动化产线输送机构的支撑臂在长期运行后出现微小但持续的弹性变形累积，导致定位偏差超出公差范围。此时应重点校核材料的哪类力学性能指标？请简单说说该指标如何影响实际服役表现。</td><td>Sonnet4.6: 题干使用'弹性变形累积'概念，在力学上自相矛盾；弹性变形的本质特征是卸载后完全恢复，不可能随时间累积增长；长期定位偏差只能由蠕变、塑性变形、疲劳损伤、连接松弛或磨损等机制引起；题干概念错误导致候选人无法用正确的力学语言框架作答，且参考答案也被迫在错误的概念前提下讨论'弹性模量'而非真实的失效机制。</td></tr><tr><td>A4</td><td>Q354</td><td>请简述极值法公差叠加公式中，各组成环公差值之间是相加关系还是其他运算关系？</td><td>Gemini3.1pro: 题干中出现“公式”字眼违反A4规则。</td><td>Q521</td><td>在设计一个需要现场焊接的箱体结构时，如果焊缝位于两个相邻侧板的内角位置，且该位置被另一块加强板部分遮挡，您会依据哪些关键因素来判断这个焊缝是否具备焊接可达性？</td><td>GPT5.5: 题干要求解释工程图/焊缝符号、数字或标注含义，属于提示词 A4 中“符号、符号含义”类无法口语直接作答的强制删除范围。</td></tr><tr><td>B1</td><td>Q002</td><td>请简单说说齿轮传动中，两齿轮啮合时角速度与齿数之间的关系。</td><td>Opus4.8: 第二层称“采用变位齿轮设计……微调传动比”、第三层称“采用高度变位齿轮配对设计……使实际传动比逼近目标值1.73”，属知识性错误：变位齿轮（变位系数）只改变中心距、重合度与齿根强度，并不改变传动比；齿轮传动比仅由两轮齿数之比z2/z1决定。要实现1.73等非标传动比应通过选择合适齿数组合实现，不能靠变位。</td><td>Q007</td><td>在分析一个螺栓连接结构时，载荷从施加点传递到支撑面，通常经过哪些基本环节？</td><td>GPT5.4: 参考答案第一层把螺栓连接受力路径固定写成“载荷从施加点出发，依次经过被连接件接触面、螺栓杆部、螺纹啮合段、螺母或螺栓头承压面，最终传递至支撑面”，逻辑过度简化且不严谨。螺栓连接中外载路径取决于受拉、受剪、预紧夹紧、摩擦传力或承压传力等具体形式，载荷不一定按该顺序依次经过螺栓杆部和螺纹啮合段；应说明先识别外载类型、被连接件接触面、螺栓预紧/摩擦界面、承压面及支撑约束，再判定实际力流。</td></tr><tr><td>B3</td><td>Q093</td><td>某精密传动轴在批量生产中出现早期磨损失效，经检测表面硬度达标但摩擦系数偏高。请简述在不改变基材和热处理工艺的前提下，应如何选择表面处理工艺，并说明关键决策依据。</td><td>GPT5.4: 题干明确限定“在不改变基材和热处理工艺的前提下，应如何选择表面处理工艺”，但参考答案第二层给出的“低温气体碳氮共渗+磷酸盐转化组合方案”属于热化学处理/热处理范畴，已超出题干允许范围，造成答案与题目约束条件不一致。若按题意，应优先在涂层、转化膜、润滑膜等表面处理范围内讨论，而不应引入碳氮共渗。；Sonnet4.6: 题干明确限定“在不改变基材和热处理工艺的前提下”选择表面处理工艺，但参考答案第二层给出的核心方案为“低温气体碳氮共渗后辅以磷酸盐转化处理”。碳氮共渗（carbonitriding）属于热化学表面改性处理，会向基材表层渗入碳和氮元素，改变表层化学成分与组织，本质上已改变热处理工艺，违反题干前提约束。答案跑题，应在物理气相沉积涂层、电镀、转化膜等不涉及热化学渗透的表面处理范围内作答。</td><td>Q410</td><td>请简单说说，工程图中基准符号发生变更时，可能直接影响哪类技术要求的适用性？</td><td>Gemini3.1pro: 题干问的是“工程图中基准符号发生变更时，可能直接影响哪类技术要求的适用性”，属于理论层面的设问；而参考答案第二层却回答“在实际图纸设变工作中，常用三种技术应对方式：一是重新标注全部相关几何公差...二是沿用原公差框格但更新基准字母指向...”，回答的是如何修改图纸的操作方法。答案与题干引导的知识范围不一致，属于跑题，应当针对各类形位公差受影响的情况进行深度展开分析。</td></tr><tr><td>C2</td><td>Q102</td><td>当一台工业设备的法兰连接采用弹簧垫圈时，请简单说说它为什么能起到防止螺栓松动的作用。</td><td>Sonnet4.6: Q102（测量精度基准选择题）与Q90（影响配合表面粗糙度因素）内容高度重叠，题目问法及预期答案方向基本相同，构成C2重复。；Opus4.8: 与Q90重复：两题均考察弹簧垫圈在螺栓连接中的防松作用与机理，第一层答案“依靠弹性回弹力维持预紧力、增加摩擦防松”几乎逐字一致，第二层方案（弹簧垫圈/平垫圈/双螺母/嵌入式锁紧螺母）核心要点同一套，候选人作答内容相同；保留在前的Q90，删除Q102。；Gemini3.1pro: 与第90题题干核心及二层作答思路完全一致</td><td>Q103</td><td>在装配一台高速旋转的传动部件时，技术人员选择使用尼龙嵌件锁紧螺母。请简述这种螺母实现防松的关键结构特点。</td><td>Sonnet4.6: Q103（形位公差标注规范）与Q92（基准不统一导致的加工问题）答案覆盖内容高度重合，构成C2重复。；Opus4.8: 与Q92重复：两题均考察嵌入螺纹自锁螺母实现防松的关键结构特点，第一层“嵌入式塑料圈/尼龙圈，孔径略小，旋入时被挤压形成径向压紧与摩擦防松”表述高度一致，作答思路同一套；保留在前的Q92，删除Q103。；Gemini3.1pro: 与第92题题干核心及作答思路完全一致</td></tr></tbody>
+  </table>
+</body>
+</html>

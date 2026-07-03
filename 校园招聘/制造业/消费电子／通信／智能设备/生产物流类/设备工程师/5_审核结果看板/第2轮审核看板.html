@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Round 2 Dashboard</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; margin: 24px; color: #1f2937; }
+    h1, h2, h3 { margin: 10px 0 12px; }
+    .cards { display: grid; grid-template-columns: repeat(3, minmax(140px, 220px)); gap: 12px; margin: 8px 0 18px; }
+    .card { border: 1px solid #e5e7eb; border-radius: 10px; padding: 12px; background: #fafafa; }
+    .card .k { font-size: 12px; color: #6b7280; }
+    .card .v { font-size: 24px; font-weight: 700; margin-top: 4px; }
+    table { border-collapse: collapse; width: 100%; margin: 8px 0 18px; }
+    th, td { border: 1px solid #e5e7eb; padding: 8px 10px; vertical-align: middle; }
+    th { background: #f9fafb; }
+    .legend span { margin-right: 12px; font-size: 13px; color: #374151; }
+    .mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; }
+    .ex { margin: 6px 0; color: #374151; }
+    .section-divider { border: 0; border-top: 2px solid #eef2f7; margin: 22px 0; }
+  </style>
+</head>
+<body>
+  <h1>Round 2 审核看板</h1>
+
+  <div class="cards">
+    <div class="card"><div class="k">A类错误</div><div class="v">0</div></div>
+    <div class="card"><div class="k">B类错误</div><div class="v">406</div></div>
+    <div class="card"><div class="k">C类错误</div><div class="v">0</div></div>
+  </div>
+
+  <h2>本轮题目主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">本看板仅统计第二轮复审本轮数据，不包含一轮已删除题。严格校准后的二轮新增删除主要集中在参考答案侧，本轮未统计到新增 A 类题干错误或 C 类重复错误。二轮题干层面整体较稳定，说明一轮后的题干口语化、岗位场景和去重控制已基本有效；后续仍需在重新出题环节延续题干口语化和去重约束，但本轮数据不再把一轮的题干错误或重复题纳入二轮统计。</div>
+<h2>本轮答案主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">二轮新增答案问题集中在 B 类，尤其是 B1。主要表现包括：无依据的统计占比或绝对化判断，如“占比最高”“覆盖80%以上”；无前提的行业泛化或普遍配置，如“主流新机型均已标配”“产线普遍已配置/已部署”；把特定工具能力写成产线标配；以及缺少厂家标准、设备规格、历史基线或工艺窗口支撑的固定阈值、固定耗时、固定更换判据。二轮校准后已明确：题目或答案要求比较“最容易、最管用、优先、常用”方法时，合理方法排序本身不算错误；只有当排序依赖无依据事实、统计、阈值或存在实质知识/逻辑问题时，才按 B 类删除。</div>
+<h2>后续重新出内容时应补充的规则</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">【重新出题】<br/>重新出题时应继续加强去重和口语化约束。对 LOTO/能量隔离、SMT贴装流程、抛料故障树、OEE分析、8D/PDCA、设备验收等高频主题，应先建立题目级差异点：设备对象、故障现象、候选人需要判断的依据、预期作答链路必须至少有一项实质不同。题干不得要求“计算、写出公式、绘制符号、推导、证明”，如必须考察计算，应改为“说明判断逻辑、解释计算含义、如何用指标定位问题”。涉及 OEE、GRR、标准版本、安全法规等带数值或标准口径的题干，生成后必须复核题干给出的数值是否自洽。<br/><br/>【重出答案】<br/>重出答案时优先修正专业事实、标准口径和内部一致性。所有“几种方法、四类路径、三项指标”等数量型表达必须与实际列举数量一致；涉及标准号、设备安全、LOTO、MSA/GRR、OEE、TPM、8D、IQ/OQ/PQ、AOI视觉检测和工业总线时，要按通行口径复核，不要把精密度说成稳定性、把微停误归为故障停机、把不存在或错误年份的标准写入答案。第二层可以根据题目要求给出“最容易、最管用、优先、常用”的方法选择，但必须有具体场景前提和内在理由支撑，不能仅用模板化排序。严禁把无依据的统计占比、行业泛化或普遍配置写成事实，例如“占比最高”“覆盖80%以上”“主流新机型均已标配”“产线普遍已配置/已部署”“产线标配某工具”等；如确需使用，应改为“若设备已配置/若现场数据支持/可优先考虑”。所有固定阈值、固定耗时、固定更换判据必须有厂家标准、设备规格、历史基线或工艺窗口依据，例如“超8℃”“15分钟内锁定”“稳定持续200毫秒”“超过0.02mm即更换”等不能作为通用答案。第三层复杂场景要贴合设备工程师真实现场，避免构造过细或不现实的异常条件。</div>
+
+  <hr class="section-divider" />
+
+  <h2>模型进度与删除率</h2>
+  <table>
+    <thead>
+      <tr><th>Model</th><th>批次完成</th><th>完成率</th><th>删除率</th><th>主错误</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>GPT5.4</td><td style='text-align:center'>26/26</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:23.0%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">23.0%</span></td><td style='text-align:center'>B</td></tr><tr><td>GPT5.5</td><td style='text-align:center'>26/26</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:21.2%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">21.2%</span></td><td style='text-align:center'>B</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>26/26</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:4.9%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">4.9%</span></td><td style='text-align:center'>B</td></tr><tr><td>Opus4.8</td><td style='text-align:center'>26/26</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:4.6%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">4.6%</span></td><td style='text-align:center'>B</td></tr><tr><td>Sonnet4.6</td><td style='text-align:center'>26/26</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:8.3%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">8.3%</span></td><td style='text-align:center'>B</td></tr>
+    </tbody>
+  </table>
+
+  <h2>批次状态矩阵</h2>
+  <div class="legend">
+    <span>✓ done</span><span>… running</span><span>○ pending</span><span>! blocked</span><span>x failed</span>
+  </div>
+  <table>
+    <thead><tr><th>Model</th><th>R2-B001</th><th>R2-B002</th><th>R2-B003</th><th>R2-B004</th><th>R2-B005</th><th>R2-B006</th><th>R2-B007</th><th>R2-B008</th><th>R2-B009</th><th>R2-B010</th><th>R2-B011</th><th>R2-B012</th><th>R2-B013</th><th>R2-B014</th><th>R2-B015</th><th>R2-B016</th><th>R2-B017</th><th>R2-B018</th><th>R2-B019</th><th>R2-B020</th><th>R2-B021</th><th>R2-B022</th><th>R2-B023</th><th>R2-B024</th><th>R2-B025</th><th>R2-B026</th></tr></thead>
+    <tbody><tr><td>GPT5.4</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td></tr><tr><td>GPT5.5</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td></tr><tr><td>Opus4.8</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td></tr><tr><td>Sonnet4.6</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td></tr></tbody>
+  </table>
+
+  <h2>细分错误统计（A1/B1...）</h2>
+  <table>
+    <thead><tr><th>错误子类</th><th>数量</th></tr></thead>
+    <tbody><tr><td>B1</td><td style='text-align:center'>405</td></tr><tr><td>B3</td><td style='text-align:center'>1</td></tr></tbody>
+  </table>
+
+  <h3>细分错误示例（每类2条）</h3>
+  <table>
+    <thead><tr><th>错误子类</th><th>例1-题号</th><th>例1-题目</th><th>例1-理由</th><th>例2-题号</th><th>例2-题目</th><th>例2-理由</th></tr></thead>
+    <tbody><tr><td>B1</td><td>Q002</td><td>请简述PCB板在测试治具中实现精确定位的常见结构方式，比如靠什么部件来保证位置不偏移。</td><td>GPT5.5: 原文写“当前产线主流仍以双圆柱销+面限位为主”。该表述把某种治具定位组合泛化为当前产线主流，但题目未给具体产线、测试类型、PCB尺寸、公差要求或数据来源；正确应表述为“双圆柱销+面限位是常见方案之一，需结合PCB孔位、公差和测试精度要求选择”。；GPT5.4: 第二层写“当前产线主流仍以双圆柱销+面限位为主”。这是没有数据或场景前提支撑的行业泛化。正确应改为说明不同PCB结构、孔位公差和热补偿需求下的常见选型条件。</td><td>Q005</td><td>请简述SMT贴片机完成一次元器件贴装的典型动作流程。</td><td>GPT5.4: 第二层写“当前产线最常用的是第三种路径优化+第二种下压量微调组合”。这是把某种调参组合写成通用主流结论，缺少机型、器件和节拍前提。正确应按器件类型、设备能力和良率目标说明适用条件。</td></tr><tr><td>B3</td><td>Q851</td><td>节拍仿真评估时，通常需要输入哪些关键生产参数？请列举两个最基础的。</td><td>GPT5.4: 第一层把“设备或工位的理论最大连续运行可用率”列为节拍仿真最基础的生产参数之一，偏离题目所指的基础节拍输入参数。</td><td>nan</td><td>nan</td><td>nan</td></tr></tbody>
+  </table>
+</body>
+</html>

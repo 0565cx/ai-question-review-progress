@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Round 3 Dashboard</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; margin: 24px; color: #1f2937; }
+    h1, h2, h3 { margin: 10px 0 12px; }
+    .cards { display: grid; grid-template-columns: repeat(3, minmax(140px, 220px)); gap: 12px; margin: 8px 0 18px; }
+    .card { border: 1px solid #e5e7eb; border-radius: 10px; padding: 12px; background: #fafafa; }
+    .card .k { font-size: 12px; color: #6b7280; }
+    .card .v { font-size: 24px; font-weight: 700; margin-top: 4px; }
+    table { border-collapse: collapse; width: 100%; margin: 8px 0 18px; }
+    th, td { border: 1px solid #e5e7eb; padding: 8px 10px; vertical-align: middle; }
+    th { background: #f9fafb; }
+    .legend span { margin-right: 12px; font-size: 13px; color: #374151; }
+    .mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; }
+    .ex { margin: 6px 0; color: #374151; }
+    .section-divider { border: 0; border-top: 2px solid #eef2f7; margin: 22px 0; }
+  </style>
+</head>
+<body>
+  <h1>Round 3 审核看板</h1>
+
+  <div class="cards">
+    <div class="card"><div class="k">A类错误</div><div class="v">18</div></div>
+    <div class="card"><div class="k">B类错误</div><div class="v">34</div></div>
+    <div class="card"><div class="k">C类错误</div><div class="v">18</div></div>
+  </div>
+
+  <h2>本轮题目主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">本轮题目侧问题主要集中在三类：一是题干重复度较高，尤其是设备效率指标、基础维护指标和现场排查流程类问题在不同批次中出现同义重复，Gemini3.1pro 侧 C2 占比较高；二是少量题目直接要求解释图纸符号、标准名词或缩写，面试区分度不足，容易变成背诵题；三是个别题干把现场信号类型、功能安全架构或特种设备分类写得过于绝对，导致题目本身存在标准口径风险。</div>
+<h2>本轮答案主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">答案侧主要问题是专业口径不准或过度泛化。GPT5.5 侧集中检出 B1 类问题，例如伺服报警码脱离品牌型号直接定性、双电控两位五通阀保持逻辑解释错误、OEE/稼动率/利用率口径混淆，以及急停停止类别和安全继电器类别判定过于绝对。另有少量答案未完整回应题干中的计算或验证要求，属于答案覆盖不足。</div>
+<h2>后续重新出内容时应补充的规则</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">【重新出题】<br/>重新出题时应避免直接询问符号、缩写、标准条文定义；同一知识点若已覆盖基础定义，应改为现场现象判断、证据链选择或处置优先级题。涉及功能安全、电气接地、特种设备、伺服报警码、OEE分类等内容时，题干必须限定设备类型、标准适用范围或厂家型号，不能用绝对化表述替代场景条件。<br/><br/>【重出答案】<br/>重出答案时必须先给出与题干条件严格匹配的第一层结论，再展开现场验证路径。涉及报警码、标准条款、停止类别、接地电阻、双电控阀、OEE分类等高风险知识点时，应写明适用前提和不可一概而论的边界；凡题干含数字计算或多项证据要求，答案必须给出具体结果或逐项对应。</div>
+
+  <hr class="section-divider" />
+
+  <h2>模型进度与删除率</h2>
+  <table>
+    <thead>
+      <tr><th>Model</th><th>批次完成</th><th>完成率</th><th>删除率</th><th>主错误</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>GPT5.5</td><td style='text-align:center'>12/12</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:7.1%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">7.1%</span></td><td style='text-align:center'>B>A</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>12/12</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:8.0%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">8.0%</span></td><td style='text-align:center'>C>A>B</td></tr>
+    </tbody>
+  </table>
+
+  <h2>批次状态矩阵</h2>
+  <div class="legend">
+    <span>✓ done</span><span>… running</span><span>○ pending</span><span>! blocked</span><span>x failed</span>
+  </div>
+  <table>
+    <thead><tr><th>Model</th><th>R3-B001</th><th>R3-B002</th><th>R3-B003</th><th>R3-B004</th><th>R3-B005</th><th>R3-B006</th><th>R3-B007</th><th>R3-B008</th><th>R3-B009</th><th>R3-B010</th><th>R3-B011</th><th>R3-B012</th></tr></thead>
+    <tbody><tr><td>GPT5.5</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td></tr></tbody>
+  </table>
+
+  <h2>细分错误统计（A1/B1...）</h2>
+  <table>
+    <thead><tr><th>错误子类</th><th>数量</th></tr></thead>
+    <tbody><tr><td>A1</td><td style='text-align:center'>5</td></tr><tr><td>A2</td><td style='text-align:center'>8</td></tr><tr><td>A3</td><td style='text-align:center'>2</td></tr><tr><td>A4</td><td style='text-align:center'>3</td></tr><tr><td>B1</td><td style='text-align:center'>28</td></tr><tr><td>B2</td><td style='text-align:center'>2</td></tr><tr><td>B3</td><td style='text-align:center'>4</td></tr><tr><td>C2</td><td style='text-align:center'>18</td></tr></tbody>
+  </table>
+
+  <h3>细分错误示例（每类2条）</h3>
+  <table>
+    <thead><tr><th>错误子类</th><th>例1-题号</th><th>例1-题目</th><th>例1-理由</th><th>例2-题号</th><th>例2-题目</th><th>例2-理由</th></tr></thead>
+    <tbody><tr><td>A1</td><td>Q031</td><td>一条锂电极片分切设备中，编码器用于实时反馈收卷张力辊转速，但PLC采集到的脉冲频率在高速运行时周期性跌零。该编码器为增量式、5V差分HTL输出，信号经长距离双绞线接入PLC高速计数模块。请简述你如何从差分信号的电气特性出发，分析故障并非编码器本体损坏，而是因终端匹配缺失、共模噪声超出接收器阈值，或电源地与信号地形成环路干扰所导致。</td><td>GPT5.5: 题干原文称“增量式、5V差分HTL输出”。正确口径是5V差分通常对应TTL/RS-422类信号，HTL一般为10-30V高电平推挽/差分口径；“5V差分HTL”自相矛盾，属于题干信号类型知识性错误。</td><td>Q065</td><td>一条高负荷运行的冲压产线，三台主设备的润滑计划表均按设备手册要求设定为每300小时加注一次锂基脂，但最近三个月实际运行记录显示：A设备平均单班运行280小时，B设备因频繁换模停机导致单班仅运行180小时，C设备因订单波动出现连续两班满负荷（320小时/班）后又空转一班。请简述你如何动态调整这三台设备的润滑执行节奏，并说明判断依据。</td><td>GPT5.5: 题干原文称“A设备平均单班运行280小时”“C设备连续两班满负荷（320小时/班）”，单个班次不可能运行280或320小时。正确口径应使用累计运行小时、周/月累计小时或每班8/10/12小时等合理时间尺度。</td></tr><tr><td>A2</td><td>Q117</td><td>伺服驱动器显示AL05报警，通常表示什么电气状态异常？请简单说说。</td><td>Gemini3.1pro: 题干中“伺服驱动器显示AL05报警”过于依赖特定品牌（如台达）的报警代码，不同品牌的伺服驱动器过压报警代码不同（如安川可能是A.40，松下可能是A.40等）。题干场景偏门，不具有通用性。正确的应该是描述具体的故障现象或通用的报警类型（如“伺服驱动器报主回路过电压故障”）。</td><td>Q118</td><td>当伺服电机运行中报AL12报警，最常关联的供电环节问题是什么？请简述。</td><td>Gemini3.1pro: 题干中“当伺服电机运行中报AL12报警”使用了特定品牌的报警代码，缺乏通用性。正确的应该是使用通用的故障描述，如“报主回路过电压报警”。</td></tr><tr><td>A3</td><td>Q197</td><td>请简单说说压力容器在投入使用前，需要取得哪种法定证件才能合法运行？</td><td>Gemini3.1pro: 题干询问“压力容器在投入使用前，需要取得哪种法定证件”，这偏向于厂务设施管理或EHS（环境健康安全）部门的特种设备合规管理范畴，偏离了制造现场设备工程师核心的设备维护、故障排查和技改等知识点。正确的应该是考察设备工程师在特种设备日常点检中的技术要点。</td><td>Q355</td><td>当设备的技术协议与招标文件中的技术要求出现不一致时，比如协议里删减了一项安全联锁功能，而招标文件明确列出了该功能，你认为应以哪份文件为准？请简单说说理由。</td><td>Gemini3.1pro: 题干询问“技术协议与招标文件不一致时以哪份文件为准”，这偏向于法务、采购和合同管理领域的知识，超出了设备工程师（侧重技术、维护、排故）的核心专业技能要求。</td></tr><tr><td>A4</td><td>Q009</td><td>请简单说说，电气原理图里用实心圆点连接的两条导线，表示它们之间是什么关系？</td><td>Gemini3.1pro: 题干要求候选人解释电气图中‘实心圆点’符号的含义，属于要求解释符号含义的题型。正确做法是描述电路现象让候选人分析原因，而不是直接解释图纸符号。</td><td>Q011</td><td>请简单说说，电气原理图中‘SB’这个文字符号通常指的是哪一类操作器件？</td><td>Gemini3.1pro: 题干要求解释‘SB’这个文字符号的含义，违反了不能要求候选人解释符号含义的规则。正确做法是结合实际控制回路让候选人分析操作动作，而不是单独解释符号。</td></tr><tr><td>B1</td><td>Q005</td><td>请简述气动执行元件中的双作用气缸，在设备自动运行过程中，如果出现活塞杆伸出后无法缩回的情况，通常与哪种内部结构原理直接相关？</td><td>GPT5.5: 参考答案第一层原文称“压缩空气能否按控制时序准确进入无杆腔并同时排出有杆腔气体”。对双作用气缸而言，活塞杆缩回时应由有杆腔进气、无杆腔排气；原文把缩回气路方向说反，且将气缸问题表述成“换向控制结构原理”也不够准确。</td><td>Q011</td><td>请简单说说，电气原理图中‘SB’这个文字符号通常指的是哪一类操作器件？</td><td>GPT5.5: 参考答案第一层原文称SB“仅指向基础型瞬动式手动按钮”，且“不包含……带指示灯的复合按钮等延伸形态”。正确口径是SB通常表示按钮/按钮开关类主令电器，现场图纸中可覆盖启动、停止、急停、带灯按钮等具体按钮形式，不能限定为基础瞬动按钮。</td></tr><tr><td>B2</td><td>Q091</td><td>一台半导体光刻设备的晶圆传输机械臂真空吸盘表面每月需人工擦拭四次，因微颗粒附着导致定位偏差超差。洁净室环境粒子计数达标，但吸盘安装支架存在微振动，且擦拭作业需打开腔体门、破坏局部正压。请简述你如何确认振动是发生源诱因而非困难点表象，并说明验证中必须排除的两个干扰因素。</td><td>Gemini3.1pro: 参考答案第三层中提到“先做吸盘表面成分分析（如便携式ATR-FTIR）”，ATR-FTIR（衰减全反射傅里叶变换红外光谱）属于实验室级别的精密分析仪器，不属于一般制造企业现场设备工程师常用的排查手段，解决方案偏门。正确的应该是采用现场更常见的紫外灯照射或溶剂擦拭观察等常规手段。</td><td>Q102</td><td>请简述：齿轮传动中出现异常的金属碎屑，通常说明哪个部位发生了磨损？</td><td>Gemini3.1pro: 参考答案第三层中提到“采用便携式白光干涉仪对重点齿面进行微形貌扫描”，白光干涉仪属于高精度的表面粗糙度及微观形貌测量仪器，通常用于实验室环境，在车间现场用于日常故障排查过于偏门且不切实际。正确的应该是使用内窥镜或表面复膜技术进行现场检查。</td></tr><tr><td>B3</td><td>Q049</td><td>某条产线的设备最近一个月内发生三次非计划停机，每次修复耗时分别是2小时、3.5小时和1.5小时，期间累计运行时间共320小时。请简述如何用这两个数据估算平均故障间隔时间和平均修复时间，并说明它们各自对产线稳定性的提示意义。</td><td>GPT5.5: 题干给出“三次非计划停机”“修复耗时分别是2小时、3.5小时和1.5小时”“累计运行时间共320小时”，要求估算MTBF和MTTR；参考答案第一层只给公式，没有算出MTBF约106.7小时、MTTR约2.33小时，未完整回答带数字估算的问题。</td><td>Q159</td><td>请简单说说PLC程序里‘启动优先’和‘停止优先’这两种按钮接线逻辑，主要区别体现在哪个环节？</td><td>GPT5.5: 题目问PLC程序里“启动优先/停止优先”按钮逻辑的区别，核心在自保持回路中启动、停止条件的逻辑优先级和同时按下时输出结果；参考答案主要解释物理接线串并联，未回答PLC逻辑层面的优先关系。</td></tr><tr><td>C2</td><td>Q046</td><td>设备连续运行一段时间后发生故障，从停机到恢复正常生产所用的平均时间，对应的是哪个常用维护指标？</td><td>Gemini3.1pro: 与R3-Q0043的核心要点（MTTR定义及作用）高度重复。</td><td>Q052</td><td>某条产线的设备上周记录显示：实际运行时间120小时，计划运行时间160小时，其中因换模和点检停机30小时。请简述稼动率和利用率分别反映设备哪方面的表现，以及它们在这一场景下的计算依据有何不同。</td><td>Gemini3.1pro: 与R3-Q0045的核心要点（稼动率和利用率的定义与区分）高度重复。</td></tr></tbody>
+  </table>
+</body>
+</html>
