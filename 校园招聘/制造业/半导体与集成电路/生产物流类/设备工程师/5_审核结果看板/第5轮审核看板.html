@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Round 5 Dashboard</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; margin: 24px; color: #1f2937; }
+    h1, h2, h3 { margin: 10px 0 12px; }
+    .cards { display: grid; grid-template-columns: repeat(3, minmax(140px, 220px)); gap: 12px; margin: 8px 0 18px; }
+    .card { border: 1px solid #e5e7eb; border-radius: 10px; padding: 12px; background: #fafafa; }
+    .card .k { font-size: 12px; color: #6b7280; }
+    .card .v { font-size: 24px; font-weight: 700; margin-top: 4px; }
+    table { border-collapse: collapse; width: 100%; margin: 8px 0 18px; }
+    th, td { border: 1px solid #e5e7eb; padding: 8px 10px; vertical-align: middle; }
+    th { background: #f9fafb; }
+    .legend span { margin-right: 12px; font-size: 13px; color: #374151; }
+    .mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; }
+    .ex { margin: 6px 0; color: #374151; }
+    .section-divider { border: 0; border-top: 2px solid #eef2f7; margin: 22px 0; }
+  </style>
+</head>
+<body>
+  <h1>Round 5 审核看板</h1>
+
+  <div class="cards">
+    <div class="card"><div class="k">A类错误</div><div class="v">6</div></div>
+    <div class="card"><div class="k">B类错误</div><div class="v">11</div></div>
+    <div class="card"><div class="k">C类错误</div><div class="v">0</div></div>
+  </div>
+
+  <h2>本轮题目主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">本轮题干侧高频问题集中在两类：其一是A2场景偏门，题干要求候选人依赖红外光谱特征峰比值、三维沟槽扫描趋势等研发级表征手段做现场判断，明显脱离设备工程师在量产线上的常规故障排查路径；其二是A1知识性错误，少量题干对真空链路和测点位置的物理前提设定不成立，导致题干本身就会把候选人引向错误分析。整体看，题干问题数量低于答案问题，但一旦出现会直接破坏可评估性。</div>
+<h2>本轮答案主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">答案侧主要是B1知识与逻辑错误，表现为过度绝对化和机理简化：把多因子故障硬性归因到单一部件、把工艺阶段关系写成唯一正确时序，或把安全事件处理优先级让位于产线连续性。另有部分答案在真空系统、泵阀关系、设备指标口径上出现概念混用，虽结构完整但关键判断不可靠。该类问题会导致候选人按错误逻辑作答并被误判，属于必须删除并重出答案的高风险缺陷。</div>
+<h2>后续重新出内容时应补充的规则</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">【重新出题】<br/>重新出题时必须约束为“设备工程师可在现场口述完成”的场景，不允许引入研发实验室级检测方法作为主判断依据；题干先给出现象与已知边界，再要求候选人给排查路径与决策依据。禁止设置物理前提不成立的系统状态（如不合理测点压力、违背真空链路的阀位机理），并在出题后做A类自检：知识正确性、场景常见性、知识点对齐、语言口语可答性。<br/><br/>【重出答案】<br/>重出答案时按“三层递进+可执行动作”写法：第一层给准确概念和判据，第二层给常见方案对比与推荐条件，第三层给一个高频异常和一个复杂约束下的处置流程。避免“必然/唯一/只能”等绝对化判断，涉及机理结论必须补充适用前提与排除条件；安全与合规场景必须把人员与环境安全置于产能目标之前。提交前做B类自检：机理正确、与题干同域、岗位口径一致、可口语表达。</div>
+
+  <hr class="section-divider" />
+
+  <h2>模型进度与删除率</h2>
+  <table>
+    <thead>
+      <tr><th>Model</th><th>批次完成</th><th>完成率</th><th>删除率</th><th>主错误</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>GPT5.5</td><td style='text-align:center'>1/1</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:64.7%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">64.7%</span></td><td style='text-align:center'>B>A</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>1/1</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:35.3%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">35.3%</span></td><td style='text-align:center'>A>B</td></tr>
+    </tbody>
+  </table>
+
+  <h2>批次状态矩阵</h2>
+  <div class="legend">
+    <span>✓ done</span><span>… running</span><span>○ pending</span><span>! blocked</span><span>x failed</span>
+  </div>
+  <table>
+    <thead><tr><th>Model</th><th>R5-B001</th></tr></thead>
+    <tbody><tr><td>GPT5.5</td><td style='text-align:center'>✓</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>✓</td></tr></tbody>
+  </table>
+
+  <h2>细分错误统计（A1/B1...）</h2>
+  <table>
+    <thead><tr><th>错误子类</th><th>数量</th></tr></thead>
+    <tbody><tr><td>A1</td><td style='text-align:center'>2</td></tr><tr><td>A2</td><td style='text-align:center'>4</td></tr><tr><td>B1</td><td style='text-align:center'>11</td></tr></tbody>
+  </table>
+
+  <h3>细分错误示例（每类2条）</h3>
+  <table>
+    <thead><tr><th>错误子类</th><th>例1-题号</th><th>例1-题目</th><th>例1-理由</th><th>例2-题号</th><th>例2-题目</th><th>例2-理由</th></tr></thead>
+    <tbody><tr><td>A1</td><td>Q009</td><td>CMP设备日常点检时，观察抛光垫表面出现明显划痕或沟槽，这通常说明什么？请简述。</td><td>GPT5.5: 题干将“抛光垫表面出现明显划痕或沟槽”合并为异常现象，但CMP Pad本身可能具有设计沟槽，conditioning后也会出现受控纹理；仅看到“沟槽”不能通常说明结构性损伤。题干应区分设计沟槽、正常conditioning纹理与异常深划痕/破损。</td><td>Q017</td><td>在半导体设备真空系统运行中，当腔室压力已稳定在工艺要求的1×10⁻⁶ Torr，此时主泵仍在运行，而前级泵出口处的真空计读数突然从1×10⁻² Torr跳变至5×10⁻¹ Torr，同时旁路阀状态为开启、隔离阀为关闭。请简述你首先会检查哪一环节，并说明该压力异常跳变与阀门切换逻辑之间的直接关联。</td><td>GPT5.5: 参考答案称“旁路阀开启、隔离阀关闭”会使“主泵排气不再经过前级泵”，但分子泵/主泵运行通常仍需要前级泵维持背压，不能把主泵排气与前级泵完全脱开；且“前级泵出口处”压力跳变与旁路阀、隔离阀的直接关系取决于实际管路位置，答案机理表述过于绝对且存在物理逻辑错误。；Gemini3.1pro: 具体错的地方：题干存在严重真空物理错误。第一，“前级泵出口处”直通厂务排气，应为常压，不可能安装读数为10^-2 Torr的真空计；第二，腔室处于10^-6 Torr时，若旁路阀开、隔离阀关，前级泵抽真空腔室其入口压力会下降而非跃升至5×10^-1 Torr，且主泵会因失去前级支撑而堵转。正确的应该是：将真空计位置设为前级泵入口，描述合理的阀门误动引发的压力回升场景。</td></tr><tr><td>A2</td><td>Q012</td><td>CMP设备运行中，Pad Condition Monitor实时显示摩擦力标准差持续扩大，但平均值仍在规格内；同时晶圆边缘抛光速率下降5%，中心区域出现微划伤。请简述你如何结合Pad表面沟槽形貌的三维扫描趋势、conditioning头下压位移反馈曲线的非线性滞回特征，以及当前抛光液流场压力分布变化，判断Pad是否已发生局部弹性塌陷，并说明必须立即停机验证的两个关键物理状态。</td><td>GPT5.5: 题干要求候选人同时结合“Pad表面沟槽形貌的三维扫描趋势”“conditioning头下压位移反馈曲线的非线性滞回特征”和“抛光液流场压力分布变化”判断局部弹性塌陷，整体偏研究型/高阶失效分析，不属于设备工程师面试中常见、常用的口头作答场景。；Gemini3.1pro: 具体错的地方：题干场景过于偏门。要求设备工程师在设备运行时结合“Pad表面沟槽形貌的三维扫描趋势”等离线表征手段进行实时判断，这脱离了晶圆厂量产设备工程师的实际日常排查环境，属于研发级别手段。正确的应该是：基于设备自带传感器的常规压力等反馈参数或现场工具来排查设备故障。</td><td>Q012</td><td>CMP设备运行中，Pad Condition Monitor实时显示摩擦力标准差持续扩大，但平均值仍在规格内；同时晶圆边缘抛光速率下降5%，中心区域出现微划伤。请简述你如何结合Pad表面沟槽形貌的三维扫描趋势、conditioning头下压位移反馈曲线的非线性滞回特征，以及当前抛光液流场压力分布变化，判断Pad是否已发生局部弹性塌陷，并说明必须立即停机验证的两个关键物理状态。</td><td>GPT5.5: 题干要求候选人同时结合“Pad表面沟槽形貌的三维扫描趋势”“conditioning头下压位移反馈曲线的非线性滞回特征”和“抛光液流场压力分布变化”判断局部弹性塌陷，整体偏研究型/高阶失效分析，不属于设备工程师面试中常见、常用的口头作答场景。；Gemini3.1pro: 具体错的地方：题干场景过于偏门。要求设备工程师在设备运行时结合“Pad表面沟槽形貌的三维扫描趋势”等离线表征手段进行实时判断，这脱离了晶圆厂量产设备工程师的实际日常排查环境，属于研发级别手段。正确的应该是：基于设备自带传感器的常规压力等反馈参数或现场工具来排查设备故障。</td></tr><tr><td>B1</td><td>Q001</td><td>请简单说说真空阀门在腔室抽真空和破空两个阶段，其开闭逻辑通常如何配合压力变化。</td><td>GPT5.5: 参考答案第三层将“破空过程中腔室压力突跳式上升”的排查点写成“确认节流孔板是否堵塞”，但节流孔板堵塞通常会限制进气、导致破空变慢或压力上升不足，不是压力飙升过快的直接原因；应优先排查破空阀开度/节流失效、阀门开启过快或流量限制功能失效。</td><td>Q002</td><td>在半导体设备冷却回路中，当温度传感器反馈值持续低于设定点但冷却液流量实际偏低时，如果控制器仍维持高开度阀门指令，你判断最可能的故障环节是什么？请简述依据。</td><td>GPT5.5: 参考答案第一层称故障“必然发生在‘指令执行层’”“而非温度传感或控制算法本身”，但题干同时给出“温度传感器反馈值持续低于设定点”和“控制器仍维持高开度阀门指令”，这本身也指向控制逻辑、反馈信号或PID方向配置异常，不能直接排除传感与控制算法侧问题。；Gemini3.1pro: 具体错的地方：答案第一层称“温度反馈低但阀门高开度，故障必然发生在指令执行层，而非控制算法本身”，逻辑存在严重矛盾。若控制器持续发出错误的“高开度”指令，说明正是控制算法或信号处理出错。正确的应该是：判断故障发生在控制系统端（如PID逻辑混乱）或传感器信号传递错误，而非仅在执行层。</td></tr></tbody>
+  </table>
+</body>
+</html>

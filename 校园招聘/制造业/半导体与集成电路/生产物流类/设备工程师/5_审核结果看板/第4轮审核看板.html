@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Round 4 Dashboard</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; margin: 24px; color: #1f2937; }
+    h1, h2, h3 { margin: 10px 0 12px; }
+    .cards { display: grid; grid-template-columns: repeat(3, minmax(140px, 220px)); gap: 12px; margin: 8px 0 18px; }
+    .card { border: 1px solid #e5e7eb; border-radius: 10px; padding: 12px; background: #fafafa; }
+    .card .k { font-size: 12px; color: #6b7280; }
+    .card .v { font-size: 24px; font-weight: 700; margin-top: 4px; }
+    table { border-collapse: collapse; width: 100%; margin: 8px 0 18px; }
+    th, td { border: 1px solid #e5e7eb; padding: 8px 10px; vertical-align: middle; }
+    th { background: #f9fafb; }
+    .legend span { margin-right: 12px; font-size: 13px; color: #374151; }
+    .mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; }
+    .ex { margin: 6px 0; color: #374151; }
+    .section-divider { border: 0; border-top: 2px solid #eef2f7; margin: 22px 0; }
+  </style>
+</head>
+<body>
+  <h1>Round 4 审核看板</h1>
+
+  <div class="cards">
+    <div class="card"><div class="k">A类错误</div><div class="v">0</div></div>
+    <div class="card"><div class="k">B类错误</div><div class="v">15</div></div>
+    <div class="card"><div class="k">C类错误</div><div class="v">5</div></div>
+  </div>
+
+  <h2>本轮题目主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">本轮题干侧错误以重复同质化为主，表现为C2共5次。重复题集中在真空阀门切换、复机确认、故障定义等高频场景，题干虽然换了措辞，但候选人作答路径和关键要点几乎一致，区分度不足。说明当前题库在场景变量、约束条件和可验证边界设计上仍偏弱，导致同一知识点下的问题可替代性过高。</div>
+<h2>本轮答案主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">本轮答案侧错误明显高于题干侧，B类共19次，其中B1（10次）为主：机理解释与设备实际工艺控制逻辑不一致、因果链条不闭合；其次为B5（5次）：术语与英文缩写堆叠，口语可答性与可评分性下降；并出现少量B3（3次）和B2（1次）问题，体现为回答偏离题干关注点或最佳实践口径不稳。整体风险是“专业表达看似完整，但关键判断依据不够准确或不够可落地”。</div>
+<h2>后续重新出内容时应补充的规则</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">【重新出题】<br/>重新出题需强化去重和区分度约束：1）同知识点下至少变更两个维度（设备状态、联锁条件、异常信号、目标指标）；2）题干必须给出可验证边界（阈值、时序、前置状态）；3）新增“答案路径差异”自检，确保与已存在题目的核心判断步骤不同；4）禁止仅通过替换场景名或名词形成新题。<br/><br/>【重出答案】<br/>重出答案需同时满足准确性和口语性：1）第一层给定义与判据，第二层给方案比较与取舍依据，第三层给异常与复杂情景及处理闭环；2）校验术语与设备类型匹配，避免跨设备概念误用；3）控制英文缩写密度，首次出现必须中文释义；4）增加“B类四步自检”（机理是否正确、是否跑题、是否符合当前最佳实践、是否可口语直接作答并可评分）。</div>
+
+  <hr class="section-divider" />
+
+  <h2>模型进度与删除率</h2>
+  <table>
+    <thead>
+      <tr><th>Model</th><th>批次完成</th><th>完成率</th><th>删除率</th><th>主错误</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>GPT5.5</td><td style='text-align:center'>2/2</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:19.6%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">19.6%</span></td><td style='text-align:center'>B>C</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>2/2</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:16.1%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">16.1%</span></td><td style='text-align:center'>B>C</td></tr>
+    </tbody>
+  </table>
+
+  <h2>批次状态矩阵</h2>
+  <div class="legend">
+    <span>✓ done</span><span>… running</span><span>○ pending</span><span>! blocked</span><span>x failed</span>
+  </div>
+  <table>
+    <thead><tr><th>Model</th><th>R4-B001</th><th>R4-B002</th></tr></thead>
+    <tbody><tr><td>GPT5.5</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td></tr></tbody>
+  </table>
+
+  <h2>细分错误统计（A1/B1...）</h2>
+  <table>
+    <thead><tr><th>错误子类</th><th>数量</th></tr></thead>
+    <tbody><tr><td>B1</td><td style='text-align:center'>10</td></tr><tr><td>B2</td><td style='text-align:center'>1</td></tr><tr><td>B3</td><td style='text-align:center'>3</td></tr><tr><td>B5</td><td style='text-align:center'>5</td></tr><tr><td>C2</td><td style='text-align:center'>5</td></tr></tbody>
+  </table>
+
+  <h3>细分错误示例（每类2条）</h3>
+  <table>
+    <thead><tr><th>错误子类</th><th>例1-题号</th><th>例1-题目</th><th>例1-理由</th><th>例2-题号</th><th>例2-题目</th><th>例2-理由</th></tr></thead>
+    <tbody><tr><td>B1</td><td>Q005</td><td>请简单说说真空阀门在腔室抽真空和破空两个阶段，其开闭逻辑通常如何配合压力变化。</td><td>GPT5.5: 参考答案将破空逻辑写反。原文称“破空阶段则必须等主泵阀完全关闭、腔室压力回升至接近大气压（通常＞90kPa）后，才可打开破空阀”，但腔室压力回升至接近大气压通常正是通过打开受控破空阀/进气阀实现的；正确应为先确认主泵/隔离阀关闭，再按联锁和流量控制打开破空阀，使腔室受控回压至接近大气压。</td><td>Q007</td><td>当某刻蚀设备的真空腔室从大气压抽至1×10⁻⁵ Pa过程中，发现压力在10⁻² Pa附近停滞超过正常时间两倍，且分子泵转速无异常，此时应优先排查哪类真空组件失效？请结合该组件在该压力区间的抽气主导机制说明原因。</td><td>GPT5.5: 参考答案对压力区间和抽气主导机制表述错误。原文称“在10⁻² Pa这一中低真空区间，分子泵尚未进入高效抽气状态，必须依赖机械泵持续抽走其前级气体”，但10⁻² Pa已属于分子流/高真空过渡区，腔体抽气主要依赖分子泵/涡轮分子泵，机械泵主要维持前级压力而不是直接主导腔体抽气；正确应优先结合前级压力、分子泵有效抽速、腔体漏率/放气/污染等因素判断。</td></tr><tr><td>B2</td><td>Q014</td><td>CMP设备抛光液供给管路发生微泄漏，现场检测到氨水浓度缓慢上升，但自动喷淋系统因上游阀门检修被临时旁路。此时距离班次交接还有45分钟，且该区域无备用排风能力。请简述你立即启动的应急响应链中，前三级干预措施及其各自必须达成的安全阈值目标。</td><td>GPT5.5: 参考答案的应急处置不符合题干风险条件且安全优先级不当。题干原文明确“自动喷淋系统因上游阀门检修被临时旁路”“该区域无备用排风能力”，答案却要求“立即手动触发本地紧急通风增强模式”并强调“在确保不触发设备联锁的前提下”隔离泄漏，容易把产线连续性置于人员安全前；正确应优先报警、疏散隔离、启动EHS/厂务应急、远程安全切断源头并确认通风/喷淋不可用时不得安排人员近距离处置。</td><td>Q014</td><td>CMP设备抛光液供给管路发生微泄漏，现场检测到氨水浓度缓慢上升，但自动喷淋系统因上游阀门检修被临时旁路。此时距离班次交接还有45分钟，且该区域无备用排风能力。请简述你立即启动的应急响应链中，前三级干预措施及其各自必须达成的安全阈值目标。</td><td>GPT5.5: 参考答案的应急处置不符合题干风险条件且安全优先级不当。题干原文明确“自动喷淋系统因上游阀门检修被临时旁路”“该区域无备用排风能力”，答案却要求“立即手动触发本地紧急通风增强模式”并强调“在确保不触发设备联锁的前提下”隔离泄漏，容易把产线连续性置于人员安全前；正确应优先报警、疏散隔离、启动EHS/厂务应急、远程安全切断源头并确认通风/喷淋不可用时不得安排人员近距离处置。（同类仅1例，复用示例）</td></tr><tr><td>B3</td><td>Q010</td><td>在半导体设备冷却回路中，当温度传感器反馈值持续低于设定点但冷却液流量实际偏低时，如果控制器仍维持高开度阀门指令，你判断最可能的故障环节是什么？请简述依据。</td><td>GPT5.5: 参考答案未准确回应题干矛盾点。题干原文是“温度传感器反馈值持续低于设定点但冷却液流量实际偏低时，如果控制器仍维持高开度阀门指令”，核心异常在于低温反馈下控制器仍输出高开度冷却指令，优先应怀疑温度测量/控制逻辑/阀门方向配置或控制回路设定异常；答案却称“应优先排查执行端，特别是调节阀本体及其驱动部件”，并在第三层写“造成流量偏低而温度过低的矛盾现象”，把控制输出异常与执行端故障混为一谈。</td><td>Q016</td><td>在完成SiC外延设备移机后的复机验收时，发现三份维修复机记录中，同一台设备的温区校准数据存在0.5℃偏差，且均未注明校准所用标准器编号和溯源有效期。面对即将投产的压力，你会如何判定哪份记录具备可采信基础？依据是什么？</td><td>GPT5.5: 参考答案回避了题干给出的关键否决条件。题干原文说明“三份维修复机记录中，同一台设备的温区校准数据存在0.5℃偏差，且均未注明校准所用标准器编号和溯源有效期”，在校准记录缺少标准器编号和溯源有效期时，三份记录均不具备直接采信基础，应补充证据或复测；答案却以“签字确认栏”“归档于当前生效的设备维修台账系统”等形式要素判断可采信，不能证明校准数据有效。</td></tr><tr><td>B5</td><td>Q020</td><td>CMP设备连续运行中，Pad Condition Monitor实时显示中心区域摩擦力持续上升，但同一时段抛光后晶圆的厚度均匀性变差，且Pad表面目视可见中心区发亮、无纹理。请简述你如何结合Pad热致形变特性与conditioning工艺参数响应关系，判断当前异常是glazing主导还是Pad压缩疲劳所致，并说明最关键的两个现场验证动作。</td><td>Gemini3.1pro: 答案中存在大量英文缩写和专业术语堆叠（如Pad Condition Monitor, conditioning, slurry等），中英混杂严重，明显不适合口语直接作答。</td><td>Q034</td><td>CMP设备日常点检时，观察抛光垫表面出现明显划痕或沟槽，这通常说明什么？请简述。</td><td>Gemini3.1pro: 答案中存在大量英文缩写和专业术语堆叠（如Pad Condition Monitor, conditioning, slurry等），中英混杂严重，明显不适合口语直接作答。</td></tr><tr><td>C2</td><td>Q009</td><td>在半导体设备的真空系统中，当主泵和前级泵之间设有隔离阀和旁路阀时，请简述在正常抽真空和破真空两个阶段，这两类阀门的典型切换顺序及其目的。</td><td>GPT5.5: 参考答案对旁路阀在破真空阶段的作用表述错误。原文称“破真空时，先关闭隔离阀切断主泵与腔体连接，再打开旁路阀让前级泵对主泵腔体泄压至大气压”，但前级泵是抽气设备，不会把主泵腔体“泄压至大气压”；正确应区分粗抽/前级抽气旁路与受控破空进气阀，破空应通过破空阀或氮气阀受控回压。；Gemini3.1pro: 与Q0005重复，都是考察真空阀门切换逻辑</td><td>Q025</td><td>设备做完预防性维护后，复机前必须确认的最基本三项内容是什么？请简单说说。</td><td>Gemini3.1pro: 与Q0021重复，都是考察PM后复机确认事项</td></tr></tbody>
+  </table>
+</body>
+</html>

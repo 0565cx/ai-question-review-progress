@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Round 5 Dashboard</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; margin: 24px; color: #1f2937; }
+    h1, h2, h3 { margin: 10px 0 12px; }
+    .cards { display: grid; grid-template-columns: repeat(3, minmax(140px, 220px)); gap: 12px; margin: 8px 0 18px; }
+    .card { border: 1px solid #e5e7eb; border-radius: 10px; padding: 12px; background: #fafafa; }
+    .card .k { font-size: 12px; color: #6b7280; }
+    .card .v { font-size: 24px; font-weight: 700; margin-top: 4px; }
+    table { border-collapse: collapse; width: 100%; margin: 8px 0 18px; }
+    th, td { border: 1px solid #e5e7eb; padding: 8px 10px; vertical-align: middle; }
+    th { background: #f9fafb; }
+    .legend span { margin-right: 12px; font-size: 13px; color: #374151; }
+    .mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; }
+    .ex { margin: 6px 0; color: #374151; }
+    .section-divider { border: 0; border-top: 2px solid #eef2f7; margin: 22px 0; }
+  </style>
+</head>
+<body>
+  <h1>Round 5 审核看板</h1>
+
+  <div class="cards">
+    <div class="card"><div class="k">A类错误</div><div class="v">3</div></div>
+    <div class="card"><div class="k">B类错误</div><div class="v">53</div></div>
+    <div class="card"><div class="k">C类错误</div><div class="v">2</div></div>
+  </div>
+
+  <h2>本轮题目主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">经Gemini二次复核并移除“二三层展开即跑题”的误删口径后，本轮题干侧问题主要为A1与C2，数量较少（A/C合计3），核心仍是题干一致性与同质化。</div>
+<h2>本轮答案主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">本轮删除仍以答案质量问题为主，其中B1=55、B3=0。B1集中在知识或标准依据不严谨；B3为答案与题干知识范围偏离（不再因二三层应用展开本身判错）。</div>
+<h2>后续重新出内容时应补充的规则</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">【重新出题】<br/>重出题目优先修复A/C问题：消除题干逻辑冲突、做语义去重并保持岗位常见场景。<br/><br/>【重出答案】<br/>重出答案继续保留三层结构；二三层允许应用延展，但必须与题干知识边界一致，且标准号/阈值/参数需可核验。</div>
+
+  <hr class="section-divider" />
+
+  <h2>模型进度与删除率</h2>
+  <table>
+    <thead>
+      <tr><th>Model</th><th>批次完成</th><th>完成率</th><th>删除率</th><th>主错误</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>GPT5.5</td><td style='text-align:center'>2/2</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:63.6%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">63.6%</span></td><td style='text-align:center'>B>A>C</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>2/2</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:68.2%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">68.2%</span></td><td style='text-align:center'>B>A>C</td></tr>
+    </tbody>
+  </table>
+
+  <h2>批次状态矩阵</h2>
+  <div class="legend">
+    <span>✓ done</span><span>… running</span><span>○ pending</span><span>! blocked</span><span>x failed</span>
+  </div>
+  <table>
+    <thead><tr><th>Model</th><th>R5-B001</th><th>R5-B002</th></tr></thead>
+    <tbody><tr><td>GPT5.5</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td></tr></tbody>
+  </table>
+
+  <h2>细分错误统计（A1/B1...）</h2>
+  <table>
+    <thead><tr><th>错误子类</th><th>数量</th></tr></thead>
+    <tbody><tr><td>A1</td><td style='text-align:center'>1</td></tr><tr><td>A4</td><td style='text-align:center'>2</td></tr><tr><td>B1</td><td style='text-align:center'>55</td></tr><tr><td>C2</td><td style='text-align:center'>2</td></tr></tbody>
+  </table>
+
+  <h3>细分错误示例（每类2条）</h3>
+  <table>
+    <thead><tr><th>错误子类</th><th>例1-题号</th><th>例1-题目</th><th>例1-理由</th><th>例2-题号</th><th>例2-题目</th><th>例2-理由</th></tr></thead>
+    <tbody><tr><td>A1</td><td>Q033</td><td>在锂电模组PACK线的自动堆叠工位中，伺服电缸驱动的压紧头需保证对电芯极耳施加垂直方向的压力，其压头端面相对于安装法兰基准轴线的垂直度公差标注为0.03mm。若该压头在装配后实测存在0.025mm的倾斜偏差，但整机节拍与电芯良率未受影响，而后续客户验收时却因该偏差被判定为不合格。请简述这一现象背后的形位公差本质约束逻辑，并说明在设计阶段应如何协同工艺路径与检测条件来合理设定该垂直度要求。</td><td>GPT5.5: 题干称垂直度公差为0.03mm、实测倾斜偏差0.025mm，但又说客户因“该偏差”判定不合格；0.025mm小于0.03mm应为合格，题干逻辑自相矛盾。</td><td>nan</td><td>nan</td><td>nan</td></tr><tr><td>A4</td><td>Q017</td><td>请简述工程图中，粗糙度代号三角形尖端指向表面时，表示该表面是通过哪种加工方式获得的？</td><td>GPT5.5: 参考答案称粗糙度代号尖端指向表面即表示“通过去除材料的方式加工”。按现行表面结构符号规则，基本符号不等于要求去除材料，带横线的符号才表示必须去除材料。；Gemini3.1pro: 题干要求解释“粗糙度代号”的含义，属于解释符号含义，违反A4规则；同时参考答案称“三角形尖端指向表面表示去除材料”存在严重的知识性错误（B1），所有粗糙度符号的尖端都指向表面，只有加了封口横线的符号才表示必须通过去除材料的方法获得。</td><td>Q019</td><td>在锂电设备治具的工程图中，某处定位销孔标注了‘⌀8H7’。请简述这个公差代号中‘H7’所表示的具体含义，以及它在实际装配过程中对配合性质的影响。</td><td>GPT5.5: 参考答案称“H7”用于与对应轴类零件“形成间隙配合”。H7只定义孔的基本偏差和IT7公差等级，最终是间隙、过渡还是过盈取决于配对轴的公差带。；Gemini3.1pro: 题干要求解释公差代号“H7”的具体含义，属于解释符号含义，违反A4规则；此外，参考答案中称H7“用于与对应轴类零件形成间隙配合”存在知识性错误（B1），H7仅为孔的公差带，它与不同的轴（如k6、p6）配合也可以形成过渡或过盈配合，单靠孔不能决定配合性质。</td></tr><tr><td>B1</td><td>Q001</td><td>储能柜体自动锁紧机构中，使用了凸轮推动摆臂、再通过连杆驱动锁舌伸缩的三构件组合。若凸轮与摆臂为高副接触，摆臂与连杆、连杆与锁舌均为转动副，且所有构件均在同一平面内运动，请简述该机构的自由度计算关键步骤。</td><td>GPT5.5: 参考答案第三层称“必要时将该转动副在模型中升格为含间隙的移动副重新评估”。转动副存在间隙仍应按含间隙转动副/接触副建模，不能直接“升格”为移动副，运动副性质判断错误。；Gemini3.1pro: 参考答案含大量确定性标准号/阈值/参数（如“在新能源储能柜体开发中，工程师常采用两种主流分析路径：一是基于GB/T 19406标准推荐的...”）但未给出可核验前提，存在知识性不严谨风险；应回到题干所问的通用原理与边界条件，避免把场景化假定当作固定正确答案。</td><td>Q001</td><td>储能柜体自动锁紧机构中，使用了凸轮推动摆臂、再通过连杆驱动锁舌伸缩的三构件组合。若凸轮与摆臂为高副接触，摆臂与连杆、连杆与锁舌均为转动副，且所有构件均在同一平面内运动，请简述该机构的自由度计算关键步骤。</td><td>GPT5.5: 参考答案第三层称“必要时将该转动副在模型中升格为含间隙的移动副重新评估”。转动副存在间隙仍应按含间隙转动副/接触副建模，不能直接“升格”为移动副，运动副性质判断错误。；Gemini3.1pro: 参考答案含大量确定性标准号/阈值/参数（如“在新能源储能柜体开发中，工程师常采用两种主流分析路径：一是基于GB/T 19406标准推荐的...”）但未给出可核验前提，存在知识性不严谨风险；应回到题干所问的通用原理与边界条件，避免把场景化假定当作固定正确答案。</td></tr><tr><td>C2</td><td>Q015</td><td>请简单说说在机械传动中，为什么齿轮传动比皮带传动更能保证精确的传动比？</td><td>nan</td><td>Q015</td><td>请简单说说在机械传动中，为什么齿轮传动比皮带传动更能保证精确的传动比？</td><td>nan</td></tr></tbody>
+  </table>
+</body>
+</html>

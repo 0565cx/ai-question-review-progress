@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Round 4 Dashboard</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; margin: 24px; color: #1f2937; }
+    h1, h2, h3 { margin: 10px 0 12px; }
+    .cards { display: grid; grid-template-columns: repeat(3, minmax(140px, 220px)); gap: 12px; margin: 8px 0 18px; }
+    .card { border: 1px solid #e5e7eb; border-radius: 10px; padding: 12px; background: #fafafa; }
+    .card .k { font-size: 12px; color: #6b7280; }
+    .card .v { font-size: 24px; font-weight: 700; margin-top: 4px; }
+    table { border-collapse: collapse; width: 100%; margin: 8px 0 18px; }
+    th, td { border: 1px solid #e5e7eb; padding: 8px 10px; vertical-align: middle; }
+    th { background: #f9fafb; }
+    .legend span { margin-right: 12px; font-size: 13px; color: #374151; }
+    .mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; }
+    .ex { margin: 6px 0; color: #374151; }
+    .section-divider { border: 0; border-top: 2px solid #eef2f7; margin: 22px 0; }
+  </style>
+</head>
+<body>
+  <h1>Round 4 审核看板</h1>
+
+  <div class="cards">
+    <div class="card"><div class="k">A类错误</div><div class="v">10</div></div>
+    <div class="card"><div class="k">B类错误</div><div class="v">21</div></div>
+    <div class="card"><div class="k">C类错误</div><div class="v">2</div></div>
+  </div>
+
+  <h2>本轮题目主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">本轮题干错误以A3与A4为主：部分题目提问范围与知识点标签不一致，导致候选人回答偏离岗位核心能力；另有题目包含“写出/列出公式、符号含义或推导”类书面化要求，不符合口头面试作答场景。少量题目在复杂场景设定上不够贴近质量工程师日常工作，容易诱发候选人泛化回答。</div>
+<h2>本轮答案主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">答案侧问题以B类高发，尤其是B3（与题干考察范围不对齐）和B6（岗位口径偏移）：部分答案出现跨岗位术语堆叠，缺少质量工程师视角下的质量策划、过程控制、异常闭环与量化判定标准。另有少量答案存在B1逻辑跳跃与结论先行，第三层复杂情境的处置链路不完整，可评分性不足。</div>
+<h2>后续重新出内容时应补充的规则</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">【重新出题】<br/>重新出题需增加约束：1) 题干必须锚定质量工程师高频场景（来料/制程/出货质量、8D、SPC、MSA、FMEA、CAPA）；2) 禁止要求候选人“写公式/推导/绘图”；3) 每题仅考一个主知识点并在题干中显式给出业务边界；4) 难度与建议作答时间联动，困难题需体现多因素权衡而非概念背诵。<br/><br/>【重出答案】<br/>重出答案需执行三层结构自检：第一层给出准确定义与适用条件；第二层给出至少两种可行方案及取舍依据；第三层提供1个异常+1个复杂约束场景并给出可落地的排查闭环。统一要求岗位口径一致、术语不过载、结论可验证，并补充“错误示例-纠正要点”避免B类重复。</div>
+
+  <hr class="section-divider" />
+
+  <h2>模型进度与删除率</h2>
+  <table>
+    <thead>
+      <tr><th>Model</th><th>批次完成</th><th>完成率</th><th>删除率</th><th>主错误</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>GPT5.5</td><td style='text-align:center'>1/1</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:52.0%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">52.0%</span></td><td style='text-align:center'>B>A</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>1/1</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:40.0%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">40.0%</span></td><td style='text-align:center'>B>A>C</td></tr>
+    </tbody>
+  </table>
+
+  <h2>批次状态矩阵</h2>
+  <div class="legend">
+    <span>✓ done</span><span>… running</span><span>○ pending</span><span>! blocked</span><span>x failed</span>
+  </div>
+  <table>
+    <thead><tr><th>Model</th><th>R4-B001</th></tr></thead>
+    <tbody><tr><td>GPT5.5</td><td style='text-align:center'>✓</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>✓</td></tr></tbody>
+  </table>
+
+  <h2>细分错误统计（A1/B1...）</h2>
+  <table>
+    <thead><tr><th>错误子类</th><th>数量</th></tr></thead>
+    <tbody><tr><td>A1</td><td style='text-align:center'>10</td></tr><tr><td>B1</td><td style='text-align:center'>21</td></tr><tr><td>C2</td><td style='text-align:center'>2</td></tr></tbody>
+  </table>
+
+  <h3>细分错误示例（每类2条）</h3>
+  <table>
+    <thead><tr><th>错误子类</th><th>例1-题号</th><th>例1-题目</th><th>例1-理由</th><th>例2-题号</th><th>例2-题目</th><th>例2-理由</th></tr></thead>
+    <tbody><tr><td>A1</td><td>Q007</td><td>在开展IATF16949体系审核时，如果发现某条电芯涂布工序的SPC控制图连续7点呈上升趋势但仍在控制限内，你认为这属于哪种统计信号？应优先调用五大工具中的哪个工具来深入分析根本原因？请简述理由。</td><td>GPT5.5: 题干原文要求“应优先调用五大工具中的哪个工具来深入分析根本原因”，但IATF16949语境下五大工具通常指APQP、PPAP、FMEA、MSA、SPC，并不包含根因分析的鱼骨图。参考答案-第一层又称“应优先调用因果图（鱼骨图）”且说其符合“五大工具”应用要求，属于五大工具口径错误。；Gemini3.1pro: 题干和答案存在知识性错误，因果图（鱼骨图）属于QC七大手法，不属于IATF16949的五大核心工具（APQP、FMEA、MSA、SPC、PPAP）。正确的应该是引导使用FMEA进行分析，或者修改题干不限制在“五大工具”中。</td><td>Q007</td><td>在开展IATF16949体系审核时，如果发现某条电芯涂布工序的SPC控制图连续7点呈上升趋势但仍在控制限内，你认为这属于哪种统计信号？应优先调用五大工具中的哪个工具来深入分析根本原因？请简述理由。</td><td>GPT5.5: 题干原文要求“应优先调用五大工具中的哪个工具来深入分析根本原因”，但IATF16949语境下五大工具通常指APQP、PPAP、FMEA、MSA、SPC，并不包含根因分析的鱼骨图。参考答案-第一层又称“应优先调用因果图（鱼骨图）”且说其符合“五大工具”应用要求，属于五大工具口径错误。；Gemini3.1pro: 题干和答案存在知识性错误，因果图（鱼骨图）属于QC七大手法，不属于IATF16949的五大核心工具（APQP、FMEA、MSA、SPC、PPAP）。正确的应该是引导使用FMEA进行分析，或者修改题干不限制在“五大工具”中。</td></tr><tr><td>B1</td><td>Q001</td><td>请简单说说，GB/T 2828.1抽样标准中，‘正常检验’和‘加严检验’在什么情况下会相互转换？</td><td>GPT5.5: 参考答案-第三层原文称“某光伏组件边框来料连续4批不合格，第5批因检验员误判为‘复检合格’未计入统计，导致第6批仍沿用正常检验”。但GB/T 2828.1正常检验转加严检验在连续5批初次检验中已有2批不接收即触发；连续4批不合格时早已应转加严，第5批误判不是导致第6批仍正常检验的合理原因。</td><td>Q002</td><td>某锂电材料供应商交付的正极活性物质出现批次间粒径分布偏移，虽单次抽样检验结果合格，但过程能力CPK已跌破1.33。你计划推动其由GB/T 2828.1正常检验转向基于过程能力的抽样方案。请说明该转换需满足的前置条件，以及新方案中样本量与接收准则应如何与过程能力指标联动。</td><td>GPT5.5: 参考答案-第二层原文称“采用GB/T 3358.2附录B推荐的基于CPK分级的抽样调整路径”。GB/T 3358.2属于统计学词汇/统计质量控制术语口径，并非GB/T 2828.1到基于过程能力抽样方案的推荐转换路径标准；将其作为抽样调整依据存在知识性错误。</td></tr><tr><td>C2</td><td>Q017</td><td>客户审核指出光伏组件老化测试区的温湿度监控数据未按要求每两小时记录一次，问题已现场整改。你在提交关闭申请时，除最新完整记录外，还需提供什么材料来证明该监控要求已真正纳入日常执行机制？请简述。</td><td>Gemini3.1pro: 与题目“客户审核发现PACK产线某工位的防错验证记录存在漏签现象...”考察的核心要点和作答思路几乎完全一致，都是关于审核不符合项整改后如何提供固化证据（更新SOP+持续执行记录）。</td><td>Q018</td><td>客户审核发现新能源汽车电池模组装配线的扭矩点检表存在代签情况，你已组织重签、修订签核流程并增加班组长复核环节。在申请关闭时，除更新后的点检表外，还需提供什么证据来证实新流程已被有效执行且具备追溯性？请简单说说。</td><td>Gemini3.1pro: 与题目“客户审核发现PACK产线某工位的防错验证记录存在漏签现象...”考察的核心要点和作答思路几乎完全一致，都是关于审核不符合项整改后如何提供固化证据。</td></tr></tbody>
+  </table>
+</body>
+</html>

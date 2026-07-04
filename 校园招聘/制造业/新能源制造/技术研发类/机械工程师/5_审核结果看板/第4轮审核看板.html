@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Round 4 Dashboard</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; margin: 24px; color: #1f2937; }
+    h1, h2, h3 { margin: 10px 0 12px; }
+    .cards { display: grid; grid-template-columns: repeat(3, minmax(140px, 220px)); gap: 12px; margin: 8px 0 18px; }
+    .card { border: 1px solid #e5e7eb; border-radius: 10px; padding: 12px; background: #fafafa; }
+    .card .k { font-size: 12px; color: #6b7280; }
+    .card .v { font-size: 24px; font-weight: 700; margin-top: 4px; }
+    table { border-collapse: collapse; width: 100%; margin: 8px 0 18px; }
+    th, td { border: 1px solid #e5e7eb; padding: 8px 10px; vertical-align: middle; }
+    th { background: #f9fafb; }
+    .legend span { margin-right: 12px; font-size: 13px; color: #374151; }
+    .mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; }
+    .ex { margin: 6px 0; color: #374151; }
+    .section-divider { border: 0; border-top: 2px solid #eef2f7; margin: 22px 0; }
+  </style>
+</head>
+<body>
+  <h1>Round 4 审核看板</h1>
+
+  <div class="cards">
+    <div class="card"><div class="k">A类错误</div><div class="v">21</div></div>
+    <div class="card"><div class="k">B类错误</div><div class="v">57</div></div>
+    <div class="card"><div class="k">C类错误</div><div class="v">0</div></div>
+  </div>
+
+  <h2>本轮题目主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">本轮题干问题以A1为主，集中在机械原理表述不严谨或前提设定不成立（例如把并非自锁的机构写成可直接断电自锁），导致候选人被引导到错误知识路径。少量A2表现为场景或工艺路线选择偏离新能源制造业机械工程师常见实践，题干专业语境与岗位日常任务不完全一致。难度分布上，部分题目在“中等”标签下实际要求跨学科系统论证，造成题干目标与作答时长预期不匹配。</div>
+<h2>本轮答案主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">答案问题显著高于题干问题，B1占比最高，主要是把经验性说法当成确定性结论、关键机理解释不完整或结论条件缺失。其次出现少量B2（方案偏旧或非主流最佳实践）和B3（答案未直击题干要求的判定口径，如裕量判定却只复述额定值）。三层结构总体齐全，但第二层“方案比较”与第三层“异常与复杂问题”常缺少可验证指标，导致可评分性和岗位可落地性不足。</div>
+<h2>后续重新出内容时应补充的规则</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">【重新出题】<br/>重新出题应强制加入机械工程知识边界自检：题干中的机理描述必须可被行业共识验证；禁止把假设条件写成事实结论；复杂场景题需明确约束条件与评价指标，避免一句题干同时要求选型、验证、优化三类任务。对“中等难度”题限制为单一场景单一决策点，对“困难难度”题才允许多因素权衡。<br/><br/>【重出答案】<br/>重出答案应执行“三层一一对应”质检：第一层给可核验定义与关键机理；第二层给至少2种可行方案及适用边界，不得使用过时方案作默认最优；第三层必须给1个高频异常与1个复杂问题，并附可执行的诊断步骤与验证指标。新增禁止项：不得出现绝对化结论、不得回避题干核心判定维度、不得以模板化措辞替代技术依据。</div>
+
+  <hr class="section-divider" />
+
+  <h2>模型进度与删除率</h2>
+  <table>
+    <thead>
+      <tr><th>Model</th><th>批次完成</th><th>完成率</th><th>删除率</th><th>主错误</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>GPT5.5</td><td style='text-align:center'>3/3</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:33.3%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">33.3%</span></td><td style='text-align:center'>B>A</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>3/3</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:38.9%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">38.9%</span></td><td style='text-align:center'>B>A</td></tr>
+    </tbody>
+  </table>
+
+  <h2>批次状态矩阵</h2>
+  <div class="legend">
+    <span>✓ done</span><span>… running</span><span>○ pending</span><span>! blocked</span><span>x failed</span>
+  </div>
+  <table>
+    <thead><tr><th>Model</th><th>R4-B001</th><th>R4-B002</th><th>R4-B003</th></tr></thead>
+    <tbody><tr><td>GPT5.5</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td></tr></tbody>
+  </table>
+
+  <h2>细分错误统计（A1/B1...）</h2>
+  <table>
+    <thead><tr><th>错误子类</th><th>数量</th></tr></thead>
+    <tbody><tr><td>A1</td><td style='text-align:center'>20</td></tr><tr><td>A2</td><td style='text-align:center'>1</td></tr><tr><td>B1</td><td style='text-align:center'>53</td></tr><tr><td>B2</td><td style='text-align:center'>2</td></tr><tr><td>B3</td><td style='text-align:center'>2</td></tr></tbody>
+  </table>
+
+  <h3>细分错误示例（每类2条）</h3>
+  <table>
+    <thead><tr><th>错误子类</th><th>例1-题号</th><th>例1-题目</th><th>例1-理由</th><th>例2-题号</th><th>例2-题目</th><th>例2-理由</th></tr></thead>
+    <tbody><tr><td>A1</td><td>Q008</td><td>储能电池模组自动堆叠线中，升降机构需在200kg负载下实现3m行程、150mm/s速度及断电自锁安全功能。请简述你为何在蜗轮蜗杆、行星滚柱丝杠和液压缸三者中选择行星滚柱丝杠，并说明其在效率、反向自锁可靠性与长期免维护性上的协同验证思路。</td><td>GPT5.5: 题干要求说明选择行星滚柱丝杠并验证“反向自锁可靠性”，但行星滚柱丝杠效率高，通常不具备可靠断电反向自锁能力，升降安全应依赖制动器、安全螺母或防坠机构等冗余措施。；Gemini3.1pro: 题干要求说明选择行星滚柱丝杠并验证“反向自锁可靠性”，但行星滚柱丝杠效率高，通常不具备可靠断电反向自锁能力，升降安全应依赖制动器、安全螺母或防坠机构等冗余措施。</td><td>Q008</td><td>储能电池模组自动堆叠线中，升降机构需在200kg负载下实现3m行程、150mm/s速度及断电自锁安全功能。请简述你为何在蜗轮蜗杆、行星滚柱丝杠和液压缸三者中选择行星滚柱丝杠，并说明其在效率、反向自锁可靠性与长期免维护性上的协同验证思路。</td><td>GPT5.5: 题干要求说明选择行星滚柱丝杠并验证“反向自锁可靠性”，但行星滚柱丝杠效率高，通常不具备可靠断电反向自锁能力，升降安全应依赖制动器、安全螺母或防坠机构等冗余措施。；Gemini3.1pro: 题干要求说明选择行星滚柱丝杠并验证“反向自锁可靠性”，但行星滚柱丝杠效率高，通常不具备可靠断电反向自锁能力，升降安全应依赖制动器、安全螺母或防坠机构等冗余措施。</td></tr><tr><td>A2</td><td>Q092</td><td>在锂电极片分切设备中，采用滚刀式分切和圆盘剪式分切两种技术路线，哪种更利于控制毛刺高度？请简单说说原因。</td><td>Gemini3.1pro: 题干场景疑似偏门，极片分切通常采用圆盘剪或五金/激光模切，“滚刀式分切”在极片纵切中不常见，正确的应该是“圆盘剪式分切和激光分切”。</td><td>Q092</td><td>在锂电极片分切设备中，采用滚刀式分切和圆盘剪式分切两种技术路线，哪种更利于控制毛刺高度？请简单说说原因。</td><td>Gemini3.1pro: 题干场景疑似偏门，极片分切通常采用圆盘剪或五金/激光模切，“滚刀式分切”在极片纵切中不常见，正确的应该是“圆盘剪式分切和激光分切”。</td></tr><tr><td>B1</td><td>Q001</td><td>请简单说说齿轮传动为什么能保证严格的传动比。</td><td>GPT5.5: 参考答案称“齿轮啮合是通过齿廓的连续、无滑动的滚动接触”“节圆纯滚动”，但实际齿面啮合除节点附近外存在相对滑动；严格传动比应归因于共轭齿廓啮合保证角速度比，而不是全程无滑动。；Gemini3.1pro: 参考答案称“齿轮啮合是通过齿廓的连续、无滑动的滚动接触”“节圆纯滚动”，但实际齿面啮合除节点附近外存在相对滑动；严格传动比应归因于共轭齿廓啮合保证角速度比，而不是全程无滑动。</td><td>Q001</td><td>请简单说说齿轮传动为什么能保证严格的传动比。</td><td>GPT5.5: 参考答案称“齿轮啮合是通过齿廓的连续、无滑动的滚动接触”“节圆纯滚动”，但实际齿面啮合除节点附近外存在相对滑动；严格传动比应归因于共轭齿廓啮合保证角速度比，而不是全程无滑动。；Gemini3.1pro: 参考答案称“齿轮啮合是通过齿廓的连续、无滑动的滚动接触”“节圆纯滚动”，但实际齿面啮合除节点附近外存在相对滑动；严格传动比应归因于共轭齿廓啮合保证角速度比，而不是全程无滑动。</td></tr><tr><td>B2</td><td>Q089</td><td>在锂电模组PACK线的自动拧紧工位中，用于固定模组端板的M12高强度螺栓连接，在产线连续运行三个月后出现多处松动，导致端板间隙超差并引发模组绝缘失效。请简述你如何系统性分析该松动问题的成因，并说明在振动+热循环+空间受限三重约束下，应优先选择哪种防松方式组合及其技术依据。</td><td>GPT5.5: 参考答案优先推荐“涂胶+垫圈组合（如乐泰243配合带齿弹性垫圈）”。在M12高强度螺栓、振动+热循环+空间受限场景下，带齿/弹性垫圈并非当前可靠防松的优先最佳实践，可能损伤接触面且预紧力保持能力有限；更合理的方案应优先评估楔形防松垫圈、全金属锁紧螺母/法兰面结构、受控螺纹锁固胶与扭矩-转角工艺，并用残余预紧力验证。；Gemini3.1pro: 参考答案第二层给出的解决方案过时，带齿弹性垫圈在高强度螺栓防松中效果不佳且易破坏表面防腐层，不是新能源PACK产线的主流最佳实践，正确的应该是“涂胶或使用Nord-Lock楔形防松垫圈”。</td><td>Q089</td><td>在锂电模组PACK线的自动拧紧工位中，用于固定模组端板的M12高强度螺栓连接，在产线连续运行三个月后出现多处松动，导致端板间隙超差并引发模组绝缘失效。请简述你如何系统性分析该松动问题的成因，并说明在振动+热循环+空间受限三重约束下，应优先选择哪种防松方式组合及其技术依据。</td><td>GPT5.5: 参考答案优先推荐“涂胶+垫圈组合（如乐泰243配合带齿弹性垫圈）”。在M12高强度螺栓、振动+热循环+空间受限场景下，带齿/弹性垫圈并非当前可靠防松的优先最佳实践，可能损伤接触面且预紧力保持能力有限；更合理的方案应优先评估楔形防松垫圈、全金属锁紧螺母/法兰面结构、受控螺纹锁固胶与扭矩-转角工艺，并用残余预紧力验证。；Gemini3.1pro: 参考答案第二层给出的解决方案过时，带齿弹性垫圈在高强度螺栓防松中效果不佳且易破坏表面防腐层，不是新能源PACK产线的主流最佳实践，正确的应该是“涂胶或使用Nord-Lock楔形防松垫圈”。</td></tr><tr><td>B3</td><td>Q041</td><td>在锂电卷绕设备中，伺服电机需要驱动一个带惯性负载的旋转辊筒，已知计算出的连续运行所需扭矩为8牛米，峰值扭矩为12牛米。请简述此时应如何判断伺服电机的扭矩裕量是否足够。</td><td>GPT5.5: 题目考察扭矩裕量，参考答案仅要求额定扭矩≥8N·m、峰值扭矩≥12N·m，未按裕量要求校核如1.3～1.5倍安全系数或连续/峰值裕量，回答偏离“裕量是否足够”的核心。；Gemini3.1pro: 题目考察扭矩裕量，参考答案仅要求额定扭矩≥8N·m、峰值扭矩≥12N·m，未按裕量要求校核如1.3～1.5倍安全系数或连续/峰值裕量，回答偏离“裕量是否足够”的核心。</td><td>Q041</td><td>在锂电卷绕设备中，伺服电机需要驱动一个带惯性负载的旋转辊筒，已知计算出的连续运行所需扭矩为8牛米，峰值扭矩为12牛米。请简述此时应如何判断伺服电机的扭矩裕量是否足够。</td><td>GPT5.5: 题目考察扭矩裕量，参考答案仅要求额定扭矩≥8N·m、峰值扭矩≥12N·m，未按裕量要求校核如1.3～1.5倍安全系数或连续/峰值裕量，回答偏离“裕量是否足够”的核心。；Gemini3.1pro: 题目考察扭矩裕量，参考答案仅要求额定扭矩≥8N·m、峰值扭矩≥12N·m，未按裕量要求校核如1.3～1.5倍安全系数或连续/峰值裕量，回答偏离“裕量是否足够”的核心。</td></tr></tbody>
+  </table>
+</body>
+</html>

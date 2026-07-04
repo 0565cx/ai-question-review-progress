@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Round 6 Dashboard</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; margin: 24px; color: #1f2937; }
+    h1, h2, h3 { margin: 10px 0 12px; }
+    .cards { display: grid; grid-template-columns: repeat(3, minmax(140px, 220px)); gap: 12px; margin: 8px 0 18px; }
+    .card { border: 1px solid #e5e7eb; border-radius: 10px; padding: 12px; background: #fafafa; }
+    .card .k { font-size: 12px; color: #6b7280; }
+    .card .v { font-size: 24px; font-weight: 700; margin-top: 4px; }
+    table { border-collapse: collapse; width: 100%; margin: 8px 0 18px; }
+    th, td { border: 1px solid #e5e7eb; padding: 8px 10px; vertical-align: middle; }
+    th { background: #f9fafb; }
+    .legend span { margin-right: 12px; font-size: 13px; color: #374151; }
+    .mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; }
+    .ex { margin: 6px 0; color: #374151; }
+    .section-divider { border: 0; border-top: 2px solid #eef2f7; margin: 22px 0; }
+  </style>
+</head>
+<body>
+  <h1>Round 6 审核看板</h1>
+
+  <div class="cards">
+    <div class="card"><div class="k">A类错误</div><div class="v">0</div></div>
+    <div class="card"><div class="k">B类错误</div><div class="v">6</div></div>
+    <div class="card"><div class="k">C类错误</div><div class="v">1</div></div>
+  </div>
+
+  <h2>本轮题目主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">本轮题干问题整体占比不高，但出现了1道高风险重复/同质化（C2）题：题面虽然更长，但作答路径与既有题高度重合，难以区分候选人真实能力层次。另有少量题干把现场排查与研发级验证动作混在同一问法里，导致题目边界变宽，增加评分漂移风险。整体结论是：题干侧核心风险已从“明显知识错误”转向“同质化与边界不清”。</div>
+<h2>本轮答案主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">答案侧仍以B类错误为主（B1最多，其次B2）。高频表现是把设备机理写成单一路径或绝对结论、把不具备普适性的阈值当成通用判据，以及把现场闭环应优先采用的在线验证动作替换成偏重实验室条件的流程。这类问题会直接误导面试官判分依据，建议继续按“机理正确+适用前提+现场可执行”三项进行硬性卡控。</div>
+<h2>后续重新出内容时应补充的规则</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">【重新出题】<br/>重新出题时，限定为设备工程师量产现场可口述、可执行的故障诊断情境；题干只保留必要上下文与可观测信号，禁止把研发实验手段作为必答主路径。对候选人要求应聚焦“排查顺序、关键判据、取舍依据”，并在出题后做C类自检（与既有题是否同解法、同要点、同思路）。<br/><br/>【重出答案】<br/>重出答案时必须分层写清：第一层给概念/机理与适用边界，第二层给常见方案对比和推荐条件，第三层给一个高频异常和一个复杂约束下的处置闭环。禁止“唯一/必须/固定阈值”式表达，所有阈值需注明来源（机台基线、SPC或工艺窗口）；优先给可在线验证动作，再补充离线深度验证选项。</div>
+
+  <hr class="section-divider" />
+
+  <h2>模型进度与删除率</h2>
+  <table>
+    <thead>
+      <tr><th>Model</th><th>批次完成</th><th>完成率</th><th>删除率</th><th>主错误</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>GPT5.5</td><td style='text-align:center'>1/1</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:33.3%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">33.3%</span></td><td style='text-align:center'>B</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>1/1</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:25.0%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">25.0%</span></td><td style='text-align:center'>B>C</td></tr>
+    </tbody>
+  </table>
+
+  <h2>批次状态矩阵</h2>
+  <div class="legend">
+    <span>✓ done</span><span>… running</span><span>○ pending</span><span>! blocked</span><span>x failed</span>
+  </div>
+  <table>
+    <thead><tr><th>Model</th><th>R6-B001</th></tr></thead>
+    <tbody><tr><td>GPT5.5</td><td style='text-align:center'>✓</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>✓</td></tr></tbody>
+  </table>
+
+  <h2>细分错误统计（A1/B1...）</h2>
+  <table>
+    <thead><tr><th>错误子类</th><th>数量</th></tr></thead>
+    <tbody><tr><td>B1</td><td style='text-align:center'>5</td></tr><tr><td>B2</td><td style='text-align:center'>1</td></tr><tr><td>C2</td><td style='text-align:center'>1</td></tr></tbody>
+  </table>
+
+  <h3>细分错误示例（每类2条）</h3>
+  <table>
+    <thead><tr><th>错误子类</th><th>例1-题号</th><th>例1-题目</th><th>例1-理由</th><th>例2-题号</th><th>例2-题目</th><th>例2-理由</th></tr></thead>
+    <tbody><tr><td>B1</td><td>Q004</td><td>请简单说说真空阀门在腔室抽真空和破空两个阶段，其开闭逻辑通常如何配合压力变化。</td><td>GPT5.5: 参考答案-第一层原文“在抽真空阶段，真空阀门需保持关闭，确保腔室与前级泵、主泵形成密闭抽气通路”前后逻辑矛盾：阀门“保持关闭”无法形成抽气通路。应改为按抽气序列开启对应抽气通路阀门、关闭破空与无关支路阀门。；Gemini3.1pro: 参考答案-第一层写到“在抽真空阶段，真空阀门需保持关闭，确保腔室与前级泵、主泵形成密闭抽气通路”，前后逻辑矛盾：阀门“保持关闭”无法形成抽气通路。应改为抽真空关键通路阀在满足联锁后开启并受控切换，以建立腔室到泵组的有效抽气路径。</td><td>Q004</td><td>请简单说说真空阀门在腔室抽真空和破空两个阶段，其开闭逻辑通常如何配合压力变化。</td><td>GPT5.5: 参考答案-第一层原文“在抽真空阶段，真空阀门需保持关闭，确保腔室与前级泵、主泵形成密闭抽气通路”前后逻辑矛盾：阀门“保持关闭”无法形成抽气通路。应改为按抽气序列开启对应抽气通路阀门、关闭破空与无关支路阀门。；Gemini3.1pro: 参考答案-第一层写到“在抽真空阶段，真空阀门需保持关闭，确保腔室与前级泵、主泵形成密闭抽气通路”，前后逻辑矛盾：阀门“保持关闭”无法形成抽气通路。应改为抽真空关键通路阀在满足联锁后开启并受控切换，以建立腔室到泵组的有效抽气路径。</td></tr><tr><td>B2</td><td>Q011</td><td>同一台CMP设备在完成一次Pad conditioning后，首片晶圆抛光均匀性达标，但后续连续三片晶圆中心区域出现轻微橘皮纹，同时Pad Condition Monitor显示conditioning阶段的扭矩积分值逐片递减8%以上。请简述你如何结合Pad表面沟槽深度实测趋势（使用现场手持式光学轮廓仪）、conditioning头接触面压痕分布一致性、以及抛光过程中Pad表面液膜稳定性表现，综合判断当前Pad是否已丧失有效切削能力，并指出最能快速验证该判断的现场操作动作。</td><td>GPT5.5: 参考答案-第一层将“扭矩积分回升不足5%”设为通用失效判据，第三层又要求“微区样本送SEM快速扫描”作为现场处置，方案过于偏门且不符合多数产线快速闭环实践。应以机台基线/SPC阈值与可在线完成的验证（去除率、摩擦恢复、压痕一致性、液膜稳定）作为主判据。</td><td>nan</td><td>nan</td><td>nan</td></tr><tr><td>C2</td><td>Q011</td><td>同一台CMP设备在完成一次Pad conditioning后，首片晶圆抛光均匀性达标，但后续连续三片晶圆中心区域出现轻微橘皮纹，同时Pad Condition Monitor显示conditioning阶段的扭矩积分值逐片递减8%以上。请简述你如何结合Pad表面沟槽深度实测趋势（使用现场手持式光学轮廓仪）、conditioning头接触面压痕分布一致性、以及抛光过程中Pad表面液膜稳定性表现，综合判断当前Pad是否已丧失有效切削能力，并指出最能快速验证该判断的现场操作动作。</td><td>GPT5.5: 参考答案-第一层将“扭矩积分回升不足5%”设为通用失效判据，第三层又要求“微区样本送SEM快速扫描”作为现场处置，方案过于偏门且不符合多数产线快速闭环实践。应以机台基线/SPC阈值与可在线完成的验证（去除率、摩擦恢复、压痕一致性、液膜稳定）作为主判据。</td><td>nan</td><td>nan</td><td>nan</td></tr></tbody>
+  </table>
+</body>
+</html>
