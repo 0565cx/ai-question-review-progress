@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Round 4 Dashboard</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; margin: 24px; color: #1f2937; }
+    h1, h2, h3 { margin: 10px 0 12px; }
+    .cards { display: grid; grid-template-columns: repeat(3, minmax(140px, 220px)); gap: 12px; margin: 8px 0 18px; }
+    .card { border: 1px solid #e5e7eb; border-radius: 10px; padding: 12px; background: #fafafa; }
+    .card .k { font-size: 12px; color: #6b7280; }
+    .card .v { font-size: 24px; font-weight: 700; margin-top: 4px; }
+    table { border-collapse: collapse; width: 100%; margin: 8px 0 18px; }
+    th, td { border: 1px solid #e5e7eb; padding: 8px 10px; vertical-align: middle; }
+    th { background: #f9fafb; }
+    .legend span { margin-right: 12px; font-size: 13px; color: #374151; }
+    .mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; }
+    .ex { margin: 6px 0; color: #374151; }
+    .section-divider { border: 0; border-top: 2px solid #eef2f7; margin: 22px 0; }
+  </style>
+</head>
+<body>
+  <h1>Round 4 审核看板</h1>
+
+  <div class="cards">
+    <div class="card"><div class="k">A类错误</div><div class="v">2</div></div>
+    <div class="card"><div class="k">B类错误</div><div class="v">28</div></div>
+    <div class="card"><div class="k">C类错误</div><div class="v">0</div></div>
+  </div>
+
+  <h2>本轮题目主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">四轮题干问题较少，主要是少量前提条件与现场可实现性不匹配。例如仅颜色不同且结构完全相同的零件，却要求通过纯物理治具防呆区分；以及把已发现异常后的动作强行放入PDCA的D阶段，造成流程逻辑不顺。未发现大面积重复题，C类问题不突出。</div>
+<h2>本轮答案主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">四轮答案问题明显集中在B1知识性和逻辑性错误，尤其是SPC/Nelson判异规则编号混淆、连续点数条件写错、控制图类型选择不当、DOE分辨率和混杂关系表述不严谨、精益浪费分类把返工误归为过度加工、全检概念被抽样替代，以及夹具定位、控制特性和工位布局等工艺常识被绝对化。</div>
+<h2>后续重新出内容时应补充的规则</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">【重新出题】<br/>后续重新出题时，题干必须先校验现场前提是否可实现：防呆题要说明可利用的几何、方向、尺寸或识别特征；PDCA、SPC、DOE等质量工具题要明确当前处于哪个阶段、数据点数量和判断边界，避免题干本身诱导错误流程。<br/><br/>【重出答案】<br/>重出答案时必须建立质量工具和工艺常识自检清单：Nelson规则编号与触发条件、p/np/c/u/g图适用对象、DOE分辨率与混杂关系、精益浪费定义、全检=100%覆盖、特殊/控制特性由设计和FMEA风险决定、夹具一面两销自由度表述、物料工具布置按动作经济和流程频次决定。禁止把经验阈值、客户个例或不严谨口径写成通用规则。</div>
+
+  <hr class="section-divider" />
+
+  <h2>模型进度与删除率</h2>
+  <table>
+    <thead>
+      <tr><th>Model</th><th>批次完成</th><th>完成率</th><th>删除率</th><th>主错误</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>GPT5.5</td><td style='text-align:center'>2/2</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:33.3%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">33.3%</span></td><td style='text-align:center'>B>A</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>2/2</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:29.2%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">29.2%</span></td><td style='text-align:center'>B>A</td></tr>
+    </tbody>
+  </table>
+
+  <h2>批次状态矩阵</h2>
+  <div class="legend">
+    <span>✓ done</span><span>… running</span><span>○ pending</span><span>! blocked</span><span>x failed</span>
+  </div>
+  <table>
+    <thead><tr><th>Model</th><th>R4-B001</th><th>R4-B002</th></tr></thead>
+    <tbody><tr><td>GPT5.5</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td></tr></tbody>
+  </table>
+
+  <h2>细分错误统计（A1/B1...）</h2>
+  <table>
+    <thead><tr><th>错误子类</th><th>数量</th></tr></thead>
+    <tbody><tr><td>A1</td><td style='text-align:center'>2</td></tr><tr><td>B1</td><td style='text-align:center'>27</td></tr><tr><td>B2</td><td style='text-align:center'>1</td></tr></tbody>
+  </table>
+
+  <h3>细分错误示例（每类2条）</h3>
+  <table>
+    <thead><tr><th>错误子类</th><th>例1-题号</th><th>例1-题目</th><th>例1-理由</th><th>例2-题号</th><th>例2-题目</th><th>例2-理由</th></tr></thead>
+    <tbody><tr><td>A1</td><td>Q007</td><td>在汽车零部件装配线上，一个工装治具用于固定两种颜色不同但结构完全相同的金属支架。为防止操作员将蓝色支架误装入本该装黄色支架的工位，你会在治具上设置哪种防呆结构？请简单说说它如何从物理层面阻止错误发生。</td><td>GPT5.5: 题干明确“两种颜色不同但结构完全相同的金属支架”，却要求“在治具上设置物理层面阻止错误发生”的防呆结构。仅颜色不同、几何结构完全相同的零件无法靠治具本体物理限位区分，正确应改为存在可利用的非对称结构特征，或改用颜色识别/传感/条码等非纯物理方案。</td><td>Q035</td><td>在改进一道工序的加工节拍时，如果发现实际耗时比目标长，按照PDCA循环，下一步‘D’该做什么？</td><td>Gemini3.1pro: 题干逻辑错误。“如果发现实际耗时比目标长，按照PDCA循环，下一步‘D’该做什么？” 题干中描述“发现实际耗时比目标长”，这个“发现”的动作本身属于 PDCA 中的 C (Check) 检查环节。C 之后应该是 A (Act) 处置环节，而不是 D (Do)。如果是指新一轮的 PDCA，那也应该是 P (Plan)。因此，问下一步 D 该做什么违背了 PDCA 的基本逻辑顺序。正确应为：题干描述混乱，发现问题后应进入 A 阶段进行标准化或调整，而不是回到 D 阶段。</td></tr><tr><td>B1</td><td>Q003</td><td>请简单说说，生产中发现某设备的振动值数据连续5次测量结果依次为1.2、1.4、1.7、2.1、2.6（单位：mm/s），这种变化反映了什么类型的趋势？</td><td>Gemini3.1pro: 第三层答案错误。原文“Nelson规则第三条（连续六点单调递增）”有误，Nelson规则第三条是连续6点稳步递增或递减，且原文中5个点是1.2、1.4、1.7、2.1、2.6，并没有连续六个点。应该改为：结合Nelson规则第3条（连续6点递增或递减）或结合业务定义的预警规则来监控趋势。</td><td>Q004</td><td>在产线实时监控中，如果某道工序的压力参数连续多个采样点缓慢偏离中心值，但仍在公差带内，这种现象通常被称作什么？请简单说说。</td><td>GPT5.5: 第三层将“Nelson第4条”解释为“连续6点单调递增”错误；正确应为Nelson第3条是连续6点递增或递减，Nelson第4条通常指连续点交替上下波动，不能用第4条作为该趋势判定依据。；Gemini3.1pro: 第二层、第三层答案错误。原文“二是启用Nelson规则中的第2条（连续9点同侧）... Nelson第4条（连续6点单调递增）”。Nelson规则第2条通常指连续9个点在中心线同一侧，第3条是连续6个点递增或递减，第4条是连续14个点上下交替。答案中将第3条记成了第4条，存在知识性错误。正确应为：Nelson第3条（连续6点递增或递减）。</td></tr><tr><td>B2</td><td>Q045</td><td>一条自动化产线当前同时生产三种不同型号的产品，切换频次高、换型时间长。当其中一种型号的订单临时增加30%，而其他两种型号交付节点不变时，你会优先调整哪些工艺参数来保障整体交付？请简述你的决策依据和具体调整逻辑。</td><td>GPT5.5: 第二层提出“临时放宽该型号的过程能力监控容差带，在确保关键特性受控前提下降低停机复检率”作为保障交付的方法，属于不合理且有质量风险的做法。订单增加时应优先通过排产批量、换型顺序、瓶颈节拍、快换参数和资源配置优化保障交付，不能随意放宽过程监控容差带来换取产出。</td><td>nan</td><td>nan</td><td>nan</td></tr></tbody>
+  </table>
+</body>
+</html>

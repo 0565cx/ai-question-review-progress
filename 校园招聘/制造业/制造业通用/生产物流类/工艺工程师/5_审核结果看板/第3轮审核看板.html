@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Round 3 Dashboard</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; margin: 24px; color: #1f2937; }
+    h1, h2, h3 { margin: 10px 0 12px; }
+    .cards { display: grid; grid-template-columns: repeat(3, minmax(140px, 220px)); gap: 12px; margin: 8px 0 18px; }
+    .card { border: 1px solid #e5e7eb; border-radius: 10px; padding: 12px; background: #fafafa; }
+    .card .k { font-size: 12px; color: #6b7280; }
+    .card .v { font-size: 24px; font-weight: 700; margin-top: 4px; }
+    table { border-collapse: collapse; width: 100%; margin: 8px 0 18px; }
+    th, td { border: 1px solid #e5e7eb; padding: 8px 10px; vertical-align: middle; }
+    th { background: #f9fafb; }
+    .legend span { margin-right: 12px; font-size: 13px; color: #374151; }
+    .mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; }
+    .ex { margin: 6px 0; color: #374151; }
+    .section-divider { border: 0; border-top: 2px solid #eef2f7; margin: 22px 0; }
+  </style>
+</head>
+<body>
+  <h1>Round 3 审核看板</h1>
+
+  <div class="cards">
+    <div class="card"><div class="k">A类错误</div><div class="v">4</div></div>
+    <div class="card"><div class="k">B类错误</div><div class="v">44</div></div>
+    <div class="card"><div class="k">C类错误</div><div class="v">11</div></div>
+  </div>
+
+  <h2>本轮题目主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">三审题干问题数量少于答案问题，主要集中在条件自相矛盾、题干数据关系不清和少量C2同质化。典型表现包括温度测量描述同时写固定偏差和逐次上升、标准工时与等待时间拆解逻辑混乱，以及瓶颈工位、趋势漂移、防呆结构、技术协议验收等知识点下出现候选人会给出近似同一套答案的重复题。</div>
+<h2>本轮答案主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">三审答案问题以B1知识性错误为主，集中在精益浪费分类、PDCA概念、SPC判异规则、控制图选型、DOE部分因子设计、控制计划与全检定义、PFMEA严重度、夹具定位和设备验证工具选择等确定性口径。部分答案把未经验证的经验阈值、标准条款或客户体系要求写成绝对结论，是本轮最主要的风险来源。</div>
+<h2>后续重新出内容时应补充的规则</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">【重新出题】<br/>后续重新出题时，应重点避免同知识点换壳：同一批内瓶颈识别、趋势漂移、防呆结构、技术协议验收等题目必须改变场景变量、判断对象和评分点。题干涉及数据时要先做算术和逻辑校验，避免标准工时、等待时间、偏差趋势等条件互相冲突。<br/><br/>【重出答案】<br/>重出答案时必须先校验确定性知识：PDCA字母含义、精益浪费分类、SPC/Nelson规则、c/np/p/u控制图适用条件、DOE运行次数和分辨率、控制计划全检定义、特殊特性来源、夹具定位自由度等。禁止把经验数值、客户条款或企业内规写成通用绝对规则。</div>
+
+  <hr class="section-divider" />
+
+  <h2>模型进度与删除率</h2>
+  <table>
+    <thead>
+      <tr><th>Model</th><th>批次完成</th><th>完成率</th><th>删除率</th><th>主错误</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>GPT5.5</td><td style='text-align:center'>6/6</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:15.5%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">15.5%</span></td><td style='text-align:center'>B>A>C</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>6/6</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:9.9%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">9.9%</span></td><td style='text-align:center'>B>C>A</td></tr>
+    </tbody>
+  </table>
+
+  <h2>批次状态矩阵</h2>
+  <div class="legend">
+    <span>✓ done</span><span>… running</span><span>○ pending</span><span>! blocked</span><span>x failed</span>
+  </div>
+  <table>
+    <thead><tr><th>Model</th><th>R3-B001</th><th>R3-B002</th><th>R3-B003</th><th>R3-B004</th><th>R3-B005</th><th>R3-B006</th></tr></thead>
+    <tbody><tr><td>GPT5.5</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td></tr></tbody>
+  </table>
+
+  <h2>细分错误统计（A1/B1...）</h2>
+  <table>
+    <thead><tr><th>错误子类</th><th>数量</th></tr></thead>
+    <tbody><tr><td>A1</td><td style='text-align:center'>4</td></tr><tr><td>B1</td><td style='text-align:center'>38</td></tr><tr><td>B3</td><td style='text-align:center'>2</td></tr><tr><td>B5</td><td style='text-align:center'>4</td></tr><tr><td>C2</td><td style='text-align:center'>11</td></tr></tbody>
+  </table>
+
+  <h3>细分错误示例（每类2条）</h3>
+  <table>
+    <thead><tr><th>错误子类</th><th>例1-题号</th><th>例1-题目</th><th>例1-理由</th><th>例2-题号</th><th>例2-题目</th><th>例2-理由</th></tr></thead>
+    <tbody><tr><td>A1</td><td>Q024</td><td>在工艺流程图里，箭头连接两个工序符号时，它主要表达什么含义？请简述。</td><td>Gemini3.1pro: 题干“箭头连接两个工序符号时，它主要表达什么含义”过于基础，偏向笔试题，不符合工艺工程师面试的实际深度和场景，难以引发有价值的面试对话。</td><td>Q045</td><td>在工艺改进实验中，如果某个因素的P值是0.03，我们通常说这个因素对结果的影响是否显著？请简单说说判断依据。</td><td>Gemini3.1pro: 题干“如果某个因素的P值是0.03，我们通常说这个因素对结果的影响是否显著？”过于基础，属于统计学常识的笔试题，不符合工艺工程师面试的深度要求。</td></tr><tr><td>B1</td><td>Q011</td><td>量产转化评审时，为什么需要确认设备已通过运行验收？请简述原因。</td><td>GPT5.5: 第一层称“运行验收是设备从交付状态转入可稳定支撑量产工艺的法定前置门槛”，把企业NPI/质量体系中的量产评审准入要求错误表述为“法定”门槛。正确口径应是设备运行验收属于量产转化评审的内部流程和质量体系准入条件，用于确认设备在既定工艺参数、节拍和质量要求下具备稳定运行能力，不应表述为法定前置门槛。</td><td>Q016</td><td>某产品已完成设计冻结并进入试产验证阶段，但首批样件在客户现场使用时暴露出装配干涉问题，需修改结构件公差带。此时已有两批次专用治具按原数模加工完成，且首批量产物料已启动采购。请结合NPI阶段划分逻辑，说明当前应退回至哪个阶段，并解释该阶段对设计变更闭环、治具状态及物料释放的三重约束条件。</td><td>GPT5.5: 答案将当前问题定为“应退回至NPI的工艺验证阶段（PV阶段）”，并称“未正式释放量产用物料”，但题干已说明结构件公差带需修改、专用治具已按原数模加工、首批量产物料已启动采购。修改结构件公差带属于设计输出变更，应启动ECN并回退到设计变更/设计验证与工艺可行性再评审节点，同步重评治具适配、BOM/物料释放和试产验证边界，而不能仅退回PV阶段并假定量产物料未释放。</td></tr><tr><td>B3</td><td>Q048</td><td>某汽车零部件产线在优化焊接工艺时，发现焊缝强度和飞溅量两个关键质量特性同时不达标。已确认电流、电压、焊接速度、保护气体流量四个参数对结果有显著影响。若采用全因子设计开展实验，且每个参数需考察高低两个水平，但现场单次实验耗时长、成本高，你如何权衡实验次数与信息获取的完整性？请简述你的决策逻辑和关键取舍依据。</td><td>GPT5.5: 题干明确限定“若采用全因子设计开展实验，且每个参数需考察高低两个水平”，四因素两水平全因子设计应说明完整实验为2^4=16次，并围绕是否执行完整16次、是否分阶段/分区组/减少重复来权衡信息完整性与成本。答案却在第一层直接说“实际无法支撑全部执行，必须主动缩减实验次数”，第二层推荐“分辨度IV的四因子部分因子设计，实验次数减至8次”，偏离了题干“采用全因子设计”的约束。</td><td>Q204</td><td>一条自动化产线当前同时生产三种不同型号的产品，切换频次高、换型时间长。当其中一种型号的订单临时增加30%，而其他两种型号交付节点不变时，你会优先调整哪些工艺参数来保障整体交付？请简述你的决策依据和具体调整逻辑。</td><td>GPT5.5: 参考答案偏离题目“多型号订单变化下如何保障整体交付”的核心，优先谈“设备定位精度容差带、夹具快换触发阈值、工装复位逻辑”等设备控制参数，且提出“临时放宽非关键尺寸过程能力要求”存在质量风险。正确口径应优先围绕排产顺序、最小切换批量、换型窗口、参数组预置、缓冲节拍和瓶颈资源分配来调整，质量公差不能为交付随意放宽。</td></tr><tr><td>B5</td><td>Q023</td><td>工艺流程图中，表示‘工序开始’和‘工序结束’的图形分别是什么？请简单说说。</td><td>Gemini3.1pro: 答案中描述“标准椭圆符号加必要文字说明”“主流程用实线、返工/隔离等非主线路径用带箭头虚线”，虽然是描述图形，但对于面试口语作答来说，描述图形形状和线条类型略显生硬，但考虑到是简单题，可以保留。但第三层中“起止符号被误画为矩形或菱形”等，要求候选人描述图形绘制错误，口语表达不自然。更重要的是，题干“表示‘工序开始’和‘工序结束’的图形分别是什么？”过于简单且偏向笔试题，不适合作为面试题。综合判断，题干偏离实际面试场景，标记A1/A2，此处标记A1。</td><td>Q051</td><td>某汽车零部件产线新导入一款高精度压铸件，工艺团队识别出8个可能影响尺寸稳定性的可控因子。现有验证窗口仅允许16次试验，且必须确保所有主效应不与任何二阶交互作用混淆。请简述你如何选择部分因子设计的生成元，并说明该选择对后续工程决策可靠性的关键支撑点。</td><td>Gemini3.1pro: 答案中包含大量公式和符号，如“2^8-4部分因子设计”、“I=ABCD=ABEF=ACEG=BCFH等标准生成元组合”、“2^(7-3)即16次运行的折叠半析因设计”，不适合口语化直接作答，属于B5错误。</td></tr><tr><td>C2</td><td>Q092</td><td>当同一工序的温度传感器读数连续三班次呈现稳定上升趋势，但尚未超出设定范围，这种现象在制程参数监控中属于哪类识别情形？请简述。</td><td>Gemini3.1pro: 题干与Q0091高度重复，均考察对未超限的连续单向变化进行“趋势性漂移”的早期识别，候选人作答思路完全一致。</td><td>Q093</td><td>请简单说说，当某道工序的温度参数连续3次测量值都比标准值高0.5℃且逐次上升时，这属于哪种趋势现象？</td><td>GPT5.5: 题干写“连续3次测量值都比标准值高0.5℃且逐次上升”，若三次都固定高0.5℃，则三次相对标准值相同，不能同时“逐次上升”，题干条件内部矛盾。正确口径应改为“连续3次测量值均高于标准值，且偏差逐次增大”或给出三个不同偏差值。；Gemini3.1pro: 题干与Q0091高度重复，均考察对未超限的连续单向变化进行“趋势性漂移”的早期识别，候选人作答思路完全一致。</td></tr></tbody>
+  </table>
+</body>
+</html>

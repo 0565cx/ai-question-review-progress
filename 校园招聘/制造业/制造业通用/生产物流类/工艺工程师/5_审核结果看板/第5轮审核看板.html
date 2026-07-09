@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Round 5 Dashboard</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; margin: 24px; color: #1f2937; }
+    h1, h2, h3 { margin: 10px 0 12px; }
+    .cards { display: grid; grid-template-columns: repeat(3, minmax(140px, 220px)); gap: 12px; margin: 8px 0 18px; }
+    .card { border: 1px solid #e5e7eb; border-radius: 10px; padding: 12px; background: #fafafa; }
+    .card .k { font-size: 12px; color: #6b7280; }
+    .card .v { font-size: 24px; font-weight: 700; margin-top: 4px; }
+    table { border-collapse: collapse; width: 100%; margin: 8px 0 18px; }
+    th, td { border: 1px solid #e5e7eb; padding: 8px 10px; vertical-align: middle; }
+    th { background: #f9fafb; }
+    .legend span { margin-right: 12px; font-size: 13px; color: #374151; }
+    .mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; }
+    .ex { margin: 6px 0; color: #374151; }
+    .section-divider { border: 0; border-top: 2px solid #eef2f7; margin: 22px 0; }
+  </style>
+</head>
+<body>
+  <h1>Round 5 审核看板</h1>
+
+  <div class="cards">
+    <div class="card"><div class="k">A类错误</div><div class="v">0</div></div>
+    <div class="card"><div class="k">B类错误</div><div class="v">29</div></div>
+    <div class="card"><div class="k">C类错误</div><div class="v">0</div></div>
+  </div>
+
+  <h2>本轮题目主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">五轮题干本身问题较少，本轮删除主要不是题干设计错误，而是回流答案仍未修正关键知识点。两模型没有判出C类重复，也没有出现大面积口语表达或岗位边界问题。个别题干虽然场景复杂，但能支持工艺工程师口头作答，真正影响可用性的集中在答案对题干数据和现场约束的解释错误。</div>
+<h2>本轮答案主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">五轮答案问题高度集中在B1知识性和逻辑性错误，且两模型共识很高。典型问题包括DOE分辨率III/IV与主效应混杂关系写错、Nelson规则编号和连续点数条件反复混淆、帕累托累计折线起点解释错误、Ppk与Cpk数值关系读反、精益浪费中将返工误归为过度加工、控制特性因检测能力不足被错误降级，以及结构完全相同零件却设计几何限位防呆等。</div>
+<h2>后续重新出内容时应补充的规则</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">【重新出题】<br/>后续重出题时可保留多数题干框架，但要继续检查题干给出的数据序列、工艺条件和物理约束是否足够明确。若题干要求基于SPC、DOE、精益浪费或夹具防呆作答，必须给出能支撑唯一判断的条件，避免答案端为了补全背景而自行添加与题干冲突的前提。<br/><br/>【重出答案】<br/>重出答案必须建立硬性知识校验清单：Resolution III不能保证主效应不与二阶交互混杂；Nelson规则第2条、第3条、第4条、第6条不得混用；连续5点上升不能写成Nelson第三条触发；帕累托累计线首个点通常为第一类占比；Ppk/Cpk必须按题干数值比较；返工归入缺陷/不良浪费；控制特性等级由设计、客户和FMEA风险决定，不能因检测手段不足降级；结构完全相同且仅颜色不同的零件不能靠几何限位区分。</div>
+
+  <hr class="section-divider" />
+
+  <h2>模型进度与删除率</h2>
+  <table>
+    <thead>
+      <tr><th>Model</th><th>批次完成</th><th>完成率</th><th>删除率</th><th>主错误</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>GPT5.5</td><td style='text-align:center'>1/1</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:62.5%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">62.5%</span></td><td style='text-align:center'>B</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>1/1</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:58.3%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">58.3%</span></td><td style='text-align:center'>B</td></tr>
+    </tbody>
+  </table>
+
+  <h2>批次状态矩阵</h2>
+  <div class="legend">
+    <span>✓ done</span><span>… running</span><span>○ pending</span><span>! blocked</span><span>x failed</span>
+  </div>
+  <table>
+    <thead><tr><th>Model</th><th>R5-B001</th></tr></thead>
+    <tbody><tr><td>GPT5.5</td><td style='text-align:center'>✓</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>✓</td></tr></tbody>
+  </table>
+
+  <h2>细分错误统计（A1/B1...）</h2>
+  <table>
+    <thead><tr><th>错误子类</th><th>数量</th></tr></thead>
+    <tbody><tr><td>B1</td><td style='text-align:center'>29</td></tr><tr><td>B3</td><td style='text-align:center'>1</td></tr></tbody>
+  </table>
+
+  <h3>细分错误示例（每类2条）</h3>
+  <table>
+    <thead><tr><th>错误子类</th><th>例1-题号</th><th>例1-题目</th><th>例1-理由</th><th>例2-题号</th><th>例2-题目</th><th>例2-理由</th></tr></thead>
+    <tbody><tr><td>B1</td><td>Q002</td><td>一条锂电极片涂布线出现厚度CV值持续超标，经梳理确认有9个工艺参数可调。但客户要求48小时内完成关键因子筛选，且试验必须在不中断量产的前提下嵌入正常班次执行。请简述你如何利用部分因子设计平衡‘分辨度要求’与‘产线嵌入约束’，并解释为何这种平衡能避免误判真正主导因素。</td><td>GPT5.5: 参考答案把“分辨度不低于III级”解释为“确保主效应不与二阶交互作用混杂”，这是DOE知识性错误。Resolution III设计中主效应会与二阶交互作用混杂；若要保证主效应不与任何二阶交互作用混杂，至少应采用Resolution IV设计或通过折叠设计等追加验证来解除主效应与二阶交互的混杂，不能声称III级本身即可保证这一点。；Gemini3.1pro: 第二层中“四是采用分辨率III的2^(9-4)设计”存在知识性错误。9个因子32次试验的2^(9-4)设计最高可达到分辨率IV，不需要委曲求全使用分辨率III，且第一层已明确“分辨度不低于III级...优先选用2^(9-4)即32次试验”，前后存在逻辑矛盾。</td><td>Q002</td><td>一条锂电极片涂布线出现厚度CV值持续超标，经梳理确认有9个工艺参数可调。但客户要求48小时内完成关键因子筛选，且试验必须在不中断量产的前提下嵌入正常班次执行。请简述你如何利用部分因子设计平衡‘分辨度要求’与‘产线嵌入约束’，并解释为何这种平衡能避免误判真正主导因素。</td><td>GPT5.5: 参考答案把“分辨度不低于III级”解释为“确保主效应不与二阶交互作用混杂”，这是DOE知识性错误。Resolution III设计中主效应会与二阶交互作用混杂；若要保证主效应不与任何二阶交互作用混杂，至少应采用Resolution IV设计或通过折叠设计等追加验证来解除主效应与二阶交互的混杂，不能声称III级本身即可保证这一点。；Gemini3.1pro: 第二层中“四是采用分辨率III的2^(9-4)设计”存在知识性错误。9个因子32次试验的2^(9-4)设计最高可达到分辨率IV，不需要委曲求全使用分辨率III，且第一层已明确“分辨度不低于III级...优先选用2^(9-4)即32次试验”，前后存在逻辑矛盾。</td></tr><tr><td>B3</td><td>Q014</td><td>一条装配线每日产生约150件返工品，其中82%需重新拧紧同一颗螺栓。现场观察发现：扭矩枪校准记录齐全，但每班次首件未做实测验证，且操作工习惯性‘凭手感’补拧。请指出这背后最核心的浪费类型，并解释为何它不属于其他六类浪费。</td><td>GPT5.5: 参考答案把每日150件返工品、82%需重新拧紧同一颗螺栓的核心浪费归为“过度加工”，分类不准确。返工品和返修动作在精益七大浪费中首要对应“缺陷/不良”浪费；补拧是缺陷后的返工处置，不应把核心浪费解释为过度加工并据此排除缺陷浪费。；Gemini3.1pro: 第一层中“最核心的浪费类型是‘过度加工’”存在知识性错误，返工品重新拧紧在精益生产中属于“缺陷（不良）浪费”；且答案未回答题干中“解释为何它不属于其他六类浪费”的要求，存在跑题（B3）。</td><td>nan</td><td>nan</td><td>nan</td></tr></tbody>
+  </table>
+</body>
+</html>
