@@ -27,7 +27,8 @@ FOLDERS = {
     "重出答案": "4_需重新出答案",
     "看板": "5_审核结果看板",
     "收尾": "6_收尾题目",
-    "汇总": "7_汇总",
+    "汇总": "7_知识审核后汇总",
+    "最终汇总": "9_最终汇总",
 }
 # 语言问题审核的 4 个子文件夹（顺序即流程）
 LANG_SUB = ["待语言问题审核", "一审结果", "待重出", "重出结果"]
@@ -110,6 +111,7 @@ def analyze(pos_dir: Path):
 
     extra = {"收尾": list_files(pos_dir / FOLDERS["收尾"]),
              "汇总": list_files(pos_dir / FOLDERS["汇总"]),
+             "最终汇总": list_files(pos_dir / FOLDERS["最终汇总"]),
              "语言": {k: list_files(pos_dir / v) for k, v in LANG_DIRS.items()}}
 
     max_r = max(got.keys(), default=0)
@@ -207,8 +209,9 @@ def build_html(rows, order, total, n_todo, n_doing):
              '<span class="dot on"></span></span>'
              '　绿色 = 已上传，灰色 = 待上传　·　鼠标悬停格子可看具体文件名<br>'
              '<b>收尾题目</b>：知识审核最后一轮重新出的题目　·　'
-             '<b>汇总</b>：全部轮次完成后最终保留的题目　·　'
-             '<b>语言审核</b>（4格）：① 待语言问题审核　② 一审结果　③ 待重出　④ 重出结果'
+             '<b>知识审核后汇总</b>：知识审核全部轮次完成后保留的题目　·　'
+             '<b>语言审核</b>（4格）：① 待语言问题审核　② 一审结果　③ 待重出　④ 重出结果　·　'
+             '<b>最终汇总</b>：语言审核也完成后最终保留的题目'
              '</div>')
 
     def render_cell(got_set, files_map):
@@ -262,7 +265,8 @@ def build_html(rows, order, total, n_todo, n_doing):
             '<th style="text-align:left">岗位</th><th>分工</th><th>状态</th>')
     for lab in slot_labels:
         head += f'<th>{lab}</th>'
-    head += '<th>收尾题目</th><th>汇总</th><th>语言审核</th></tr>'
+    head += ('<th>收尾题目</th><th>知识审核后汇总</th>'
+             '<th>语言审核</th><th>最终汇总</th></tr>')
     P.append(head)
 
     # 计算每个 (行业,子行业) 的行数，用于 rowspan 合并
@@ -286,8 +290,9 @@ def build_html(rows, order, total, n_todo, n_doing):
             for lab, gset, fmap in display_slots(r["_got"], r["_files"], global_max):
                 row += '<td>' + render_cell(gset, fmap) + '</td>'
             row += '<td>' + render_single(r["_extra"]["收尾"], "收尾题目") + '</td>'
-            row += '<td>' + render_single(r["_extra"]["汇总"], "汇总题目") + '</td>'
+            row += '<td>' + render_single(r["_extra"]["汇总"], "知识审核后汇总") + '</td>'
             row += '<td>' + render_lang(r["_extra"]["语言"]) + '</td>'
+            row += '<td>' + render_single(r["_extra"]["最终汇总"], "最终汇总") + '</td>'
             row += '</tr>'
             P.append(row)
     P.append('</table>')
@@ -321,7 +326,7 @@ def main():
     L.append("")
     L.append("> ① 待审题表　② 保留题目　③ 需重出题　④ 需重出答案　⑤ 审核看板　——　● = 已上传，○ = 待上传")
     L.append("")
-    L.append("> **汇总**：全部轮次完成后最终保留的题目（● = 已传）。**语言审核**：4 个环节顺序为 ① 待语言问题审核　② 一审结果　③ 待重出　④ 重出结果。")
+    L.append("> **知识审核后汇总**：知识审核全部轮次完成后保留的题目（● = 已传）。**语言审核**：4 个环节顺序为 ① 待语言问题审核　② 一审结果　③ 待重出　④ 重出结果。**最终汇总**：语言审核也完成后最终保留的题目（● = 已传）。")
     L.append("")
     L.append("## 总览")
     L.append("")
@@ -352,8 +357,8 @@ def main():
     for lab in slot_labels:
         head += f" {lab} |"
         sep += ":-:|"
-    head += " 收尾题目 | 汇总 | 语言审核 |"
-    sep += ":-:|:-:|:-:|"
+    head += " 收尾题目 | 知识审核后汇总 | 语言审核 | 最终汇总 |"
+    sep += ":-:|:-:|:-:|:-:|"
     L.append(head)
     L.append(sep)
     for ind, sub in order:
@@ -368,7 +373,8 @@ def main():
             for lab, gset, fmap in display_slots(r["_got"], r["_files"], global_max):
                 line += f" {dots(gset) if gset else '—'} |"
             line += (f" {'●' if r['_extra']['收尾'] else '○'} |"
-                     f" {'●' if r['_extra']['汇总'] else '○'} | {lang_dots(r['_extra']['语言'])} |")
+                     f" {'●' if r['_extra']['汇总'] else '○'} | {lang_dots(r['_extra']['语言'])} |"
+                     f" {'●' if r['_extra']['最终汇总'] else '○'} |")
             L.append(line)
     L.append("")
 
@@ -383,11 +389,12 @@ def main():
     L.append("| `4_需重新出答案` | 各轮审核后需要重新出答案的清单 |")
     L.append("| `5_审核结果看板` | 各轮审核后生成的看板 |")
     L.append("| `6_收尾题目` | 知识审核最后一轮重新出的题目 |")
-    L.append("| `7_汇总` | 全部轮次审核完成后最终保留的所有题目 |")
+    L.append("| `7_知识审核后汇总` | 知识审核全部轮次完成后保留的所有题目 |")
     L.append("| `8_语言问题审核/1_待语言问题审核` | 待语言问题审核的题目 |")
     L.append("| `8_语言问题审核/2_一审结果` | 语言问题一审结果 |")
     L.append("| `8_语言问题审核/3_待重出` | 语言问题待重出清单 |")
     L.append("| `8_语言问题审核/4_重出结果` | 语言问题重出结果 |")
+    L.append("| `9_最终汇总` | 语言审核也完成后最终保留的所有题目 |")
     L.append("")
 
     (ROOT / "进度看板.md").write_text("\n".join(L) + "\n", encoding="utf-8")
