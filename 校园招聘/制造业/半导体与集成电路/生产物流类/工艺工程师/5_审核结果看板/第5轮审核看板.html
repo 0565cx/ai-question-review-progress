@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Round 5 Dashboard</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; margin: 24px; color: #1f2937; }
+    h1, h2, h3 { margin: 10px 0 12px; }
+    .cards { display: grid; grid-template-columns: repeat(3, minmax(140px, 220px)); gap: 12px; margin: 8px 0 18px; }
+    .card { border: 1px solid #e5e7eb; border-radius: 10px; padding: 12px; background: #fafafa; }
+    .card .k { font-size: 12px; color: #6b7280; }
+    .card .v { font-size: 24px; font-weight: 700; margin-top: 4px; }
+    table { border-collapse: collapse; width: 100%; margin: 8px 0 18px; }
+    th, td { border: 1px solid #e5e7eb; padding: 8px 10px; vertical-align: middle; }
+    th { background: #f9fafb; }
+    .legend span { margin-right: 12px; font-size: 13px; color: #374151; }
+    .mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; }
+    .ex { margin: 6px 0; color: #374151; }
+    .section-divider { border: 0; border-top: 2px solid #eef2f7; margin: 22px 0; }
+  </style>
+</head>
+<body>
+  <h1>Round 5 审核看板</h1>
+
+  <div class="cards">
+    <div class="card"><div class="k">A类错误</div><div class="v">25</div></div>
+    <div class="card"><div class="k">B类错误</div><div class="v">11</div></div>
+    <div class="card"><div class="k">C类错误</div><div class="v">1</div></div>
+  </div>
+
+  <h2>本轮题目主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">五轮回流题目数已收敛到 36 题，但仍有部分题干问题需要处理。本轮主要问题是重复题和题干口语适配性风险：例如套刻精度和套刻量测的题目在候选人作答路径上高度重合，部分题干仍然较长、包含多层产线背景和参数限制，对语音面试播报和候选人即时理解不够友好。需注意的是，Gemini3.1pro 本轮删除率为 47.2%，略高于质量漂移告警线，其中若干删除理由集中在“题干超过 100 字”或“口语听读困难”，这类判断应在下一轮人工复核时作为风险点重点看。</div>
+<h2>本轮答案主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">五轮答案问题继续集中在专业事实与工艺逻辑上。高频错误包括：将 JEP122 等失效机理指南误写为电迁移应力测试中的新模块依据，把三因子两水平 8 次实验误称为部分因子设计，把 Plackett-Burman 设计的能力边界写错，把 PAB/PEB 等光刻烘烤术语定义错位，以及将 MOSFET 的横向源极/沟道/漏极误当成基本三层垂直物理结构。这些问题说明重出答案时仍需要对标准、术语和物理方向做事实核验。</div>
+<h2>后续重新出内容时应补充的规则</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">【重新出题】<br/>下一轮如继续重出题，建议先做一次人工小样本复核，特别是对 Gemini3.1pro 判为“题干过长”的题目判断是否真的需要重出。新题应保持单一清晰的工艺场景，避免一题中同时给出多个前提、多个限制和多条排查路径。对套刻、SPC控制图、DOE、MOS结构和 SAM 失效分析等已多次出现的知识点，生成前必须做语义去重。<br/><br/>【重出答案】<br/>重出答案时必须把“标准名称与用途”“实验设计类型与可估计效应”“器件物理结构与横向功能区”“声学显微检测强反射机理”作为自检项。答案要给出可执行的判据和工艺边界，不要虚构标准模块，也不要把通用术语强行改写成错误的工艺名称。</div>
+
+  <hr class="section-divider" />
+
+  <h2>模型进度与删除率</h2>
+  <table>
+    <thead>
+      <tr><th>Model</th><th>批次完成</th><th>完成率</th><th>删除率</th><th>主错误</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>GPT5.5</td><td style='text-align:center'>1/1</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:22.2%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">22.2%</span></td><td style='text-align:center'>B>C</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>1/1</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:47.2%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">47.2%</span></td><td style='text-align:center'>A>B</td></tr>
+    </tbody>
+  </table>
+
+  <h2>批次状态矩阵</h2>
+  <div class="legend">
+    <span>✓ done</span><span>… running</span><span>○ pending</span><span>! blocked</span><span>x failed</span>
+  </div>
+  <table>
+    <thead><tr><th>Model</th><th>R5-B001</th></tr></thead>
+    <tbody><tr><td>GPT5.5</td><td style='text-align:center'>✓</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>✓</td></tr></tbody>
+  </table>
+
+  <h2>细分错误统计（A1/B1...）</h2>
+  <table>
+    <thead><tr><th>错误子类</th><th>数量</th></tr></thead>
+    <tbody><tr><td>A1</td><td style='text-align:center'>14</td></tr><tr><td>A2</td><td style='text-align:center'>11</td></tr><tr><td>B1</td><td style='text-align:center'>7</td></tr><tr><td>B3</td><td style='text-align:center'>1</td></tr><tr><td>B4</td><td style='text-align:center'>3</td></tr><tr><td>C2</td><td style='text-align:center'>1</td></tr></tbody>
+  </table>
+
+  <h3>细分错误示例（每类2条）</h3>
+  <table>
+    <thead><tr><th>错误子类</th><th>例1-题号</th><th>例1-题目</th><th>例1-理由</th><th>例2-题号</th><th>例2-题目</th><th>例2-理由</th></tr></thead>
+    <tbody><tr><td>A1</td><td>Q008</td><td>某晶圆批次在刻蚀工序后出现系统性电性参数漂移，触发8D流程。D3临时措施已实施，但D4根因分析中发现多个潜在因素：设备腔室压力波动、光刻胶残留、前道清洗不充分。请简述你如何运用8D方法中的证据链构建逻辑，优先锁定最可能根因，并说明在产线资源受限、无法同步验证所有假设时，你的排查顺序和决策依据。</td><td>Gemini3.1pro: 题干字数超过100字，且包含较复杂的背景铺垫，影响口语听读。</td><td>Q009</td><td>某12英寸晶圆厂在进行FinFET器件源漏区高剂量砷离子注入后，发现多批次晶圆的结深一致性突然恶化，表现为同一片内中心与边缘区域的电性参数离散度增大，且WAT中Vt漂移同步加剧；而该机台近期未做维护，束流稳定性监控数据正常。请简述你判断问题根源时最关键的两个工艺物理机制，并说明如何利用产线现有在线量测数据快速交叉验证。</td><td>Gemini3.1pro: 题干字数超过100字，且包含复杂的产线背景预设，不适合口语提问。</td></tr><tr><td>A2</td><td>Q008</td><td>某晶圆批次在刻蚀工序后出现系统性电性参数漂移，触发8D流程。D3临时措施已实施，但D4根因分析中发现多个潜在因素：设备腔室压力波动、光刻胶残留、前道清洗不充分。请简述你如何运用8D方法中的证据链构建逻辑，优先锁定最可能根因，并说明在产线资源受限、无法同步验证所有假设时，你的排查顺序和决策依据。</td><td>Gemini3.1pro: 题干字数超过100字，且包含较复杂的背景铺垫，影响口语听读。</td><td>Q009</td><td>某12英寸晶圆厂在进行FinFET器件源漏区高剂量砷离子注入后，发现多批次晶圆的结深一致性突然恶化，表现为同一片内中心与边缘区域的电性参数离散度增大，且WAT中Vt漂移同步加剧；而该机台近期未做维护，束流稳定性监控数据正常。请简述你判断问题根源时最关键的两个工艺物理机制，并说明如何利用产线现有在线量测数据快速交叉验证。</td><td>Gemini3.1pro: 题干字数超过100字，且包含复杂的产线背景预设，不适合口语提问。</td></tr><tr><td>B1</td><td>Q019</td><td>某晶圆厂在对一款新型铜互连结构开展高加速应力测试时，发现依据现行标准设定的电压和温度条件，测试结果无法复现客户端实际使用中出现的电迁移失效。已确认测试设备、样品制备和数据采集均无异常。请简述：此时应重点核查该标准中哪三项与电迁移物理机制强相关的试验约束条件，并说明每项条件为何可能偏离真实工况。</td><td>GPT5.5: 第三层答案引用“推动将JEDEC JEP122G中新增的‘热-电联合循环测试’模块纳入本厂可靠性验证基线”，该表述存在知识性错误。JEP122主要是半导体器件失效机理与模型类指南，并非铜互连电迁移应力测试标准中新增“热-电联合循环测试模块”的依据；正确表述应回到电迁移相关测试标准/方法与客户真实电流密度、结温、占空比和版图电流拥挤条件的映射验证，不能虚构标准模块。；Gemini3.1pro: 题干冗长，字数超过100字，包含多层测试设定背景信息。</td><td>Q022</td><td>在监控某道薄膜沉积工序的厚度均匀性时，发现不同批次间差异变大。已知设备腔体温度、气体流量和射频功率三个参数可调，且需判断它们各自的影响强弱及两两之间的交互作用。请简述你将如何设计一组最少实验次数的因子实验来高效验证这些影响。</td><td>GPT5.5: 第一层答案原文称“采用三因子两水平的部分因子实验设计，共运行8次实验，覆盖主效应和全部两阶交互作用”。三因子两水平8次实验是2^3全因子设计，不是部分因子设计；若称部分因子则概念错误。正确应表述为采用三因子两水平全因子设计，共8次实验，在通常忽略三阶交互或具备重复/中心点补充的前提下估计主效应和两两交互。；Gemini3.1pro: 题干字数超过100字，影响口语听读。</td></tr><tr><td>B3</td><td>Q029</td><td>当需要监控每批晶圆的针测不良数时，每批晶圆数量固定为25片，应选择哪一类控制图？请简述依据。</td><td>GPT5.5: 题干原文是“监控每批晶圆的针测不良数，每批晶圆数量固定为25片”，答案却将其解释为“每片晶圆的不良点数”和“每片晶圆平均不良数”，并据此选择u控制图，存在跑题和控制图选型风险。若题干中的“不良数”指每批25片中的不良片数，应选np图；若指固定检验机会下的总缺陷数，应优先考虑c图。正确答案必须先按题干固定子组的计数对象区分不良品数与缺陷数，不能直接改写为单位缺陷数。；Gemini3.1pro: 第二层答案未结合实际工作场景给出三种具体做法，仅解释了四种控制图理论，且未明确指出当前最管用的实际做法。</td><td>nan</td><td>nan</td><td>nan</td></tr><tr><td>B4</td><td>Q010</td><td>套刻量测在晶圆制造中，主要用来评估前后两层光刻图形之间的什么关系？请简单说说。</td><td>GPT5.5: 与顺序在前的R5Q0005高度重复。R5Q0005题干为“套刻精度在光刻工艺中具体是指哪两个图形层之间位置偏差的量化指标”，R5Q0010题干为“套刻量测在晶圆制造中，主要用来评估前后两层光刻图形之间的什么关系”，从回答者角度都会回答前后/相邻两层光刻图形之间的对准精度或位置偏差，核心作答思路几乎一致。；Gemini3.1pro: 第二层答案未明确指出“当前最管用的做法”，逻辑递进结构不符合提示词要求。</td><td>Q014</td><td>在晶圆制程中，光刻与刻蚀两个工艺模块需紧密协同，它们之间最直接的协同依据是什么？请简述。</td><td>Gemini3.1pro: 第二层答案缺少对“当前最管用的做法”的明确指出和推荐，不符合逻辑递进要求。</td></tr><tr><td>C2</td><td>Q010</td><td>套刻量测在晶圆制造中，主要用来评估前后两层光刻图形之间的什么关系？请简单说说。</td><td>GPT5.5: 与顺序在前的R5Q0005高度重复。R5Q0005题干为“套刻精度在光刻工艺中具体是指哪两个图形层之间位置偏差的量化指标”，R5Q0010题干为“套刻量测在晶圆制造中，主要用来评估前后两层光刻图形之间的什么关系”，从回答者角度都会回答前后/相邻两层光刻图形之间的对准精度或位置偏差，核心作答思路几乎一致。；Gemini3.1pro: 第二层答案未明确指出“当前最管用的做法”，逻辑递进结构不符合提示词要求。</td><td>nan</td><td>nan</td><td>nan</td></tr></tbody>
+  </table>
+</body>
+</html>

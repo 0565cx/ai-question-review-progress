@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Round 4 Dashboard</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; margin: 24px; color: #1f2937; }
+    h1, h2, h3 { margin: 10px 0 12px; }
+    .cards { display: grid; grid-template-columns: repeat(3, minmax(140px, 220px)); gap: 12px; margin: 8px 0 18px; }
+    .card { border: 1px solid #e5e7eb; border-radius: 10px; padding: 12px; background: #fafafa; }
+    .card .k { font-size: 12px; color: #6b7280; }
+    .card .v { font-size: 24px; font-weight: 700; margin-top: 4px; }
+    table { border-collapse: collapse; width: 100%; margin: 8px 0 18px; }
+    th, td { border: 1px solid #e5e7eb; padding: 8px 10px; vertical-align: middle; }
+    th { background: #f9fafb; }
+    .legend span { margin-right: 12px; font-size: 13px; color: #374151; }
+    .mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; }
+    .ex { margin: 6px 0; color: #374151; }
+    .section-divider { border: 0; border-top: 2px solid #eef2f7; margin: 22px 0; }
+  </style>
+</head>
+<body>
+  <h1>Round 4 审核看板</h1>
+
+  <div class="cards">
+    <div class="card"><div class="k">A类错误</div><div class="v">11</div></div>
+    <div class="card"><div class="k">B类错误</div><div class="v">29</div></div>
+    <div class="card"><div class="k">C类错误</div><div class="v">4</div></div>
+  </div>
+
+  <h2>本轮题目主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">四轮回流题目总体质量比三轮有收敛，但仍存在三类题干问题：一是简单题中夹带明确应用场景，与“简单题应为无场景纯理论考察”的难度定义冲突。二是少数题干仍存在自问自答，如题干已明示离子注入与退火的交互影响，却再问应协同排查哪两个模块。三是重复题仍在，主要集中在套刻量测、SPC控制图选型、封装分层空洞和工艺能力与设计规则冲突等相邻知识点上。</div>
+<h2>本轮答案主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">四轮答案错误仍以 B1 为主，高频问题是将统计质量控制、DOE、PFMEA和半导体工艺机理写错或写反。典型例子包括将计数型 particle 数据误判为连续型数据并推荐 I-MR 图，把 Plackett-Burman 设计说成可同时无混杂估计主效应和二阶交互，把 RPN 基本乘积计算说成不对应具体数值，以及将 SAM 中空气间隙强反射错说为回波微弱或消失。此外，部分答案仍存在未解释的英文术语和缩写堆叠，降低了口头面试的可答性。</div>
+<h2>后续重新出内容时应补充的规则</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">【重新出题】<br/>下一轮重新出题时需先做两道校验：难度校验和去重校验。简单题只保留概念、原理或适用条件的口头识别问法，若加入具体产线异常、工艺参数联动或排查任务，应至少标为中等或困难。同一知识点下要避免换数字、换场景但作答路径不变的题目。<br/><br/>【重出答案】<br/>重出答案时必须强制校对专业事实和统计规则：SPC 规则编号与触发条件要匹配，计数型与连续型数据要选用合适控制图，DOE 设计要区分全因子、部分因子和 PB 设计的能力边界。工艺机理类答案要先校验物理方向，如去胶与退火时序、湿法刻蚀物种、PVD 面氧化对溅射速率的影响、SAM 声阻抗反射等，再组织口头可答的三层答案。</div>
+
+  <hr class="section-divider" />
+
+  <h2>模型进度与删除率</h2>
+  <table>
+    <thead>
+      <tr><th>Model</th><th>批次完成</th><th>完成率</th><th>删除率</th><th>主错误</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>GPT5.5</td><td style='text-align:center'>4/4</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:11.7%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">11.7%</span></td><td style='text-align:center'>B>C>A</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>4/4</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:13.6%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">13.6%</span></td><td style='text-align:center'>B>A>C</td></tr>
+    </tbody>
+  </table>
+
+  <h2>批次状态矩阵</h2>
+  <div class="legend">
+    <span>✓ done</span><span>… running</span><span>○ pending</span><span>! blocked</span><span>x failed</span>
+  </div>
+  <table>
+    <thead><tr><th>Model</th><th>R4-B001</th><th>R4-B002</th><th>R4-B003</th><th>R4-B004</th></tr></thead>
+    <tbody><tr><td>GPT5.5</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td></tr></tbody>
+  </table>
+
+  <h2>细分错误统计（A1/B1...）</h2>
+  <table>
+    <thead><tr><th>错误子类</th><th>数量</th></tr></thead>
+    <tbody><tr><td>A1</td><td style='text-align:center'>10</td></tr><tr><td>A4</td><td style='text-align:center'>1</td></tr><tr><td>B1</td><td style='text-align:center'>26</td></tr><tr><td>B3</td><td style='text-align:center'>1</td></tr><tr><td>B5</td><td style='text-align:center'>2</td></tr><tr><td>C2</td><td style='text-align:center'>4</td></tr></tbody>
+  </table>
+
+  <h3>细分错误示例（每类2条）</h3>
+  <table>
+    <thead><tr><th>错误子类</th><th>例1-题号</th><th>例1-题目</th><th>例1-理由</th><th>例2-题号</th><th>例2-题目</th><th>例2-理由</th></tr></thead>
+    <tbody><tr><td>A1</td><td>Q001</td><td>在监控晶圆制造关键参数时，如果控制图上连续三点中有两点落在中心线同一侧的B区以外，这对应哪一条判异规则？请简单说说它提示我们关注什么。</td><td>Gemini3.1pro: SPC的八大判异规则中并没有“连续三点中有两点落在中心线同一侧的B区以外”的规则。正确的规则应为“连续3点中有2点落在中心线同一侧的A区以外”或“连续5点中有4点落在中心线同一侧的B区以外”。题干与第一层答案均存在严重的知识性错误。</td><td>Q007</td><td>请简单说说，在编写一道光刻工序的操作规范时，为什么必须写清楚每次涂胶前要检查匀胶机的转速和温度参数？</td><td>Gemini3.1pro: 1. 知识性错误(B1)：第一层答案描述“选用部分因子设计中的三因子两水平全因子设计”，全因子设计与部分因子设计是互斥的概念，不能混为一谈。2. 跑题与逻辑矛盾(A1/B3)：题干要求将“显影液浓度恒定”这一约束转化为“可控因子层级”，但答案第一层却将其作为“固定背景条件...受控的常量层级而非变量因子”，前后矛盾且未能回答题干问题。</td></tr><tr><td>A4</td><td>Q005</td><td>工艺文件里写明‘氧化层厚度：1000±20埃’，这个‘±20’代表的是什么含义？请简单说说。</td><td>Gemini3.1pro: 题干“这个‘±20’代表的是什么含义？”要求候选人解释符号含义，直接违反了“凡题干要求候选人说出、列出、写出或解释符号含义等内容，一律标记A4并删除”的审核规则。</td><td>nan</td><td>nan</td><td>nan</td></tr><tr><td>B1</td><td>Q001</td><td>在监控晶圆制造关键参数时，如果控制图上连续三点中有两点落在中心线同一侧的B区以外，这对应哪一条判异规则？请简单说说它提示我们关注什么。</td><td>Gemini3.1pro: SPC的八大判异规则中并没有“连续三点中有两点落在中心线同一侧的B区以外”的规则。正确的规则应为“连续3点中有2点落在中心线同一侧的A区以外”或“连续5点中有4点落在中心线同一侧的B区以外”。题干与第一层答案均存在严重的知识性错误。</td><td>Q007</td><td>请简单说说，在编写一道光刻工序的操作规范时，为什么必须写清楚每次涂胶前要检查匀胶机的转速和温度参数？</td><td>Gemini3.1pro: 1. 知识性错误(B1)：第一层答案描述“选用部分因子设计中的三因子两水平全因子设计”，全因子设计与部分因子设计是互斥的概念，不能混为一谈。2. 跑题与逻辑矛盾(A1/B3)：题干要求将“显影液浓度恒定”这一约束转化为“可控因子层级”，但答案第一层却将其作为“固定背景条件...受控的常量层级而非变量因子”，前后矛盾且未能回答题干问题。</td></tr><tr><td>B3</td><td>Q007</td><td>请简单说说，在编写一道光刻工序的操作规范时，为什么必须写清楚每次涂胶前要检查匀胶机的转速和温度参数？</td><td>Gemini3.1pro: 1. 知识性错误(B1)：第一层答案描述“选用部分因子设计中的三因子两水平全因子设计”，全因子设计与部分因子设计是互斥的概念，不能混为一谈。2. 跑题与逻辑矛盾(A1/B3)：题干要求将“显影液浓度恒定”这一约束转化为“可控因子层级”，但答案第一层却将其作为“固定背景条件...受控的常量层级而非变量因子”，前后矛盾且未能回答题干问题。</td><td>nan</td><td>nan</td><td>nan</td></tr><tr><td>B5</td><td>Q053</td><td>在CD-SEM量测中，如果发现同一图形在不同视野下的线宽读数差异明显，最可能影响测量一致性的操作因素是什么？请简单说说。</td><td>Gemini3.1pro: 1.题干逻辑不严谨，难度标签与题目内容不匹配。题目难度标为“简单”，但规则规定简单难度应为“无场景，纯理论考察”，而本题题干设定了“发现同一图形在不同视野下的线宽读数差异明显”的具体应用场景，应属于中等难度。正确的应该是将难度修改为“中等”或去除场景描述。2.参考答案中存在大量英文缩写和术语堆叠（如“Per-Field Auto-Focus”、“Reference Field Focus Lock”、“stigmator”、“Dynamic Aperture Matching”、“beam alignment check”、“full beam alignment + stigmator map re-learning”等），整体已经明显不适合口语直接作答。正确的应该是将这些术语转化为通俗易懂的中文口语表达。</td><td>Q062</td><td>在RDL光刻制程中，对准标记（Alignment Mark）的主要作用是什么？请简单说说。</td><td>Gemini3.1pro: 参考答案中存在大量英文缩写和术语堆叠（如“Multi-field local alignment”、“Laser-Induced Thermal Expansion（LITE）”、“Overlay metrology”、“layer-to-layer overlay trace”、“die-level topography map”、“dynamic focus correction”等），整体已经明显不适合口语直接作答。正确的应该是将这些术语转化为通俗易懂的中文口语表达。</td></tr><tr><td>C2</td><td>Q049</td><td>在晶圆制造中，套刻量测主要用来检查哪一道工序的对准精度？请简单说说。</td><td>GPT5.5: 与前序题 R4Q0011 均围绕套刻/overlay量测反映相邻图形层或前后层对准精度，核心考点和标准回答高度重合，属于同批范围内重复题。</td><td>Q080</td><td>请简单说说，套刻精度这个指标，主要用来衡量光刻过程中前后两道图形层之间的什么关系？</td><td>GPT5.5: 与 R4Q0011 关于套刻精度反映当前层与前一层图形对准关系的题意和答案几乎完全重复，属于跨批次重复考点题。</td></tr></tbody>
+  </table>
+</body>
+</html>
