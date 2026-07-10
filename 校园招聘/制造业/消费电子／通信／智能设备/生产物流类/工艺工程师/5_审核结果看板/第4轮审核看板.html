@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Round 4 Dashboard</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; margin: 24px; color: #1f2937; }
+    h1, h2, h3 { margin: 10px 0 12px; }
+    .cards { display: grid; grid-template-columns: repeat(3, minmax(140px, 220px)); gap: 12px; margin: 8px 0 18px; }
+    .card { border: 1px solid #e5e7eb; border-radius: 10px; padding: 12px; background: #fafafa; }
+    .card .k { font-size: 12px; color: #6b7280; }
+    .card .v { font-size: 24px; font-weight: 700; margin-top: 4px; }
+    table { border-collapse: collapse; width: 100%; margin: 8px 0 18px; }
+    th, td { border: 1px solid #e5e7eb; padding: 8px 10px; vertical-align: middle; }
+    th { background: #f9fafb; }
+    .legend span { margin-right: 12px; font-size: 13px; color: #374151; }
+    .mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; }
+    .ex { margin: 6px 0; color: #374151; }
+    .section-divider { border: 0; border-top: 2px solid #eef2f7; margin: 22px 0; }
+  </style>
+</head>
+<body>
+  <h1>Round 4 审核看板</h1>
+
+  <div class="cards">
+    <div class="card"><div class="k">A类错误</div><div class="v">2</div></div>
+    <div class="card"><div class="k">B类错误</div><div class="v">12</div></div>
+    <div class="card"><div class="k">C类错误</div><div class="v">0</div></div>
+  </div>
+
+  <h2>本轮题目主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">四轮题干本身问题较少，主要风险集中在少量题干命题逻辑不严谨，如把不必然成立的工艺因果关系写入题干。</div>
+<h2>本轮答案主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">四轮删除项主要来自答案B类问题，高频点包括标准引用不准、SMT抛料与回流缺陷混淆、AOI/SPI边界混淆、以及未回应题干约束。</div>
+<h2>后续重新出内容时应补充的规则</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">【重新出题】<br/>重新出题时需检查题干的前提是否必然成立，避免把错误因果关系设为问题核心。<br/><br/>【重出答案】<br/>重出答案时必须复核工艺概念、标准适用范围和检测工序边界，不得用不相关标准支撑结论。</div>
+
+  <hr class="section-divider" />
+
+  <h2>模型进度与删除率</h2>
+  <table>
+    <thead>
+      <tr><th>Model</th><th>批次完成</th><th>完成率</th><th>删除率</th><th>主错误</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>GPT5.5</td><td style='text-align:center'>2/2</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:15.2%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">15.2%</span></td><td style='text-align:center'>B>A</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>2/2</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:0%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">0.0%</span></td><td style='text-align:center'>none</td></tr>
+    </tbody>
+  </table>
+
+  <h2>批次状态矩阵</h2>
+  <div class="legend">
+    <span>✓ done</span><span>… running</span><span>○ pending</span><span>! blocked</span><span>x failed</span>
+  </div>
+  <table>
+    <thead><tr><th>Model</th><th>R4-B001</th><th>R4-B002</th></tr></thead>
+    <tbody><tr><td>GPT5.5</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td></tr></tbody>
+  </table>
+
+  <h2>细分错误统计（A1/B1...）</h2>
+  <table>
+    <thead><tr><th>错误子类</th><th>数量</th></tr></thead>
+    <tbody><tr><td>A1</td><td style='text-align:center'>2</td></tr><tr><td>B1</td><td style='text-align:center'>10</td></tr><tr><td>B3</td><td style='text-align:center'>2</td></tr></tbody>
+  </table>
+
+  <h3>细分错误示例（每类2条）</h3>
+  <table>
+    <thead><tr><th>错误子类</th><th>例1-题号</th><th>例1-题目</th><th>例1-理由</th><th>例2-题号</th><th>例2-题目</th><th>例2-理由</th></tr></thead>
+    <tbody><tr><td>A1</td><td>R4Q0043</td><td>为什么测试工位的节拍不能明显短于前道装配工位？请简述原因。</td><td>GPT5.5: 题干问“为什么测试工位的节拍不能明显短于前道装配工位”，该命题本身不严谨：测试工位节拍短于前道通常表示测试能力更强，会造成测试工位等待或资源利用率低，不会必然导致前道装配工位积压。参考答案第一层进一步称“测试工位长期空闲、装配工位持续积压”，其中“装配工位持续积压”逻辑错误，积压通常发生在慢工位之前。</td><td>R4Q0052</td><td>某5G基站射频模块在老化测试前需安装专用散热垫片，但现场发现垫片正反面材质不同，反装会导致热阻超标。现有治具允许双向放入，且垫片无明显视觉差异。请简述你如何在治具定位结构上实现‘单向唯一装配’，并说明该设计如何兼顾量产可维护性与操作员误操作容错能力。</td><td>GPT5.5: 题干说明垫片“正反面材质不同、无明显视觉差异、现有治具允许双向放入”，要求在治具定位结构上实现单向唯一装配。若垫片本体没有可被治具识别的非对称几何特征，仅在治具上设置“单侧斜切导向槽”或“限位凸台”无法区分正反面；参考答案第一层和第二层未解决垫片两面几何相同但材料面不同这一核心约束，所给纯结构防错方案机理不成立。</td></tr><tr><td>B1</td><td>R4Q0001</td><td>在量产阶段，某型号智能设备的主板焊接后频繁出现虚焊问题，经分析确认与回流焊温度曲线相关。你在编制或更新该工序的控制计划时，会将哪些具体参数列为关键控制特性？请简述判断依据。</td><td>GPT5.5: 参考答案第一层称“峰值温度、液相线以上时间、升温斜率、冷却斜率……均被IPC J-STD-020和JEDEC JESD22-A108标准明确定义为影响焊点可靠性的核心热力学变量”。该表述不准确：J-STD-020主要用于器件湿敏/回流耐受等级及封装耐受曲线，JESD22-A108是温度偏置寿命试验标准，不能作为回流焊控制计划中这些参数均被明确定义为焊点可靠性核心变量的依据。</td><td>R4Q0008</td><td>某智能穿戴设备在SMT贴片后AOI检测中，发现焊点虚焊不良率近期波动上升。控制计划原定每小时抽检10块板，现在你观察到连续3小时的抽检数据中，每小时不良数都集中在该时段后半段。请简单说说，你会怎样调整检验频次的安排，来更有效地捕捉过程异常。</td><td>GPT5.5: 参考答案第二层称固定时段强化“符合IPC-A-610对关键缺陷‘聚焦风险时段’的抽样导向”。IPC-A-610是电子组件可接受性判定标准，不是控制计划抽样时段设计或检验频次调整的抽样指导文件，引用依据错误。</td></tr><tr><td>B3</td><td>R4Q0049</td><td>一款通信基站模块在FCT测试环节新增射频校准工序，需加装屏蔽箱和专用夹具。该变更涉及SOP修订、PFMEA更新、工装验收及操作员重培训，但客户要求下周起所有批次必须执行。你牵头变更评审时，会把哪类验证结果设为不可妥协的放行门槛？为什么？</td><td>GPT5.5: 题干明确该变更涉及“屏蔽箱和专用夹具”，并包含“SOP修订、PFMEA更新、工装验收及操作员重培训”，要求说明哪类验证结果是不可妥协放行门槛。参考答案第一层把不可妥协门槛限定为“SOP与PFMEA双文件齐套性及版本一致性”，遗漏屏蔽箱屏蔽效能、专用夹具验收、校准结果有效性等直接决定射频校准可靠性的核心验证，答案与题目要求的放行门槛不匹配。</td><td>R4Q0071</td><td>一款耳机产品在FCT测试中音频通道功能合格率骤降至82%，而前道AOI、SPI、回流焊参数全部在控，且同批次PCBA在其他产线测试合格率稳定在99%以上。你判断问题与测试系统强相关，会重点核查哪三类非硬件故障因素？请简述每类因素的典型表现和快速验证方式。</td><td>GPT5.5: 题干要求重点核查“三类非硬件故障因素”。参考答案第一层第二类写为“测试治具接触稳定性异常，含探针磨损、压合偏移或定位销松动”，这些属于治具硬件/机械接触类故障，不符合题干限定的非硬件故障因素；答案偏离了题目要求，应更多聚焦程序版本/配置、测试参数阈值、环境与系统设置、数据绑定等非硬件因素。</td></tr></tbody>
+  </table>
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Round 3 Dashboard</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; margin: 24px; color: #1f2937; }
+    h1, h2, h3 { margin: 10px 0 12px; }
+    .cards { display: grid; grid-template-columns: repeat(3, minmax(140px, 220px)); gap: 12px; margin: 8px 0 18px; }
+    .card { border: 1px solid #e5e7eb; border-radius: 10px; padding: 12px; background: #fafafa; }
+    .card .k { font-size: 12px; color: #6b7280; }
+    .card .v { font-size: 24px; font-weight: 700; margin-top: 4px; }
+    table { border-collapse: collapse; width: 100%; margin: 8px 0 18px; }
+    th, td { border: 1px solid #e5e7eb; padding: 8px 10px; vertical-align: middle; }
+    th { background: #f9fafb; }
+    .legend span { margin-right: 12px; font-size: 13px; color: #374151; }
+    .mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; }
+    .ex { margin: 6px 0; color: #374151; }
+    .section-divider { border: 0; border-top: 2px solid #eef2f7; margin: 22px 0; }
+  </style>
+</head>
+<body>
+  <h1>Round 3 审核看板</h1>
+
+  <div class="cards">
+    <div class="card"><div class="k">A类错误</div><div class="v">2</div></div>
+    <div class="card"><div class="k">B类错误</div><div class="v">59</div></div>
+    <div class="card"><div class="k">C类错误</div><div class="v">25</div></div>
+  </div>
+
+  <h2>本轮题目主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">三轮审核中，题干问题主要集中在少量自问自答和重复考点上：部分题干在问题中已给出作答原因，降低了面试识别度；部分题目虽换了场景或问法，但核心考点和候选人作答路径高度一致，需按重复题处理。</div>
+<h2>本轮答案主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">答案问题是本轮主要风险，以B类为主。高频问题包括工艺知识判断错误（如SPI/AOI/FCT/ICT检测边界混淆、SMT抛料与回流缺陷混淆、标准引用不准），以及答案内部枚举数量和结论不一致、未回应题干约束等问题。</div>
+<h2>后续重新出内容时应补充的规则</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">【重新出题】<br/>重新出题时，要先做题库级去重和知识点分布检查；同一知识点不得只通过更换产品场景或表述方式重复出题。题干不要预先泄露原因或答案方向，要保留候选人分析空间。<br/><br/>【重出答案】<br/>重出答案时，先核对工艺概念和检测边界，尤其是SPI/AOI/ICT/FCT/X-ray等检测对象、SMT前段和回流后缺陷的区分，以及IPC/JEDEC/EIA/IATF等标准的适用范围。答案中枚举的数量、排序和最终推荐方案必须前后一致。</div>
+
+  <hr class="section-divider" />
+
+  <h2>模型进度与删除率</h2>
+  <table>
+    <thead>
+      <tr><th>Model</th><th>批次完成</th><th>完成率</th><th>删除率</th><th>主错误</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>GPT5.5</td><td style='text-align:center'>12/12</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:12.3%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">12.3%</span></td><td style='text-align:center'>B>C>A</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>12/12</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:6.0%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">6.0%</span></td><td style='text-align:center'>C>B>A</td></tr>
+    </tbody>
+  </table>
+
+  <h2>批次状态矩阵</h2>
+  <div class="legend">
+    <span>✓ done</span><span>… running</span><span>○ pending</span><span>! blocked</span><span>x failed</span>
+  </div>
+  <table>
+    <thead><tr><th>Model</th><th>R3-B001</th><th>R3-B002</th><th>R3-B003</th><th>R3-B004</th><th>R3-B005</th><th>R3-B006</th><th>R3-B007</th><th>R3-B008</th><th>R3-B009</th><th>R3-B010</th><th>R3-B011</th><th>R3-B012</th></tr></thead>
+    <tbody><tr><td>GPT5.5</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td></tr></tbody>
+  </table>
+
+  <h2>细分错误统计（A1/B1...）</h2>
+  <table>
+    <thead><tr><th>错误子类</th><th>数量</th></tr></thead>
+    <tbody><tr><td>A1</td><td style='text-align:center'>2</td></tr><tr><td>B1</td><td style='text-align:center'>47</td></tr><tr><td>B2</td><td style='text-align:center'>4</td></tr><tr><td>B3</td><td style='text-align:center'>13</td></tr><tr><td>C2</td><td style='text-align:center'>25</td></tr></tbody>
+  </table>
+
+  <h3>细分错误示例（每类2条）</h3>
+  <table>
+    <thead><tr><th>错误子类</th><th>例1-题号</th><th>例1-题目</th><th>例1-理由</th><th>例2-题号</th><th>例2-题目</th><th>例2-理由</th></tr></thead>
+    <tbody><tr><td>A1</td><td>R3Q0099</td><td>批量生产中，同一型号贴片机在不同工位的抛料率差异显著，其中靠近回流炉入口的工位抛料明显偏高。请简单说说你判断该现象与贴装后板面震动或传送带抖动相关的依据，以及可现场实施的两项验证动作。</td><td>GPT5.5: 题干把“贴装后板面震动或传送带抖动”与“贴片机不同工位抛料率差异”直接关联，逻辑不严谨；SMT抛料通常发生在取料、识别、贴装前后由贴片机判定丢弃元件，贴装后板面震动更多会造成元件偏移、掉件或AOI不良，而不是直接形成贴片机抛料。答案第一层又称贴装后震动会“直接触发贴片机视觉系统复判失败而抛料”，该机制错误。</td><td>R3Q0142</td><td>在智能音箱这类带电池和喇叭的整机装配中，如果先装喇叭再装电池，后续容易出现电池压伤线材或喇叭音圈移位的问题。请结合装配顺序对部件保护和工位操作安全的影响，简述为什么应优先安装电池再装喇叭。</td><td>Gemini3.1pro: 题干逻辑不严谨，存在自问自答的情况。题干中“如果先装喇叭再装电池，后续容易出现电池压伤线材或喇叭音圈移位的问题”已经给出了先装电池的原因，紧接着又问“为什么应优先安装电池再装喇叭”，导致应聘者只需重复题干信息即可作答。正确的应该是去掉题干中的原因提示，直接问：“在智能音箱这类带电池和喇叭的整机装配中，请结合装配顺序对部件保护和工位操作安全的影响，简述为什么应优先安装电池再装喇叭？”</td></tr><tr><td>B1</td><td>R3Q0003</td><td>在SMT贴片工序中，回流焊温度曲线里的‘峰值温度’参数，主要影响元器件的哪方面质量？请简单说说。</td><td>GPT5.5: 参考答案第三层原文称“大尺寸QFN（需峰值≥240℃确保底部焊球熔合）”，但QFN封装通常为底部焊盘/裸露焊盘连接，不是BGA类“焊球”结构，把QFN描述为底部焊球熔合属于封装知识错误。</td><td>R3Q0023</td><td>某智能穿戴产品量产中，SMT段连续三批出现同一型号电容虚焊，D1阶段已成立跨职能小组，D2阶段定义问题为‘回流焊后AOI漏检导致不良流入后工序’。但在D3临时措施执行时发现：停用AOI检测会导致产线节拍下降30%，而加严炉温管控又可能引发其他器件开裂。请简述你在D4阶段如何设计验证路径，锁定真实根因，并说明优先验证哪两个变量及其理由。</td><td>GPT5.5: 参考答案第三层原文称“该电容在PCB上采用超小间距双焊盘设计，原AOI算法仍沿用旧版焊点连通性判据，将部分真实焊接但桥接轻微的焊点误判为合格”，该表述把“桥接/桥连”与题干中的“电容虚焊”混为一谈，桥连和虚焊是不同失效模式，且“真实焊接但桥接轻微”不能解释虚焊根因，答案跑偏。</td></tr><tr><td>B2</td><td>R3Q0147</td><td>某智能音箱产线在导入新型号时，压装扬声器模组的工位出现批量性‘压入深度不足’报警，但目视检查和功能测试全部合格；同时，该工位近期刚升级为伺服压机+位移传感器闭环控制。请简述你会如何系统性地判断当前报警是否真实反映装配失效，以及依据哪些工艺证据链来确认压装是否真正到位。</td><td>GPT5.5: 第一层原文提出“首先暂停报警触发的自动拦截动作”。在伺服压机位移传感器报警尚未确认真伪前，正确做法应是保留拦截或隔离报警品、保全数据并做验证，不能先暂停自动拦截，否则可能放行真实压装不足的不良品。该处置方案不符合量产质量防错的常见最佳实践。</td><td>R3Q0232</td><td>当一款新手机主板在DVT阶段发现钢网开孔尺寸与焊盘不匹配，导致回流焊后大量虚焊，此时ECN已签批但产线正准备PVT试产，你作为工艺负责人，会如何组织变更评审？请简述你优先召集哪些角色、依据哪些关键输入来判断是否允许跳过部分验证直接导入。</td><td>GPT5.5: 参考答案在DVT已确认“钢网开孔尺寸与焊盘不匹配导致大量虚焊”的情况下，主张“最小闭环验证法”仅复测SPI焊膏体积与AOI焊点形貌即可作为最管用方案，存在风险和知识性错误。虚焊问题发生在回流焊后，钢网变更至少应覆盖印刷、贴片、回流后焊点质量及必要的电性/可靠性确认，高风险器件还需X-ray/切片或功能验证；仅用SPI和AOI不足以支持跳过关键验证直接导入PVT。</td></tr><tr><td>B3</td><td>R3Q0023</td><td>某智能穿戴产品量产中，SMT段连续三批出现同一型号电容虚焊，D1阶段已成立跨职能小组，D2阶段定义问题为‘回流焊后AOI漏检导致不良流入后工序’。但在D3临时措施执行时发现：停用AOI检测会导致产线节拍下降30%，而加严炉温管控又可能引发其他器件开裂。请简述你在D4阶段如何设计验证路径，锁定真实根因，并说明优先验证哪两个变量及其理由。</td><td>GPT5.5: 参考答案第三层原文称“该电容在PCB上采用超小间距双焊盘设计，原AOI算法仍沿用旧版焊点连通性判据，将部分真实焊接但桥接轻微的焊点误判为合格”，该表述把“桥接/桥连”与题干中的“电容虚焊”混为一谈，桥连和虚焊是不同失效模式，且“真实焊接但桥接轻微”不能解释虚焊根因，答案跑偏。</td><td>R3Q0047</td><td>当某款产品的焊接工艺参数发生变更后，工艺工程师需要更新哪些核心工艺文件？请简单说说。</td><td>GPT5.5: 题干询问焊接工艺参数变更后需要更新哪些核心工艺文件，参考答案列出SOP、工艺流程图、关键控制点清单和设备参数设定表，但未明确覆盖控制计划、PFMEA/风险评估、首件或检验记录等焊接参数变更通常必须联动的核心受控文件，回答范围不完整。</td></tr><tr><td>C2</td><td>R3Q0018</td><td>当产线发现某批次产品存在虚焊问题，你如何快速确认这个现象是否每次焊接都会出现？请简述。</td><td>Gemini3.1pro: 题干与R3Q0017高度相似，均考察如何验证产线不良现象的重复性/稳定复现，候选人作答思路和核心验证方法（控制变量、原位复现）基本一致</td><td>R3Q0019</td><td>包装段多次反馈同一型号产品外箱标签贴歪，你用什么最基础的方法验证该问题是否具有重复性？请简述。</td><td>Gemini3.1pro: 题干与R3Q0017高度相似，均考察如何验证产线不良现象的重复性/稳定复现，候选人作答思路和核心验证方法基本一致</td></tr></tbody>
+  </table>
+</body>
+</html>
