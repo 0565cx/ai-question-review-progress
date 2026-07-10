@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Round 4 Dashboard</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; margin: 24px; color: #1f2937; }
+    h1, h2, h3 { margin: 10px 0 12px; }
+    .cards { display: grid; grid-template-columns: repeat(3, minmax(140px, 220px)); gap: 12px; margin: 8px 0 18px; }
+    .card { border: 1px solid #e5e7eb; border-radius: 10px; padding: 12px; background: #fafafa; }
+    .card .k { font-size: 12px; color: #6b7280; }
+    .card .v { font-size: 24px; font-weight: 700; margin-top: 4px; }
+    table { border-collapse: collapse; width: 100%; margin: 8px 0 18px; }
+    th, td { border: 1px solid #e5e7eb; padding: 8px 10px; vertical-align: middle; }
+    th { background: #f9fafb; }
+    .legend span { margin-right: 12px; font-size: 13px; color: #374151; }
+    .mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; }
+    .ex { margin: 6px 0; color: #374151; }
+    .section-divider { border: 0; border-top: 2px solid #eef2f7; margin: 22px 0; }
+  </style>
+</head>
+<body>
+  <h1>Round 4 审核看板</h1>
+
+  <div class="cards">
+    <div class="card"><div class="k">A类错误</div><div class="v">2</div></div>
+    <div class="card"><div class="k">B类错误</div><div class="v">39</div></div>
+    <div class="card"><div class="k">C类错误</div><div class="v">9</div></div>
+  </div>
+
+  <h2>本轮题目主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">四轮回流题目的题干问题主要集中在 C 类重复和少量 A 类专业逻辑错误：帕累托图、不良分层、人机分工和防错结构等知识点仍有套路化重复。</div>
+<h2>本轮答案主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">四轮删除项中 B 类答案问题占比较高，典型风险包括 APQP/PPAP 阶段归属错误、SPC 控制图选型错误、材料牌号和工艺机理判断错误，以及将客户全检或特殊特性要求用参数监控简单替代。</div>
+<h2>后续重新出内容时应补充的规则</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">【重新出题】<br/>重新出题时，对已反复出现的帕累托、分层、防错、人机分工等知识点先做题意去重，不要只替换工位、零件或缺陷名称。<br/><br/>【重出答案】<br/>重出答案时，凡涉及 APQP/PPAP、SPC、IATF、材料牌号、热处理、工具磨损机理和客户特殊要求的内容，必须先校正标准版本、阶段归属和现场可执行性，不要用看似专业但不准确的绝对化口径。</div>
+
+  <hr class="section-divider" />
+
+  <h2>模型进度与删除率</h2>
+  <table>
+    <thead>
+      <tr><th>Model</th><th>批次完成</th><th>完成率</th><th>删除率</th><th>主错误</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>GPT5.5</td><td style='text-align:center'>3/3</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:22.7%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">22.7%</span></td><td style='text-align:center'>B>C</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>3/3</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:19.3%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">19.3%</span></td><td style='text-align:center'>B>C>A</td></tr>
+    </tbody>
+  </table>
+
+  <h2>批次状态矩阵</h2>
+  <div class="legend">
+    <span>✓ done</span><span>… running</span><span>○ pending</span><span>! blocked</span><span>x failed</span>
+  </div>
+  <table>
+    <thead><tr><th>Model</th><th>R4-B001</th><th>R4-B002</th><th>R4-B003</th></tr></thead>
+    <tbody><tr><td>GPT5.5</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td></tr></tbody>
+  </table>
+
+  <h2>细分错误统计（A1/B1...）</h2>
+  <table>
+    <thead><tr><th>错误子类</th><th>数量</th></tr></thead>
+    <tbody><tr><td>A1</td><td style='text-align:center'>2</td></tr><tr><td>B1</td><td style='text-align:center'>39</td></tr><tr><td>C2</td><td style='text-align:center'>9</td></tr></tbody>
+  </table>
+
+  <h3>细分错误示例（每类2条）</h3>
+  <table>
+    <thead><tr><th>错误子类</th><th>例1-题号</th><th>例1-题目</th><th>例1-理由</th><th>例2-题号</th><th>例2-题目</th><th>例2-理由</th></tr></thead>
+    <tbody><tr><td>A1</td><td>Q081</td><td>在量产某悬架控制臂时，精镗φ42H7通孔工序采用整体硬质合金镗刀，首件尺寸合格，但批量加工至第15件时孔径逐渐超差（呈单向扩大趋势），同时刀具后刀面出现均匀月牙洼磨损。请简述你如何通过观察该磨损形态，反推当前选用的刀具前角与涂层类型是否适合该铝合金工件的精镗要求。</td><td>GPT5.5: 参考答案存在刀具磨损机理和铝合金刀具选型错误。原文称“月牙洼磨损是后刀面靠近切削刃处呈弧形凹陷”且“前角过大导致切削力偏小而散热不足”，但月牙洼磨损通常发生在前刀面，铝合金精镗一般需要锋利刃口、较大正前角和抗粘结涂层/抛光刀具；不能据此反推应“调小前角”或优先使用AlTiN类耐热涂层。正确口径应围绕积屑瘤、后刀面磨损、冷却润滑、刀具跳动和适合铝合金的DLC/TiB2/ZrN或非涂层抛光刀具等验证。；Gemini3.1pro: 题干存在知识性错误，“月牙洼磨损”通常发生在刀具的前刀面，而不是后刀面。正确的应该是“前刀面出现均匀月牙洼磨损”或“后刀面出现后刀面磨损”。</td><td>Q094</td><td>一条电驱壳体机加工产线的技术协议规定‘主轴承孔同轴度≤0.03mm且全尺寸PPAP提交前须完成MSA第三级研究’。验收时同轴度实测全部合格，但MSA报告仅完成第二级（重复性与再现性），第三级（产品公差带内判定风险分析）因测量设备临时校准超期未完成。供应商称‘第二级结果已满足90%置信度，可先行放行’。你如何裁定该验收项是否闭环？请说明核心约束条件。</td><td>Gemini3.1pro: 题干存在知识性错误。题干中提到的“MSA第三级（产品公差带内判定风险分析）”并非AIAG MSA手册或汽车行业常见标准中的规范术语，MSA通常分析偏倚、线性、稳定性、GR&R等，不存在“第三级”这种专门针对风险判定的标准划分称呼。</td></tr><tr><td>B1</td><td>Q001</td><td>某总装车间在量产某款新能源车的电池包安装工位，连续3批出现螺栓拧紧力矩超差（CPK＜0.8），已确认是新导入的电动扭矩枪校准漂移所致，但设备厂家校准服务需48小时响应。该工位节拍为92秒，下游无缓冲工位，且客户要求本批次电池包必须当日完成终检交付。请简述你优先采取的临时遏制措施，并说明为何不选择暂停该工位或全数人工复拧作为首选方案。</td><td>GPT5.5: 参考答案在已确认“电动扭矩枪校准漂移”的前提下，仍建议“将当前电动扭矩枪切换至‘力矩+角度’双参数模式”并依赖“实时力矩曲线比对功能进行过程拦截”。校准漂移会使该工具输出和采集的力矩数据可信度不足，正确口径应是隔离/停用失准工具，启用经校准备用工具或经验证的独立复检/临时替代方案，并对已生产件遏制确认。</td><td>Q016</td><td>某条发动机缸体机加工产线当前节拍为72秒，最近因客户加严尺寸管控要求，在终检工位后新增一道全尺寸三坐标检测工序，单件检测耗时85秒。现有缓冲区仅支持3件周转，且上游所有工位均无富余工时。请简述你会从哪三个工艺维度评估该检测工序的插入可行性，并说明为何必须优先验证上游最后一道粗加工工位的工艺柔性裕度。</td><td>GPT5.5: 参考答案与题干条件矛盾。题干明确“上游所有工位均无富余工时”，但答案称最后一道粗加工工位“通常留有0.5～1.2秒的理论工艺余量”，并把“向上游释放节拍冗余”作为路径。正确口径应承认上游无富余能力时不能假设可释放节拍，需评估检测并行化、离线/抽样策略经客户批准、检测路径优化或新增资源等方案。</td></tr><tr><td>C2</td><td>Q006</td><td>请简述：产线中哪个工位的作业时间最长，通常就决定了整条线每分钟能产出几台产品？</td><td>GPT5.5: 与前序 R4-Q0005 重复。R4-Q0005 问“当多个工位节拍不一致时，为什么只能按最慢的那个工位来安排整条线的生产节奏”，本题问“哪个工位的作业时间最长，通常就决定了整条线每分钟能产出几台产品”，候选人核心作答都会围绕瓶颈工位/最长作业时间决定整线产能，作答思路高度一致。；Gemini3.1pro: 与R4-Q0005提问角度和核心回答内容高度重合，候选人会给出同样的答案，构成重复。</td><td>Q006</td><td>请简述：产线中哪个工位的作业时间最长，通常就决定了整条线每分钟能产出几台产品？</td><td>GPT5.5: 与前序 R4-Q0005 重复。R4-Q0005 问“当多个工位节拍不一致时，为什么只能按最慢的那个工位来安排整条线的生产节奏”，本题问“哪个工位的作业时间最长，通常就决定了整条线每分钟能产出几台产品”，候选人核心作答都会围绕瓶颈工位/最长作业时间决定整线产能，作答思路高度一致。；Gemini3.1pro: 与R4-Q0005提问角度和核心回答内容高度重合，候选人会给出同样的答案，构成重复。</td></tr></tbody>
+  </table>
+</body>
+</html>

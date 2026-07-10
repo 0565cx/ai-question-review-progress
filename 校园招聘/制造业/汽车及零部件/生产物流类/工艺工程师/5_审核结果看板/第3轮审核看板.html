@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Round 3 Dashboard</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; margin: 24px; color: #1f2937; }
+    h1, h2, h3 { margin: 10px 0 12px; }
+    .cards { display: grid; grid-template-columns: repeat(3, minmax(140px, 220px)); gap: 12px; margin: 8px 0 18px; }
+    .card { border: 1px solid #e5e7eb; border-radius: 10px; padding: 12px; background: #fafafa; }
+    .card .k { font-size: 12px; color: #6b7280; }
+    .card .v { font-size: 24px; font-weight: 700; margin-top: 4px; }
+    table { border-collapse: collapse; width: 100%; margin: 8px 0 18px; }
+    th, td { border: 1px solid #e5e7eb; padding: 8px 10px; vertical-align: middle; }
+    th { background: #f9fafb; }
+    .legend span { margin-right: 12px; font-size: 13px; color: #374151; }
+    .mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; }
+    .ex { margin: 6px 0; color: #374151; }
+    .section-divider { border: 0; border-top: 2px solid #eef2f7; margin: 22px 0; }
+  </style>
+</head>
+<body>
+  <h1>Round 3 审核看板</h1>
+
+  <div class="cards">
+    <div class="card"><div class="k">A类错误</div><div class="v">19</div></div>
+    <div class="card"><div class="k">B类错误</div><div class="v">96</div></div>
+    <div class="card"><div class="k">C类错误</div><div class="v">19</div></div>
+  </div>
+
+  <h2>本轮题目主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">三审主要继续暴露两类题干问题：一是同一工艺分析方法或质量工具被多次改写成不同场景，但核心作答思路近似，例如帕累托图、分层分析和控制图选型；二是少量题目在情境约束或专业口径上不够精确，容易导致候选人围绕泛化套话作答。</div>
+<h2>本轮答案主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">答案问题以 B 类为主，集中在参考答案与题干场景的匹配度、工艺工程口径的完整性和操作步骤的可执行性上。部分 A 类问题表明个别答案存在事实或判断口径风险，需要优先重出；C 类问题则提示后续出题需加强知识点去重。</div>
+<h2>后续重新出内容时应补充的规则</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">【重新出题】<br/>重新出题时，对同一知识点不要只替换零部件、缺陷名称或工序名称；必须改变判断目标、输入数据、约束条件或需输出的工艺决策。对帕累托图、控制图、分层分析、节拍和线平衡类题，每个知识点需先做题意去重再出新题。<br/><br/>【重出答案】<br/>保留题干重出答案时，先校正工艺工程专业口径，再按「判断依据-分析步骤-现场验证-改进闭环」组织答案。避免空泛管理建议，必须回到汽车制造现场的数据、设备、质量特性、节拍或控制计划上。</div>
+
+  <hr class="section-divider" />
+
+  <h2>模型进度与删除率</h2>
+  <table>
+    <thead>
+      <tr><th>Model</th><th>批次完成</th><th>完成率</th><th>删除率</th><th>主错误</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>GPT5.5</td><td style='text-align:center'>21/21</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:10.3%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">10.3%</span></td><td style='text-align:center'>B>A>C</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>21/21</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:6.0%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">6.0%</span></td><td style='text-align:center'>B>C>A</td></tr>
+    </tbody>
+  </table>
+
+  <h2>批次状态矩阵</h2>
+  <div class="legend">
+    <span>✓ done</span><span>… running</span><span>○ pending</span><span>! blocked</span><span>x failed</span>
+  </div>
+  <table>
+    <thead><tr><th>Model</th><th>R3-B001</th><th>R3-B002</th><th>R3-B003</th><th>R3-B004</th><th>R3-B005</th><th>R3-B006</th><th>R3-B007</th><th>R3-B008</th><th>R3-B009</th><th>R3-B010</th><th>R3-B011</th><th>R3-B012</th><th>R3-B013</th><th>R3-B014</th><th>R3-B015</th><th>R3-B016</th><th>R3-B017</th><th>R3-B018</th><th>R3-B019</th><th>R3-B020</th><th>R3-B021</th></tr></thead>
+    <tbody><tr><td>GPT5.5</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td></tr></tbody>
+  </table>
+
+  <h2>细分错误统计（A1/B1...）</h2>
+  <table>
+    <thead><tr><th>错误子类</th><th>数量</th></tr></thead>
+    <tbody><tr><td>A1</td><td style='text-align:center'>17</td></tr><tr><td>A3</td><td style='text-align:center'>1</td></tr><tr><td>A4</td><td style='text-align:center'>1</td></tr><tr><td>B1</td><td style='text-align:center'>84</td></tr><tr><td>B2</td><td style='text-align:center'>3</td></tr><tr><td>B3</td><td style='text-align:center'>9</td></tr><tr><td>C1</td><td style='text-align:center'>1</td></tr><tr><td>C2</td><td style='text-align:center'>18</td></tr></tbody>
+  </table>
+
+  <h3>细分错误示例（每类2条）</h3>
+  <table>
+    <thead><tr><th>错误子类</th><th>例1-题号</th><th>例1-题目</th><th>例1-理由</th><th>例2-题号</th><th>例2-题目</th><th>例2-理由</th></tr></thead>
+    <tbody><tr><td>A1</td><td>Q015</td><td>某焊接工位连续三批产品出现焊缝气孔超标，客户要求48小时内提交8D报告。你已确认问题现象、围堵措施并完成根本原因分析，现在进入第四步‘制定永久措施’阶段。请简述你会从哪三个具体方面验证所提措施在量产现场具备可执行性和有效性。</td><td>Gemini3.1pro: 题干中提到“现在进入第四步‘制定永久措施’阶段”，存在知识性错误。在标准8D问题解决流程中，D4（第四步）是“根本原因分析”（Root Cause Analysis），D5（第五步）才是“制定永久纠正措施”（Develop Permanent Corrective Actions）。正确的口径应为进入第五步制定永久措施阶段。</td><td>Q031</td><td>发动机缸体试加工过程中，三坐标抽检发现主油道孔位置度连续3件超差，但过程能力尚在受控状态。客户明确要求该批次不得进入下道珩磨工序。你会通过哪些现场即时生效的物理或管理手段实现有效隔离与流向管控？请简述。</td><td>Gemini3.1pro: 题干中提到“三坐标抽检发现主油道孔位置度连续3件超差，但过程能力尚在受控状态”，存在逻辑矛盾。在SPC过程控制中，连续3件超差属于明显的特殊原因变差，说明过程已经失控，不可能“尚在受控状态”。正确的口径应为过程已失控，需采取遏制措施。</td></tr><tr><td>A3</td><td>Q471</td><td>某新能源汽车电池包的铝合金壳体与密封盖板采用结构胶粘接，量产初期出现胶层厚度不均，部分区域胶宽超出公差上限。现场确认点胶设备参数稳定、胶水批次合格，你会优先检查哪三个与操作执行直接相关的现场控制点？请简述理由。</td><td>Gemini3.1pro: 问题中提到“要求必须通过调整设备硬件结构来实现防错升级，不接受软件参数修改”，而工艺工程师处理防错时首选通常是修改软件防错逻辑或参数，强制要求硬件结构调整不仅不现实且违反常规工程逻辑（即优先实施成本低见效快的方案），这是对面试者的刻意刁难。</td><td>nan</td><td>nan</td><td>nan</td></tr><tr><td>A4</td><td>Q442</td><td>某新车型在总装线末段完成整车通电测试后，发现仪表盘上制动系统故障灯常亮。已确认零部件供应商来料检验合格，且装配过程无明显异常。请简述你将如何开展功能验证，快速判断问题是否源于装配工艺执行偏差。</td><td>Gemini3.1pro: 问题中提到“假设你作为工艺主责，需在量产前发现此问题，请问应如何设置早期防错或检验机制？”与题干背景“量产前发现”矛盾，题干前半部分描述的是批量试产阶段的问题，后半部分让假设量产前发现，逻辑不连贯。</td><td>nan</td><td>nan</td><td>nan</td></tr><tr><td>B1</td><td>Q008</td><td>某新能源汽车电驱壳体项目进入试生产阶段，客户要求PPAP提交前必须完成全部特殊特性控制计划的工艺验证。但现场发现压铸工序的关键尺寸Cpk仅0.92，且模具已冻结无法修改。此时距离PPAP截止日仅剩12个工作日，同时产线需同步支持另一款在产车型的紧急加单。请简述你作为工艺负责人，会如何划分开发阶段重心、优先保障哪类验证活动，并说明这样安排的技术依据。</td><td>Gemini3.1pro: 参考答案第三层中提到“基于IATF16949条款8.3.4.1，将该尺寸升级为‘不可控特殊特性’”，存在知识性错误与标准引用错误。IATF 16949条款8.3.4.1为“设计和开发监视”，且标准中不存在“不可控特殊特性”这一概念。正确的口径应为依据控制计划异常响应机制申请临时偏差放行或升级控制手段。</td><td>Q011</td><td>请简单说说，在汽车零部件生产中，工艺流程图里‘加工’和‘检验’这两个工序节点，通常分别用什么形状的图形表示？</td><td>GPT5.5: 原文问题询问“工艺流程图里‘加工’和‘检验’这两个工序节点，通常分别用什么形状的图形表示”，参考答案称“加工”用矩形框、“检验”用菱形框；在常用工业流程过程图/工艺流程图符号中，菱形通常表示判断/决策，检验节点不应笼统判为菱形，答案存在知识性错误。；Gemini3.1pro: 参考答案第一层提到“‘加工’工序统一用矩形框表示...‘检验’工序统一用菱形框表示”，并在第二层强调“严格遵循AIAG《PPAP手册》及VDA 6.3附录推荐的符号规范”，存在知识性错误。在AIAG标准工艺流程图中，加工/操作通常用圆形（○）表示，检验用正方形（□）表示。答案混淆了通用程序流程图和汽车行业标准工艺流程图的符号。</td></tr><tr><td>B2</td><td>Q444</td><td>量产车型在批量交付前的功能抽检中，连续3台出现倒车影像画面延迟超过1秒。控制计划明确要求该功能响应时间≤300毫秒，且该参数已被客户列为特殊特性。请简述你将如何结合现场装配动作与测试条件，定位是否由工艺参数或作业方法导致超差。</td><td>Gemini3.1pro: 第三层答案中提到的异常情况“解决思路：立即暂停该区域焊接作业，联合安环部排查排风系统滤芯是否堵塞”属于通用安全环保常识，没有体现汽车工艺工程师对焊接烟尘中微量元素影响焊接质量的深度排查分析。</td><td>Q771</td><td>一份已批准的涂装工艺流程图中，电泳烘干后直接进入中涂喷涂，但试制阶段发现中涂附着力不足。你认为流程图里可能遗漏了哪个关键工艺环节？请说明理由。</td><td>GPT5.5: 原问题为“电泳烘干后直接进入中涂喷涂，试制阶段发现中涂附着力不足，流程图可能遗漏哪个关键工艺环节”，答案把遗漏环节定为“电泳漆膜活化”，并称通常用“离子风清洁或弱等离子体处理”。汽车涂装常见流程更应从电泳后打磨/清洁/擦净/密封及表面状态检查等常规环节排查，弱等离子体活化不是该岗位常见标准流程，方案偏门。</td></tr><tr><td>B3</td><td>Q055</td><td>请简述：在汽车零部件生产中，PFMEA文件里提到的‘尺寸超差’这一失效模式，通常对应哪个具体制造环节的问题？</td><td>Gemini3.1pro: 题干询问的是“‘尺寸超差’这一失效模式，最可能发生在零件加工后的哪个典型操作过程中”，但参考答案第一层回答的却是“‘表面划伤’作为典型失效模式...”，存在严重的跑题和知识范围不一致。正确的口径应围绕“尺寸超差”的机理进行解答。</td><td>Q070</td><td>某电驱减速器齿轮轴热处理工序的过程流程图标注为‘渗碳淬火+回火’单步，但量产中发现硬度不合格与变形超差常同时发生，且根本原因分属不同工艺子环节：渗碳层深波动影响硬度，而回火冷却速率偏差主导变形。若PFMEA严格对应流程图仅设一个过程步骤，你会如何结构化拆解失效链以匹配实际制程机理？请简述关键依据和做法。</td><td>GPT5.5: 原文问题限定“若PFMEA严格对应流程图仅设一个过程步骤”并要求结构化拆解失效链，参考答案第一层却要求“将原流程图中笼统的‘渗碳淬火+回火’单步……拆分为至少三个独立过程步骤”，未在既有单步流程图框架下回答，偏离题目约束。</td></tr><tr><td>C1</td><td>Q439</td><td>请简单说说，为什么装配工艺卡上常对间隙配合标注上下限数值，而不是只写一个目标值？</td><td>Gemini3.1pro: 原文“为什么装配工艺卡上常对间隙配合标注上下限数值，而不是只写一个目标值？”与同批次 R3-Q0409 “为什么要规定‘上、下限值’而不是只给一个目标值？”考察的核心知识点（过程变异与公差管控的意义）、提问逻辑完全一致，仅仅是将“扭矩”替换为了“间隙配合”，属于套用模板的重复题目。</td><td>nan</td><td>nan</td><td>nan</td></tr><tr><td>C2</td><td>Q142</td><td>某发动机缸盖加工夹具在定位面附近设置了一个凸起的止挡销，该销仅允许零件按正确朝向放入，若放反则根本无法完全压入到位。这种依靠物理结构阻止错误操作的方式，在防错原理中叫什么？请简单说说。</td><td>GPT5.5: 与R3-Q0141重复度过高：R3-Q0141问“加装一个只能让零件正向通过的导向块”属于哪种防错思路，R3-Q0142问“凸起的止挡销仅允许零件按正确朝向放入”在防错原理中叫什么，候选人核心作答均为物理限制/硬性防错、通过结构阻止装反。</td><td>Q211</td><td>在一条连续运行的装配线上，若某个工位前持续堆积半成品，而后续工位经常等待，这通常说明什么？</td><td>GPT5.5: 原题“在一条连续运行的装配线上，若某个工位前持续堆积半成品，而后续工位经常等待，这通常说明什么？”与前题R3-Q0209“产线中判断一个工位是否为瓶颈工位，最直接的观察依据是什么？”从回答者角度几乎都会围绕上游堆积、下游等待、该工位为瓶颈作答，核心答案重复。</td></tr></tbody>
+  </table>
+</body>
+</html>

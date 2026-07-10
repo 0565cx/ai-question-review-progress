@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Round 5 Dashboard</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; margin: 24px; color: #1f2937; }
+    h1, h2, h3 { margin: 10px 0 12px; }
+    .cards { display: grid; grid-template-columns: repeat(3, minmax(140px, 220px)); gap: 12px; margin: 8px 0 18px; }
+    .card { border: 1px solid #e5e7eb; border-radius: 10px; padding: 12px; background: #fafafa; }
+    .card .k { font-size: 12px; color: #6b7280; }
+    .card .v { font-size: 24px; font-weight: 700; margin-top: 4px; }
+    table { border-collapse: collapse; width: 100%; margin: 8px 0 18px; }
+    th, td { border: 1px solid #e5e7eb; padding: 8px 10px; vertical-align: middle; }
+    th { background: #f9fafb; }
+    .legend span { margin-right: 12px; font-size: 13px; color: #374151; }
+    .mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; }
+    .ex { margin: 6px 0; color: #374151; }
+    .section-divider { border: 0; border-top: 2px solid #eef2f7; margin: 22px 0; }
+  </style>
+</head>
+<body>
+  <h1>Round 5 审核看板</h1>
+
+  <div class="cards">
+    <div class="card"><div class="k">A类错误</div><div class="v">1</div></div>
+    <div class="card"><div class="k">B类错误</div><div class="v">15</div></div>
+    <div class="card"><div class="k">C类错误</div><div class="v">3</div></div>
+  </div>
+
+  <h2>本轮题目主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">五轮题干剩余问题主要是少量 C2 重复和 A4 语言表达问题，整体已较稳定。</div>
+<h2>本轮答案主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">五轮 B 类问题仍集中在 SPC 控制图选型、APQP/PPAP 阶段与版本、材料牌号和工艺机理口径上。</div>
+<h2>后续重新出内容时应补充的规则</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">【重新出题】<br/>后续重新出题需继续对同知识点做去重，避免只替换场景或零件名称。<br/><br/>【重出答案】<br/>重出答案需严格校正标准版本、数据类型和材料机理，不得虚构手册版本或技术条款。</div>
+
+  <hr class="section-divider" />
+
+  <h2>模型进度与删除率</h2>
+  <table>
+    <thead>
+      <tr><th>Model</th><th>批次完成</th><th>完成率</th><th>删除率</th><th>主错误</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>GPT5.5</td><td style='text-align:center'>2/2</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:25.6%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">25.6%</span></td><td style='text-align:center'>B>C</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>2/2</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:18.6%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">18.6%</span></td><td style='text-align:center'>B>C>A</td></tr>
+    </tbody>
+  </table>
+
+  <h2>批次状态矩阵</h2>
+  <div class="legend">
+    <span>✓ done</span><span>… running</span><span>○ pending</span><span>! blocked</span><span>x failed</span>
+  </div>
+  <table>
+    <thead><tr><th>Model</th><th>R5-B001</th><th>R5-B002</th></tr></thead>
+    <tbody><tr><td>GPT5.5</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td></tr></tbody>
+  </table>
+
+  <h2>细分错误统计（A1/B1...）</h2>
+  <table>
+    <thead><tr><th>错误子类</th><th>数量</th></tr></thead>
+    <tbody><tr><td>A4</td><td style='text-align:center'>1</td></tr><tr><td>B1</td><td style='text-align:center'>15</td></tr><tr><td>C2</td><td style='text-align:center'>3</td></tr></tbody>
+  </table>
+
+  <h3>细分错误示例（每类2条）</h3>
+  <table>
+    <thead><tr><th>错误子类</th><th>例1-题号</th><th>例1-题目</th><th>例1-理由</th><th>例2-题号</th><th>例2-题目</th><th>例2-理由</th></tr></thead>
+    <tbody><tr><td>A4</td><td>Q012</td><td>某车身焊接总成项目进入APQP第二阶段末期，客户已签发产品图纸冻结文件，但工艺可行性分析报告中缺少对客户指定的3项关键焊点强度特性的夹具定位基准验证记录，且该验证需依赖第三方实验室出具的夹具重复定位精度报告。此时量产准备启动会 scheduled 在5天后召开，你依据哪个阶段输入来判断能否进入第三阶段？请简述该输入的核心构成、责任归属及缺失时对后续试生产批次合格率的连锁影响。</td><td>Gemini3.1pro: 题干中存在不必要的英文“scheduled”，如“此时量产准备启动会 scheduled 在5天后召开”，违反了语言表达不通顺、有不必要英文的规则。正确的应该是将“scheduled”改为中文“计划”或“定于”。</td><td>nan</td><td>nan</td><td>nan</td></tr><tr><td>B1</td><td>Q016</td><td>某车型制动卡钳的铸铝壳体在机加工后，客户将内腔清洁度列为特殊特性，要求每批次全检颗粒物数量。现场现有自动清洗线和离线颗粒分析仪，但全检会严重挤占设备产能。你会在控制计划中如何设计该特性的现场控制方法？请简述一种兼顾客户要求与产线节拍的可行做法。</td><td>GPT5.5: 答案把客户已明确的要求改写为抽样控制，原文为“客户将内腔清洁度列为特殊特性，要求每批次全检颗粒物数量”，但第一层直接写“将清洁度检测由‘每批次全检’调整为‘按抽样方案执行代表性检测’”。正确口径是：控制计划不能单方面把客户全检要求降为抽样；若因产能约束需采用过程参数监控、抽样或等效控制，必须先完成风险评估并取得客户书面批准后才能作为替代控制方法。</td><td>Q020</td><td>某供应商提供的铸铝支架在试装时出现批量装配干涉，根本原因是机加工序的定位基准与设计基准不一致。按APQP要求，该问题应在哪个阶段被识别并闭环？请说明该阶段中工艺工程师应主导开展的一项核心工作及其输出物。</td><td>GPT5.5: 答案对APQP阶段口径有明确错误，原文写“该问题应在APQP的第二阶段——产品设计和开发验证阶段（即Process Design and Development阶段）被识别并闭环”。正确口径是：Process Design and Development 是APQP第三阶段，不是第二阶段；机加工定位基准与设计基准不一致这类过程基准链问题，应在过程设计开发阶段通过过程流程图、PFMEA、控制计划和工装/检具方案评审识别并闭环。</td></tr><tr><td>C2</td><td>Q006</td><td>某发动机缸体机加工产线汇总了近三个月的尺寸超差记录，其中主轴承孔圆度超差占比42%，气门导管孔位置度超差占比27%，缸筒内径粗糙度不合格占比15%，油道毛刺残留占比10%，法兰面平面度超差占比6%。若依据帕累托图的核心思想确定首批工艺优化对象，你会选择哪两项？请简单说说理由。</td><td>Gemini3.1pro: 题干语言不一样，但从回答者角度看，候选人几乎会给出同一套答案内容、同一套核心要点、同一套作答思路，与R5-Q0005完全重复。正确的应该保留一题。</td><td>Q035</td><td>工艺流程图中‘检验’工序通常用什么形状表示？它和‘加工’工序的图形区别在哪里？</td><td>GPT5.5: 与R5-Q0015构成实质重复。R5-Q0015问“工艺流程图里‘加工’和‘检验’这两个工序节点，通常分别用什么形状的图形表示”，本题问“‘检验’工序通常用什么形状表示？它和‘加工’工序的图形区别在哪里”，候选人会给出同一套核心答案：检验图形、加工图形及二者区别。按规则保留顺序在前的R5-Q0015，删除本题。；Gemini3.1pro: 题干语言不一样，但从回答者角度看，候选人几乎会给出同一套答案内容、同一套核心要点、同一套作答思路，与R5-Q0015完全重复。正确的应该保留一题。</td></tr></tbody>
+  </table>
+</body>
+</html>

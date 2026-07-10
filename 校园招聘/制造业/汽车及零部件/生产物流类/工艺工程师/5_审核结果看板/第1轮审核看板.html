@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Round 1 Dashboard</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; margin: 24px; color: #1f2937; }
+    h1, h2, h3 { margin: 10px 0 12px; }
+    .cards { display: grid; grid-template-columns: repeat(3, minmax(140px, 220px)); gap: 12px; margin: 8px 0 18px; }
+    .card { border: 1px solid #e5e7eb; border-radius: 10px; padding: 12px; background: #fafafa; }
+    .card .k { font-size: 12px; color: #6b7280; }
+    .card .v { font-size: 24px; font-weight: 700; margin-top: 4px; }
+    table { border-collapse: collapse; width: 100%; margin: 8px 0 18px; }
+    th, td { border: 1px solid #e5e7eb; padding: 8px 10px; vertical-align: middle; }
+    th { background: #f9fafb; }
+    .legend span { margin-right: 12px; font-size: 13px; color: #374151; }
+    .mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; }
+    .ex { margin: 6px 0; color: #374151; }
+    .section-divider { border: 0; border-top: 2px solid #eef2f7; margin: 22px 0; }
+  </style>
+</head>
+<body>
+  <h1>Round 1 审核看板</h1>
+
+  <div class="cards">
+    <div class="card"><div class="k">A类错误</div><div class="v">28</div></div>
+    <div class="card"><div class="k">B类错误</div><div class="v">198</div></div>
+    <div class="card"><div class="k">C类错误</div><div class="v">772</div></div>
+  </div>
+
+  <h2>本轮题目主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">Round 1 question defects cluster around oral-answer fit, knowledge-boundary accuracy, and duplication. Some prompts ask candidates to explain calculation logic, formulas, symbols, or diagram-like content, which is not suitable for spoken interview answers. A smaller group of prompts mixes unrelated process mechanisms, material states, or standard stages into the stem. The largest issue is C2-style homogeneity: many process-abnormality, APQP/PPAP, control-plan, containment, root-cause, corrective-action, and standardization questions use different surface scenarios but lead candidates to nearly identical answer frameworks.</div>
+<h2>本轮答案主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">Round 1 answer defects are mostly B-type issues, especially B1 and B3. Frequent patterns include incorrect professional facts or standard references for materials, APQP/PPAP, SPC, die-casting alloys, and process-flow symbols; answers that do not directly address the mechanism, judgment basis, or process node requested in the stem; and template-like management language replacing concrete process-engineering judgment. Some third-layer answers also describe abnormal or complex situations that do not fit the process engineer role or the actual manufacturing scenario.</div>
+<h2>后续重新出内容时应补充的规则</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">【重新出题】<br/>When regenerating questions, lock each item to one knowledge point and one realistic process-engineering scenario. Avoid repeatedly wrapping the same abnormality-identification, containment, root-cause, corrective-action, and standardization framework in different scenarios. Do not ask candidates to write formulas, draw diagrams, derive calculations, or explain symbol meanings. For APQP, PPAP, SPC, material grades, die-casting alloys, and process-flow topics, verify terminology, stage names, version references, and applicability before finalizing the stem.<br/><br/>【重出答案】<br/>When regenerating answers, each layer must answer the stem directly. Layer 1 should give accurate concepts and standards; Layer 2 should compare common role-relevant solutions and justify the choice; Layer 3 should describe realistic frequent exceptions and complex constraints. Facts about materials, heat treatment, SPC charts, APQP/PPAP stages, process-flow symbols, and alloy grades must be checked. Avoid generic actions such as investigation, review, SOP update, or training unless tied to concrete engineering criteria and scoring points.</div>
+
+  <hr class="section-divider" />
+
+  <h2>模型进度与删除率</h2>
+  <table>
+    <thead>
+      <tr><th>Model</th><th>批次完成</th><th>完成率</th><th>删除率</th><th>主错误</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>GPT5.4</td><td style='text-align:center'>29/29</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:10.2%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">10.2%</span></td><td style='text-align:center'>B>A>C</td></tr><tr><td>GPT5.5</td><td style='text-align:center'>29/29</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:5.9%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">5.9%</span></td><td style='text-align:center'>B>A>C</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>29/29</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:66.1%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">66.1%</span></td><td style='text-align:center'>C>A>B</td></tr><tr><td>Opus4.8</td><td style='text-align:center'>29/29</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:3.0%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">3.0%</span></td><td style='text-align:center'>B>C>A</td></tr><tr><td>Sonnet4.6</td><td style='text-align:center'>29/29</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:1.6%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">1.6%</span></td><td style='text-align:center'>A>B>C</td></tr>
+    </tbody>
+  </table>
+
+  <h2>批次状态矩阵</h2>
+  <div class="legend">
+    <span>✓ done</span><span>… running</span><span>○ pending</span><span>! blocked</span><span>x failed</span>
+  </div>
+  <table>
+    <thead><tr><th>Model</th><th>R1-B001</th><th>R1-B002</th><th>R1-B003</th><th>R1-B004</th><th>R1-B005</th><th>R1-B006</th><th>R1-B007</th><th>R1-B008</th><th>R1-B009</th><th>R1-B010</th><th>R1-B011</th><th>R1-B012</th><th>R1-B013</th><th>R1-B014</th><th>R1-B015</th><th>R1-B016</th><th>R1-B017</th><th>R1-B018</th><th>R1-B019</th><th>R1-B020</th><th>R1-B021</th><th>R1-B022</th><th>R1-B023</th><th>R1-B024</th><th>R1-B025</th><th>R1-B026</th><th>R1-B027</th><th>R1-B028</th><th>R1-B029</th></tr></thead>
+    <tbody><tr><td>GPT5.4</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td></tr><tr><td>GPT5.5</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td></tr><tr><td>Opus4.8</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td></tr><tr><td>Sonnet4.6</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td></tr></tbody>
+  </table>
+
+  <h2>细分错误统计（A1/B1...）</h2>
+  <table>
+    <thead><tr><th>错误子类</th><th>数量</th></tr></thead>
+    <tbody><tr><td>A1</td><td style='text-align:center'>15</td></tr><tr><td>A2</td><td style='text-align:center'>3</td></tr><tr><td>A3</td><td style='text-align:center'>1</td></tr><tr><td>A4</td><td style='text-align:center'>9</td></tr><tr><td>B1</td><td style='text-align:center'>157</td></tr><tr><td>B2</td><td style='text-align:center'>10</td></tr><tr><td>B3</td><td style='text-align:center'>31</td></tr><tr><td>C2</td><td style='text-align:center'>737</td></tr></tbody>
+  </table>
+
+  <h3>细分错误示例（每类2条）</h3>
+  <table>
+    <thead><tr><th>错误子类</th><th>例1-题号</th><th>例1-题目</th><th>例1-理由</th><th>例2-题号</th><th>例2-题目</th><th>例2-理由</th></tr></thead>
+    <tbody><tr><td>A1</td><td>Q024</td><td>一款新能源汽车电驱壳体采用ADC12压铸，但量产初期出现机加工后尺寸超差。工艺复盘发现其供货状态为铸态而非T6。请简述ADC12标准牌号中‘ADC’的含义，并说明铸态与T6态在组织均匀性和残余应力方面的关键区别，这对后续机加工有何影响？</td><td>GPT5.5: ADC解释错误：ADC是JIS压铸铝合金代号（Aluminium Die Casting），并非“A=铝、D=压铸、C=第三类常用压铸合金”；且ADC12通常以压铸态使用，题干把“铸态而非T6”作为既定异常时，答案应谨慎说明标准交付状态和图纸特殊要求，不能暗示ADC12常规T6。；GPT5.4: 把ADC12铸态和T6态当作常规对照前提，题干设定有知识性错误。；Sonnet4.6: 第一层答案称ADC中C代表第三类常用压铸合金，但JIS H 5302中ADC作为压铸铝合金系列代号前缀，C通常代表Cast（铸造合金）并非第三类之意，该解释无标准依据，属知识性错误，可能误导应聘者对JIS材料牌号命名体系的理解。；Opus4.8: B1参考答案知识性错误。第一层原文称A代表铝,D代表压铸(Die-casting),C代表第三类常用压铸合金。错误:ADC为JIS的Aluminum Die Casting缩写,C代表Casting(铸造),并非第三类常用压铸合金;牌号中的数字12才是合金序号。铸态与T6态组织及残余应力差异论述正确,但ADC释义错误。</td><td>Q117</td><td>请简单说说工艺流程图里常用的四个基本符号分别代表什么？</td><td>GPT5.5: 参考答案把工艺流程图四个基本符号说成“矩形、菱形、箭头、圆角矩形/带双竖线矩形”，这是通用流程图口径，且将菱形作为判断框、圆角矩形作为交接节点，不符合汽车制造过程流程图/工艺流程图常见的操作、检验、搬运、存储/等待等过程符号口径。正确应围绕工序操作、检验、搬运/流转、存储或等待等符号及其含义说明。；GPT5.4: 题干直接问“工艺流程图里常用的四个基本符号分别代表什么”，把流程图符号设定成一个固定、统一的“四符号”知识点并不严谨。不同企业模板、流程图标准和过程图法的符号集合并不完全一致，题干缺少所依据的图示规范前提。</td></tr><tr><td>A2</td><td>Q015</td><td>某铝合金副车架压铸件在脱模后发现多处冷隔和充填不足，而模具温度与浇注温度均符合工艺规范。请从金属液态成形原理出发，分析可能影响金属充型能力的关键材料与工艺耦合因素。</td><td>Gemini3.1pro: 题干场景偏门</td><td>Q020</td><td>请简单说说调质处理通常包含哪两个基本工序，这种热处理方式主要提升零件的什么性能？</td><td>Gemini3.1pro: 题干场景偏门</td></tr><tr><td>A3</td><td>Q818</td><td>某新导入的底盘控制臂总成装配中，压装轴承与壳体采用过盈配合，但试产阶段出现15%的壳体开裂和30%的压入力超限。设计已冻结无法变更，产线节拍压力大。请简单说说你会从哪些工艺维度协同调整来确保装配可靠性与节拍双达标，并解释为何这些措施能同时约束间隙稳定性与结构完整性。</td><td>GPT5.5: The row is under the knowledge point clearance fit, but the question is about press-fitting a bearing and housing with an interference fit. It asks how to manage cracking and excessive press force in an interference-fit process, which is a different fit mechanism and process control problem from clearance-fit gap control. The answer also reframes interference amount as gap stability, making the topic mismatch more apparent.</td><td>nan</td><td>nan</td><td>nan</td></tr><tr><td>A4</td><td>Q281</td><td>在编制PFMEA时，为什么必须确保每一项失效模式都对应到过程流程图中的具体工序步骤？请简单说说。</td><td>Sonnet4.6: 与同批次Q0297题目重复：均问为什么必须确保每一项失效模式都对应到过程流程图中的具体工序步骤，仅难度标签与结尾表述略有差异，实质为同一问题。</td><td>Q320</td><td>在编制PFMEA时，如果某个失效模式的发生频度评分为4分，而现行过程控制措施能有效探测该失效，探测度评分为2分，严重度为7分，请简述此时风险优先数RPN的计算逻辑及该数值的实际指导意义。</td><td>GPT5.5: 题目给出严重度7、发生度4、探测度2，并要求说明RPN计算逻辑及该数值的实际意义。参考答案只说RPN为三者乘积，却没有算出实际数值56，未完整回答题目。正确应明确RPN=7×4×2=56，再说明它用于同一PFMEA内风险排序和资源优先级参考，不能替代高严重度项的专项评审。；GPT5.4: 题目已经给出严重度7、发生频度4、探测度2，要求说明RPN计算逻辑及该数值意义，参考答案却没有直接算出RPN=56，而是转去泛谈排序、阈值和管理策略，未正面完成题目最核心的数值回答，答非所问。；Gemini3.1pro: 题干要求解释RPN的计算逻辑，等同于要求解释计算公式，违反A4规则。</td></tr><tr><td>B1</td><td>Q002</td><td>请简单说说金属在冲压成形时发生塑性变形的本质原因。</td><td>Opus4.8: B1参考答案知识性错误。第二层原文称r值偏低时易出现制耳,需优化毛坯形状或旋转排样。错误:制耳(earing)由板料平面各向异性delta-r(0/45/90方向r值之差)引起,与平均r值高低无必然关系,平均r值高但delta-r大同样产生明显制耳。正确应为平面各向异性delta-r偏大时易出现制耳。</td><td>Q010</td><td>某车身结构件采用热成形钢板制造，试制阶段发现零件回弹超差。结合金属成形原理中温度与变形抗力的关系，请简单说说为什么冷却速率会影响最终回弹量。</td><td>GPT5.4: 把冷却越快回弹越大当成通用结论，热成形场景下这一判断错误。</td></tr><tr><td>B2</td><td>Q029</td><td>某款新能源汽车电池包壳体原设计采用ADC12压铸铝合金，量产中发现热处理后尺寸稳定性不足，影响与模组的装配间隙。若需在不改变压铸工艺前提下提升材料热稳定性，你会优先考虑替换为哪类铝合金牌号？请简述选择依据。</td><td>GPT5.5: A380/AlSi9Cu3Fe与ADC12属于相近Al-Si-Cu压铸合金体系，并不能作为“不改变压铸工艺前提下提升热稳定性”的优先替代；“GB/T 15115-2022明确适用于结构件热处理强化”的表述也不准确。应优先讨论免热处理AlSi10MnMg/AlSi9MnMoV等结构压铸铝或通过热处理/时效路线验证，而非把A380/AlSi9Cu3Fe说成更优热稳定替代。；GPT5.4: 把A380或AlSi9Cu3Fe作为提升热稳定性的优先方案，选材判断失真。；Sonnet4.6: 第一层推荐A380替代ADC12以提升T6固溶时效稳定性，但A380（Si 7.5~9.5%，Cu 3~4%）属高铜压铸铝合金，与ADC12相比T6热处理适应性无明显优势，不是该场景最佳实践。当前主流做法是选用AlSi10MnMg类低铜合金，第一层方案存在误导性，属偏门解决方案。；Opus4.8: B1参考答案知识性错误与逻辑矛盾。第一层原文建议替换为高硅含量低铜含量的改良型压铸铝合金,典型代表A380或国产对标AlSi9Cu3Fe。错误:A380(约Al-8.5Si-3.5Cu)与AlSi9Cu3均为中高铜(约3%到3.5%Cu)合金,与低铜含量自相矛盾。若目标是提升热稳定性且低铜,应选AlSi10MnMg等免热处理低铜合金,而非A380或AlSi9Cu3。</td><td>Q127</td><td>一份已批准的涂装工艺流程图中，电泳烘干后直接进入中涂喷涂，但试制阶段发现中涂附着力不足。你认为流程图里可能遗漏了哪个关键工艺环节？请说明理由。</td><td>GPT5.5: 题目是涂装流程图中电泳烘干后直接进入中涂导致附着力不足，参考答案将最优落地路径写成“离子风除尘+表面等离子活化”。对汽车车身涂装电泳后转中涂的常规量产流程而言，更常见的核查/补充环节应是冷却、打磨/检查、清洁除尘、温湿度和表面状态确认等；等离子活化不是该岗位场景下常规最佳实践，作为最优路径偏门。；GPT5.4: 参考答案把电泳烘干后“强冷降温及表面活化处理”特别是“离子风除尘+表面等离子活化”说成中涂附着力不足时流程图中最可能遗漏的关键标准环节，这个判断过于绝对，不符合常规汽车涂装主流程口径。中涂附着问题应先结合漆膜固化、表面清洁、打磨/擦净和窗口参数排查，不能把等离子活化当成通用必选环节。；Opus4.8: B2参考答案方案偏门（非当下最佳实践）。第二层原文将离子风除尘加表面等离子活化列为电泳烘干到中涂之间附着力不足问题的最优落地路径。问题：整车车身电泳后到中涂的常规且当前最佳实践是控制电泳过烘（避免漆膜过度固化形成惰性层）、强制冷却降温、以及打磨或擦净tack-off并保证喷涂前表面清洁；对整车车身进行等离子表面活化并非量产涂装线的常见做法（等离子活化主要用于塑料件粘接前处理），将其作为最优落地路径属于偏门方案，不具备整车量产可落地性。</td></tr><tr><td>B3</td><td>Q016</td><td>某转向节锻件在终锻成形后，发现流线被切断且在关键受力区域形成涡流状紊乱组织，导致疲劳寿命未达标。请从金属塑性变形中晶粒流动与再结晶行为原理出发，说明该缺陷产生的本质机理及工艺优化方向。</td><td>GPT5.5: 原答案第一层仅要求“确认材料牌号、终锻温度、PFMEA”等流程动作，没有回答题干要求的“流线被切断、涡流状紊乱组织”的本质机理；应说明预锻/终锻金属流动路径突变、分模/飞边设计或终锻温度和变形速率不当导致纤维流线折返/切断及局部动态再结晶不均，再给工艺优化方向。；GPT5.4: 题目要解释缺陷机理，答案主要在列排查项，机理解释不足。；Sonnet4.6: 第一层答案未从题目要求的金属晶粒流动与再结晶行为原理出发说明流线被切断和涡流状紊乱组织的本质机理，仅描述了工程排查流程（首先确认材料牌号、终锻温度等），题目明确要求说明本质机理，属跑题。</td><td>Q016</td><td>某转向节锻件在终锻成形后，发现流线被切断且在关键受力区域形成涡流状紊乱组织，导致疲劳寿命未达标。请从金属塑性变形中晶粒流动与再结晶行为原理出发，说明该缺陷产生的本质机理及工艺优化方向。</td><td>GPT5.5: 原答案第一层仅要求“确认材料牌号、终锻温度、PFMEA”等流程动作，没有回答题干要求的“流线被切断、涡流状紊乱组织”的本质机理；应说明预锻/终锻金属流动路径突变、分模/飞边设计或终锻温度和变形速率不当导致纤维流线折返/切断及局部动态再结晶不均，再给工艺优化方向。；GPT5.4: 题目要解释缺陷机理，答案主要在列排查项，机理解释不足。；Sonnet4.6: 第一层答案未从题目要求的金属晶粒流动与再结晶行为原理出发说明流线被切断和涡流状紊乱组织的本质机理，仅描述了工程排查流程（首先确认材料牌号、终锻温度等），题目明确要求说明本质机理，属跑题。</td></tr><tr><td>C2</td><td>Q041</td><td>在新产品导入过程中，工艺开发通常被划分为几个主要阶段？请简述每个阶段的核心任务。</td><td>GPT5.5: 与Q0033同样要求说明工艺开发主要阶段，虽增加“核心任务”，但候选人会给出同一套阶段划分和任务框架，答案核心要点高度重合，按顺序保留Q0033。；GPT5.4: 与前序Q0033高度同质，保留更早题。；Opus4.8: C2语义重复。与B001 Q0033重复:二者均考察工艺开发划分为哪几个主要阶段,核心作答内容(工艺可行性分析/方案设计/试制验证/量产移交等阶段清单)与作答思路一致;Q0041仅追加每阶段核心任务,未改变核心考点。按提示词保留顺序在前的Q0033,删除Q0041。</td><td>Q041</td><td>在新产品导入过程中，工艺开发通常被划分为几个主要阶段？请简述每个阶段的核心任务。</td><td>GPT5.5: 与Q0033同样要求说明工艺开发主要阶段，虽增加“核心任务”，但候选人会给出同一套阶段划分和任务框架，答案核心要点高度重合，按顺序保留Q0033。；GPT5.4: 与前序Q0033高度同质，保留更早题。；Opus4.8: C2语义重复。与B001 Q0033重复:二者均考察工艺开发划分为哪几个主要阶段,核心作答内容(工艺可行性分析/方案设计/试制验证/量产移交等阶段清单)与作答思路一致;Q0041仅追加每阶段核心任务,未改变核心考点。按提示词保留顺序在前的Q0033,删除Q0041。</td></tr></tbody>
+  </table>
+
+<section>
+<h2>模型质量漂移提示</h2>
+<p>以下为一轮各模型删除率与质量风险标记。Sonnet4.6、Opus4.8 偏松，Gemini3.1pro 偏严；建议二轮前重点抽检这些模型的分歧样例。</p>
+<table class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>model</th>
+      <th>done_batches</th>
+      <th>questions_total</th>
+      <th>delete_count</th>
+      <th>keep_count</th>
+      <th>delete_rate</th>
+      <th>risk_flag</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>GPT5.5</td>
+      <td>29</td>
+      <td>1152</td>
+      <td>68</td>
+      <td>1084</td>
+      <td>0.059028</td>
+      <td>ok</td>
+    </tr>
+    <tr>
+      <td>GPT5.4</td>
+      <td>29</td>
+      <td>1152</td>
+      <td>117</td>
+      <td>1035</td>
+      <td>0.101562</td>
+      <td>ok</td>
+    </tr>
+    <tr>
+      <td>Sonnet4.6</td>
+      <td>29</td>
+      <td>1152</td>
+      <td>18</td>
+      <td>1134</td>
+      <td>0.015625</td>
+      <td>too_low_possible_under_review</td>
+    </tr>
+    <tr>
+      <td>Opus4.8</td>
+      <td>29</td>
+      <td>1152</td>
+      <td>34</td>
+      <td>1118</td>
+      <td>0.029514</td>
+      <td>too_low_possible_under_review</td>
+    </tr>
+    <tr>
+      <td>Gemini3.1pro</td>
+      <td>29</td>
+      <td>1152</td>
+      <td>761</td>
+      <td>391</td>
+      <td>0.660590</td>
+      <td>too_high_possible_over_review</td>
+    </tr>
+  </tbody>
+</table>
+</section>
+</body>
+</html>
