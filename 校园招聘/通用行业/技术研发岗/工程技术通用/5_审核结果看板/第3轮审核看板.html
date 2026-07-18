@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Round 3 Dashboard</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; margin: 24px; color: #1f2937; }
+    h1, h2, h3 { margin: 10px 0 12px; }
+    .cards { display: grid; grid-template-columns: repeat(3, minmax(140px, 220px)); gap: 12px; margin: 8px 0 18px; }
+    .card { border: 1px solid #e5e7eb; border-radius: 10px; padding: 12px; background: #fafafa; }
+    .card .k { font-size: 12px; color: #6b7280; }
+    .card .v { font-size: 24px; font-weight: 700; margin-top: 4px; }
+    table { border-collapse: collapse; width: 100%; margin: 8px 0 18px; }
+    th, td { border: 1px solid #e5e7eb; padding: 8px 10px; vertical-align: middle; }
+    th { background: #f9fafb; }
+    .legend span { margin-right: 12px; font-size: 13px; color: #374151; }
+    .mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; }
+    .ex { margin: 6px 0; color: #374151; }
+    .section-divider { border: 0; border-top: 2px solid #eef2f7; margin: 22px 0; }
+  </style>
+</head>
+<body>
+  <h1>Round 3 审核看板</h1>
+
+  <div class="cards">
+    <div class="card"><div class="k">A类错误</div><div class="v">6</div></div>
+    <div class="card"><div class="k">B类错误</div><div class="v">138</div></div>
+    <div class="card"><div class="k">C类错误</div><div class="v">177</div></div>
+  </div>
+
+  <h2>本轮题目主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">本轮（第3轮回流审）题目侧问题以同质化重复为主，C类合计约177次命中，其中C2（143）远高于C1（34），集中出现在刚度与强度、弹簧垫圈/防松、安全系数、MTBF、MISRA、终端电阻、接地与干扰、握手/就绪信号等知识点簇内：题干措辞略有差异，但候选人作答要点几乎同一套。A类相对较少（A1=6），典型是把宏观滑动/接触疲劳误设为微动磨损，或将建立时间等绝对阈值写成±百分比容差，导致场景与物理量口径不严谨。另有少量A2倾向（汽车ECU等偏门场景）偏离工程技术通用岗常见现场。难度与作答形式上，简单概念题占比高且相互撞车，是本轮题干设计的主要风险面；知识点匹配本身通常仍在通用岗范围内，但重复导致有效区分度下降。</div>
+<h2>本轮答案主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">答案侧以B类为主（约147），B1（113）最高发：材料力学温度依赖、标准/功能码张冠李戴、时序裕量分布假设等知识性或逻辑不严谨；B3（20）次之，多见于简单‘简述概念’题却在第二/三层展开方案比选与异常处理，答案层级与题干引导范围不一致；B2（12）体现为把过时或非优先方案（如弹簧垫圈优先）写成当前最佳实践。偶发B4/B6：第三层异常场景不符合交换式以太网机理，或答案口径滑向汽车电子研发而非通用岗现场部署/维护表达。整体上，可评分性被‘答得过满、答偏岗位、细节硬伤’三类问题同时拉低，与题干匹配度问题在简单题上尤为突出。</div>
+<h2>后续重新出内容时应补充的规则</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">【重新出题】<br/>重新出题规则：1）同一知识点簇内先做去重门禁，禁止仅改写措辞而保留同一作答骨架；每知识点优先保留1道代表题。2）题干物理量必须可口语作答且量纲正确：禁止把绝对阈值写成±%、禁止误用微动磨损等术语套宏观磨损场景。3）场景必须落在制造业工程技术通用岗常见装配/调试/点检/联锁/现场通信，禁止汽车ECU专属研发细节作为主场景。4）简单题只考概念识别；若需要二三层方案/异常，必须把题干改成中等/困难并写明应用场景。5）出题后自检：朗读题干能否30秒说清、是否与库内已有题同答案。<br/><br/>【重出答案】<br/>重出答案规则：1）第一层只回答题干所问概念/机理，不得提前铺方案清单；第二层才做方案比选；第三层仅1异常+1复杂，且机理符合现场真实约束。2）严禁知识硬伤：材料低温模量、标准号适用范围、Modbus功能码含义、以太网碰撞/终端电阻等必须按现行通用实践校核。3）最佳实践优先写通用岗可落地手段，避免把特定行业研发首选方案写成‘最常/必须’。4）表达口语化，少堆缩写与非必要英文；专有名词保留但不得影响口头作答。5）答案自检清单：逐句核对原文术语→是否与题干难度匹配→是否可被面试官按点打分→是否与同知识点其他题答案同构（若同构则改题而非改措辞）。</div>
+
+  <hr class="section-divider" />
+
+  <h2>模型进度与删除率</h2>
+  <table>
+    <thead>
+      <tr><th>Model</th><th>批次完成</th><th>完成率</th><th>删除率</th><th>主错误</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>GPT5.5</td><td style='text-align:center'>10/10</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:45.7%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">45.7%</span></td><td style='text-align:center'>B>C>A</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>10/10</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:40.0%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">40.0%</span></td><td style='text-align:center'>C>B>A</td></tr>
+    </tbody>
+  </table>
+
+  <h2>批次状态矩阵</h2>
+  <div class="legend">
+    <span>✓ done</span><span>… running</span><span>○ pending</span><span>! blocked</span><span>x failed</span>
+  </div>
+  <table>
+    <thead><tr><th>Model</th><th>R3-B001</th><th>R3-B002</th><th>R3-B003</th><th>R3-B004</th><th>R3-B005</th><th>R3-B006</th><th>R3-B007</th><th>R3-B008</th><th>R3-B009</th><th>R3-B010</th></tr></thead>
+    <tbody><tr><td>GPT5.5</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td></tr></tbody>
+  </table>
+
+  <h2>细分错误统计（A1/B1...）</h2>
+  <table>
+    <thead><tr><th>错误子类</th><th>数量</th></tr></thead>
+    <tbody><tr><td>A1</td><td style='text-align:center'>6</td></tr><tr><td>B1</td><td style='text-align:center'>113</td></tr><tr><td>B2</td><td style='text-align:center'>12</td></tr><tr><td>B3</td><td style='text-align:center'>20</td></tr><tr><td>B4</td><td style='text-align:center'>1</td></tr><tr><td>B6</td><td style='text-align:center'>1</td></tr><tr><td>C1</td><td style='text-align:center'>34</td></tr><tr><td>C2</td><td style='text-align:center'>143</td></tr></tbody>
+  </table>
+
+  <h3>细分错误示例（每类2条）</h3>
+  <table>
+    <thead><tr><th>错误子类</th><th>例1-题号</th><th>例1-题目</th><th>例1-理由</th><th>例2-题号</th><th>例2-题目</th><th>例2-理由</th></tr></thead>
+    <tbody><tr><td>A1</td><td>Q024</td><td>一条输送链在负载稳定情况下，链轮齿面出现非均匀点蚀，同时链条销轴处径向游隙实测值比新装时扩大了0.12毫米。请基于微动磨损与间隙松动的关联性，分析这种失效组合对传动刚度和冲击载荷分布产生的系统性影响。</td><td>Gemini3.1pro: 题干存在知识性错误和逻辑不严谨。题干要求“基于微动磨损与间隙松动的关联性”分析输送链的失效，但输送链的销轴与套筒之间、链条与链轮齿面之间发生的是宏观的相对滑动和滚动摩擦，属于滑动磨损或接触疲劳磨损（点蚀），而不是“微动磨损”。微动磨损通常发生在名义上相对静止但有微小振幅滑移的配合面（如过盈配合）。</td><td>Q044</td><td>一个嵌入式控制器的时序裕量设计中，芯片手册给出的建立时间容差为±15%，而实际产线测量显示晶振频率偏差达±100ppm、PCB走线温漂引入±8%延迟变化。请简述在开展最坏情况分析时，应如何处理这三类不同来源、不同分布特性的参数偏差，才能确保时序不违规。</td><td>GPT5.5: 参考答案第一层把“晶振±100ppm”直接定性为“符合高斯分布特征”依据不足；晶振ppm通常是规格书给出的频率准确度/温漂/老化等边界指标，并不天然代表高斯分布，最坏情况分析应先按同一物理量归一并根据实测分布或规格边界选择极值、RSS或统计方法。；Gemini3.1pro: 题干有知识性错误：建立时间通常是一个绝对的最小时间阈值（如2ns），而不是给出±15%的容差。此外，将ppm级别的偏差与百分比偏差直接混合在一起计算“建立时间容差”在工程术语上不够严谨，正确的应是基于绝对时间偏差进行最坏情况分析。</td></tr><tr><td>B1</td><td>Q001</td><td>某承载支架在低温环境中服役时发生突发性失稳，材料强度测试结果仍处于许可范围。请从刚度与强度设计边界的温度依赖性出发，解释该现象的机理，并说明设计阶段应如何预判并规避此类失效风险。</td><td>GPT5.5: 参考答案第一层原文称“低温会显著降低材料的弹性模量，导致结构刚度下降”，该表述存在知识性错误；多数金属材料低温下弹性模量通常不会显著降低，往往略有升高或变化很小。正确应从材料低温韧性下降、脆性转变、温度相关屈曲校核/实际约束及载荷边界变化等角度解释，而不能把“低温导致弹性模量显著降低”作为机理。；Gemini3.1pro: 参考答案第一层存在知识性错误。原文“低温会显著降低材料的弹性模量，导致结构刚度下降”错误，实际上大多数金属材料在低温下弹性模量是升高或保持稳定的，不会显著降低。正确的应该是“高温会显著降低材料的弹性模量”或者修改题目场景。</td><td>Q001</td><td>某承载支架在低温环境中服役时发生突发性失稳，材料强度测试结果仍处于许可范围。请从刚度与强度设计边界的温度依赖性出发，解释该现象的机理，并说明设计阶段应如何预判并规避此类失效风险。</td><td>GPT5.5: 参考答案第一层原文称“低温会显著降低材料的弹性模量，导致结构刚度下降”，该表述存在知识性错误；多数金属材料低温下弹性模量通常不会显著降低，往往略有升高或变化很小。正确应从材料低温韧性下降、脆性转变、温度相关屈曲校核/实际约束及载荷边界变化等角度解释，而不能把“低温导致弹性模量显著降低”作为机理。；Gemini3.1pro: 参考答案第一层存在知识性错误。原文“低温会显著降低材料的弹性模量，导致结构刚度下降”错误，实际上大多数金属材料在低温下弹性模量是升高或保持稳定的，不会显著降低。正确的应该是“高温会显著降低材料的弹性模量”或者修改题目场景。</td></tr><tr><td>B2</td><td>Q003</td><td>请简单说说弹簧垫圈实现防松的主要方式。</td><td>GPT5.5: 参考答案第二层原文称“弹簧垫圈仍是工程技术通用岗在常规装配、快速巡检及临时加固等场景中最常优先选用的基础防松手段”。弹簧垫圈在振动和长期可靠防松场景中效果有限，许多工程规范和实践已不把它作为优先防松方案。正确应优先考虑自锁螺母、螺纹胶、楔形锁紧垫圈、机械止动等更可靠方案。；Gemini3.1pro: 与Q0002重复。题干语言不一样，但从回答者角度看，候选人几乎会给出同一套答案内容（第二层都是列举弹簧垫圈、双螺母、尼龙嵌件等防松方案的优劣势）。</td><td>Q067</td><td>在设备联锁控制场景下，上位机下发运行指令后，现场设备返回‘就绪’信号前会先完成自检。请简单说说这个‘就绪’信号在握手流程中所代表的状态含义。</td><td>GPT5.5: 参考答案第二层称“Modbus TCP带功能码0x05或0x0F的专用就绪应答”不准确；0x05/0x0F是写单个/多个线圈功能码，不是专用就绪应答机制。且把显式报文交互说成当前制造业最广、最稳的就绪信号方式也偏离常见硬接线或周期性IO状态字口径。</td></tr><tr><td>B3</td><td>Q088</td><td>请简述设备能力边界中的‘重复定位精度’反映的是设备哪方面的能力？</td><td>Gemini3.1pro: 题目仅要求简述‘重复定位精度’反映设备哪方面的能力，为理论概念题。第二层和第三层却回答了如何评估重复定位精度的方案和异常，与题目引导的知识范围不一致，属于跑题。正确的应该是删除第二层和第三层的冗余内容，或将题目修改为包含场景的评估类问题。</td><td>Q090</td><td>请简述GRR在精度验证中主要用来评估什么？</td><td>Gemini3.1pro: 题目仅要求简述GRR主要用来评估什么，为理论概念题。第二层和第三层却回答了GRR的评估方法和异常情况，与题目引导的知识范围不一致，属于跑题。正确的应该是删除冗余层级，或修改题目以引导出评估方案。</td></tr><tr><td>B4</td><td>Q253</td><td>在工业现场，当一台PLC通过以太网与上位机通信时，上位机如何通过心跳信号判断这台PLC当前是否在线？请简述判断依据和关键特征。</td><td>GPT5.5: 参考答案第三层称“多台PLC共用同一IP网段且心跳响应存在微秒级竞争冲突”，并说响应会在“交换机缓冲区发生碰撞”，该说法不符合交换式以太网通信机理；现代交换机端口不会像共享介质那样发生碰撞，问题更可能是队列拥塞、轮询集中、超时阈值不合理或应用层调度冲突。正确答案应以连续超时、响应时间窗口、应用层状态和网络拥塞/丢包为判断依据。；Gemini3.1pro: 与Q0248重复</td><td>nan</td><td>nan</td><td>nan</td></tr><tr><td>B6</td><td>Q247</td><td>在汽车电子控制单元实际布线中，CAN总线两端必须配置终端电阻。请结合信号完整性、反射干扰和节点数量变化这三个因素，简述为什么不能仅在一端加终端电阻，也不能随意增加中间节点处的并联电阻。</td><td>GPT5.5: 参考答案第二层称“集成式终端芯片方案…已成为新车型ECU设计首选”，并称其能“稳定应对线束长度差异”，表述过于绝对且不属于通用终端配置最佳实践；第三层又提出“分支端口内置有源终端技术”和“通过CAN FD协议的位定时自适应功能补偿传播延迟偏差”，容易把非标准/特定方案当作通用解决办法。正确答案应围绕主干两端终端、避免单端/中间并联、控制分支长度和按位时序设计校核。；Gemini3.1pro: 参考答案第二层提到的‘集成式终端芯片方案’偏向汽车电子硬件研发设计，不符合‘工程技术通用岗’在制造产线现场部署、维护设备的口径。</td><td>nan</td><td>nan</td><td>nan</td></tr><tr><td>C1</td><td>Q149</td><td>请简单说说安全系数和零件失效模式之间最直接的关系是什么？</td><td>Gemini3.1pro: 与问题9重复。</td><td>Q152</td><td>请简述螺栓连接中，弹簧垫圈实现防松的基本原理。</td><td>Gemini3.1pro: 与问题30完全重复。</td></tr><tr><td>C2</td><td>Q003</td><td>请简单说说弹簧垫圈实现防松的主要方式。</td><td>GPT5.5: 参考答案第二层原文称“弹簧垫圈仍是工程技术通用岗在常规装配、快速巡检及临时加固等场景中最常优先选用的基础防松手段”。弹簧垫圈在振动和长期可靠防松场景中效果有限，许多工程规范和实践已不把它作为优先防松方案。正确应优先考虑自锁螺母、螺纹胶、楔形锁紧垫圈、机械止动等更可靠方案。；Gemini3.1pro: 与Q0002重复。题干语言不一样，但从回答者角度看，候选人几乎会给出同一套答案内容（第二层都是列举弹簧垫圈、双螺母、尼龙嵌件等防松方案的优劣势）。</td><td>Q132</td><td>请简述在机械设计中，刚度和强度分别反映构件抵抗哪类变形的能力？</td><td>Gemini3.1pro: 与问题11重复，核心考点和预期作答一致。</td></tr></tbody>
+  </table>
+</body>
+</html>
