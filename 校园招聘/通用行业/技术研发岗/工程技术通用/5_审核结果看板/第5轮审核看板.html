@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Round 5 Dashboard</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; margin: 24px; color: #1f2937; }
+    h1, h2, h3 { margin: 10px 0 12px; }
+    .cards { display: grid; grid-template-columns: repeat(3, minmax(140px, 220px)); gap: 12px; margin: 8px 0 18px; }
+    .card { border: 1px solid #e5e7eb; border-radius: 10px; padding: 12px; background: #fafafa; }
+    .card .k { font-size: 12px; color: #6b7280; }
+    .card .v { font-size: 24px; font-weight: 700; margin-top: 4px; }
+    table { border-collapse: collapse; width: 100%; margin: 8px 0 18px; }
+    th, td { border: 1px solid #e5e7eb; padding: 8px 10px; vertical-align: middle; }
+    th { background: #f9fafb; }
+    .legend span { margin-right: 12px; font-size: 13px; color: #374151; }
+    .mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; }
+    .ex { margin: 6px 0; color: #374151; }
+    .section-divider { border: 0; border-top: 2px solid #eef2f7; margin: 22px 0; }
+  </style>
+</head>
+<body>
+  <h1>Round 5 审核看板</h1>
+
+  <div class="cards">
+    <div class="card"><div class="k">A类错误</div><div class="v">5</div></div>
+    <div class="card"><div class="k">B类错误</div><div class="v">47</div></div>
+    <div class="card"><div class="k">C类错误</div><div class="v">33</div></div>
+  </div>
+
+  <h2>本轮题目主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">本轮（第5轮）回流题共102题，合并后仍有问题66题（可保留36）。题干侧主要问题仍是同质化：C1/C2合计约33次标记，集中在刚度/变形失效、弹簧垫圈防松、MTBF含义、总线终端匹配、渗氮/镀铬选型等知识点簇，问法改写但候选人核心要点高度重合，去重压力持续。其次是少量题干知识性不严谨（A1约5次），典型如把工业24V数字量误称为“24V TTL电平”、或对CMOS接TTL一概否定直连。题干场景总体仍偏产线联调/EMC/机械表面处理，覆盖面尚可，但重复簇侵蚀有效题量。</div>
+<h2>本轮答案主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">答案侧以B1知识性/逻辑错误为主（约40次），显著高于B2/B3。高频表现包括：共模/差模电流钳测量逻辑颠倒、EMI滤波中共模电感与X/Y电容接法混写、Modbus TCP事务模型过度绝对、渗氮“尺寸绝不变”等绝对化表述、屏蔽单端接地地环路机理不严谨，以及弹簧垫圈/镀锌被写成“首选”而不符合当下常见稳妥实践（B2）。本轮用户确认GPT5.5对绝对化措辞与现场最佳口径的严格尺度可接受，因此B类成为“保留题干重出答案”的主要来源（44题）；A/C类进入重新出题（22题）。</div>
+<h2>后续重新出内容时应补充的规则</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">【重新出题】<br/>1) 同一知识点必须拉开场景变量与作答机制差异（干扰源/受害侧、材料基体、协议角色、失效判据），禁止仅改措辞；出题后做C2自检——若候选人可用同一套要点回答则重写或合并。2) 术语必须准确：工业24V开关量不得写成TTL；电平匹配题需写清供电与阈值标准，避免一概而论。3) 题干约束与可解性一致：若写“不允许更换硬件”，答案不得主推外加转换模块。4) 简单题避免在同一批内重复原题（C1）。<br/><br/>【重出答案】<br/>1) EMC测量与滤波表述必须可落地：双线同钳测共模、共模扼流圈串L/N、X/Y电容角色不得混写。2) 协议机制按真实标准写：Modbus TCP可用事务标识实现多未决，不得把实现习惯写成协议绝对禁令；Profinet区分RT/IRT适用条件。3) 禁止过度绝对化（所有/默认/彻底/不会胀大）；改为“常见/通常/需验证”。4) “首选/特别适合”须对照当下常见合规实践，弹簧垫圈、单一表面处理工艺等应给出适用边界与替代方案。5) 第三层异常/复杂情况须与第一层结论自洽，避免机理自相矛盾。</div>
+
+  <hr class="section-divider" />
+
+  <h2>模型进度与删除率</h2>
+  <table>
+    <thead>
+      <tr><th>Model</th><th>批次完成</th><th>完成率</th><th>删除率</th><th>主错误</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>GPT5.5</td><td style='text-align:center'>3/3</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:62.7%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">62.7%</span></td><td style='text-align:center'>B>C>A</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>3/3</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:20.6%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">20.6%</span></td><td style='text-align:center'>C>B>A</td></tr>
+    </tbody>
+  </table>
+
+  <h2>批次状态矩阵</h2>
+  <div class="legend">
+    <span>✓ done</span><span>… running</span><span>○ pending</span><span>! blocked</span><span>x failed</span>
+  </div>
+  <table>
+    <thead><tr><th>Model</th><th>R5-B001</th><th>R5-B002</th><th>R5-B003</th></tr></thead>
+    <tbody><tr><td>GPT5.5</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td></tr></tbody>
+  </table>
+
+  <h2>细分错误统计（A1/B1...）</h2>
+  <table>
+    <thead><tr><th>错误子类</th><th>数量</th></tr></thead>
+    <tbody><tr><td>A1</td><td style='text-align:center'>5</td></tr><tr><td>B1</td><td style='text-align:center'>40</td></tr><tr><td>B2</td><td style='text-align:center'>6</td></tr><tr><td>B3</td><td style='text-align:center'>1</td></tr><tr><td>C1</td><td style='text-align:center'>8</td></tr><tr><td>C2</td><td style='text-align:center'>25</td></tr></tbody>
+  </table>
+
+  <h3>细分错误示例（每类2条）</h3>
+  <table>
+    <thead><tr><th>错误子类</th><th>例1-题号</th><th>例1-题目</th><th>例1-理由</th><th>例2-题号</th><th>例2-题目</th><th>例2-理由</th></tr></thead>
+    <tbody><tr><td>A1</td><td>Q032</td><td>在工厂产线的PLC控制系统中，常需将CMOS逻辑器件输出接入TTL电平的继电器模块。请简单说说，为什么不能直接连接，以及通常采用什么方法解决电平不匹配问题？</td><td>GPT5.5: 题干原文“CMOS逻辑器件输出接入TTL电平的继电器模块”“为什么不能直接连接”一概而论不严谨。CMOS能否直连TTL需看VOH/VOL、VIH/VIL、供电电压和输入/输出电流能力，3.3V或5V CMOS输出在很多TTL输入场景可满足阈值；若是继电器线圈驱动，应考察负载电流并使用驱动/隔离器件。；Gemini3.1pro: 答案第一层中对CMOS驱动TTL的电压兼容性解释存在逻辑错误。实际上5V或3.3V CMOS输出的高电平（通常>3V）完全满足TTL对高电平（>2.0V）的电压要求；两者真正的不兼容在于TTL低电平需要较大的灌电流，而早期CMOS低电平灌电流驱动能力弱，导致低电平无法满足要求。正确的应明确是低电平灌电流能力不足导致的不兼容。</td><td>Q033</td><td>在工厂自动化产线中，PLC输出的24V TTL电平信号需要驱动一个工作电压为3.3V的嵌入式控制器IO口，该IO口高电平阈值为2.0V、低电平阈值为0.8V。请简述你如何确保信号可靠传输，并说明选择方案时需重点权衡的三个工程因素。</td><td>GPT5.5: 题干原文“PLC输出的24V TTL电平信号”概念错误。TTL通常指5V晶体管-晶体管逻辑电平，工业PLC常见为24V开关量/工业数字量信号；正确题干应表述为“PLC 24V数字输出信号需要转换为3.3V控制器IO可接受电平”。；Gemini3.1pro: 题干将24V工业逻辑电平错误地称为“24V TTL电平信号”，存在知识性错误。TTL（晶体管-晶体管逻辑）电平标准通常指5V（或3.3V等），电气标准中不存在24V的TTL电平。正确的表述应该为“PLC输出的24V数字逻辑电平信号”。</td></tr><tr><td>B1</td><td>Q001</td><td>在产线设备联锁控制系统中，变频器驱动电机时引发PLC输入端口误触发，现场已确认干扰路径为电源线共模传导。请简述你将如何系统性地识别共模与差模成分，并据此选择抑制措施及验证有效性。</td><td>GPT5.5: 参考答案第二层原文“用电流钳卡单根线测共模电流，卡双线测差模电流”测量逻辑错误。实际钳住L/N两线同时测得的是共模电流分量（差模抵消），钳单根线只能看到线电流，不能直接判定为共模。</td><td>Q005</td><td>在工厂设备联机调试过程中，两台支持Profinet通信的PLC需要实时交换控制数据。请简单说说，Profinet是通过什么机制来保障这两台设备之间数据传输的确定性和低延迟的？</td><td>GPT5.5: 参考答案将Profinet确定性机制和现场方案表述不严谨：原文称“IRT是当前制造业通用岗最常落地的方案”“不需要更换整套网络设备”，但IRT需要全链路设备支持和严格时钟/交换配置，通用场景更常见的是RT；第三层用“DCP+LLDP辅助发现”解决跨网段实时性下降也不能解决IRT经路由转发的问题。</td></tr><tr><td>B2</td><td>Q021</td><td>请简述螺栓连接中，弹簧垫圈实现防松的基本原理。</td><td>GPT5.5: 参考答案第二层原文把弹簧垫圈描述为“仍是首选”，用于设备维护、样机调试等“特别适合”，属于过时或不稳妥的防松口径。弹簧垫圈在振动载荷下防松能力有限，关键连接更常用楔形防松垫圈、尼龙/全金属自锁螺母、螺纹锁固胶或机械止动等经验证方案。</td><td>Q058</td><td>在批量生产的机电一体设备中，EMC一致性测试发现约5%样机在300MHz附近辐射超标，复测确认问题源于电机驱动MOSFET开关回路的高频共模电流经外壳缝隙耦合。请简单说说如何结合滤波器与磁珠对开关节点进行分频段抑制设计，并说明磁珠选型时需重点匹配的两个电气参数及其工程验证依据。</td><td>GPT5.5: 参考答案把“开关节点串磁珠再并Y电容”“磁珠+π型滤波组合”作为电机驱动MOSFET开关节点的常用整改方案，过于偏门且存在引入损耗、发热和开关振荡的风险；正确优先级通常是优化开关回路面积、栅极电阻/吸收网络、屏蔽接地、输出滤波与外壳搭接。</td></tr><tr><td>B3</td><td>Q034</td><td>在产线设备的PLC与新型传感器模块联调时，发现传感器输出高电平为3.3V，而PLC数字输入端口要求最小识别高电平为4.5V；现场不允许更换硬件。请简述你如何从逻辑电平匹配角度系统性解决该兼容问题，并说明每种方案在现场实施时的关键约束。</td><td>GPT5.5: 题干明确“现场不允许更换硬件”，但参考答案第二层主要方案是“加装电平转换器模块”和“NPN三极管搭建简易上拉开关电路”，与题目约束冲突。正确答案应先说明若PLC不支持阈值配置或输入模式调整，在不新增硬件条件下无法可靠解决，只能通过参数配置、软件滤波/判定或停机变更硬件实现。</td><td>nan</td><td>nan</td><td>nan</td></tr><tr><td>C1</td><td>Q022</td><td>请简述螺栓连接中，弹簧垫圈实现防松的基本原理。</td><td>Gemini3.1pro: 题干和Q50021完全一样。正确的应该保留其中一题。</td><td>Q022</td><td>请简述螺栓连接中，弹簧垫圈实现防松的基本原理。</td><td>Gemini3.1pro: 题干和Q50021完全一样。正确的应该保留其中一题。</td></tr><tr><td>C2</td><td>Q012</td><td>请简述变形失效与刚度不足之间的关系。</td><td>Gemini3.1pro: 题干与其他题目（Q50011）几乎一致，从回答者角度看会给出同一套答案内容和核心要点。正确的应该保留其中一题即可。</td><td>Q013</td><td>请简述变形失效和刚度不足之间是什么关系？</td><td>Gemini3.1pro: 题干与其他题目（Q50011、Q50012）几乎一致，从回答者角度看会给出同一套答案内容和核心要点。正确的应该保留其中一题即可。</td></tr></tbody>
+  </table>
+</body>
+</html>

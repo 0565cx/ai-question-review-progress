@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Round 3 Dashboard</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; margin: 24px; color: #1f2937; }
+    h1, h2, h3 { margin: 10px 0 12px; }
+    .cards { display: grid; grid-template-columns: repeat(3, minmax(140px, 220px)); gap: 12px; margin: 8px 0 18px; }
+    .card { border: 1px solid #e5e7eb; border-radius: 10px; padding: 12px; background: #fafafa; }
+    .card .k { font-size: 12px; color: #6b7280; }
+    .card .v { font-size: 24px; font-weight: 700; margin-top: 4px; }
+    table { border-collapse: collapse; width: 100%; margin: 8px 0 18px; }
+    th, td { border: 1px solid #e5e7eb; padding: 8px 10px; vertical-align: middle; }
+    th { background: #f9fafb; }
+    .legend span { margin-right: 12px; font-size: 13px; color: #374151; }
+    .mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; }
+    .ex { margin: 6px 0; color: #374151; }
+    .section-divider { border: 0; border-top: 2px solid #eef2f7; margin: 22px 0; }
+  </style>
+</head>
+<body>
+  <h1>Round 3 审核看板</h1>
+
+  <div class="cards">
+    <div class="card"><div class="k">A类错误</div><div class="v">159</div></div>
+    <div class="card"><div class="k">B类错误</div><div class="v">46</div></div>
+    <div class="card"><div class="k">C类错误</div><div class="v">77</div></div>
+  </div>
+
+  <h2>本轮题目主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">本轮（制造业通用-软件技术支持工程师第3轮）题目侧问题以难度与场景错配、同质重复为主。一级错误命中 A约159、C约77。高频二级：A1（135）多表现为简单题带制造现场/MES/联调等具体场景，违反简单题纯理论口径；C2（74）集中在网络连通、接口报错、日志排查等知识点簇内，题干措辞不同但作答骨架高度重合。另有少量A3/A4：题干偏离知识点或出现无法口语直接作答的写出/绘制/公式要求。整体上，回流题在「简单题场景化」与「同质化」两端消耗了大量有效区分度。</div>
+<h2>本轮答案主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">答案侧以B类为主（约50），其中B1（40）最高发：网络/DNS/库存台账/接口字段等知识性或逻辑不严谨；另见B3跑题（简单概念题却铺方案比选）、B2过时实践、以及少量B4/B5（第三层异常不合理或代码/英文堆叠影响口语作答）。相较题干问题，答案硬伤更集中在现场支持可验证的技术事实上；可评分性受“答错点+答过满”双重影响。</div>
+<h2>后续重新出内容时应补充的规则</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">【重新出题】<br/>重新出题：1）简单题必须无场景、纯理论；禁止“当用户反馈/现场部署/联调时…”包装。2）中等题可带简单场景，但禁止穷举与优劣势长清单；困难题可考复杂排查，不强制改成系统设计题。3）同知识点去重门禁：作答骨架相同只留1道。4）禁止写出/绘制/公式类不可口语作答要求。5）自检：朗读题干30秒能否说清；是否与库内题同答案。<br/><br/>【重出答案】<br/>重出答案：1）第一层只答所问概念/机理；二三层再展开方法与异常。2）现场支持口径核对：DNS/网段/接口必填字段/库存台账更新触发条件等不得写错。3）第三层固定1异常+1复杂，机理符合产线真实约束。4）少代码块、少缩写堆叠，保证可口头作答。5）自检：逐句复核术语→是否匹配难度→能否按点打分→是否与同簇题答案同构。</div>
+
+  <hr class="section-divider" />
+
+  <h2>模型进度与删除率</h2>
+  <table>
+    <thead>
+      <tr><th>Model</th><th>批次完成</th><th>完成率</th><th>删除率</th><th>主错误</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>GPT5.5</td><td style='text-align:center'>9/9</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:42.6%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">42.6%</span></td><td style='text-align:center'>A>C>B</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>9/9</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:38.5%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">38.5%</span></td><td style='text-align:center'>A>C>B</td></tr>
+    </tbody>
+  </table>
+
+  <h2>批次状态矩阵</h2>
+  <div class="legend">
+    <span>✓ done</span><span>… running</span><span>○ pending</span><span>! blocked</span><span>x failed</span>
+  </div>
+  <table>
+    <thead><tr><th>Model</th><th>R3-B001</th><th>R3-B002</th><th>R3-B003</th><th>R3-B004</th><th>R3-B005</th><th>R3-B006</th><th>R3-B007</th><th>R3-B008</th><th>R3-B009</th></tr></thead>
+    <tbody><tr><td>GPT5.5</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td></tr></tbody>
+  </table>
+
+  <h2>细分错误统计（A1/B1...）</h2>
+  <table>
+    <thead><tr><th>错误子类</th><th>数量</th></tr></thead>
+    <tbody><tr><td>A1</td><td style='text-align:center'>135</td></tr><tr><td>A2</td><td style='text-align:center'>13</td></tr><tr><td>A3</td><td style='text-align:center'>11</td></tr><tr><td>B1</td><td style='text-align:center'>40</td></tr><tr><td>B2</td><td style='text-align:center'>2</td></tr><tr><td>B3</td><td style='text-align:center'>8</td></tr><tr><td>C1</td><td style='text-align:center'>3</td></tr><tr><td>C2</td><td style='text-align:center'>74</td></tr></tbody>
+  </table>
+
+  <h3>细分错误示例（每类2条）</h3>
+  <table>
+    <thead><tr><th>错误子类</th><th>例1-题号</th><th>例1-题目</th><th>例1-理由</th><th>例2-题号</th><th>例2-题目</th><th>例2-理由</th></tr></thead>
+    <tbody><tr><td>A1</td><td>Q014</td><td>当制造现场操作人员反馈系统界面按钮点击后没有反应，但其他功能正常，你会如何判断这属于体验类问题而非功能故障？请简述你的判断依据。</td><td>Gemini3.1pro: 题干逻辑不严谨，按钮“没有反应”在未明确后台是否成功执行前，通常优先被怀疑为前端交互或后台功能故障，直接引导判定为“体验类问题”容易产生误导。正确应为：按钮点击后动作已执行但界面无任何反馈提示。</td><td>Q021</td><td>你在现场支持一套新上线的制造执行系统时，发现客户使用的数据库版本是Oracle 19c，而产品资料中的版本说明明确指出该系统仅兼容Oracle 12c至19c（含）及21c。请简单说说，你如何依据这份兼容要求说明判断当前环境是否满足部署条件？</td><td>Gemini3.1pro: 题干考察逻辑过于简单，纯字面阅读理解（判断19c是否包含在“12c至19c（含）”内），缺乏专业深度，无法有效考察候选人的真实水平。正确应为：设置更具迷惑性或需要结合实际环境补丁小版本（如RU版本）进行判断的兼容性场景。</td></tr><tr><td>A2</td><td>Q243</td><td>ERP向MES推送生产任务时，任务主表与BOM子项表通过任务编号关联。若BOM子项表中外键字段未设索引，且任务量大时频繁出现接口超时或数据加载缓慢，这反映出主外键关系在性能层面的什么隐性设计缺陷？请从现场实时协同角度说明影响。</td><td>GPT5.5: 题干原文“在制造业现场系统运维中，需要统计各产线当天的完工工单数量”给简单题加入了具体运维场景；按补充口径，简单题应是无场景的纯概念/规则识别题，带场景应删除。；Gemini3.1pro: 简单题带场景。正确的应该是不带场景的纯理论考察。</td><td>Q247</td><td>在制造现场排查生产订单数据不一致问题时，发现订单主表里的订单号在工序明细表里查不到对应记录，你认为可能涉及哪几种常见的表间关联关系缺失？请简述。</td><td>GPT5.5: 题干原文“在查询生产订单数据时，如果需要按订单创建时间从最新到最旧排列”给简单题设置了订单查询场景；按补充口径，简单题带场景应删除。；Gemini3.1pro: 简单题带场景。正确的应该是不带场景的纯理论考察。</td></tr><tr><td>A3</td><td>Q162</td><td>在食品包装产线中，一个生产订单涉及3条并行灌装线，每条线产出的产品按时间戳自动打码。若WMS系统仅按订单汇总入库数量，未与MES同步各灌装线每分钟的实际产出序列及对应打码号段，当客户投诉某时间段产品存在异物时，现场排查将缺失哪类关键追踪依据？请简述。</td><td>GPT5.5: 题干难度标为“简单”，但原文“现场操作人员反馈：系统弹出提示‘保存成功’，但刷新后刚填的数据不见了”是具体异常场景；简单题应为无场景的概念识别题。且参考答案把该现象定性为“体验类问题中的‘感知与实际不一致’”，但保存成功后刷新数据消失更应首先归为数据未持久化/前后端一致性或保存链路缺陷，不能仅按体验类问题处理。；Gemini3.1pro: 简单题带场景，请修改为无场景纯理论提问</td><td>Q164</td><td>在制造现场梳理物料主数据需求时，发现同一物料在ERP系统中编码为A001，在MES系统中却登记为M-A001，且两者对应的基础属性（如单位、采购周期、安全库存）不一致。请简述你将如何协同业务方和技术方定位并推动这一问题的根源解决。</td><td>GPT5.5: 题干难度标为“简单”，但原文“现场反馈设备状态实时数据与SCADA画面上显示不一致，若已确认PLC采集正常”给出了具体现场排障场景；简单题应考查概念识别与规则理解，不应带应用场景。；Gemini3.1pro: 简单题带场景，请修改为无场景纯理论提问</td></tr><tr><td>B1</td><td>Q006</td><td>当现场用户反馈无法访问部署在本地服务器上的生产管理系统网页时，你打算先用什么方法确认网络是否连通？请简单说说具体操作和判断依据。</td><td>GPT5.5: 参考答案第二层称“90%以上的本地服务器网络故障（如网线松动、交换机断电、VLAN隔离错误）都能被第一时间暴露”，把缺乏依据的比例当成确定结论；且ping受ICMP策略影响，不能保证覆盖多数网络故障。正确应表述为ping是低成本起点，需结合端口连通和服务状态继续判断。</td><td>Q010</td><td>当MES系统上线前联调时，发现某道工序的设备状态数据始终无法从PLC采集过来，但其他工序正常。此时最常用的临时处置方案是什么？请简单说说。</td><td>GPT5.5: 参考答案第一层说最常用临时处置是“人工填报或预设默认状态”，第二层又称“离线缓存+补录”是“当前多数项目上线前最常选用的临时方案”，对题干所问“最常用的临时处置方案”前后结论不一致；且离线缓存+补录不能直接验证或替代PLC设备状态采集。正确应围绕临时人工状态维护、临时放开校验或明确的补录机制保持一致说明。</td></tr><tr><td>B2</td><td>Q002</td><td>当现场工业软件无法连接服务器时，如果怀疑是域名解析问题，你如何快速检查DNS是否正常工作？请简单说说。</td><td>GPT5.5: 参考答案第三层建议“立即切换到备用DNS（如集团统一DNS或8.8.8.8）”。制造现场MES/内网域名通常依赖企业内网DNS解析，直接切到公网DNS可能无法解析内网域名，也不符合现场安全策略；正确做法应是核对或切换到企业内网备用DNS，并由现场IT修复DNS服务。</td><td>Q234</td><td>MES系统完成参数配置并启动试运行后，用户反馈关键报工功能异常，准备执行回退前，必须核对的原始配置载体是什么？</td><td>GPT5.5: 参考答案第三层称在“客户环境禁用所有命令行工具，仅开放远程桌面和浏览器”时，“立即启用软件部署包内嵌的‘端口健康检查’网页工具”，这类内嵌网页探针不是工业软件部署现场的通用常见手段，且在端口受限、命令行禁用的客户环境中通常也难以默认存在并可用。正确做法应是提交客户运维协查/临时授权、使用客户允许的系统工具或调整应用端口并留痕。</td></tr><tr><td>B3</td><td>Q022</td><td>在制造业现场系统中，需要统计每个车间当天完成的合格产品数量。如果数据库里有生产记录表，其中包含车间名称和产品状态两个字段，你用SQL做这个统计时，核心要加哪两个关键词？</td><td>GPT5.5: 题干明确问“核心要加哪两个关键词”，参考答案只说“分组关键词”和“聚合关键词”，没有直接给出GROUP BY、COUNT等具体SQL关键词；同时对“合格产品数量”的状态过滤也没有在第一层明确说明，未直接回答题目要求。</td><td>Q056</td><td>在制造现场验证MES系统中工单完工数量时，发现数据库里某条工单的完工数量远高于理论最大值（如：计划数量100件，完工数量却显示99999），但日志和操作记录均未提示异常。请简述你会如何快速定位这个异常值产生的根本原因。</td><td>GPT5.5: 题干给出“计划数量100件，完工数量却显示99999，且日志和操作记录均未提示异常”，参考答案第二层却判断“设备通信不稳定引发的重复报工，占此类异常的七成以上”且称第二步最管用；原文既使用无依据比例，又偏离 99999 这类占位值/默认值/校验缺失更应优先排查的特征。</td></tr><tr><td>C1</td><td>Q207</td><td>在部署工业软件时，如果数据库服务无法启动，日志显示‘端口被占用’，请简述你如何快速确认并解决这个问题。</td><td>Gemini3.1pro: 简单题不应包含业务场景，纯理论考察不应带入具体操作或业务环境。正确的应该是什么：直接提问理论概念，如“物料主数据通常包含哪些关键字段？”</td><td>Q276</td><td>在查看工业软件服务端日志时，如果某条错误日志末尾连续出现‘at com.xxx.mes.service…’多行以‘at’开头的文本，这类信息统称为什么？请简述。</td><td>Gemini3.1pro: 简单题带场景。正确的应该是不带场景的纯理论考察。</td></tr><tr><td>C2</td><td>Q002</td><td>当现场工业软件无法连接服务器时，如果怀疑是域名解析问题，你如何快速检查DNS是否正常工作？请简单说说。</td><td>GPT5.5: 参考答案第三层建议“立即切换到备用DNS（如集团统一DNS或8.8.8.8）”。制造现场MES/内网域名通常依赖企业内网DNS解析，直接切到公网DNS可能无法解析内网域名，也不符合现场安全策略；正确做法应是核对或切换到企业内网备用DNS，并由现场IT修复DNS服务。</td><td>Q006</td><td>当现场用户反馈无法访问部署在本地服务器上的生产管理系统网页时，你打算先用什么方法确认网络是否连通？请简单说说具体操作和判断依据。</td><td>GPT5.5: 参考答案第二层称“90%以上的本地服务器网络故障（如网线松动、交换机断电、VLAN隔离错误）都能被第一时间暴露”，把缺乏依据的比例当成确定结论；且ping受ICMP策略影响，不能保证覆盖多数网络故障。正确应表述为ping是低成本起点，需结合端口连通和服务状态继续判断。</td></tr></tbody>
+  </table>
+</body>
+</html>
