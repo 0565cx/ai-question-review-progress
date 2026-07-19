@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Round 6 Dashboard</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; margin: 24px; color: #1f2937; }
+    h1, h2, h3 { margin: 10px 0 12px; }
+    .cards { display: grid; grid-template-columns: repeat(3, minmax(140px, 220px)); gap: 12px; margin: 8px 0 18px; }
+    .card { border: 1px solid #e5e7eb; border-radius: 10px; padding: 12px; background: #fafafa; }
+    .card .k { font-size: 12px; color: #6b7280; }
+    .card .v { font-size: 24px; font-weight: 700; margin-top: 4px; }
+    table { border-collapse: collapse; width: 100%; margin: 8px 0 18px; }
+    th, td { border: 1px solid #e5e7eb; padding: 8px 10px; vertical-align: middle; }
+    th { background: #f9fafb; }
+    .legend span { margin-right: 12px; font-size: 13px; color: #374151; }
+    .mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; }
+    .ex { margin: 6px 0; color: #374151; }
+    .section-divider { border: 0; border-top: 2px solid #eef2f7; margin: 22px 0; }
+  </style>
+</head>
+<body>
+  <h1>Round 6 审核看板</h1>
+
+  <div class="cards">
+    <div class="card"><div class="k">A类错误</div><div class="v">1</div></div>
+    <div class="card"><div class="k">B类错误</div><div class="v">25</div></div>
+    <div class="card"><div class="k">C类错误</div><div class="v">7</div></div>
+  </div>
+
+  <h2>本轮题目主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">本轮题目主要出错点集中在三类：一是题干内部逻辑自洽性不足（A1，1题），典型如已明确“干扰路径为电源线共模传导”，却继续要求候选人识别共模/差模成分，导致设问目标冲突；二是同质化与完全重复（C1/C2合计约7题），高频出现“换说法问同一考点”的情况，例如变频器干扰与接地环路、刚度/变形失效、CAN终端电阻等，候选人口语作答要点几乎完全重叠；三是少量题干在场景给定信息与任务指令之间衔接不紧，容易诱导答案写成排查流程而非岗位常见可口述知识点。整体看，题干设计问题占比低于答案问题，但重复题对可用题量消耗明显，影响本轮回流题库的多样性。</div>
+<h2>本轮答案主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">本轮答案问题占主导，合并后B类约25题，其中B1高达24题：参考答案在电路接口、EMC标准适用、器件降额、总线测量等工程细节上出现知识性或机理表述错误。典型表现包括：把NPN饱和导通误写成可直接把3.3V“抬升”为PLC高电平；把高温电解电容降额重点误写成额定电压比例而非温度/纹波寿命；把谐波/闪烁类国标误当作辐射骚扰限值依据；CAN总线60Ω等效阻值测法写成对地而非线间。另有B5（1题）表现为答案夹带模型自我纠错长推理，口语不可直接作答。影响范围覆盖电源防护、电平匹配、EMC合规、机械连接与现场总线等多个技能块，导致大量题干可保留但答案必须重写。</div>
+<h2>后续重新出内容时应补充的规则</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">【重新出题】<br/>重新出题规则：1）题干给定前提与设问目标必须一致，禁止“已确认某结论”后又要求识别/验证该结论本身；2）出题前做库内去重：同一知识点下若核心作答要点、关键机理、现场动作高度重合，只保留一题；3）场景信息只给到完成单点考查所需，避免额外前提与后续任务打架；4）自检清单：读完题干能否一句话概括考查点；是否存在与在先题目可互换答案；是否要求口难直接表达的公式/绘图。<br/><br/>【重出答案】<br/>重出答案规则：1）电路/EMC/器件类答案必须可核对到公认机理与适用标准，禁止“听起来合理”的接口电路描述；2）标准类答案先判定产品类别与适用国标/CISPR映射，禁止把抗扰度、谐波闪烁与发射限值标准混用；3）测量与验证步骤写清测点与判据（如CAN测H-L线间约60Ω，而非对地）；4）禁止答案中出现自我否定、多轮试错推理文本；三层结构保持可口述；5）自检：用反例追问（接反/极性/量程/标准类别）验证关键句是否仍成立。</div>
+
+  <hr class="section-divider" />
+
+  <h2>模型进度与删除率</h2>
+  <table>
+    <thead>
+      <tr><th>Model</th><th>批次完成</th><th>完成率</th><th>删除率</th><th>主错误</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>GPT5.5</td><td style='text-align:center'>2/2</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:41.5%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">41.5%</span></td><td style='text-align:center'>B>C</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>2/2</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:9.2%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">9.2%</span></td><td style='text-align:center'>C>A>B</td></tr>
+    </tbody>
+  </table>
+
+  <h2>批次状态矩阵</h2>
+  <div class="legend">
+    <span>✓ done</span><span>… running</span><span>○ pending</span><span>! blocked</span><span>x failed</span>
+  </div>
+  <table>
+    <thead><tr><th>Model</th><th>R6-B001</th><th>R6-B002</th></tr></thead>
+    <tbody><tr><td>GPT5.5</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td></tr></tbody>
+  </table>
+
+  <h2>细分错误统计（A1/B1...）</h2>
+  <table>
+    <thead><tr><th>错误子类</th><th>数量</th></tr></thead>
+    <tbody><tr><td>A1</td><td style='text-align:center'>1</td></tr><tr><td>B1</td><td style='text-align:center'>24</td></tr><tr><td>B5</td><td style='text-align:center'>1</td></tr><tr><td>C1</td><td style='text-align:center'>2</td></tr><tr><td>C2</td><td style='text-align:center'>5</td></tr></tbody>
+  </table>
+
+  <h3>细分错误示例（每类2条）</h3>
+  <table>
+    <thead><tr><th>错误子类</th><th>例1-题号</th><th>例1-题目</th><th>例1-理由</th><th>例2-题号</th><th>例2-题目</th><th>例2-理由</th></tr></thead>
+    <tbody><tr><td>A1</td><td>Q003</td><td>在产线设备联锁控制系统中，变频器驱动电机时引发PLC输入端口误触发，现场已确认干扰路径为电源线共模传导。请简述你将如何系统性地识别共模与差模成分，并据此选择抑制措施及验证有效性。</td><td>Gemini3.1pro: 题干逻辑矛盾。题目中先陈述“现场已确认干扰路径为电源线共模传导”，后文又要求“请简述你将如何系统性地识别共模与差模成分”，既然已确认是共模传导，便无需再进行识别。正确应将题干修改为：“现场怀疑干扰路径为电源线传导干扰，请简述你将如何系统性地识别...”或直接要求说明如何抑制共模干扰。</td><td>nan</td><td>nan</td><td>nan</td></tr><tr><td>B1</td><td>Q007</td><td>在工业现场常见的直流供电设备中，当电源输入端因接线疏忽发生正负极反接时，设备内部电路可能损坏。请简述你在设计这类设备的电源输入级时，会如何综合考虑成本、功耗、响应速度和可靠性，来选择并实现反接保护方案。</td><td>GPT5.5: 第三层称“体二极管反向漏电剧增，在反接瞬间形成微小电流通路”，低温下一般半导体反向漏电流会降低而不是剧增；正确应关注MOSFET体二极管方向、雪崩/漏电规格和栅极驱动可靠性。</td><td>Q008</td><td>在产线设备的PLC与新型传感器模块联调时，发现传感器输出高电平为3.3V，而PLC数字输入端口要求最小识别高电平为4.5V；现场不允许更换硬件。请简述你如何从逻辑电平匹配角度系统性解决该兼容问题，并说明每种方案在现场实施时的关键约束。</td><td>GPT5.5: 第二层称“用NPN型三极管搭建简易上拉开关电路，利用三极管饱和导通特性把3.3V控制信号转成接近PLC供电电压的高电平”，普通NPN饱和导通会把输出拉低并产生反相，不能直接把高电平抬升为高电平；正确应使用合适的电平转换器、比较器、MOSFET/三极管非反相或反相后再校正的接口方案。</td></tr><tr><td>B5</td><td>Q017</td><td>当一款工业控制设备在国内市场销售时，其传导骚扰测试应满足哪项国家标准的具体限值要求？请说明该标准与CISPR系列标准的关系。</td><td>GPT5.5: 答案先列“GB/T 17626.4”“GB/T 17626.3”又否定，最终称“工业控制设备属于工业、科学和医疗（ISM）设备范畴，应执行GB 4824—2019”，该归类并非对工业控制设备普遍成立；正确应按具体产品类别/用途确定GB/T 18268、GB 4824、GB 9254等适用标准及传导骚扰限值。；Gemini3.1pro: 参考答案第一层包含了大量模型自我纠错的推理过程文本（如“应满足GB/T 17626.4...不适用——这是抗扰度标准。正确标准是GB/T...也不对...准确答案是：”），冗长且不符合口语直接作答的要求。正确的答案应直接给出结论：“准确答案是：工业控制设备属于工业、科学和医疗（ISM）设备范畴，应执行GB 4824—2019...”。</td><td>nan</td><td>nan</td><td>nan</td></tr><tr><td>C1</td><td>Q029</td><td>请简述螺栓连接中，弹簧垫圈实现防松的基本原理。</td><td>nan</td><td>Q029</td><td>请简述螺栓连接中，弹簧垫圈实现防松的基本原理。</td><td>nan</td></tr><tr><td>C2</td><td>Q030</td><td>在工厂产线设备调试过程中，发现多台变频器同时运行时，PLC模拟量输入信号出现跳变。请简述这种现象最可能与接地分配设计中的哪类干扰风险相关，并说明其产生原因。</td><td>Gemini3.1pro: 与Q005考察点和核心内容完全一致，仅在题干表达上稍作改变。应保留前一道题目，删除本题。</td><td>Q030</td><td>在工厂产线设备调试过程中，发现多台变频器同时运行时，PLC模拟量输入信号出现跳变。请简述这种现象最可能与接地分配设计中的哪类干扰风险相关，并说明其产生原因。</td><td>Gemini3.1pro: 与Q005考察点和核心内容完全一致，仅在题干表达上稍作改变。应保留前一道题目，删除本题。</td></tr></tbody>
+  </table>
+</body>
+</html>

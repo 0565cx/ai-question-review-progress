@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Round 5 Dashboard</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; margin: 24px; color: #1f2937; }
+    h1, h2, h3 { margin: 10px 0 12px; }
+    .cards { display: grid; grid-template-columns: repeat(3, minmax(140px, 220px)); gap: 12px; margin: 8px 0 18px; }
+    .card { border: 1px solid #e5e7eb; border-radius: 10px; padding: 12px; background: #fafafa; }
+    .card .k { font-size: 12px; color: #6b7280; }
+    .card .v { font-size: 24px; font-weight: 700; margin-top: 4px; }
+    table { border-collapse: collapse; width: 100%; margin: 8px 0 18px; }
+    th, td { border: 1px solid #e5e7eb; padding: 8px 10px; vertical-align: middle; }
+    th { background: #f9fafb; }
+    .legend span { margin-right: 12px; font-size: 13px; color: #374151; }
+    .mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; }
+    .ex { margin: 6px 0; color: #374151; }
+    .section-divider { border: 0; border-top: 2px solid #eef2f7; margin: 22px 0; }
+  </style>
+</head>
+<body>
+  <h1>Round 5 审核看板</h1>
+
+  <div class="cards">
+    <div class="card"><div class="k">A类错误</div><div class="v">0</div></div>
+    <div class="card"><div class="k">B类错误</div><div class="v">10</div></div>
+    <div class="card"><div class="k">C类错误</div><div class="v">9</div></div>
+  </div>
+
+  <h2>本轮题目主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">本轮题目侧问题几乎全部落在同质化重复（C2），未见A类题干硬伤。典型表现是同一排查/概念用不同MES/WMS场景“换皮”：业务字典缺失导致下拉选项不全、端口连通性探测（telnet/相关命令）、枚举值映射（数字码与业务状态对应）、以及网络连通超时（ping）等成组题，题干措辞不同，但候选人会给出同一套核心要点与作答路径。影响范围集中在网络连通排查、接口字段/枚举映射、字典配置几类知识点，削弱题库区分度。整体看，本轮题干设计质量尚可，主要风险是回流重出时未做充分去重。</div>
+<h2>本轮答案主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">本轮答案错误全部为B1（知识性错误/逻辑不严谨），无B2–B6。高频点包括：1）把业务动作误写成SQL关键词（如“分组和筛选”而非GROUP BY/WHERE/COUNT）；2）DNS排查首选ping而非nslookup/dig；3）UINT32最大值写入BIGINT被误判为溢出变负；4）Modbus TCP被写成“异常事件驱动”、外键约束作用表述反了、浮点千克转克用错误拼接法、接口清洗责任方绝对化、功能码16寄存器上限口径不可靠等。影响范围覆盖SQL、网络、数据类型、采集协议与接口联调，直接损害可评分性与现场专业口径。答案侧是本轮删题主因之一（8题重出答案）。</div>
+<h2>后续重新出内容时应补充的规则</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">【重新出题】<br/>重新出题规则：1）同一技能/知识点下必须做C2自检：若核心排查步骤、命令选择或概念定义可互换，则只保留一题；2）网络类题需区分DNS解析检查、端口开放检查、端到端连通超时三类考点，禁止场景换皮复用同一命令答案；3）枚举/字典类题要拉开层次（概念定义 vs 配置项定位 vs 联调核对），避免多题都停在“叫什么/查哪类配置”；4）回流题入库前与已保留题做作答路径比对，重复则改考点或合并。<br/><br/>【重出答案】<br/>重出答案规则：1）题干问“关键词/命令/协议上限”时，第一层必须给出可核验的技术对象（如GROUP BY/WHERE/COUNT、nslookup/dig、Modbus PDU与寄存器核算），禁止用业务口语替代规范术语；2）数值类型题必须按真实取值范围推演（UINT32最大值可安全落入BIGINT），不得编造溢出；3）协议题禁止把轮询型Modbus写成通用事件驱动，上限数字须可追溯规范而非品牌传言；4）外键/级联、浮点换算、接口清洗责任方等表述须符合数据库与集成常规实践，避免绝对化归属；5）B类从严自检：先自己口头作答再对照参考答案纠错。</div>
+
+  <hr class="section-divider" />
+
+  <h2>模型进度与删除率</h2>
+  <table>
+    <thead>
+      <tr><th>Model</th><th>批次完成</th><th>完成率</th><th>删除率</th><th>主错误</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>GPT5.5</td><td style='text-align:center'>2/2</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:22.2%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">22.2%</span></td><td style='text-align:center'>B>C</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>2/2</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:13.0%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">13.0%</span></td><td style='text-align:center'>C>B</td></tr>
+    </tbody>
+  </table>
+
+  <h2>批次状态矩阵</h2>
+  <div class="legend">
+    <span>✓ done</span><span>… running</span><span>○ pending</span><span>! blocked</span><span>x failed</span>
+  </div>
+  <table>
+    <thead><tr><th>Model</th><th>R5-B001</th><th>R5-B002</th></tr></thead>
+    <tbody><tr><td>GPT5.5</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td></tr></tbody>
+  </table>
+
+  <h2>细分错误统计（A1/B1...）</h2>
+  <table>
+    <thead><tr><th>错误子类</th><th>数量</th></tr></thead>
+    <tbody><tr><td>B1</td><td style='text-align:center'>10</td></tr><tr><td>C2</td><td style='text-align:center'>9</td></tr></tbody>
+  </table>
+
+  <h3>细分错误示例（每类2条）</h3>
+  <table>
+    <thead><tr><th>错误子类</th><th>例1-题号</th><th>例1-题目</th><th>例1-理由</th><th>例2-题号</th><th>例2-题目</th><th>例2-理由</th></tr></thead>
+    <tbody><tr><td>B1</td><td>Q001</td><td>在制造业现场系统中，需要统计每个车间当天完成的合格产品数量。如果数据库里有生产记录表，其中包含车间名称和产品状态两个字段，你用SQL做这个统计时，核心要加哪两个关键词？</td><td>GPT5.5: 题干问“核心要加哪两个关键词”，在统计每个车间合格产品数量时核心应包含聚合计数COUNT和分组GROUP BY，并用WHERE/条件聚合限定“合格”；参考答案第一层写“分组和筛选”，缺少计数关键字，且第二层又把“条件聚合”说成规避状态字段格式不一致，口径不准确。；Gemini3.1pro: 具体错的地方：第一层和问题中将“分组”和“筛选”称为SQL的关键词。正确的应该是什么：SQL的关键词应为 GROUP BY 和 WHERE/HAVING，“分组”和“筛选”是业务操作或SQL语句的逻辑作用，并非SQL的关键词代码。</td><td>Q001</td><td>在制造业现场系统中，需要统计每个车间当天完成的合格产品数量。如果数据库里有生产记录表，其中包含车间名称和产品状态两个字段，你用SQL做这个统计时，核心要加哪两个关键词？</td><td>GPT5.5: 题干问“核心要加哪两个关键词”，在统计每个车间合格产品数量时核心应包含聚合计数COUNT和分组GROUP BY，并用WHERE/条件聚合限定“合格”；参考答案第一层写“分组和筛选”，缺少计数关键字，且第二层又把“条件聚合”说成规避状态字段格式不一致，口径不准确。；Gemini3.1pro: 具体错的地方：第一层和问题中将“分组”和“筛选”称为SQL的关键词。正确的应该是什么：SQL的关键词应为 GROUP BY 和 WHERE/HAVING，“分组”和“筛选”是业务操作或SQL语句的逻辑作用，并非SQL的关键词代码。</td></tr><tr><td>C2</td><td>Q037</td><td>某工厂上线新版本MES系统后，操作人员发现所有工单的'工序状态'下拉选项里只显示'未开始'和'已完成'，缺少'进行中''暂停'等中间状态。如果你怀疑是字典配置缺失导致的，会重点检查哪类配置项？请简述判断依据。</td><td>Gemini3.1pro: 具体错的地方：与Q034考点重复。正确的应该是什么：两题均考察下拉选项缺失时检查业务字典配置的思路，候选人会给出完全相同的排查方向，属于C2重复，予以删除。</td><td>Q044</td><td>发现MES系统登录界面一直转圈，初步怀疑应用服务未响应，你会用什么命令测试应用服务器的登录端口是否开放？请简单说说。</td><td>Gemini3.1pro: 具体错的地方：与Q041考点重复。正确的应该是什么：两题均考察如何使用命令测试服务器端口的连通性，第一层答案均指向telnet/ping等测试工具，作答思路完全一致，属于C2重复。</td></tr></tbody>
+  </table>
+</body>
+</html>
