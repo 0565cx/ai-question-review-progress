@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Round 7 Dashboard</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; margin: 24px; color: #1f2937; }
+    h1, h2, h3 { margin: 10px 0 12px; }
+    .cards { display: grid; grid-template-columns: repeat(3, minmax(140px, 220px)); gap: 12px; margin: 8px 0 18px; }
+    .card { border: 1px solid #e5e7eb; border-radius: 10px; padding: 12px; background: #fafafa; }
+    .card .k { font-size: 12px; color: #6b7280; }
+    .card .v { font-size: 24px; font-weight: 700; margin-top: 4px; }
+    table { border-collapse: collapse; width: 100%; margin: 8px 0 18px; }
+    th, td { border: 1px solid #e5e7eb; padding: 8px 10px; vertical-align: middle; }
+    th { background: #f9fafb; }
+    .legend span { margin-right: 12px; font-size: 13px; color: #374151; }
+    .mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; }
+    .ex { margin: 6px 0; color: #374151; }
+    .section-divider { border: 0; border-top: 2px solid #eef2f7; margin: 22px 0; }
+  </style>
+</head>
+<body>
+  <h1>Round 7 审核看板</h1>
+
+  <div class="cards">
+    <div class="card"><div class="k">A类错误</div><div class="v">1</div></div>
+    <div class="card"><div class="k">B类错误</div><div class="v">19</div></div>
+    <div class="card"><div class="k">C类错误</div><div class="v">8</div></div>
+  </div>
+
+  <h2>本轮题目主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">本轮题目主要出错点集中在两类：一是题干逻辑自洽性不足（A1，1题），典型如把看门狗“复位后、重启前”表述成可执行操作窗口，与硬件复位瞬时发生的实际过程冲突；二是同质化重复（C2，合并口径约8处标记），高频落在CAN终端电阻/匹配、反接保护与PMOS低温特性、刚度变形失效、伺服干扰共模差模等考点上，题干措辞不同但候选人作答要点高度重合。整体看，题干新场景设计问题占比不高，但重复题对可用题量消耗明显，且多与答案错误叠加出现，导致本轮并集删题后仍有较大回流压力。</div>
+<h2>本轮答案主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">本轮答案问题仍是主导，合并后B类约19处标记，几乎全部为B1：参考答案在EMC标准适用、器件降额、接口与总线测量、电源防护等工程细节上出现知识性或机理表述错误。典型表现包括：把谐波电流类国标误当作辐射骚扰限值依据；把高温电解电容降额重点过度归结为额定电压比例；CAN终端电阻写成“到地”或错误分支阻值建议；运算放大器VCVS单位增益反馈关系说错；以及答案中夹带模型自我纠错乱码（如标准条文自我否定后重写）。影响范围覆盖EMC合规、电源防护、现场总线与机械刚度等技能块，导致大量题干可保留但答案必须重写（本轮保留题干重出答案14题）。</div>
+<h2>后续重新出内容时应补充的规则</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">【重新出题】<br/>重新出题规则：1）复位/时序类题干必须与硬件实际时序一致，禁止虚构“复位后重启前”等不可执行窗口；2）出题前做库内去重：同一知识点下若核心作答要点、关键机理、现场动作高度重合，只保留一题（尤其CAN终端、反接保护、刚度变形、共模差模干扰）；3）场景信息只给到完成单点考查所需，避免同一批次内多题互换答案；4）自检清单：一句话概括考查点；是否与在先题目可互换答案；是否要求口难直接表达的公式/绘图。<br/><br/>【重出答案】<br/>重出答案规则：1）标准类答案先判定产品类别与适用CISPR/国标映射，禁止把谐波/闪烁/抗扰度与发射限值标准混用；2）器件与接口答案必须可核对到公认机理（降额看温度/纹波/寿命与电压应力的主次；CAN测H-L线间约60Ω而非对地）；3）禁止答案出现自我否定、多轮试错推理或“准确答案是：”类纠错残留；三层结构保持可口述；4）自检：用反例追问（标准类别/测点极性/驱动裕量）验证关键句是否仍成立。</div>
+
+  <hr class="section-divider" />
+
+  <h2>模型进度与删除率</h2>
+  <table>
+    <thead>
+      <tr><th>Model</th><th>批次完成</th><th>完成率</th><th>删除率</th><th>主错误</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>GPT5.5</td><td style='text-align:center'>1/1</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:75.0%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">75.0%</span></td><td style='text-align:center'>B>C>A</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>1/1</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:25.0%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">25.0%</span></td><td style='text-align:center'>C>B</td></tr>
+    </tbody>
+  </table>
+
+  <h2>批次状态矩阵</h2>
+  <div class="legend">
+    <span>✓ done</span><span>… running</span><span>○ pending</span><span>! blocked</span><span>x failed</span>
+  </div>
+  <table>
+    <thead><tr><th>Model</th><th>R7-B001</th></tr></thead>
+    <tbody><tr><td>GPT5.5</td><td style='text-align:center'>✓</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>✓</td></tr></tbody>
+  </table>
+
+  <h2>细分错误统计（A1/B1...）</h2>
+  <table>
+    <thead><tr><th>错误子类</th><th>数量</th></tr></thead>
+    <tbody><tr><td>A1</td><td style='text-align:center'>1</td></tr><tr><td>B1</td><td style='text-align:center'>19</td></tr><tr><td>C2</td><td style='text-align:center'>8</td></tr></tbody>
+  </table>
+
+  <h3>细分错误示例（每类2条）</h3>
+  <table>
+    <thead><tr><th>错误子类</th><th>例1-题号</th><th>例1-题目</th><th>例1-理由</th><th>例2-题号</th><th>例2-题目</th><th>例2-理由</th></tr></thead>
+    <tbody><tr><td>A1</td><td>Q007</td><td>看门狗复位后，系统重启前通常需要完成哪些关键动作来保障恢复的安全性和连续性？请简述其中两项必要操作。</td><td>GPT5.5: 题干问“看门狗复位后，系统重启前通常需要完成哪些关键动作”，逻辑不严谨；硬件看门狗触发复位通常会立即复位，软件一般没有可靠的“复位后、重启前”执行窗口。正确表述应改为复位设计中如何在复位前持续保存关键状态、通过硬件使输出进入安全态，以及重启后如何识别复位原因并恢复。</td><td>nan</td><td>nan</td><td>nan</td></tr><tr><td>B1</td><td>Q001</td><td>请简述在进行电子产品电磁兼容性测试时，为什么需要依据CISPR标准来设定辐射骚扰的限值？</td><td>GPT5.5: 参考答案第二层把“GB/T 17625.1系列”说成CISPR辐射骚扰限值的等同国标，原文为“参考等同转化的国标GB/T 17625.1系列”；GB/T 17625.1主要是谐波电流发射限值，不是辐射骚扰限值标准，正确应按产品类别对应CISPR 11/32及其等同或转化国标判定。</td><td>Q002</td><td>对于工作在高温环境下的电解电容，降额设计时通常会重点调整哪个参数？请说明这样做的主要原因。</td><td>GPT5.5: 参考答案将高温电解电容降额重点归结为“额定电压的使用比例”，并称“高温会…导致电容耐压能力显著下降”；高温场景更应重点核查工作温度、纹波电流和寿命降额，电压降额只是应力控制之一，不能把高温下的主要失效机理表述为耐压能力显著下降。</td></tr><tr><td>C2</td><td>Q014</td><td>某嵌入式控制模块需长期工作在-25℃至70℃环境，其供电来自外部12V直流电源。若采用PMOS管做反接保护，当环境温度显著降低时，该方案可能出现什么典型失效现象？请从器件物理特性和电路行为两个层面解释根本原因。</td><td>GPT5.5: 参考答案把低温下PMOS反接保护的典型失效概括为“阈值电压绝对值增大，导致导通电阻显著上升…PMOS无法充分导通”，该说法过度绝对；在12V栅源驱动裕量足够且器件选型合格时，低温通常不应直接导致无法导通，Rds(on)与阈值、迁移率、驱动电压共同相关。第二层还推荐“NMOS低位反接方案配合电荷泵”作为最常落地，容易引入地参考抬升问题，并非通用最优。；Gemini3.1pro: 与R7-Q003重复。两道题均考察反接保护方案及PMOS在低温下的特性表现，候选人作答时都会围绕“常见的防反接方案优劣势”以及“PMOS在低温下的阈值漂移和失效问题”展开，核心要点高度重合。</td><td>Q020</td><td>请简述CAN总线终端电阻应安装在总线的什么位置，为什么不能只装在一个端点？</td><td>Gemini3.1pro: 与R7-Q018重复。两道题都考察CAN总线终端电阻的作用位置及原因，候选人都会回答“总线两端”、“匹配特性阻抗消除反射”以及现场常用的几种匹配方案，核心答题要点完全一样。</td></tr></tbody>
+  </table>
+</body>
+</html>
