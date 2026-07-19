@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Round 3 Dashboard</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; margin: 24px; color: #1f2937; }
+    h1, h2, h3 { margin: 10px 0 12px; }
+    .cards { display: grid; grid-template-columns: repeat(3, minmax(140px, 220px)); gap: 12px; margin: 8px 0 18px; }
+    .card { border: 1px solid #e5e7eb; border-radius: 10px; padding: 12px; background: #fafafa; }
+    .card .k { font-size: 12px; color: #6b7280; }
+    .card .v { font-size: 24px; font-weight: 700; margin-top: 4px; }
+    table { border-collapse: collapse; width: 100%; margin: 8px 0 18px; }
+    th, td { border: 1px solid #e5e7eb; padding: 8px 10px; vertical-align: middle; }
+    th { background: #f9fafb; }
+    .legend span { margin-right: 12px; font-size: 13px; color: #374151; }
+    .mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; }
+    .ex { margin: 6px 0; color: #374151; }
+    .section-divider { border: 0; border-top: 2px solid #eef2f7; margin: 22px 0; }
+  </style>
+</head>
+<body>
+  <h1>Round 3 审核看板</h1>
+
+  <div class="cards">
+    <div class="card"><div class="k">A类错误</div><div class="v">49</div></div>
+    <div class="card"><div class="k">B类错误</div><div class="v">122</div></div>
+    <div class="card"><div class="k">C类错误</div><div class="v">0</div></div>
+  </div>
+
+  <h2>本轮题目主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">本轮题目主要出错点集中在三类。第一，场景行业化过强（A2，约35起）：题干大量绑定医疗监护仪、智能电表DLMS/HPLC、车规联合振动剖面、供应链长周期齐套等具体行业/职能场景，偏离“制造业通用电子工程师、勿带具体行业特征”的出题边界，导致岗位匹配失真。第二，口语不可答约束被突破（A4，约13起）：题干要求说明耦合电容/电感相对贡献、介质参数调整、量化抖动指标分解等，偏SI理论推导与量化表述，候选人难以口头完整作答。第三，个别题干知识表述不严谨（A1）：如将ADC前端“通常用无源LC滤波”当作常规抗PWM噪声方案，易引导错误最佳实践。重复类问题本轮不多，但同质化拆解类题仍需警惕。整体看，回流重出后题干仍易在“通用性”和“可口语作答”上复发。</div>
+<h2>本轮答案主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">本轮答案错误以B1知识性/逻辑错误为主（约115起），显著高于其他子类。高频表现包括：电平与电源基础概念写反或绝对化（TTL高电平“最大3.5V”、LDO升压、体二极管导通方向颠倒）；噪声与耦合机理张冠李戴（dv/dt当磁性耦合、热噪声与闪烁噪声混淆）；器件与拓扑细节不成立（X5R替代X7R抗高温、晶振并联小电阻降ESR、毫欧走线与运放输入阻抗分压等）。B2/B3次之：把UART推挽场景套成I2C开漏双向MOS方案、用异步FIFO回答时钟相位漂移、功能安全复位给出偏门JK振荡自检等，表现为方案偏门或答非所问。B5偶发，答案堆叠Tj/Dj/Rj等缩写影响口语表达。总体问题是：重出答案表面结构完整，但关键机理与工程口径未过硬核校验，第三层异常分析尤易出现“听起来专业、实则不成立”的表述。</div>
+<h2>后续重新出内容时应补充的规则</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">【重新出题】<br/>重出题干时补充：1）场景必须保持制造业通用电子工程师口径，禁止绑定医疗/电表/车规认证/供应链采购等强行业或跨岗职能；可用“工业控制板/多传感器采集板/多通信接口主控”等通用场景替换。2）禁止要求公式推导、符号含义、绘制、定量分解耦合电容/电感贡献、介质参数精调等口语难答内容；题干动词即使用“简述/说说”也不豁免。3）题干陈述的“通常做法/关键元件”必须符合主流工程实践，避免把LC前端滤波等争议方案写成唯一常规。4）自检清单：是否去行业特征、是否可口头60–120秒作答、是否与知识点一致、是否与同批题构成C2换皮重复。<br/><br/>【重出答案】<br/>重出答案时补充：1）对电平、电源拓扑、噪声耦合、器件温度特性、复位/时钟等基础点做逐条机理校验，禁止绝对化错误电压范围和方向颠倒。2）第二层方案必须匹配题干接口类型（UART推挽≠I2C开漏；相位漂移≠只靠异步FIFO）。3）第三层异常/复杂情况须物理可成立，并给出可操作排查步骤，禁止“专业术语堆砌但因果反了”。4）控制英文缩写密度，必要术语可保留，但不得变成抖动分解报告口吻。5）自检：自己口头复述答案是否顺畅；关键结论能否用一句话原理证明；是否出现与数据手册/基础电路常识冲突的断言。</div>
+
+  <hr class="section-divider" />
+
+  <h2>模型进度与删除率</h2>
+  <table>
+    <thead>
+      <tr><th>Model</th><th>批次完成</th><th>完成率</th><th>删除率</th><th>主错误</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>GPT5.5</td><td style='text-align:center'>11/11</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:26.8%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">26.8%</span></td><td style='text-align:center'>B>A</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>11/11</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:13.1%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">13.1%</span></td><td style='text-align:center'>A>B</td></tr>
+    </tbody>
+  </table>
+
+  <h2>批次状态矩阵</h2>
+  <div class="legend">
+    <span>✓ done</span><span>… running</span><span>○ pending</span><span>! blocked</span><span>x failed</span>
+  </div>
+  <table>
+    <thead><tr><th>Model</th><th>R3-B001</th><th>R3-B002</th><th>R3-B003</th><th>R3-B004</th><th>R3-B005</th><th>R3-B006</th><th>R3-B007</th><th>R3-B008</th><th>R3-B009</th><th>R3-B010</th><th>R3-B011</th></tr></thead>
+    <tbody><tr><td>GPT5.5</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td></tr></tbody>
+  </table>
+
+  <h2>细分错误统计（A1/B1...）</h2>
+  <table>
+    <thead><tr><th>错误子类</th><th>数量</th></tr></thead>
+    <tbody><tr><td>A1</td><td style='text-align:center'>1</td></tr><tr><td>A2</td><td style='text-align:center'>35</td></tr><tr><td>A4</td><td style='text-align:center'>13</td></tr><tr><td>B1</td><td style='text-align:center'>115</td></tr><tr><td>B2</td><td style='text-align:center'>4</td></tr><tr><td>B3</td><td style='text-align:center'>2</td></tr><tr><td>B5</td><td style='text-align:center'>1</td></tr></tbody>
+  </table>
+
+  <h3>细分错误示例（每类2条）</h3>
+  <table>
+    <thead><tr><th>错误子类</th><th>例1-题号</th><th>例1-题目</th><th>例1-理由</th><th>例2-题号</th><th>例2-题目</th><th>例2-理由</th></tr></thead>
+    <tbody><tr><td>A1</td><td>Q003</td><td>在电机驱动板的信号采样通道中，为防止PWM开关噪声串入模拟采集回路，通常在ADC前端加入无源LC滤波。请简单说说，选择电感时需要重点兼顾哪两个相互制约的电气特性？</td><td>GPT5.5: 题干把“在ADC前端加入无源LC滤波”表述为防止PWM噪声串入模拟采集回路的通常做法，并要求围绕电感选型作答。ADC采样前端更常见的是RC/有源抗混叠滤波和源阻抗匹配，LC易引入谐振并不宜被描述为通常方案；正确应围绕抗混叠截止频率、源阻抗、RC/有源滤波及布局隔离展开。</td><td>nan</td><td>nan</td><td>nan</td></tr><tr><td>A2</td><td>Q035</td><td>在开发一台医疗监护仪的嵌入式硬件系统时，心电、血氧、无创血压三大生理参数需共用同一主控芯片，但各自信号链路必须满足不同EMC等级、采样率和校准周期要求。请简单说说你如何从信号完整性边界、时序约束差异和认证合规维度出发，对这三个参数通道进行功能模块拆分。</td><td>GPT5.5: 题干限定“医疗监护仪”、心电/血氧/无创血压以及不同医疗认证等级，场景过于医疗器械行业化，不符合通用制造业电子工程师题目应避免具体行业特征的要求；正确应改为通用多传感器采集板或工业检测设备的模块拆分场景。</td><td>Q042</td><td>一款多协议智能电表主控方案中，单颗SoC需支持DLMS/COSEM通信栈所需的UART+红外+PLC载波三通道并发，但芯片仅提供2个全功能UART控制器，其余通道需通过GPIO模拟或DMA重映射实现。请简单说说你在分配这三类通信接口资源时，会综合权衡哪些与硬件层强耦合的技术因素，并说明其中哪一项对长期运行稳定性影响最大。</td><td>GPT5.5: 题干限定“多协议智能电表主控方案”“DLMS/COSEM”“PLC载波”等强行业场景和协议，不符合通用电子工程师题目“不要带有某个具体行业特征”的要求；正确应改为通用多通信接口主控资源分配场景。；Gemini3.1pro: 知识性错误：题干要求“三通道并发”，但芯片仅有2个UART控制器。在只有2个UART硬件IP的情况下，不可能通过“DMA重映射UART引脚”来凭空变出第三个独立并行的UART通道。重映射只能改变信号输出的物理引脚，无法增加控制器的并发数量。所以“PLC用DMA重映射UART引脚”来实现三通道并发是常识性错误。</td></tr><tr><td>A4</td><td>Q102</td><td>当同一网络中存在分支走线（stub）且长度超过信号上升沿1/6时，实测TDR显示主干阻抗被拉低。请简单说说你如何综合评估分支影响，并从布线拓扑、端接方式及介质参数调整三方面提出阻抗连续性修复方案。</td><td>GPT5.5: 第二层称“用短线+直角拐弯最小化寄生电容”，且又建议“局部减薄PP或FR4半固化片厚度，提升分支区域单位长度电容，反向抵消stub容性效应”。直角拐弯和增加电容都不能修复stub导致的低阻抗/反射问题，局部减薄介质还会进一步降低阻抗；正确应缩短/移除stub、优化菊花链或点对点拓扑，必要时用合适端接和仿真验证。；Gemini3.1pro: 题干要求“从布线拓扑、端接方式及介质参数调整三方面提出...”，限制过死，且涉及介质参数调整偏向SI，口语回答不易发散</td><td>Q120</td><td>在多层电路板设计中，当相邻信号线间距缩小导致串扰超标时，除了增加线间距外，请简述你还可能采取的三种系统性措施，并说明每种措施如何影响耦合电容与耦合电感的相对贡献。</td><td>GPT5.5: 第二层把“加粗参考平面（如电源/地平面）”作为系统性串扰控制措施，第三层又要求“直角拐弯”。串扰控制关键是参考平面连续、距离和回流路径，而不是简单加厚平面铜；高速走线也不应强制直角拐弯。正确措施应包括完整参考平面、换层正交/错层、缩短平行耦合、地过孔围栏/屏蔽和差分/端接优化。；Gemini3.1pro: 题干要求“说明每种措施如何影响耦合电容与耦合电感的相对贡献”，过于理论和量化，口语极难表达清晰</td></tr><tr><td>B1</td><td>Q002</td><td>当使用运算放大器构成同相放大电路时，若实测增益明显低于理论值，且运放本身供电和静态工作点正常，你一般会从哪两个外部元件连接角度入手排查？请简单说说。</td><td>GPT5.5: 参考答案第三层称“输入端误串入毫欧级PCB走线电阻或测试探针接触电阻”会“与运放输入阻抗形成分压，导致有效输入信号衰减”。运放同相输入阻抗通常很高，毫欧级串联阻抗不会形成有意义分压；正确应排查反馈网络阻值/连接、输入源阻抗与偏置电流、带宽或负载等因素。；Gemini3.1pro: 知识性错误：同相放大器增益公式为1+Rf/R1。若反馈电阻Rf虚焊导致高阻或开路，等效增大会导致增益上升甚至开环饱和，而不是“使增益下降”。</td><td>Q002</td><td>当使用运算放大器构成同相放大电路时，若实测增益明显低于理论值，且运放本身供电和静态工作点正常，你一般会从哪两个外部元件连接角度入手排查？请简单说说。</td><td>GPT5.5: 参考答案第三层称“输入端误串入毫欧级PCB走线电阻或测试探针接触电阻”会“与运放输入阻抗形成分压，导致有效输入信号衰减”。运放同相输入阻抗通常很高，毫欧级串联阻抗不会形成有意义分压；正确应排查反馈网络阻值/连接、输入源阻抗与偏置电流、带宽或负载等因素。；Gemini3.1pro: 知识性错误：同相放大器增益公式为1+Rf/R1。若反馈电阻Rf虚焊导致高阻或开路，等效增大会导致增益上升甚至开环饱和，而不是“使增益下降”。</td></tr><tr><td>B2</td><td>Q012</td><td>在多电源域数字系统中，一个由3.3V供电的UART收发器需与5V供电的PLC主控通信。若选用分立MOSFET电平转换方案，如何确保在数据突发传输期间不因体二极管导通或延迟失配导致误码？请从器件选型和PCB布局两个维度说明关键约束。</td><td>GPT5.5: 题目限定UART收发器使用分立MOSFET电平转换，参考答案却按类似I2C开漏双向MOS管方案展开。UART通常是推挽单向信号，更常见做法是分压、缓冲器或专用电平转换器；正确应强调方向固定、边沿速度、阈值与过压保护，而不是套用开漏双向MOSFET方案。；Gemini3.1pro: 逻辑颠倒：在分立NMOS电平转换电路中，3.3V接Source，5V接Drain。当5V侧（高侧）拉低时，NMOS的体二极管是Source向Drain导通，电流是从3.3V侧流向5V侧，而不是“向低侧（3.3V端）灌入电流”。</td><td>Q018</td><td>某工业控制器需满足功能安全标准，要求复位电路具备失效检测与自动切换能力。请简述你如何在不增加专用监控芯片的前提下，利用基础数字器件构建具备自检机制的冗余复位路径，并说明其失效判据。</td><td>GPT5.5: 参考答案将“双JK触发器加反相反馈构成振荡自检环”作为最适合的冗余复位首选方案，属于偏门且工程可靠性、功能安全可验证性不足的做法；正确应采用独立监控路径、明确故障覆盖率、故障安全状态和可验证的比较/仲裁逻辑。</td></tr><tr><td>B3</td><td>Q025</td><td>在自动化产线设备的通信主控板中，ADC采样时钟与FPGA逻辑时钟由同一晶振经不同分频路径生成，实测发现采样数据存在周期性相位抖动。示波器显示两个时钟边沿相对关系随温度变化而漂移。请简述你将如何从时钟域同步机制、器件工艺偏差及温漂补偿策略三个维度系统性解决该问题。</td><td>GPT5.5: 题目要解决同源分频时钟相位漂移导致的采样相位抖动，参考答案把“异步FIFO加格雷码同步”作为最稳妥方案。FIFO只能解决跨时钟域数据传递，不能校正ADC采样时钟与FPGA逻辑时钟之间的相位漂移本身；正确应从统一时钟树、PLL/MMCM相位对齐、确定性延迟校准和温漂补偿入手。</td><td>Q304</td><td>某工业控制板在EMC实验室进行脉冲群抗扰度测试时，反复触发MCU复位，但复位引脚未检测到有效低电平。进一步发现复位电路中的RC延时网络在干扰期间出现电压平台塌陷。请简述你如何结合电源完整性与信号完整性视角，分析该塌陷现象与复位逻辑误触发之间的电路级耦合机制，并指出需验证的两个关键寄生参数。</td><td>GPT5.5: 题干明确要求指出需验证的两个关键寄生参数，但参考答案没有明确给出这两个参数，只泛泛讨论VDD、RC节点和地弹。正确应点名验证例如RC节点对邻近干扰线/地的寄生电容、复位走线/地回路寄生电感或PDN等效阻抗等，并说明它们如何导致平台塌陷。</td></tr><tr><td>B5</td><td>Q152</td><td>使用差分探头测量高速SerDes参考时钟时，发现单端波形看似合格，但差分波形存在明显偶次谐波抬升和眼图闭合。请简述你将依据哪些时钟波形的量化指标（如Tj、Dj、Rj、周期抖动分布形态等），来判断根本原因是PCB差分对内延时不匹配，还是电源轨上的低频纹波调制所致。</td><td>Gemini3.1pro: 题干包含大量英文缩写 (Tj, Dj, Rj) 且涉及抖动分解，这属于极专业的信号完整性测量，通用工程师极少接触，容易导致口语作答困难</td><td>nan</td><td>nan</td><td>nan</td></tr></tbody>
+  </table>
+</body>
+</html>
