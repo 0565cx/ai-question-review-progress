@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Round 2 Dashboard</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; margin: 24px; color: #1f2937; }
+    h1, h2, h3 { margin: 10px 0 12px; }
+    .cards { display: grid; grid-template-columns: repeat(3, minmax(140px, 220px)); gap: 12px; margin: 8px 0 18px; }
+    .card { border: 1px solid #e5e7eb; border-radius: 10px; padding: 12px; background: #fafafa; }
+    .card .k { font-size: 12px; color: #6b7280; }
+    .card .v { font-size: 24px; font-weight: 700; margin-top: 4px; }
+    table { border-collapse: collapse; width: 100%; margin: 8px 0 18px; }
+    th, td { border: 1px solid #e5e7eb; padding: 8px 10px; vertical-align: middle; }
+    th { background: #f9fafb; }
+    .legend span { margin-right: 12px; font-size: 13px; color: #374151; }
+    .mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; }
+    .ex { margin: 6px 0; color: #374151; }
+    .section-divider { border: 0; border-top: 2px solid #eef2f7; margin: 22px 0; }
+  </style>
+</head>
+<body>
+  <h1>Round 2 审核看板</h1>
+
+  <div class="cards">
+    <div class="card"><div class="k">A类错误</div><div class="v">0</div></div>
+    <div class="card"><div class="k">B类错误</div><div class="v">143</div></div>
+    <div class="card"><div class="k">C类错误</div><div class="v">10</div></div>
+  </div>
+
+  <h2>本轮题目主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">二轮在一轮已放行的 823 题上复审，题干侧硬伤占比很低：二轮在待审 823 题中新增重出题目 6 题；连同一轮已判重出题目后合计重出题目 121 题，主要为 C2 近重复（如热噪声机理/名称连环题、建立时间与保持时间合集题），以及少量题干把无关约束写进设问的口径问题。多数批次题干为口头作答场景，A4/A1 类问题未再大规模出现；Gemini 偶发的「过于基础」删因已按规则剔除，不计入本题干结论。</div>
+<h2>本轮答案主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">参考答案仍以 B1 知识性错误为主（子类约 129 次模型标注）：典型包括 VIH 被误用为过冲上限、RS-485 终端电阻写成两端接地、0.5V 峰峰值纹波误判未超标、Y 电容高频路径阻抗因果倒置、TIM 被误列为提升表面换热系数、AEC-Q200/IPC-A-610 G 级/JESD84 等标准张冠李戴、复位释放方向说反、安规耐压阈值不可按污染度动态校准等。五模型删题力度不一（GPT5.5 52 / GPT5.4 35 / Sonnet 30 / Opus 20 / Gemini 16），共识删项优先进入重出答案池；合并后按 skill 守恒：可保留 747、重出答案 308（含一轮 238 + 二轮新增 70）、重出题目 121（含一轮 115 + 二轮新增 6），合计 1176。</div>
+<h2>后续重新出内容时应补充的规则</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">重出时：1）标准编号必须匹配对象——有源 IC 用 AEC-Q100/Q101，无源用 AEC-Q200；IPC-A-610 用 Class1/2/3 而非把修订号 G 当等级；复位/电源时序器件不得误引 eMMC 的 JESD84。2）差分终端、VIH/VIL、纹波容差、热阻链（Rth_jc/Rth_cs/Rsa）等基本定义写反即整题作废重写答案。3）同知识点连环题须错开「定义/机理/名称/合集」设问，避免 C2。4）安规耐压/爬电/电气间隙与功能安全 SIL 分属不同体系，禁止混用叠加逻辑或按批次污染「动态调阈值」。5）第三层复杂情况须贴合板级量产，禁止把招聘场景元数据写进工程推荐。</div>
+
+  <hr class="section-divider" />
+
+  <h2>模型进度与删除率</h2>
+  <table>
+    <thead>
+      <tr><th>Model</th><th>批次完成</th><th>完成率</th><th>删除率</th><th>主错误</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>GPT5.4</td><td style='text-align:center'>21/21</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:4.3%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">4.3%</span></td><td style='text-align:center'>B>C</td></tr><tr><td>GPT5.5</td><td style='text-align:center'>21/21</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:6.3%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">6.3%</span></td><td style='text-align:center'>B>C</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>21/21</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:1.9%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">1.9%</span></td><td style='text-align:center'>B>C</td></tr><tr><td>Opus4.8</td><td style='text-align:center'>21/21</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:2.4%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">2.4%</span></td><td style='text-align:center'>B</td></tr><tr><td>Sonnet4.6</td><td style='text-align:center'>21/21</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:3.6%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">3.6%</span></td><td style='text-align:center'>B>C</td></tr>
+    </tbody>
+  </table>
+
+  <h2>批次状态矩阵</h2>
+  <div class="legend">
+    <span>✓ done</span><span>… running</span><span>○ pending</span><span>! blocked</span><span>x failed</span>
+  </div>
+  <table>
+    <thead><tr><th>Model</th><th>R2-B001</th><th>R2-B002</th><th>R2-B003</th><th>R2-B004</th><th>R2-B005</th><th>R2-B006</th><th>R2-B007</th><th>R2-B008</th><th>R2-B009</th><th>R2-B010</th><th>R2-B011</th><th>R2-B012</th><th>R2-B013</th><th>R2-B014</th><th>R2-B015</th><th>R2-B016</th><th>R2-B017</th><th>R2-B018</th><th>R2-B019</th><th>R2-B020</th><th>R2-B021</th></tr></thead>
+    <tbody><tr><td>GPT5.4</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td></tr><tr><td>GPT5.5</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td></tr><tr><td>Opus4.8</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td></tr><tr><td>Sonnet4.6</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td></tr></tbody>
+  </table>
+
+  <h2>细分错误统计（A1/B1...）</h2>
+  <table>
+    <thead><tr><th>错误子类</th><th>数量</th></tr></thead>
+    <tbody><tr><td>B1</td><td style='text-align:center'>61</td></tr><tr><td>B2</td><td style='text-align:center'>7</td></tr><tr><td>B3</td><td style='text-align:center'>1</td></tr><tr><td>B4</td><td style='text-align:center'>2</td></tr><tr><td>B6</td><td style='text-align:center'>1</td></tr><tr><td>C2</td><td style='text-align:center'>6</td></tr></tbody>
+  </table>
+
+  <h3>细分错误示例（每类2条）</h3>
+  <table>
+    <thead><tr><th>错误子类</th><th>例1-题号</th><th>例1-题目</th><th>例1-理由</th><th>例2-题号</th><th>例2-题目</th><th>例2-理由</th></tr></thead>
+    <tbody><tr><td>B1</td><td>Q0009</td><td>当使用运算放大器构成同相放大电路时，若实测增益明显低于理论值，且运放本身供电和静态工作点正常，你一般会从哪两个外部元件连接角度入手排查？请简单说说。</td><td>参考答案第一层把第二个排查对象写成“输入端与地之间用于偏置电流回路的接地电阻”，第二层又写成“同相端偏置电阻”。同相放大电路增益明显低于理论值时，应重点排查反馈电阻以及反相端到地的增益设定电阻/反馈分压网络连接，而同相端偏置电阻不是决定闭环增益的两个关键外部元件之一。</td><td>Q0015</td><td>某工业级电流检测电路采用运放搭建的跨阻放大器，实测在高温环境下增益非线性明显加剧。请简述该现象最可能的物理根源，并说明如何结合运放输入级架构、偏置电路热设计及反馈元件选型进行针对性优化。</td><td>参考答案第三层写“在DFM阶段强制执行IPC-A-610 G级焊接标准”。IPC-A-610中的G通常是版本号而非焊接等级，装联可接受性等级应表述为Class 1/2/3等；把“G级”当成焊接等级属于标准引用错误。</td></tr><tr><td>B2</td><td>Q0122</td><td>请简述TVS二极管在电源端口保护中起什么作用。</td><td>参考答案第二层写“集成式TVS阵列芯片……特别适配自动化产线批量生产，是当前主流产线首选”“集成式TVS阵列方案最优”。电源端口浪涌/瞬态保护通常需按能量等级选用合适功率的TVS、压敏、气体放电管或组合防护；集成式TVS阵列更多见于多通道低能量接口保护，不能笼统作为电源端口主流最优方案。</td><td>Q0310</td><td>请简单说说，为什么数字电路区域和模拟电路区域通常需要分开布置？</td><td>参考答案第二层写“基于信号敏感度的动态分区算法辅助布局……综合来看是当前制造业电子工程师在批量产品开发中最常用、最稳妥的方案”。数字电路区和模拟电路区分开布置的主流做法仍是基于噪声源/敏感源识别、完整参考地、电源隔离、布线间距和屏蔽/滤波的工程规则与评审，并非依赖“动态分区算法”作为最常用方案；把偏工具化、非主流做法写成主流最佳实践属于误导。</td></tr><tr><td>B3</td><td>Q0268</td><td>在高洁净度的半导体封装设备中，需非接触式检测晶圆边缘形变，要求分辨率优于0.1微米，但设备内部空间受限且存在周期性气流扰动。请简述在选型时如何平衡激光三角法与白光干涉法两类传感器在抗扰性、安装约束与测量稳定性之间的矛盾。</td><td>A3复杂问题解决思路末尾句子截断：「生成机台级补偿映射表并存入传感器本地配置」以「配置」结尾，语义不完整（缺少结尾词如「中」/「存储」/「文件」等及终结标点）；参考答案最后一步缺失，无法作为完整的面试评分标准使用，构成B3答案内容与题干完整性要求不符。</td><td>nan</td><td>nan</td><td>nan</td></tr><tr><td>B4</td><td>Q0443</td><td>在多层PCB中，为降低大电流路径的阻抗，除了加宽走线外，还可以采取哪两种物理结构措施？请简述其原理。</td><td>第三层答案未严格遵循'1个异常情况概要...1个复杂问题概要...'的结构。正确的应该是按规范结构输出。</td><td>Q1131</td><td>失效样品复测时，为什么要使用与初测相同的仪器和校准状态？</td><td>第三层答案未严格遵循'1个异常情况概要...1个复杂问题概要...'的结构。</td></tr><tr><td>B6</td><td>Q0951</td><td>请简单说说，电源域划分与芯片内部供电开关之间存在什么直接关系？</td><td>题目询问电源域划分与芯片内部供电开关的直接关系，适合考查板级/系统级低功耗概念；参考答案第二、三层大量转向标准单元库、后端物理实现、电迁移约束、Foundry工艺角、体偏置电压、ATE标定等芯片设计与制造口径，明显偏离电子工程师常规岗位场景和题干要求，容易把候选人引向不相关的IC后端/晶圆工艺知识。</td><td>nan</td><td>nan</td><td>nan</td></tr><tr><td>C2</td><td>Q0031</td><td>请简单说说导体中电子随机运动导致的电流起伏现象叫什么噪声。</td><td>与Q0030构成C2。Q0030问「电阻热噪声产生的根本原因」，Q0031问「导体中电子随机运动导致的电流起伏现象叫什么噪声」。两题均以自由电子热运动为核心知识点，候选人回答Q0030必然包含名称（热噪声/约翰逊噪声），回答Q0031必然包含机制（电子热运动）；核心要点、作答思路高度重合。Q0030在前，删除Q0031。</td><td>Q0061</td><td>时钟信号上升沿到来时，数据需要满足怎样的时间关系才能被可靠采样？</td><td>与Q0057、Q0058构成C2。Q0057定义建立时间，Q0058定义保持时间，Q0061问「时钟上升沿到来时数据需满足怎样的时间关系才能被可靠采样」——完整回答Q0061必然同时涵盖建立时间和保持时间的定义与要求，核心要点与作答思路是Q0057+Q0058的合集。Q0057/Q0058在前，删除Q0061。</td></tr></tbody>
+  </table>
+</body>
+</html>

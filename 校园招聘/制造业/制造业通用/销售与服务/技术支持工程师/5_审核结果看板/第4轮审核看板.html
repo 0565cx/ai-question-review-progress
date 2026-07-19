@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Round 4 Dashboard</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; margin: 24px; color: #1f2937; }
+    h1, h2, h3 { margin: 10px 0 12px; }
+    .cards { display: grid; grid-template-columns: repeat(3, minmax(140px, 220px)); gap: 12px; margin: 8px 0 18px; }
+    .card { border: 1px solid #e5e7eb; border-radius: 10px; padding: 12px; background: #fafafa; }
+    .card .k { font-size: 12px; color: #6b7280; }
+    .card .v { font-size: 24px; font-weight: 700; margin-top: 4px; }
+    table { border-collapse: collapse; width: 100%; margin: 8px 0 18px; }
+    th, td { border: 1px solid #e5e7eb; padding: 8px 10px; vertical-align: middle; }
+    th { background: #f9fafb; }
+    .legend span { margin-right: 12px; font-size: 13px; color: #374151; }
+    .mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; }
+    .ex { margin: 6px 0; color: #374151; }
+    .section-divider { border: 0; border-top: 2px solid #eef2f7; margin: 22px 0; }
+  </style>
+</head>
+<body>
+  <h1>Round 4 审核看板</h1>
+
+  <div class="cards">
+    <div class="card"><div class="k">A类错误</div><div class="v">9</div></div>
+    <div class="card"><div class="k">B类错误</div><div class="v">35</div></div>
+    <div class="card"><div class="k">C类错误</div><div class="v">30</div></div>
+  </div>
+
+  <h2>本轮题目主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">本轮题目主要出错点集中在三类：一是同质化重复（C2）占比最高，多题虽措辞不同，但考察点与作答路径高度重合，如异常重试、表间关联对不上、断点补传、权限按钮无响应等成组题，候选人几乎会给出同一套要点，影响题库区分度；二是题干知识边界不严谨（A1），典型表现是把项目自定义错误码（如 ERR004/ERR_002）表述为“通常表示”的通用含义，或在验签已通过的前提下仍要求区分“传输截断”，逻辑自相矛盾；三是场景偏门或偏离知识点（A2/A3），如直接点明 OPC UA 会话 64 节点上限、HTTP 数组静默截断等过细故障假设，或知识点为“配置替代方案”却问权限排查，校园招聘口径下可考性不足。整体看，重复与题干边界问题是本轮题干侧的主要风险。</div>
+<h2>本轮答案主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">本轮答案错误以 B1 为主：知识性错误或逻辑不自洽最常见，例如把“分组和筛选”当作 SQL 关键词、把 DBW12 与 DBW14 的差值说成 1 字节、把“检验合格后触发后工序”误写成异常、第三层“时间倒序拦截”与时间戳先后矛盾等；其次是 B2/B4，表现为给出放宽唯一约束等高风险非常规手段，或第三层异常场景与岗位真实工作不符；另有少量 B3 未完整回应题干要求的分步判定。答案侧高频问题集中在“细节技术事实不准确”和“异常层设定不合理”，对可评分性与现场专业口径影响最大。</div>
+<h2>后续重新出内容时应补充的规则</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">【重新出题】<br/>重新出题规则：1）同一知识点下禁止生成作答路径高度重合的题，出题后需做 C2 自检（核心要点/排查顺序是否可互换）；2）禁止把项目自定义错误码、私有错误号写成跨系统“通常含义”，应改为“结合协议/错误码表如何定位”；3）禁止题干直接泄露过细根因（如具体会话节点上限、隐式截断条数）再让候选人“验证该原因”；4）题干考察点必须对齐给定知识点，避免“知识点=替代方案、题干=权限排查”类偏离；5）若前提已排除某类原因（如验签通过），不得再要求在已被排除的原因间二选一。<br/><br/>【重出答案】<br/>重出答案规则：1）第一层术语必须可口语直接作答且技术正确（SQL 应用 GROUP BY/WHERE，PLC 地址按字节/字正确换算）；2）第三层异常必须与题干正常流程相反或正交，禁止把正常触发写成异常；复杂问题不得出现时间顺序自相矛盾；3）禁止生造非现场通行的方法名堆砌，优先用日志核对、配置核对、联调复现等支持岗常见动作；4）答案须完整覆盖题干所有设问点（分步判断、对应现象）；5）禁止建议放宽唯一约束/触发器等破坏数据完整性的“临时手段”作为常规实践。</div>
+
+  <hr class="section-divider" />
+
+  <h2>模型进度与删除率</h2>
+  <table>
+    <thead>
+      <tr><th>Model</th><th>批次完成</th><th>完成率</th><th>删除率</th><th>主错误</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>GPT5.5</td><td style='text-align:center'>5/5</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:23.0%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">23.0%</span></td><td style='text-align:center'>B>C>A</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>5/5</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:18.5%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">18.5%</span></td><td style='text-align:center'>C>B>A</td></tr>
+    </tbody>
+  </table>
+
+  <h2>批次状态矩阵</h2>
+  <div class="legend">
+    <span>✓ done</span><span>… running</span><span>○ pending</span><span>! blocked</span><span>x failed</span>
+  </div>
+  <table>
+    <thead><tr><th>Model</th><th>R4-B001</th><th>R4-B002</th><th>R4-B003</th><th>R4-B004</th><th>R4-B005</th></tr></thead>
+    <tbody><tr><td>GPT5.5</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td></tr></tbody>
+  </table>
+
+  <h2>细分错误统计（A1/B1...）</h2>
+  <table>
+    <thead><tr><th>错误子类</th><th>数量</th></tr></thead>
+    <tbody><tr><td>A1</td><td style='text-align:center'>6</td></tr><tr><td>A2</td><td style='text-align:center'>2</td></tr><tr><td>A3</td><td style='text-align:center'>1</td></tr><tr><td>B1</td><td style='text-align:center'>29</td></tr><tr><td>B2</td><td style='text-align:center'>3</td></tr><tr><td>B3</td><td style='text-align:center'>1</td></tr><tr><td>B4</td><td style='text-align:center'>2</td></tr><tr><td>C2</td><td style='text-align:center'>30</td></tr></tbody>
+  </table>
+
+  <h3>细分错误示例（每类2条）</h3>
+  <table>
+    <thead><tr><th>错误子类</th><th>例1-题号</th><th>例1-题目</th><th>例1-理由</th><th>例2-题号</th><th>例2-题目</th><th>例2-理由</th></tr></thead>
+    <tbody><tr><td>A1</td><td>Q018</td><td>当MES系统与PLC进行数据交互时，接口返回报文中的错误码'ERR004'，通常表示什么含义？请简单说说。</td><td>GPT5.5: 题干原文问“接口返回报文中的错误码'ERR004'，通常表示什么含义”，将 ERR004 当作 MES 与 PLC 交互中的通用错误码不严谨；错误码含义通常由具体接口协议或项目错误码表定义，正确应要求候选人先查该系统的接口协议/错误码表，不能默认等于‘PLC设备响应超时’。；Gemini3.1pro: 参考答案第一层称“ERR004是MES与PLC通信协议约定的标准化错误码，专指‘PLC设备响应超时’”，实际上ERR004并非行业通用的标准化错误码，其含义完全取决于具体厂家或中间件的协议定义，不能将其当作绝对正确的事实。正确应该说明错误码的含义需查阅具体的接口协议文档。</td><td>Q022</td><td>在验证某国产化信创环境下MES与国产数据库中间件的接口时，响应体固定包含header、payload、signature三部分，其中header中version字段为'2.1'，payload为加密后的base64字符串，signature用于验签。当校验签名通过但payload解密后结构缺失'process_step'字段时，你如何基于header的版本声明与payload的实际内容矛盾，定位问题发生在数据组装环节还是传输截断环节？</td><td>GPT5.5: 参考答案原文一方面说“签名验证通过仅说明传输完整性未被篡改”，另一方面又建议“逐字节检查base64字符串长度...可识别传输层截断”，逻辑矛盾；若 signature 覆盖 payload 且验签通过，通常说明 payload 在签名保护范围内未被截断或篡改，缺少字段更应优先定位协议版本/模板选择/字段映射/数据组装问题。正确做法是先确认签名覆盖范围，再比对服务端组装前后的 payload 与 2.1 版本字段契约。；Gemini3.1pro: 题干明确前提为“校验签名通过”，这意味着数据在传输中未被篡改或截断，否则验签或解密必然失败。但题干仍让回答“定位问题发生在数据组装环节还是传输截断环节”，参考答案也顺着错误逻辑称“检查base64长度...可识别传输层截断”，存在严重的逻辑矛盾和技术性错误。正确应该是：既然验签通过，必然排除了传输截断，问题100%发生在发送端的数据组装环节。</td></tr><tr><td>A2</td><td>Q162</td><td>某汽车零部件工厂上线新MES系统后，与原有设备数据采集系统对接时发现：当同一台PLC的100个采集点位中超过64个被同时订阅时，SCADA端出现部分点位数据中断且无报错。请简述你如何判断该现象是否源于SCADA软件对单个OPC UA会话内发布订阅节点数量的默认上限限制。</td><td>Gemini3.1pro: 题干直接给出了极其具体的底层技术原因（OPC UA会话64个节点上限），让候选人仅去论证该原因，场景过于偏门和具体，不适合校园招聘的常规考察，更像是某次特定故障的排查记录复刻。</td><td>Q163</td><td>某电子组装厂将ERP订单数据同步至MES时，发现当单日订单行项目数超过5000条，MES接收端仅成功入库前4999条，后续数据全部丢失且接口日志未记录失败信息。请简述你如何验证该问题是否由API网关或MES前置服务对单次HTTP请求体中数组元素数量的隐式截断策略导致。</td><td>GPT5.5: 参考答案第一层原文称“API网关和MES前置服务通常会对单次HTTP请求中JSON数组的元素数量设置隐式上限，该限制属于产品集成限制范畴，不体现在接口文档或配置界面中”，这一说法过于绝对且不符合常见接口/网关限制表达；API网关常见限制通常是请求体大小、超时、字段校验或显式策略，数组元素静默截断也不应作为通常机制。正确应把它作为特定版本或配置下的疑似原因，通过原始报文、网关日志、入库数量和分批请求复现来验证，不能预设为常规隐式截断策略。；Gemini3.1pro: 题干直接点出故障的根本原因（单次HTTP请求体中数组元素数量的隐式截断策略），让候选人去验证该假设，场景过于偏门且引导性过强，不适合校园招聘的常规考察。</td></tr><tr><td>A3</td><td>Q012</td><td>当现场用户反馈系统中某个功能按钮点击后无响应，但其他功能正常，你首先会检查哪一项配置？请简单说说。</td><td>Gemini3.1pro: 题干问的是“首先会检查哪一项配置（即权限配置）”，而给定的知识点是“配置替代方案”，题干明显偏离了该知识点设定的范畴。（正确应该围绕如何提供替代方案进行提问）。</td><td>nan</td><td>nan</td><td>nan</td></tr><tr><td>B1</td><td>Q001</td><td>在制造业现场系统中，需要统计每个车间当天完成的合格产品数量。如果数据库里有生产记录表，其中包含车间名称和产品状态两个字段，你用SQL做这个统计时，核心要加哪两个关键词？</td><td>Gemini3.1pro: 题干问“核心要加哪两个关键词”，参考答案第一层给出的是“分组和筛选”，这是操作概念而非SQL关键词（正确应该为GROUP BY和WHERE或HAVING）。存在逻辑不严谨的知识性表达错误。</td><td>Q018</td><td>当MES系统与PLC进行数据交互时，接口返回报文中的错误码'ERR004'，通常表示什么含义？请简单说说。</td><td>GPT5.5: 题干原文问“接口返回报文中的错误码'ERR004'，通常表示什么含义”，将 ERR004 当作 MES 与 PLC 交互中的通用错误码不严谨；错误码含义通常由具体接口协议或项目错误码表定义，正确应要求候选人先查该系统的接口协议/错误码表，不能默认等于‘PLC设备响应超时’。；Gemini3.1pro: 参考答案第一层称“ERR004是MES与PLC通信协议约定的标准化错误码，专指‘PLC设备响应超时’”，实际上ERR004并非行业通用的标准化错误码，其含义完全取决于具体厂家或中间件的协议定义，不能将其当作绝对正确的事实。正确应该说明错误码的含义需查阅具体的接口协议文档。</td></tr><tr><td>B2</td><td>Q156</td><td>MES系统在处理大批量工单导入时出现响应缓慢甚至超时，这通常受限于数据库的哪类性能限制条件？请简单说说。</td><td>GPT5.5: 参考答案包含不适合作为现场常见最佳实践的高风险处理方式。原文建议“检查并临时放宽唯一性约束或触发器逻辑，仅限验证阶段使用，上线前必须恢复”，但在MES大批量工单导入场景中，放宽唯一性约束或触发器容易破坏数据完整性与业务审计，应优先采用分批导入、事务边界优化、索引/慢SQL排查、连接池和锁等待处理等方式。</td><td>Q170</td><td>客户现场某条产线在批量执行工单报工时，系统频繁弹出'工序状态校验失败'提示，但仅部分工单出现该问题。你已远程获取到应用服务日志、数据库事务日志和对应时段的PLC采集时间戳日志。请简述你会如何筛选、关联和标注这三类日志中的关键证据，才能清晰呈现异常发生的完整数据链路，并支撑开发与自动化团队联合定位？</td><td>Gemini3.1pro: 参考答案第二层生造了大量非行业标准的专业术语（如“工单驱动反向追踪法”“时间窗口滑动比对法”“状态跃迁锚点法”“PLC信号前置验证法”），背离了正常的面试问答口径和真实实践表达。</td></tr><tr><td>B3</td><td>Q147</td><td>某制造企业新上线的MES系统与现场PLC通信异常，监控显示‘连接超时’。网络工程师确认防火墙策略已放行目标IP，但未明确开放具体端口。你在无权限直接查看防火墙规则、且客户产线正在运行无法中断的情况下，如何通过分步端口连通测试，快速定位是端口未开放、端口被占用，还是服务未监听，并说明每步测试结果对应的问题类型。</td><td>GPT5.5: 参考答案没有完整回应题干要求。题干要求“快速定位是端口未开放、端口被占用，还是服务未监听，并说明每步测试结果对应的问题类型”，但答案只写“向PLC的IP和目标端口发起连接”“反向测试该端口是否能被本地访问”“检查MES服务配置中指定的通信端口与PLC实际监听端口是否一致”，没有清晰区分超时、拒绝、监听失败、端口被其他进程占用分别对应的判断依据，尤其未说明“端口被占用”应在目标主机/服务侧检查监听进程或绑定失败日志。</td><td>nan</td><td>nan</td><td>nan</td></tr><tr><td>B4</td><td>Q050</td><td>当在工业软件中批量导入生产订单数据时，系统提示‘单次导入记录数不能超过10000条’，这个限制主要是为了防止什么？</td><td>GPT5.5: 第三层复杂问题不合理，原文称“拆分后的第二批订单时间戳晚于第一批，触发了MES内部‘时间倒序拦截’机制”，但第二批时间戳晚于第一批本身是正常顺序，不应被解释为“时间倒序”。</td><td>Q086</td><td>在汽车零部件装配产线中，前工序的完工检验合格后，系统才允许触发后工序的工单下发。如果现场反馈某批次零件跳过了完工检验就进入了下道工序，你会从工序流转规则角度重点检查哪两个配置环节？请简述判断依据。</td><td>GPT5.5: 第三层异常情况不合理，原文称“完工检验记录已生成且状态为合格，但后工序工单仍被自动触发”。题干设定本来就是“前工序的完工检验合格后，系统才允许触发后工序的工单下发”，合格后自动触发不应被当作异常；异常应是未检验或检验不合格时仍触发。；Gemini3.1pro: 参考答案第三层逻辑自相矛盾，原文称“完工检验记录已生成且状态为合格，但后工序工单仍被自动触发。具体情况：...导致状态未及时感知”。如果未被系统感知，则不应触发后工序，且“检验合格”后触发后工序本是正常流程，将其作为异常描述存在常识与逻辑错误。正确的应该是：状态为不合格，但后工序仍被自动触发；或者描述为：状态为合格，但后工序未被自动触发。</td></tr><tr><td>C2</td><td>Q013</td><td>当现场用户反馈某个功能按钮点击后无响应，但其他功能正常，你怀疑是权限配置问题，请简单说说如何快速确认是否因角色权限缺失导致。</td><td>Gemini3.1pro: 与R4-Q0012重复，且同样偏离了“配置替代方案”这一知识点。</td><td>Q013</td><td>当现场用户反馈某个功能按钮点击后无响应，但其他功能正常，你怀疑是权限配置问题，请简单说说如何快速确认是否因角色权限缺失导致。</td><td>Gemini3.1pro: 与R4-Q0012重复，且同样偏离了“配置替代方案”这一知识点。</td></tr></tbody>
+  </table>
+</body>
+</html>
