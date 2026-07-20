@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Round 4 Dashboard</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; margin: 24px; color: #1f2937; }
+    h1, h2, h3 { margin: 10px 0 12px; }
+    .cards { display: grid; grid-template-columns: repeat(3, minmax(140px, 220px)); gap: 12px; margin: 8px 0 18px; }
+    .card { border: 1px solid #e5e7eb; border-radius: 10px; padding: 12px; background: #fafafa; }
+    .card .k { font-size: 12px; color: #6b7280; }
+    .card .v { font-size: 24px; font-weight: 700; margin-top: 4px; }
+    table { border-collapse: collapse; width: 100%; margin: 8px 0 18px; }
+    th, td { border: 1px solid #e5e7eb; padding: 8px 10px; vertical-align: middle; }
+    th { background: #f9fafb; }
+    .legend span { margin-right: 12px; font-size: 13px; color: #374151; }
+    .mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; }
+    .ex { margin: 6px 0; color: #374151; }
+    .section-divider { border: 0; border-top: 2px solid #eef2f7; margin: 22px 0; }
+  </style>
+</head>
+<body>
+  <h1>Round 4 审核看板</h1>
+
+  <div class="cards">
+    <div class="card"><div class="k">A类错误</div><div class="v">20</div></div>
+    <div class="card"><div class="k">B类错误</div><div class="v">171</div></div>
+    <div class="card"><div class="k">C类错误</div><div class="v">3</div></div>
+  </div>
+
+  <h2>本轮题目主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">本轮题干问题占比不高但需关注：合并后一级错误 A 共 18 例，以 A1（题干知识/逻辑不严谨）16 例为主，典型如跨时钟域要求“无亚稳态”、USB3 点对点却写成共用背板走线、差分对单线改线宽维持阻抗、3H 原则误用于隔离带宽度等绝对化或不严谨表述；A4（无法口语作答的计算/推导）2 例，集中在负载调整率数值估算与节点电压法分析 T 型网络。影响范围主要在时序同步、高速接口拓扑、安规/阻抗表述与口语可答性；整体题干大多可用，但关键约束词与作答形态仍需收紧。</div>
+<h2>本轮答案主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">答案错误仍是本轮主因：一级错误 B 共 182 例，二级以 B1 知识性错误 163 例绝对主导，集中在地平面分区与回流、差分参考切换、晶振负载电容串并联、USB/电平转换机理、X/Y 电容与共模差模角色、LDO 压差/PSRR、Type II 补偿零点方向、串扰极性、软启动与瞬态响应混用等板级硬件硬伤。B2 偏门过时方案 14 例（如等长靠跨层调材料、时钟分配误推菊花链），B3 跑题/漏答 5 例。C2 近重复 3 例，出现在 GPIO 上下拉、LDO 压差功耗等主题簇。第二层方案口径与第三层异常场景是高发失真点，直接影响岗位专业性与可评分性。</div>
+<h2>后续重新出内容时应补充的规则</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">【重新出题】<br/>1) 禁止绝对化承诺（如“无亚稳态”），跨时钟域题改为“把亚稳态风险降到工程可接受水平”。<br/>2) 高速接口题必须符合真实拓扑：USB3/PCIe 等点对点不得写成总线共用走线；差分对不得引导单线改线宽破坏对称。<br/>3) 禁止要求临场公式计算/节点电压法推导；改为定性问含义、影响与工程判据。<br/>4) 安规与布局术语准确：3H 用于相邻信号间距，勿写成隔离带宽度通则。<br/>5) 出题自检：口语可直接作答；知识点与题干一致；同技能点防 C2 同质化。<br/><br/>【重出答案】<br/>1) 地/回流与分区：禁止“完整地铜却要求隔离带两侧真正断开”、挖空参考平面当通解；应写受控单点/Kelvin 回流与连续参考。<br/>2) 电源与模拟：LDO 压差是维持稳压的最小压差；X 电容滤差模、Y 电容滤共模；晶振负载按串联等效+寄生，勿写反串并联。<br/>3) 高速与开关：差分参考切换远离分割缝；PMOS/NMOS 米勒与关断方向勿照搬；时钟多负载用星形/时钟树而非菊花链。<br/>4) 第二层须给岗位常见可落地方案及优劣；第三层异常须与题干现象方向一致（如实测更凉就不能用空洞增热阻解释）。<br/>5) 重出自检：手册常识可复核→口语可讲→答全题干约束→无越界 IC 版图/流片口径。</div>
+
+  <hr class="section-divider" />
+
+  <h2>模型进度与删除率</h2>
+  <table>
+    <thead>
+      <tr><th>Model</th><th>批次完成</th><th>完成率</th><th>删除率</th><th>主错误</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>GPT5.5</td><td style='text-align:center'>9/9</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:28.2%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">28.2%</span></td><td style='text-align:center'>B>A</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>9/9</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:30.3%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">30.3%</span></td><td style='text-align:center'>B>A>C</td></tr>
+    </tbody>
+  </table>
+
+  <h2>批次状态矩阵</h2>
+  <div class="legend">
+    <span>✓ done</span><span>… running</span><span>○ pending</span><span>! blocked</span><span>x failed</span>
+  </div>
+  <table>
+    <thead><tr><th>Model</th><th>R4-B001</th><th>R4-B002</th><th>R4-B003</th><th>R4-B004</th><th>R4-B005</th><th>R4-B006</th><th>R4-B007</th><th>R4-B008</th><th>R4-B009</th></tr></thead>
+    <tbody><tr><td>GPT5.5</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td></tr></tbody>
+  </table>
+
+  <h2>细分错误统计（A1/B1...）</h2>
+  <table>
+    <thead><tr><th>错误子类</th><th>数量</th></tr></thead>
+    <tbody><tr><td>A1</td><td style='text-align:center'>16</td></tr><tr><td>A4</td><td style='text-align:center'>2</td></tr><tr><td>B1</td><td style='text-align:center'>163</td></tr><tr><td>B2</td><td style='text-align:center'>14</td></tr><tr><td>B3</td><td style='text-align:center'>5</td></tr><tr><td>C2</td><td style='text-align:center'>3</td></tr></tbody>
+  </table>
+
+  <h3>细分错误示例（每类2条）</h3>
+  <table>
+    <thead><tr><th>错误子类</th><th>例1-题号</th><th>例1-题目</th><th>例1-理由</th><th>例2-题号</th><th>例2-题目</th><th>例2-理由</th></tr></thead>
+    <tbody><tr><td>A1</td><td>Q035</td><td>某产线实时监测模块的FPGA逻辑中，一个由外部传感器触发的脉冲信号需在系统主时钟域下生成稳定、无亚稳态的单周期使能信号。请简述你采用何种时序逻辑结构完成该功能，并解释为何该结构能在制造现场存在电源波动和温度变化时仍保持可靠采样。</td><td>GPT5.5: 题干原文要求“生成稳定、无亚稳态的单周期使能信号”，存在逻辑绝对化错误。异步脉冲跨时钟域无法保证“无亚稳态”，只能通过同步器、脉冲展宽/握手/异步FIFO等把亚稳态传播概率降到工程可接受范围。；Gemini3.1pro: 题干原文要求“生成稳定、无亚稳态的单周期使能信号”，存在逻辑绝对化错误。异步脉冲跨时钟域无法保证“无亚稳态”，工程上只能通过两级/多级同步、脉冲展宽或握手等把亚稳态传播概率降到可接受水平，而不能承诺绝对无亚稳态。</td><td>Q035</td><td>某产线实时监测模块的FPGA逻辑中，一个由外部传感器触发的脉冲信号需在系统主时钟域下生成稳定、无亚稳态的单周期使能信号。请简述你采用何种时序逻辑结构完成该功能，并解释为何该结构能在制造现场存在电源波动和温度变化时仍保持可靠采样。</td><td>GPT5.5: 题干原文要求“生成稳定、无亚稳态的单周期使能信号”，存在逻辑绝对化错误。异步脉冲跨时钟域无法保证“无亚稳态”，只能通过同步器、脉冲展宽/握手/异步FIFO等把亚稳态传播概率降到工程可接受范围。；Gemini3.1pro: 题干原文要求“生成稳定、无亚稳态的单周期使能信号”，存在逻辑绝对化错误。异步脉冲跨时钟域无法保证“无亚稳态”，工程上只能通过两级/多级同步、脉冲展宽或握手等把亚稳态传播概率降到可接受水平，而不能承诺绝对无亚稳态。</td></tr><tr><td>A4</td><td>Q047</td><td>若基准源芯片的负载调整率指标为0.5mV/mA，当后级ADC驱动电流从0.1mA变化到1.2mA时，输出电压最大可能偏移多少？请简述估算依据。</td><td>GPT5.5: 题干明确问“输出电压最大可能偏移多少”，参考答案只解释负载调整率概念，没有给出计算结果。正确应根据电流变化1.2mA-0.1mA=1.1mA，乘以0.5mV/mA，最大偏移约0.55mV。；Gemini3.1pro: 题干原文要求“输出电压最大可能偏移多少？请简述估算依据”，属于要求进行数值估算/计算作答，无法纯口语直接完成且对应计算公式场景，按A4删除。正确应改为定性考察负载调整率含义，或在题干中直接给出计算过程而不要求候选人临场算出具体偏移量。</td><td>Q053</td><td>某产线自动化设备的信号调理电路中，运放反相输入端接入一个由三个电阻构成的T型网络，用于扩展输入阻抗范围。当更换不同批次的同规格电阻后，系统零点漂移明显加剧。请简述如何基于节点电压法分析该T型网络的直流偏置传递特性，并指出影响零点稳定性的两个关键电阻组合关系。</td><td>GPT5.5: 题干要求“指出影响零点稳定性的两个关键电阻组合关系”，参考答案只泛泛说“T型网络等效为两个串联再并联”“聚焦电阻比值”，没有给出两个具体组合关系，也未完成题干要求的节点电压法分析落点。；Gemini3.1pro: 题干原文要求“基于节点电压法分析该T型网络的直流偏置传递特性，并指出影响零点稳定性的两个关键电阻组合关系”，明确要求按节点电压法进行分析/推导，属于无法口语直接作答的分析推导要求，按A4删除。正确应改为定性询问T型网络哪些电阻匹配关系影响零点，而不要求口述列方程推导。</td></tr><tr><td>B1</td><td>Q005</td><td>在伺服驱动器主控板中，功率MOSFET驱动电路、电流采样电路与主控逻辑电路共板设计，且存在百安级瞬态电流。请简述如何通过布局分区规划抑制地弹噪声对采样精度的影响，并说明关键区域之间走线与平面分割的协同策略。</td><td>GPT5.5: 参考答案第二层原文“分区不分割的地平面处理——整块地铜保留完整，但通过窄槽或镂空在功率地与模拟地之间设置高阻抗隔离带”前后矛盾；第三层又要求“验证隔离带两侧地是否真正断开”。功率地、采样地应通过受控Kelvin/单点回流管理，不能一边宣称完整低阻直流通路，一边要求真正断开。；Gemini3.1pro: 参考答案第二层原文“分区不分割的地平面处理——整块地铜保留完整，但通过窄槽或镂空在功率地与模拟地之间设置高阻抗隔离带”前后逻辑矛盾；第三层又要求“验证隔离带两侧地是否真正断开”。若两侧地真正断开，就不是完整低阻直流通路。正确做法应通过受控单点/Kelvin回流与最小环路管理功率地与采样地，而不是一边宣称完整地铜、一边要求隔离带两侧真正断开。</td><td>Q005</td><td>在伺服驱动器主控板中，功率MOSFET驱动电路、电流采样电路与主控逻辑电路共板设计，且存在百安级瞬态电流。请简述如何通过布局分区规划抑制地弹噪声对采样精度的影响，并说明关键区域之间走线与平面分割的协同策略。</td><td>GPT5.5: 参考答案第二层原文“分区不分割的地平面处理——整块地铜保留完整，但通过窄槽或镂空在功率地与模拟地之间设置高阻抗隔离带”前后矛盾；第三层又要求“验证隔离带两侧地是否真正断开”。功率地、采样地应通过受控Kelvin/单点回流管理，不能一边宣称完整低阻直流通路，一边要求真正断开。；Gemini3.1pro: 参考答案第二层原文“分区不分割的地平面处理——整块地铜保留完整，但通过窄槽或镂空在功率地与模拟地之间设置高阻抗隔离带”前后逻辑矛盾；第三层又要求“验证隔离带两侧地是否真正断开”。若两侧地真正断开，就不是完整低阻直流通路。正确做法应通过受控单点/Kelvin回流与最小环路管理功率地与采样地，而不是一边宣称完整地铜、一边要求隔离带两侧真正断开。</td></tr><tr><td>B2</td><td>Q085</td><td>请简述：等长时延控制中的‘等长’，指的是物理长度相等，还是电气长度相等？</td><td>GPT5.5: 参考答案第二层原文“层间切换配合介质厚度/材料调整”“动态拓扑布线是当前通用岗位最常采用的主流方案”不符合等长时延控制的常见硬件实践。正确做法应以约束驱动的电气长度匹配、同层同结构优先和必要的蛇形/长度调节为主，而不是通过切换叠层材料或所谓动态拓扑布线作为主流方案。；Gemini3.1pro: 参考答案存在知识性错误和不符合最佳实践。第二层答案提到“层间切换配合介质厚度/材料调整，比如关键差分对在不同叠层间切换以匹配时延”，在高速信号设计中，为了匹配时延而故意跨层切换是极差的设计实践，会引入过孔阻抗不连续、回流路径断裂和信号反射，绝不会作为“常用方法”来推荐。正确的应该是：主要通过同层蛇形绕线或调整布线拓扑来实现电气等长。</td><td>Q085</td><td>请简述：等长时延控制中的‘等长’，指的是物理长度相等，还是电气长度相等？</td><td>GPT5.5: 参考答案第二层原文“层间切换配合介质厚度/材料调整”“动态拓扑布线是当前通用岗位最常采用的主流方案”不符合等长时延控制的常见硬件实践。正确做法应以约束驱动的电气长度匹配、同层同结构优先和必要的蛇形/长度调节为主，而不是通过切换叠层材料或所谓动态拓扑布线作为主流方案。；Gemini3.1pro: 参考答案存在知识性错误和不符合最佳实践。第二层答案提到“层间切换配合介质厚度/材料调整，比如关键差分对在不同叠层间切换以匹配时延”，在高速信号设计中，为了匹配时延而故意跨层切换是极差的设计实践，会引入过孔阻抗不连续、回流路径断裂和信号反射，绝不会作为“常用方法”来推荐。正确的应该是：主要通过同层蛇形绕线或调整布线拓扑来实现电气等长。</td></tr><tr><td>B3</td><td>Q047</td><td>若基准源芯片的负载调整率指标为0.5mV/mA，当后级ADC驱动电流从0.1mA变化到1.2mA时，输出电压最大可能偏移多少？请简述估算依据。</td><td>GPT5.5: 题干明确问“输出电压最大可能偏移多少”，参考答案只解释负载调整率概念，没有给出计算结果。正确应根据电流变化1.2mA-0.1mA=1.1mA，乘以0.5mV/mA，最大偏移约0.55mV。；Gemini3.1pro: 题干原文要求“输出电压最大可能偏移多少？请简述估算依据”，属于要求进行数值估算/计算作答，无法纯口语直接完成且对应计算公式场景，按A4删除。正确应改为定性考察负载调整率含义，或在题干中直接给出计算过程而不要求候选人临场算出具体偏移量。</td><td>Q053</td><td>某产线自动化设备的信号调理电路中，运放反相输入端接入一个由三个电阻构成的T型网络，用于扩展输入阻抗范围。当更换不同批次的同规格电阻后，系统零点漂移明显加剧。请简述如何基于节点电压法分析该T型网络的直流偏置传递特性，并指出影响零点稳定性的两个关键电阻组合关系。</td><td>GPT5.5: 题干要求“指出影响零点稳定性的两个关键电阻组合关系”，参考答案只泛泛说“T型网络等效为两个串联再并联”“聚焦电阻比值”，没有给出两个具体组合关系，也未完成题干要求的节点电压法分析落点。；Gemini3.1pro: 题干原文要求“基于节点电压法分析该T型网络的直流偏置传递特性，并指出影响零点稳定性的两个关键电阻组合关系”，明确要求按节点电压法进行分析/推导，属于无法口语直接作答的分析推导要求，按A4删除。正确应改为定性询问T型网络哪些电阻匹配关系影响零点，而不要求口述列方程推导。</td></tr><tr><td>C2</td><td>Q302</td><td>在数字电路设计中，当微控制器的某个GPIO引脚配置为输入模式且外部无信号驱动时，为什么需要连接上拉或下拉电阻？请简述其解决的核心问题及实现方式。</td><td>GPT5.5: 参考答案第二层原文称MCU内置上下拉“阻值在2kΩ～15kΩ合理区间”。多数MCU内部上下拉典型为约30kΩ～50kΩ量级，把2k～15k当作内置上下拉合理区间不符合常见器件参数。；Gemini3.1pro: 与R4-Q0300重复。两者都在考察GPIO输入引脚悬空时上下拉电阻的作用，候选人的核心作答内容和思路基本一致。</td><td>Q313</td><td>某电路使用LDO为通信芯片提供1.8伏电源，输入由稳压直流源提供，实测压差为0.3伏，负载电流为300毫安。请简述该压差水平下，LDO的功率损耗主要由什么决定，以及它如何体现为效率表现。</td><td>GPT5.5: 参考答案第一层原文“压差越小、负载电流越大时，损耗占比越明显，效率相应降低”。压差越小，LDO效率通常越高（接近Vout/Vin）；把“压差越小效率降低”说反了。；Gemini3.1pro: 与R4-Q0312重复。两者都在考察LDO压差对功耗、发热和效率的影响，候选人的核心作答内容和思路基本一致。</td></tr></tbody>
+  </table>
+</body>
+</html>
