@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Round 5 Dashboard</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; margin: 24px; color: #1f2937; }
+    h1, h2, h3 { margin: 10px 0 12px; }
+    .cards { display: grid; grid-template-columns: repeat(3, minmax(140px, 220px)); gap: 12px; margin: 8px 0 18px; }
+    .card { border: 1px solid #e5e7eb; border-radius: 10px; padding: 12px; background: #fafafa; }
+    .card .k { font-size: 12px; color: #6b7280; }
+    .card .v { font-size: 24px; font-weight: 700; margin-top: 4px; }
+    table { border-collapse: collapse; width: 100%; margin: 8px 0 18px; }
+    th, td { border: 1px solid #e5e7eb; padding: 8px 10px; vertical-align: middle; }
+    th { background: #f9fafb; }
+    .legend span { margin-right: 12px; font-size: 13px; color: #374151; }
+    .mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; }
+    .ex { margin: 6px 0; color: #374151; }
+    .section-divider { border: 0; border-top: 2px solid #eef2f7; margin: 22px 0; }
+  </style>
+</head>
+<body>
+  <h1>Round 5 审核看板</h1>
+
+  <div class="cards">
+    <div class="card"><div class="k">A类错误</div><div class="v">2</div></div>
+    <div class="card"><div class="k">B类错误</div><div class="v">100</div></div>
+    <div class="card"><div class="k">C类错误</div><div class="v">0</div></div>
+  </div>
+
+  <h2>本轮题目主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">本轮题干问题很少：合并后一级错误 A 仅 2 例，均为 A1（题干知识/逻辑不严谨）。典型如热可靠性题把电感表面 92℃ 表述为“超出 Class B（130℃）安全裕量阈值”却未给出裕量阈值且与数值自相矛盾；另一例在无外部时钟条件下要求仅用基础逻辑门与 RS 锁存器实现可控 50ms 超时检测，约束本身不可答，答案又被迫引入 RC/施密特等超出题干限定的元件。影响范围集中在热设计指标表述与数字逻辑时序约束的可答性，整体题干质量尚可，但关键边界条件与数值逻辑仍需自检。</div>
+<h2>本轮答案主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">答案错误仍是本轮主因：一级错误 B 共 100 例，二级以 B1 知识性错误 95 例绝对主导，高发于高速差分参考平面切换与回流、ADC 模拟回流却配数字地伴行、晶振负载电容串并联/不对称容差夸大、Type-C CC 的 Rp/Rd 方向写反、阻抗偏高时线宽调整方向写反、Type II 补偿零极点方向、数模地单点位置、LDO/滤波与共模差模角色等板级硬件硬伤。B2 偏门过时方案 3 例（孤立地岛/跨分割、电源入口单点隔地等），B3 跑题漏答 1 例（合格性结论缺失），B6 岗位口径偏差 1 例（板级框图误用 SoC 内部 AXI/AHB）。第二层方案取舍与第一层术语事实是主要失真点，直接影响可评分性与岗位专业性。</div>
+<h2>后续重新出内容时应补充的规则</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">【重新出题】<br/>1) 题干数值与安全裕量/阈值表述必须自洽，给出明确阈值或改为定性比较，禁止“超出裕量”却无阈值且与耐热等级数字矛盾。<br/>2) 时序/超时类题若限定“无外部时钟且仅用基础门+RS锁存”，须同时允许 RC/模拟定时等可产生时间基准的元件，或改为有时钟/有定时元件的可答约束。<br/>3) 热设计题同步给出结温、表面温度、材料耐热等级与裕量定义，避免口径漂移。<br/>4) 出题自检：口语可直接作答；约束可落地；同技能点防同质化。<br/><br/>【重出答案】<br/>1) 高速与回流：差分跨电源域优先连续参考/就近回流过孔，禁止用 0Ω/铜皮把不同电位电源域低阻短接；禁止把数字地当模拟输入返回路径。<br/>2) 接口与无：Type-C DFP=Rp 上拉、UFP=Rd 下拉；阻抗偏高应加宽线宽（或减介质厚度），不得写反；晶振负载按串联等效+寄生反算，勿夸大 2pF 不对称为停振。<br/>3) 电源与数模地：Type II 补偿应降零点升极点以抬相位裕度；数模地单点优先在 ADC/DAC 返回处而非笼统电源入口；避免孤立地岛/无必要跨分割。<br/>4) 第二层给岗位常见可落地方案及优劣；第三层异常须与题干现象方向一致。<br/>5) 重出自检：手册常识可复核→口语可讲→答全题干约束→板级硬件口径（非 IC 版图/SoC 内部总线）。</div>
+
+  <hr class="section-divider" />
+
+  <h2>模型进度与删除率</h2>
+  <table>
+    <thead>
+      <tr><th>Model</th><th>批次完成</th><th>完成率</th><th>删除率</th><th>主错误</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>GPT5.5</td><td style='text-align:center'>4/4</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:55.8%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">55.8%</span></td><td style='text-align:center'>B>A</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>4/4</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:23.3%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">23.3%</span></td><td style='text-align:center'>B</td></tr>
+    </tbody>
+  </table>
+
+  <h2>批次状态矩阵</h2>
+  <div class="legend">
+    <span>✓ done</span><span>… running</span><span>○ pending</span><span>! blocked</span><span>x failed</span>
+  </div>
+  <table>
+    <thead><tr><th>Model</th><th>R5-B001</th><th>R5-B002</th><th>R5-B003</th><th>R5-B004</th></tr></thead>
+    <tbody><tr><td>GPT5.5</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td></tr></tbody>
+  </table>
+
+  <h2>细分错误统计（A1/B1...）</h2>
+  <table>
+    <thead><tr><th>错误子类</th><th>数量</th></tr></thead>
+    <tbody><tr><td>A1</td><td style='text-align:center'>2</td></tr><tr><td>B1</td><td style='text-align:center'>95</td></tr><tr><td>B2</td><td style='text-align:center'>3</td></tr><tr><td>B3</td><td style='text-align:center'>1</td></tr><tr><td>B6</td><td style='text-align:center'>1</td></tr></tbody>
+  </table>
+
+  <h3>细分错误示例（每类2条）</h3>
+  <table>
+    <thead><tr><th>错误子类</th><th>例1-题号</th><th>例1-题目</th><th>例1-理由</th><th>例2-题号</th><th>例2-题目</th><th>例2-理由</th></tr></thead>
+    <tbody><tr><td>A1</td><td>Q122</td><td>某批量交付的电源模块在温升测试中，满载工况下实测关键MOSFET结温为118℃，略低于器件标称125℃最大结温；但同一测试条件下，相邻电感表面温度达92℃，超出其绝缘材料额定耐热等级（Class B，130℃）的安全裕量阈值。请简述你如何统筹评估该模块的热可靠性风险，并说明在工程决策中需同步考量的三个相互制约的热设计因素及其实际影响。</td><td>GPT5.5: 题干条件存在逻辑不严谨。原文称电感表面温度92℃“超出其绝缘材料额定耐热等级（Class B，130℃）的安全裕量阈值”，但未给出安全裕量阈值，且92℃距离Class B 130℃仍有38℃差值；答案又称其“逼近Class B材料安全裕量下限（通常至少15℃）”，与数值不符。</td><td>Q129</td><td>在自动化产线的实时控制电路中，需要将三路来自不同安全等级传感器的数字信号进行逻辑整合：当任意两路同时为高电平时触发报警，但若其中一路持续异常拉高超过50毫秒，则整个表决结果必须被强制锁定为低电平以避免误动作；该电路需在无外部时钟条件下自主完成超时检测与锁存。请简述如何仅用基础逻辑门和基本RS锁存器实现这一带自检时限的表决功能，并说明为何不能通过简单增加延时门链来满足该要求。</td><td>GPT5.5: 题干要求“无外部时钟”且“仅用基础逻辑门和基本RS锁存器”自主完成50毫秒超时检测与锁存，逻辑上不成立：没有时钟或模拟定时元件无法产生可控50ms时间基准。参考答案又引入RC、施密特触发器、甚至D触发器，已经超出题干限定，说明题目约束本身不可答。</td></tr><tr><td>B1</td><td>Q002</td><td>在高速数字电路PCB布局中，当一对差分时钟信号需要跨多个电源域走线时，如何确定参考平面切换位置，并说明这种切换对信号完整性的影响及应对依据。</td><td>GPT5.5: 参考答案存在知识性错误。原文称“参考平面切换位置应选在……两条线间距最小、耦合最紧密的区段”，并建议“0欧电阻或专用跨域桥接铜皮”连接存在较大DC电位差的电源域；正确做法是高速差分对应避免跨参考平面分割，若必须换参考需保证连续低阻抗回流，不能用0欧/铜皮把不同电位电源域低阻短接。</td><td>Q003</td><td>某工业控制板卡中，ADC采样路径包含模拟输入、参考电压和数字地三类关键走线，当它们必须共用同一层布线且空间受限时，请说明你如何优先分配走线顺序、设定间距与叠层策略，并解释该决策对信噪比的实际影响。</td><td>GPT5.5: 参考答案把“数字地走线应紧邻模拟输入并为其提供就近、低阻抗的返回路径”作为优选方案。正确做法是让模拟输入/参考电压在连续模拟参考平面上回流，数字地不应作为伴行走线贴近敏感模拟输入，否则会引入数字噪声耦合。；Gemini3.1pro: 题干和答案中提到“数字地走线应紧邻模拟输入并为其提供就近、低阻抗的返回路径”，这是严重的常识错误。模拟输入信号的返回路径必须是模拟地（AGND），如果以数字地（DGND）作为返回路径，数字开关噪声会直接耦合进模拟信号，导致信噪比严重恶化。</td></tr><tr><td>B2</td><td>Q033</td><td>一块工业控制主板需集成CAN总线、USB2.0和模拟传感器采集通道，三者共用同一层内层参考平面。当发现CAN差分对出现串扰导致误码率上升时，你会从布局布线角度采取哪些系统性措施来隔离干扰源？请说明关键约束条件及取舍逻辑。</td><td>GPT5.5: 参考答案建议“引入局部地岛+受控单点连接：在CAN收发器附近设小面积孤立地铜，仅通过一个0402电阻或磁珠单点连主地”。对CAN差分和高速/混合信号板，孤立地岛和磁珠隔地容易破坏返回路径、增加共模噪声；正确应保持连续参考平面、分区布线、缩短平行耦合和就近低阻抗去耦。；Gemini3.1pro: 参考答案第二层提出的第二种方案建议“让USB2.0数据线在中间层短距跨分割区”，这严重违反了高速信号（USB2.0达480Mbps）布线中“严禁跨越参考平面分割”的基本常识。跨分割会导致回流路径中断、阻抗突变和严重的EMI问题，绝不是可接受的工程方案。</td><td>Q051</td><td>在印刷电路板设计中，当数字地和模拟地需要分开布设时，通常会在某一点将它们连接起来，请问这个连接点一般应选在什么位置？请简述理由。</td><td>GPT5.5: 参考答案称数字地和模拟地单点连接“一般应选在电源入口处……板级电源滤波电容负极或LDO输出端地焊盘”。数模地连接点应围绕混合信号器件、ADC/DAC返回电流和实际分区回流确定，现代多层板通常优先连续地平面而非简单在电源入口单点相连；该答案过于绝对，易导致模拟/数字回流绕行。；Gemini3.1pro: 混合信号PCB设计中，如果强行分割数字地和模拟地，标准的单点连接位置必须是在模数转换器件（ADC/DAC）的正下方或紧邻引脚处，以保证数字接口信号的回流路径最短。参考答案建议“连接点应选在电源入口处的参考地平面附近”，这会导致ADC数字信号的回流路径绕行整个板子，产生极大的环路面积和严重的EMI问题，属于过时且错误的偏门经验。</td></tr><tr><td>B3</td><td>Q075</td><td>某电源模块的输出电压标称值为5.0V，允许偏差为±2%，测试数据显示为4.89V。请结合指标边界定义，说明该数据是否在合格范围内。</td><td>GPT5.5: 参考答案没有给出题目要求的合格性结论。题干数据为5.0V±2%，合格范围应为4.90V到5.10V，原文实测“4.89V”低于下限4.90V，正确结论应为不合格/超出允许偏差。</td><td>nan</td><td>nan</td><td>nan</td></tr><tr><td>B6</td><td>Q079</td><td>请简单说说在硬件框图中，为什么处理器与存储器之间要明确标出总线类型？</td><td>GPT5.5: 参考答案用“AXI、AHB、自定义并行总线”回答处理器与存储器硬件框图总线类型。AXI/AHB多为SoC内部互联口径，板级硬件框图中处理器与外部存储器应明确DDR/LPDDR、QSPI/SPI Flash、eMMC/SDIO、并行NOR/NAND等实际外部接口类型、位宽和时钟域。</td><td>nan</td><td>nan</td><td>nan</td></tr></tbody>
+  </table>
+</body>
+</html>
