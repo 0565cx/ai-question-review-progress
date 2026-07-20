@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Round 10 Dashboard</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; margin: 24px; color: #1f2937; }
+    h1, h2, h3 { margin: 10px 0 12px; }
+    .cards { display: grid; grid-template-columns: repeat(3, minmax(140px, 220px)); gap: 12px; margin: 8px 0 18px; }
+    .card { border: 1px solid #e5e7eb; border-radius: 10px; padding: 12px; background: #fafafa; }
+    .card .k { font-size: 12px; color: #6b7280; }
+    .card .v { font-size: 24px; font-weight: 700; margin-top: 4px; }
+    table { border-collapse: collapse; width: 100%; margin: 8px 0 18px; }
+    th, td { border: 1px solid #e5e7eb; padding: 8px 10px; vertical-align: middle; }
+    th { background: #f9fafb; }
+    .legend span { margin-right: 12px; font-size: 13px; color: #374151; }
+    .mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; }
+    .ex { margin: 6px 0; color: #374151; }
+    .section-divider { border: 0; border-top: 2px solid #eef2f7; margin: 22px 0; }
+  </style>
+</head>
+<body>
+  <h1>Round 10 审核看板</h1>
+
+  <div class="cards">
+    <div class="card"><div class="k">A类错误</div><div class="v">8</div></div>
+    <div class="card"><div class="k">B类错误</div><div class="v">47</div></div>
+    <div class="card"><div class="k">C类错误</div><div class="v">0</div></div>
+  </div>
+
+  <h2>本轮题目主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">本轮题干问题相比答案问题少，但仍集中在硬件架构前提和口语作答适配性上。典型问题包括把DDR5 SO-DIMM与板载LPDDR5设定为可在同一CA/CK拓扑下统一设计，混淆两套不同内存体系；部分题干继续堆叠输出电压、纹波、PSRR、频段、恢复时间和电容范围等大量数值，让候选人必须现场记忆和综合计算，更接近笔试选型题。后续重出题时，要先校验接口体系、控制器能力和信号归属是否真实，再把数值约束压缩成可口头讨论的工程场景。</div>
+<h2>本轮答案主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">本轮参考答案主要错误仍为B1知识性错误，覆盖DDR5/LPDDR5、PCIe、USB、MIPI D-PHY、HDMI、CXL、JTAG/SWD、SerDes、JEDEC可靠性和跨时钟域处理等高频硬件知识。常见表现是把片上ODT、Vref、PHY端接和均衡机制写成外部分立电阻或板级可调动作；把PCIe、HDMI、USB等协议代际和信令模式混写；把内部数字CDC设计写成PCB并行总线和等长问题；引用错误标准编号或错误状态序列。整体看，答案需要从协议事实、芯片/板级职责边界和真实可执行调试路径三方面重新校准。</div>
+<h2>后续重新出内容时应补充的规则</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">【重新出题】<br/>重新出题前必须做架构前提校验：DDR5、LPDDR5、CXL、PCIe、USB、MIPI、HDMI、JTAG/SWD分别属于什么接口体系，哪些信号能共用、哪些不能共用，控制器/PHY是否真实支持。题干避免堆叠过多精确参数，优先用真实板级场景描述问题现象、限制条件和排查目标；如涉及多接口共板或高频SI/PI/EMC问题，必须限定为硬件工程师能通过原理图、PCB、器件选型、仪器测试和量产验证处理的范围。<br/><br/>【重出答案】<br/>重出答案必须建立标准口径清单：PCIe 5.0是32GT/s NRZ嵌入式时钟SerDes，主要依赖PHY端接、AC耦合、通道设计和均衡；DDR5/LPDDR5需区分DQ/DQS、CA/CK、RON、ODT、内部Vref和模块/板载拓扑；USB 2.0 HS与USB SS阻抗和电平状态不能混写；MIPI D-PHY按LP-11、LP-01、LP-00、HS进入/退出序列描述；HDMI需先区分TMDS/FRL模式；JTAG/SWD需按TMS/SWDIO、TCK/SWCLK复用和标准上拉/阻尼处理；JEDEC试验标准编号必须与失效机理匹配。第二层方案只写真实可落地的硬件动作，第三层异常必须能通过bring-up、SI/PI/EMC、可靠性或量产测试闭环。</div>
+
+  <hr class="section-divider" />
+
+  <h2>模型进度与删除率</h2>
+  <table>
+    <thead>
+      <tr><th>Model</th><th>批次完成</th><th>完成率</th><th>删除率</th><th>主错误</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>GPT5.5</td><td style='text-align:center'>1/1</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:93.1%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">93.1%</span></td><td style='text-align:center'>B>A</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>1/1</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:69.0%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">69.0%</span></td><td style='text-align:center'>B>A</td></tr>
+    </tbody>
+  </table>
+
+  <h2>批次状态矩阵</h2>
+  <div class="legend">
+    <span>✓ done</span><span>… running</span><span>○ pending</span><span>! blocked</span><span>x failed</span>
+  </div>
+  <table>
+    <thead><tr><th>Model</th><th>R10-B001</th></tr></thead>
+    <tbody><tr><td>GPT5.5</td><td style='text-align:center'>✓</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>✓</td></tr></tbody>
+  </table>
+
+  <h2>细分错误统计（A1/B1...）</h2>
+  <table>
+    <thead><tr><th>错误子类</th><th>数量</th></tr></thead>
+    <tbody><tr><td>A1</td><td style='text-align:center'>7</td></tr><tr><td>A4</td><td style='text-align:center'>1</td></tr><tr><td>B1</td><td style='text-align:center'>46</td></tr><tr><td>B6</td><td style='text-align:center'>1</td></tr></tbody>
+  </table>
+
+  <h3>细分错误示例（每类2条）</h3>
+  <table>
+    <thead><tr><th>错误子类</th><th>例1-题号</th><th>例1-题目</th><th>例1-理由</th><th>例2-题号</th><th>例2-题目</th><th>例2-理由</th></tr></thead>
+    <tbody><tr><td>A1</td><td>Q001</td><td>在设计支持DDR5-5600的双通道笔记本主板时，需同时接入一个SO-DIMM插槽和一个板载LPDDR5颗粒。两者电气特性差异显著：SO-DIMM走线长、容性负载大，而LPDDR5布线短但对电源噪声敏感。请简述你如何权衡T型拓扑与Fly-by拓扑的适用性，结合命令/地址/控制信号与时钟的拓扑一致性要求，确定最终拓扑方案并说明关键约束依据。</td><td>GPT5.5: 题干把DDR5 SO-DIMM与板载LPDDR5颗粒设定为同一双通道内存拓扑统一权衡，混淆DDR5 DIMM与LPDDR5体系；答案又引用JESD209-5B支持“双独立Fly-by”和LPDDR5侧CA分支末端AC耦合电容+下拉端接，均不符合DDR/LPDDR常规接口机制。正确应区分DDR5 SO-DIMM与LPDDR5控制器/PHY、拓扑和端接规则，不能混作同一CA/CK拓扑问题。；Gemini3.1pro: 题干中设定将DDR5 SO-DIMM和板载LPDDR5颗粒挂载在‘同一内存控制器CA输出’和共享总线上，这是严重的知识性错误。DDR5和LPDDR5的总线架构、引脚定义和通信协议完全不同，物理上无法在同一个通道或同一组CA/CK信号上混合共用。</td><td>Q001</td><td>在设计支持DDR5-5600的双通道笔记本主板时，需同时接入一个SO-DIMM插槽和一个板载LPDDR5颗粒。两者电气特性差异显著：SO-DIMM走线长、容性负载大，而LPDDR5布线短但对电源噪声敏感。请简述你如何权衡T型拓扑与Fly-by拓扑的适用性，结合命令/地址/控制信号与时钟的拓扑一致性要求，确定最终拓扑方案并说明关键约束依据。</td><td>GPT5.5: 题干把DDR5 SO-DIMM与板载LPDDR5颗粒设定为同一双通道内存拓扑统一权衡，混淆DDR5 DIMM与LPDDR5体系；答案又引用JESD209-5B支持“双独立Fly-by”和LPDDR5侧CA分支末端AC耦合电容+下拉端接，均不符合DDR/LPDDR常规接口机制。正确应区分DDR5 SO-DIMM与LPDDR5控制器/PHY、拓扑和端接规则，不能混作同一CA/CK拓扑问题。；Gemini3.1pro: 题干中设定将DDR5 SO-DIMM和板载LPDDR5颗粒挂载在‘同一内存控制器CA输出’和共享总线上，这是严重的知识性错误。DDR5和LPDDR5的总线架构、引脚定义和通信协议完全不同，物理上无法在同一个通道或同一组CA/CK信号上混合共用。</td></tr><tr><td>A4</td><td>Q003</td><td>在为一颗支持PCIe 5.0和DDR5的高性能计算芯片设计供电方案时，需从三款标称输出电压均为1.1V、纹波要求≤20mV的电源管理芯片中选型：A款标称负载调整率±1%，B款标称PSRR在1MHz处为40dB，C款标称输出电容兼容范围宽（支持10μF至470μF）。请简述你如何结合PCIe 5.0链路对电源噪声的敏感性（尤其在1–10MHz频段）、DDR5内存子系统对瞬态压降的容忍极限（典型要求阶跃响应后电压恢复时间<500ns），以及板级布局空间受限导致无法部署大体积电解电容的实际约束，来综合评估这三款芯片在噪声抑制、动态响应与外围适配性三个维度上的工程适用性。</td><td>GPT5.5: 题干堆叠1.1V、≤20mV、±1%、40dB、10μF至470μF、1–10MHz、<500ns等大量具体参数，并要求候选人综合比较三款芯片，口语面试中需要记忆和计算多个边界，偏向笔试型器件选型题。正确应改为定性考察电源噪声、瞬态响应和外部电容适配的评估方法。</td><td>nan</td><td>nan</td><td>nan</td></tr><tr><td>B1</td><td>Q001</td><td>在设计支持DDR5-5600的双通道笔记本主板时，需同时接入一个SO-DIMM插槽和一个板载LPDDR5颗粒。两者电气特性差异显著：SO-DIMM走线长、容性负载大，而LPDDR5布线短但对电源噪声敏感。请简述你如何权衡T型拓扑与Fly-by拓扑的适用性，结合命令/地址/控制信号与时钟的拓扑一致性要求，确定最终拓扑方案并说明关键约束依据。</td><td>GPT5.5: 题干把DDR5 SO-DIMM与板载LPDDR5颗粒设定为同一双通道内存拓扑统一权衡，混淆DDR5 DIMM与LPDDR5体系；答案又引用JESD209-5B支持“双独立Fly-by”和LPDDR5侧CA分支末端AC耦合电容+下拉端接，均不符合DDR/LPDDR常规接口机制。正确应区分DDR5 SO-DIMM与LPDDR5控制器/PHY、拓扑和端接规则，不能混作同一CA/CK拓扑问题。；Gemini3.1pro: 题干中设定将DDR5 SO-DIMM和板载LPDDR5颗粒挂载在‘同一内存控制器CA输出’和共享总线上，这是严重的知识性错误。DDR5和LPDDR5的总线架构、引脚定义和通信协议完全不同，物理上无法在同一个通道或同一组CA/CK信号上混合共用。</td><td>Q001</td><td>在设计支持DDR5-5600的双通道笔记本主板时，需同时接入一个SO-DIMM插槽和一个板载LPDDR5颗粒。两者电气特性差异显著：SO-DIMM走线长、容性负载大，而LPDDR5布线短但对电源噪声敏感。请简述你如何权衡T型拓扑与Fly-by拓扑的适用性，结合命令/地址/控制信号与时钟的拓扑一致性要求，确定最终拓扑方案并说明关键约束依据。</td><td>GPT5.5: 题干把DDR5 SO-DIMM与板载LPDDR5颗粒设定为同一双通道内存拓扑统一权衡，混淆DDR5 DIMM与LPDDR5体系；答案又引用JESD209-5B支持“双独立Fly-by”和LPDDR5侧CA分支末端AC耦合电容+下拉端接，均不符合DDR/LPDDR常规接口机制。正确应区分DDR5 SO-DIMM与LPDDR5控制器/PHY、拓扑和端接规则，不能混作同一CA/CK拓扑问题。；Gemini3.1pro: 题干中设定将DDR5 SO-DIMM和板载LPDDR5颗粒挂载在‘同一内存控制器CA输出’和共享总线上，这是严重的知识性错误。DDR5和LPDDR5的总线架构、引脚定义和通信协议完全不同，物理上无法在同一个通道或同一组CA/CK信号上混合共用。</td></tr><tr><td>B6</td><td>Q014</td><td>某工业通信模块需将CAN总线报文时间戳（64位宽）从低速CAN时钟域安全传递至高速ARM处理器时钟域，且系统要求端到端延迟抖动小于50ns。在不依赖专用跨时钟域IP核的前提下，你如何通过电路结构与时序协同设计达成该指标？请说明关键路径优化点和验证时需重点关注的时序参数。</td><td>GPT5.5: 答案把64位时间戳跨时钟域设计写成板级并行总线分组同步、PCB等长布线和外部分立触发器方案，混淆芯片/FPGA内部CDC与硬件板级设计职责；正确应使用异步FIFO、握手、Gray码指针或多周期稳定采样等数字设计口径，并在RTL/STA/CDC验证中闭环。；Gemini3.1pro: 参考答案第二层给出的跨时钟域方案‘将64位拆为8组8位并行同步链，每组配独立两级触发器+格雷码转换’存在严重的数字电路常识错误。时间戳作为一个连续递增的计数器，如果拆分成多个独立的格雷码组，在发生进位时会导致多组数据同时跳变，完全破坏了格雷码‘每次只跳变一个比特’的特性，无法解决跨时钟域同步问题。</td><td>nan</td><td>nan</td><td>nan</td></tr></tbody>
+  </table>
+</body>
+</html>

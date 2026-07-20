@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Round 8 Dashboard</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; margin: 24px; color: #1f2937; }
+    h1, h2, h3 { margin: 10px 0 12px; }
+    .cards { display: grid; grid-template-columns: repeat(3, minmax(140px, 220px)); gap: 12px; margin: 8px 0 18px; }
+    .card { border: 1px solid #e5e7eb; border-radius: 10px; padding: 12px; background: #fafafa; }
+    .card .k { font-size: 12px; color: #6b7280; }
+    .card .v { font-size: 24px; font-weight: 700; margin-top: 4px; }
+    table { border-collapse: collapse; width: 100%; margin: 8px 0 18px; }
+    th, td { border: 1px solid #e5e7eb; padding: 8px 10px; vertical-align: middle; }
+    th { background: #f9fafb; }
+    .legend span { margin-right: 12px; font-size: 13px; color: #374151; }
+    .mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; }
+    .ex { margin: 6px 0; color: #374151; }
+    .section-divider { border: 0; border-top: 2px solid #eef2f7; margin: 22px 0; }
+  </style>
+</head>
+<body>
+  <h1>Round 8 审核看板</h1>
+
+  <div class="cards">
+    <div class="card"><div class="k">A类错误</div><div class="v">7</div></div>
+    <div class="card"><div class="k">B类错误</div><div class="v">29</div></div>
+    <div class="card"><div class="k">C类错误</div><div class="v">1</div></div>
+  </div>
+
+  <h2>本轮题目主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">本轮题干问题主要集中在口语面试适配性和少量协议前提错误。Gemini 主要识别出部分题干堆砌具体数值、频点或计算条件，容易变成笔试计算题，不利于面试官稳定播报和候选人口头作答；GPT5.5 侧还识别出若干题干直接沿用了上一轮已指出的错误前提，例如DDR5 DQ通道使用fly-by拓扑、CXL存在CXL_EN专用物理使能脚，以及PCIe通道间skew被设定为极严苛等长约束。整体看，题干重出应优先处理协议对象、拓扑前提和口语表达复杂度。</div>
+<h2>本轮答案主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">本轮答案主要错误仍以B1知识性错误为主，覆盖PCIe 5.0编码与阻抗口径、MIPI D-PHY LP/HS状态序列、USB 2.0低速/高速电平与USB叠层阻抗、DDR5写均衡/Vref/ODT机制、JTAG/SWD引脚复用、SerDes预加重/去加重位置、JEDEC可靠性标准匹配等。相较七轮，部分答案已改善为更像硬件工程师的板级动作，但仍存在把数字逻辑实现当作硬件板级方案、把协议标准术语混写、用牵强数值或不存在机制支撑结论的问题。</div>
+<h2>后续重新出内容时应补充的规则</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">【重新出题】<br/>重新出题时应先做题干事实校验：协议版本、速率、编码、拓扑、引脚、状态机和标准名称必须真实；涉及数值参数时，只保留面试者能口头记忆和推理的必要边界，避免要求候选人现场口算公式、谐波倍频或精确电容值。对于回流题，若上一轮已经判定为A类问题，重出时必须替换错误前提，而不是只改答案。<br/><br/>【重出答案】<br/>重出答案时应建立硬件口径自检清单：PCIe 5.0仍为NRZ、USB 2.0 D+/D-为差分信号、SWDIO/SWCLK与TMS/TCK复用、D-PHY进入HS的LP序列、DDR5 DQ/CA拓扑和Vref/ODT边界、SerDes发送端预加重/去加重与接收端CTLE/DFE的区别、JEDEC可靠性测试标准适用范围。第二层方案要优先给板级可执行动作，第三层异常要用真实bring-up/SI/PI/EMC/可靠性问题闭环，避免生造寄存器、引脚或不属于硬件工程师职责的逻辑实现。</div>
+
+  <hr class="section-divider" />
+
+  <h2>模型进度与删除率</h2>
+  <table>
+    <thead>
+      <tr><th>Model</th><th>批次完成</th><th>完成率</th><th>删除率</th><th>主错误</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>GPT5.5</td><td style='text-align:center'>1/1</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:72.5%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">72.5%</span></td><td style='text-align:center'>B>A>C</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>1/1</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:7.5%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">7.5%</span></td><td style='text-align:center'>A</td></tr>
+    </tbody>
+  </table>
+
+  <h2>批次状态矩阵</h2>
+  <div class="legend">
+    <span>✓ done</span><span>… running</span><span>○ pending</span><span>! blocked</span><span>x failed</span>
+  </div>
+  <table>
+    <thead><tr><th>Model</th><th>R8-B001</th></tr></thead>
+    <tbody><tr><td>GPT5.5</td><td style='text-align:center'>✓</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>✓</td></tr></tbody>
+  </table>
+
+  <h2>细分错误统计（A1/B1...）</h2>
+  <table>
+    <thead><tr><th>错误子类</th><th>数量</th></tr></thead>
+    <tbody><tr><td>A1</td><td style='text-align:center'>4</td></tr><tr><td>A4</td><td style='text-align:center'>3</td></tr><tr><td>B1</td><td style='text-align:center'>29</td></tr><tr><td>B6</td><td style='text-align:center'>1</td></tr><tr><td>C2</td><td style='text-align:center'>1</td></tr></tbody>
+  </table>
+
+  <h3>细分错误示例（每类2条）</h3>
+  <table>
+    <thead><tr><th>错误子类</th><th>例1-题号</th><th>例1-题目</th><th>例1-理由</th><th>例2-题号</th><th>例2-题目</th><th>例2-理由</th></tr></thead>
+    <tbody><tr><td>A1</td><td>Q002</td><td>在设计一块搭载DDR5-4800内存的服务器主板时，发现四根64位数据线中，靠近电源层切割区域的两根线在眼图测试中明显闭合，而其余线路正常。已知所有走线长度匹配误差小于1ps，但这两根线所在区域的参考平面存在200mil长的分割缺口。请简述你会优先选用哪种拓扑结构来重构这两根信号的布线方案，并从返回电流路径完整性、高频阻抗突变抑制、以及接收端DFE均衡器训练收敛稳定性三个维度说明该拓扑如何针对性改善问题。</td><td>GPT5.5: 题干仍把DDR5数据线问题表述为“选用哪种拓扑结构”，而DDR5 DQ本身应为点对点连接，不存在T型、星型等拓扑选择；答案第二层继续列举T型分支、远端分支、星型拓扑作为可选方案，属于题干和答案共同的知识性错误。</td><td>Q004</td><td>在设计支持DDR5-6400的双CPU服务器主板时，内存控制器与八个RDIMM插槽采用飞线拓扑，实测发现靠近CPU的前两根插槽读写裕量充足，但后六根插槽在高温满载下出现突发性校准失败和重训练频繁触发。请简述你如何结合走线长度匹配策略、参考平面连续性控制、VrefDQ分布式驱动架构选择，以及DDR5片上MPR与ZQ校准机制的协同约束，系统性定位并优化该拓扑下的时序收敛与电压基准稳定性问题。</td><td>GPT5.5: 题干仍设定“内存控制器与八个RDIMM插槽采用飞线拓扑”，不符合服务器DDR5通道/插槽拓扑常识；答案还将每插槽VrefDQ独立LDO、MPR眼高和ZQ校准与八槽fly-by直接绑定，机制混杂。</td></tr><tr><td>A4</td><td>Q006</td><td>在为一颗支持PCIe 5.0的SoC设计供电网络时，需从三类LDO中选型：低压差型（压降<100mV）、低噪声型（输出纹波<5μVrms）和高PSRR型（1MHz处PSRR>65dB）。请简述你如何结合该SoC的IO电源域动态电流变化率（di/dt达3A/ns）、参考时钟抖动容限（<300fs RMS）及板级空间限制（仅余2cm²布局面积），综合评估这三类器件在电源完整性、时序裕量与热耗散上的实际适配性。</td><td>GPT5.5: 答案把3A/ns这类纳秒级动态电流主要放到LDO类型选择上判断，并称1MHz高PSRR型更匹配PCIe 5.0电源噪声敏感频段。实际这类瞬态主要由本地PDN/去耦网络承担，LDO的1MHz PSRR不能覆盖高速IO开关的主要高频瞬态。；Gemini3.1pro: 题干堆砌了大量具体的参数数值（di/dt、RMS、面积等），在口语面试中面试官无法自然读出并让候选人记住，更偏向笔试题；正确的应该去掉具体的数值限制，改为定性的场景描述。</td><td>Q011</td><td>某高速接口验证板在辐射骚扰测试中，300MHz至1GHz频段出现多个离散尖峰，其中528MHz、792MHz和1056MHz处幅度超标。已知该板使用DDR5内存控制器，时钟频率为4800MT/s，数据线采用点对点拓扑，PCB为10层板且参考平面完整。请简述你如何通过频点谐波关系定位干扰源类型，并说明为何优先排查PCB走线谐振而非芯片IO驱动强度或电源纹波。</td><td>GPT5.5: 答案称DDR5采用PAM3编码，并把528/792/1056MHz硬凑为264MHz倍频及CA典型频率，频点与DDR5 4800MT/s的实际时钟/谐波关系不严谨，存在知识性错误。；Gemini3.1pro: 题干包含大量具体数值和频率点，口语播报时候选人很难记住并进行谐波关系的数值计算，偏向笔试计算题；正确的应该剥离具体数值，直接询问谐波关系分析的方法。</td></tr><tr><td>B1</td><td>Q001</td><td>在千兆以太网接口的PCB设计中，若已选用符合IEEE 802.3ab标准的PHY芯片和RJ45连接器，并完成差分走线，但实测眼图张开度不足、误码率偏高，你认为最可能影响信号质量的两个板级硬件因素是什么？请简单说说原因。</td><td>GPT5.5: 参考答案第二层称需检查PHY端是否启用片内终端或外置AC耦合电容后是否遗漏端接电阻，混淆了1000BASE-T通过磁性器件/中心抽头/端接网络实现接口匹配的常见硬件口径；千兆以太网RJ45侧通常不是简单AC耦合后补端接电阻。</td><td>Q002</td><td>在设计一块搭载DDR5-4800内存的服务器主板时，发现四根64位数据线中，靠近电源层切割区域的两根线在眼图测试中明显闭合，而其余线路正常。已知所有走线长度匹配误差小于1ps，但这两根线所在区域的参考平面存在200mil长的分割缺口。请简述你会优先选用哪种拓扑结构来重构这两根信号的布线方案，并从返回电流路径完整性、高频阻抗突变抑制、以及接收端DFE均衡器训练收敛稳定性三个维度说明该拓扑如何针对性改善问题。</td><td>GPT5.5: 题干仍把DDR5数据线问题表述为“选用哪种拓扑结构”，而DDR5 DQ本身应为点对点连接，不存在T型、星型等拓扑选择；答案第二层继续列举T型分支、远端分支、星型拓扑作为可选方案，属于题干和答案共同的知识性错误。</td></tr><tr><td>B6</td><td>Q015</td><td>某工业通信模块需将CAN总线报文时间戳（64位宽）从低速CAN时钟域安全传递至高速ARM处理器时钟域，且系统要求端到端延迟抖动小于50ns。在不依赖专用跨时钟域IP核的前提下，你如何通过电路结构与时序协同设计达成该指标？请说明关键路径优化点和验证时需重点关注的时序参数。</td><td>GPT5.5: 答案把64位CAN时间戳跨时钟域方案写成硬件工程师可通过原理图/PCB/电源完整性完全落地，且将双触发器、异步FIFO、格雷码指针等数字逻辑实现混作板级硬件动作，岗位口径偏离；同时“64位宽异步FIFO完全由PCB约束保障”不成立。</td><td>nan</td><td>nan</td><td>nan</td></tr><tr><td>C2</td><td>Q040</td><td>在多通道PCIe布局中，若相邻两对差分线长度差异过大，可能引发什么典型信号问题？请简述该问题对链路稳定性的影响。</td><td>GPT5.5: 答案声称PCIe Gen3/Gen4/Gen5通道间长度偏差分别仅±5ps/±3ps/±2ps，忽视PCIe接收端deskew机制，lane-to-lane skew容限远大于该数值；且本题与Q0009都考察PCIe lane间偏斜/等长口径，作答思路高度重叠。</td><td>nan</td><td>nan</td><td>nan</td></tr></tbody>
+  </table>
+</body>
+</html>

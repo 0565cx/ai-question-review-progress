@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Round 7 Dashboard</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; margin: 24px; color: #1f2937; }
+    h1, h2, h3 { margin: 10px 0 12px; }
+    .cards { display: grid; grid-template-columns: repeat(3, minmax(140px, 220px)); gap: 12px; margin: 8px 0 18px; }
+    .card { border: 1px solid #e5e7eb; border-radius: 10px; padding: 12px; background: #fafafa; }
+    .card .k { font-size: 12px; color: #6b7280; }
+    .card .v { font-size: 24px; font-weight: 700; margin-top: 4px; }
+    table { border-collapse: collapse; width: 100%; margin: 8px 0 18px; }
+    th, td { border: 1px solid #e5e7eb; padding: 8px 10px; vertical-align: middle; }
+    th { background: #f9fafb; }
+    .legend span { margin-right: 12px; font-size: 13px; color: #374151; }
+    .mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; }
+    .ex { margin: 6px 0; color: #374151; }
+    .section-divider { border: 0; border-top: 2px solid #eef2f7; margin: 22px 0; }
+  </style>
+</head>
+<body>
+  <h1>Round 7 审核看板</h1>
+
+  <div class="cards">
+    <div class="card"><div class="k">A类错误</div><div class="v">3</div></div>
+    <div class="card"><div class="k">B类错误</div><div class="v">47</div></div>
+    <div class="card"><div class="k">C类错误</div><div class="v">1</div></div>
+  </div>
+
+  <h2>本轮题目主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">本轮题干问题主要集中在协议或接口基础概念被错误设定，以及不同题目之间考点高度同质。典型表现包括将标准中不存在的CXL_EN物理使能脚写入题干、把PCIe通道间偏斜题与组内等长题设计成近似同一作答路径，以及在DDR5/USB/MIPI等接口题中把协议状态、拓扑或速率边界作为题干前提时出现不严谨设定。整体看，题干本身的A类问题数量不高，但一旦出现会直接影响候选人的作答方向，需要优先重出题目而不是只改答案。</div>
+<h2>本轮答案主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">本轮答案问题以B1知识性错误为主，覆盖高速接口协议速率、物理层握手、端接与均衡技术、DDR拓扑、USB电平识别、JTAG/SWD引脚复用等基础口径。高频错误包括把PCIe 5.0写成16GT/s、混淆MIPI D-PHY LP到HS状态序列、把CTLE/去加重等均衡技术位置和作用说错、把SWD相对JTAG减少的引脚说错，以及将DDR5 DQ拓扑、ODT和参考标准混写。答案层级虽完整，但专业准确性和岗位口径稳定性不足，导致大量题目进入保留题干重出答案。</div>
+<h2>后续重新出内容时应补充的规则</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">【重新出题】<br/>重新出题时必须先校验题干中的协议版本、速率、拓扑和硬件对象是否真实存在，禁止生造标准中没有的专用引脚、寄存器或物理状态；同一知识点下的题目要拉开考察角度，避免多个题都考PCIe等长/skew或MIPI状态切换的同一作答路径；涉及DDR5、PCIe、USB、MIPI、CXL、JTAG/SWD时，题干前提必须与该协议的真实物理层边界一致。<br/><br/>【重出答案】<br/>重出答案时先建立协议事实自检清单：速率/编码、阻抗与端接、状态机序列、引脚复用、均衡技术所在端、标准名称和适用范围均需逐项核对。答案第二层应给出硬件工程师可执行的排查或设计动作，避免把固件/逻辑内部实现当作板级硬件方案；第三层异常要贴近真实bring-up、SI/PI/EMC或可靠性问题，不得用牵强机制补足复杂度。</div>
+
+  <hr class="section-divider" />
+
+  <h2>模型进度与删除率</h2>
+  <table>
+    <thead>
+      <tr><th>Model</th><th>批次完成</th><th>完成率</th><th>删除率</th><th>主错误</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>GPT5.5</td><td style='text-align:center'>2/2</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:75.5%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">75.5%</span></td><td style='text-align:center'>B>A</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>2/2</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:15.1%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">15.1%</span></td><td style='text-align:center'>B>A>C</td></tr>
+    </tbody>
+  </table>
+
+  <h2>批次状态矩阵</h2>
+  <div class="legend">
+    <span>✓ done</span><span>… running</span><span>○ pending</span><span>! blocked</span><span>x failed</span>
+  </div>
+  <table>
+    <thead><tr><th>Model</th><th>R7-B001</th><th>R7-B002</th></tr></thead>
+    <tbody><tr><td>GPT5.5</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td></tr></tbody>
+  </table>
+
+  <h2>细分错误统计（A1/B1...）</h2>
+  <table>
+    <thead><tr><th>错误子类</th><th>数量</th></tr></thead>
+    <tbody><tr><td>A1</td><td style='text-align:center'>3</td></tr><tr><td>B1</td><td style='text-align:center'>42</td></tr><tr><td>B2</td><td style='text-align:center'>2</td></tr><tr><td>B3</td><td style='text-align:center'>2</td></tr><tr><td>B4</td><td style='text-align:center'>1</td></tr><tr><td>C2</td><td style='text-align:center'>1</td></tr></tbody>
+  </table>
+
+  <h3>细分错误示例（每类2条）</h3>
+  <table>
+    <thead><tr><th>错误子类</th><th>例1-题号</th><th>例1-题目</th><th>例1-理由</th><th>例2-题号</th><th>例2-题目</th><th>例2-理由</th></tr></thead>
+    <tbody><tr><td>A1</td><td>Q003</td><td>某DDR5内存模组在量产测试中出现写入数据错误，示波器实测DQ信号在颗粒端眼图高度不足且存在明显过冲。已知该通道采用fly-by拓扑、驱动芯片支持片内终端（ODT），主板走线参考平面连续，但DIMM插槽与CPU之间存在两段不同阻抗区段（50Ω和60Ω）。请简述你如何决策是优先启用接收端动态ODT配置、增加源端串联电阻，还是在阻抗突变处增加局部匹配结构，并说明判断时需同步评估的三个物理层约束。</td><td>GPT5.5: 题干称DDR5 DQ通道采用fly-by拓扑不符合DDR5数据线常见点对点连接口径；答案围绕“fly-by拓扑下DQ通道”和接收端动态ODT对路径中阻抗突变的处理展开，基础前提错误。</td><td>Q021</td><td>调试一个基于CXL 2.0协议的协处理器子卡时，主机BIOS日志显示‘CXL Device Not Detected’，PCIe链路可正常枚举，但CXL专用寄存器读取超时。请简述此时应重点排查的三个与CXL协议握手启动直接关联的硬件配置环节。</td><td>GPT5.5: 答案构造了CXL_EN、CXL_REFCLK和固定偏移0x280的CXL Link Training Control寄存器等硬件条件，和CXL基于PCIe链路及配置空间能力发现/枚举的真实机制不匹配，存在明显编造式知识错误。；Gemini3.1pro: 题干和答案中提到的“CXL_EN引脚”存在知识性错误。标准CXL 2.0协议是基于PCIe物理层通过Flex Bus和协议协商（如DVSEC配置空间）来建立的，并不存在标准的物理层“CXL_EN”专用引脚。AI在此处生造了一个硬件使能引脚，不符合CXL协议的实际硬件工作机制。正确的是通过PCIe链路训练后的配置空间交互使能。</td></tr><tr><td>B1</td><td>Q001</td><td>在设计一块搭载DDR5-4800内存的服务器主板时，发现四根64位数据线中，靠近电源层切割区域的两根线在眼图测试中明显闭合，而其余线路正常。已知所有走线长度匹配误差小于1ps，但这两根线所在区域的参考平面存在200mil长的分割缺口。请简述你会优先选用哪种拓扑结构来重构这两根信号的布线方案，并从返回电流路径完整性、高频阻抗突变抑制、以及接收端DFE均衡器训练收敛稳定性三个维度说明该拓扑如何针对性改善问题。</td><td>GPT5.5: 参考答案引用的标准口径可疑：原文称“JEDEC DDR5标准JESD209-5B”，但JESD209系列通常对应低功耗DDR，DDR5 SDRAM常见标准应为JESD79-5；题目问普通DDR5数据通道，却用错误标准号支撑结论，属于知识性错误。</td><td>Q003</td><td>某DDR5内存模组在量产测试中出现写入数据错误，示波器实测DQ信号在颗粒端眼图高度不足且存在明显过冲。已知该通道采用fly-by拓扑、驱动芯片支持片内终端（ODT），主板走线参考平面连续，但DIMM插槽与CPU之间存在两段不同阻抗区段（50Ω和60Ω）。请简述你如何决策是优先启用接收端动态ODT配置、增加源端串联电阻，还是在阻抗突变处增加局部匹配结构，并说明判断时需同步评估的三个物理层约束。</td><td>GPT5.5: 题干称DDR5 DQ通道采用fly-by拓扑不符合DDR5数据线常见点对点连接口径；答案围绕“fly-by拓扑下DQ通道”和接收端动态ODT对路径中阻抗突变的处理展开，基础前提错误。</td></tr><tr><td>B2</td><td>Q026</td><td>某工业通信模块需将CAN总线报文时间戳（64位宽）从低速CAN时钟域安全传递至高速ARM处理器时钟域，且系统要求端到端延迟抖动小于50ns。在不依赖专用跨时钟域IP核的前提下，你如何通过电路结构与时序协同设计达成该指标？请说明关键路径优化点和验证时需重点关注的时序参数。</td><td>GPT5.5: 答案把64位CAN时间戳跨异步时钟域的首选方案说成源同步发送+目的域重采样，不符合多比特CDC常见安全做法；更合理的是握手、异步FIFO或Gray码/快照一致性设计。</td><td>Q050</td><td>当UART接口需同时支持3.3V主控与5V外设通信，且系统不允许使用电平转换芯片，仅允许在PCB上通过无源器件实现兼容。请简述你如何设计双向电平适配电路，并说明该方案对波特率上限、ESD防护能力及热插拔鲁棒性的综合影响。</td><td>GPT5.5: UART TX/RX是推挽、全双工、方向固定的两根单向线，答案推荐I2C式单N沟MOSFET无源双向转换并声称适合UART，方案偏门且会引入边沿/阈值问题；通常应分别做5V到3.3V分压/钳位和确认3.3V到5V输入阈值。</td></tr><tr><td>B3</td><td>Q020</td><td>在调试PCIe 4.0接口时，发现链路训练失败且无法进入L0状态，但电源和时钟信号测量正常，此时你优先检查哪三个硬件相关因素？请简单说说。</td><td>GPT5.5: 题干已说明电源和时钟信号测量正常，答案仍把参考时钟质量列为三大首查因素之一，未贴合题目限定，回答跑题且排查优先级不合理。</td><td>Q039</td><td>在高速处理器平台的晶振电路设计中，当主控芯片要求时钟抖动小于0.5ps RMS，而选用的25MHz基频晶体标称负载电容为12pF，但实测PCB寄生电容达8pF，此时应如何确定外挂匹配电容值？请简述设计依据和关键权衡因素。</td><td>GPT5.5: 题目要求确定外挂匹配电容值，但答案没有给出关键公式CL=(C1*C2)/(C1+C2)+Cstray；在CL=12pF、寄生8pF且两端电容相等时，应推得每颗约8pF，而不是泛泛建议或给出6.8pF。</td></tr><tr><td>B4</td><td>Q011</td><td>某国产高性能MCU的SPI Flash接口在回板上电后偶发读取失败，示波器测得CLK信号存在周期性幅度衰减与边沿畸变，但电源轨纹波和时钟发生器输出均在规格内。请简述你将如何定位该问题根源：需说明关键测量点的选择依据、探头接地方式对信号完整性的影响、如何通过上升时间/过冲/振铃的量化特征区分是PCB走线阻抗不连续、驱动能力不足还是负载容性过载，并解释为何不能仅依赖眼图宽度判断。</td><td>GPT5.5: 第三层异常把SPI CLK连续第7-9周期幅度跌落归因为MCU内部驱动级热积累，场景牵强且不符合硬件工程师定位SPI Flash偶发读取失败的常见异常口径，复杂情况解释偏离岗位常见问题。</td><td>nan</td><td>nan</td><td>nan</td></tr><tr><td>C2</td><td>Q043</td><td>在多通道PCIe布局中，若相邻两对差分线长度差异过大，可能引发什么典型信号问题？请简述该问题对链路稳定性的影响。</td><td>GPT5.5: 题干将“相邻两对差分线长度差异过大”泛化为PCIe多通道问题，答案声称Gen3/Gen4/Gen5 lane-to-lane skew分别仅±5ps/±3ps/±2ps，忽视PCIe链路具备lane deskew机制，典型信号问题判断和阈值错误。；Gemini3.1pro: 与Q0017高度同质，均考察PCIe组内等长与通道间(lane-to-lane)偏斜的时序约束概念。候选人会给出相同的作答核心要点。</td><td>nan</td><td>nan</td><td>nan</td></tr></tbody>
+  </table>
+</body>
+</html>

@@ -1,0 +1,185 @@
+<html><head><meta charset="utf-8"><title>round2 dashboard</title>
+<style>body{font-family:Arial,"Microsoft YaHei",sans-serif;margin:32px;line-height:1.6}table{border-collapse:collapse;margin:12px 0 28px;width:100%}th,td{border:1px solid #ccc;padding:8px;vertical-align:top}th{background:#d9eaf7}.long{white-space:pre-wrap}.note{color:#654500;background:#fff8dd;padding:10px;border:1px solid #dfc66c}</style>
+</head><body>
+<h1>二轮审核进度与统计看板</h1>
+<p class="note">统计口径：错误类型统计仅统计二轮本轮新增标删题，按唯一题数计算；模型进度表中的模型标删次数仅作辅助。代表例只采用真实删除样本。</p>
+<h2>总体进度与分流</h2>
+<table><tr>
+<th>指标</th><th>数值</th>
+</tr>
+<tr>
+<td class="long">一轮输入总题数</td><td class="long">1488</td>
+</tr>
+<tr>
+<td class="long">一轮标删题数</td><td class="long">538</td>
+</tr>
+<tr>
+<td class="long">进入二轮题数</td><td class="long">950</td>
+</tr>
+<tr>
+<td class="long">二轮新增唯一标删题数</td><td class="long">189</td>
+</tr>
+<tr>
+<td class="long">可保留题目答案</td><td class="long">761</td>
+</tr>
+<tr>
+<td class="long">需要重新出题</td><td class="long">302</td>
+</tr>
+<tr>
+<td class="long">保留题干重出答案</td><td class="long">425</td>
+</tr>
+<tr>
+<td class="long">数量守恒</td><td class="long">761+302+425=1488</td>
+</tr>
+</table>
+<h2>模型进度与 A/B/C 辅助统计</h2>
+<table><tr>
+<th>模型</th><th>完成批次</th><th>审核题量</th><th>模型标删次数</th><th>A类次数</th><th>B类次数</th><th>C类次数</th>
+</tr>
+<tr>
+<td class="long">GPT5.5</td><td class="long">24</td><td class="long">950</td><td class="long">81</td><td class="long">11</td><td class="long">61</td><td class="long">9</td>
+</tr>
+<tr>
+<td class="long">GPT5.4</td><td class="long">24</td><td class="long">950</td><td class="long">82</td><td class="long">19</td><td class="long">52</td><td class="long">11</td>
+</tr>
+<tr>
+<td class="long">Sonnet4.6</td><td class="long">24</td><td class="long">950</td><td class="long">10</td><td class="long">0</td><td class="long">1</td><td class="long">9</td>
+</tr>
+<tr>
+<td class="long">Opus4.8</td><td class="long">24</td><td class="long">950</td><td class="long">33</td><td class="long">4</td><td class="long">23</td><td class="long">6</td>
+</tr>
+<tr>
+<td class="long">Gemini3.1pro</td><td class="long">24</td><td class="long">950</td><td class="long">48</td><td class="long">10</td><td class="long">19</td><td class="long">20</td>
+</tr>
+</table>
+<h2>一级错误类型统计（二轮唯一题数）</h2>
+<table><tr>
+<th>一级错误类型</th><th>二轮唯一题数</th>
+</tr>
+<tr>
+<td class="long">A</td><td class="long">38</td>
+</tr>
+<tr>
+<td class="long">B</td><td class="long">132</td>
+</tr>
+<tr>
+<td class="long">C</td><td class="long">30</td>
+</tr>
+</table>
+<h2>二级错误类型统计（二轮唯一题数）</h2>
+<table><tr>
+<th>二级错误类型</th><th>二轮唯一题数</th><th>真实代表例数</th><th>备注</th>
+</tr>
+<tr>
+<td class="long">A1</td><td class="long">21</td><td class="long">2</td><td class="long"></td>
+</tr>
+<tr>
+<td class="long">A2</td><td class="long">17</td><td class="long">2</td><td class="long"></td>
+</tr>
+<tr>
+<td class="long">A3</td><td class="long">1</td><td class="long">1</td><td class="long">真实例数少于2条</td>
+</tr>
+<tr>
+<td class="long">B1</td><td class="long">110</td><td class="long">2</td><td class="long"></td>
+</tr>
+<tr>
+<td class="long">B2</td><td class="long">13</td><td class="long">2</td><td class="long"></td>
+</tr>
+<tr>
+<td class="long">B3</td><td class="long">8</td><td class="long">2</td><td class="long"></td>
+</tr>
+<tr>
+<td class="long">B4</td><td class="long">2</td><td class="long">0</td><td class="long">真实例数少于2条</td>
+</tr>
+<tr>
+<td class="long">B5</td><td class="long">3</td><td class="long">2</td><td class="long"></td>
+</tr>
+<tr>
+<td class="long">B6</td><td class="long">1</td><td class="long">1</td><td class="long">真实例数少于2条</td>
+</tr>
+<tr>
+<td class="long">C1</td><td class="long">1</td><td class="long">1</td><td class="long">真实例数少于2条</td>
+</tr>
+<tr>
+<td class="long">C2</td><td class="long">30</td><td class="long">2</td><td class="long"></td>
+</tr>
+</table>
+<h2>二级错误类型代表性例子（真实样本）</h2>
+<table><tr>
+<th>错误类型</th><th>模型</th><th>批次</th><th>question_id</th><th>题目</th><th>错误表现</th><th>删除原因</th><th>疑似与肯定</th>
+</tr>
+<tr>
+<td class="long">A1</td><td class="long">GPT5.5</td><td class="long">R2-B003</td><td class="long">R2Q0084</td><td class="long">一款用于车载激光雷达信号调理的硬件模块需满足AEC-Q200车规级认证。请简单说说，在为关键模拟前端器件做封装选型时，为何不能仅依据数据手册中的热阻参数做判断，而必须结合封装体在PCB上的实际热传导路径进行协同评估。</td><td class="long">A1</td><td class="long">题干将“关键模拟前端器件”的车规认证表述为“AEC-Q200车规级认证”，但模拟前端这类有源IC通常对应AEC-Q100，AEC-Q200主要面向无源器件。题干同时讨论“热阻参数”“封装体”等有源器件封装选型语境，认证口径错误。</td><td class="long">肯定有</td>
+</tr>
+<tr>
+<td class="long">A1</td><td class="long">GPT5.5</td><td class="long">R2-B005</td><td class="long">R2Q0188</td><td class="long">当同一电源域同时为高速SerDes模块和低功耗待机电路供电时，去耦策略需兼顾瞬态响应与静态功耗。请简述你如何协调不同频段的去耦需求，避免容值冗余或高频响应缺口。</td><td class="long">A1</td><td class="long">题干把去耦策略与“静态功耗”并列为核心权衡不严谨。去耦电容主要影响电源阻抗、瞬态响应、纹波和噪声耦合，通常不直接决定低功耗待机电路的静态功耗；若要讨论待机功耗，应关注电源架构、LDO/PMIC静态电流、漏电流和域隔离，而不是把去耦容值冗余作为静态功耗的主要矛盾。</td><td class="long">疑似有</td>
+</tr>
+<tr>
+<td class="long">A2</td><td class="long">GPT5.4</td><td class="long">R2-B004</td><td class="long">R2Q0157</td><td class="long">某通信基带处理器的I/O供电需支持多种电压档位（1.8V/2.5V/3.3V），且不同档位间切换需在微秒级完成，同时要求待机功耗低于10μA。请简述如何通过LDO的架构选型与外围电路协同设计，在不增加额外数字控制逻辑的前提下，实现多档电压快速切换与超低静态功耗的兼顾。</td><td class="long">A2</td><td class="long">题干把“多档IO电压微秒级切换”“待机功耗低于10μA”“不增加额外数字控制逻辑”捆绑在一起，场景明显偏专用器件/专用PMIC实现，不属于通用硬件工程师的常见岗位问法，过于偏门。</td><td class="long">疑似有</td>
+</tr>
+<tr>
+<td class="long">A2</td><td class="long">GPT5.4</td><td class="long">R2-B007</td><td class="long">R2Q0247</td><td class="long">当高速差分对需要跨分割区域布线时，常规做法是增加回流缝或使用桥接电容，但某款AI加速卡的板级空间受限且工作频率达28Gbps，你如何综合评估叠层结构、参考平面完整性与共模噪声抑制需求，确定最优的跨分割处理策略？</td><td class="long">A2</td><td class="long">题干场景过于偏门，限定到“AI加速卡”“28Gbps”“跨分割处理策略”的高端高速细分问题，不属于通用硬件工程师面试里的常见、常用口径。</td><td class="long">肯定有</td>
+</tr>
+<tr>
+<td class="long">A3</td><td class="long">Opus4.8</td><td class="long">R2-B003</td><td class="long">R2Q0121</td><td class="long">请简单说说在USB接口设计中，为何常在信号线上串联小阻值电阻。</td><td class="long">A3</td><td class="long">题干偏离知识点：该题知识点标注为‘接口保护设计’，但题干（及答案）实为在D+/D-上串联小电阻用于‘阻抗匹配和信号完整性控制、降低高频反射’，属信号完整性/接口电路设计范畴，与‘接口保护设计’知识点不符。</td><td class="long">疑似有</td>
+</tr>
+<tr>
+<td class="long">B1</td><td class="long">GPT5.5</td><td class="long">R2-B001</td><td class="long">R2Q0001</td><td class="long">请简述理想运算放大器的两个基本输入特性。</td><td class="long">B1</td><td class="long">参考答案把“两个输入端之间的电压差为零，即虚短特性”直接作为理想运算放大器的基本输入特性表述不严谨。虚短只是在理想运放处于线性负反馈工作条件下的近似分析结论，并不是运放开环或任意工作状态下固有的输入特性；正确应强调输入阻抗无穷大、输入电流为零，以及在线性负反馈条件下两输入端电位近似相等。</td><td class="long">疑似有</td>
+</tr>
+<tr>
+<td class="long">B1</td><td class="long">GPT5.5</td><td class="long">R2-B001</td><td class="long">R2Q0020</td><td class="long">请简述带隙基准源的核心原理是什么？</td><td class="long">B1</td><td class="long">参考答案称“利用硅材料的带隙电压温度特性与正温度系数电压相抵消”，核心机理表述不准确。带隙基准通常是将具有负温度系数的VBE/CTAT电压与按比例放大的PTAT电压相加，使温度系数相互补偿，得到接近硅带隙电压的稳定参考电压；不是用“带隙电压温度特性”去与PTAT相抵消。</td><td class="long">疑似有</td>
+</tr>
+<tr>
+<td class="long">B2</td><td class="long">GPT5.5</td><td class="long">R2-B005</td><td class="long">R2Q0179</td><td class="long">一块包含CPU、GPU和高速SerDes的PCB板，在进行电源完整性仿真时，发现目标频点下的电源阻抗曲线在某个频率区间存在多个尖峰，且与芯片内部开关噪声频谱高度重合。请简单说说你将如何协同芯片规格书与PCB叠层参数，定位并抑制这些阻抗谐振峰。</td><td class="long">B2</td><td class="long">参考答案第二层把“引入嵌入式平面电容或高介电常数介质材料”描述为“目前量产导入率高且改动成本低”。这类嵌入式电容/高介电常数材料通常涉及材料、工艺、成本和供应链约束，不能笼统视为低成本且量产导入率高的常规优先方案；该建议偏离硬件工程师常见工程实践。</td><td class="long">疑似有</td>
+</tr>
+<tr>
+<td class="long">B2</td><td class="long">GPT5.5</td><td class="long">R2-B005</td><td class="long">R2Q0189</td><td class="long">请简述电源平面分割后，相邻分割区域之间的缝隙尺寸主要受什么因素约束？</td><td class="long">B2</td><td class="long">参考答案第三层建议在分割缝隙两侧增设“低感抗的钽电容阵列”作为动态电源缝补偿。钽电容通常不适合作为高频平面分割边缘的低感回流/缝合器件，相关问题更常依赖平面连续性、就近高频MLCC、缝合过孔、回流路径规划和仿真验证；该答案给出的工程方案偏门且容易误导。</td><td class="long">疑似有</td>
+</tr>
+<tr>
+<td class="long">B3</td><td class="long">GPT5.5</td><td class="long">R2-B010</td><td class="long">R2Q0384</td><td class="long">调试过程中发现某块电路板在高温环境下出现间歇性复位，低温下工作正常。请简单说说，你将如何利用最小系统法缩小故障范围，并指出第一个需要剥离验证的模块及其原因。</td><td class="long">B3</td><td class="long">参考答案把“外部看门狗电路”固定为第一个需要剥离验证的模块，且给出“断开外部看门狗并悬空其复位输出”的做法，和题干给出的信息不充分匹配。高温间歇性复位的首要隔离通常应先确认复位源、供电轨、POR/电源监控、时钟和热敏外设等，不能在没有复位源证据时直接指定看门狗为第一剥离对象；复位输出悬空也可能引入新故障，工程做法不严谨。</td><td class="long">疑似有</td>
+</tr>
+<tr>
+<td class="long">B3</td><td class="long">GPT5.5</td><td class="long">R2-B017</td><td class="long">R2Q0669</td><td class="long">某SoC验证板在小批量试产中，高速SerDes通道的信号完整性达标，但量产阶段因PCB板材批次切换导致眼图裕量下降18%。已知原用材料为FR-4高频改性料，新批次介电常数偏差达±0.05、损耗角正切波动超15%。请简述你如何在不更改叠层结构前提下，通过器件选型、端接策略与布局约束的协同调整，保障量产一致性。</td><td class="long">B3</td><td class="long">参考答案首选方案写成“替换为支持动态阻抗校准的SerDes驱动器芯片”，偏离题目中的SoC验证板和不改叠层条件。SerDes通常集成在SoC或对端器件中，量产一致性问题更应围绕可调端接、均衡/预加重参数、材料来料管控、阻抗与布局约束、测试分档等措施，而不是笼统替换SerDes驱动器芯片。</td><td class="long">疑似有</td>
+</tr>
+<tr>
+<td class="long">B5</td><td class="long">GPT5.4</td><td class="long">R2-B017</td><td class="long">R2Q0650</td><td class="long">针对一颗集成多路高速SerDes（支持USB4/DisplayPort Alt Mode）的SoC，其验证板需覆盖全协议栈功能验证。在不依赖专用协议分析仪的前提下，你会如何设计板级环回与协议自检机制？请说明物理层环回、链路层握手验证、应用层数据校验三个层级的关键实现思路及各自要规避的设计陷阱。</td><td class="long">B5</td><td class="long">答案中连续堆叠大量英文缩写和实现细节，如“LTSSM、PRBS、DMA、AUX、HPD、DP Alt Mode”等，整体更像内部技术文档，不适合候选人口头直接作答，明显影响面试场景下的可答性。</td><td class="long">肯定有</td>
+</tr>
+<tr>
+<td class="long">B5</td><td class="long">GPT5.4</td><td class="long">R2-B017</td><td class="long">R2Q0653</td><td class="long">编写高速SerDes通道的原理图设计指南时，如何平衡ESD防护器件引入的寄生电容与信号完整性要求？请结合芯片IO模型、实测眼图裕量和量产回片失效模式，说明你的取舍逻辑。</td><td class="long">B5</td><td class="long">答案整体存在明显的英文缩写堆叠和文档化表达，如“IBIS-AMI、HSPICE、TVS、DC偏置、AC耦合、1MHz–10GHz小信号S参数”等，口语作答负担过重，不符合面试参考答案应便于直接表达的要求。</td><td class="long">肯定有</td>
+</tr>
+<tr>
+<td class="long">B6</td><td class="long">GPT5.5</td><td class="long">R2-B013</td><td class="long">R2Q0503</td><td class="long">在开发一款多核处理器配套的硬件平台时，如何根据芯片厂商提供的功耗文档，为整板做初步的功耗预算？请简述关键输入参数和分配逻辑。</td><td class="long">B6</td><td class="long">题目问的是硬件平台/整板功耗预算，参考答案第二层却把主流做法写成“PowerArtist或PrimePower兼容的XML格式功耗库”“Cadence Joules或Synopsys Custom Compiler”“门级网表+激励波形”等芯片设计/EDA功耗分析口径。这些不是硬件工程师基于芯片厂商功耗文档做整板预算时的常规表达；正确口径应围绕芯片数据手册/功耗估算表、各电源域电压电流、工作模式占空比、外围器件功耗、电源转换效率、热设计裕量、EVB实测校准等展开。答案岗位口径明显偏向芯片设计工具链。</td><td class="long">肯定有</td>
+</tr>
+<tr>
+<td class="long">C1</td><td class="long">Gemini3.1pro</td><td class="long">R2-B008</td><td class="long">R2Q0300</td><td class="long">在完成一块新设计的电路板首次上电Bring-up时，为什么需要优先测量芯片核心供电电压的纹波和静态值？请简单说说原因。</td><td class="long">C1</td><td class="long">本题与同批次的R2Q0290的题干几乎完全一致，都在询问“bring-up阶段为什么要优先测量核心电源轨的电压和纹波”，属于C1完全重复。</td><td class="long">肯定有</td>
+</tr>
+<tr>
+<td class="long">C2</td><td class="long">GPT5.5</td><td class="long">R2-B004</td><td class="long">R2Q0146</td><td class="long">请简单说说，为什么多路供电方案中常将数字核心电压和IO电压分开供电？</td><td class="long">C2</td><td class="long">与本批次前序题R2Q0144“在多路供电系统中，为什么需要为不同电压域设置独立的电源轨？”从候选人作答角度高度重复，核心答案都是不同功能/电压域因电压精度、纹波、瞬态响应、上电时序和噪声隔离要求不同，需要独立供电。R2Q0144顺序在前，应保留前题删除本题。</td><td class="long">肯定有</td>
+</tr>
+<tr>
+<td class="long">C2</td><td class="long">GPT5.5</td><td class="long">R2-B005</td><td class="long">R2Q0184</td><td class="long">在实际硬件调试中，发现某颗高速处理器在大电流瞬态切换时出现电源噪声超标，导致功能异常。此时调整去耦电容布局比单纯增加电容数量更有效，这是为什么？请简述原因。</td><td class="long">C2</td><td class="long">从候选人作答角度看，本题核心作答点仍是“高频去耦电容应靠近芯片电源引脚、缩短高频电流环路、降低寄生电感”，与前序R2Q0171“为什么高频去耦电容通常要靠近芯片电源引脚放置”会给出几乎同一套核心答案。按本次二轮顺序应保留前题，删除后题。</td><td class="long">疑似无</td>
+</tr>
+</table>
+<h2>真实代表例少于 2 条的类型说明</h2>
+<table><tr>
+<th>二级错误类型</th><th>要求代表例数</th><th>真实代表例数</th><th>说明</th>
+</tr>
+<tr>
+<td class="long">A3</td><td class="long">2</td><td class="long">1</td><td class="long">本轮可用真实删除例数少于2条，只列已有真实题目和原因</td>
+</tr>
+<tr>
+<td class="long">B4</td><td class="long">2</td><td class="long">0</td><td class="long">本轮可用真实删除例数少于2条，只列已有真实题目和原因</td>
+</tr>
+<tr>
+<td class="long">B6</td><td class="long">2</td><td class="long">1</td><td class="long">本轮可用真实删除例数少于2条，只列已有真实题目和原因</td>
+</tr>
+<tr>
+<td class="long">C1</td><td class="long">2</td><td class="long">1</td><td class="long">本轮可用真实删除例数少于2条，只列已有真实题目和原因</td>
+</tr>
+</table>
+<h2>本轮题目主要出错点总结</h2><p class="long">二轮只统计本轮 950 道复审题。题干侧主要问题集中在 A/C 类：A 类涉及 38 道二轮唯一题，C 类涉及 30 道二轮唯一题。A 类问题多为知识点边界、工程场景或题干任务约束不够准确，少数题把器件机理、接口约束或调试现象概括得过粗，可能引导候选人按错误方向作答。C 类问题反映题库仍有同质化风险，尤其在高速接口、信号完整性、运放、电源和通信接口等知识点上，题干措辞不同但候选人回答路径接近。后续重新出题应优先处理这些 A/C 类问题，避免只改文字而不改考点。</p>
+<h2>本轮答案主要出错点总结</h2><p class="long">二轮答案侧问题是本轮主要风险来源。B 类涉及 132 道二轮唯一题，高于 A/C 类。高频表现包括第一层没有直接回答题干，第二层扩展过多方案或忽略适用边界，第三层异常场景与前文机理不一致。部分答案使用工程上常见但不严谨的概括，缺少关键条件、判断依据或接口标准约束。纯 B 类题应进入保留题干重出答案，而不是整题重出。</p>
+<h2>后续重新出内容时应补充的规则</h2>
+<h3>重新出题</h3><p class="long">重新出题时先做同岗位、同技能、同知识点去重，确认候选人的作答路径不会与已有题高度重合。题干必须锁定单一核心考点，限定为硬件工程师主流工作场景，不引入偏门器件、非主流流程、长公式推导、画图或大段计算要求。A 类重出要重新校准知识边界和场景前提；C 类重出要换考点角度、换故障现象或换设计决策点，而不是简单替换措辞。</p>
+<h3>重出答案</h3><p class="long">重出答案时保留原题干并重写三层答案。第一层直接回答题干核心问题；第二层补充主流工程口径、关键判断依据、适用条件和必要取舍；第三层异常或复杂场景必须与前两层逻辑一致，给出可执行排查步骤和可评分关键点。输出后自检是否跑题、是否混淆机理、是否存在非主流或过时表述、是否能让面试官据此评分。</p>
+</body></html>

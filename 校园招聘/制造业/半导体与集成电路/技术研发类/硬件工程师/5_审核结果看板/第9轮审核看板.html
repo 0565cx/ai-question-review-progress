@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Round 9 Dashboard</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; margin: 24px; color: #1f2937; }
+    h1, h2, h3 { margin: 10px 0 12px; }
+    .cards { display: grid; grid-template-columns: repeat(3, minmax(140px, 220px)); gap: 12px; margin: 8px 0 18px; }
+    .card { border: 1px solid #e5e7eb; border-radius: 10px; padding: 12px; background: #fafafa; }
+    .card .k { font-size: 12px; color: #6b7280; }
+    .card .v { font-size: 24px; font-weight: 700; margin-top: 4px; }
+    table { border-collapse: collapse; width: 100%; margin: 8px 0 18px; }
+    th, td { border: 1px solid #e5e7eb; padding: 8px 10px; vertical-align: middle; }
+    th { background: #f9fafb; }
+    .legend span { margin-right: 12px; font-size: 13px; color: #374151; }
+    .mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; }
+    .ex { margin: 6px 0; color: #374151; }
+    .section-divider { border: 0; border-top: 2px solid #eef2f7; margin: 22px 0; }
+  </style>
+</head>
+<body>
+  <h1>Round 9 审核看板</h1>
+
+  <div class="cards">
+    <div class="card"><div class="k">A类错误</div><div class="v">8</div></div>
+    <div class="card"><div class="k">B类错误</div><div class="v">48</div></div>
+    <div class="card"><div class="k">C类错误</div><div class="v">0</div></div>
+  </div>
+
+  <h2>本轮题目主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">本轮题干错误数量相对答案错误少，但仍有关键题目存在不可接受的前提问题和口语面试适配问题。典型表现包括将RDIMM与LRDIMM混插设定为可直接设计的服务器DDR5场景、在题干中堆叠大量频点/长度/温度/电流/效率等具体数值并要求候选人现场综合推理，导致题目更像笔试计算或规范细节考核。后续重出题时，应先校验协议和平台前提是否真实，再把复杂数值约束改成可口头讨论的工程场景。</div>
+<h2>本轮答案主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">本轮答案错误高度集中在B1知识性错误，覆盖PCIe、DDR5、USB、MIPI、HDMI、CXL、JTAG/SWD、SerDes和JEDEC可靠性标准等多个硬件高频知识域。主要问题包括把PCIe当作源同步或外部串联端接链路、混淆DDR5 ODT/Vref/CA/DQ拓扑机制、误用USB高速空闲态和MIPI D-PHY状态序列、引用错误JEDEC标准编号、把芯片内部CDC/SerDes均衡能力写成板级硬件可执行动作，以及给出物理上不可落地的返修方案。整体说明重出答案必须加强标准版本、协议状态机、端接机制和硬件职责边界的自检。</div>
+<h2>后续重新出内容时应补充的规则</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">【重新出题】<br/>重新出题前必须做协议前提校验：PCIe代际和编码/速率、DDR5模块类型和拓扑、USB/MIPI/HDMI实际模式、JEDEC标准编号、JTAG/SWD复用关系都要先核准。题干不要塞入大量精确数值、频点、长度和温度条件；如需考察工程判断，应改成定性场景，让候选人口头说明排查路径、约束权衡和验证方法。涉及多接口共板时，要明确是板级硬件职责，不要要求候选人修改芯片内部结构或固件专用能力。<br/><br/>【重出答案】<br/>重出答案时建立硬件口径自检清单：PCIe为嵌入式时钟SerDes链路且高速通道通常依赖PHY端接、AC耦合和均衡；DDR5需区分DQ/DQS、CA/CK、ODT、RON和内部Vref；USB需区分HS/SS和终端电阻状态；MIPI D-PHY需按LP-11、LP-01、LP-00、HS进入序列描述；HDMI需区分TMDS和FRL；SWD相对标准JTAG减少TDI/TDO且TMS/SWDIO通常上拉；JEDEC试验标准编号必须匹配失效机理。第二层方案只写硬件工程师可在原理图、PCB、器件选型、测试仪器和量产验证中执行的动作，第三层异常必须能在真实bring-up、SI/PI/EMC/可靠性流程中闭环。</div>
+
+  <hr class="section-divider" />
+
+  <h2>模型进度与删除率</h2>
+  <table>
+    <thead>
+      <tr><th>Model</th><th>批次完成</th><th>完成率</th><th>删除率</th><th>主错误</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>GPT5.5</td><td style='text-align:center'>1/1</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:75.9%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">75.9%</span></td><td style='text-align:center'>B>A</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>1/1</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:96.6%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">96.6%</span></td><td style='text-align:center'>B>A</td></tr>
+    </tbody>
+  </table>
+
+  <h2>批次状态矩阵</h2>
+  <div class="legend">
+    <span>✓ done</span><span>… running</span><span>○ pending</span><span>! blocked</span><span>x failed</span>
+  </div>
+  <table>
+    <thead><tr><th>Model</th><th>R9-B001</th></tr></thead>
+    <tbody><tr><td>GPT5.5</td><td style='text-align:center'>✓</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>✓</td></tr></tbody>
+  </table>
+
+  <h2>细分错误统计（A1/B1...）</h2>
+  <table>
+    <thead><tr><th>错误子类</th><th>数量</th></tr></thead>
+    <tbody><tr><td>A1</td><td style='text-align:center'>6</td></tr><tr><td>A4</td><td style='text-align:center'>2</td></tr><tr><td>B1</td><td style='text-align:center'>47</td></tr><tr><td>B6</td><td style='text-align:center'>1</td></tr></tbody>
+  </table>
+
+  <h3>细分错误示例（每类2条）</h3>
+  <table>
+    <thead><tr><th>错误子类</th><th>例1-题号</th><th>例1-题目</th><th>例1-理由</th><th>例2-题号</th><th>例2-题目</th><th>例2-理由</th></tr></thead>
+    <tbody><tr><td>A1</td><td>Q003</td><td>在设计支持DDR5-4800的服务器主板时，内存控制器需连接四个插槽，其中两个插槽用于RDIMM，另两个用于LRDIMM。由于LRDIMM引入额外缓冲芯片，其电气特性与RDIMM存在显著差异。请简述你如何综合考虑拓扑类型选择、走线长度控制、端接策略分配以及命令地址总线与数据总线的时序协同约束，来确保四插槽混合负载下所有通道的建立和保持时间裕量均满足JEDEC规范要求。</td><td>GPT5.5: 题干要求同一控制器四插槽混用RDIMM与LRDIMM，这在服务器DDR5平台通常不作为可随意混插的设计前提；答案又声称“DQ/DQS必须为每个插槽独立点对点”“CA总线采用优化T型拓扑”“LRDIMM需主板提供VrefDQ”等，混淆DDR5 DIMM通道、模块缓冲和端接/参考电压机制。正确应先限定支持的DIMM类型和拓扑，不能把RDIMM/LRDIMM混插作为默认可实现方案。；Gemini3.1pro: 题干存在严重的常识性和知识性错误。在服务器主板设计和实际应用中，严格禁止在同一系统或同一内存通道中混插RDIMM和LRDIMM。这两种内存条的电气特性和缓冲机制完全不同，内存控制器无法同时兼容两者的时序训练，BIOS在自检时会直接报错停机。正确的应该是：题目场景应设定为全插RDIMM或全插LRDIMM。</td><td>Q003</td><td>在设计支持DDR5-4800的服务器主板时，内存控制器需连接四个插槽，其中两个插槽用于RDIMM，另两个用于LRDIMM。由于LRDIMM引入额外缓冲芯片，其电气特性与RDIMM存在显著差异。请简述你如何综合考虑拓扑类型选择、走线长度控制、端接策略分配以及命令地址总线与数据总线的时序协同约束，来确保四插槽混合负载下所有通道的建立和保持时间裕量均满足JEDEC规范要求。</td><td>GPT5.5: 题干要求同一控制器四插槽混用RDIMM与LRDIMM，这在服务器DDR5平台通常不作为可随意混插的设计前提；答案又声称“DQ/DQS必须为每个插槽独立点对点”“CA总线采用优化T型拓扑”“LRDIMM需主板提供VrefDQ”等，混淆DDR5 DIMM通道、模块缓冲和端接/参考电压机制。正确应先限定支持的DIMM类型和拓扑，不能把RDIMM/LRDIMM混插作为默认可实现方案。；Gemini3.1pro: 题干存在严重的常识性和知识性错误。在服务器主板设计和实际应用中，严格禁止在同一系统或同一内存通道中混插RDIMM和LRDIMM。这两种内存条的电气特性和缓冲机制完全不同，内存控制器无法同时兼容两者的时序训练，BIOS在自检时会直接报错停机。正确的应该是：题目场景应设定为全插RDIMM或全插LRDIMM。</td></tr><tr><td>A4</td><td>Q001</td><td>某芯片验证板在300MHz至1GHz辐射骚扰测试中，860MHz处出现显著单频尖峰，且该频点在不同测试距离下幅度衰减不符合自由空间传播规律；同时发现该板上一段长度约8.7cm的LVDS差分走线未包地，其参考平面在相邻层存在约15mm宽的分割间隙。请简述你如何判断该尖峰源于走线结构谐振而非芯片内部时钟谐波，并说明为何优先优化该走线的参考完整性而非增加屏蔽罩或调整驱动电流。</td><td>GPT5.5: 题干引用“300MHz至1GHz、860MHz、8.7cm、15mm”等密集数值，并要求候选人判断结构谐振与时钟谐波，实际需要记忆频点、走线长度和间隙尺寸并做近似电长度推理，偏笔试分析；正确应改为定性描述辐射尖峰、未包地走线和参考平面不连续的排查思路。；Gemini3.1pro: 参考答案第二层存在知识性错误。走线的谐振频率取决于其电气总长度，仅仅将走线弯曲并不能改变其物理长度和电气长度，因此无法破坏半波谐振条件。正确的应该是：只能通过缩短走线长度或改变介质有效介电常数来改变谐振频率，弯曲走线无效。</td><td>Q002</td><td>在为一颗多核处理器设计核心供电电路时，需从三款标称输出电流均为20A的DC-DC芯片中选型：A款强调瞬态响应（负载阶跃50%时电压偏差<±30mV），B款强调轻载效率（10%负载下效率>85%），C款强调热阻（θJA=25℃/W）。请简述你如何结合该处理器在AI推理任务中典型的工作负载特征——即每毫秒发生一次2A至18A的快速电流跳变、持续时间占比约15%的低功耗待机状态、以及整板散热能力受限（环境温度达70℃且无强制风冷）——来评估这三款芯片在动态电压稳定、待机功耗累积和结温安全三个关键维度上的实际适配性。</td><td>GPT5.5: 题干堆叠“20A、50%、±30mV、10%负载、85%、25℃/W、2A至18A、15%、70℃”等大量参数，要求综合计算动态电压、效率和结温，口语面试中难以直接记忆和作答；正确应保留选型维度，去掉精确数值和隐含计算。</td></tr><tr><td>B1</td><td>Q001</td><td>某芯片验证板在300MHz至1GHz辐射骚扰测试中，860MHz处出现显著单频尖峰，且该频点在不同测试距离下幅度衰减不符合自由空间传播规律；同时发现该板上一段长度约8.7cm的LVDS差分走线未包地，其参考平面在相邻层存在约15mm宽的分割间隙。请简述你如何判断该尖峰源于走线结构谐振而非芯片内部时钟谐波，并说明为何优先优化该走线的参考完整性而非增加屏蔽罩或调整驱动电流。</td><td>GPT5.5: 题干引用“300MHz至1GHz、860MHz、8.7cm、15mm”等密集数值，并要求候选人判断结构谐振与时钟谐波，实际需要记忆频点、走线长度和间隙尺寸并做近似电长度推理，偏笔试分析；正确应改为定性描述辐射尖峰、未包地走线和参考平面不连续的排查思路。；Gemini3.1pro: 参考答案第二层存在知识性错误。走线的谐振频率取决于其电气总长度，仅仅将走线弯曲并不能改变其物理长度和电气长度，因此无法破坏半波谐振条件。正确的应该是：只能通过缩短走线长度或改变介质有效介电常数来改变谐振频率，弯曲走线无效。</td><td>Q003</td><td>在设计支持DDR5-4800的服务器主板时，内存控制器需连接四个插槽，其中两个插槽用于RDIMM，另两个用于LRDIMM。由于LRDIMM引入额外缓冲芯片，其电气特性与RDIMM存在显著差异。请简述你如何综合考虑拓扑类型选择、走线长度控制、端接策略分配以及命令地址总线与数据总线的时序协同约束，来确保四插槽混合负载下所有通道的建立和保持时间裕量均满足JEDEC规范要求。</td><td>GPT5.5: 题干要求同一控制器四插槽混用RDIMM与LRDIMM，这在服务器DDR5平台通常不作为可随意混插的设计前提；答案又声称“DQ/DQS必须为每个插槽独立点对点”“CA总线采用优化T型拓扑”“LRDIMM需主板提供VrefDQ”等，混淆DDR5 DIMM通道、模块缓冲和端接/参考电压机制。正确应先限定支持的DIMM类型和拓扑，不能把RDIMM/LRDIMM混插作为默认可实现方案。；Gemini3.1pro: 题干存在严重的常识性和知识性错误。在服务器主板设计和实际应用中，严格禁止在同一系统或同一内存通道中混插RDIMM和LRDIMM。这两种内存条的电气特性和缓冲机制完全不同，内存控制器无法同时兼容两者的时序训练，BIOS在自检时会直接报错停机。正确的应该是：题目场景应设定为全插RDIMM或全插LRDIMM。</td></tr><tr><td>B6</td><td>Q015</td><td>某工业通信模块需将CAN总线报文时间戳（64位宽）从低速CAN时钟域安全传递至高速ARM处理器时钟域，且系统要求端到端延迟抖动小于50ns。在不依赖专用跨时钟域IP核的前提下，你如何通过电路结构与时序协同设计达成该指标？请说明关键路径优化点和验证时需重点关注的时序参数。</td><td>GPT5.5: 题目要求工业通信模块中64位时间戳跨时钟域电路结构，答案却把PCB等长、分立逻辑门、施密特缓冲器插入同步链路等作为主方案，混淆芯片/FPGA内部CDC设计与板级硬件设计；“单周期内完成亚稳态收敛”也不严谨。正确应使用异步FIFO、握手同步、Gray码指针等数字设计口径，并说明时序验证指标。；Gemini3.1pro: 参考答案第二层存在脱离实际的严重错误。答案将芯片内部的跨时钟域处理（CDC，如格雷码、异步FIFO、两级触发器）与板级PCB设计混为一谈。对于64位宽的数据，在PCB上采用64根并行走线进行传输在现代工业模块中是极不现实且荒谬的（通常会采用SPI、PCIe等串行接口）。答案称“分组降低单次传输宽度，便于PCB上做等长走线...是当前工业模块主流做法”，完全违背了硬件设计的工程常识。正确的应该是：板级传输应采用高速串行接口，而不是在PCB上布设64位并行总线并做等长。</td><td>nan</td><td>nan</td><td>nan</td></tr></tbody>
+  </table>
+</body>
+</html>
