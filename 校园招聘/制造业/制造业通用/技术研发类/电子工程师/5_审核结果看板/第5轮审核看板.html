@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Round 5 Dashboard</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; margin: 24px; color: #1f2937; }
+    h1, h2, h3 { margin: 10px 0 12px; }
+    .cards { display: grid; grid-template-columns: repeat(3, minmax(140px, 220px)); gap: 12px; margin: 8px 0 18px; }
+    .card { border: 1px solid #e5e7eb; border-radius: 10px; padding: 12px; background: #fafafa; }
+    .card .k { font-size: 12px; color: #6b7280; }
+    .card .v { font-size: 24px; font-weight: 700; margin-top: 4px; }
+    table { border-collapse: collapse; width: 100%; margin: 8px 0 18px; }
+    th, td { border: 1px solid #e5e7eb; padding: 8px 10px; vertical-align: middle; }
+    th { background: #f9fafb; }
+    .legend span { margin-right: 12px; font-size: 13px; color: #374151; }
+    .mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; }
+    .ex { margin: 6px 0; color: #374151; }
+    .section-divider { border: 0; border-top: 2px solid #eef2f7; margin: 22px 0; }
+  </style>
+</head>
+<body>
+  <h1>Round 5 审核看板</h1>
+
+  <div class="cards">
+    <div class="card"><div class="k">A类错误</div><div class="v">5</div></div>
+    <div class="card"><div class="k">B类错误</div><div class="v">30</div></div>
+    <div class="card"><div class="k">C类错误</div><div class="v">0</div></div>
+  </div>
+
+  <h2>本轮题目主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">本轮（第5轮）回流题38题，合并后仍有问题23题、可保留15题。题干侧问题相对集中但影响明确：A类共5次标记，其中A1（2）主要是安规概念混淆——把电气间隙决定因素写成“工作电压+污染等级”、或把海拔条件绑进爬电距离取值；A4（2）表现为要求解释RθJB符号含义或口述长期平均功耗计算公式，不适合口语作答；A2（1）把晶体管沟道掺杂/高K界面态/衬底偏置耦合失效分析当作制造业电子工程师常见场景，偏门且现场难验证。本轮未见C类重复。题干整体仍覆盖电机驱动、电平转换、安规与热设计等岗位常见域，但安规术语边界与“禁公式/禁符号解释”约束执行不稳。</div>
+<h2>本轮答案主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">答案侧几乎全是B1知识性/逻辑错误（合并统计约29次），是“保留题干重出答案”的主因（18题）；另有少量B2（1，时钟隔离挖地槽破坏回流属过时/高风险做法）。高频硬伤包括：分立MOSFET电平转换接法与体二极管机理写错、多层板回流路径与电源分割关系颠倒、磁珠与滤波电容拓扑接反、低温下载流子迁移率方向写反、RθJB基准面口径错误、X电容“焊反”、爬电距离标准引用浪涌标准、屏蔽/铜箔浮置试验逻辑不严谨，以及把PWM载波频率与dv/dt边沿速率混为一谈。第三层偶发与第一层物理结论不一致。A/C类进入重新出题仅5题，说明本轮主要矛盾在答案专业准确性而非题干结构。</div>
+<h2>后续重新出内容时应补充的规则</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">【重新出题】<br/>1) 安规题必须严格区分电气间隙与爬电距离：间隙看冲击耐受/过电压类别/海拔等空气击穿条件；爬电看工作电压、污染等级、材料组别；禁止把海拔作为爬电取值主条件。2) 禁止要求解释符号含义、口述计算公式/推导（A4）；热阻题用“结到板热阻”等中文术语提问，功耗题问评估思路与边界条件而非列算式。3) 失效分析题限制在板级/系统级可复现手段（温循、偏压、钳表、眼图等），禁止芯片工艺级机理作为默认场景。4) 出题后自检：题干条件是否都能用于作答决策，且不诱导错误物理口径。<br/><br/>【重出答案】<br/>1) 电源/电平转换：双向MOSFET上拉仅适用于开漏，不得当作UART推挽通用方案；源极/栅极偏置按低压侧关系连接，不得误接电源平面。2) EMC与采样：明确区分PWM开关频率与边沿dv/dt；屏蔽试验铜箔需接地或明确参考；磁珠串电源线、电容并到地，禁止磁珠与电容串联入地。3) SI/PCB：保持参考地完整，禁止用挖地槽/分割缝隔离时钟；回流路径描述须与叠层事实一致。4) 器件物理与安规：低温区迁移率升高而非下降；X电容无极性无“焊反”；爬电查GB/T 16935.1/IEC 60664，不得引用IEC 61000-4-5；RθJB对应板侧参考点而非封装底焊盘。5) 禁止绝对化与过时首选，第三层异常须与一二层机理自洽。</div>
+
+  <hr class="section-divider" />
+
+  <h2>模型进度与删除率</h2>
+  <table>
+    <thead>
+      <tr><th>Model</th><th>批次完成</th><th>完成率</th><th>删除率</th><th>主错误</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>GPT5.5</td><td style='text-align:center'>1/1</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:52.6%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">52.6%</span></td><td style='text-align:center'>B>A</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>1/1</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:39.5%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">39.5%</span></td><td style='text-align:center'>B>A</td></tr>
+    </tbody>
+  </table>
+
+  <h2>批次状态矩阵</h2>
+  <div class="legend">
+    <span>✓ done</span><span>… running</span><span>○ pending</span><span>! blocked</span><span>x failed</span>
+  </div>
+  <table>
+    <thead><tr><th>Model</th><th>R5-B001</th></tr></thead>
+    <tbody><tr><td>GPT5.5</td><td style='text-align:center'>✓</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>✓</td></tr></tbody>
+  </table>
+
+  <h2>细分错误统计（A1/B1...）</h2>
+  <table>
+    <thead><tr><th>错误子类</th><th>数量</th></tr></thead>
+    <tbody><tr><td>A1</td><td style='text-align:center'>2</td></tr><tr><td>A2</td><td style='text-align:center'>1</td></tr><tr><td>A4</td><td style='text-align:center'>2</td></tr><tr><td>B1</td><td style='text-align:center'>29</td></tr><tr><td>B2</td><td style='text-align:center'>1</td></tr></tbody>
+  </table>
+
+  <h3>细分错误示例（每类2条）</h3>
+  <table>
+    <thead><tr><th>错误子类</th><th>例1-题号</th><th>例1-题目</th><th>例1-理由</th><th>例2-题号</th><th>例2-题目</th><th>例2-理由</th></tr></thead>
+    <tbody><tr><td>A1</td><td>Q022</td><td>请简述在安规设计中，为什么电气间隙必须按工作电压和污染等级来确定。</td><td>GPT5.5: 题干原文“电气间隙必须按工作电压和污染等级来确定”表述错误且不完整。电气间隙主要按额定冲击耐受电压、过电压类别、海拔等空气击穿相关条件确定；污染等级主要用于爬电距离评估。；Gemini3.1pro: 参考答案存在知识性错误，混淆了“电气间隙”与“爬电距离”的物理机制。答案中解释电气间隙时称“污染物附着在表面后降低绝缘强度”，这实际上是“爬电距离”（沿绝缘表面的最短距离）受污染等级影响的机理。电气间隙是指两导电部件之间通过空气的最短距离，其核心物理机制是空气击穿，而非表面附着物导致的绝缘降低。正确的应该是什么：应明确区分电气间隙（空气击穿）和爬电距离（表面漏电），指出电气间隙主要由峰值/瞬态过电压决定。</td><td>Q023</td><td>在工业控制设备的PCB设计中，交流220V输入端子与低压通信接口之间需满足加强绝缘的爬电距离要求。已知板子使用FR-4基材、污染等级为3级、工作海拔2000米以上，且该设备需通过GB/T 16935.1和GB 4943.1双重安规认证。请简述您会如何系统性地确定最终爬电距离值，并说明在布局受限时，哪些工程措施能有效且合规地缩短实际物理间距而不降低绝缘可靠性。</td><td>GPT5.5: 题干要求“确定最终爬电距离值”时把“工作海拔2000米以上”列为关键条件，容易造成知识性误导。海拔修正主要影响空气击穿相关的电气间隙，不是爬电距离的常规决定因素；正确应区分爬电距离与电气间隙。</td></tr><tr><td>A2</td><td>Q030</td><td>某款批量交付的嵌入式控制板在高温老化后出现待机电流缓慢爬升现象，失效分析确认并非封装漏电或焊点腐蚀所致。请简述你如何从晶体管沟道掺杂梯度退化、高K介质界面态动态俘获、以及衬底偏置电压漂移三者的耦合作用出发，定位主导漏电机制，并说明现场可复现验证的关键测试条件。</td><td>GPT5.5: 题干要求从“晶体管沟道掺杂梯度退化、高K介质界面态动态俘获、衬底偏置电压漂移”定位主导漏电机制，属于芯片工艺/器件可靠性深层失效分析，不是制造业电子工程师常见、常用的岗位面试场景；现场也通常无法直接验证或配置衬底偏置。</td><td>nan</td><td>nan</td><td>nan</td></tr><tr><td>A4</td><td>Q014</td><td>一款驱动芯片规格书中同时给出了RθJA和RθJB两个热阻参数，其中RθJB标注为18℃/W。请简单说说RθJB这个参数所对应的参考基准面是什么，它在器件贴装于多层PCB并使用过孔散热时有何实际指导意义。</td><td>GPT5.5: 参考答案第一层原文“RθJB的参考基准面是芯片封装底部的金属焊盘或裸露铜面”错误。RθJB是结到板（board）参考点的热阻，通常对应封装附近PCB板面测温点；封装底部/外壳底面对应的是RθJC(bottom)等参数口径。；Gemini3.1pro: 题干要求解释“RθJB”这一符号参数的含义，违反了A4规则（凡题干要求候选人解释符号含义等内容，一律标记A4并删除），不适合口语作答。正确的应该是什么：应直接使用中文术语“结板热阻”进行提问，避免要求解释特定符号含义。</td><td>Q027</td><td>某嵌入式设备由主控芯片、无线通信模块和传感器阵列组成，三者工作时序存在重叠与错峰：主控在每秒内活跃200毫秒（功耗120毫瓦），无线模块每500毫秒突发传输一次、每次持续8毫秒（功耗350毫瓦），传感器阵列周期采样、每次采样耗时3毫秒且每200毫秒触发一次（功耗25毫瓦）。请简述如何准确计算该设备的长期平均功耗，并说明在时序非对齐、占空比差异大的情况下，为何必须基于时间加权而非简单状态功耗平均来建模。</td><td>Gemini3.1pro: 题干要求“简述如何准确计算该设备的长期平均功耗”，实质上是要求解释计算公式和推导过程，违反了A4规则（凡题干要求候选人解释计算公式等内容，一律标记A4并删除），无法口语直接作答。正确的应该是什么：应改为考察功耗评估的考量因素，而非要求口述具体的数学计算方法。</td></tr><tr><td>B1</td><td>Q002</td><td>在电机驱动器的电流采样电路中，使用隔离运放后仍观察到高频共模噪声耦合至差分输出，且该噪声幅值随PWM载波频率升高而增大。请简述你如何从耦合路径、寄生参数与器件内部结构三个层面，定位并区分是容性耦合主导还是磁性耦合主导。</td><td>GPT5.5: 参考答案第二层原文“用铜箔覆盖隔离运放外壳但不接地，若噪声减弱，指向容性耦合”不严谨。容性耦合/电场屏蔽通常需要低阻接地或明确参考点；浮置铜箔会引入额外寄生电容，不能作为区分容性耦合主导的可靠判据。；Gemini3.1pro: 参考答案存在知识性错误与逻辑不严谨。答案称“随PWM载波频率升高、边沿越陡，噪声越明显”，这里混淆了“PWM载波频率（开关频率）”与“开关边沿速率（dv/dt）”两个概念。提高PWM载波频率只会增加单位时间内的开关次数，并不会改变单次开关的边沿陡峭程度（dv/dt由驱动电阻和MOSFET特性决定）。正确的应该是什么：应明确指出容性耦合强度与开关边沿的dv/dt成正比，而与PWM载波频率本身无直接因果关系。</td><td>Q002</td><td>在电机驱动器的电流采样电路中，使用隔离运放后仍观察到高频共模噪声耦合至差分输出，且该噪声幅值随PWM载波频率升高而增大。请简述你如何从耦合路径、寄生参数与器件内部结构三个层面，定位并区分是容性耦合主导还是磁性耦合主导。</td><td>GPT5.5: 参考答案第二层原文“用铜箔覆盖隔离运放外壳但不接地，若噪声减弱，指向容性耦合”不严谨。容性耦合/电场屏蔽通常需要低阻接地或明确参考点；浮置铜箔会引入额外寄生电容，不能作为区分容性耦合主导的可靠判据。；Gemini3.1pro: 参考答案存在知识性错误与逻辑不严谨。答案称“随PWM载波频率升高、边沿越陡，噪声越明显”，这里混淆了“PWM载波频率（开关频率）”与“开关边沿速率（dv/dt）”两个概念。提高PWM载波频率只会增加单位时间内的开关次数，并不会改变单次开关的边沿陡峭程度（dv/dt由驱动电阻和MOSFET特性决定）。正确的应该是什么：应明确指出容性耦合强度与开关边沿的dv/dt成正比，而与PWM载波频率本身无直接因果关系。</td></tr><tr><td>B2</td><td>Q029</td><td>在多层PCB的硬件方案设计中，若发现FPGA配置时钟与外部DDR内存时钟存在耦合导致建立时间裕量不足，你通常会从时钟树布局层面采取哪两项具体措施来缓解该问题？请简述。</td><td>GPT5.5: 参考答案第二层建议“完整的地平面挖槽隔离”和“参考平面上插入局部分割缝”来缓解时钟耦合，这会破坏高速时钟回流路径并可能加重抖动和辐射。正确做法应优先保持完整参考平面，通过间距、分区、正交走线、包地/护线和电源去耦隔离降低耦合。；Gemini3.1pro: 参考答案给出的解决方案过时且存在严重的信号完整性风险。答案建议“用完整的地平面挖槽隔离”以及“在参考平面上插入局部分割缝”来隔离高速时钟。在现代高速PCB设计中，故意在完整地平面上挖槽或分割会切断高频信号的回流路径，导致严重的阻抗突变、EMI辐射放大以及更严重的串扰，这是业界极力避免的错误做法。正确的应该是什么：当下的最佳实践是通过增加物理间距（如满足3W原则）、采用带状线在内层布线、并在两根时钟线之间增加接地过孔（屏蔽地）来隔离，同时必须保持参考地平面的绝对完整。</td><td>nan</td><td>nan</td><td>nan</td></tr></tbody>
+  </table>
+</body>
+</html>

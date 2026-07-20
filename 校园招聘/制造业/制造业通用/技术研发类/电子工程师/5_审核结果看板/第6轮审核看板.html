@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Round 6 Dashboard</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; margin: 24px; color: #1f2937; }
+    h1, h2, h3 { margin: 10px 0 12px; }
+    .cards { display: grid; grid-template-columns: repeat(3, minmax(140px, 220px)); gap: 12px; margin: 8px 0 18px; }
+    .card { border: 1px solid #e5e7eb; border-radius: 10px; padding: 12px; background: #fafafa; }
+    .card .k { font-size: 12px; color: #6b7280; }
+    .card .v { font-size: 24px; font-weight: 700; margin-top: 4px; }
+    table { border-collapse: collapse; width: 100%; margin: 8px 0 18px; }
+    th, td { border: 1px solid #e5e7eb; padding: 8px 10px; vertical-align: middle; }
+    th { background: #f9fafb; }
+    .legend span { margin-right: 12px; font-size: 13px; color: #374151; }
+    .mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; }
+    .ex { margin: 6px 0; color: #374151; }
+    .section-divider { border: 0; border-top: 2px solid #eef2f7; margin: 22px 0; }
+  </style>
+</head>
+<body>
+  <h1>Round 6 审核看板</h1>
+
+  <div class="cards">
+    <div class="card"><div class="k">A类错误</div><div class="v">6</div></div>
+    <div class="card"><div class="k">B类错误</div><div class="v">25</div></div>
+    <div class="card"><div class="k">C类错误</div><div class="v">0</div></div>
+  </div>
+
+  <h2>本轮题目主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">本轮（第6轮）回流题23题，两模型合并后仍有问题19题、可保留仅4题。题干侧问题虽少于答案侧，但影响清晰：A类合计6次标记。A1（3）集中在回流路径题干自相矛盾——已声明第二层为完整地参考面，又把第三层电源分割当作返回电流绕行根因，条件与结论不自洽；A2（2）把载流子冻结、动态体偏置、ATE晶体管级漏电注入、栅极隧穿与PN结漏电区分等芯片/半导体FA场景当作制造业板级电子工程师日常题，偏门且现场难验证；A4（1）滤波题答案表述成“陶瓷电容与磁珠串联组合”，诱导口语解释拓扑/器件组合方式时口径不清。未见C类重复。题干整体仍落在运放、隔离电源、电平转换、EMI、热设计等岗位常见域，但叠层回流逻辑与“板级可操作边界”约束执行不稳。</div>
+<h2>本轮答案主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">答案侧以B1知识性/逻辑错误为主（约23次），是“保留题干重出答案”的主因（14题）；另见B4（1，用飞针测眼图不符合高速验证手段）与B6（1，要求调LDO内部误差放大器补偿网络，偏离板级口径）。高频硬伤包括：同相放大增益偏低却查同相端接地、反馈电阻虚焊导致增益升降方向写反；分立MOSFET电平转换源极接低压域地；普通降压芯片被说成“隔离彻底”；X电容被写成抑制共模噪声旁路；磁珠与电容串联旁路表述错误；Rθ/热阻路径或基准面口径偏差；以及把IC内部补偿、体偏置策略当作板级可调参数。第三层偶发与第一层物理结论不一致。A/C类进入重新出题仅5题，说明本轮主要矛盾仍在答案专业准确性与岗位口径，其次才是题干条件自洽。</div>
+<h2>后续重新出内容时应补充的规则</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">【重新出题】<br/>1) 回流/EMI题必须保证题干条件自洽：若声明相邻完整地参考面，不得再把远端电源分割层当作主回流绕行根因；应先问参考层确认、换层过孔、跨缝与回流路径测量。2) 失效分析/漏电题限制在板级可复现手段（温箱、钳表、电源域开关、固件休眠策略、替换外围器件），禁止默认要求芯片工艺级机理、ATE晶体管级注入、内部体偏置配置。3) 滤波/无源网络题用“串磁珠+并电容/π型”等明确拓扑表述，禁止含糊“器件串联组合”并要求解释符号/公式。4) 出题自检：每个给定条件都必须能支撑作答决策，且不诱导错误物理口径。<br/><br/>【重出答案】<br/>1) 运放增益：同相放大增益由Rf与Rg决定；增益偏低优先查反馈电阻与反相端到地电阻连接/阻值；Rf变大应使增益升高而非下降。2) 电平转换：双向NMOS上拉适用于开漏，源极接低压侧信号而非低压域地；不得把普通Buck说成电气隔离，隔离侧需隔离型DC-DC。3) EMC：X电容抑差模、Y电容/共模扼流圈抑共模；磁珠串供电路径、电容就近对地，禁止电容与磁珠简单串联当旁路。4) 验证手段与岗位口径：高速眼图用示波器/BERT/TDR/VNA，不用飞针；LDO纹波优先PSRR选型、输出电容/ESR与前级滤波，禁止“调内部误差放大器补偿”作为板级常规答案。5) 第三层异常须与一二层机理自洽，禁止跨隔离/匝间短路等概念混用。</div>
+
+  <hr class="section-divider" />
+
+  <h2>模型进度与删除率</h2>
+  <table>
+    <thead>
+      <tr><th>Model</th><th>批次完成</th><th>完成率</th><th>删除率</th><th>主错误</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>GPT5.5</td><td style='text-align:center'>1/1</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:78.3%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">78.3%</span></td><td style='text-align:center'>B>A</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>1/1</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:56.5%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">56.5%</span></td><td style='text-align:center'>B>A</td></tr>
+    </tbody>
+  </table>
+
+  <h2>批次状态矩阵</h2>
+  <div class="legend">
+    <span>✓ done</span><span>… running</span><span>○ pending</span><span>! blocked</span><span>x failed</span>
+  </div>
+  <table>
+    <thead><tr><th>Model</th><th>R6-B001</th></tr></thead>
+    <tbody><tr><td>GPT5.5</td><td style='text-align:center'>✓</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>✓</td></tr></tbody>
+  </table>
+
+  <h2>细分错误统计（A1/B1...）</h2>
+  <table>
+    <thead><tr><th>错误子类</th><th>数量</th></tr></thead>
+    <tbody><tr><td>A1</td><td style='text-align:center'>3</td></tr><tr><td>A2</td><td style='text-align:center'>2</td></tr><tr><td>A4</td><td style='text-align:center'>1</td></tr><tr><td>B1</td><td style='text-align:center'>23</td></tr><tr><td>B4</td><td style='text-align:center'>1</td></tr><tr><td>B6</td><td style='text-align:center'>1</td></tr></tbody>
+  </table>
+
+  <h3>细分错误示例（每类2条）</h3>
+  <table>
+    <thead><tr><th>错误子类</th><th>例1-题号</th><th>例1-题目</th><th>例1-理由</th><th>例2-题号</th><th>例2-题目</th><th>例2-理由</th></tr></thead>
+    <tbody><tr><td>A1</td><td>Q008</td><td>某量产级电机驱动板出现EMI超标问题，排查发现栅极驱动信号边沿振铃明显。已知该信号参考平面在第二层为完整地平面，但第三层是分割的3.3V电源域。请简述你如何从回流路径控制角度定位根本原因并提出结构化改进方案。</td><td>GPT5.5: 题干已说明栅极驱动信号“参考平面在第二层为完整地平面”，但又引导把第三层分割3.3V电源域作为回流路径根因；若第二层确为相邻完整地参考面，高频返回电流主要沿第二层地平面回流，不会因为第三层电源分割而被迫绕行。正确应先确认信号所在层与相邻参考层关系、是否实际跨越参考平面缝隙或换层失去连续地参考。；Gemini3.1pro: 逻辑不严谨且存在知识盲区。题干明确提出“参考平面在第二层为完整地平面”，说明回流路径应在第二层保持连续。但答案中却称“第三层跨分割”导致“返回电流在第二层地平面上被迫绕行”，这在电磁场物理规律上是矛盾的。如果信号紧贴完整的第二层作为主参考，第三层的分割根本不会导致第二层上的返回电流绕行。</td><td>Q008</td><td>某量产级电机驱动板出现EMI超标问题，排查发现栅极驱动信号边沿振铃明显。已知该信号参考平面在第二层为完整地平面，但第三层是分割的3.3V电源域。请简述你如何从回流路径控制角度定位根本原因并提出结构化改进方案。</td><td>GPT5.5: 题干已说明栅极驱动信号“参考平面在第二层为完整地平面”，但又引导把第三层分割3.3V电源域作为回流路径根因；若第二层确为相邻完整地参考面，高频返回电流主要沿第二层地平面回流，不会因为第三层电源分割而被迫绕行。正确应先确认信号所在层与相邻参考层关系、是否实际跨越参考平面缝隙或换层失去连续地参考。；Gemini3.1pro: 逻辑不严谨且存在知识盲区。题干明确提出“参考平面在第二层为完整地平面”，说明回流路径应在第二层保持连续。但答案中却称“第三层跨分割”导致“返回电流在第二层地平面上被迫绕行”，这在电磁场物理规律上是矛盾的。如果信号紧贴完整的第二层作为主参考，第三层的分割根本不会导致第二层上的返回电流绕行。</td></tr><tr><td>A2</td><td>Q016</td><td>面向宽温域（-40℃至105℃）运行的工业级控制器，其SoC在低温启动阶段实测漏电流反而高于常温，与常规认知相悖。请简述你如何分析载流子冻结效应、带隙变化对亚阈值摆幅的影响、以及反向偏置结漏电的温度非单调性，进而优化低温下的电源关断时序与体偏置配置策略。</td><td>GPT5.5: 第一层称“带隙随温度降低而增大，使亚阈值摆幅理论值变差”，但理想亚阈值摆幅S与kT/q成正比，温度降低时理论摆幅应变小/变好；答案还把低温下PN结反向漏电非单调回升作为普遍机理表述，缺少限定，容易误导。正确应区分热产生漏电、隧穿/缺陷辅助漏电与工艺缺陷在低温下的具体适用条件。；Gemini3.1pro: 题干和答案涉及的载流子冻结效应、带隙变化、内部动态体偏置(Body Bias)调节以及多阈值标准单元库混合布局等，均属于半导体物理与IC芯片底层物理实现设计范畴，场景过于偏门，严重超出了制造业板级硬件电子工程师常规开发与器件应用的日常工作口径。</td><td>Q023</td><td>某工业级MCU模组在批量生产后，发现同一批次中约5%的单元在85℃高温待机状态下静态电流超标，而常温测试全部合格。已知该模组采用65nm工艺，电源域划分明确，且未发生闩锁或封装失效。请简述你如何系统性排查并确认主导漏电来源是反向偏置PN结漏电还是栅极隧穿漏电，并说明关键验证手段及判据依据。</td><td>Gemini3.1pro: 题目要求深入排查主导漏电源是PN结反向漏电还是栅极氧化层隧穿漏电，答案给出“调节电源域栅控信号”“调用ATE平台执行晶体管级漏电注入”等方法。这属于芯片原厂集成电路失效分析(FA)与底层半导体物理测试的范畴，场景极度偏门，严重超出了制造业板级电子工程师的工作能力和应用口径。</td></tr><tr><td>A4</td><td>Q011</td><td>当使用开关电源为模拟传感器电路供电时，实测输出存在高频尖峰类纹波。请简述在不改变开关频率的前提下，可在输出端增加哪一类无源器件组合来针对性吸收这类高频能量，并解释其作用方式。</td><td>GPT5.5: 参考答案写“由小容量陶瓷电容与铁氧体磁珠串联组成”的组合来吸收高频纹波，但开关电源输出常用的是磁珠串在供电路径、陶瓷电容就近对地去耦/旁路，或π型/LC滤波；电容与磁珠简单串联并不能按答案所述同时提供对地高频旁路。；Gemini3.1pro: 答案中表述为“小容量陶瓷电容与铁氧体磁珠串联组成的无源滤波组合”语言表达不严谨、容易引起歧义。在实际LC型滤波应用中，正确的拓扑是磁珠串联在电源供电主路径中耗散高频能量，而陶瓷电容并联到地提供交流旁路，两者整体构成低通滤波结构，而不是电容与磁珠两者自身“串联组成”。</td><td>nan</td><td>nan</td><td>nan</td></tr><tr><td>B1</td><td>Q001</td><td>当使用运算放大器构成同相放大电路时，若实测增益明显低于理论值，且运放本身供电和静态工作点正常，你一般会从哪两个外部元件连接角度入手排查？请简单说说。</td><td>GPT5.5: 参考答案把排查重点写成“同相输入端的输入电阻与接地路径是否完整”，但同相放大电路闭环增益主要由反相端反馈电阻Rf和接地增益电阻Rg决定；正确应检查输出到反相端的反馈电阻及反相端到地的增益设定电阻连接/阻值，而不是把同相输入端接地路径作为增益明显偏低的主要外部元件原因。；Gemini3.1pro: 第三层中指出“反馈电阻焊盘虚焊...使实际反馈量增大、闭环增益下降”存在知识性错误。同相放大电路增益为1+Rf/R1，若反馈电阻Rf由于虚焊变大，会导致闭环增益增大，而不是下降。正确的应该是反相端接地电阻虚焊阻值变大导致增益下降。</td><td>Q001</td><td>当使用运算放大器构成同相放大电路时，若实测增益明显低于理论值，且运放本身供电和静态工作点正常，你一般会从哪两个外部元件连接角度入手排查？请简单说说。</td><td>GPT5.5: 参考答案把排查重点写成“同相输入端的输入电阻与接地路径是否完整”，但同相放大电路闭环增益主要由反相端反馈电阻Rf和接地增益电阻Rg决定；正确应检查输出到反相端的反馈电阻及反相端到地的增益设定电阻连接/阻值，而不是把同相输入端接地路径作为增益明显偏低的主要外部元件原因。；Gemini3.1pro: 第三层中指出“反馈电阻焊盘虚焊...使实际反馈量增大、闭环增益下降”存在知识性错误。同相放大电路增益为1+Rf/R1，若反馈电阻Rf由于虚焊变大，会导致闭环增益增大，而不是下降。正确的应该是反相端接地电阻虚焊阻值变大导致增益下降。</td></tr><tr><td>B4</td><td>Q018</td><td>在批量生产的电路板中，某高速差分信号链路需穿过BGA封装器件下方的密集引脚区域，该区域无法布设完整参考平面，且相邻层存在多组异频时钟走线。请简述你如何统筹考虑参考平面断裂补偿、跨层换层带来的长度突变、以及邻近干扰源对等长容差的影响，来制定差分线等长控制的具体实施策略。</td><td>GPT5.5: 第三层复杂问题的解决思路称通过“产线飞针测试验证修正后的眼图张开度”，不符合高速差分信号验证手段；飞针测试主要用于开短路/网络连通性等电测，不能验证眼图张开度。正确应使用示波器/误码仪/TDR/VNA或专用高速测试夹具结合仿真验证。</td><td>nan</td><td>nan</td><td>nan</td></tr><tr><td>B6</td><td>Q013</td><td>在设计一个为微控制器供电的线性稳压电源时，发现输出端纹波偏大。请简述除了增大滤波电容外，还可以通过调整哪个关键器件的参数来有效抑制低频纹波，并说明其原理。</td><td>GPT5.5: 答案建议调整“稳压器内部误差放大器的补偿网络”来抑制线性稳压电源低频纹波，但多数集成LDO的内部补偿网络并非实际PCB设计可调的关键器件参数。正确应优先选择PSRR满足目标频段的稳压器、按稳定性要求优化输出电容/ESR，或增加前级RC/LC滤波。；Gemini3.1pro: 答案中提出的“调整稳压器内部误差放大器的补偿网络中串联电阻或电容”属于芯片级集成电路（IC）设计工程师的工作范畴，不符合制造业板级硬件电子工程师的工作口径。板级应用工程师通常无法修改LDO内部误差放大器的补偿参数，而是通过调整外部前馈电容(Cff)或输出电容网络来改善响应。</td><td>nan</td><td>nan</td><td>nan</td></tr></tbody>
+  </table>
+</body>
+</html>

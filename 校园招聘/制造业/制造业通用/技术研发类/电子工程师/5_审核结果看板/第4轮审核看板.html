@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Round 4 Dashboard</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; margin: 24px; color: #1f2937; }
+    h1, h2, h3 { margin: 10px 0 12px; }
+    .cards { display: grid; grid-template-columns: repeat(3, minmax(140px, 220px)); gap: 12px; margin: 8px 0 18px; }
+    .card { border: 1px solid #e5e7eb; border-radius: 10px; padding: 12px; background: #fafafa; }
+    .card .k { font-size: 12px; color: #6b7280; }
+    .card .v { font-size: 24px; font-weight: 700; margin-top: 4px; }
+    table { border-collapse: collapse; width: 100%; margin: 8px 0 18px; }
+    th, td { border: 1px solid #e5e7eb; padding: 8px 10px; vertical-align: middle; }
+    th { background: #f9fafb; }
+    .legend span { margin-right: 12px; font-size: 13px; color: #374151; }
+    .mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; }
+    .ex { margin: 6px 0; color: #374151; }
+    .section-divider { border: 0; border-top: 2px solid #eef2f7; margin: 22px 0; }
+  </style>
+</head>
+<body>
+  <h1>Round 4 审核看板</h1>
+
+  <div class="cards">
+    <div class="card"><div class="k">A类错误</div><div class="v">10</div></div>
+    <div class="card"><div class="k">B类错误</div><div class="v">34</div></div>
+    <div class="card"><div class="k">C类错误</div><div class="v">0</div></div>
+  </div>
+
+  <h2>本轮题目主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">本轮题目主要出错点仍集中在“通用岗位边界”和个别题干前提不严谨。A2（约8起）是题干侧主因：回流题中仍出现柔性基板焊点热应力监测、PCIe 5.0/DDR5+SerDes等高端互连、汽车电子控制器/ASIL-B功能安全、数字IC标准单元库STA等偏门或强行业场景，偏离制造业通用电子工程师、勿带具体行业特征的口径。A1（约2起）表现为题干把有争议做法写成当然前提，例如把变频器电机电缆“屏蔽层单端接地”当作抑制高频共模辐射的常见正确措施，或把温升单位口径写得过于简化导致考察点失真。重复类（C）本轮未形成批量问题。整体看，第4轮回流后题干质量好于第3轮，但“去行业化/去前沿化”和“题干前提是否工程成立”仍是复发点。</div>
+<h2>本轮答案主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">本轮答案错误高度集中在B1知识性/逻辑错误（约34起，占删除错误主体），是重出答案未过硬核校验的直接表现。高频失效模式包括：基础电路因果写反（同相运放反馈开路被说成增益下降、NMOS体二极管导通方向颠倒、线宽增大被说成阻抗升高）；差模/共模与EMI器件功能混淆（把X电容当共模旁路）；高速接口术语串台（USB 3.2 Gen2速率写错并混入PCIe LTSSM）；热阻参数定义错误（RθJB基准面说错）；以及板级岗位不可行的调试建议（要求调整LDO片内密勒补偿电容）。B2/B其他子类本轮占比很低，说明问题更多是“写得像对但关键机理错了”，而非单纯方案偏门。题干可保留、答案需重写的分流（30题）远高于整题重出（8题），也印证本轮主矛盾在答案准确性。</div>
+<h2>后续重新出内容时应补充的规则</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">【重新出题】<br/>重出题干时补充：1）场景必须落在工业控制板/多传感器采集/通用电源与接口调试等制造业通用语境，禁止汽车功能安全、医疗/电表认证、柔性焊点工艺监测、PCIe 5.0/DDR5服务器级互连、数字IC后端STA等偏门或强行业设定。2）题干中的“常见做法/通常接法”必须是主流工程共识；有争议前提（如电机电缆单端接地抑高频共模）不得写成唯一正确前提。3）考察点应可口语作答，避免把单位背诵、微米级等长极限控制等低区分度或难口述内容当主问。4）自检：去行业特征、前提可成立、与知识点一致、不与同批题C2换皮。<br/><br/>【重出答案】<br/>重出答案时补充：1）对运放反馈、MOS体二极管方向、特征阻抗与线宽关系、X/Y电容与共模电感分工、热阻符号定义、接口速率与协议状态机等基础点做逐句机理校验，禁止“听起来专业但因果反了”。2）电平转换方案必须匹配接口电气类型（UART推挽≠I2C开漏双向MOS）。3）第三层异常须物理可成立且给出板级可操作步骤，禁止要求修改成品芯片内部补偿网络等岗位不可行动作。4）自检：指出原文错句能否一句话证伪；口头复述是否顺畅；是否出现数据手册级硬错。</div>
+
+  <hr class="section-divider" />
+
+  <h2>模型进度与删除率</h2>
+  <table>
+    <thead>
+      <tr><th>Model</th><th>批次完成</th><th>完成率</th><th>删除率</th><th>主错误</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>GPT5.5</td><td style='text-align:center'>4/4</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:23.3%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">23.3%</span></td><td style='text-align:center'>B>A</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>4/4</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:6.8%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">6.8%</span></td><td style='text-align:center'>A>B</td></tr>
+    </tbody>
+  </table>
+
+  <h2>批次状态矩阵</h2>
+  <div class="legend">
+    <span>✓ done</span><span>… running</span><span>○ pending</span><span>! blocked</span><span>x failed</span>
+  </div>
+  <table>
+    <thead><tr><th>Model</th><th>R4-B001</th><th>R4-B002</th><th>R4-B003</th><th>R4-B004</th></tr></thead>
+    <tbody><tr><td>GPT5.5</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td></tr></tbody>
+  </table>
+
+  <h2>细分错误统计（A1/B1...）</h2>
+  <table>
+    <thead><tr><th>错误子类</th><th>数量</th></tr></thead>
+    <tbody><tr><td>A1</td><td style='text-align:center'>2</td></tr><tr><td>A2</td><td style='text-align:center'>8</td></tr><tr><td>B1</td><td style='text-align:center'>34</td></tr></tbody>
+  </table>
+
+  <h3>细分错误示例（每类2条）</h3>
+  <table>
+    <thead><tr><th>错误子类</th><th>例1-题号</th><th>例1-题目</th><th>例1-理由</th><th>例2-题号</th><th>例2-题目</th><th>例2-理由</th></tr></thead>
+    <tbody><tr><td>A1</td><td>Q052</td><td>请简述在温升风险识别时，‘环境温度’和‘外壳温升’这两个参数的单位分别是什么？</td><td>GPT5.5: 参考答案第一层称“环境温度的单位是℃；外壳温升的单位也是℃”。环境温度是绝对温度读数，常用℃；温升是温度差，安规和热测试中通常用K表示，虽然数值差与℃相同，但单位口径应区分为开尔文。；Gemini3.1pro: 考查“环境温度”和“外壳温升”的单位（℃）过于常识和基础，且温升的严谨国际单位应为开尔文(K)，作为面试题逻辑不够严谨且偏离专业考察重点。正确的应考察温升测试的布点规范或热平衡判定标准。</td><td>Q086</td><td>在工业现场的变频器驱动电机系统中，电缆屏蔽层单端接地是常见的共模干扰抑制措施，请简述这种接法为什么能减少通过电缆向外辐射的共模电流。</td><td>GPT5.5: 题干把“变频器驱动电机系统中电缆屏蔽层单端接地”称为常见共模干扰抑制措施，并要求解释其能减少共模电流。对变频器电机电缆的高频共模电流和辐射抑制，工程上通常要求屏蔽层两端360度低阻抗搭接，使高频共模电流就近回流；单端接地主要用于避免低频地环流，不能作为该场景下抑制高频共模辐射的通用正确前提。</td></tr><tr><td>A2</td><td>Q021</td><td>一条柔性电路板贴片产线需实时监测焊点热应力变化，传感器需贴装在0.3毫米厚的柔性基板上，工作温度范围-40℃至125℃，且不能引入额外热容影响焊接过程。请简述选型时对传感器封装形式、热响应时间与基底兼容性的综合考量逻辑。</td><td>Gemini3.1pro: 题干要求在柔性基板上实时监测焊点热应力变化并选型传感器，更偏向于特定的可靠性工程测试或工艺制程场景，不是通用电子工程师在日常电路开发中的常见选型任务。正确的应考察更常规工业环境下的温度、湿度或压力传感器选型。</td><td>Q035</td><td>在量产阶段的电路板设计中，当高速差分对需要跨层布线且经过多个过孔时，如何综合考虑介质厚度变化、过孔残桩长度和参考平面切换等因素，来确保差分线等长控制精度满足PCIe 5.0信号完整性要求？请简述你的系统性控制思路。</td><td>Gemini3.1pro: 题干涉及PCIe 5.0（32GT/s）的信号完整性及微米级等长控制，属于高端服务器和前沿计算设备领域，对于制造业通用电子工程师而言场景偏门。正确的应该考察常见的中低速或常规高速接口（如PCIe Gen2/3, 千兆网等）的信号完整性设计。</td></tr><tr><td>B1</td><td>Q002</td><td>当使用运算放大器构成同相放大电路时，若实测增益明显低于理论值，且运放本身供电和静态工作点正常，你一般会从哪两个外部元件连接角度入手排查？请简单说说。</td><td>GPT5.5: 参考答案第三层称“反馈电阻一端虚焊……导致反馈通路等效阻值增大，实测增益下降甚至接近开环状态”。同相放大器中输出到反相端的反馈电阻开路/阻值增大通常会使闭环反馈减弱、增益升高并可能饱和或接近开环，不是增益下降。</td><td>Q006</td><td>在多电源域数字系统中，一个由3.3V供电的UART收发器需与5V供电的PLC主控通信。若选用分立MOSFET电平转换方案，如何确保在数据突发传输期间不因体二极管导通或延迟失配导致误码？请从器件选型和PCB布局两个维度说明关键约束。</td><td>GPT5.5: 参考答案第一层称“N沟道MOSFET源极接低电压域、漏极接高电压域时，当高侧电压瞬时高于低侧电压加体二极管压降，体内寄生二极管正向导通”。常见NMOS体二极管方向为源极到漏极，源低漏高时体二极管反偏；应是源极电位高于漏极约一个二极管压降时才可能正向导通。且分立MOSFET电平转换主要适合开漏/开集总线，UART推挽TX/RX不宜直接套用双向MOS管方案。</td></tr></tbody>
+  </table>
+</body>
+</html>
