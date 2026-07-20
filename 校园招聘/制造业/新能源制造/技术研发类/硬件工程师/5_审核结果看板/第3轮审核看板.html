@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Round 3 Dashboard</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; margin: 24px; color: #1f2937; }
+    h1, h2, h3 { margin: 10px 0 12px; }
+    .cards { display: grid; grid-template-columns: repeat(3, minmax(140px, 220px)); gap: 12px; margin: 8px 0 18px; }
+    .card { border: 1px solid #e5e7eb; border-radius: 10px; padding: 12px; background: #fafafa; }
+    .card .k { font-size: 12px; color: #6b7280; }
+    .card .v { font-size: 24px; font-weight: 700; margin-top: 4px; }
+    table { border-collapse: collapse; width: 100%; margin: 8px 0 18px; }
+    th, td { border: 1px solid #e5e7eb; padding: 8px 10px; vertical-align: middle; }
+    th { background: #f9fafb; }
+    .legend span { margin-right: 12px; font-size: 13px; color: #374151; }
+    .mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; }
+    .ex { margin: 6px 0; color: #374151; }
+    .section-divider { border: 0; border-top: 2px solid #eef2f7; margin: 22px 0; }
+  </style>
+</head>
+<body>
+  <h1>Round 3 审核看板</h1>
+
+  <div class="cards">
+    <div class="card"><div class="k">A类错误</div><div class="v">55</div></div>
+    <div class="card"><div class="k">B类错误</div><div class="v">184</div></div>
+    <div class="card"><div class="k">C类错误</div><div class="v">101</div></div>
+  </div>
+
+  <h2>本轮题目主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">本轮题干侧问题主要集中在三类：一是少量题干本身存在知识或逻辑前提错误，例如把无法唯一确定的安规距离、热阻边界或测量带宽写成固定结论；二是部分复杂场景题过度书面化，要求候选人口头同时展开多维权衡、具体数值或标准查表，导致不适合 AI 面试官稳定播报和候选人口头作答；三是同一知识点在接口、PCB、BMS 保护、MIPI/DP/USB 等模块中出现重复或高度同质化，候选人会给出几乎相同的作答框架。后续题干应减少强行堆叠限定条件，优先保留真实工程场景下可口头说明的核心判断链路。</div>
+<h2>本轮答案主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">本轮答案侧问题以 B1 知识性错误和逻辑不严谨最突出，覆盖模拟采样、功率器件、磁性元件、安规绝缘、PCIe/DP/MIPI/USB/CAN/RS485 等接口电路。典型表现包括混淆导通损耗与开关损耗、混用电气间隙与爬电距离、把协议或器件参数套用到不适用对象、将异常现象归因到错误物理机制，以及第三层异常场景与题干或基础工程常识矛盾。B3/B4 问题相对少但影响较大，主要是答案没有正面回答题干关键限制，或复杂场景解决路径偏离硬件工程师常规排查口径。</div>
+<h2>后续重新出内容时应补充的规则</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">【重新出题】<br/>重新出题时应先锁定单一知识点和单一工程判断目标，避免一个题同时要求标准查表、参数计算、拓扑设计、EMC路径分析和量产闭环。题干不得要求候选人写公式、背具体标准数值或在无图纸条件下给出精确布局方案；涉及安规、协议、电源完整性和高速接口时，必须给足必要上下文，且只要求说明判断依据、风险点和验证方法。重复题生成前要按知识点、核心作答要点和典型场景做去重，保留角度最清晰的一题。<br/><br/>【重出答案】<br/>重出答案时必须逐条校验术语、物理机制和适用边界，尤其是功率器件损耗、磁饱和、电气间隙/爬电距离、Y/X 电容、CAN/RS485 终端、PCIe/DP/MIPI/USB 协议物理层等高错点。三层答案应保持第一层讲准确概念，第二层讲常见方案和取舍，第三层给真实且可复现的异常/复杂工况；禁止把其他协议、器件或场景的参数硬套进当前题。删除原因中出现的典型错误应沉淀为生成自检清单。</div>
+
+  <hr class="section-divider" />
+
+  <h2>模型进度与删除率</h2>
+  <table>
+    <thead>
+      <tr><th>Model</th><th>批次完成</th><th>完成率</th><th>删除率</th><th>主错误</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>GPT5.5</td><td style='text-align:center'>25/25</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:19.8%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">19.8%</span></td><td style='text-align:center'>B>C>A</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>25/25</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:13.5%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">13.5%</span></td><td style='text-align:center'>C>A>B</td></tr>
+    </tbody>
+  </table>
+
+  <h2>批次状态矩阵</h2>
+  <div class="legend">
+    <span>✓ done</span><span>… running</span><span>○ pending</span><span>! blocked</span><span>x failed</span>
+  </div>
+  <table>
+    <thead><tr><th>Model</th><th>R3-B001</th><th>R3-B002</th><th>R3-B003</th><th>R3-B004</th><th>R3-B005</th><th>R3-B006</th><th>R3-B007</th><th>R3-B008</th><th>R3-B009</th><th>R3-B010</th><th>R3-B011</th><th>R3-B012</th><th>R3-B013</th><th>R3-B014</th><th>R3-B015</th><th>R3-B016</th><th>R3-B017</th><th>R3-B018</th><th>R3-B019</th><th>R3-B020</th><th>R3-B021</th><th>R3-B022</th><th>R3-B023</th><th>R3-B024</th><th>R3-B025</th></tr></thead>
+    <tbody><tr><td>GPT5.5</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td></tr></tbody>
+  </table>
+
+  <h2>细分错误统计（A1/B1...）</h2>
+  <table>
+    <thead><tr><th>错误子类</th><th>数量</th></tr></thead>
+    <tbody><tr><td>A1</td><td style='text-align:center'>25</td></tr><tr><td>A2</td><td style='text-align:center'>5</td></tr><tr><td>A4</td><td style='text-align:center'>27</td></tr><tr><td>B1</td><td style='text-align:center'>162</td></tr><tr><td>B2</td><td style='text-align:center'>5</td></tr><tr><td>B3</td><td style='text-align:center'>12</td></tr><tr><td>B4</td><td style='text-align:center'>7</td></tr><tr><td>B6</td><td style='text-align:center'>1</td></tr><tr><td>C1</td><td style='text-align:center'>6</td></tr><tr><td>C2</td><td style='text-align:center'>95</td></tr></tbody>
+  </table>
+
+  <h3>细分错误示例（每类2条）</h3>
+  <table>
+    <thead><tr><th>错误子类</th><th>例1-题号</th><th>例1-题目</th><th>例1-理由</th><th>例2-题号</th><th>例2-题目</th><th>例2-理由</th></tr></thead>
+    <tbody><tr><td>A1</td><td>Q001</td><td>在新能源设备的电流检测电路中，常使用运放搭建的同相放大电路配合分流电阻采集信号。请简述当分流电阻阻值很小时，为什么该电路仍能准确反映负载电流变化，而不需要大幅提高运放的增益。</td><td>Gemini3.1pro: 题干和答案存在逻辑矛盾与知识性错误。当分流电阻极小时，产生的压降非常微弱（毫伏级），如果要映射到常规ADC的采样范围（如3.3V），必然需要大幅提高运放的增益。题干声称“不需要大幅提高运放的增益”违背了基本的模拟放大电路设计常识。</td><td>Q009</td><td>在光伏逆变器的电压采样电路中，常采用运算放大器构成的反相放大结构并引入负反馈。请简单说说这种负反馈如何帮助减小因运放输入偏置电流引起的直流误差。</td><td>GPT5.5: 参考答案将负反馈虚短解释为“输入偏置电流主要流经输入电阻和反馈电阻构成的路径，不再在输入端对地电阻上产生显著压降”，容易误导。反相放大器中输入偏置电流仍会在等效输入/反馈阻抗上形成输出失调，常见处理是匹配同相端补偿电阻、选择低偏置电流运放，而不是认为负反馈本身即可消除该直流误差。；Gemini3.1pro: 题干和答案存在严重的知识性错误。负反馈本身并不能减小运放输入偏置电流引起的直流误差，偏置电流流过反馈电阻反而会产生输出失调电压。减小该误差的正确方法是在同相输入端串联一个匹配电阻（阻值等于输入电阻与反馈电阻的并联值），而不是依靠负反馈的“虚短”。</td></tr><tr><td>A2</td><td>Q011</td><td>逆变器驱动板上的栅极驱动信号调理电路，常采用运放搭建的压摆率可控缓冲器来适配IGBT/SiC器件的开通关断需求。当系统在高频开关（>50kHz）与高dv/dt（>10kV/μs）工况下出现振铃并导致误触发时，请简述你如何通过运放的压摆率与单位增益带宽权衡、反馈网络相位补偿设计、以及输入端共模瞬态抑制路径构建，系统性解决该动态失真问题。</td><td>GPT5.5: 题干把“运放搭建的压摆率可控缓冲器”作为逆变器IGBT/SiC栅极驱动信号调理的常用方案，场景偏门且不符合主流硬件设计口径。此类高dv/dt功率器件通常使用专用隔离栅极驱动器、门极电阻、米勒钳位、负压关断和驱动回路布局优化来处理，不是用普通运放反馈缓冲器作为核心驱动调理路径。；Gemini3.1pro: 题干场景偏门且存在知识性错误。在逆变器等大功率场景中，IGBT/SiC器件的栅极驱动需要极大的瞬态峰值电流（通常在几安培到十几安培），普通运放根本无法提供如此大的驱动电流，因此工程上绝不会“常采用运放搭建缓冲器”来直接驱动功率管，而是使用专用的栅极驱动IC或分立的推挽三极管/MOS管电路。</td><td>Q011</td><td>逆变器驱动板上的栅极驱动信号调理电路，常采用运放搭建的压摆率可控缓冲器来适配IGBT/SiC器件的开通关断需求。当系统在高频开关（>50kHz）与高dv/dt（>10kV/μs）工况下出现振铃并导致误触发时，请简述你如何通过运放的压摆率与单位增益带宽权衡、反馈网络相位补偿设计、以及输入端共模瞬态抑制路径构建，系统性解决该动态失真问题。</td><td>GPT5.5: 题干把“运放搭建的压摆率可控缓冲器”作为逆变器IGBT/SiC栅极驱动信号调理的常用方案，场景偏门且不符合主流硬件设计口径。此类高dv/dt功率器件通常使用专用隔离栅极驱动器、门极电阻、米勒钳位、负压关断和驱动回路布局优化来处理，不是用普通运放反馈缓冲器作为核心驱动调理路径。；Gemini3.1pro: 题干场景偏门且存在知识性错误。在逆变器等大功率场景中，IGBT/SiC器件的栅极驱动需要极大的瞬态峰值电流（通常在几安培到十几安培），普通运放根本无法提供如此大的驱动电流，因此工程上绝不会“常采用运放搭建缓冲器”来直接驱动功率管，而是使用专用的栅极驱动IC或分立的推挽三极管/MOS管电路。</td></tr><tr><td>A4</td><td>Q022</td><td>在电池管理系统中，常通过串联电阻分压方式采集高压电池组的单体电压。若某采样电路中，上臂电阻为100千欧、下臂电阻为10千欧，且下臂电阻两端接入运放反相输入端，那么该分压网络对原始电压的衰减比例是多少？请简单说说这个比例是如何由两个电阻值决定的。</td><td>Gemini3.1pro: 题干表述“下臂电阻两端接入运放反相输入端”存在逻辑错误和语言不通顺，两端不可能同时接入同一个引脚；且若接入反相放大器，反相端通常为虚地，分压比例将不再是简单的电阻分压比。正确的应该是“下臂电阻两端电压接入运放的同相输入端”或类似合理表述。</td><td>Q729</td><td>某储能变流器在EMC测试中辐射超标频点集中在30–60MHz，定位到DC/DC控制芯片的PWM输出引脚走线过长且靠近板边。请从关键信号布线角度，说明该PWM信号布线应综合考虑哪三个相互制约的设计要素，并解释它们在高频噪声生成与耦合路径上的作用机制。</td><td>Gemini3.1pro: 题干要求“说明该PWM信号布线应综合考虑哪三个相互制约的设计要素，并解释它们在高频噪声生成与耦合路径上的作用机制”，问题过于复杂和书面化，像笔试题，不适合口语面试。</td></tr><tr><td>B1</td><td>Q006</td><td>在光伏逆变器的电流采样环节，使用运放搭建的同相放大电路对分流电阻上的微伏级信号进行调理。当系统满载运行时，实测输出存在低频振荡且增益随温度升高明显下降。请从放大电路的开环增益频率特性、输入偏置电流温漂及负反馈网络稳定性三个维度，分析该现象的耦合机理，并说明为何单纯提高电源抑制比指标无法根治问题。</td><td>GPT5.5: 参考答案将“同相放大电路的开环增益随频率升高而下降，其相位滞后在低频段已接近临界稳定裕度”作为低频振荡的主要机理，表述不严谨。运放相位裕度问题通常出现在环路增益交越附近的较高频段，满载低频振荡更应结合热漂移、输入失调、反馈补偿与采样链路低频扰动分析，不能简单归因为低频段相位滞后接近临界。</td><td>Q008</td><td>在高压电池包的电压采样链路中，运放构成的反相放大电路常用于将隔离后的小信号转换为ADC可接收范围。当该电路在-40℃至85℃宽温域下工作时，输出存在随温度漂移的非线性误差。请简述你如何从运放输入级结构、外部电阻匹配策略及热耦合布局三个维度协同优化，来抑制这种温漂引起的增益与偏置复合误差。</td><td>GPT5.5: 参考答案称“优先选用双极型输入级的零漂移运放”“CMOS输入级运放温漂较小但偏置电流温漂大，不适用于高阻采样路径”，该器件口径不准确。高阻采样路径通常更关注输入偏置电流，CMOS/JFET输入往往比双极型输入更适合低偏置电流场景；零漂移运放也不能简单归为双极型输入优先。</td></tr><tr><td>B2</td><td>Q066</td><td>新能源储能系统中，电池模组高压采样前端的滤波电路常选用多层陶瓷电容与钽电容组合。请简单说说这两种电容在该位置分别主要应对哪类电气应力。</td><td>GPT5.5: 题干把电池模组高压采样前端常选用“多层陶瓷电容与钽电容组合”作为常见方案，场景偏门且存在可靠性风险。高压采样前端通常更强调耐压、漏电、温漂和失效模式，钽电容因极性、漏电与失效模式问题并非常见优选。参考答案还将钽电容描述为主要应对长期稳态电压偏置下的漏电流稳定性应力，方案口径不符合该高压采样位置的主流最佳实践。</td><td>Q069</td><td>在新能源车用高压BMS的电池单体电压采样电路中，为抑制共模干扰并兼顾高频噪声衰减，需在差分输入端并联一组无源器件组合。若选用陶瓷电容与电解电容并联，你如何从频率阻抗特性、纹波电流承载能力及低温工作稳定性三个维度，判断二者并联的必要性与各自分工，并说明为何不能仅用单一类型电容满足该场景全部需求？</td><td>GPT5.5: 题干将高压BMS单体电压采样差分输入端并联陶瓷电容与电解电容作为方案讨论，场景偏门且不符合常见采样前端口径。单体电压采样前端通常关注低漏电、高耐压、匹配性和安全失效模式，电解电容并联在差分输入端会带来极性、漏电、低温ESR和寿命风险。参考答案把电解电容作为中低频支撑的常用配置，属于偏门方案。；Gemini3.1pro: 与R3-Q0066重复。两题都是考察不同频响特性的电容（陶瓷电容与电解/钽电容）并联使用的原理，核心作答框架完全一致，即小容值陶瓷电容负责高频滤波，大容值电解类电容负责中低频储能与纹波吸收。</td></tr><tr><td>B3</td><td>Q047</td><td>在储能系统中，当需要将电池组的直流电压升高后并网时，主功率电路常采用两级式结构：前级用BOOST升压，后级用全桥逆变。请简单说说，为什么前级不直接用单级的升压型逆变拓扑来实现？</td><td>Gemini3.1pro: 参考答案第一层强行往“拓扑结构识别”和“硬件工程师的工作习惯”上靠拢，偏离了单级升压逆变器在技术上不被广泛采用的真正物理和电气原因（如器件电压应力大、控制复杂等），存在跑题和生搬硬套的错误。</td><td>Q301</td><td>在硬件量产导入阶段，当某个功率器件的失效模式被识别为‘热失控导致短路’，且其严重度评分为8、发生度评分为4、探测度评分为3时，请简述此时风险优先级数值的含义，并说明该数值对后续设计优化工作的实际指导意义。</td><td>GPT5.5: 题目要求说明“风险优先级数值”的含义，参考答案只说“严重度、发生度和探测度三个评分的乘积”，但没有给出本题应计算出的RPN=8×4×3=96，遗漏了题目中最直接的计算结果，答案未完整回答题干。</td></tr><tr><td>B4</td><td>Q121</td><td>实际硬件设计中，过充保护的电压阈值需兼顾电芯规格与老化裕量，请简单说说为什么保护芯片设定的过压阈值通常略低于电芯规格书标称的最大充电电压，且该偏差主要用来应对哪类可预期的硬件因素？</td><td>GPT5.5: 参考答案第三层称约5%模组在恒流充电末期“提前0.5V跳保护”，并将原因归结为分压电阻温漂等级从±100ppm/℃误用为±200ppm/℃。该量级与ppm级温漂导致的采样偏差严重不匹配，异常案例不符合硬件误差机理。</td><td>Q338</td><td>请简述或门和与门在输入全为低电平时，输出分别是什么？</td><td>GPT5.5: 参考答案第三层异常场景说“与门输出异常保持低电平”，但题干讨论的条件正是输入全为低电平，此时与门输出低电平是正确逻辑结果，不应被描述为异常；同段又说“输出端存在微弱高电平毛刺”，与“保持低电平”矛盾，复杂场景不合理。</td></tr><tr><td>B6</td><td>Q047</td><td>在储能系统中，当需要将电池组的直流电压升高后并网时，主功率电路常采用两级式结构：前级用BOOST升压，后级用全桥逆变。请简单说说，为什么前级不直接用单级的升压型逆变拓扑来实现？</td><td>Gemini3.1pro: 参考答案第一层强行往“拓扑结构识别”和“硬件工程师的工作习惯”上靠拢，偏离了单级升压逆变器在技术上不被广泛采用的真正物理和电气原因（如器件电压应力大、控制复杂等），存在跑题和生搬硬套的错误。</td><td>nan</td><td>nan</td><td>nan</td></tr><tr><td>C1</td><td>Q470</td><td>在DC/DC变换器的开关节点附近，为抑制电压尖峰和振铃，常并联一个吸收电容，这类电容一般选用什么类型？为什么需要特别关注它的等效串联电感参数？</td><td>nan</td><td>Q653</td><td>请简述判断电感是否发生磁饱和的最直接物理现象是什么？</td><td>nan</td></tr><tr><td>C2</td><td>Q063</td><td>某储能系统双向变流器的原理图包含多级功率域：交流侧、直流母线侧、电池侧及数字控制域，各域间存在大量跨域模拟采样与数字状态信号。当同一物理信号（如直流母线电压）需在不同域内分别用于过压保护、SOC估算和PWM调制时，其命名需体现来源、用途与精度要求。请简述你如何通过命名结构显式表达信号的源域、功能角色与有效位宽等级，并解释该设计如何支撑后续在PCB叠层规划与电源分割时做出精准的参考平面分配决策。</td><td>Gemini3.1pro: 与R3-Q0062重复。虽然题干设定的具体信号类型和应用场景不同，但考察的核心知识点完全一致，都是要求回答如何通过“前缀+核心名+后缀”的结构化命名规则来嵌入信号的物理域、功能和约束信息。候选人给出的核心作答框架和关键点几乎完全相同。</td><td>Q064</td><td>在一款支持多模并网的光伏逆变器原理图中，MCU需采集来自三路独立电流互感器的信号，其中两路用于MPPT算法，一路用于电网谐波检测；三路信号共用同一ADC芯片但走不同采样通道。为避免调试阶段因信号混淆导致算法误收敛，请简述你如何在命名中嵌入拓扑位置、功能路径与校准标识三个维度信息，并说明该规则如何缩短从原理图交付到首片样机EMI测试失败后的信号路径溯源时间。</td><td>Gemini3.1pro: 与R3-Q0062重复。虽然题干设定的具体信号类型和应用场景不同，但考察的核心知识点完全一致，都是要求回答如何通过“前缀+核心名+后缀”的结构化命名规则来嵌入信号的物理域、功能和约束信息。候选人给出的核心作答框架和关键点几乎完全相同。</td></tr></tbody>
+  </table>
+</body>
+</html>

@@ -1,0 +1,258 @@
+<!doctype html><html lang='zh-CN'><head><meta charset='utf-8'><title>六轮审核看板</title><style>body{font-family:Arial,Microsoft YaHei,sans-serif;margin:32px;color:#222;line-height:1.55}h1{margin-bottom:4px}section{margin:26px 0}.data{border-collapse:collapse;width:100%;font-size:14px}.data th,.data td{border:1px solid #ddd;padding:8px;vertical-align:top}.data th{background:#f3f4f6}.note{background:#f8fafc;border:1px solid #dbe3ef;padding:14px;border-radius:8px}.ok{color:#137333;font-weight:bold}</style></head><body>
+<h1>六轮审核看板</h1><p class=note>新能源制造 / 硬件工程师；轮次：6；模型：GPT5.5、Gemini3.1pro。<span class=ok>看板完整性自检通过：三段 narrative 已填写，完整性通过。</span></p>
+<section><h2>总体处理结果</h2><table class="dataframe data">
+  <thead>
+    <tr style="text-align: right;">
+      <th>处理结果</th>
+      <th>题目数</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>可保留题目答案</td>
+      <td>30</td>
+    </tr>
+    <tr>
+      <td>需要重新出题</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <td>保留题干重出答案</td>
+      <td>18</td>
+    </tr>
+  </tbody>
+</table></section>
+<section><h2>模型审核概览</h2><table class="dataframe data">
+  <thead>
+    <tr style="text-align: right;">
+      <th>model</th>
+      <th>总题数</th>
+      <th>删除数</th>
+      <th>删除率</th>
+      <th>A类错误数</th>
+      <th>B类错误数</th>
+      <th>C类错误数</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>GPT5.5</td>
+      <td>50</td>
+      <td>16</td>
+      <td>0.32</td>
+      <td>2</td>
+      <td>14</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>Gemini3.1pro</td>
+      <td>50</td>
+      <td>6</td>
+      <td>0.12</td>
+      <td>0</td>
+      <td>6</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table></section>
+<section><h2>批次进度日志</h2><table class="dataframe data">
+  <thead>
+    <tr style="text-align: right;">
+      <th>round</th>
+      <th>model</th>
+      <th>batch_id</th>
+      <th>status</th>
+      <th>start_time</th>
+      <th>end_time</th>
+      <th>duration_sec</th>
+      <th>questions_total</th>
+      <th>delete_count</th>
+      <th>keep_count</th>
+      <th>error_A_count</th>
+      <th>error_B_count</th>
+      <th>error_C_count</th>
+      <th>notes</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>6</td>
+      <td>GPT5.5</td>
+      <td>R6-B001</td>
+      <td>done</td>
+      <td>2026-07-17T12:03:45</td>
+      <td>2026-07-17T12:03:45</td>
+      <td>0.0</td>
+      <td>40</td>
+      <td>14.0</td>
+      <td>26.0</td>
+      <td>2.0</td>
+      <td>12.0</td>
+      <td>0.0</td>
+      <td>R2 JSON-only subagent review; parent orchestrator generated Excel/logs; prompt_source: skill/prompts/题目审核流程要求提示词.txt + skill/prompts/审题提示词.txt</td>
+    </tr>
+    <tr>
+      <td>6</td>
+      <td>GPT5.5</td>
+      <td>R6-B002</td>
+      <td>done</td>
+      <td>2026-07-17T12:03:45</td>
+      <td>2026-07-17T12:03:45</td>
+      <td>0.0</td>
+      <td>10</td>
+      <td>2.0</td>
+      <td>8.0</td>
+      <td>0.0</td>
+      <td>2.0</td>
+      <td>0.0</td>
+      <td>R2 JSON-only subagent review; parent orchestrator generated Excel/logs; prompt_source: skill/prompts/题目审核流程要求提示词.txt + skill/prompts/审题提示词.txt</td>
+    </tr>
+    <tr>
+      <td>6</td>
+      <td>Gemini3.1pro</td>
+      <td>R6-B001</td>
+      <td>done</td>
+      <td>2026-07-17T11:58:36</td>
+      <td>2026-07-17T11:58:36</td>
+      <td>0.0</td>
+      <td>40</td>
+      <td>5.0</td>
+      <td>35.0</td>
+      <td>0.0</td>
+      <td>5.0</td>
+      <td>0.0</td>
+      <td>R2 JSON-only subagent review; parent orchestrator generated Excel/logs; prompt_source: skill/prompts/题目审核流程要求提示词.txt + skill/prompts/审题提示词.txt</td>
+    </tr>
+    <tr>
+      <td>6</td>
+      <td>Gemini3.1pro</td>
+      <td>R6-B002</td>
+      <td>done</td>
+      <td>2026-07-17T11:58:36</td>
+      <td>2026-07-17T11:58:36</td>
+      <td>0.0</td>
+      <td>10</td>
+      <td>1.0</td>
+      <td>9.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>R2 JSON-only subagent review; parent orchestrator generated Excel/logs; prompt_source: skill/prompts/题目审核流程要求提示词.txt + skill/prompts/审题提示词.txt</td>
+    </tr>
+  </tbody>
+</table></section>
+<section><h2>一级错误类型统计（A/B/C）</h2><table class="dataframe data">
+  <thead>
+    <tr style="text-align: right;">
+      <th>错误大类</th>
+      <th>命中次数</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>A</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <td>B</td>
+      <td>20</td>
+    </tr>
+    <tr>
+      <td>C</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table></section>
+<section><h2>二级错误类型统计</h2><table class="dataframe data">
+  <thead>
+    <tr style="text-align: right;">
+      <th>错误类型</th>
+      <th>命中次数</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>B1</td>
+      <td>20</td>
+    </tr>
+    <tr>
+      <td>A1</td>
+      <td>2</td>
+    </tr>
+  </tbody>
+</table></section>
+<section><h2>每个二级错误类型代表性例子（每类 2 个）</h2><table class="dataframe data">
+  <thead>
+    <tr style="text-align: right;">
+      <th>错误类型</th>
+      <th>model</th>
+      <th>question_id</th>
+      <th>题目</th>
+      <th>删除原因</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>A1</td>
+      <td>GPT5.5</td>
+      <td>R6-Q0004</td>
+      <td>在DP接口硬件设计中，热插拔检测信号HPD的电平变化是如何被AUX通道电路感知并用于启动链路训练的？请简述HPD信号与AUX通信启动之间的时序关系和硬件触发逻辑。</td>
+      <td>题干原文称“热插拔检测信号HPD的电平变化是如何被AUX通道电路感知并用于启动链路训练”，前提错误。DisplayPort中HPD是独立于AUX通道的热插拔检测信号，由源端HPD检测逻辑感知；HPD有效后源端再通过AUX通道读取DPCD/EDID并配置链路训练，不能说HPD电平变化被AUX通道电路感知。</td>
+    </tr>
+    <tr>
+      <td>A1</td>
+      <td>GPT5.5</td>
+      <td>R6-Q0010</td>
+      <td>在储能系统双向DC/DC变换器中，高频变压器原边串联谐振电容与漏感构成的谐振网络，既用于软开关实现，又可能在轻载时引发电压尖峰导致MOSFET击穿。请结合串联谐振电路的阻抗相位与幅频特性，说明该谐振点随负载变化漂移的物理机制，并简述如何通过动态调节驱动频率来兼顾零电压开通与过压抑制。</td>
+      <td>题干原文要求说明“串联谐振电路”的“谐振点随负载变化漂移的物理机制”，前提错误。由串联谐振电容与漏感构成的理想串联谐振频率主要由L、C决定，负载变化主要改变品质因数、增益曲线和工作点，不会使LC固有谐振点本身随负载漂移；正确表述应为负载变化影响谐振网络等效增益、相位裕量或ZVS工作区间。</td>
+    </tr>
+    <tr>
+      <td>B1</td>
+      <td>GPT5.5</td>
+      <td>R6-Q0013</td>
+      <td>在储能变流器的功率板原理图中，某MOSFET驱动电路在栅极与源极之间并联了一个10kΩ电阻和一个10nF电容串联组成的RC网络，请简述这个RC网络在此处的主要作用，并说明你依据什么特征判断出它的功能。</td>
+      <td>参考答案原文称“该RC网络的主要作用是提供栅极主动放电回路”，并称其为“负压泄放型栅极钳位结构”，这是明确知识性错误。10kΩ电阻与10nF电容串联后跨接在MOSFET栅源之间，电容在直流上隔断，不能作为稳定的主动放电通路，也不是负压钳位；更合理的解释应是用于栅源间瞬态阻尼、抑制dv/dt/Miller耦合或振铃，具体功能还需结合驱动输出、下拉电阻和钳位器件位置判断。</td>
+    </tr>
+    <tr>
+      <td>B1</td>
+      <td>GPT5.5</td>
+      <td>R6-Q0014</td>
+      <td>在新能源领域常见的AC/DC电源产品中，如果传导骚扰测试在0.15MHz至0.5MHz频段出现明显峰值，且确认噪声源来自整流桥后的工频整流电流脉动，工程师通常会重点优化哪一类滤波电路的结构和接地方式来抑制该频段的差模干扰？请简述其作用原理。</td>
+      <td>参考答案原文称“X电容与差模电感构成的差模滤波电路结构及其接地方式”，并称“必须单点就近连接至前级整流地”，这是差模滤波机理错误。X电容用于跨接L/N差模通路，差模电感串在差模电流路径中，差模干扰抑制重点是线-线回路阻抗与回流路径，不应把X电容或差模滤波器描述成接到整流地的接地优化；接地更多关联共模/Y电容路径。</td>
+    </tr>
+  </tbody>
+</table></section>
+<section><h2>本轮题目主要出错点总结</h2><p>六轮题干侧主要问题集中在 A1 前提错误，共 2 次命中。典型问题是题干把独立信号链或固有物理量描述成错误机制，例如将 DisplayPort HPD 电平变化说成由 AUX 通道电路感知，或要求解释 LC 固有谐振点随负载漂移。这类问题会让候选人围绕错误前提作答，后续应重新出题而不是只修答案。本轮未发现 C 类重复问题。</p></section>
+<section><h2>本轮答案主要出错点总结</h2><p>六轮答案侧错误高度集中在 B1，共 20 次命中，说明回流内容的主要风险仍是第一层答案中的硬件知识、标准口径和物理机制错误。典型问题包括 MIPI D-PHY HS/LP 电气状态、DP AUX 物理层、RS485 DE 与 /RE 合并控制、GMII 总线位宽、容错 CAN 终端、LLC ZVS 依赖励磁电感电流、SiC MOSFET 体二极管属性、三极管放大区偏置、IGBT 栅极快速关断、二极管击穿电压温度系数、CTI 材料组别等。多数题干可保留，但答案必须重出并做标准或手册级校验。</p></section>
+<section><h2>后续重新出内容时应补充的规则</h2><p>重新出题：重新出题时先校验题干前提：信号链、协议层级、拓扑固有特性、控制对象和物理量之间不能混淆；不要把独立触发信号写成由通信通道感知，也不要把负载改变品质因数或工作点误写成固有谐振频率漂移。题干若要求解释机制，必须确保该机制在工程上成立。<br><br>重出答案：重新出答案时先重写第一层结论，并用标准、器件手册或基础电路机理校验关键表述。协议类题要区分物理层、编码层和事务封装层；功率拓扑题要区分拓扑本身、变压器隔离、器件电压应力和软开关能量来源；半导体与磁性器件题要校准温度系数、PN/肖特基结构、三极管工作区和栅极放电路径；安规题要区分爬电距离与电气间隙的决定因素。答案不追求扩写，但第一层不能有硬伤。</p></section>
+<section><h2>看板完整性自检</h2><table class="dataframe data">
+  <thead>
+    <tr style="text-align: right;">
+      <th>检查项</th>
+      <th>状态</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>三段 narrative 已填写</td>
+      <td>通过</td>
+    </tr>
+    <tr>
+      <td>HTML 完整性通过</td>
+      <td>通过</td>
+    </tr>
+    <tr>
+      <td>XLSX narrative sheet 状态均为已填写</td>
+      <td>通过</td>
+    </tr>
+    <tr>
+      <td>每个二级错误类型最多展示 2 个代表例子</td>
+      <td>通过</td>
+    </tr>
+    <tr>
+      <td>数量守恒：可保留+重新出题+重出答案=50</td>
+      <td>通过</td>
+    </tr>
+  </tbody>
+</table></section>
+</body></html>
