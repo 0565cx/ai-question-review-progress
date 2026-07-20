@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Round 6 Dashboard</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; margin: 24px; color: #1f2937; }
+    h1, h2, h3 { margin: 10px 0 12px; }
+    .cards { display: grid; grid-template-columns: repeat(3, minmax(140px, 220px)); gap: 12px; margin: 8px 0 18px; }
+    .card { border: 1px solid #e5e7eb; border-radius: 10px; padding: 12px; background: #fafafa; }
+    .card .k { font-size: 12px; color: #6b7280; }
+    .card .v { font-size: 24px; font-weight: 700; margin-top: 4px; }
+    table { border-collapse: collapse; width: 100%; margin: 8px 0 18px; }
+    th, td { border: 1px solid #e5e7eb; padding: 8px 10px; vertical-align: middle; }
+    th { background: #f9fafb; }
+    .legend span { margin-right: 12px; font-size: 13px; color: #374151; }
+    .mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; }
+    .ex { margin: 6px 0; color: #374151; }
+    .section-divider { border: 0; border-top: 2px solid #eef2f7; margin: 22px 0; }
+  </style>
+</head>
+<body>
+  <h1>Round 6 审核看板</h1>
+
+  <div class="cards">
+    <div class="card"><div class="k">A类错误</div><div class="v">11</div></div>
+    <div class="card"><div class="k">B类错误</div><div class="v">31</div></div>
+    <div class="card"><div class="k">C类错误</div><div class="v">1</div></div>
+  </div>
+
+  <h2>本轮题目主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">六轮回流审核共审核43题，GPT5.5与Gemini3.1pro两模型完成4个批次。初始GPT5.5在R6-B001偏严，经过两次校准后删除率与Gemini收敛到一致水平。题干侧A类累计11次，主要集中在LDO压差工况设定不成立、把芯片内部偏置/基准/环路设计写成板级硬件题、以及串扰题干把近端/远端差异误写成能量发生位置等技术前提错误。C类累计1次，主要出现在Type-C CC角色识别基础题之间，核心考点和作答路径高度重复。</div>
+<h2>本轮答案主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">答案侧仍是本轮主要风险来源，B类累计31次，集中在Type-C/PD的CC阈值、vSafe0V/vSafe5V、Rp/Rd/Ra角色混淆，PD 20V输入与低压钳位保护矛盾，BLE与2.4GHz Wi-Fi同频段却试图用带通滤波强抑制，USB TVS击穿/钳位电压口径错误，SPI片选默认电平、DDR DQ双向与ODT、等长基准、阻抗敏感方向、FCC传导骚扰频段等基础事实错误。本轮两模型合计删除判定34次，汇总后可保留22题、需重新出题9题、保留题干重出答案12题。</div>
+<h2>后续重新出内容时应补充的规则</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">【重新出题】<br/>重新出题时必须先校验工况是否物理成立，例如LDO输入/输出/dropout关系、PD 20V合法输入与保护阈值、串扰观测端与耦合位置等。硬件岗位题应聚焦板级电源、接口、ESD/EMC、SI/PI、射频前端、认证整改和测试定位；不要要求候选人修改片上偏置路径、带隙基准补偿或内部控制环路。相似Type-C CC基础识别题要合并或改成不同失效场景，避免重复。<br/><br/>【重出答案】<br/>重出答案时按标准口径逐项自检：Type-C有效CC由Rp/Rd分压，Ra用于线缆/附件识别场景；vSafe0V/vSafe5V属于VBUS状态，不是CC阈值；兼容PD 20V不能用6.8V钳位承受正常VBUS；BLE与Wi-Fi 2.4GHz频段重叠不能靠普通带通滤波分离；USB TVS的VRWM/VBR/VC不能低于正常信号导致误钳位；SPI常见低有效CS默认上拉；DDR DQ是双向信号并需结合ODT/拓扑；等长以最长线或目标时延为基准；FCC/CE传导频段和QP/AVG检波必须按适用标准核对。</div>
+
+  <hr class="section-divider" />
+
+  <h2>模型进度与删除率</h2>
+  <table>
+    <thead>
+      <tr><th>Model</th><th>批次完成</th><th>完成率</th><th>删除率</th><th>主错误</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>GPT5.5</td><td style='text-align:center'>2/2</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:39.5%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">39.5%</span></td><td style='text-align:center'>B>A>C</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>2/2</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:39.5%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">39.5%</span></td><td style='text-align:center'>B>A</td></tr>
+    </tbody>
+  </table>
+
+  <h2>批次状态矩阵</h2>
+  <div class="legend">
+    <span>✓ done</span><span>… running</span><span>○ pending</span><span>! blocked</span><span>x failed</span>
+  </div>
+  <table>
+    <thead><tr><th>Model</th><th>R6-B001</th><th>R6-B002</th></tr></thead>
+    <tbody><tr><td>GPT5.5</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td></tr></tbody>
+  </table>
+
+  <h2>细分错误统计（A1/B1...）</h2>
+  <table>
+    <thead><tr><th>错误子类</th><th>数量</th></tr></thead>
+    <tbody><tr><td>A1</td><td style='text-align:center'>9</td></tr><tr><td>A2</td><td style='text-align:center'>2</td></tr><tr><td>B1</td><td style='text-align:center'>29</td></tr><tr><td>B2</td><td style='text-align:center'>1</td></tr><tr><td>B4</td><td style='text-align:center'>1</td></tr><tr><td>C2</td><td style='text-align:center'>1</td></tr></tbody>
+  </table>
+
+  <h3>细分错误示例（每类2条）</h3>
+  <table>
+    <thead><tr><th>错误子类</th><th>例1-题号</th><th>例1-题目</th><th>例1-理由</th><th>例2-题号</th><th>例2-题目</th><th>例2-理由</th></tr></thead>
+    <tbody><tr><td>A1</td><td>Q001</td><td>在为低功耗可穿戴设备设计供电电路时，若选用LDO为传感器模块提供1.2伏电源，输入来自单节锂离子电池（工作电压范围3.0伏至4.2伏），当电池电压降至3.2伏左右时，LDO输出开始不稳定。请简述此时影响其正常工作的关键参数及该参数变化带来的直接后果。</td><td>GPT5.5: 题干设定“输入来自单节锂离子电池3.0伏至4.2伏、LDO输出1.2伏，当电池电压降至3.2伏左右时输出开始不稳定”不符合LDO压差机制。1.2V输出的LDO在3.2V输入下仍有约2V余量，除非器件异常或前级另有压降，不能归因于压差不足；正确口径应是输入电压接近Vout+dropout时才会失稳。；Gemini3.1pro: 题干常识错误：1.2V输出的LDO在3.2V输入时压差高达2.0V，远超常规LDO的压差极限（通常为百毫伏级），根本不会因为压差不足导致输出不稳定。答案解释完全违背物理常识。</td><td>Q001</td><td>在为低功耗可穿戴设备设计供电电路时，若选用LDO为传感器模块提供1.2伏电源，输入来自单节锂离子电池（工作电压范围3.0伏至4.2伏），当电池电压降至3.2伏左右时，LDO输出开始不稳定。请简述此时影响其正常工作的关键参数及该参数变化带来的直接后果。</td><td>GPT5.5: 题干设定“输入来自单节锂离子电池3.0伏至4.2伏、LDO输出1.2伏，当电池电压降至3.2伏左右时输出开始不稳定”不符合LDO压差机制。1.2V输出的LDO在3.2V输入下仍有约2V余量，除非器件异常或前级另有压降，不能归因于压差不足；正确口径应是输入电压接近Vout+dropout时才会失稳。；Gemini3.1pro: 题干常识错误：1.2V输出的LDO在3.2V输入时压差高达2.0V，远超常规LDO的压差极限（通常为百毫伏级），根本不会因为压差不足导致输出不稳定。答案解释完全违背物理常识。</td></tr><tr><td>A2</td><td>Q012</td><td>在一款多模无线通信模组中，射频收发链路与基带ADC共用同一片上基准源，实测发现：低温启动时基准建立时间过长导致首包接收失败；而高温高湿环境下，基准输出电压缓慢漂移引发校准参数失效。请简述你如何通过重构偏置电流的温度补偿路径、设计分段式启动控制逻辑，并利用片上已有电源监控信号实现动态偏置校准，协同解决冷态响应滞后与热态长期漂移这对矛盾指标。</td><td>GPT5.5: 题干要求“重构偏置电流的温度补偿路径、设计分段式启动控制逻辑、利用片上已有电源监控信号实现动态偏置校准”，属于芯片内部模拟/IC设计范畴，不是消费电子/通信/智能设备硬件工程师常见板级设计工作；正确岗位口径应聚焦基准源选型、供电去耦、启动时序、温漂验证和板级补偿。；Gemini3.1pro: 技术前提与岗位偏离：'重构偏置电流的温度补偿路径'属于芯片内部（IC设计）电路结构的修改，完全超出板级硬件工程师的操作能力和岗位日常实践，属于脱离实际的神机妙算。</td><td>Q013</td><td>某智能可穿戴设备采用单节锂电池供电，其心率传感器模拟前端依赖高精度基准实现微伏级信号调理。量产测试中发现：在电池电压从4.2V降至3.4V过程中，基准温漂系数恶化了3倍；同时当屏幕背光突发点亮时，基准输出出现25μs延迟的12mV下冲，造成一次心跳波形截断。请简述你如何通过解耦偏置电流的电压敏感路径、引入基于电源变化率的前馈补偿机制，并复用已有的充电管理芯片电压采样通路实现闭环稳压，同步优化宽压域下的温漂稳定性与瞬态抗扰能力。</td><td>GPT5.5: 题干要求“解耦偏置电流的电压敏感路径、引入基于电源变化率的前馈补偿机制、复用采样通路实现闭环稳压”，核心动作偏芯片/模拟环路设计，不符合硬件工程师常规板级职责；正确口径应是从电量计/PMIC选型、基准供电隔离、NTC采样、负载瞬态和板级验证入手。；Gemini3.1pro: 技术脱离实际：'解耦偏置电流的电压敏感路径'为芯片内部电路设计行为，非板级硬件所能修改。同时依靠外部电量计做系统级的前馈补偿来应对25微秒级的基准下冲也违背工程常识。</td></tr><tr><td>B1</td><td>Q001</td><td>在为低功耗可穿戴设备设计供电电路时，若选用LDO为传感器模块提供1.2伏电源，输入来自单节锂离子电池（工作电压范围3.0伏至4.2伏），当电池电压降至3.2伏左右时，LDO输出开始不稳定。请简述此时影响其正常工作的关键参数及该参数变化带来的直接后果。</td><td>GPT5.5: 题干设定“输入来自单节锂离子电池3.0伏至4.2伏、LDO输出1.2伏，当电池电压降至3.2伏左右时输出开始不稳定”不符合LDO压差机制。1.2V输出的LDO在3.2V输入下仍有约2V余量，除非器件异常或前级另有压降，不能归因于压差不足；正确口径应是输入电压接近Vout+dropout时才会失稳。；Gemini3.1pro: 题干常识错误：1.2V输出的LDO在3.2V输入时压差高达2.0V，远超常规LDO的压差极限（通常为百毫伏级），根本不会因为压差不足导致输出不稳定。答案解释完全违背物理常识。</td><td>Q009</td><td>在USB Type-C接口的移动电源与手机连接时，双方如何通过CC引脚上的电压值来判断各自的角色（供电方或受电方）？请简述这一识别过程的核心依据。</td><td>Gemini3.1pro: Type-C协议参数严重错误：Sink端（受电方）检测到Rp上拉的电压范围不可能是'高于2.0V且低于3.6V'（实际5V上拉经Rp与端内Rd分压，最高阈值在2.04V左右），答案数据严重偏离Type-C规范。</td></tr><tr><td>B2</td><td>Q013</td><td>某智能可穿戴设备采用单节锂电池供电，其心率传感器模拟前端依赖高精度基准实现微伏级信号调理。量产测试中发现：在电池电压从4.2V降至3.4V过程中，基准温漂系数恶化了3倍；同时当屏幕背光突发点亮时，基准输出出现25μs延迟的12mV下冲，造成一次心跳波形截断。请简述你如何通过解耦偏置电流的电压敏感路径、引入基于电源变化率的前馈补偿机制，并复用已有的充电管理芯片电压采样通路实现闭环稳压，同步优化宽压域下的温漂稳定性与瞬态抗扰能力。</td><td>GPT5.5: 题干要求“解耦偏置电流的电压敏感路径、引入基于电源变化率的前馈补偿机制、复用采样通路实现闭环稳压”，核心动作偏芯片/模拟环路设计，不符合硬件工程师常规板级职责；正确口径应是从电量计/PMIC选型、基准供电隔离、NTC采样、负载瞬态和板级验证入手。；Gemini3.1pro: 技术脱离实际：'解耦偏置电流的电压敏感路径'为芯片内部电路设计行为，非板级硬件所能修改。同时依靠外部电量计做系统级的前馈补偿来应对25微秒级的基准下冲也违背工程常识。</td><td>nan</td><td>nan</td><td>nan</td></tr><tr><td>B4</td><td>Q012</td><td>在一款多模无线通信模组中，射频收发链路与基带ADC共用同一片上基准源，实测发现：低温启动时基准建立时间过长导致首包接收失败；而高温高湿环境下，基准输出电压缓慢漂移引发校准参数失效。请简述你如何通过重构偏置电流的温度补偿路径、设计分段式启动控制逻辑，并利用片上已有电源监控信号实现动态偏置校准，协同解决冷态响应滞后与热态长期漂移这对矛盾指标。</td><td>GPT5.5: 题干要求“重构偏置电流的温度补偿路径、设计分段式启动控制逻辑、利用片上已有电源监控信号实现动态偏置校准”，属于芯片内部模拟/IC设计范畴，不是消费电子/通信/智能设备硬件工程师常见板级设计工作；正确岗位口径应聚焦基准源选型、供电去耦、启动时序、温漂验证和板级补偿。；Gemini3.1pro: 技术前提与岗位偏离：'重构偏置电流的温度补偿路径'属于芯片内部（IC设计）电路结构的修改，完全超出板级硬件工程师的操作能力和岗位日常实践，属于脱离实际的神机妙算。</td><td>nan</td><td>nan</td><td>nan</td></tr><tr><td>C2</td><td>Q024</td><td>当一个支持USB PD协议的充电器与手机通过Type-C线缆连接时，双方如何通过CC引脚上的电压来判断彼此的角色（供电方或受电方）？请简述这一判断过程的核心依据。</td><td>GPT5.5: 原答案角色判定方向写反：称“某设备CC测得0.8V–2.0V，说明对端接Rd，该设备即为受电方；测得3.4V–4.6V说明对端接Rp，该设备即为供电方”错误。实际Source端通过自身Rp与对端Rd形成电压后识别对端为Sink，自己是供电方；Sink端检测对端Rp后识别自己为受电方。同时本题与R6Q0009均询问Type-C连接双方如何通过CC电压判断供电/受电角色，候选人核心作答高度重复，后出现题应删除。；Gemini3.1pro: 参数错误：Type-C受电方（Sink）检测对端供电能力的CC电平分压不可能达到'3.4V~4.6V'（实际规范最高也在2.04V左右），答案中的识别电压阈值严重错误。</td><td>nan</td><td>nan</td><td>nan</td></tr></tbody>
+  </table>
+</body>
+</html>

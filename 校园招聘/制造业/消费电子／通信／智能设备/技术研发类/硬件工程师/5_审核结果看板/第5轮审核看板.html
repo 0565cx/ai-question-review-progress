@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Round 5 Dashboard</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; margin: 24px; color: #1f2937; }
+    h1, h2, h3 { margin: 10px 0 12px; }
+    .cards { display: grid; grid-template-columns: repeat(3, minmax(140px, 220px)); gap: 12px; margin: 8px 0 18px; }
+    .card { border: 1px solid #e5e7eb; border-radius: 10px; padding: 12px; background: #fafafa; }
+    .card .k { font-size: 12px; color: #6b7280; }
+    .card .v { font-size: 24px; font-weight: 700; margin-top: 4px; }
+    table { border-collapse: collapse; width: 100%; margin: 8px 0 18px; }
+    th, td { border: 1px solid #e5e7eb; padding: 8px 10px; vertical-align: middle; }
+    th { background: #f9fafb; }
+    .legend span { margin-right: 12px; font-size: 13px; color: #374151; }
+    .mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; }
+    .ex { margin: 6px 0; color: #374151; }
+    .section-divider { border: 0; border-top: 2px solid #eef2f7; margin: 22px 0; }
+  </style>
+</head>
+<body>
+  <h1>Round 5 审核看板</h1>
+
+  <div class="cards">
+    <div class="card"><div class="k">A类错误</div><div class="v">8</div></div>
+    <div class="card"><div class="k">B类错误</div><div class="v">37</div></div>
+    <div class="card"><div class="k">C类错误</div><div class="v">14</div></div>
+  </div>
+
+  <h2>本轮题目主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">五轮回流审核共审核86题，GPT5.5与Gemini3.1pro两模型完成6个批次，未出现需要隔离重跑的质量漂移。题干侧A类累计8次，主要集中在把模拟IC内部带隙基准、偏置节点、自适应反馈等芯片设计任务写成板级硬件题，以及少量把Type-C CC当普通GPIO电平转换、蓝牙Host/GATT/HCI协议栈调度等纯软件问题放入硬件岗位。C类累计14次，集中在电源平面分割、高速差分等长、参考平面连续性、Type-C CC识别、串扰机理等相邻题目的核心作答路径同质化。</div>
+<h2>本轮答案主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">答案侧仍是五轮主要问题来源，B类累计37次，表现为LDO效率/dropout机理倒置、USB-C/PD中CC与VBUS vSafe概念混淆、低压TVS钳位合法20V VBUS、CC/Rp/Rd和音频附件Ra识别错误、USB/SPI/I2C基础电平和上拉下拉逻辑错误、DDR端接和等长基准错误、天线谐振与串扰机理判断反向，以及RoHS/SRRC/FCC/CCC等认证标准口径错误。本轮两模型合计删除判定57次，汇总后可保留43题、需重新出题19题、保留题干重出答案24题。</div>
+<h2>后续重新出内容时应补充的规则</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">【重新出题】<br/>重新出题时要把岗位边界写清楚：板级硬件工程师题应围绕电源、接口、ESD/EMC、射频前端、PCB叠层、信号完整性、认证整改和硬件排查展开；芯片内部偏置/带隙/相位补偿、蓝牙Host/GATT/HCI状态机、纯固件调度和代码实现应改投相应岗位。相近题必须拉开失效现象、接口对象、候选人输出和排查手段，避免只换场景重复考同一共阻抗、等长或CC识别路径。<br/><br/>【重出答案】<br/>重出答案必须逐项校验标准和基础电路口径：LDO效率与dropout、Type-C Rp/Rd/Ra和CC阈值、PD vSafe0V/vSafe5V与VBUS而非CC、VBUS OVP/TVS耐压、USB/SPI/I2C上拉下拉逻辑、DDR/LPDDR ODT和等长基准、NEXT/FEXT机理、天线匹配方向、RoHS 10项、SRRC模块/整机条件、FCC/CE传导频段和检波方式。答案三层要直接回应题干，避免把不可用的工程手段写成推荐方案。</div>
+
+  <hr class="section-divider" />
+
+  <h2>模型进度与删除率</h2>
+  <table>
+    <thead>
+      <tr><th>Model</th><th>批次完成</th><th>完成率</th><th>删除率</th><th>主错误</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>GPT5.5</td><td style='text-align:center'>3/3</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:37.2%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">37.2%</span></td><td style='text-align:center'>B>A</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>3/3</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:29.1%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">29.1%</span></td><td style='text-align:center'>C>B>A</td></tr>
+    </tbody>
+  </table>
+
+  <h2>批次状态矩阵</h2>
+  <div class="legend">
+    <span>✓ done</span><span>… running</span><span>○ pending</span><span>! blocked</span><span>x failed</span>
+  </div>
+  <table>
+    <thead><tr><th>Model</th><th>R5-B001</th><th>R5-B002</th><th>R5-B003</th></tr></thead>
+    <tbody><tr><td>GPT5.5</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td></tr></tbody>
+  </table>
+
+  <h2>细分错误统计（A1/B1...）</h2>
+  <table>
+    <thead><tr><th>错误子类</th><th>数量</th></tr></thead>
+    <tbody><tr><td>A1</td><td style='text-align:center'>2</td></tr><tr><td>A2</td><td style='text-align:center'>6</td></tr><tr><td>A3</td><td style='text-align:center'>1</td></tr><tr><td>B1</td><td style='text-align:center'>37</td></tr><tr><td>B2</td><td style='text-align:center'>1</td></tr><tr><td>B3</td><td style='text-align:center'>1</td></tr><tr><td>C2</td><td style='text-align:center'>14</td></tr></tbody>
+  </table>
+
+  <h3>细分错误示例（每类2条）</h3>
+  <table>
+    <thead><tr><th>错误子类</th><th>例1-题号</th><th>例1-题目</th><th>例1-理由</th><th>例2-题号</th><th>例2-题目</th><th>例2-理由</th></tr></thead>
+    <tbody><tr><td>A1</td><td>Q005</td><td>某无线耳机充电盒采用LDO给蓝牙音频芯片提供1.8伏电源，输入来自锂电池（标称3.7伏，放电截止约3.0伏）。实测发现：电池电压高于3.3伏时LDO发热可控，低于3.3伏后效率显著变差且易触发热保护。请简述造成这一现象的关键电气参数及其物理原因。</td><td>GPT5.5: 题干称“电池电压低于3.3伏后效率显著变差且易触发热保护”，与LDO基本机理不符。1.8V输出下输入电压从3.3V降到3.0V时压差减小，线性损耗通常下降、效率上升；除非接近 dropout 或负载异常，不会因低压差本身导致热保护。参考答案也错误解释为“压差缩小…功耗分配向热损耗偏移”。；Gemini3.1pro: 事实错误：3.3V输入1.8V输出压差高达1.5V，远未达到LDO的最小压差阈值；且随输入电压下降，LDO的效率（Vout/Vin）反而应当升高，绝不会出现“效率显著变差且触发热保护”的逻辑倒置现象。</td><td>Q031</td><td>在一款支持USB-C接口的智能音箱主板中，主控芯片的GPIO工作电压为1.8伏，而USB-C接口的CC引脚检测逻辑需要兼容5伏电平。当设计这两个电压域之间的电平转换电路时，为什么通常选用带方向控制的双电源电平转换芯片，而不是单向二极管加电阻的简单方案？请简单说说。</td><td>GPT5.5: 题干把USB-C CC检测逻辑描述为需要在1.8V GPIO与5V CC之间做普通数字电平转换，技术前提不成立。CC线是Type-C配置通道，承担Rp/Rd模拟分压、方向/角色检测和PD BMC通信，不应按普通GPIO双向数字电平线用方向控制电平转换芯片处理。参考答案也错误称CC需主控主动驱动并满足普通电平转换规范。；Gemini3.1pro: 工程实践错误：USB-C的CC引脚若支持PD通信，具备严格的BMC交流编码和边界阻抗规范，若直接插入带方向控制的通用双向电平转换芯片（如TXS系列），将严重破坏线路寄生参数并导致PD通信解码失败，实际工程中不得以此设计。</td></tr><tr><td>A2</td><td>Q015</td><td>一款便携式医疗监测设备在电池供电下需长期稳定采集微弱生理信号，其前端仪表放大器的基准电压由带隙电路生成。实测发现：当环境温度从25℃升至60℃时，系统零点漂移超限；同时在射频模块突发发射瞬间，基准输出叠加了80mV瞬态跌落，导致ADC采样码值跳变。请简述你如何在不增加外部器件的前提下，通过重构偏置电流路径、引入局部动态补偿和调整启动/稳压机制，协同改善温漂与瞬态响应这两个相互制约的指标。</td><td>GPT5.5: 题干要求“在不增加外部器件的前提下，通过重构偏置电流路径、引入局部动态补偿和调整启动/稳压机制”改善片上带隙基准，核心是模拟IC内部电路设计，不是消费电子/通信/智能设备硬件工程师常见板级岗位口径。；Gemini3.1pro: 偏离硬件工程师岗位范畴：题干及答案要求在“不增加外部器件前提下”通过重构偏置电流路径、本地电荷泵补偿等手段解决，此属于典型的集成电路（模拟IC）芯片内部电路级设计手段，而非板级硬件设计。</td><td>Q015</td><td>一款便携式医疗监测设备在电池供电下需长期稳定采集微弱生理信号，其前端仪表放大器的基准电压由带隙电路生成。实测发现：当环境温度从25℃升至60℃时，系统零点漂移超限；同时在射频模块突发发射瞬间，基准输出叠加了80mV瞬态跌落，导致ADC采样码值跳变。请简述你如何在不增加外部器件的前提下，通过重构偏置电流路径、引入局部动态补偿和调整启动/稳压机制，协同改善温漂与瞬态响应这两个相互制约的指标。</td><td>GPT5.5: 题干要求“在不增加外部器件的前提下，通过重构偏置电流路径、引入局部动态补偿和调整启动/稳压机制”改善片上带隙基准，核心是模拟IC内部电路设计，不是消费电子/通信/智能设备硬件工程师常见板级岗位口径。；Gemini3.1pro: 偏离硬件工程师岗位范畴：题干及答案要求在“不增加外部器件前提下”通过重构偏置电流路径、本地电荷泵补偿等手段解决，此属于典型的集成电路（模拟IC）芯片内部电路级设计手段，而非板级硬件设计。</td></tr><tr><td>A3</td><td>Q075</td><td>当一款支持蓝牙5.3的TWS耳机在多设备快速切换场景下，出现配对后音频断续、重连延迟超2秒的现象，而经典蓝牙设备无此问题，请结合蓝牙协议栈中主机与控制器的分工机制，分析该现象最可能发生在哪一层，并说明你的验证思路。</td><td>GPT5.5: 题干要求结合蓝牙协议栈主机与控制器分工分析多设备切换、配对后音频断续和重连延迟，核心落在Host/GAP/GATT/HCI日志、密钥管理和连接状态机，属于纯协议栈/固件软件问题，不是硬件工程师面试中常见硬件设计、板级调试或射频硬件口径。；Gemini3.1pro: 偏离硬件岗位范畴：题干考查的是蓝牙主机（Host）层的协议栈逻辑分配、状态机与软件调试方法，完全属于固件/嵌入式软件工程师的专业工作范畴，非硬件岗位职责。</td><td>nan</td><td>nan</td><td>nan</td></tr><tr><td>B1</td><td>Q005</td><td>某无线耳机充电盒采用LDO给蓝牙音频芯片提供1.8伏电源，输入来自锂电池（标称3.7伏，放电截止约3.0伏）。实测发现：电池电压高于3.3伏时LDO发热可控，低于3.3伏后效率显著变差且易触发热保护。请简述造成这一现象的关键电气参数及其物理原因。</td><td>GPT5.5: 题干称“电池电压低于3.3伏后效率显著变差且易触发热保护”，与LDO基本机理不符。1.8V输出下输入电压从3.3V降到3.0V时压差减小，线性损耗通常下降、效率上升；除非接近 dropout 或负载异常，不会因低压差本身导致热保护。参考答案也错误解释为“压差缩小…功耗分配向热损耗偏移”。；Gemini3.1pro: 事实错误：3.3V输入1.8V输出压差高达1.5V，远未达到LDO的最小压差阈值；且随输入电压下降，LDO的效率（Vout/Vin）反而应当升高，绝不会出现“效率显著变差且触发热保护”的逻辑倒置现象。</td><td>Q005</td><td>某无线耳机充电盒采用LDO给蓝牙音频芯片提供1.8伏电源，输入来自锂电池（标称3.7伏，放电截止约3.0伏）。实测发现：电池电压高于3.3伏时LDO发热可控，低于3.3伏后效率显著变差且易触发热保护。请简述造成这一现象的关键电气参数及其物理原因。</td><td>GPT5.5: 题干称“电池电压低于3.3伏后效率显著变差且易触发热保护”，与LDO基本机理不符。1.8V输出下输入电压从3.3V降到3.0V时压差减小，线性损耗通常下降、效率上升；除非接近 dropout 或负载异常，不会因低压差本身导致热保护。参考答案也错误解释为“压差缩小…功耗分配向热损耗偏移”。；Gemini3.1pro: 事实错误：3.3V输入1.8V输出压差高达1.5V，远未达到LDO的最小压差阈值；且随输入电压下降，LDO的效率（Vout/Vin）反而应当升高，绝不会出现“效率显著变差且触发热保护”的逻辑倒置现象。</td></tr><tr><td>B2</td><td>Q031</td><td>在一款支持USB-C接口的智能音箱主板中，主控芯片的GPIO工作电压为1.8伏，而USB-C接口的CC引脚检测逻辑需要兼容5伏电平。当设计这两个电压域之间的电平转换电路时，为什么通常选用带方向控制的双电源电平转换芯片，而不是单向二极管加电阻的简单方案？请简单说说。</td><td>GPT5.5: 题干把USB-C CC检测逻辑描述为需要在1.8V GPIO与5V CC之间做普通数字电平转换，技术前提不成立。CC线是Type-C配置通道，承担Rp/Rd模拟分压、方向/角色检测和PD BMC通信，不应按普通GPIO双向数字电平线用方向控制电平转换芯片处理。参考答案也错误称CC需主控主动驱动并满足普通电平转换规范。；Gemini3.1pro: 工程实践错误：USB-C的CC引脚若支持PD通信，具备严格的BMC交流编码和边界阻抗规范，若直接插入带方向控制的通用双向电平转换芯片（如TXS系列），将严重破坏线路寄生参数并导致PD通信解码失败，实际工程中不得以此设计。</td><td>nan</td><td>nan</td><td>nan</td></tr><tr><td>B3</td><td>Q028</td><td>在智能手环量产前的老化寿命评估中，若发现电池供电的主控电路在连续充放电循环200次后，待机功耗出现不可逆上升，这种退化现象主要与哪种失效机理相关？请简述该机理在消费类锂离子电池系统中的典型表现。</td><td>GPT5.5: 题干问“主控电路待机功耗不可逆上升”的失效机理，参考答案把主因归结为电池SEI膜增长。SEI增长会导致电池内阻上升、容量衰减、自放电变化，但不能直接解释主控电路自身待机电流不可逆升高；答案将电池老化机理与板级主控待机功耗异常混为一谈。；Gemini3.1pro: 逻辑与事实错误：电池老化（SEI膜增厚）导致的内阻上升主要在毫欧至欧姆级别，在待机状态下的极微小电流（通常微安级）环境中，因内阻引起的压降微乎其微，不可能导致“电源管理芯片检测到异常压降”从而表现为“主控待机功耗不可逆上升”。</td><td>nan</td><td>nan</td><td>nan</td></tr><tr><td>C2</td><td>Q007</td><td>在一款多核处理器的智能音箱主板中，数字电源和模拟音频电源共用同一层内电层但分属不同电压域。进行电源平面分割时，主要需要避免哪类电流路径引起的噪声串扰？请简述该电流路径如何通过公共参考路径影响音频信噪比。</td><td>Gemini3.1pro: 与R5Q0006核心考点完全一致：均考查通过电源平面分割来缓解高频/大电流电路与敏感电路间的共阻抗瞬态耦合噪声。</td><td>Q008</td><td>在带有高速接口（如USB3.2）和低噪声传感器信号链的智能家居中控板上，若数字电源与传感器模拟电源共享同一铜箔层但未做隔离分割，最可能因何种物理机制导致传感器采集数据出现周期性纹波？请简述该机制中电源回流路径不连续所起的作用。</td><td>Gemini3.1pro: 与R5Q0006、R5Q0007核心考点完全一致：均考查未做电源隔离带来的共阻抗压降波动与周期性纹波干扰。</td></tr></tbody>
+  </table>
+</body>
+</html>

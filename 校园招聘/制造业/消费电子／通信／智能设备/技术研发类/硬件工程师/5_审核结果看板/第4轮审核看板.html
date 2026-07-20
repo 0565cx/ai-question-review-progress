@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Round 4 Dashboard</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; margin: 24px; color: #1f2937; }
+    h1, h2, h3 { margin: 10px 0 12px; }
+    .cards { display: grid; grid-template-columns: repeat(3, minmax(140px, 220px)); gap: 12px; margin: 8px 0 18px; }
+    .card { border: 1px solid #e5e7eb; border-radius: 10px; padding: 12px; background: #fafafa; }
+    .card .k { font-size: 12px; color: #6b7280; }
+    .card .v { font-size: 24px; font-weight: 700; margin-top: 4px; }
+    table { border-collapse: collapse; width: 100%; margin: 8px 0 18px; }
+    th, td { border: 1px solid #e5e7eb; padding: 8px 10px; vertical-align: middle; }
+    th { background: #f9fafb; }
+    .legend span { margin-right: 12px; font-size: 13px; color: #374151; }
+    .mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; }
+    .ex { margin: 6px 0; color: #374151; }
+    .section-divider { border: 0; border-top: 2px solid #eef2f7; margin: 22px 0; }
+  </style>
+</head>
+<body>
+  <h1>Round 4 审核看板</h1>
+
+  <div class="cards">
+    <div class="card"><div class="k">A类错误</div><div class="v">14</div></div>
+    <div class="card"><div class="k">B类错误</div><div class="v">100</div></div>
+    <div class="card"><div class="k">C类错误</div><div class="v">18</div></div>
+  </div>
+
+  <h2>本轮题目主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">四轮回流审核共审核218题，GPT5.5与Gemini3.1pro两模型完成12个批次，并对最后批次发生的过严/过松漂移完成隔离和校准。题干侧A类累计14次，主要集中在把纯协议栈/固件调度问题包装成硬件工程师题、题干要求在现场调试阶段调整已固化的PCB物理参数、以及把同频干扰等无法由硬件滤波直接解决的场景设为硬件方案题。重复/同质化C类累计18次，本轮主要风险不再是重复，而是Type-C/PD、高速信号、RF共存和认证合规等题目中的技术前提是否准确。</div>
+<h2>本轮答案主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">答案侧仍是四轮主要风险来源，B类累计100次，集中在Type-C Rp/Rd角色写反、vSafe0V/vSafe5V混淆、CC线上不合理滤波网络、DDR DQ单双向理解错误、NEXT/FEXT机理和极性写反、BLE/Wi-Fi信道数量或非重叠信道表述错误、天线谐振与阻抗匹配方向判断错误，以及RoHS/SRRC/UL/FCC等法规认证口径绝对化或过时。本轮两模型合计删除判定122次，汇总后可保留132题、需重新出题25题、保留题干重出答案61题。</div>
+<h2>后续重新出内容时应补充的规则</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">【重新出题】<br/>重新出题时要确认考点确实属于消费电子硬件工程师可判断、可调试、可落地的职责范围。协议栈扫描窗口、连接间隔、Host/L2CAP/GATT调度等纯固件内容应改投软件岗位；同频干扰、Alt Mode识别、PCB物理参数现场调整等题干必须先校验工程前提，不要把不可由题目设定手段解决的问题写成硬件方案题。相近题要明确接口、频段、物理层、失效现象和候选人输出层级差异。<br/><br/>【重出答案】<br/>重出答案时优先校验事实参数和标准口径：Type-C Source/Sink 的 Rp/Rd、PD vSafe0V/vSafe5V、eMarker限流逻辑、CC线容值和ESD/OVP约束、DDR DQ双向与ODT、趋肤效应和串扰机理、BLE 40信道与Wi-Fi 2.4GHz非重叠信道、天线谐振偏移与感/容性判断、RoHS 10项、SRRC/UL/FCC/CE适用条件。答案应围绕题干目标展开，避免把邻道滤波套到同频干扰、把AC安规滤波套到USB低压接口、或把认证/法规写成无条件强制结论。</div>
+
+  <hr class="section-divider" />
+
+  <h2>模型进度与删除率</h2>
+  <table>
+    <thead>
+      <tr><th>Model</th><th>批次完成</th><th>完成率</th><th>删除率</th><th>主错误</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>GPT5.5</td><td style='text-align:center'>6/6</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:32.1%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">32.1%</span></td><td style='text-align:center'>B>A>C</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>6/6</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:23.9%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">23.9%</span></td><td style='text-align:center'>B>C>A</td></tr>
+    </tbody>
+  </table>
+
+  <h2>批次状态矩阵</h2>
+  <div class="legend">
+    <span>✓ done</span><span>… running</span><span>○ pending</span><span>! blocked</span><span>x failed</span>
+  </div>
+  <table>
+    <thead><tr><th>Model</th><th>R4-B001</th><th>R4-B002</th><th>R4-B003</th><th>R4-B004</th><th>R4-B005</th><th>R4-B006</th></tr></thead>
+    <tbody><tr><td>GPT5.5</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td></tr></tbody>
+  </table>
+
+  <h2>细分错误统计（A1/B1...）</h2>
+  <table>
+    <thead><tr><th>错误子类</th><th>数量</th></tr></thead>
+    <tbody><tr><td>A1</td><td style='text-align:center'>9</td></tr><tr><td>A2</td><td style='text-align:center'>2</td></tr><tr><td>A3</td><td style='text-align:center'>3</td></tr><tr><td>B1</td><td style='text-align:center'>94</td></tr><tr><td>B2</td><td style='text-align:center'>6</td></tr><tr><td>B3</td><td style='text-align:center'>7</td></tr><tr><td>B6</td><td style='text-align:center'>3</td></tr><tr><td>C1</td><td style='text-align:center'>1</td></tr><tr><td>C2</td><td style='text-align:center'>18</td></tr></tbody>
+  </table>
+
+  <h3>细分错误示例（每类2条）</h3>
+  <table>
+    <thead><tr><th>错误子类</th><th>例1-题号</th><th>例1-题目</th><th>例1-理由</th><th>例2-题号</th><th>例2-题目</th><th>例2-理由</th></tr></thead>
+    <tbody><tr><td>A1</td><td>Q005</td><td>某无线耳机在典型使用场景下，主动降噪开启时工作电流为15毫安，关闭时为8毫安；单次充电后实测续航为24小时（含盒充），已知充电盒自身电池容量为300毫安时，且能为耳机完整充满电约3次。请简单说说，如何结合耳机单次续航时间与充电盒的补电能力，反向估算耳机单节电池的标称容量。</td><td>GPT5.5: 题干原文“单次充电后实测续航为24小时（含盒充）”把“单次充电后”和“含盒充”混在一起，逻辑不严谨；参考答案第一层又解释为“耳机脱离充电盒独立工作的持续放电时间”，与题干“含盒充”相矛盾。正确应区分耳机单次离盒续航、总续航以及充电盒补电次数后再估算单节电池容量。</td><td>Q007</td><td>某蓝牙耳机充电仓使用LDO给主控芯片提供1.2伏电压，输入来自升压后的锂电池电压（范围3.3伏至4.4伏）。在实际工作时发现，当输入电压接近3.3伏时LDO温升明显高于输入为4.4伏时，这与压差和功耗的关系是怎样的？请简单说说。</td><td>GPT5.5: 题干原文称1.2V LDO在输入3.3V时温升明显高于4.4V时，但LDO功耗通常约为(Vin-Vout)×I，3.3V输入时压差2.1V低于4.4V输入时压差3.2V，正常应温升更低；参考答案又说3.3V“接近其最低输入电压工作边界”，但3.3V相对1.2V输出仍有2.1V压差，明显不符合常见LDO压差边界。；Gemini3.1pro: 题干设定Vin=3.3V、Vout=1.2V，压差达2.1V，根本没有接近LDO的最低压差边界，参考答案解释为‘压差裕量不足’存在严重知识性错误。应当修正题干电压值或修改故障原因。</td></tr><tr><td>A2</td><td>Q039</td><td>一款多模无线耳机在蓝牙与LE Audio双协议并发时，射频收发器与音频DAC共用同一模拟供电域，实测DAC输出出现1.2mV低频抖动，根源定位到带隙基准输出存在30μV/℃温敏耦合及电源抑制比仅65dB。请简述你如何重构基准与偏置生成路径，在不增加LDO级数的前提下，通过电路拓扑重组与局部反馈优化，兼顾高PSRR、低温漂和瞬态响应一致性。</td><td>GPT5.5: 题干要求候选人“通过电路拓扑重组与局部反馈优化”重构带隙基准和偏置生成路径，内容属于芯片模拟IC内部设计深水区，不是消费电子/通信/智能设备硬件工程师常见板级岗位面试场景；参考答案也采用“折叠式共源共栅缓冲结构”“工艺角修调位”等芯片设计口径，偏离硬件工程师岗位表达。；Gemini3.1pro: 题干要求设计全CMOS片上偏置网络，属于模拟芯片（IC）设计范畴，严重偏离了板级硬件工程师岗位的知识点。</td><td>Q041</td><td>某智能手表在低功耗待机状态下，心率传感器前端运放的偏置电路需同时满足：静态电流低于500nA、全温区（-20℃至85℃）基准电压漂移小于20ppm/℃、且能抵御电池电压从4.2V跌至3.0V时的纹波干扰。请简述你如何设计一种不依赖外部精密电阻、不使用片外温度传感器的片上偏置方案，并说明关键器件选型与温漂补偿机制。</td><td>GPT5.5: 题干要求设计“不依赖外部精密电阻、不使用片外温度传感器的片上偏置方案”，并讨论亚阈值MOS、曲率补偿、全CMOS片上偏置网络，属于芯片模拟IC设计场景，不是消费电子/通信/智能设备硬件工程师常见板级设计面试内容；参考答案也以流片、共质心匹配、片上熔丝微调等芯片设计口径作答。；Gemini3.1pro: 题干要求利用晶体管特性设计不依赖外部器件的片上偏置方案，属于模拟芯片设计（IC Design）范畴，偏离板级硬件工程师知识点要求。</td></tr><tr><td>A3</td><td>Q039</td><td>一款多模无线耳机在蓝牙与LE Audio双协议并发时，射频收发器与音频DAC共用同一模拟供电域，实测DAC输出出现1.2mV低频抖动，根源定位到带隙基准输出存在30μV/℃温敏耦合及电源抑制比仅65dB。请简述你如何重构基准与偏置生成路径，在不增加LDO级数的前提下，通过电路拓扑重组与局部反馈优化，兼顾高PSRR、低温漂和瞬态响应一致性。</td><td>GPT5.5: 题干要求候选人“通过电路拓扑重组与局部反馈优化”重构带隙基准和偏置生成路径，内容属于芯片模拟IC内部设计深水区，不是消费电子/通信/智能设备硬件工程师常见板级岗位面试场景；参考答案也采用“折叠式共源共栅缓冲结构”“工艺角修调位”等芯片设计口径，偏离硬件工程师岗位表达。；Gemini3.1pro: 题干要求设计全CMOS片上偏置网络，属于模拟芯片（IC）设计范畴，严重偏离了板级硬件工程师岗位的知识点。</td><td>Q041</td><td>某智能手表在低功耗待机状态下，心率传感器前端运放的偏置电路需同时满足：静态电流低于500nA、全温区（-20℃至85℃）基准电压漂移小于20ppm/℃、且能抵御电池电压从4.2V跌至3.0V时的纹波干扰。请简述你如何设计一种不依赖外部精密电阻、不使用片外温度传感器的片上偏置方案，并说明关键器件选型与温漂补偿机制。</td><td>GPT5.5: 题干要求设计“不依赖外部精密电阻、不使用片外温度传感器的片上偏置方案”，并讨论亚阈值MOS、曲率补偿、全CMOS片上偏置网络，属于芯片模拟IC设计场景，不是消费电子/通信/智能设备硬件工程师常见板级设计面试内容；参考答案也以流片、共质心匹配、片上熔丝微调等芯片设计口径作答。；Gemini3.1pro: 题干要求利用晶体管特性设计不依赖外部器件的片上偏置方案，属于模拟芯片设计（IC Design）范畴，偏离板级硬件工程师知识点要求。</td></tr><tr><td>B1</td><td>Q003</td><td>请简单说说，评估设备续航时间时，为什么需要考虑平均工作电流而不是峰值电流？</td><td>GPT5.5: 第三层原文写“实测平均电流显著低于理论值”，但具体情况又写“低功耗模式退出失败导致MCU长期处于非预期活跃状态”，该故障会使平均电流高于理论值而不是低于理论值；正确应表述为实测平均电流显著高于理论值，导致预估续航偏短。</td><td>Q005</td><td>某无线耳机在典型使用场景下，主动降噪开启时工作电流为15毫安，关闭时为8毫安；单次充电后实测续航为24小时（含盒充），已知充电盒自身电池容量为300毫安时，且能为耳机完整充满电约3次。请简单说说，如何结合耳机单次续航时间与充电盒的补电能力，反向估算耳机单节电池的标称容量。</td><td>GPT5.5: 题干原文“单次充电后实测续航为24小时（含盒充）”把“单次充电后”和“含盒充”混在一起，逻辑不严谨；参考答案第一层又解释为“耳机脱离充电盒独立工作的持续放电时间”，与题干“含盒充”相矛盾。正确应区分耳机单次离盒续航、总续航以及充电盒补电次数后再估算单节电池容量。</td></tr><tr><td>B2</td><td>Q034</td><td>面向国内销售的便携式充电宝产品，在量产前必须取得的国家强制性安全认证名称是什么？该认证对电池组保护电路中的过充保护、过放保护和短路保护功能，在硬件架构上要求必须由哪类独立器件实现，而非仅依赖主控芯片软件判断？</td><td>GPT5.5: 参考答案第二层原文把“Renesas RL78/I1C系列”说成“带ASIL-B级功能安全设计的保护芯片”，但RL78/I1C本质是微控制器系列，不是用于替代独立电池硬件保护IC的常规充电宝保护器件；“ASIL-B”也不是消费类充电宝CCC保护电路的常规选型口径。正确应围绕专用电池保护IC、保护MOS、温度/电流采样及独立硬件保护链路说明。</td><td>Q059</td><td>一款带触控屏和蓝牙音频功能的便携式音箱，在量产前EMC辐射测试中，300MHz附近出现尖峰超标。排查发现主控芯片、触控IC和蓝牙射频模块共用同一块PCB地平面，且电源入口处仅设单点接地。请简述你将如何重构接地拓扑结构，并说明在兼顾音频模拟信号低噪声、触控灵敏度及蓝牙射频性能的前提下，数字地、模拟地与射频地之间的连接策略及物理实现依据。</td><td>GPT5.5: 参考答案第一层建议数字地、模拟地、射频地“各区域在PCB底层通过0欧姆电阻或磁珠在单一点位连接至系统参考地”，第二层又把“分区地+磁珠桥接”作为300MHz辐射超标的最优主流方案。对300MHz这类高频EMC问题，随意分割地并用磁珠单点桥接常会拉长回流路径、形成缝隙辐射或谐振，反而恶化辐射；正确应优先保证连续参考平面和最小回流环路，在噪声源/敏感区做局部隔离、滤波和缝合，而不是把各地大面积单点磁珠连接作为通用最优解。</td></tr><tr><td>B3</td><td>Q051</td><td>请简述在调试USB接口通信时，主机与设备之间需要协商一致的两个关键电气参数。</td><td>GPT5.5: 题干原文问USB通信时“主机与设备之间需要协商一致的两个关键电气参数”，但USB调试中主机和设备并不会协商“终端阻抗匹配值”和“共模电压范围”；这些是物理层设计/测试指标，不是协商参数。参考答案第一层把“90欧姆±10%阻抗”和“共模电压范围”称为双方必须协商一致的参数，跑题且概念错误。正确应围绕速率/连接状态、供电/角色或协议枚举条件说明，阻抗和共模电压应作为硬件验证指标而非协商项。；Gemini3.1pro: 题干将硬件物理规范（阻抗匹配和共模电压）错误表述为需要在通信中‘协商一致’的参数；协商通常指协议层的动态交互，物理特性是设计固化的，不可协商。</td><td>Q064</td><td>请简单说说N沟道MOS管在开关电路中，栅极电压高于源极电压多少时通常能可靠导通？</td><td>GPT5.5: 题干明确问“N沟道MOS管栅极电压高于源极电压多少时通常能可靠导通”，参考答案第一层只说取决于VGS(th)和RDS(on)测试条件，没有给出口语作答所需的直接结论。正确应说明不能只看VGS(th)，小信号逻辑MOS常需满足数据手册给出的RDS(on)测试VGS，如2.5V/4.5V；功率MOS常需约10V栅源驱动，具体以手册保证导通条件为准。</td></tr><tr><td>B6</td><td>Q039</td><td>一款多模无线耳机在蓝牙与LE Audio双协议并发时，射频收发器与音频DAC共用同一模拟供电域，实测DAC输出出现1.2mV低频抖动，根源定位到带隙基准输出存在30μV/℃温敏耦合及电源抑制比仅65dB。请简述你如何重构基准与偏置生成路径，在不增加LDO级数的前提下，通过电路拓扑重组与局部反馈优化，兼顾高PSRR、低温漂和瞬态响应一致性。</td><td>GPT5.5: 题干要求候选人“通过电路拓扑重组与局部反馈优化”重构带隙基准和偏置生成路径，内容属于芯片模拟IC内部设计深水区，不是消费电子/通信/智能设备硬件工程师常见板级岗位面试场景；参考答案也采用“折叠式共源共栅缓冲结构”“工艺角修调位”等芯片设计口径，偏离硬件工程师岗位表达。；Gemini3.1pro: 题干要求设计全CMOS片上偏置网络，属于模拟芯片（IC）设计范畴，严重偏离了板级硬件工程师岗位的知识点。</td><td>Q041</td><td>某智能手表在低功耗待机状态下，心率传感器前端运放的偏置电路需同时满足：静态电流低于500nA、全温区（-20℃至85℃）基准电压漂移小于20ppm/℃、且能抵御电池电压从4.2V跌至3.0V时的纹波干扰。请简述你如何设计一种不依赖外部精密电阻、不使用片外温度传感器的片上偏置方案，并说明关键器件选型与温漂补偿机制。</td><td>GPT5.5: 题干要求设计“不依赖外部精密电阻、不使用片外温度传感器的片上偏置方案”，并讨论亚阈值MOS、曲率补偿、全CMOS片上偏置网络，属于芯片模拟IC设计场景，不是消费电子/通信/智能设备硬件工程师常见板级设计面试内容；参考答案也以流片、共质心匹配、片上熔丝微调等芯片设计口径作答。；Gemini3.1pro: 题干要求利用晶体管特性设计不依赖外部器件的片上偏置方案，属于模拟芯片设计（IC Design）范畴，偏离板级硬件工程师知识点要求。</td></tr><tr><td>C1</td><td>Q043</td><td>在MIPI接口的PCB设计中，为什么需要对差分走线进行长度匹配？请简述这一做法主要解决的信号完整性问题及其在实际调试中的典型影响。</td><td>GPT5.5: 与R4Q0019重复，二者都询问MIPI差分走线长度匹配的原因和影响，核心答案均为P/N偏斜、差分摆幅/共模抑制下降、眼图闭合、误码或黑屏花屏。按顺序保留R4Q0019，删除本题。；Gemini3.1pro: 与Q19题干和核心考察点（MIPI差分线等长匹配的原因）完全重复，保留Q19。</td><td>nan</td><td>nan</td><td>nan</td></tr><tr><td>C2</td><td>Q008</td><td>一款支持快充的智能音箱在充电完成、切换至电池供电后，其音频编解码芯片仍由LDO提供3.3伏电压。此时若电池电压从4.3伏缓慢降至3.6伏，LDO自身功耗呈现下降趋势，这主要源于压差减小带来的哪类物理效应？请简述。</td><td>Gemini3.1pro: 与Q6核心考察点（LDO压差与效率/功耗的关系）完全重复，保留Q6。</td><td>Q014</td><td>一块用于无线耳机的高集成度PCB中，蓝牙基带与模拟音频电路共用同一块电源铜箔但工作状态差异很大。此时进行电源平面分割，主要是为了抑制哪类能量耦合？请简述该耦合如何通过共享阻抗影响敏感电路的性能。</td><td>Gemini3.1pro: 与Q13核心考察点（电源平面分割抑制共享阻抗耦合）完全重复，保留Q13。</td></tr></tbody>
+  </table>
+</body>
+</html>

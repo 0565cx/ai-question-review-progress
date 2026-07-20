@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Round 3 Dashboard</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; margin: 24px; color: #1f2937; }
+    h1, h2, h3 { margin: 10px 0 12px; }
+    .cards { display: grid; grid-template-columns: repeat(3, minmax(140px, 220px)); gap: 12px; margin: 8px 0 18px; }
+    .card { border: 1px solid #e5e7eb; border-radius: 10px; padding: 12px; background: #fafafa; }
+    .card .k { font-size: 12px; color: #6b7280; }
+    .card .v { font-size: 24px; font-weight: 700; margin-top: 4px; }
+    table { border-collapse: collapse; width: 100%; margin: 8px 0 18px; }
+    th, td { border: 1px solid #e5e7eb; padding: 8px 10px; vertical-align: middle; }
+    th { background: #f9fafb; }
+    .legend span { margin-right: 12px; font-size: 13px; color: #374151; }
+    .mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; }
+    .ex { margin: 6px 0; color: #374151; }
+    .section-divider { border: 0; border-top: 2px solid #eef2f7; margin: 22px 0; }
+  </style>
+</head>
+<body>
+  <h1>Round 3 审核看板</h1>
+
+  <div class="cards">
+    <div class="card"><div class="k">A类错误</div><div class="v">18</div></div>
+    <div class="card"><div class="k">B类错误</div><div class="v">185</div></div>
+    <div class="card"><div class="k">C类错误</div><div class="v">53</div></div>
+  </div>
+
+  <h2>本轮题目主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">三轮回流审核共审核744题，GPT5.5与Gemini3.1pro两模型完成38个批次。题干侧问题相较答案侧更少，A类累计18次，主要集中在把芯片内部设计、协议栈内部机制或不适用于板级硬件工程师的场景写成岗位常见问题，以及少量题干要求公式、推导或设置错误技术前提。重复/同质化问题C类累计53次，集中在高速差分等长、接地拓扑、ESD/TVS布局、降额设计、射频匹配等相邻知识点上，部分题目只是更换接口或产品场景但候选人的核心作答路径高度一致。</div>
+<h2>本轮答案主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">答案侧仍是三轮主要风险来源，B类累计185次，表现为事实性参数错误、接口协议口径混淆、把AC安规/市电滤波概念套用到低压USB或TWS场景、把LDO/DC-DC/TVS/PD/MIPI/BLE/Wi-Fi等机制描述错位，以及答案未回应题干给定计算或排查目标。本轮两模型合计删除判定244次，汇总后当前回流题中可保留526题、需重新出题62题、保留题干重出答案156题。</div>
+<h2>后续重新出内容时应补充的规则</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">【重新出题】<br/>重新出题时要先确认考察对象属于板级硬件工程师职责，避免把IC内部模拟/数字设计、协议栈主机层实现、认证法规绝对化结论写成题干前提；相近知识点需明确差异点，例如接口类型、频段、物理层、测试范围、失效现象和候选人输出层级，避免只替换产品名或接口名造成C2重复。题干不得要求候选人口头给出公式、推导、绘图或证明。<br/><br/>【重出答案】<br/>重出答案时必须逐项校验事实参数和工程口径，尤其是USB PD/Type-C、MIPI D-PHY/C-PHY、BLE/Wi-Fi/Zigbee信道、RoHS/SRRC/UL/CE/FCC认证、LDO与DC-DC、TVS/ESD、差分/单端阻抗、近端/远端串扰等高错领域。答案三层要围绕题干目标展开，避免用偏门调试动作、不可量产补救、危险短接验证或过度绝对的认证结论；涉及数值、频段、阈值、标准范围时必须按规范或器件手册自检。</div>
+
+  <hr class="section-divider" />
+
+  <h2>模型进度与删除率</h2>
+  <table>
+    <thead>
+      <tr><th>Model</th><th>批次完成</th><th>完成率</th><th>删除率</th><th>主错误</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>GPT5.5</td><td style='text-align:center'>19/19</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:23.8%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">23.8%</span></td><td style='text-align:center'>B>A>C</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>19/19</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:9.0%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">9.0%</span></td><td style='text-align:center'>C>B>A</td></tr>
+    </tbody>
+  </table>
+
+  <h2>批次状态矩阵</h2>
+  <div class="legend">
+    <span>✓ done</span><span>… running</span><span>○ pending</span><span>! blocked</span><span>x failed</span>
+  </div>
+  <table>
+    <thead><tr><th>Model</th><th>R3-B001</th><th>R3-B002</th><th>R3-B003</th><th>R3-B004</th><th>R3-B005</th><th>R3-B006</th><th>R3-B007</th><th>R3-B008</th><th>R3-B009</th><th>R3-B010</th><th>R3-B011</th><th>R3-B012</th><th>R3-B013</th><th>R3-B014</th><th>R3-B015</th><th>R3-B016</th><th>R3-B017</th><th>R3-B018</th><th>R3-B019</th></tr></thead>
+    <tbody><tr><td>GPT5.5</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td></tr></tbody>
+  </table>
+
+  <h2>细分错误统计（A1/B1...）</h2>
+  <table>
+    <thead><tr><th>错误子类</th><th>数量</th></tr></thead>
+    <tbody><tr><td>A1</td><td style='text-align:center'>11</td></tr><tr><td>A2</td><td style='text-align:center'>4</td></tr><tr><td>A4</td><td style='text-align:center'>3</td></tr><tr><td>B1</td><td style='text-align:center'>166</td></tr><tr><td>B2</td><td style='text-align:center'>10</td></tr><tr><td>B3</td><td style='text-align:center'>14</td></tr><tr><td>B4</td><td style='text-align:center'>1</td></tr><tr><td>B6</td><td style='text-align:center'>8</td></tr><tr><td>C1</td><td style='text-align:center'>1</td></tr><tr><td>C2</td><td style='text-align:center'>52</td></tr></tbody>
+  </table>
+
+  <h3>细分错误示例（每类2条）</h3>
+  <table>
+    <thead><tr><th>错误子类</th><th>例1-题号</th><th>例1-题目</th><th>例1-理由</th><th>例2-题号</th><th>例2-题目</th><th>例2-理由</th></tr></thead>
+    <tbody><tr><td>A1</td><td>Q063</td><td>在为便携式设备主控芯片供电时，选用LDO提供1.8伏电压，输入来自单节锂电池（标称3.8伏）。当电池放电至3.4伏时，LDO压差从1.6伏降至1.6伏以下，此时它的自身功耗变化趋势是怎样的？请简述原因。</td><td>GPT5.5: 题干原文称“当电池放电至3.4伏时，LDO压差从1.6伏降至1.6伏以下”。输出为1.8V时，输入3.8V对应压差2.0V，输入3.4V对应压差1.6V，并不是“从1.6伏降至1.6伏以下”。正确应表述为压差从约2.0V降至1.6V。；Gemini3.1pro: 与R3Q0047重复</td><td>Q104</td><td>在一款支持双频Wi-Fi 6E和高速USB 3.2 Gen2的便携式智能设备中，基带芯片与射频收发器之间的MIPI CSI-2高速差分链路（4通道，1.5Gbps每通道）与USB数据线共板布局。当实测发现CSI图像出现间歇性丢帧，且定位到与USB突发传输强相关时，请简述你如何从等长时延控制角度分析并解决该问题，需说明关键约束条件、时延匹配优先级的判定依据及布线策略调整逻辑。</td><td>GPT5.5: 题干原文称“基带芯片与射频收发器之间的MIPI CSI-2高速差分链路”，MIPI CSI-2是摄像头串行接口，不是基带芯片与射频收发器之间的常规接口；场景存在知识性错误。</td></tr><tr><td>A2</td><td>Q213</td><td>当一个蓝牙低功耗设备完成配对并建立加密连接后，协议栈会周期性地执行密钥更新和链路层数据包加密操作。请简单说说，这种周期性安全行为对射频收发通路中的时序协同设计提出了什么具体约束，尤其体现在哪两个关键信号的配合关系上？</td><td>GPT5.5: 题干把BLE密钥更新/链路层加密抽象成板级“射频收发通路时序协同”问题，并要求两个关键信号配合；参考答案进一步虚构“RF_EN与CRYPTO_EN”板级配合关系。BLE加密通常由控制器/SoC内部链路层和加密引擎完成，硬件工程师一般不会在板级设计CRYPTO_EN与RF_EN相位对齐信号。</td><td>Q294</td><td>某Wi-Fi 6E智能音箱的音频编解码芯片要求偏置电流精度达0.5%且对电源纹波抑制比需大于80dB，当采用电阻分压加运放缓冲的传统偏置方案时出现温漂超标和PSRR不足问题，请简述你如何重构偏置电路结构，在不增加芯片面积的前提下实现指标达标。</td><td>GPT5.5: 题干要求在“不增加芯片面积”的前提下重构音频编解码芯片内部偏置电路，涉及斩波稳定电流基准、深N阱隔离、片上器件匹配等芯片模拟IC设计内容，不是消费电子/通信/智能设备硬件工程师常见板级硬件职责。参考答案也按芯片内部模拟设计口径作答，偏离硬件工程师岗位口径。</td></tr><tr><td>A4</td><td>Q081</td><td>请简单说说，硬件设计中常用的电池续航理论计算公式是什么？</td><td>GPT5.5: 题干原文要求“电池续航理论计算公式是什么”，属于要求候选人口头说出计算公式；按规则凡要求公式/计算公式一律标记A4并删除。；Gemini3.1pro: 题干包含“理论计算公式是什么”，违反了“凡题干要求候选人说出、列出、写出或解释‘公式’等内容一律标记A4并删除”的规则。正确应替换为不直接问公式的口语化提问。</td><td>Q081</td><td>请简单说说，硬件设计中常用的电池续航理论计算公式是什么？</td><td>GPT5.5: 题干原文要求“电池续航理论计算公式是什么”，属于要求候选人口头说出计算公式；按规则凡要求公式/计算公式一律标记A4并删除。；Gemini3.1pro: 题干包含“理论计算公式是什么”，违反了“凡题干要求候选人说出、列出、写出或解释‘公式’等内容一律标记A4并删除”的规则。正确应替换为不直接问公式的口语化提问。</td></tr><tr><td>B1</td><td>Q001</td><td>请简单说说N沟道MOS管在开关电路中，栅极电压高于源极电压多少时通常能可靠导通？</td><td>GPT5.5: 参考答案第三层原文称“Vgs(th)随温度升高而增大，实测低温下驱动电压裕量不足”，前后逻辑和知识点均有误。MOS管阈值电压通常随温度升高而降低，低温下阈值可能升高；可靠导通还应关注Rds(on)在指定Vgs下的条件。</td><td>Q003</td><td>在智能穿戴设备的生物电信号采集电路中，常使用有源低通滤波器来抑制高频干扰。当截止频率设定为100赫兹时，为什么通常选择二阶压控电压源结构而非一阶RC电路？请简述主要原因。</td><td>GPT5.5: 参考答案第一层原文称二阶低通可更有效抑制“50赫兹工频谐波、开关电源噪声及蓝牙射频泄漏等常见高频干扰”。题设截止频率为100Hz，50Hz低于截止频率，不属于会被100Hz低通抑制的高频干扰；正确应说明二阶低通主要提升截止频率以上干扰的滚降抑制能力。</td></tr><tr><td>B2</td><td>Q132</td><td>在设计带有多个高速接口（如USB 3.2、PCIe和LPDDR5）的智能终端主板时，不同接口的参考平面常需跨分割区域布线。请简述：当某高速差分对穿越电源层分割间隙时，回流路径被迫绕行会带来哪些可测量的信号完整性风险？并说明你如何协同布局、叠层与端接策略来抑制由此引发的串扰加剧问题。</td><td>GPT5.5: 参考答案第二层原文建议对USB3.2、PCIe等穿越分割区链路“增加源端小电阻（22–33欧姆）串联匹配”，这不是PCIe/USB3.x高速差分链路的常见最佳实践，随意串联电阻会恶化通道损耗、回波损耗和一致性；正确应优先避免跨分割、保证连续参考平面、回流过孔/跨接电容和通道仿真验证。</td><td>Q160</td><td>在多层板上设计LPDDR5接口时，若主控与两颗内存颗粒采用T型分支拓扑，且其中一颗颗粒距离主控更远、另一颗更近，这种不对称布局会对写入和读取时序造成何种差异化影响？请简述你如何通过端接位置与类型的选择来平衡两边的信号质量与时序收敛。</td><td>GPT5.5: 参考答案第三层原文建议在近端LPDDR5颗粒DQS/DQ引脚“增加0.5pF~1pF小电容进行高频衰减”，这不是LPDDR5高速数据线解决眼图和时序问题的常见最佳实践，额外并联电容会增加负载、恶化边沿和时序裕量；正确应优先通过拓扑对称、端接/ODT、走线长度和SI仿真收敛。</td></tr><tr><td>B3</td><td>Q122</td><td>请简述：当两条高速信号线平行布线较长时，为减小它们之间的串扰，除了增大间距外，还可以依靠什么物理结构来提供屏蔽作用？</td><td>GPT5.5: 题干问两条高速信号线平行较长时除增大间距外依靠什么屏蔽结构，常见正确答案应是接地护线、包地、地过孔栅栏或完整参考地配合隔离；参考答案第一层原文说“在两条高速信号线之间插入一条完整的参考平面”，同层相邻走线之间不能插入完整平面，且未直接回答常用的地护线/过孔栅栏结构。</td><td>Q136</td><td>为抑制两条相邻高速单端信号线之间的容性串扰，在PCB叠层不变的前提下，除增大线间距外，还可通过调整哪一结构参数来增强回流路径的局域性？请说明该调整如何降低耦合强度。</td><td>GPT5.5: 题干明确限定“PCB叠层不变”，参考答案第一层却说可通过“减小信号层到其紧邻参考平面的距离”来调整，这等同于改变叠层介质厚度，跑题且与题干约束矛盾；在叠层不变前提下应更多考虑走线宽度/间距、护地结构、参考平面完整性等可调项。</td></tr><tr><td>B4</td><td>Q339</td><td>在多主设备I2C总线上，当两个主设备几乎同时发起通信并产生地址冲突时，硬件层面如何确保总线仲裁的正确性？请简述其核心机制及对时序设计的关键约束。</td><td>GPT5.5: 参考答案第三层的复杂情况不合理：原文称“不同主设备晶振精度差异叠加PCB走线长度不匹配，导致SCL边沿对齐误差超过I2C标准允许窗口”，并建议“I2C总线等长控制在±50mil以内、选用温漂≤20ppm晶振”。I2C多主仲裁依赖开漏线与、时钟同步和SCL高电平期间采样，不是靠PCB等长或高精度晶振保证仲裁正确；该硬件约束属于编造式过度设计。</td><td>nan</td><td>nan</td><td>nan</td></tr><tr><td>B6</td><td>Q222</td><td>一款支持Wi-Fi 6的无线摄像头在家庭环境中部署后，发现多设备并发上传视频时出现卡顿，但信号强度正常。这可能与Wi-Fi 6引入的上行多用户多输入多输出技术有关，请简述该技术如何改变传统单用户传输方式，从而影响硬件对射频链路和基带协同的设计要求。</td><td>GPT5.5: 题干场景是无线摄像头作为终端多设备并发上行，答案却说硬件“必须支持多路独立接收通路、同步采样、联合信道估计与多流分离”，这是AP侧接收多终端上行MU-MIMO的硬件要求，不是普通摄像头终端侧硬件口径，答案跑到AP/基站接收端设计。</td><td>Q294</td><td>某Wi-Fi 6E智能音箱的音频编解码芯片要求偏置电流精度达0.5%且对电源纹波抑制比需大于80dB，当采用电阻分压加运放缓冲的传统偏置方案时出现温漂超标和PSRR不足问题，请简述你如何重构偏置电路结构，在不增加芯片面积的前提下实现指标达标。</td><td>GPT5.5: 题干要求在“不增加芯片面积”的前提下重构音频编解码芯片内部偏置电路，涉及斩波稳定电流基准、深N阱隔离、片上器件匹配等芯片模拟IC设计内容，不是消费电子/通信/智能设备硬件工程师常见板级硬件职责。参考答案也按芯片内部模拟设计口径作答，偏离硬件工程师岗位口径。</td></tr><tr><td>C1</td><td>Q627</td><td>在量产导入阶段，某TWS耳机充电仓的USB输入过压保护电路被发现存在误触发现象：仅当插入特定品牌快充头时才发生，且每次触发前示波器测得VBUS上存在持续约500纳秒、幅度超标2.5伏的振铃。请简述你将如何利用示波器的高级触发功能（如脉宽触发、欠幅触发或模板触发）高效复现并确认该振铃是否为根本诱因，并说明关键设置依据。</td><td>GPT5.5: 参考答案把“幅度超标2.5伏、持续约500纳秒的振铃”优先配置为“欠幅触发”，并说“欠幅触发直接对应电压短暂超过阈值后回落”错误。欠幅/欠幅脉冲触发通常用于脉冲未达到预期阈值的runt信号，不是捕获过压超调振铃的首选；正确应使用脉宽/毛刺/模板/边沿加条件触发，设置高于OVP阈值的电平和约500ns持续时间来捕获过压事件。；Gemini3.1pro: 题目和答案与R3Q0625完全一样，属C1重复。</td><td>nan</td><td>nan</td><td>nan</td></tr><tr><td>C2</td><td>Q038</td><td>在一款多核处理器的智能终端设备中，主控芯片要求内核电源先于IO电源上电。如果实际设计中两个电源几乎同时上电，可能引发什么具体硬件现象？请简述原因。</td><td>Gemini3.1pro: 与R3Q0034重复</td><td>Q063</td><td>在为便携式设备主控芯片供电时，选用LDO提供1.8伏电压，输入来自单节锂电池（标称3.8伏）。当电池放电至3.4伏时，LDO压差从1.6伏降至1.6伏以下，此时它的自身功耗变化趋势是怎样的？请简述原因。</td><td>GPT5.5: 题干原文称“当电池放电至3.4伏时，LDO压差从1.6伏降至1.6伏以下”。输出为1.8V时，输入3.8V对应压差2.0V，输入3.4V对应压差1.6V，并不是“从1.6伏降至1.6伏以下”。正确应表述为压差从约2.0V降至1.6V。；Gemini3.1pro: 与R3Q0047重复</td></tr></tbody>
+  </table>
+</body>
+</html>
