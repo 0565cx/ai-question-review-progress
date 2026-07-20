@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Round 3 Dashboard</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; margin: 24px; color: #1f2937; }
+    h1, h2, h3 { margin: 10px 0 12px; }
+    .cards { display: grid; grid-template-columns: repeat(3, minmax(140px, 220px)); gap: 12px; margin: 8px 0 18px; }
+    .card { border: 1px solid #e5e7eb; border-radius: 10px; padding: 12px; background: #fafafa; }
+    .card .k { font-size: 12px; color: #6b7280; }
+    .card .v { font-size: 24px; font-weight: 700; margin-top: 4px; }
+    table { border-collapse: collapse; width: 100%; margin: 8px 0 18px; }
+    th, td { border: 1px solid #e5e7eb; padding: 8px 10px; vertical-align: middle; }
+    th { background: #f9fafb; }
+    .legend span { margin-right: 12px; font-size: 13px; color: #374151; }
+    .mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; }
+    .ex { margin: 6px 0; color: #374151; }
+    .section-divider { border: 0; border-top: 2px solid #eef2f7; margin: 22px 0; }
+  </style>
+</head>
+<body>
+  <h1>Round 3 审核看板</h1>
+
+  <div class="cards">
+    <div class="card"><div class="k">A类错误</div><div class="v">31</div></div>
+    <div class="card"><div class="k">B类错误</div><div class="v">428</div></div>
+    <div class="card"><div class="k">C类错误</div><div class="v">29</div></div>
+  </div>
+
+  <h2>本轮题目主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">本轮题干问题相对次要但集中：一级错误 A 共 31 例，其中 A1（题干知识/逻辑不严谨）20 例最多，典型如把异步复位约束误写成建立/保持时间、未限定同步复位；A4（要求画框图/解释图形标注/无法口语作答）9 例，常见于“硬件系统框图如何标注隔离与滤波”这类作答形态；A2 偏门刚柔结合板隔离带、A3 把 DFMEA 题做成制造过程/PFMEA 口径各有少量。影响范围主要在复位时序、系统框图、DFMEA/制造耦合、刚柔板专项场景；整体上题干可用率尚可，但口语可答性与概念边界仍需收紧。</div>
+<h2>本轮答案主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">答案错误是本轮主因：一级错误 B 共 429 例，显著高于 A/C；二级以 B1 知识性错误 363 例为主，集中在 PCB 分区与回流、差分跨分割、ADC 参考/等长误用、DDR/时钟端接、二极管温度与续流特性、晶振负载电容计算、MOS/UART 电气口径等。B3 跑题/漏答核心约束 23 例、B2 偏门过时方案 20 例（如时钟线串磁珠当非改板主方案）、B6 岗位口径漂移到 IC 版图/流片少量。C2 同质化/近重复 29 例，多出现在电源振荡排查、LDO 压差等主题簇。答案三层中第二层方案优劣与第三层异常场景是高发失真点，直接影响可评分性与岗位专业性。</div>
+<h2>后续重新出内容时应补充的规则</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">【重新出题】<br/>1) 题干只允许口语可直接作答：禁止要求绘制/标注框图、写出公式/布尔式/推导证明；若考察隔离防护，改为直接问设计原则与信号路径处理。<br/>2) 复位/时序类题必须明确同步或异步语境；异步复位问恢复/移除时间，同步复位才问建立/保持。<br/>3) 难度与题干动作对齐：困难题必须要求权衡与决策依据；中等题禁止穷举优劣势；简单题保持纯概念。<br/>4) DFMEA 题不得切到制造过程失效定位（那是 PFMEA）；刚柔板等偏门场景改为通用硬件岗常见 PCB/接口/电源问题。<br/>5) 出题后自检：同技能点下是否会逼出同一套核心答案（防 C2）；知识点字段与题干考察点一致。<br/><br/>【重出答案】<br/>1) 第二层必须给出现岗位常见可选方案及可落地优劣，禁止把数字线穿越模拟区、分割缝正上方换参考、ADC 输入与 VREF 蛇形等长、时钟线串磁珠作非改板主手段等错误/偏门实践写成优选。<br/>2) 关键数值与器件特性须可复核：晶振负载电容、二极管 trr/温度系数、MOS 栅极电流性质、UART 空闲电平上下拉等不得写反。<br/>3) 第三层异常/复杂场景须属于硬件工程师板级可操作范围；禁止 USB 与 PCIe 跨接口时延容限、IC 版图匹配/流片校准等越界口径。<br/>4) 答案必须回应题干全部约束（如“指出两个电阻组合关系”“三项非改板措施”）；漏答核心点按 B3 处理。<br/>5) 重出后自检清单：逐条对照数据手册常识→是否口语可讲→是否与题干知识点一致→第三层是否各含 1 个异常+1 个复杂。</div>
+
+  <hr class="section-divider" />
+
+  <h2>模型进度与删除率</h2>
+  <table>
+    <thead>
+      <tr><th>Model</th><th>批次完成</th><th>完成率</th><th>删除率</th><th>主错误</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>GPT5.5</td><td style='text-align:center'>23/23</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:30.3%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">30.3%</span></td><td style='text-align:center'>B>A>C</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>23/23</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:24.4%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">24.4%</span></td><td style='text-align:center'>B>C>A</td></tr>
+    </tbody>
+  </table>
+
+  <h2>批次状态矩阵</h2>
+  <div class="legend">
+    <span>✓ done</span><span>… running</span><span>○ pending</span><span>! blocked</span><span>x failed</span>
+  </div>
+  <table>
+    <thead><tr><th>Model</th><th>R3-B001</th><th>R3-B002</th><th>R3-B003</th><th>R3-B004</th><th>R3-B005</th><th>R3-B006</th><th>R3-B007</th><th>R3-B008</th><th>R3-B009</th><th>R3-B010</th><th>R3-B011</th><th>R3-B012</th><th>R3-B013</th><th>R3-B014</th><th>R3-B015</th><th>R3-B016</th><th>R3-B017</th><th>R3-B018</th><th>R3-B019</th><th>R3-B020</th><th>R3-B021</th><th>R3-B022</th><th>R3-B023</th></tr></thead>
+    <tbody><tr><td>GPT5.5</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td></tr></tbody>
+  </table>
+
+  <h2>细分错误统计（A1/B1...）</h2>
+  <table>
+    <thead><tr><th>错误子类</th><th>数量</th></tr></thead>
+    <tbody><tr><td>A1</td><td style='text-align:center'>20</td></tr><tr><td>A2</td><td style='text-align:center'>1</td></tr><tr><td>A3</td><td style='text-align:center'>1</td></tr><tr><td>A4</td><td style='text-align:center'>9</td></tr><tr><td>B</td><td style='text-align:center'>19</td></tr><tr><td>B1</td><td style='text-align:center'>363</td></tr><tr><td>B2</td><td style='text-align:center'>20</td></tr><tr><td>B3</td><td style='text-align:center'>23</td></tr><tr><td>B4</td><td style='text-align:center'>1</td></tr><tr><td>B6</td><td style='text-align:center'>3</td></tr><tr><td>C2</td><td style='text-align:center'>29</td></tr></tbody>
+  </table>
+
+  <h3>细分错误示例（每类2条）</h3>
+  <table>
+    <thead><tr><th>错误子类</th><th>例1-题号</th><th>例1-题目</th><th>例1-理由</th><th>例2-题号</th><th>例2-题目</th><th>例2-理由</th></tr></thead>
+    <tbody><tr><td>A1</td><td>Q094</td><td>请简述复位信号需要满足建立时间和保持时间要求的原因。</td><td>GPT5.5: 题干“复位信号需要满足建立时间和保持时间要求”表述不严谨；异步复位更准确的时序约束是复位撤销相对时钟的恢复时间/移除时间，只有同步复位才按数据路径讨论建立/保持时间。题干未限定同步复位，容易把异步复位概念讲错。；Gemini3.1pro: 题干“复位信号需要满足建立时间和保持时间要求”不严谨。异步复位更准确的时序约束是复位撤销相对时钟的恢复时间/移除时间；只有同步复位才按数据路径讨论建立/保持。题干未限定同步复位，易把异步复位概念讲错。</td><td>Q094</td><td>请简述复位信号需要满足建立时间和保持时间要求的原因。</td><td>GPT5.5: 题干“复位信号需要满足建立时间和保持时间要求”表述不严谨；异步复位更准确的时序约束是复位撤销相对时钟的恢复时间/移除时间，只有同步复位才按数据路径讨论建立/保持时间。题干未限定同步复位，容易把异步复位概念讲错。；Gemini3.1pro: 题干“复位信号需要满足建立时间和保持时间要求”不严谨。异步复位更准确的时序约束是复位撤销相对时钟的恢复时间/移除时间；只有同步复位才按数据路径讨论建立/保持。题干未限定同步复位，易把异步复位概念讲错。</td></tr><tr><td>A2</td><td>Q271</td><td>在多层刚柔结合板中，柔性区因基材厚度变化和铜箔延展性限制，传统矩形隔离带易在弯折处产生阻抗突变并放大串扰。请简述针对柔性段过渡区域的隔离带结构设计要点，包括形状适配、接地连接方式及与邻近刚性区隔离带参数的协同原则。</td><td>GPT5.5: 题干场景“多层刚柔结合板…柔性区…传统矩形隔离带”偏向刚柔结合板工艺/高频结构专项设计，不是通用硬件工程师岗位常见高频面试场景；正确应聚焦常见PCB隔离、接地和串扰控制。</td><td>nan</td><td>nan</td><td>nan</td></tr><tr><td>A3</td><td>Q845</td><td>一款面向工业现场的边缘计算模块在量产导入阶段，发现批量焊接后部分单元在上电瞬间出现电源芯片过流保护触发，但单板功能测试和回流焊炉温曲线均符合规范。请基于DFMEA失效模式识别原则，说明你如何从制造过程链路中逆向定位该问题对应的潜在失效模式，并指出需重点排查的两个工艺-设计耦合环节。</td><td>GPT5.5: 题干原文要求“基于DFMEA失效模式识别原则”却让候选人“从制造过程链路中逆向定位”，并要求排查“工艺-设计耦合环节”。制造过程链路、焊接/钢网/贴片等失效模式识别主要属于PFMEA或制造过程质量分析口径，不应作为DFMEA题目核心考察点。</td><td>nan</td><td>nan</td><td>nan</td></tr><tr><td>A4</td><td>Q565</td><td>一款用于智能电表远程校准的嵌入式终端需满足国网Q/GDW 1376.2通信协议，同时通过EMC Class B认证。请简述你在构建硬件系统框图时，如何结构化地安排通信模块、计量单元、安全芯片与电源管理模块的层级与边界，并说明哪些信号路径必须在框图中标注隔离方式及滤波类型。</td><td>GPT5.5: 参考答案第二层原文“安全芯片与主控间用SPI隔离加屏蔽走线，防止侧信道泄露”不符合常见硬件系统框图设计口径。安全芯片与主控通常通过I2C/SPI等短距板内总线连接并做访问控制、供电去耦和必要的布线保护，不会把“SPI隔离”作为防侧信道泄露的通用最佳实践；计量、通信、电源的隔离/滤波也应按强弱电边界和EMC路径定义。；Gemini3.1pro: 题干要求说明框图中的标注内容，本质上是解释图形内容，不适合纯口语直接作答。正确的应该是直接提问硬件设计的隔离与防护思路，而非如何画图。</td><td>Q566</td><td>在设计一台工业现场用的边缘数据采集设备时，需要同时接入4路模拟传感器信号、2路RS-485总线设备和1路千兆以太网通信接口。请简述你如何规划主控芯片与各外设之间的硬件连接关系，并说明框图中必须体现的关键隔离与防护环节。</td><td>Gemini3.1pro: 题干要求说明框图中的标注内容，本质上是解释图形内容，不适合纯口语直接作答。正确的应该是直接提问硬件设计的隔离与防护思路，而非如何画图。</td></tr><tr><td>B</td><td>Q004</td><td>请简单说说，高速数字信号走线为何要避免直角拐弯。</td><td>Gemini3.1pro: 参考答案第一层中提到‘频率超过100MHz的实际板级设计中会明显劣化眼图’存在知识性错误。实际上100MHz频率下直角走线对信号完整性的影响微乎其微，通常在数GHz以上的高速信号中才会产生明显影响。正确的应该是：在数GHz以上的极高速信号中才会明显劣化信号完整性。</td><td>Q005</td><td>在高密度工业控制主板设计中，当同时存在微控制器、高速ADC和大功率电机驱动电路时，请简述如何划分PCB功能区域并说明各区域间物理隔离的关键考量因素。</td><td>Gemini3.1pro: 参考答案第三层给出的复杂问题‘多区域共用同一散热焊盘导致底层地平面被割裂’不合理。在合理的布局分区中，模拟区和功率区在物理上是隔离的，功率器件的散热焊盘不应也不可能切断模拟区下方的地平面。正确的应该是：设计复杂的散热结构时，如何在保证散热的同时维持各自区域地平面的完整性。</td></tr><tr><td>B1</td><td>Q001</td><td>请简述PCB布局中数字电路区域和模拟电路区域为什么要分开规划。</td><td>GPT5.5: 参考答案第二层原文把“数字信号线垂直穿越模拟区”作为分区约束手段，并称“地平面分割+单点连接是最通用、最稳妥的做法”。正确应避免数字信号穿越模拟区域/分割参考面，混合信号设计应以功能分区、连续回流路径和在ADC/DAC等边界处控制回流为主，而不是把数字线穿越模拟区作为合理方案。</td><td>Q010</td><td>在高速数字电路PCB布局中，当一对差分时钟信号需要跨多个电源域走线时，如何确定参考平面切换位置，并说明这种切换对信号完整性的影响及应对依据。</td><td>GPT5.5: 参考答案第一层原文说参考平面切换位置应选在“电源分割缝正上方或紧邻其边缘的位置”。正确应尽量避免差分时钟跨越电源/参考平面分割；确需换层或跨域时，应在过孔附近提供连续回流路径、伴随地孔或合适的缝隙跨接措施，而不是把走线放在分割缝正上方。；Gemini3.1pro: 参考答案第一层中‘参考平面切换位置应选在...电源分割缝正上方’逻辑不严谨。当信号跨越电源分割缝时，参考平面的切换是被动发生的，而不是主动‘选择’在缝隙上方切换。正确的应该是：在信号跨越分割缝的位置，必须提供回流路径（如添加桥接电容）。</td></tr><tr><td>B2</td><td>Q087</td><td>一款面向产线自动检测设备的嵌入式主控板，在EMC测试中发现辐射超标频点恰好落在时钟基频及其三次谐波附近。已知时钟驱动芯片为低功耗CMOS输出，且PCB已完成布线定稿。请简述你从时钟电路设计角度可采取的三项非改板措施，并解释每项措施抑制辐射的物理机制。</td><td>GPT5.5: 参考答案第二层提出“在时钟输出端串接小阻值铁氧体磁珠”作为时钟辐射整改主方案，时钟线上串磁珠会引入频率相关阻抗、边沿畸变和抖动风险；常见非改板措施应优先考虑串联阻尼电阻、驱动强度/边沿速率调整、展频兼容性评估和去耦优化。；Gemini3.1pro: 题干要求“非改板措施”，第二层却把“时钟输出端串接小阻值铁氧体磁珠”作为主方案：时钟线上串磁珠易引入边沿畸变与抖动，且无预留焊盘时实为改板。常见非改板措施应优先驱动强度/边沿速率配置、展频兼容性评估、去耦补焊与串联阻尼电阻（有焊盘时）等。</td><td>Q087</td><td>一款面向产线自动检测设备的嵌入式主控板，在EMC测试中发现辐射超标频点恰好落在时钟基频及其三次谐波附近。已知时钟驱动芯片为低功耗CMOS输出，且PCB已完成布线定稿。请简述你从时钟电路设计角度可采取的三项非改板措施，并解释每项措施抑制辐射的物理机制。</td><td>GPT5.5: 参考答案第二层提出“在时钟输出端串接小阻值铁氧体磁珠”作为时钟辐射整改主方案，时钟线上串磁珠会引入频率相关阻抗、边沿畸变和抖动风险；常见非改板措施应优先考虑串联阻尼电阻、驱动强度/边沿速率调整、展频兼容性评估和去耦优化。；Gemini3.1pro: 题干要求“非改板措施”，第二层却把“时钟输出端串接小阻值铁氧体磁珠”作为主方案：时钟线上串磁珠易引入边沿畸变与抖动，且无预留焊盘时实为改板。常见非改板措施应优先驱动强度/边沿速率配置、展频兼容性评估、去耦补焊与串联阻尼电阻（有焊盘时）等。</td></tr><tr><td>B3</td><td>Q148</td><td>某产线自动化设备的信号调理电路中，运放反相输入端接入一个由三个电阻构成的T型网络，用于扩展输入阻抗范围。当更换不同批次的同规格电阻后，系统零点漂移明显加剧。请简述如何基于节点电压法分析该T型网络的直流偏置传递特性，并指出影响零点稳定性的两个关键电阻组合关系。</td><td>GPT5.5: 题干明确要求“指出影响零点稳定性的两个关键电阻组合关系”，参考答案只泛泛说明用节点电压法和“靠近运放输入端的两个电阻若容差方向一致”，没有明确给出T型网络中哪两个电阻比值/等效组合决定偏置传递和零点稳定性，未回答题目核心要求。；Gemini3.1pro: 题干要求“指出影响零点稳定性的两个关键电阻组合关系”，答案只泛说节点电压法和“靠近运放输入端的两个电阻若容差方向一致”，未明确给出T型网络中哪两个电阻比值/等效组合决定偏置传递与零点稳定性，未答题目核心要求。</td><td>Q148</td><td>某产线自动化设备的信号调理电路中，运放反相输入端接入一个由三个电阻构成的T型网络，用于扩展输入阻抗范围。当更换不同批次的同规格电阻后，系统零点漂移明显加剧。请简述如何基于节点电压法分析该T型网络的直流偏置传递特性，并指出影响零点稳定性的两个关键电阻组合关系。</td><td>GPT5.5: 题干明确要求“指出影响零点稳定性的两个关键电阻组合关系”，参考答案只泛泛说明用节点电压法和“靠近运放输入端的两个电阻若容差方向一致”，没有明确给出T型网络中哪两个电阻比值/等效组合决定偏置传递和零点稳定性，未回答题目核心要求。；Gemini3.1pro: 题干要求“指出影响零点稳定性的两个关键电阻组合关系”，答案只泛说节点电压法和“靠近运放输入端的两个电阻若容差方向一致”，未明确给出T型网络中哪两个电阻比值/等效组合决定偏置传递与零点稳定性，未答题目核心要求。</td></tr><tr><td>B4</td><td>Q254</td><td>请简述：等长时延控制中的‘等长’，指的是物理长度相等，还是电气长度相等？</td><td>GPT5.5: 参考答案第三层原文“USB3.2与PCIe Gen4…彼此间电气延迟差异超出协议容限，引发链路协商失败”不合理，USB与PCIe是独立接口，通常不存在跨接口相对延迟协议容限。正确应讨论同一总线/同一通道组内的相对时延约束。</td><td>nan</td><td>nan</td><td>nan</td></tr><tr><td>B6</td><td>Q102</td><td>请简述带隙基准电路的核心作用是什么？</td><td>Gemini3.1pro: 题目问带隙基准核心作用，第二层却把“集成式带隙基准IP核…流片验证”说成通用硬件工程师原理图/PCB设计最主流方案，第三层又转向版图匹配与衬底耦合，属于IC设计口径，不符合制造业硬件工程师板级选型与应用口径。板级更常见的是外置精密基准芯片或电源芯片内置基准的应用评估。</td><td>Q104</td><td>某电源管理芯片内部集成电阻分压式基准产生电路，在不同负载电流下基准电压出现微小波动。请简单说说这种波动主要源于分压电阻的什么物理特性，以及为何该特性在高精度应用中需被重点考虑。</td><td>Gemini3.1pro: 题干虽谈芯片内部分压电阻温漂，但第二、三层给出的“多晶硅/扩散电阻共中心对称版图”“热隔离槽”“工艺片查表校准后流片”等，是模拟IC设计口径，不是硬件工程师板级可落地做法。板级应围绕选型、外部校准、热布局与替换基准芯片展开。</td></tr><tr><td>C2</td><td>Q189</td><td>请简述LDO数据手册中‘压差电压’这个参数的物理含义。</td><td>Gemini3.1pro: 与同批在前题目构成重复（题干表述不同但作答要点与思路高度同一），按规则保留在前题目、删除本题。</td><td>Q414</td><td>在产线测试中发现某批次电源模块的输出电压存在周期性抖动，示波器捕获到叠加在直流电平上的高频振荡波形。请简述你如何结合电源拓扑结构和环路响应特性，判断该抖动是源于控制环路不稳定还是外部干扰耦合。</td><td>Gemini3.1pro: 与同批Q0412核心作答高度重合：均为电源输出出现与PWM频率不一致的振荡/抖动，并围绕环路稳定性与外部耦合区分排查；保留在前的Q0412，删除本题。</td></tr></tbody>
+  </table>
+</body>
+</html>
