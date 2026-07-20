@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>第六轮审核看板</title>
+<style>
+body{font-family:"Microsoft YaHei",Arial,sans-serif;margin:28px;background:#f6f7fb;color:#202124;line-height:1.65}
+h1{margin-bottom:8px}h2{border-left:5px solid #315efb;padding-left:10px;margin-top:26px}h3{color:#1f3f99}
+.cards{display:grid;grid-template-columns:repeat(5,minmax(130px,1fr));gap:12px;margin:16px 0}
+.card{background:#fff;border-radius:12px;padding:16px;box-shadow:0 1px 4px #d9dde8}.card span{display:block;color:#667085}.card b{font-size:28px}
+section{background:#fff;border-radius:12px;padding:16px;margin:14px 0;box-shadow:0 1px 4px #d9dde8}
+table{border-collapse:collapse;width:100%;background:#fff}th,td{border-bottom:1px solid #e5e7ef;padding:8px;vertical-align:top;text-align:left}th{background:#eef2ff}
+.example{border-left:4px solid #96a7ff;background:#fafbff;padding:10px 12px;margin:10px 0;border-radius:8px}
+</style>
+</head>
+<body>
+<h1>第六轮审核结果看板</h1>
+<p>行业：汽车整车与零部件制造业；岗位：电子工程师。本看板展示六轮审核进度、分流结论、模型差异、一级和二级错误统计、三段总结与代表例子。</p>
+<div class="cards">
+<div class="card"><span>审核题数</span><b>59</b></div>
+<div class="card"><span>模型结果行</span><b>118</b></div>
+<div class="card"><span>可保留题目答案</span><b>0</b></div>
+<div class="card"><span>重新出答案</span><b>46</b></div>
+<div class="card"><span>需要重新出题</span><b>13</b></div>
+</div>
+<section><h2>分流结论</h2><table><tr><th>分流动作</th><th>题目数</th></tr><tr><td>可保留题目答案</td><td>0</td></tr><tr><td>重新出答案</td><td>46</td></tr><tr><td>需要重新出题</td><td>13</td></tr></table></section>
+<section><h2>模型统计</h2><table><tr><th>模型</th><th>总题数</th><th>删除</th><th>保留</th><th>A类</th><th>B类</th><th>C类</th></tr><tr><td>GPT5.5</td><td>59</td><td>41</td><td>18</td><td>11</td><td>30</td><td>0</td></tr><tr><td>Gemini3.1pro</td><td>59</td><td>59</td><td>0</td><td>11</td><td>48</td><td>0</td></tr></table></section>
+<section><h2>批次进度</h2><table><tr><th>model</th><th>batch_id</th><th>status</th><th>questions_total</th><th>delete_count</th><th>keep_count</th><th>A</th><th>B</th><th>C</th></tr><tr><td>GPT5.5</td><td>R6-B001</td><td>done</td><td>40</td><td>29</td><td>11</td><td>10</td><td>19</td><td>0</td></tr><tr><td>GPT5.5</td><td>R6-B002</td><td>done</td><td>19</td><td>12</td><td>7</td><td>1</td><td>11</td><td>0</td></tr><tr><td>Gemini3.1pro</td><td>R6-B001</td><td>done</td><td>40</td><td>40</td><td>0</td><td>10</td><td>30</td><td>0</td></tr><tr><td>Gemini3.1pro</td><td>R6-B002</td><td>done</td><td>19</td><td>19</td><td>0</td><td>1</td><td>18</td><td>0</td></tr></table></section>
+<section><h2>一级错误类型统计</h2><table><tr><th>一级错误类型</th><th>模型删除次数</th></tr><tr><td>A</td><td>22</td></tr><tr><td>B</td><td>78</td></tr><tr><td>C</td><td>0</td></tr></table></section>
+<section><h2>二级错误类型统计</h2><table><tr><th>二级错误类型</th><th>模型删除次数</th></tr><tr><td>A1</td><td>21</td></tr><tr><td>A2</td><td>1</td></tr><tr><td>B1</td><td>78</td></tr></table></section>
+<section><h2>本轮题目主要出错点总结</h2><p>第六轮题干侧暴露出的核心问题，是把标准或协议中的不存在概念写进题干前提，导致题目本身无法成立。高频表现包括把 ISO 7637-2 Pulse 5b 说成“含反向电压”、反复要求解释 LIN 协议不存在的“D位”、把 CAN FD 的 DLC 映射写错、把 MIPI CSI-2 错接到 JESD204B 标准、把 ISO 11452-4 误称为脉冲群抗扰。这些不是表达瑕疵，而是会迫使候选人围绕错误前提作答，因此 A 类题必须重写题干和答案。</p></section>
+<section><h2>本轮答案主要出错点总结</h2><p>答案侧错误数量更多，主要集中在 B1：标准适用范围、协议位定义、器件机理、总线拓扑和诊断状态解释错误。典型问题包括把 AEC-Q200 用到集成 IC、把 UDS confirmedDTC 写成 bit0、把 S3 会话定时器写成 P2/P2*、把 CAN 终端或 QSPI 引脚数量说错、把 TVS/压敏/多级保护的能量分配和接法写错。这类题目题干往往仍可作为面试问题，但参考答案会误导评分标准，因此进入重新出答案。</p></section>
+<section><h2>后续重新出内容时应补充的规则</h2><p><b>重新出题：</b>逐项核对题干中的标准编号、协议字段、测试波形和工程前提；涉及 ISO 7637、ISO 11452、CISPR 25、LIN、CAN FD、UDS、MIPI 等内容时，先确认该标准是否真的定义了题干所说对象，禁止创造不存在字段或把不同标准混用。</p><p><b>重新出答案：</b>先给正确结论，再说明标准依据、工程机理和适用边界；所有位定义、DLC 映射、TVS 接法、终端拓扑、DTC 状态位、ASIL/HARA/FMEA 口径都必须逐字核对。</p><p><b>质检清单：</b>检查题干前提是否真实存在；答案是否引用正确标准；是否混淆发射/抗扰、反接/抛负载、本地/远程唤醒、控制器/收发器；参数是否绝对化且无来源；三层答案是否与题干同一知识点闭环。</p></section>
+<h2>二级错误类型代表例子</h2>
+<section><h3>A1</h3><div class="example"><h4>R6Q0001 · GPT5.5</h4><p><b>题目：</b>某车规级电机控制器在整车断开蓄电池负极瞬间，电源输入端实测出现峰值115V、前沿时间3μs、持续400ms的负载突降脉冲，需满足ISO 7637-2 Pulse 5b（含反向电压）要求。</p><p><b>错误表现：</b>A1</p><p><b>删除原因：</b>Pulse 5b 通常指被抑制的抛负载脉冲，不是“含反向电压”的脉冲要求；反向电压应按反接或 ISO 16750 等电源反向工况单独处理。</p></div><div class="example"><h4>R6Q0002 · GPT5.5</h4><p><b>题目：</b>在 LIN 2.2A 协议中要求根据“D位”确定有效数据字节数。</p><p><b>错误表现：</b>A1</p><p><b>删除原因：</b>LIN 2.2A 不存在用于配置数据长度的“D位”，帧长度由 LDF/帧定义确定。</p></div></section>
+<section><h3>A2</h3><div class="example"><h4>R6Q0037 · Gemini3.1pro</h4><p><b>题目：</b>加速度计、陀螺仪与麦克风信号共享同一 ADC 采样时钟。</p><p><b>错误表现：</b>A2</p><p><b>删除原因：</b>现代域控制器中 IMU 多通过 SPI/I2C 等数字总线连接，音频也常用数字接口，该模拟共享 ADC 场景偏门且脱离常见车载电子架构。</p></div></section>
+<section><h3>B1</h3><div class="example"><h4>R6Q0007 · Gemini3.1pro</h4><p><b>题目：</b>ASIL 等级判断因素题。</p><p><b>错误表现：</b>B1</p><p><b>删除原因：</b>答案把 ISO 26262-3 中严重度分类指南写成附录 D，实际严重度指南在附录 B，附录 D 是可控性分类指南。</p></div><div class="example"><h4>R6Q0026 · GPT5.5</h4><p><b>题目：</b>DTC 故障已确认状态位。</p><p><b>错误表现：</b>B1</p><p><b>删除原因：</b>confirmedDTC 对应 bit3，bit0 是 testFailed，答案把 UDS 状态位解释错误。</p></div></section>
+</body>
+</html>
