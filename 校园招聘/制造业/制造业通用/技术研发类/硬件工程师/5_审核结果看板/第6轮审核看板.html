@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Round 6 Dashboard</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; margin: 24px; color: #1f2937; }
+    h1, h2, h3 { margin: 10px 0 12px; }
+    .cards { display: grid; grid-template-columns: repeat(3, minmax(140px, 220px)); gap: 12px; margin: 8px 0 18px; }
+    .card { border: 1px solid #e5e7eb; border-radius: 10px; padding: 12px; background: #fafafa; }
+    .card .k { font-size: 12px; color: #6b7280; }
+    .card .v { font-size: 24px; font-weight: 700; margin-top: 4px; }
+    table { border-collapse: collapse; width: 100%; margin: 8px 0 18px; }
+    th, td { border: 1px solid #e5e7eb; padding: 8px 10px; vertical-align: middle; }
+    th { background: #f9fafb; }
+    .legend span { margin-right: 12px; font-size: 13px; color: #374151; }
+    .mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; }
+    .ex { margin: 6px 0; color: #374151; }
+    .section-divider { border: 0; border-top: 2px solid #eef2f7; margin: 22px 0; }
+  </style>
+</head>
+<body>
+  <h1>Round 6 审核看板</h1>
+
+  <div class="cards">
+    <div class="card"><div class="k">A类错误</div><div class="v">3</div></div>
+    <div class="card"><div class="k">B类错误</div><div class="v">68</div></div>
+    <div class="card"><div class="k">C类错误</div><div class="v">0</div></div>
+  </div>
+
+  <h2>本轮题目主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">本轮题目主要出错点集中在题干条件自相矛盾与不可实现约束（A1，共3次模型标注）。典型表现：一是要求“不增加器件、仅靠重构网络标号语义”去解决复位源电气短接/争用，网络重命名无法改变硬件冲突；二是要求在无外部时钟、又否定RC延时的前提下，仅用基础逻辑门与RS锁存器实现100ms毛刺识别与屏蔽，缺少时间基准，物理上不可实现。影响范围虽小于答案错误，但对后续重出题干设计约束很关键：题干约束必须可在板级硬件口径下落地，禁止把互斥前提写进同一题。</div>
+<h2>本轮答案主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">本轮答案错误占绝对主体（B类68次模型标注，其中B1=63、B2=5）。高频问题包括：（1）晶振负载匹配把两颗12pF外接电容误当成匹配CL=12pF，忽略串联等效与寄生；（2）低温起振失败优先谈频偏而非ESR/负阻裕量/驱动电平；（3）跨电源域参考平面写成“同电位完整参考”，与多电源域场景冲突；（4）ADC/基准方向错误，如Vref升高却说码值变大；（5）封装变更、二极管/MOS机理、LDO瞬态与EMI整改等出现绝对化或偏门方案（如把SC切晶振当普通电表EMI首选）。影响覆盖本轮回流题多数删除项，直接决定重出答案质量；可评分性上则表现为关键参数、方向、适用条件写错，面试官无法按答案可靠打分。</div>
+<h2>后续重新出内容时应补充的规则</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">【重新出题】<br/>重新出题规则补充：<br/>1) 题干所有约束必须可同时成立；涉及延时/滤波/抗扰时，必须给出可行时间基准或允许的RC/时钟/计时器件，禁止“无时钟且禁止RC却要求百毫秒判别”。<br/>2) “不增加器件”类题，只能考察布局、回流、参考平面、网络分割中真正可不改BOM的手段；若必须隔离/缓冲，不要写成仅改网络标号即可。<br/>3) 保持板级硬件工程师口径，避免IC版图/纯数字抽象题；口语可答，禁止公式推导、绘制、符号证明类A4要求。<br/>4) 出题后自检：候选人能否在口述中覆盖题干全部约束；约束之间有无物理冲突。<br/><br/>【重出答案】<br/>重出答案规则补充：<br/>1) 晶振：CL必须按C1||C2串联等效+Cstray计算；低温起振优先写ESR、负阻裕量、驱动电平，勿只写频偏。<br/>2) 信号完整性：跨电源域优先连续参考/就近回流过孔，禁止把不同电位平面当同电位参考或低阻短接。<br/>3) 电源与转换：写清器件机理方向（Vref与ADC码、雪崩电压温漂、续流二极管工作区间）；禁止二极管谈栅极驱动等张冠李戴。<br/>4) 第二层给2–4种岗位常见可落地方案及优劣，禁止把少见切型/射频小信号方案写成工业板级首选。<br/>5) 第三层异常须与题干现象同向；自检清单：手册常识可复核→口语可讲→答全题干约束→板级硬件口径。</div>
+
+  <hr class="section-divider" />
+
+  <h2>模型进度与删除率</h2>
+  <table>
+    <thead>
+      <tr><th>Model</th><th>批次完成</th><th>完成率</th><th>删除率</th><th>主错误</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>GPT5.5</td><td style='text-align:center'>2/2</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:50.7%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">50.7%</span></td><td style='text-align:center'>B>A</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>2/2</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:44.0%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">44.0%</span></td><td style='text-align:center'>B>A</td></tr>
+    </tbody>
+  </table>
+
+  <h2>批次状态矩阵</h2>
+  <div class="legend">
+    <span>✓ done</span><span>… running</span><span>○ pending</span><span>! blocked</span><span>x failed</span>
+  </div>
+  <table>
+    <thead><tr><th>Model</th><th>R6-B001</th><th>R6-B002</th></tr></thead>
+    <tbody><tr><td>GPT5.5</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td></tr></tbody>
+  </table>
+
+  <h2>细分错误统计（A1/B1...）</h2>
+  <table>
+    <thead><tr><th>错误子类</th><th>数量</th></tr></thead>
+    <tbody><tr><td>A1</td><td style='text-align:center'>3</td></tr><tr><td>B1</td><td style='text-align:center'>63</td></tr><tr><td>B2</td><td style='text-align:center'>5</td></tr></tbody>
+  </table>
+
+  <h3>细分错误示例（每类2条）</h3>
+  <table>
+    <thead><tr><th>错误子类</th><th>例1-题号</th><th>例1-题目</th><th>例1-理由</th><th>例2-题号</th><th>例2-题目</th><th>例2-理由</th></tr></thead>
+    <tbody><tr><td>A1</td><td>Q049</td><td>一份用于批量生产的设备主控板原理图中，‘RESET’网络标号同时连接了MCU复位引脚、看门狗输出和外部手动复位按键，量产测试阶段发现偶发复位异常。在不增加器件的前提下，你如何通过重构网络标号的语义划分与连接约束来提升系统抗扰能力？请简述设计逻辑与验证关键点。</td><td>GPT5.5: 题干要求“不增加器件”且仅通过“重构网络标号的语义划分与连接约束”提升复位网络抗扰能力，但网络标号重命名本身不能改变多个复位源已电气短接的硬件冲突、抖动耦合或驱动争用；正确应通过开漏/线与规范、隔离二极管/电阻、RC/施密特、复位芯片或布局滤波等实际电路措施解决。；Gemini3.1pro: 参考答案第二层称“仅在MCU复位引脚处用显式导线连接三者...能清晰映射PCB布线约束”，逻辑错误。虽然分段标号可以指导星型布线，但在不增加隔离器件（如二极管或缓冲器）的前提下，物理上它们仍然是直接连接在一起的无隔离线与结构，无法从根本上解决信号冲突和噪声直接耦合的问题，无法实质性提升系统抗扰能力。</td><td>Q074</td><td>在工业现场的嵌入式控制电路中，多个传感器信号需经逻辑门电路进行实时表决：要求当三路输入中恰好有两路为高电平时输出有效，但若任意一路输入出现持续超过100毫秒的毛刺干扰，则必须立即屏蔽该路输入对表决结果的影响，并维持当前输出状态不变；整个电路需在无外部时钟条件下自主识别毛刺并完成屏蔽。请简述如何仅用基础逻辑门和RS锁存器实现这一带毛刺滤除与动态输入屏蔽的表决逻辑，并说明为何单纯增加RC滤波或串联多个非门无法满足该功能需求。</td><td>GPT5.5: 题干要求“仅用基础逻辑门和RS锁存器”且“无外部时钟”自主识别持续超过100ms的毛刺并屏蔽输入，但纯逻辑门和RS锁存器没有时间基准，无法可靠实现100ms门限判定；参考答案又引入延时/脉宽鉴别但未提供可实现的时间基准。正确应使用RC/施密特、单稳态、计时器、时钟逻辑或MCU/FPGA等具备时间判定能力的电路。；Gemini3.1pro: 题干存在逻辑不严谨和知识性错误。题干要求“仅用基础逻辑门和RS锁存器实现...持续超过100毫秒的毛刺干扰”的识别，且“无外部时钟条件”，同时又要求说明“为何单纯增加RC滤波或串联多个非门无法满足”。实际上，在没有时钟且不使用RC延时电路的情况下，仅靠基础逻辑门（纳秒级延迟）根本无法实现长达100毫秒的延时判别，题目条件自相矛盾。</td></tr><tr><td>B1</td><td>Q001</td><td>在高速数字电路PCB布局中，当一对差分时钟信号需要跨多个电源域走线时，如何确定参考平面切换位置，并说明这种切换对信号完整性的影响及应对依据。</td><td>GPT5.5: 参考答案将差分时钟跨多个电源域时的参考平面切换处理描述为“进入新电源域前的最近位置”且要求“两侧均有完整、同电位的参考平面”，与题干“跨多个电源域”场景下不同电位平面不能直接作为同电位参考的事实冲突；正确应优先避免跨分割/跨不同电位参考，必要时通过连续地参考、就近回流/去耦路径和阻抗连续性验证处理。</td><td>Q004</td><td>当选用一款标称频率为25MHz、负载电容为12pF的晶振时，如果PCB上实际焊接的两个外接匹配电容分别是10pF和12pF，这会对振荡稳定性带来什么影响？请简述。</td><td>GPT5.5: 参考答案称“统一更换为两颗12pF电容”可匹配标称负载电容12pF，但晶振负载电容近似为C1、C2串联等效再叠加寄生电容，两颗12pF只提供约6pF再加寄生，不等于12pF；正确应按CL=(C1*C2)/(C1+C2)+Cstray反推匹配电容。；Gemini3.1pro: 参考答案第二层中“一是统一更换为两颗12pF电容”错误，把两颗12pF当成匹配CL=12pF。晶振负载电容CL≈C1与C2串联等效+寄生电容，若CL为12pF，外接电容应大于12pF（如18pF左右），正确应是根据寄生电容重新计算并更换合适容值（如两颗18pF）的电容。</td></tr><tr><td>B2</td><td>Q006</td><td>在设计一款需通过EMC Class B认证的智能电表硬件时，发现晶振辐射超标。已知当前使用的是普通AT切石英晶振，且布局布线符合常规规范。请简述在不改变主控芯片和PCB叠层的前提下，应如何从晶振类型、等效串联电阻、激励功率及封装形式四个维度综合选型，并解释各维度对EMI抑制的作用机制。</td><td>GPT5.5: 参考答案把“SC切或IT切晶振替代AT切”“中高ESR+金属封装”作为普通智能电表晶振EMI整改的优先组合，偏离常见板级整改实践；正确应优先考虑降低驱动强度、合理负载电容、布局屏蔽/接地、短回路和必要的有源晶振/低EMI器件选型，而不是把少见切型作为主流方案。；Gemini3.1pro: 参考答案第一层及第二层提出“优先选用基频模式、低相噪特性的SC切或IT切晶振替代AT切”，错误。SC切晶振成本高且少见，不应作为普通智能电表EMI整改的首选，属于偏门方案，正确应为采用展频晶振或调整外围匹配电容/串联电阻。</td><td>Q006</td><td>在设计一款需通过EMC Class B认证的智能电表硬件时，发现晶振辐射超标。已知当前使用的是普通AT切石英晶振，且布局布线符合常规规范。请简述在不改变主控芯片和PCB叠层的前提下，应如何从晶振类型、等效串联电阻、激励功率及封装形式四个维度综合选型，并解释各维度对EMI抑制的作用机制。</td><td>GPT5.5: 参考答案把“SC切或IT切晶振替代AT切”“中高ESR+金属封装”作为普通智能电表晶振EMI整改的优先组合，偏离常见板级整改实践；正确应优先考虑降低驱动强度、合理负载电容、布局屏蔽/接地、短回路和必要的有源晶振/低EMI器件选型，而不是把少见切型作为主流方案。；Gemini3.1pro: 参考答案第一层及第二层提出“优先选用基频模式、低相噪特性的SC切或IT切晶振替代AT切”，错误。SC切晶振成本高且少见，不应作为普通智能电表EMI整改的首选，属于偏门方案，正确应为采用展频晶振或调整外围匹配电容/串联电阻。</td></tr></tbody>
+  </table>
+</body>
+</html>
