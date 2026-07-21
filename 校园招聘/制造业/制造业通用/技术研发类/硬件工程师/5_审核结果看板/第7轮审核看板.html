@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Round 7 Dashboard</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; margin: 24px; color: #1f2937; }
+    h1, h2, h3 { margin: 10px 0 12px; }
+    .cards { display: grid; grid-template-columns: repeat(3, minmax(140px, 220px)); gap: 12px; margin: 8px 0 18px; }
+    .card { border: 1px solid #e5e7eb; border-radius: 10px; padding: 12px; background: #fafafa; }
+    .card .k { font-size: 12px; color: #6b7280; }
+    .card .v { font-size: 24px; font-weight: 700; margin-top: 4px; }
+    table { border-collapse: collapse; width: 100%; margin: 8px 0 18px; }
+    th, td { border: 1px solid #e5e7eb; padding: 8px 10px; vertical-align: middle; }
+    th { background: #f9fafb; }
+    .legend span { margin-right: 12px; font-size: 13px; color: #374151; }
+    .mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; }
+    .ex { margin: 6px 0; color: #374151; }
+    .section-divider { border: 0; border-top: 2px solid #eef2f7; margin: 22px 0; }
+  </style>
+</head>
+<body>
+  <h1>Round 7 审核看板</h1>
+
+  <div class="cards">
+    <div class="card"><div class="k">A类错误</div><div class="v">0</div></div>
+    <div class="card"><div class="k">B类错误</div><div class="v">49</div></div>
+    <div class="card"><div class="k">C类错误</div><div class="v">2</div></div>
+  </div>
+
+  <h2>本轮题目主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">本轮45道回流题中，题干侧硬伤相对少见：合并后仅1题进入「需要重新出题」，其余问题几乎都落在参考答案。仍可见的题干/题目级风险主要有两类：一是同质化重复（C2），例如分立器件双向电平转换与同批次更早题高度同构，候选人作答要点几乎一致；二是个别题干把强约束写成偏门前提（如强制要求多个噪声敏感度差异很大的模块必须复用同一电源网络标号），容易把答案逼向非常规口径。跨电源域差分走线、Type-C CC、电平转换、热仿真等场景本身属于硬件工程师常见工作，题干场景偏门（A2）不是本轮主因。影响范围上，题目侧问题约占合并判删题的极少数，但对题库多样性与后续生成约束仍有放大效应：重复题会浪费回流额度，偏门约束会系统性诱导答案偏离最佳实践。</div>
+<h2>本轮答案主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">答案错误是本轮绝对主因：错误大类以B为主（统计约49次模型标注），二级以B1知识性/逻辑错误占绝大多数（约47），另有少量B2偏门方案与C2重复。高频出错点包括：1）信号完整性与回流路径机理写反或绝对化，如跨分割后阻抗“跌落”、回流长度“严格匹配”、近远端串扰随间距变化的过度断言；2）接口与电源基础概念错置，如USB Type-C Source/Sink上下拉反置、LDO压差裕量判断反了、Buck电感端电压写成Vin而非Vin-Vout、阻容耦合截止频率与rbe关系说反；3）器件/拓扑方案不符合板级量产口径，如把数字电位器+运放等效可调电感写成变频驱动LC滤波主流方案、把FPGA静态时序分析套到分立门电路约束场景；4）DFMEA/可靠性表述错位，如冗余设计被说成主要降低探测度；5）原理图网络标号与隔离器件关系说不清，VCC后缀命名与“同一网标”前提自相矛盾。两模型在硬伤题上共识较高（B001一致率约72.5%），说明多数删除来自可复核的事实错误，而非单纯过严。影响上，合并后保留13题、重出答案31题、重出题目1题，答案质量仍是下一轮回流的主要瓶颈。</div>
+<h2>后续重新出内容时应补充的规则</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">【重新出题】<br/>重出题时补充：1）同岗位同技能下禁止再出“分立MOSFET双向电平转换”同构题，生成后需与在库题做要点去重；2）题干约束必须可落地且不与板级最佳实践冲突——不要强制“必须复用同一电源网标且不允许隔离器件”；3）题干问法保持口语可答，避免诱导写出公式推导；若考察截止频率/阻抗，应要求定性机理与工程取舍，而非计算过程；4）场景限定与作答边界写清（是否允许换器件、是否允许有源芯片、是否板级量产口径），防止答案漂移到FPGA/射频小信号等非本题岗位路径。<br/><br/>【重出答案】<br/>重出答案时强制自检：1）电源/转换类：LDO必须满足最小压差；Buck导通相电感电压为Vin-Vout；Type-C Source上拉、Sink下拉不得写反；2）SI/PI类：跨分割优先避免或就近回流/去耦，禁止把不同电位平面当连续回流；TDR/阻抗变化方向需与电感电容效应一致；3）方案层只给工业板级常见可落地方案（2–4种）并点明最优理由，禁止把运放等效电感、纯注释区分敏感电源等写成主流；4）网络标号：不同名网络必须有磁珠/0Ω/net-tie等连接说明；同一网标下用布局/去耦约束表达分区，不要伪造“后缀子网且不增加网表复杂度”；5）DFMEA：冗余主要影响发生度/严重度，不要写成主要降低探测度；6）第三层异常须与题干现象同向，禁止张冠李戴接口（如MDI vs RGMII）。</div>
+
+  <hr class="section-divider" />
+
+  <h2>模型进度与删除率</h2>
+  <table>
+    <thead>
+      <tr><th>Model</th><th>批次完成</th><th>完成率</th><th>删除率</th><th>主错误</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>GPT5.5</td><td style='text-align:center'>2/2</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:60.0%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">60.0%</span></td><td style='text-align:center'>B>C</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>2/2</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:53.3%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">53.3%</span></td><td style='text-align:center'>B>C</td></tr>
+    </tbody>
+  </table>
+
+  <h2>批次状态矩阵</h2>
+  <div class="legend">
+    <span>✓ done</span><span>… running</span><span>○ pending</span><span>! blocked</span><span>x failed</span>
+  </div>
+  <table>
+    <thead><tr><th>Model</th><th>R7-B001</th><th>R7-B002</th></tr></thead>
+    <tbody><tr><td>GPT5.5</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td></tr></tbody>
+  </table>
+
+  <h2>细分错误统计（A1/B1...）</h2>
+  <table>
+    <thead><tr><th>错误子类</th><th>数量</th></tr></thead>
+    <tbody><tr><td>B1</td><td style='text-align:center'>47</td></tr><tr><td>B2</td><td style='text-align:center'>2</td></tr><tr><td>C2</td><td style='text-align:center'>2</td></tr></tbody>
+  </table>
+
+  <h3>细分错误示例（每类2条）</h3>
+  <table>
+    <thead><tr><th>错误子类</th><th>例1-题号</th><th>例1-题目</th><th>例1-理由</th><th>例2-题号</th><th>例2-题目</th><th>例2-理由</th></tr></thead>
+    <tbody><tr><td>B1</td><td>Q002</td><td>在高速数字电路PCB布局中，当一对差分时钟信号需要跨多个电源域走线时，如何确定参考平面切换位置，并说明这种切换对信号完整性的影响及应对依据。</td><td>GPT5.5: 参考答案把跨不同电源参考面的回流处理说错。原文称“在每个跨域点独立配置对应电压平面的回流过孔”，且“回流路径长度与信号路径严格匹配”；不同电压平面不能靠普通回流过孔直接形成连续回流，通常应避免跨分割，或在参考切换处用就近地过孔/去耦电容等提供低阻抗高频回流路径，回流环路需最小化而不是长度严格匹配。；Gemini3.1pro: 答案存在知识性错误。差分信号跨越电源域分割区时，由于回流路径被切断，等效电感增大、电容减小，会导致传输线的特性阻抗升高，而不是跌落。正确的应该是阻抗升高。
+引用原文：实测发现跨域后TDR显示阻抗跌落5欧以上</td><td>Q002</td><td>在高速数字电路PCB布局中，当一对差分时钟信号需要跨多个电源域走线时，如何确定参考平面切换位置，并说明这种切换对信号完整性的影响及应对依据。</td><td>GPT5.5: 参考答案把跨不同电源参考面的回流处理说错。原文称“在每个跨域点独立配置对应电压平面的回流过孔”，且“回流路径长度与信号路径严格匹配”；不同电压平面不能靠普通回流过孔直接形成连续回流，通常应避免跨分割，或在参考切换处用就近地过孔/去耦电容等提供低阻抗高频回流路径，回流环路需最小化而不是长度严格匹配。；Gemini3.1pro: 答案存在知识性错误。差分信号跨越电源域分割区时，由于回流路径被切断，等效电感增大、电容减小，会导致传输线的特性阻抗升高，而不是跌落。正确的应该是阻抗升高。
+引用原文：实测发现跨域后TDR显示阻抗跌落5欧以上</td></tr><tr><td>B2</td><td>Q034</td><td>在工业现场常见的变频驱动电路中，LC谐振回路常被用于滤除高频开关噪声，但实际调试时发现：当输入电压波动或负载突变时，谐振点发生偏移，导致滤波效果恶化甚至引发局部过压。请结合谐振电路的品质因数Q值、阻抗相位随频率变化的特性，说明如何系统性地设计参数冗余与动态补偿机制来保障谐振性能的鲁棒性。</td><td>GPT5.5: 参考答案给出的动态补偿方案偏门且部分机理不当。原文称“数字电位器+运放构成等效可调电感支路…当前工业板级最主流”，这不是变频驱动LC滤波鲁棒性的常见量产做法；常见应是器件降额、阻尼网络、Q值控制、饱和裕量和必要的有源控制策略。原文还称串入小阻值无感电阻“提升局部Q值可控性”，实际串阻通常降低/钝化Q值以抑制谐振峰。；Gemini3.1pro: 答案存在严重的知识性错误。变频驱动电路中的LC谐振回路属于大功率回路，承受高电压和大电流，而“数字电位器+运放构成的等效可调电感支路”只能用于微弱信号处理，绝对无法承受功率级的电压和电流，更不可能是“工业板级最主流”的功率滤波方案。
+引用原文：四是用数字电位器+运放构成等效可调电感支路，兼顾线性度与抗干扰性，当前工业板级最主流。</td><td>Q045</td><td>在面向大批量制造的工业控制板原理图中，多个功能模块共用同一组电源网络标号（如‘VCC_3V3’），但实际各模块对电源噪声敏感度差异显著：ADC采集部分要求纹波低于10mV，而LED驱动部分可容忍100mV。若必须复用该标号实现统一供电管理，你如何通过网络标号的语义分层、连接约束与局部去耦协同设计，既保障关键路径电源完整性，又避免原理图层级产生歧义或误连？请简述你的设计策略与核心权衡依据。</td><td>GPT5.5: 参考答案第二层原文称“采用主干标号加后缀分组，如统一用VCC_3V3，但在ADC区域额外标注VCC_3V3_ADC并配独立去耦，优势是兼容现有工具流且不增加网表复杂度”，该表述与网络标号规则矛盾；在主流EDA中VCC_3V3与VCC_3V3_ADC会被视为不同网络，除非通过磁珠、0欧电阻、net tie等明确连接，否则不能既说复用同一标号又使用后缀子标号，也不能说不增加网表复杂度。正确做法应是在同一网络标号下用注释/约束/布局规则明确去耦归属，或明确用隔离器件/网桥连接不同命名网络。；Gemini3.1pro: 题干要求“必须复用该标号”并在参考答案中推荐依赖文本注释来区分ADC和LED的去耦电容，这严重违背了硬件设计的常见最佳实践。对于对噪声敏感的ADC，最佳实践是通过磁珠或0欧姆电阻进行物理隔离并使用独立的网络标号（如VDDA_3V3），从而利用EDA软件的DRC功能防止Layout误连。强制复用同一网络标号极易导致Layout覆铜失误。此外，答案中“额外标注VCC_3V3_ADC”若无隔离器件则会被EDA自动合并，无法真正解决问题。正确的应当是摒弃强制复用标号的做法，采用规范的网络隔离。</td></tr><tr><td>C2</td><td>Q022</td><td>某PLC扩展模块使用5伏逻辑电平，主控制器采用3.3伏GPIO接口，两者需直接连接并保证稳定通信。若不使用专用电平转换芯片，仅通过分立器件实现双向电平兼容，最常用且可靠的电路结构是什么？请简单说说其工作原理。</td><td>Gemini3.1pro: 与Q007考察核心要点重复，均考察基于MOSFET的双向电平转换电路工作原理。</td><td>Q022</td><td>某PLC扩展模块使用5伏逻辑电平，主控制器采用3.3伏GPIO接口，两者需直接连接并保证稳定通信。若不使用专用电平转换芯片，仅通过分立器件实现双向电平兼容，最常用且可靠的电路结构是什么？请简单说说其工作原理。</td><td>Gemini3.1pro: 与Q007考察核心要点重复，均考察基于MOSFET的双向电平转换电路工作原理。</td></tr></tbody>
+  </table>
+</body>
+</html>
