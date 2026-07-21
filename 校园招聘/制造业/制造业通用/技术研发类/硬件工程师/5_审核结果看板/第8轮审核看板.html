@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Round 8 Dashboard</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; margin: 24px; color: #1f2937; }
+    h1, h2, h3 { margin: 10px 0 12px; }
+    .cards { display: grid; grid-template-columns: repeat(3, minmax(140px, 220px)); gap: 12px; margin: 8px 0 18px; }
+    .card { border: 1px solid #e5e7eb; border-radius: 10px; padding: 12px; background: #fafafa; }
+    .card .k { font-size: 12px; color: #6b7280; }
+    .card .v { font-size: 24px; font-weight: 700; margin-top: 4px; }
+    table { border-collapse: collapse; width: 100%; margin: 8px 0 18px; }
+    th, td { border: 1px solid #e5e7eb; padding: 8px 10px; vertical-align: middle; }
+    th { background: #f9fafb; }
+    .legend span { margin-right: 12px; font-size: 13px; color: #374151; }
+    .mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; }
+    .ex { margin: 6px 0; color: #374151; }
+    .section-divider { border: 0; border-top: 2px solid #eef2f7; margin: 22px 0; }
+  </style>
+</head>
+<body>
+  <h1>Round 8 审核看板</h1>
+
+  <div class="cards">
+    <div class="card"><div class="k">A类错误</div><div class="v">7</div></div>
+    <div class="card"><div class="k">B类错误</div><div class="v">43</div></div>
+    <div class="card"><div class="k">C类错误</div><div class="v">0</div></div>
+  </div>
+
+  <h2>本轮题目主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">本轮32道回流题中，题干侧问题明显少于答案，但已形成可识别的硬伤簇。合并后进入「需要重新出题」7题，题干相关标注以A1（约5次模型标注）与A2（约2次）为主。高频表现：1）电源基础概念在题干设定或诱导口径上写反，如LDO「最大压差200mV」场景下把100mV裕量写成可稳定工作，把压差与带载能力关系说反；2）场景偏离板级硬件工程师日常边界（A2），例如强制深入带隙基准内部PTAT/曲率补偿失效机理、或在禁止换器件前提下要求对分立门电路做纳秒级静态时序分析与代数化简——这类题更容易把答案逼向模拟IC/FPGA前端口径。相对而言，C类重复在本轮统计中未形成主因。影响范围上，题干问题虽只占判删题的一小部分，但会直接决定重出分流：一旦出现A类，题目与答案都需重做，且会放大后续答案的岗位错位风险。</div>
+<h2>本轮答案主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">答案错误仍是本轮绝对主因：错误大类以B为主（约50次模型标注），二级以B1知识性/逻辑错误占绝大多数（约40），并伴有B2偏门实践（约5）、B3跑题（约3）、B6岗位口径不符（约2）。高频出错点包括：1）SI/PI与模拟前端机理写反或绝对化，如跨多电源域用「同电位铜箔桥接」当主流最优、晶振负载电容按「两电容各等于CL」口径、仪放与有源滤波级联顺序颠倒、NEXT/FEXT容感耦合加减关系说反、电源平面切换是否改变特性阻抗判断失误；2）电源与开关器件基础事实错置，如LDO压差能否稳压判断反了、低温下二极管雪崩/载流子迁移率表述错误、继电器续流二极管把trr当成首要参数、DCM次谐波振荡与斜坡补偿关系套错工作模式；3）方案层偏离板级量产最佳实践（B2），如智能电表EMI优先推SC切+可调阻容增益补偿、I2C下降沿拖尾套用高速端接/参考平面理论；4）岗位表达错位（B6），把芯片内部基准源修调、门级STA网表重构写成硬件工程师可操作手段。两模型删题率均偏高（GPT5.5 78.1%、Gemini 56.2%），按用户确认仍按现状汇总；合并后可保留4题、重出答案21题、重出题目7题，答案准确性仍是下一轮回流瓶颈。</div>
+<h2>后续重新出内容时应补充的规则</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">【重新出题】<br/>重出题时补充：1）题干必须落在板级硬件工程师可操作边界——禁止要求修改带隙内部PTAT/曲率网络、禁止在「不可换器件」约束下考察分立门电路纳秒级STA/代数化简；此类场景应改为器件选型、布局去耦、接口电平、电源完整性等板级动作；2）电源类题干设定要与器件手册口径一致：LDO的dropout是保证稳压所需的最小压差要求，不得把「实际压差小于最大dropout」写成可稳压；3）题干约束写清是否允许换层/换器件/是否量产口径，避免诱导到IC设计或FPGA前端路径；4）口语可答，禁止要求写出/绘制/推导公式；同技能点生成后做要点去重，避免与在库题同构。<br/><br/>【重出答案】<br/>重出答案时强制自检：1）SI/PI：跨电源域优先连续地参考或就近回流/去耦，禁止把不同电位平面当同电位铜箔随意桥接；晶振CL按CL≈C1∥C2+Cstray，不得默认两电容各等于CL；串扰NEXT/FEXT容感加减关系不得写反；特性阻抗由几何与介质决定，勿把电源平面噪声直接等同于Z0改变；2）电源/器件：LDO须满足最小压差；二极管低温雪崩/迁移率表述符合器件物理正温度系数常识；低速感性负载续流优先耐压/电流/热，勿把trr当继电器场景首要参数；电流模Buck的斜坡补偿场景勿与DCM次谐波混用；3）模拟前端：微弱桥式信号常见路径为仪放（高阻抗/高CMRR）后再有源抗混叠，勿默认「滤波→放大」为唯一正确；4）方案层只给工业板级常见可落地方案（2–4种）并点明最优理由，EMI/I2C等勿套用非常规切型或高速端接口径；5）第三层异常须与题干现象同向，禁止漂移到芯片内部修调或FPGA STA等非本题岗位手段。</div>
+
+  <hr class="section-divider" />
+
+  <h2>模型进度与删除率</h2>
+  <table>
+    <thead>
+      <tr><th>Model</th><th>批次完成</th><th>完成率</th><th>删除率</th><th>主错误</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>ALL</td><td style='text-align:center'>1/1</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:87.5%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">87.5%</span></td><td style='text-align:center'>none</td></tr><tr><td>GPT5.5</td><td style='text-align:center'>1/1</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:78.1%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">78.1%</span></td><td style='text-align:center'>B</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>1/1</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:56.2%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">56.2%</span></td><td style='text-align:center'>B>A</td></tr>
+    </tbody>
+  </table>
+
+  <h2>批次状态矩阵</h2>
+  <div class="legend">
+    <span>✓ done</span><span>… running</span><span>○ pending</span><span>! blocked</span><span>x failed</span>
+  </div>
+  <table>
+    <thead><tr><th>Model</th><th>PILOT_GATE</th><th>R8-B001</th></tr></thead>
+    <tbody><tr><td>ALL</td><td style='text-align:center'>✓</td><td style='text-align:center'>○</td></tr><tr><td>GPT5.5</td><td style='text-align:center'>○</td><td style='text-align:center'>✓</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>○</td><td style='text-align:center'>✓</td></tr></tbody>
+  </table>
+
+  <h2>细分错误统计（A1/B1...）</h2>
+  <table>
+    <thead><tr><th>错误子类</th><th>数量</th></tr></thead>
+    <tbody><tr><td>A1</td><td style='text-align:center'>5</td></tr><tr><td>A2</td><td style='text-align:center'>2</td></tr><tr><td>B1</td><td style='text-align:center'>40</td></tr><tr><td>B2</td><td style='text-align:center'>5</td></tr><tr><td>B3</td><td style='text-align:center'>3</td></tr><tr><td>B6</td><td style='text-align:center'>2</td></tr></tbody>
+  </table>
+
+  <h3>细分错误示例（每类2条）</h3>
+  <table>
+    <thead><tr><th>错误子类</th><th>例1-题号</th><th>例1-题目</th><th>例1-理由</th><th>例2-题号</th><th>例2-题目</th><th>例2-理由</th></tr></thead>
+    <tbody><tr><td>A1</td><td>Q022</td><td>某LDO在数据手册中标注最大压差为200毫伏，实际应用中输入电压为3.4伏、输出3.3伏。请简述此时LDO能否稳定维持输出电压，并说明压差与带载能力之间的基本关系。</td><td>GPT5.5: LDO压差判断完全相反。原文称“实际压差为100毫伏，小于…最大压差200毫伏，满足LDO正常工作的最小压差要求”，但若数据手册在该负载下标注最大dropout为200mV，输入3.4V输出3.3V只有100mV裕量，通常不能保证稳压；且“压差越小…带载能力通常越强”也错误，压差不足会降低可带载能力。；Gemini3.1pro: 存在严重的知识性错误。数据手册的“最大压差（Dropout Voltage）200mV”指全温度下保证稳压所需的最小压差上限要求200mV。如果实际压差仅100mV，LDO会进入压差区无法维持稳压。答案认为100mV小于200mV所以能稳压，完全错误。</td><td>Q023</td><td>在工业现场常见的变频驱动电路中，LC谐振回路常被用于滤除高频开关噪声，但实际调试时发现：当输入电压波动或负载突变时，谐振点发生偏移，导致滤波效果恶化甚至引发局部过压。请结合谐振电路的品质因数Q值、阻抗相位随频率变化的特性，说明如何系统性地设计参数冗余与动态补偿机制来保障谐振性能的鲁棒性。</td><td>Gemini3.1pro: 存在知识性错误与脱离实际情况。工业变频中滤除开关噪声通常是利用LC低通滤波器的阻带，而不是用谐振陷波点；且答案第二层提到的“实时相位检测闭环调节可变电容阵列”等方案在板级应用中成本巨大且极为罕见，属于脱离实际的偏门方案。</td></tr><tr><td>A2</td><td>Q008</td><td>某工业传感器接口电路采用带隙基准源为ADC提供参考电压，但实测发现低温环境下转换结果出现系统性正向偏移。请简单说说这可能与基准源中哪一部分的温度补偿机制失效有关。</td><td>GPT5.5: 参考答案对ADC偏移方向和带隙补偿关系表述错误。原文称“基准电压整体呈现正向温漂，导致ADC参考值偏高，从而引起系统性正向转换偏移”，但同一输入下ADC码值通常与参考电压成反比，参考电压偏高会使转换码偏低；应先区分参考电压温漂、传感器输出温漂和ADC输入偏置的方向。；Gemini3.1pro: 题目与答案严重偏向模拟IC设计而非板级硬件工程师工作范畴。答案提到的“微调PTAT电流支路中的匹配电阻”、“增加曲率校正晶体管”等均属于芯片内部设计，板级硬件工程师无法修改内部结构。</td><td>Q029</td><td>在产线自动化设备的实时控制电路中，一个由与门、或门、非门构成的组合逻辑电路，其输出需在输入信号变化后严格满足：从任一输入跳变开始，到最终输出稳定，总传播延迟不得超过15纳秒；但实测发现部分路径延迟达22纳秒。若不允许增加任何新器件、不更改芯片型号，仅允许调整现有逻辑门的级联结构与扇入扇出方式，请简述你如何系统性地定位超时路径，并通过重构逻辑表达式与门级映射来压缩关键路径延迟，同时说明为何单纯靠减少门级数或更换高速工艺器件不在此约束下可行。</td><td>Gemini3.1pro: 题目场景极度偏门，脱离板级硬件工程师范围。工业自动化设备板级设计中复杂的纳秒级时序逻辑会直接用CPLD/FPGA实现。答案涉及的“静态时序分析提取网表”、“代数化简重构平衡树”等属于数字IC前端或FPGA开发内容。</td></tr><tr><td>B1</td><td>Q001</td><td>在高速数字电路PCB布局中，当一对差分时钟信号需要跨多个电源域走线时，如何确定参考平面切换位置，并说明这种切换对信号完整性的影响及应对依据。</td><td>GPT5.5: 参考答案对跨电源域参考平面处理存在知识性错误。原文称“桥接式参考平面，在分割间隙铺设与主参考层同电位的铜箔”为主流最优，但不同电源域不能用同电位铜箔随意桥接；高速差分跨参考平面时应优先保持连续地参考，必要时用靠近换层点的去耦/回流通路保证高频回流连续。第三层还写“某域LDO开关噪声”，LDO本身不是开关电源，不应表述为开关噪声。</td><td>Q002</td><td>当选用一款标称频率为25MHz、负载电容为12pF的晶振时，如果PCB上实际焊接的两个外接匹配电容分别是10pF和12pF，这会对振荡稳定性带来什么影响？请简述。</td><td>GPT5.5: 参考答案对晶振负载电容计算口径错误。原文称“两个外接电容与PCB寄生电容共同构成等效负载电容”并建议“如各12pF”，但晶体负载电容通常按CL≈C1*C2/(C1+C2)+Cstray计算；标称CL=12pF时，两个外接电容一般不等于各12pF，需结合寄生电容反推。</td></tr><tr><td>B2</td><td>Q003</td><td>在设计一款需通过EMC Class B认证的智能电表硬件时，发现晶振辐射超标。已知当前使用的是普通AT切石英晶振，且布局布线符合常规规范。请简述在不改变主控芯片和PCB叠层的前提下，应如何从晶振类型、等效串联电阻、激励功率及封装形式四个维度综合选型，并解释各维度对EMI抑制的作用机制。</td><td>GPT5.5: 参考答案的晶振EMI整改方案不符合常见硬件选型口径。原文称“SC切晶振具有更优的振动模式抑制能力，可减少泛音激发”并建议“在晶振输出端就近增加可调阻容网络进行增益补偿”，但智能电表常规EMI整改通常优先从驱动强度、负载电容、串联阻尼、布局屏蔽和合规晶振模块入手；SC切并非常规板级EMI整改主流，可调阻容增益补偿也不是通用正确做法。</td><td>Q018</td><td>调试通信接口时，示波器捕获到I2C总线的SCL信号在下降沿出现缓慢拖尾，导致时序不满足器件手册要求。若已确认驱动能力足够，你接下来会重点检查PCB上的哪两类布局相关因素？</td><td>GPT5.5: 参考答案对I2C下降沿拖尾的布局排查口径不准。原文称检查“过长或未端接导致的容性负载累积”和“参考平面是否连续”，但I2C通常为开漏低速总线，不以未端接作为主要问题；下降沿在已确认驱动能力足够后，应优先检查总线分支/寄生电容、走线耦合、器件未上电钳位、地弹和探测方式等，不应套用高速传输线端接口径。；Gemini3.1pro: 答案存在生搬硬套高速理论错误。I2C是低速开漏接口，信号边沿主要受RC常数影响，参考平面不连续带来的微小寄生电感对其低频下降沿影响极小；且下降沿由内部MOS直接拉低通常很陡，答案强行套用高速SI理论解释错误。</td></tr><tr><td>B3</td><td>Q006</td><td>在高精度温度测量系统中，热敏电阻桥式输出信号微弱且含共模干扰，后续ADC输入阻抗有限。请简述你如何将有源滤波设计与仪表放大器级联布局，并解释为何不能简单将滤波器置于放大器之后。</td><td>GPT5.5: 参考答案的级联顺序与题意下的常见模拟前端设计不符。原文称“需将有源滤波器置于仪表放大器之前，构成‘滤波→放大’级联结构”，但热敏电阻桥微弱差分信号通常应先用仪表放大器提供高输入阻抗和高CMRR，前端仅做匹配的无源RC/共模滤波，随后再做有源抗混叠滤波/ADC驱动；把二阶有源滤波器放在仪放前会破坏源阻抗匹配和共模抑制。；Gemini3.1pro: 答案存在知识性错误。工程上处理微弱信号的标准做法是“传感器 -> 仪表放大器 -> 有源滤波器 -> ADC”，仪表放大器需直接连接传感器以利用其高输入阻抗和高共模抑制比；答案第一层称“需将有源滤波器置于仪表放大器之前”是错误的。</td><td>Q028</td><td>某设备中的音频前级放大电路采用阻容耦合的共射放大结构，实测低频响应明显下降。若已确认耦合电容容量符合标称值，问题最可能出在哪个与放大电路原理直接相关的参数上？请简述该参数如何影响低频增益。</td><td>GPT5.5: 低频响应下降的主因定位错误。原文称“最可能出在发射结交流等效电阻，即rbe参数上”，并说rbe增大会降低低频增益；阻容耦合共射低频响应主要由耦合电容、旁路电容与输入/输出等效电阻形成的高通极点决定，耦合电容已确认时应重点查偏置工作点、发射极旁路电容、负载/源阻抗等，不能把rbe作为最可能的低频响应故障点。；Gemini3.1pro: 答案推导逻辑错误。阻容耦合放大电路下限截止频率反比于输入输出阻抗。如果三极管rbe增大，放大器的输入阻抗会变大，RC时间常数相应变大，截止频率变低，电路的低频响应反而会变好，而非答案所称的低频响应下降。</td></tr><tr><td>B6</td><td>Q008</td><td>某工业传感器接口电路采用带隙基准源为ADC提供参考电压，但实测发现低温环境下转换结果出现系统性正向偏移。请简单说说这可能与基准源中哪一部分的温度补偿机制失效有关。</td><td>GPT5.5: 参考答案对ADC偏移方向和带隙补偿关系表述错误。原文称“基准电压整体呈现正向温漂，导致ADC参考值偏高，从而引起系统性正向转换偏移”，但同一输入下ADC码值通常与参考电压成反比，参考电压偏高会使转换码偏低；应先区分参考电压温漂、传感器输出温漂和ADC输入偏置的方向。；Gemini3.1pro: 题目与答案严重偏向模拟IC设计而非板级硬件工程师工作范畴。答案提到的“微调PTAT电流支路中的匹配电阻”、“增加曲率校正晶体管”等均属于芯片内部设计，板级硬件工程师无法修改内部结构。</td><td>Q029</td><td>在产线自动化设备的实时控制电路中，一个由与门、或门、非门构成的组合逻辑电路，其输出需在输入信号变化后严格满足：从任一输入跳变开始，到最终输出稳定，总传播延迟不得超过15纳秒；但实测发现部分路径延迟达22纳秒。若不允许增加任何新器件、不更改芯片型号，仅允许调整现有逻辑门的级联结构与扇入扇出方式，请简述你如何系统性地定位超时路径，并通过重构逻辑表达式与门级映射来压缩关键路径延迟，同时说明为何单纯靠减少门级数或更换高速工艺器件不在此约束下可行。</td><td>Gemini3.1pro: 题目场景极度偏门，脱离板级硬件工程师范围。工业自动化设备板级设计中复杂的纳秒级时序逻辑会直接用CPLD/FPGA实现。答案涉及的“静态时序分析提取网表”、“代数化简重构平衡树”等属于数字IC前端或FPGA开发内容。</td></tr></tbody>
+  </table>
+</body>
+</html>
