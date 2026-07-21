@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Round 6 Dashboard</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; margin: 24px; color: #1f2937; }
+    h1, h2, h3 { margin: 10px 0 12px; }
+    .cards { display: grid; grid-template-columns: repeat(3, minmax(140px, 220px)); gap: 12px; margin: 8px 0 18px; }
+    .card { border: 1px solid #e5e7eb; border-radius: 10px; padding: 12px; background: #fafafa; }
+    .card .k { font-size: 12px; color: #6b7280; }
+    .card .v { font-size: 24px; font-weight: 700; margin-top: 4px; }
+    table { border-collapse: collapse; width: 100%; margin: 8px 0 18px; }
+    th, td { border: 1px solid #e5e7eb; padding: 8px 10px; vertical-align: middle; }
+    th { background: #f9fafb; }
+    .legend span { margin-right: 12px; font-size: 13px; color: #374151; }
+    .mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; }
+    .ex { margin: 6px 0; color: #374151; }
+    .section-divider { border: 0; border-top: 2px solid #eef2f7; margin: 22px 0; }
+  </style>
+</head>
+<body>
+  <h1>Round 6 审核看板</h1>
+
+  <div class="cards">
+    <div class="card"><div class="k">A类错误</div><div class="v">9</div></div>
+    <div class="card"><div class="k">B类错误</div><div class="v">78</div></div>
+    <div class="card"><div class="k">C类错误</div><div class="v">7</div></div>
+  </div>
+
+  <h2>本轮题目主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">第六轮题目问题主要集中在 C2 同质化和 A1 前提自相矛盾。多道题反复围绕 CAN、LIN、DDR、电源降额等相同排查思路设问，题干场景和考察点变化不足，容易形成重复训练题；另有题目把 CAN 终端实测约 60Ω 与一端虚焊开路等互相冲突的前提放在一起，导致候选人无法基于真实硬件诊断逻辑作答。后续题干应减少同类接口的模板化复用，先校验故障现象、测量条件和电气结论是否一致，再进入正式生成。</div>
+<h2>本轮答案主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">第六轮答案错误以 B1 专业准确性问题为主，集中体现在汽车硬件接口和功能安全基础概念不严谨。典型问题包括 CAN 终端电阻测量口径错误，差分总线被误加源端串联电阻，100BASE-T1 与 LIN 的端接方式混淆，DDR 走线、匹配或时序解释不准确，以及功能安全中 ASIL、HFT 等概念被误用。答案需要回到对应协议和硬件设计规范，明确测量条件、端接对象、阻抗来源和诊断结论，避免把不同总线或不同安全概念混写。</div>
+<h2>后续重新出内容时应补充的规则</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">【重新出题】<br/>重新出题时必须先去重，避免继续围绕 CAN/LIN/DDR/电源降额套用同一种故障排查框架；题干前提必须自洽，尤其是实测阻值、开短路状态、虚焊位置和故障现象之间不能互相矛盾；端接口径要写清楚是 CAN、LIN、100BASE-T1、DDR 还是电源网络，并说明测量位置、上下电状态和是否断开负载；禁止为了增加难度随意添加不符合接口规范的源端串阻或端接条件；LIN 与 CAN 的物理层、端接和诊断现象必须分开设问。<br/><br/>【重出答案】<br/>重新出答案时要按接口类型分别给出正确电气口径：CAN 重点核对终端电阻、差分信号和断电测量条件，LIN 不得套用 CAN 差分端接逻辑，100BASE-T1 不得与 LIN/CAN 端接混淆；涉及差分线时禁止乱加源端串阻，除非题干明确器件手册和设计约束支持；DDR 答案要区分拓扑、阻抗、时序裕量和电源完整性；功能安全表述必须准确，ASIL 不要误写成 HFT=1，也不要把硬件容错、诊断覆盖率和安全等级混为一谈。</div>
+
+  <hr class="section-divider" />
+
+  <h2>模型进度与删除率</h2>
+  <table>
+    <thead>
+      <tr><th>Model</th><th>批次完成</th><th>完成率</th><th>删除率</th><th>主错误</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>GPT5.5</td><td style='text-align:center'>4/4</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:38.0%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">38.0%</span></td><td style='text-align:center'>B>A>C</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>4/4</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:39.7%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">39.7%</span></td><td style='text-align:center'>B>C>A</td></tr>
+    </tbody>
+  </table>
+
+  <h2>批次状态矩阵</h2>
+  <div class="legend">
+    <span>✓ done</span><span>… running</span><span>○ pending</span><span>! blocked</span><span>x failed</span>
+  </div>
+  <table>
+    <thead><tr><th>Model</th><th>R6-B001</th><th>R6-B002</th><th>R6-B003</th><th>R6-B004</th></tr></thead>
+    <tbody><tr><td>GPT5.5</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td></tr></tbody>
+  </table>
+
+  <h2>细分错误统计（A1/B1...）</h2>
+  <table>
+    <thead><tr><th>错误子类</th><th>数量</th></tr></thead>
+    <tbody><tr><td>A1</td><td style='text-align:center'>8</td></tr><tr><td>A2</td><td style='text-align:center'>1</td></tr><tr><td>B1</td><td style='text-align:center'>75</td></tr><tr><td>B2</td><td style='text-align:center'>2</td></tr><tr><td>B3</td><td style='text-align:center'>1</td></tr><tr><td>C2</td><td style='text-align:center'>7</td></tr></tbody>
+  </table>
+
+  <h3>细分错误示例（每类2条）</h3>
+  <table>
+    <thead><tr><th>错误子类</th><th>例1-题号</th><th>例1-题目</th><th>例1-理由</th><th>例2-题号</th><th>例2-题目</th><th>例2-理由</th></tr></thead>
+    <tbody><tr><td>A1</td><td>Q010</td><td>在车载CAN总线通信中，若实测终端电阻为60欧姆，且总线两端均焊接了120欧姆贴片电阻，但其中一端电阻焊盘存在虚焊开路，此时为何仍能通信但误码率升高？请从阻抗匹配对信号反射的影响角度简述原因。</td><td>GPT5.5: 题干自相矛盾：若一端120欧姆终端虚焊开路，总线测量不应仍为60欧姆，而应约120欧姆。；Gemini3.1pro: 题干存在逻辑矛盾。题干称“实测终端电阻为60欧姆”，但又说“其中一端电阻焊盘存在虚焊开路”。如果一端开路，实测总线电阻应为120欧姆，不可能为60欧姆。正确的应该是“若实测总线终端电阻为120欧姆，排查发现其中一端电阻焊盘存在虚焊开路”。</td><td>Q010</td><td>在车载CAN总线通信中，若实测终端电阻为60欧姆，且总线两端均焊接了120欧姆贴片电阻，但其中一端电阻焊盘存在虚焊开路，此时为何仍能通信但误码率升高？请从阻抗匹配对信号反射的影响角度简述原因。</td><td>GPT5.5: 题干自相矛盾：若一端120欧姆终端虚焊开路，总线测量不应仍为60欧姆，而应约120欧姆。；Gemini3.1pro: 题干存在逻辑矛盾。题干称“实测终端电阻为60欧姆”，但又说“其中一端电阻焊盘存在虚焊开路”。如果一端开路，实测总线电阻应为120欧姆，不可能为60欧姆。正确的应该是“若实测总线终端电阻为120欧姆，排查发现其中一端电阻焊盘存在虚焊开路”。</td></tr><tr><td>A2</td><td>Q099</td><td>请简述车载以太网物理层接口常用的差分信号对名称。</td><td>GPT5.5: 参考答案先称100BASE-T1差分信号对命名为TXP/TXN和RXP/RXN，再说外部是一对ETH_P/ETH_N；正确是100BASE-T1对外为单对全双工MDI线对，不能按独立发送对和接收对命名。；Gemini3.1pro: A2: 题目过于基础且缺乏实际应用场景，属于纯理论强行造题。</td><td>nan</td><td>nan</td><td>nan</td></tr><tr><td>B1</td><td>Q004</td><td>请简述在车载CAN总线通信中，终端匹配电阻的作用原理。</td><td>GPT5.5: CAN总线两端120欧姆终端正常直流测量约60欧姆，答案写ICT要求114-126欧姆，属于明确知识错误。</td><td>Q009</td><td>在车载中控显示屏的LVDS接口设计中，当差分走线经过多层PCB过孔和连接器时，局部阻抗易发生突变。为减小由此引起的信号反射，工程上常在发送端附近放置一个与传输线特征阻抗相匹配的串联电阻。请简述这一电阻的作用机制及其对眼图张开度的影响。</td><td>GPT5.5: 源端串联匹配机理写反；正确是驱动输出阻抗加串联电阻接近传输线特征阻抗。</td></tr><tr><td>B2</td><td>Q033</td><td>某车载控制器搭载多个高速传感器接口，其中一路CAN FD与一路车载以太网共用同一块四层PCB板，实测CAN FD信号过冲严重而以太网眼图闭合。已知二者物理层对终端匹配的敏感性机制不同，且板级空间受限无法为每路单独设置匹配电阻。请简述你如何基于两种接口的驱动/接收结构差异、反射起因及频域响应特点，制定兼顾信号完整性与面积成本的共模匹配策略，并说明关键折中点和验证方法。</td><td>Gemini3.1pro: 答案存在严重的AI幻觉和知识性错误。答案中提到的“选用支持双协议共模端接的车规级收发器组合”在现实中并不存在，CAN FD和100BASE-T1是完全不同的物理层协议，不可能共用收发器的共模端接。正确的应该是“CAN FD和车载以太网需要分别独立设计各自的滤波和匹配电路，不能混用”。</td><td>Q120</td><td>在多层板MIPI差分走线设计中，需穿越多个高速功能区（如MCU电源域、CAN收发器区域、射频模块附近）。请简述你如何规划走线路径、设置隔离带及配置返回路径，以兼顾信号完整性与板级EMC合规性，特别是针对CISPR 25 Class 5等级要求。</td><td>Gemini3.1pro: B2: 在PCB内层挖20mil地沟并加覆铜盖板的做法破坏了参考平面的连续性，严重违背高速信号的微带线/带状线阻抗设计原则，在车规量产中极不可取。</td></tr><tr><td>B3</td><td>Q102</td><td>某LIN从节点在整车EMC测试中出现通信中断，复测发现故障复现于电源端口耦合的共模浪涌注入阶段。请简述你如何结合LIN物理层电气特性与车规级防护标准，定位防护薄弱环节并优化PCB级防护策略。</td><td>Gemini3.1pro: B3: 题目询问LIN接口防护，答案探讨的是电源输入端口的共模浪涌防护，答非所问。</td><td>nan</td><td>nan</td><td>nan</td></tr><tr><td>C2</td><td>Q016</td><td>请简单说说CAN总线为什么需要在两端各接一个120欧姆的终端电阻。</td><td>Gemini3.1pro: 与R6Q0004重复。</td><td>Q018</td><td>在车载控制器的DDR接口设计中，当对地址和控制信号进行等长约束时，为什么通常会把时钟信号作为长度匹配的基准？请简单说说主要原因。</td><td>Gemini3.1pro: 与R6Q0008重复。</td></tr></tbody>
+  </table>
+</body>
+</html>

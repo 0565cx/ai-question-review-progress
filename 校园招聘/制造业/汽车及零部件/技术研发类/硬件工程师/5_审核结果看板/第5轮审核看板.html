@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Round 5 Dashboard</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; margin: 24px; color: #1f2937; }
+    h1, h2, h3 { margin: 10px 0 12px; }
+    .cards { display: grid; grid-template-columns: repeat(3, minmax(140px, 220px)); gap: 12px; margin: 8px 0 18px; }
+    .card { border: 1px solid #e5e7eb; border-radius: 10px; padding: 12px; background: #fafafa; }
+    .card .k { font-size: 12px; color: #6b7280; }
+    .card .v { font-size: 24px; font-weight: 700; margin-top: 4px; }
+    table { border-collapse: collapse; width: 100%; margin: 8px 0 18px; }
+    th, td { border: 1px solid #e5e7eb; padding: 8px 10px; vertical-align: middle; }
+    th { background: #f9fafb; }
+    .legend span { margin-right: 12px; font-size: 13px; color: #374151; }
+    .mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; }
+    .ex { margin: 6px 0; color: #374151; }
+    .section-divider { border: 0; border-top: 2px solid #eef2f7; margin: 22px 0; }
+  </style>
+</head>
+<body>
+  <h1>Round 5 审核看板</h1>
+
+  <div class="cards">
+    <div class="card"><div class="k">A类错误</div><div class="v">6</div></div>
+    <div class="card"><div class="k">B类错误</div><div class="v">115</div></div>
+    <div class="card"><div class="k">C类错误</div><div class="v">24</div></div>
+  </div>
+
+  <h2>本轮题目主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">本轮题干问题相对集中在两类：一是同质化/近重复（C2），多名模型都抓到网络标号、降额、TVS、LIN上拉等同一作答思路的题；二是少量题干知识不严谨或功能安全前提不合理（A1），例如单晶振条件下要求达到ASIL-B物理冗余。整体看，回流重出后的题干场景多数贴近车载硬件岗，但重复题清理仍不足。</div>
+<h2>本轮答案主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">答案侧是本轮主风险，尤其 GPT5.5 大量标出 B1：负载电容/磁芯饱和、CAN/LIN终端与TVS接法、100BASE-T1单对全双工、MIPI D-PHY外置端接、LVDS/PCIe匹配、功能安全SPFM与HFT概念混淆等。Gemini 对答案硬伤捕捉少于 GPT，中段批次偏松；末组重跑后对通信接口类 B1 有所补抓。说明答案专业口径仍是重出质量瓶颈。</div>
+<h2>后续重新出内容时应补充的规则</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">【重新出题】<br/>1) 出题前做同质化去重：同一知识点下禁止两题引导同一套作答要点；2) 禁止口头计算/公式/绘图类 A4 题干；3) 功能安全题不得设置物理上不可满足的前提（如单晶振实现时钟物理冗余）；4) 题干场景保持车载 ECU/电源/高速/通信常见工况，避免偏门。<br/><br/>【重出答案】<br/>1) 通信接口答案必须符合协议物理层事实：100BASE-T1 单对全双工、LIN 上拉与TVS接法、CAN 终端位置、MIPI D-PHY 不可固定外置端接、LVDS 接收端 100Ω；2) 电源与磁性件描述禁止把饱和表现写成电流斜率变缓；3) 功能安全术语区分 HFT/SPFM/诊断覆盖率，不得混用；4) 器件推荐需符合车规角色，避免把收发器当成终端电阻或把通用复位芯片说成晶振就绪检测。</div>
+
+  <hr class="section-divider" />
+
+  <h2>模型进度与删除率</h2>
+  <table>
+    <thead>
+      <tr><th>Model</th><th>批次完成</th><th>完成率</th><th>删除率</th><th>主错误</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>GPT5.5</td><td style='text-align:center'>6/6</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:50.0%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">50.0%</span></td><td style='text-align:center'>B>C>A</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>6/6</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:13.6%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">13.6%</span></td><td style='text-align:center'>C>B>A</td></tr>
+    </tbody>
+  </table>
+
+  <h2>批次状态矩阵</h2>
+  <div class="legend">
+    <span>✓ done</span><span>… running</span><span>○ pending</span><span>! blocked</span><span>x failed</span>
+  </div>
+  <table>
+    <thead><tr><th>Model</th><th>R5-B001</th><th>R5-B002</th><th>R5-B003</th><th>R5-B004</th><th>R5-B005</th><th>R5-B006</th></tr></thead>
+    <tbody><tr><td>GPT5.5</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td></tr></tbody>
+  </table>
+
+  <h2>细分错误统计（A1/B1...）</h2>
+  <table>
+    <thead><tr><th>错误子类</th><th>数量</th></tr></thead>
+    <tbody><tr><td>A1</td><td style='text-align:center'>6</td></tr><tr><td>B1</td><td style='text-align:center'>111</td></tr><tr><td>B2</td><td style='text-align:center'>3</td></tr><tr><td>B3</td><td style='text-align:center'>1</td></tr><tr><td>C2</td><td style='text-align:center'>24</td></tr></tbody>
+  </table>
+
+  <h3>细分错误示例（每类2条）</h3>
+  <table>
+    <thead><tr><th>错误子类</th><th>例1-题号</th><th>例1-题目</th><th>例1-理由</th><th>例2-题号</th><th>例2-题目</th><th>例2-理由</th></tr></thead>
+    <tbody><tr><td>A1</td><td>Q033</td><td>在车载智能座舱主控板中，一颗车规级SoC的LVDS显示接口输出电平为1.2V差分峰峰值，需驱动一块工业级LCD模组，其接收端要求1.8V差分峰峰值输入且内置固定阈值判决电路。该链路工作在-40℃至105℃宽温环境，且EMC测试中发现显示闪烁故障频发。请简述你如何从信号完整性、电源完整性及温度漂移三个维度协同设计逻辑电平匹配方案，并说明为何不能仅通过调整SoC端DRV强度或LCD端终端电阻来解决。</td><td>GPT5.5: 题干使用了不符合LVDS常规电气定义的前提。原文称“LVDS显示接口输出电平为1.2V差分峰峰值……接收端要求1.8V差分峰峰值”，标准LVDS通常是约350mV差分摆幅、约1.2V共模电平，不应以1.2Vpp/1.8Vpp作为普通LVDS电平匹配前提；正确应改为具体接口标准或改问逻辑电平/电平转换器选型。</td><td>Q037</td><td>在车载显示屏的LVDS接口设计中，若PCB走线长度超过20厘米且工作速率为800Mbps，为什么通常会在发送端串联一个与传输线特征阻抗相近的电阻？请简述这一做法对信号反射和上升沿质量的影响。</td><td>GPT5.5: 题干的端接前提错误。原文称“LVDS接口……通常会在发送端串联一个与传输线特征阻抗相近的电阻”，LVDS链路通常在接收端并联约100欧姆差分终端，发送端串联接近100欧姆会明显改变电流源负载和信号幅度；正确应问接收端终端电阻或特定源端阻尼小电阻场景。；Gemini3.1pro: 参考答案第二层称LVDS在发送端串联电阻是主流方案。实际上LVDS是电流源驱动，必须在接收端跨接100欧姆并联电阻才能吸收反射，源端串联并非LVDS的标准匹配方式。</td></tr><tr><td>B1</td><td>Q001</td><td>在车载主控芯片的时钟电路设计中，当使用外部晶体振荡器为MCU提供基准时钟时，若发现上电后系统偶尔无法启动，且示波器观测到晶振起振缓慢、幅度偏低，但更换同型号晶振后问题依旧。请简述此时最可能的硬件原因及对应的验证思路。</td><td>GPT5.5: 参考答案存在知识性错误。原文称“选用带晶振就绪检测功能的车规复位IC（如符合AEC-Q100 Grade 1的MAX63xx系列）”，MAX63xx类复位芯片通常提供复位监控/延时，不是晶振就绪检测器；正确应说明用复位延时、时钟监测或MCU时钟就绪标志配合验证晶振稳定，而不能把复位IC说成具备晶振就绪检测。</td><td>Q003</td><td>请简单说说在设计存储接口电路时，为什么需要对数据线做等长处理？</td><td>GPT5.5: 参考答案多处工程口径不准确。原文称“多通道可控阻抗背板+飞线补偿，适用于高密度多SoC互联场景”，这不是车载主控板LPDDR/eMMC存储接口等长设计的常见最佳实践；正确应围绕控制阻抗、DQS/DQ或eMMC CLK/CMD/DAT时序、PCB等长和控制器训练机制展开。；Gemini3.1pro: 与R5Q0002重复，都是考察数据线等长约束对建立保持时间的影响</td></tr><tr><td>B2</td><td>Q095</td><td>在车载控制器硬件设计中，当MCU的模拟电路部分与数字电路部分共用同一块PCB板时，为什么常采用单点接地方式连接两者的地网络？请简述这种做法对抑制低频噪声耦合的主要作用。</td><td>GPT5.5: 原文引用：在车载控制器硬件开发中，MCU模拟地与数字地必须物理隔离布设，仅在一点处连接，这是为避免数字电路开关电流通过共享地路径在模拟地线上产生压降，从而串入ADC参考、传感器信号调理或PLL供电等敏感模拟通路，导致测量误差或控制失稳。单点接地的本质是切断低频共模噪声在两类地系统间的传导路...；错在：AGND/DGND physical split as mandatory is over-absolute; many designs require continuous ground/controlled return. 正确应按上述口径修正。</td><td>Q122</td><td>在多层PCB设计中，当高速CAN收发器与MCU共用同一块地平面时，若发现CAN总线抗干扰能力明显下降，同时MCU复位异常，你认为最可能的地平面处理问题是什么？请从分割方式、连接策略和噪声耦合路径三个角度简述原因。</td><td>GPT5.5: 原文引用：最可能的地平面处理问题是：未对数字地与CAN收发器的隔离地进行合理分割与受控连接，导致MCU数字开关噪声通过共用地平面直接耦合至CAN接口参考地，破坏CAN差分信号的共模抑制能力，并抬升复位引脚的有效电平阈值。...；错在：Defaulting to ground split/slot is unsafe; correct priority is continuous low-impedance reference and return control. 正确应按上述口径修正。</td></tr><tr><td>B3</td><td>Q102</td><td>请简述硬件冗余电路中‘表决机制’的基本作用。</td><td>GPT5.5: 原文引用：当前主流工程方案有三类：一是基于专用ASIL-D级双核锁步MCU内置的硬件表决单元，优势是时序严格同步、延迟低、符合ISO 26262 ASIL D级诊断覆盖率要求，但成本高且灵活性受限；二是采用三模冗余TMR+离散逻辑门（如车规级74LVC系列）实现多数表决，兼容性强、可定制诊...；错在：Lockstep comparison is confused with voting; real voting is TMR/multi-channel selection. 正确应按上述口径修正。</td><td>nan</td><td>nan</td><td>nan</td></tr><tr><td>C2</td><td>Q003</td><td>请简单说说在设计存储接口电路时，为什么需要对数据线做等长处理？</td><td>GPT5.5: 参考答案多处工程口径不准确。原文称“多通道可控阻抗背板+飞线补偿，适用于高密度多SoC互联场景”，这不是车载主控板LPDDR/eMMC存储接口等长设计的常见最佳实践；正确应围绕控制阻抗、DQS/DQ或eMMC CLK/CMD/DAT时序、PCB等长和控制器训练机制展开。；Gemini3.1pro: 与R5Q0002重复，都是考察数据线等长约束对建立保持时间的影响</td><td>Q014</td><td>请简述车载CAN总线终端匹配时，为什么两端都要接120欧姆电阻？</td><td>GPT5.5: 与前序R5Q0011高度同质化。原题“请简述车载CAN总线终端匹配时，为什么两端都要接120欧姆电阻？”与R5Q0011“CAN总线终端电阻的典型阻值是多少，以及它主要用来解决什么问题”都会导向同一套答案：两端120欧姆、匹配双绞线特性阻抗、抑制反射、避免误码；正确应保留前序题，删除后出现的重复题。；Gemini3.1pro: 与R5Q0011重复，都是考察CAN总线终端电阻的阻值和作用</td></tr></tbody>
+  </table>
+</body>
+</html>

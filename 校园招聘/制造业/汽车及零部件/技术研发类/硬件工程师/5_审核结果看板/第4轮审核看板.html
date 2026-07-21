@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Round 4 Dashboard</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; margin: 24px; color: #1f2937; }
+    h1, h2, h3 { margin: 10px 0 12px; }
+    .cards { display: grid; grid-template-columns: repeat(3, minmax(140px, 220px)); gap: 12px; margin: 8px 0 18px; }
+    .card { border: 1px solid #e5e7eb; border-radius: 10px; padding: 12px; background: #fafafa; }
+    .card .k { font-size: 12px; color: #6b7280; }
+    .card .v { font-size: 24px; font-weight: 700; margin-top: 4px; }
+    table { border-collapse: collapse; width: 100%; margin: 8px 0 18px; }
+    th, td { border: 1px solid #e5e7eb; padding: 8px 10px; vertical-align: middle; }
+    th { background: #f9fafb; }
+    .legend span { margin-right: 12px; font-size: 13px; color: #374151; }
+    .mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; }
+    .ex { margin: 6px 0; color: #374151; }
+    .section-divider { border: 0; border-top: 2px solid #eef2f7; margin: 22px 0; }
+  </style>
+</head>
+<body>
+  <h1>Round 4 审核看板</h1>
+
+  <div class="cards">
+    <div class="card"><div class="k">A类错误</div><div class="v">16</div></div>
+    <div class="card"><div class="k">B类错误</div><div class="v">255</div></div>
+    <div class="card"><div class="k">C类错误</div><div class="v">49</div></div>
+  </div>
+
+  <h2>本轮题目主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">本轮题干问题主要集中在三类：第一，题干前提把接口物理层机制套错，例如将 LIN 当作需要按特征阻抗做源端/终端匹配的高速总线，或把 LVDS、PCIe、MIPI 的端接机制混用；第二，部分题干过于基础或开放，只考察器件标号、基础参数背诵，缺少车载硬件工程真实场景；第三，重复/同质化题仍存在，尤其是 LIN 上拉、CAN 端接、MIPI/PCIe 端接、DDR 等长和电平兼容等知识点，候选人会给出高度相同的作答要点。</div>
+<h2>本轮答案主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">本轮答案错误以 B 类为主，集中在器件型号与功能不匹配、标准引用错误、工程方案套用错误和计算/物理机理错误。典型表现包括把 CAN 收发器、以太网 PHY、I2C 电平转换器、低边开关、离线电源芯片误写成 LIN/复位/看门狗/SerDes/保护器件；将 AEC-Q100/AEC-Q101/AEC-Q200、ISO 7637、ISO 11452、IEEE 802.3bw/bp/ch、MIPI/JEDEC 等标准对象混淆；将源端串联端接、AC 耦合、外置终端电阻错误套用到 PCIe、USB、MIPI、DDR、eMMC、LIN 等接口；并出现电压分压、RC 时间常数、眼图单位、低温磁芯/半导体特性等基础计算和物理方向错误。</div>
+<h2>后续重新出内容时应补充的规则</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">【重新出题】<br/>重新出题时先锁定一个明确工程场景和一个核心知识点，不得把上层协议概念当作物理层端接依据；题干必须避免错误前提，例如 LIN/CAN/eMMC/DDR/PCIe/MIPI/LVDS 的物理层机制不能互相套用。题干若考察口头面试，应避免要求候选人写公式、画图或背诵孤立参数；同一批次内需先做 C2 自检，凡候选人会给出同一套核心答案的题只保留一题。<br/><br/>【重出答案】<br/>重出答案时所有具体器件型号必须逐项核对数据手册，确认功能、耐压、电流、功率、接口类型和车规认证对象一致；引用标准时必须写清标准适用对象，AEC-Q100 用于 IC、AEC-Q101 用于分立半导体、AEC-Q200 用于被动件，不得混用。答案三层必须分别覆盖基础原理、常见工程方案对比和真实异常处理；对端接、TVS、共模电感、DDR ODT、PCIe/USB/MIPI 内部端接、LIN 上拉、CAN 终端等高风险知识点，应增加自检清单：是否错误使用外置端接、是否误用低压 TVS、是否把接口名和器件型号写错。</div>
+
+  <hr class="section-divider" />
+
+  <h2>模型进度与删除率</h2>
+  <table>
+    <thead>
+      <tr><th>Model</th><th>批次完成</th><th>完成率</th><th>删除率</th><th>主错误</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>GPT5.5</td><td style='text-align:center'>7/7</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:47.4%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">47.4%</span></td><td style='text-align:center'>B>C>A</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>7/7</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:70.2%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">70.2%</span></td><td style='text-align:center'>B>C>A</td></tr>
+    </tbody>
+  </table>
+
+  <h2>批次状态矩阵</h2>
+  <div class="legend">
+    <span>✓ done</span><span>… running</span><span>○ pending</span><span>! blocked</span><span>x failed</span>
+  </div>
+  <table>
+    <thead><tr><th>Model</th><th>R4-B001</th><th>R4-B002</th><th>R4-B003</th><th>R4-B004</th><th>R4-B005</th><th>R4-B006</th><th>R4-B007</th></tr></thead>
+    <tbody><tr><td>GPT5.5</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td></tr></tbody>
+  </table>
+
+  <h2>细分错误统计（A1/B1...）</h2>
+  <table>
+    <thead><tr><th>错误子类</th><th>数量</th></tr></thead>
+    <tbody><tr><td>B1</td><td style='text-align:center'>250</td></tr><tr><td>C2</td><td style='text-align:center'>46</td></tr><tr><td>A1</td><td style='text-align:center'>13</td></tr><tr><td>B2</td><td style='text-align:center'>3</td></tr><tr><td>C1</td><td style='text-align:center'>3</td></tr><tr><td>A2</td><td style='text-align:center'>2</td></tr><tr><td>B3</td><td style='text-align:center'>1</td></tr><tr><td>B4</td><td style='text-align:center'>1</td></tr><tr><td>A4</td><td style='text-align:center'>1</td></tr></tbody>
+  </table>
+
+  <h3>细分错误示例（每类2条）</h3>
+  <table>
+    <thead><tr><th>错误子类</th><th>例1-题号</th><th>例1-题目</th><th>例1-理由</th><th>例2-题号</th><th>例2-题目</th><th>例2-理由</th></tr></thead>
+    <tbody><tr><td>C2</td><td>R4Q0002</td><td>在原理图设计中，网络标号的主要作用是什么？</td><td>与R4Q0001核心考点重复。候选人都会回答：网络标号用于逻辑连接，避免长导线直连导致的图纸杂乱，便于跨页连接和模块化设计，需注意命名一致性。</td><td>R4Q0002</td><td>在原理图设计中，网络标号的主要作用是什么？</td><td>与R4Q0001重复。R4Q0001问“为什么优先使用网络标号而非长导线直接相连”，本题问“网络标号的主要作用是什么”，候选人核心作答都会围绕网络标号用于逻辑连接同一电气节点、减少长导线、提升跨页连接和网表生成准确性展开。</td></tr><tr><td>B1</td><td>R4Q0005</td><td>某车载域控制器中，一颗车规级MCU的GPIO输出高电平最小值为2.4V（Voh_min），而与其直连的CAN收发器使能引脚要求输入高电平至少达到3.0V（Vih_min）才能可靠识别为逻辑高；同时该引脚存在150mV的电源纹波和50mV的地弹噪声。请简述你如何在不增加额外电源轨的前提下，综合考虑驱动能力、噪声容限、温度漂移及AEC-Q100 Grade 1工况下的长期稳定性，设计一个满足功能安全ASIL-B等级要求的电平匹配方案，并说明为何不能仅靠串联电阻或上拉电阻解决。</td><td>参考答案第二层推荐的NXP PCA9306-Q1是I2C/SMBus双向电平转换器，属于开漏架构，依赖外部上拉电阻，不适合用于驱动CAN收发器的使能引脚（推挽逻辑，需强驱动快速边沿）。正确口径应推荐推挽输出的双向或单向电平转换器（如SN74LVC1T45-Q1）。</td><td>R4Q0005</td><td>某车载域控制器中，一颗车规级MCU的GPIO输出高电平最小值为2.4V（Voh_min），而与其直连的CAN收发器使能引脚要求输入高电平至少达到3.0V（Vih_min）才能可靠识别为逻辑高；同时该引脚存在150mV的电源纹波和50mV的地弹噪声。请简述你如何在不增加额外电源轨的前提下，综合考虑驱动能力、噪声容限、温度漂移及AEC-Q100 Grade 1工况下的长期稳定性，设计一个满足功能安全ASIL-B等级要求的电平匹配方案，并说明为何不能仅靠串联电阻或上拉电阻解决。</td><td>参考答案第二层把“TXS0108E-Q1或PCA9306-Q1”作为最优电平转换方案，并称其“提供稳定3.3V输出、内置故障检测机制、原厂提供FMEDA报告”。PCA9306是无方向的开漏/漏极开路类电平转换器，TXS类也不适合普通推挽使能信号的强驱动电平重构，且这些器件不能泛称具备故障检测和FMEDA支撑。正确口径应优先使用车规施密特缓冲器、单向电平转换器或选择VIH兼容的CAN收发器。</td></tr><tr><td>A1</td><td>R4Q0085</td><td>某车载智能座舱主控板采用LPDDR5双通道架构，其中Channel A走线短而直，Channel B需绕行避开屏蔽罩导致长度增加12%且存在两处90度拐角。实测发现B通道眼图闭合严重，但仅对B通道单独增加终端端接后，A通道反而出现过冲。你如何从端接位置、类型与阻抗协同角度系统性解决这一矛盾？请简述技术路径与验证要点。</td><td>题干“仅对B通道单独增加终端端接”及答案相关描述错误。LPDDR5的端接完全由芯片内部的ODT实现，硬件设计中数据线和地址/控制线均不需要也不允许在外部PCB上添加终端端接电阻。正确的应该是“通过配置SoC和DRAM内部的ODT参数来实现阻抗匹配”。</td><td>R4Q0092</td><td>在车载LIN总线设计中，主节点内部集成了上拉电阻，而所有从节点均不配置上拉。请简单说说这种仅由主节点提供上拉的结构，是如何避免多个上拉同时作用导致总线静态电流异常增大的。</td><td>题干“所有从节点均不配置上拉”及答案“从节点必须禁用所有上拉配置”错误。LIN总线物理层规范明确规定，所有从节点内部都必须集成30kΩ的弱上拉电阻。正确的应该是“从节点必须保留内部30kΩ上拉电阻”。</td></tr><tr><td>B2</td><td>R4Q0087</td><td>请简单说说CAN总线终端电阻通常安装在什么位置，为什么不是接在节点内部。</td><td>原文“使用带内置终端电阻的车规级连接器（如符合ISO 11898-2标准的D-Sub或Mini-USB-CAN适配结构）”错误。D-Sub和Mini-USB-CAN是实验室测试工具的接口，在车载量产ECU中绝对不会使用此类连接器。正确的应该是“在PCB板上靠近车规级连接器处放置贴片电阻”。</td><td>R4Q0095</td><td>在采集车载压力传感器输出的毫伏级差分信号时，为什么通常先经过仪表放大器再进行模数转换？请简述这样做的主要原因。</td><td>原文“带PGA的车规ADC直采...内部PGA增益误差和失调温漂难以满足压力传感器±0.5%FS精度要求”错误。现代高精度车规级ADC的性能已非常优异，完全能够满足常规压力传感器的精度需求。正确的应该是“现代带PGA的高精度ADC直采是主流且可靠的方案”。</td></tr><tr><td>B3</td><td>R4Q0087</td><td>请简单说说CAN总线终端电阻通常安装在什么位置，为什么不是接在节点内部。</td><td>题干问“CAN总线终端电阻通常安装在什么位置，为什么不是接在节点内部”，但参考答案第一层只说“安装在物理总线的两个最远端节点处”，第二层又强调“由各端点ECU硬件工程师在原理图中明确将120欧姆电阻布设于CAN收发器输出引脚后、连接器管脚前”，没有回答为什么普通节点内部不能都接终端。核心原因应是CAN终端用于匹配整条物理总线两端阻抗，若每个节点内部都接120欧，会形成多个并联终端，使总线等效阻抗过低、驱动负载过重并导致波形畸变。正确答案应明确仅物理主干两端保留终端，非端点节点不得内置启用终端。</td><td>nan</td><td>nan</td><td>nan</td></tr><tr><td>A2</td><td>R4Q0127</td><td>请简述原理图中器件标号的命名规则及其主要作用。</td><td>题干“请简述原理图中器件标号的命名规则及其主要作用”属于极其基础的EDA软件操作常识，缺乏具体的车载硬件工程应用场景。正确的应该是“考察特定车载模块中关键器件的命名规范体系”。</td><td>R4Q0131</td><td>原理图中对关键信号如复位、时钟、使能等，为什么要避免直接使用器件引脚名作为网络名称？</td><td>题干“为什么要避免直接使用器件引脚名作为网络名称”属于公司内部的画图习惯或规范，缺乏行业统一的绝对标准，不适合作为面试题。正确的应该是“考察网络命名对信号流向和功能定义的体现”。</td></tr><tr><td>C1</td><td>R4Q0154</td><td>某主控MCU外围的车规级DDR4内存颗粒因缺货需更换为同容量不同厂商型号，请简述你如何从时序裕量、ODT配置兼容性、温度降额曲线及JEDEC最新版本协议支持角度，验证该替代对车载信息娱乐系统冷启动和持续运行稳定性的影响。</td><td>题干与R4Q0149完全重复，属于重复出题。正确的应该是“保留其中一道题目”。</td><td>R4Q0239</td><td>请简述PCIe差分信号对的终端匹配电阻，通常接在发送端还是接收端？</td><td>与R4Q0232重复。</td></tr><tr><td>B4</td><td>R4Q0252</td><td>PCIe协议规定参考时钟需满足特定的长期频率稳定度和短期抖动指标。在车载环境中，哪些典型工况会影响这些指标的实测表现？请简述其中一种影响因素及对应的设计应对思路。</td><td>第三层答案中针对低温结露导致晶振停振的解决思路“在原理图中预留加热电阻焊盘，供热管理策略联动启用”严重脱离工程实际。车载量产硬件防潮结露的标准工程做法是使用整板敷形涂层（三防漆）或结构密封设计，绝对不会为单颗晶振的管脚旁单独设置加热电阻去联动烘烤，这种奇葩操作既耗电且带来热应力与安规隐患。</td><td>nan</td><td>nan</td><td>nan</td></tr><tr><td>A4</td><td>R4Q0008</td><td>在主控芯片的时钟电路设计中，如果选用外部晶体振荡器，且其标称负载电容为12pF，而实际PCB走线及芯片引脚引入的寄生电容合计约4pF，那么应选择多大容值的两个外置匹配电容？请简述计算依据。</td><td>题干要求“应选择多大容值的两个外置匹配电容？请简述计算依据”，属于要求候选人口头给出计算结果和计算依据的题型；规则明确凡题干要求说出或解释公式、计算公式、符号含义、推导过程等内容一律标记A4并删除。应改为不要求现场计算的概念题，例如询问晶体负载电容匹配需要考虑哪些因素。</td><td>nan</td><td>nan</td><td>nan</td></tr></tbody>
+  </table>
+</body>
+</html>

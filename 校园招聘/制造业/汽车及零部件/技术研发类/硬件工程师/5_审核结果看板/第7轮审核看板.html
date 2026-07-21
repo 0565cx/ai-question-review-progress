@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Round 7 Dashboard</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; margin: 24px; color: #1f2937; }
+    h1, h2, h3 { margin: 10px 0 12px; }
+    .cards { display: grid; grid-template-columns: repeat(3, minmax(140px, 220px)); gap: 12px; margin: 8px 0 18px; }
+    .card { border: 1px solid #e5e7eb; border-radius: 10px; padding: 12px; background: #fafafa; }
+    .card .k { font-size: 12px; color: #6b7280; }
+    .card .v { font-size: 24px; font-weight: 700; margin-top: 4px; }
+    table { border-collapse: collapse; width: 100%; margin: 8px 0 18px; }
+    th, td { border: 1px solid #e5e7eb; padding: 8px 10px; vertical-align: middle; }
+    th { background: #f9fafb; }
+    .legend span { margin-right: 12px; font-size: 13px; color: #374151; }
+    .mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; }
+    .ex { margin: 6px 0; color: #374151; }
+    .section-divider { border: 0; border-top: 2px solid #eef2f7; margin: 22px 0; }
+  </style>
+</head>
+<body>
+  <h1>Round 7 审核看板</h1>
+
+  <div class="cards">
+    <div class="card"><div class="k">A类错误</div><div class="v">2</div></div>
+    <div class="card"><div class="k">B类错误</div><div class="v">41</div></div>
+    <div class="card"><div class="k">C类错误</div><div class="v">3</div></div>
+  </div>
+
+  <h2>本轮题目主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">本轮题干侧问题数量不多，但仍集中出现在专业事实或场景边界不够准确、题目与既有题库重复或高度同质、以及个别题干约束不足导致考察点不够稳定。A 类问题主要表现为车载 LIN/CAN、电源使能、三极管偏置等硬件原理表述存在明显错误或因果关系不成立；C 类问题主要表现为终端匹配、LIN 上拉位置等知识点与前序题目重复，或题干只换说法但考察目标没有新增区分度。后续保留题应优先确保题干中的器件角色、信号方向、总线拓扑和故障现象均可被硬件工程师按真实项目经验判断。</div>
+<h2>本轮答案主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">本轮删除原因以 B1 为主，说明主要风险集中在参考答案质量，而不是题干本身。典型问题包括答案把 CAN/LIN 器件或信号关系混淆，对磁芯饱和、DC-DC 使能、三极管导通状态、终端匹配等知识点给出错误判断，或把工程验证思路写成泛泛而谈的排查步骤，缺少可评分的关键结论。部分答案层级虽然完整，但第一层结论不准、第二层机理解释反向、第三层验证方法缺少示波器波形、电压阈值、负载条件等必要约束，容易误导面试官评分。</div>
+<h2>后续重新出内容时应补充的规则</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">【重新出题】<br/>重新出题时必须先锁定一个明确、可验证的汽车硬件工程场景，题干中的总线类型、收发器名称、引脚方向、上下拉位置、电源域、阈值和故障现象要相互一致；禁止把 CAN 与 LIN、TXD/RXD 与总线端、使能高低有效逻辑等基础概念混用。若考察同一知识点，必须改变故障现象、设计约束或验证任务，避免只改写措辞形成重复题。<br/><br/>【重出答案】<br/>重出答案时先给出唯一明确的专业结论，再解释硬件机理和边界条件，最后补充可操作的验证步骤。答案必须覆盖关键数值或判断依据，例如端接位置、典型电平、导通/饱和条件、波形特征、负载变化和温升影响；不得使用模糊表述替代事实判断。每层答案都要与题干场景逐项对应，并在提交前自检是否存在器件型号、总线协议、信号方向或因果关系错误。</div>
+
+  <hr class="section-divider" />
+
+  <h2>模型进度与删除率</h2>
+  <table>
+    <thead>
+      <tr><th>Model</th><th>批次完成</th><th>完成率</th><th>删除率</th><th>主错误</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>GPT5.5</td><td style='text-align:center'>2/2</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:38.5%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">38.5%</span></td><td style='text-align:center'>B>A>C</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>2/2</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:32.3%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">32.3%</span></td><td style='text-align:center'>B>C>A</td></tr>
+    </tbody>
+  </table>
+
+  <h2>批次状态矩阵</h2>
+  <div class="legend">
+    <span>✓ done</span><span>… running</span><span>○ pending</span><span>! blocked</span><span>x failed</span>
+  </div>
+  <table>
+    <thead><tr><th>Model</th><th>R7-B001</th><th>R7-B002</th></tr></thead>
+    <tbody><tr><td>GPT5.5</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td></tr></tbody>
+  </table>
+
+  <h2>细分错误统计（A1/B1...）</h2>
+  <table>
+    <thead><tr><th>错误子类</th><th>数量</th></tr></thead>
+    <tbody><tr><td>A1</td><td style='text-align:center'>2</td></tr><tr><td>B1</td><td style='text-align:center'>41</td></tr><tr><td>C1</td><td style='text-align:center'>1</td></tr><tr><td>C2</td><td style='text-align:center'>2</td></tr></tbody>
+  </table>
+
+  <h3>细分错误示例（每类2条）</h3>
+  <table>
+    <thead><tr><th>错误子类</th><th>例1-题号</th><th>例1-题目</th><th>例1-理由</th><th>例2-题号</th><th>例2-题目</th><th>例2-理由</th></tr></thead>
+    <tbody><tr><td>A1</td><td>Q012</td><td>在车载LIN总线通信中，收发器芯片的TXD引脚输出信号驱动总线，而RXD引脚用于检测总线电平。请简述为什么LIN收发器内部通常不直接将TXD与RXD短接，而是通过外部总线和终端电阻构成回路来实现接收功能。</td><td>GPT5.5: 题干前提错误。原文称“LIN总线通信中，收发器芯片的TXD引脚输出信号驱动总线，而RXD引脚用于检测总线电平”，但TXD是MCU到LIN收发器的输入信号，RXD是收发器输出给MCU的接收信号，真正连接并驱动/采样总线的是LIN总线引脚。</td><td>Q031</td><td>在车载控制器的电源使能电路中，常采用NPN三极管构成开关电路来控制DC-DC芯片的使能引脚。当MCU输出3.3V逻辑高电平驱动该三极管时，若发现使能引脚实际电压被钳位在0.7V左右且DC-DC无法启动，请从三极管工作状态、偏置条件及车规级应用约束角度，分析可能的根本原因并说明验证思路。</td><td>GPT5.5: 参考答案的三极管偏置方案存在硬伤。原文称“增大基极限流电阻阻值以降低基极电流裕量不足风险”，但基极电阻增大会降低基极电流，只会加重基极驱动不足；若NPN未饱和，应降低基极电阻、提升驱动能力或改用合适MOS/缓冲驱动。；Gemini3.1pro: 当三极管的基极被MCU驱动至3.3V高电平时，NPN导通并将集电极（即DC-DC使能引脚）拉低至0.2V~0.7V左右。对于绝大多数高有效使能的DC-DC而言，被拉低即意味着关闭。因此“DC-DC无法启动”是正常的逻辑预期结果，题干将其作为异常现象并在解析中归因为“未达阈值”，逻辑混乱。</td></tr><tr><td>B1</td><td>Q002</td><td>在车载电源模块调试中，实测电感电流波形出现顶部削平现象，同时电感表面温度无明显升高。请简单说说这一现象最可能对应的磁芯状态，以及为什么此时不能仅靠温升来判断磁芯是否饱和。</td><td>GPT5.5: 参考答案对磁芯饱和的电流波形机理判断有硬伤。原文称“电感量急剧下降，导致电流斜率陡增并被限幅，呈现平坦顶部”，但电感饱和后电感量下降通常表现为电流上升斜率增大、波形更陡，不是被限幅形成平顶；“饱和本身……不伴随显著涡流或磁滞损耗激增”的说法也过于绝对。</td><td>Q007</td><td>LIN总线物理层采用单线传输，其收发器输出端在显性电平时通常拉低到接近多少伏特？请简述。</td><td>GPT5.5: 参考答案举例把“TI的TCAN1042-Q1”作为LIN收发器，这是明确知识错误；TCAN1042-Q1是CAN收发器，不是LIN收发器。</td></tr><tr><td>C1</td><td>Q047</td><td>LIN总线接口电路中，上拉电阻通常连接在哪个位置？</td><td>GPT5.5: 题干与R7Q0027“LIN总线通信中，上拉电阻通常连接在哪个位置？”实质重复，都是询问LIN上拉电阻连接位置；按顺序删除后出现的重复题。；Gemini3.1pro: LIN总线的上拉电阻必须连接在LIN收发器的LIN总线引脚与车载电源（VBAT）之间。将其连接在TXD输出引脚上是知识性错误。</td><td>nan</td><td>nan</td><td>nan</td></tr><tr><td>C2</td><td>Q011</td><td>在车载CAN总线中，终端匹配电阻应当放置在什么位置？请简单说说。</td><td>nan</td><td>Q017</td><td>请简述在车载CAN总线通信中，终端匹配电阻的作用原理。</td><td>nan</td></tr></tbody>
+  </table>
+</body>
+</html>

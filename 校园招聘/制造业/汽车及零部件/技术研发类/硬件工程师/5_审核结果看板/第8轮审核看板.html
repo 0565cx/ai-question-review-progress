@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Round 8 Dashboard</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; margin: 24px; color: #1f2937; }
+    h1, h2, h3 { margin: 10px 0 12px; }
+    .cards { display: grid; grid-template-columns: repeat(3, minmax(140px, 220px)); gap: 12px; margin: 8px 0 18px; }
+    .card { border: 1px solid #e5e7eb; border-radius: 10px; padding: 12px; background: #fafafa; }
+    .card .k { font-size: 12px; color: #6b7280; }
+    .card .v { font-size: 24px; font-weight: 700; margin-top: 4px; }
+    table { border-collapse: collapse; width: 100%; margin: 8px 0 18px; }
+    th, td { border: 1px solid #e5e7eb; padding: 8px 10px; vertical-align: middle; }
+    th { background: #f9fafb; }
+    .legend span { margin-right: 12px; font-size: 13px; color: #374151; }
+    .mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; }
+    .ex { margin: 6px 0; color: #374151; }
+    .section-divider { border: 0; border-top: 2px solid #eef2f7; margin: 22px 0; }
+  </style>
+</head>
+<body>
+  <h1>Round 8 审核看板</h1>
+
+  <div class="cards">
+    <div class="card"><div class="k">A类错误</div><div class="v">4</div></div>
+    <div class="card"><div class="k">B类错误</div><div class="v">22</div></div>
+    <div class="card"><div class="k">C类错误</div><div class="v">0</div></div>
+  </div>
+
+  <h2>本轮题目主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">本轮题干问题主要集中在 A1 类专业事实或工程前提错误，共涉及 4 个错误计数。典型表现是把不同车载接口或电路拓扑的基本约束混用，例如将 LIN 当作高速传输线处理、套用 CAN 双端终端思路，或在 PNP 高边开关、USB 差分阻抗校正等场景中设置不成立的电路条件。这类问题会导致候选人即使掌握正确知识，也难以基于题干给出合理推导，因此进入“需要重新出题”。</div>
+<h2>本轮答案主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">本轮答案问题以 B1 类答案事实错误为主，共 22 个错误计数。高频问题包括 LIN 隐性/显性电平关系写反、上拉电阻大小与下拉能力的因果关系颠倒、CAN FD 物理层被描述成开漏单端结构、MIPI CSI-2 端接位置写错，以及 AEC-Q100 Grade 温度等级混淆。多数题干本身仍可承载面试考察，但参考答案的关键结论或解释链条错误，需保留题干并重新出答案。</div>
+<h2>后续重新出内容时应补充的规则</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">【重新出题】<br/>重新出题时必须先校验题干中的接口类型、电气拓扑、端接位置、器件工作区间和标准参数是否真实成立；禁止把 CAN、LIN、USB、MIPI、以太网等接口的端接、上拉、差分/单端、显性/隐性规则相互套用。题干若要求分析异常现象，应保证电源域、电平转换、器件导通/关断条件和实车现象之间存在可解释的因果链。<br/><br/>【重出答案】<br/>重新出答案时应逐层核对关键事实：LIN 空闲高电平为隐性、显性为拉低；CAN/CAN FD 为差分总线并按规范端接；MIPI CSI-2 高速端接通常在接收端；USB 差分阻抗应通过叠层和线宽线距控制而非并联电阻改变传输线特性；AEC-Q100 Grade 温度范围必须按标准填写。答案三层结构需先给正确结论，再说明机制和工程验证方法，避免因果倒置。</div>
+
+  <hr class="section-divider" />
+
+  <h2>模型进度与删除率</h2>
+  <table>
+    <thead>
+      <tr><th>Model</th><th>批次完成</th><th>完成率</th><th>删除率</th><th>主错误</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>GPT5.5</td><td style='text-align:center'>1/1</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:38.2%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">38.2%</span></td><td style='text-align:center'>B>A</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>1/1</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:38.2%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">38.2%</span></td><td style='text-align:center'>B>A</td></tr>
+    </tbody>
+  </table>
+
+  <h2>批次状态矩阵</h2>
+  <div class="legend">
+    <span>✓ done</span><span>… running</span><span>○ pending</span><span>! blocked</span><span>x failed</span>
+  </div>
+  <table>
+    <thead><tr><th>Model</th><th>R8-B001</th></tr></thead>
+    <tbody><tr><td>GPT5.5</td><td style='text-align:center'>✓</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>✓</td></tr></tbody>
+  </table>
+
+  <h2>细分错误统计（A1/B1...）</h2>
+  <table>
+    <thead><tr><th>错误子类</th><th>数量</th></tr></thead>
+    <tbody><tr><td>A1</td><td style='text-align:center'>4</td></tr><tr><td>B1</td><td style='text-align:center'>22</td></tr></tbody>
+  </table>
+
+  <h3>细分错误示例（每类2条）</h3>
+  <table>
+    <thead><tr><th>错误子类</th><th>例1-题号</th><th>例1-题目</th><th>例1-理由</th><th>例2-题号</th><th>例2-题目</th><th>例2-理由</th></tr></thead>
+    <tbody><tr><td>A1</td><td>Q004</td><td>在车载电子控制单元中，某执行器驱动电路采用PNP三极管作为高边开关，其发射极接12V车载电源，集电极接负载后接地，基极经限流电阻由MCU的3.3V GPIO控制。实车测试中发现：点火上电瞬间执行器异常吸合约200ms，之后恢复正常。请从三极管开关过程的电荷存储效应、GPIO上下电时序特性及车规级电源缓升特性出发，分析该异常导通的根本机理，并说明如何通过电路改进消除该现象。</td><td>Gemini3.1pro: PNP 高边发射极 12V、基极 3.3V GPIO 无法关断，不可能仅异常吸合 200ms 后恢复；应使用 12V 域电平转换或高边驱动。</td><td>Q007</td><td>在设计车载信息娱乐系统中USB 3.2 Gen2接口的PCB走线时，若实测差分阻抗为80欧姆，而芯片手册明确要求差分终端匹配目标为90欧姆，此时在接收端采用并联电阻方式校正阻抗。请简述这种做法主要应对的信号完整性问题，以及为何必须在接收端而非发送端实施该匹配。</td><td>GPT5.5: 题干用接收端并联电阻把 80Ω 校正到 90Ω 错误；并联不能改变传输线特性阻抗 Z0，应通过叠层/线宽线距修改。</td></tr><tr><td>B1</td><td>Q003</td><td>在车载LIN总线节点设计中，收发器芯片的LIN引脚需通过1kΩ上拉电阻连接至12V电源域，同时TXD引脚为推挽输出。请简述该上拉电阻的作用，以及若将其改为下拉到地会引发什么典型通信故障。</td><td>GPT5.5: 第一层把 LIN 空闲上拉 12V 说成显性；LIN 空闲/高电平为隐性，显性为拉低近 0V。</td><td>Q010</td><td>在车载LIN总线中，主节点上拉电阻连接在LIN收发器输出端与12V电源之间，实测该上拉点对地电压为10.8V，且总线空闲时电平稳定在12V，但通信过程中从节点无法被唤醒。请简述此时最可能的上拉配置问题及判断依据。</td><td>GPT5.5: 答案称上拉过大导致无法下拉，因果颠倒；上拉电阻越大，越容易被下拉。；Gemini3.1pro: 上拉过大导致无法下拉的因果颠倒；上拉电阻越大，越容易被下拉。</td></tr></tbody>
+  </table>
+</body>
+</html>

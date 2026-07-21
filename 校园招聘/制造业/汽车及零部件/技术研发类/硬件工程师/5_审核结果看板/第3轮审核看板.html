@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Round 3 Dashboard</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; margin: 24px; color: #1f2937; }
+    h1, h2, h3 { margin: 10px 0 12px; }
+    .cards { display: grid; grid-template-columns: repeat(3, minmax(140px, 220px)); gap: 12px; margin: 8px 0 18px; }
+    .card { border: 1px solid #e5e7eb; border-radius: 10px; padding: 12px; background: #fafafa; }
+    .card .k { font-size: 12px; color: #6b7280; }
+    .card .v { font-size: 24px; font-weight: 700; margin-top: 4px; }
+    table { border-collapse: collapse; width: 100%; margin: 8px 0 18px; }
+    th, td { border: 1px solid #e5e7eb; padding: 8px 10px; vertical-align: middle; }
+    th { background: #f9fafb; }
+    .legend span { margin-right: 12px; font-size: 13px; color: #374151; }
+    .mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; }
+    .ex { margin: 6px 0; color: #374151; }
+    .section-divider { border: 0; border-top: 2px solid #eef2f7; margin: 22px 0; }
+  </style>
+</head>
+<body>
+  <h1>Round 3 审核看板</h1>
+
+  <div class="cards">
+    <div class="card"><div class="k">A类错误</div><div class="v">20</div></div>
+    <div class="card"><div class="k">B类错误</div><div class="v">273</div></div>
+    <div class="card"><div class="k">C类错误</div><div class="v">37</div></div>
+  </div>
+
+  <h2>本轮题目主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">本轮题目主要出错点集中在题干对象和场景约束的准确性上。少量 A/C 类问题表现为题干本身指向错误、知识点边界不清或与前序题高度同质化，需要题目和答案一起重出；更高频的是题干看似工程化，但把标准、接口、器件或应用场景绑定到不适用对象上，导致候选人会围绕错误前提作答。难度层面，部分困难题把多个工程条件堆叠在一起，但关键约束没有给清或与真实车载硬件开发流程不一致，容易造成不可评分或误导性考察。</div>
+<h2>本轮答案主要出错点总结</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">本轮答案错误以 B 类为主，尤其集中在车载硬件接口、电源/保护器件、通信协议和标准适用对象上。典型表现包括把器件型号能力说错，例如不支持 CAN FD 的收发器被写成 CAN FD 器件；把接口端接或物理层机理写错，例如 eMMC、MIPI、LIN、CAN 的端接/唤醒/保护口径混淆；以及把 AEC、ISO、JEDEC、IEEE 等标准套用到错误对象。答案层级上，不少错误出现在第二层和第三层扩展说明中，第一层基础概念可用，但扩展方案、异常案例或验证标准出现事实性硬伤，因此适合保留题干、重出答案。</div>
+<h2>后续重新出内容时应补充的规则</h2>
+<div style="white-space:normal;line-height:1.7;color:#1f2937;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fbfdff;">【重新出题】<br/>重新出题时必须先校验题干考察对象是否唯一、真实且可评分。禁止在题干中编造不存在的标准、测试规范或业务场景；涉及 A/C 类问题时，题干应重新明确接口类型、器件对象、工况边界、验证目标和候选人应回答的核心能力点。重复/同质化题要更换考察角度，避免只替换场景名但仍让候选人输出同一套答案。<br/><br/>【重出答案】<br/>重出答案时必须逐层核验专业事实：第一层给基础定义，第二层给工程方案，第三层给异常/复杂案例，但每层都要与题干对象一致。涉及器件型号、协议版本、标准编号、端接方式、阈值方向、失效机理时，必须逐项自检；禁止把 AEC-Q100/Q200、ISO 11452、ISO 7637、ISO 11898、IEEE 802.3、JEDEC 等标准泛化套用。答案中若引用具体芯片型号，必须确认其真实功能、速率、接口和车规适用性。</div>
+
+  <hr class="section-divider" />
+
+  <h2>模型进度与删除率</h2>
+  <table>
+    <thead>
+      <tr><th>Model</th><th>批次完成</th><th>完成率</th><th>删除率</th><th>主错误</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>GPT5.5</td><td style='text-align:center'>15/15</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:31.5%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">31.5%</span></td><td style='text-align:center'>B>A>C</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>15/15</td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#3b82f6;width:100%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">100.0%</span></td><td><div style="background:#f2f4f8;border-radius:6px;width:180px;height:12px;display:inline-block;vertical-align:middle;"><div style="background:#f59e0b;width:23.8%;height:12px;border-radius:6px;"></div></div> <span style="font-size:12px;color:#444;">23.8%</span></td><td style='text-align:center'>B>C>A</td></tr>
+    </tbody>
+  </table>
+
+  <h2>批次状态矩阵</h2>
+  <div class="legend">
+    <span>✓ done</span><span>… running</span><span>○ pending</span><span>! blocked</span><span>x failed</span>
+  </div>
+  <table>
+    <thead><tr><th>Model</th><th>R3-B001</th><th>R3-B002</th><th>R3-B003</th><th>R3-B004</th><th>R3-B005</th><th>R3-B006</th><th>R3-B007</th><th>R3-B008</th><th>R3-B009</th><th>R3-B010</th><th>R3-B011</th><th>R3-B012</th><th>R3-B013</th><th>R3-B014</th><th>R3-B015</th></tr></thead>
+    <tbody><tr><td>GPT5.5</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td></tr><tr><td>Gemini3.1pro</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td><td style='text-align:center'>✓</td></tr></tbody>
+  </table>
+
+  <h2>细分错误统计（A1/B1...）</h2>
+  <table>
+    <thead><tr><th>错误子类</th><th>数量</th></tr></thead>
+    <tbody><tr><td>A1</td><td style='text-align:center'>13</td></tr><tr><td>A2</td><td style='text-align:center'>7</td></tr><tr><td>B1</td><td style='text-align:center'>204</td></tr><tr><td>B2</td><td style='text-align:center'>37</td></tr><tr><td>B3</td><td style='text-align:center'>4</td></tr><tr><td>B4</td><td style='text-align:center'>17</td></tr><tr><td>B5</td><td style='text-align:center'>2</td></tr><tr><td>B6</td><td style='text-align:center'>9</td></tr><tr><td>C2</td><td style='text-align:center'>37</td></tr></tbody>
+  </table>
+
+  <h3>细分错误示例（每类2条）</h3>
+  <table>
+    <thead><tr><th>错误子类</th><th>例1-题号</th><th>例1-题目</th><th>例1-理由</th><th>例2-题号</th><th>例2-题目</th><th>例2-理由</th></tr></thead>
+    <tbody><tr><td>A1</td><td>R3Q0086</td><td>在车载智能座舱主控板设计中，DDR5接口工作频率达4800MT/s，采用1.1V供电且支持片上校准。当发现多组DQ与对应DQS之间在示波器上呈现系统性相位滑移，且该现象随温度升高加剧，但所有走线长度偏差均控制在±5毫米以内。请简述你将如何重新定义等长约束的物理依据，并说明为何此时单纯按微带线长度匹配已不足以保障时序收敛。</td><td>题干原文将DDR5 4800MT/s场景下“所有走线长度偏差均控制在±5毫米以内”作为约束背景，5mm对DQ/DQS高速时序约束明显过宽，不能作为已满足等长的工程前提；应以电气延时/ps级偏差、控制器设计指南和SI仿真约束为依据。</td><td>R3Q0102</td><td>在车载仪表盘显示屏的硬件设计中，使用LVDS接口传输图像数据时，为什么需要将每对差分信号线的走线长度严格控制在±50微米以内？请简述这一精度要求背后的核心工程原因。</td><td>题干原文要求LVDS每对差分信号线长度“严格控制在±50微米以内”，将极小长度差写成通用硬性要求；LVDS对内/组间skew应按接口速率、器件容限和时序预算确定，±50微米不是车载LVDS通用规范要求。</td></tr><tr><td>A2</td><td>R3Q0020</td><td>某车载网关板上，两颗不同厂商的车规级SoC通过SPI总线互联，主控SoC的MOSI输出高电平典型值为3.0V，但从控SoC的MISO输入高电平识别阈值为3.5V，且双方共模电压范围存在100mV偏移。在满足AEC-Q100 Grade 1温度循环与EMC辐射限值的前提下，请简述你如何从驱动能力、噪声裕量和电源轨耦合三个维度协同设计电平适配方案，并解释为何单纯提升供电电压不可行。</td><td>题干将主控SoC的MOSI输出与从控SoC的MISO输入阈值对应，SPI信号方向命名错误，应为主控MOSI到从控MOSI输入。</td><td>R3Q0037</td><td>当同一块电路板需兼容两种硬件配置（如支持CAN FD与传统CAN），部分信号网络在不同配置下电气定义不同（例如‘TXD’在一种配置下为高速差分输出，在另一种下为单端开漏），但原理图采用统一标号管理。请简述你如何在不增加页数的前提下，通过标号语义扩展与上下文标注机制，确保设计意图在跨团队协作中无损传递，并支持自动化检查工具识别配置敏感网络。</td><td>题干示例把CAN FD配置下的TXD描述为高速差分输出、另一配置下为单端开漏，混淆CAN控制器TXD逻辑信号与总线差分物理层。</td></tr><tr><td>B1</td><td>R3Q0019</td><td>在车载域控制器中，一颗车规级MCU的GPIO输出高电平最小值为2.4V（Voh_min），而与其直连的CAN收发器输入高电平阈值要求不低于3.0V（Vih_min），且该链路需支持125℃高温工况下持续可靠工作。请简述你如何系统性地解决这一逻辑电平不匹配问题，并说明为何不能仅依赖外部上拉电阻或简单电平转换芯片来保证全生命周期可靠性。</td><td>题设为MCU VOH_min 2.4V低于CAN收发器VIH_min 3.0V，但参考答案推荐VIH实测≥3.1V的缓冲器，仍无法被2.4V可靠驱动，核心方案错误。</td><td>R3Q0047</td><td>在车载电子设备中，使用Buck电路为微控制器供电时，若输入电压存在较大范围波动（如9V～16V），而输出需稳定在3.3V且负载电流可达2A，设计中应如何确保整个输入范围内都能维持连续导通模式？请简述关键设计考虑。</td><td>参考答案称为维持Buck连续导通模式需在最低输入、最高负载、最高频率下选择足够小的电感量；实际CCM边界通常要求足够大的电感，且最不利点常与轻载/高输入相关。</td></tr><tr><td>B2</td><td>R3Q0001</td><td>请简述为什么在数字电路中，不同器件之间连接时需要考虑输入高电平的最小电压要求。</td><td>参考答案第三层将LIN收发器逻辑输入高电平阈值描述为约7V，并把FPGA到LIN收发器逻辑口直接按12V物理层阈值处理，器件接口事实错误。</td><td>R3Q0002</td><td>在车载电子系统中，当温度传感器输出的毫伏级信号需要接入ADC进行采集时，为什么通常要先经过仪表放大器调理？请简述其主要作用及相较于普通运放的优势。</td><td>参考答案将INA128、AD8421等通用仪表放大器直接表述为满足车规AEC-Q100 Grade 1要求，器件认证事实不可靠。</td></tr><tr><td>B3</td><td>R3Q0021</td><td>车载ADAS控制器中，一个由FPGA实现的多路传感器数据采集模块需在100MHz主时钟下对8路异步输入的脉冲信号进行边沿检测与计数。当某路信号频率接近50MHz且存在亚稳态传播风险时，传统两级触发器同步器偶发计数错误。请简述你如何从时序逻辑设计角度，系统性地优化该跨时钟域采样架构以保障计数可靠性。</td><td>50MHz异步脉冲接近100MHz采样时钟半频，两级同步器或简单展宽去抖无法保证无损边沿计数，参考答案未给出异步计数/更高速采样等可靠架构。</td><td>R3Q0060</td><td>在车载电子控制单元的12V供电入口处，需同时应对ISO 7637-2脉冲5a（抛负载）和IEC 61000-4-5的组合波浪涌（如2Ω/40Ω耦合路径）。请简述如何通过协同设计TVS选型、串联阻抗与PCB走线布局，在不增加额外有源器件的前提下，实现对这两种浪涌能量的分级泄放与路径隔离。</td><td>参考答案第三层称低温下绕组铜阻增大并导致伏秒积累过早饱和，铜阻低温变化方向和低温饱和机理均不可靠。</td></tr><tr><td>B4</td><td>R3Q0176</td><td>在高低温验证过程中，若某款车载控制器在-40℃下首次上电失败，但复位后能正常工作，这种现象可能反映哪类可靠性薄弱环节？请结合温度对元器件参数的影响简单说明。</td><td>参考答案第三层原文称“复位IC输出延迟超规格……RESET信号拉低时间延长至180ms……导致MCU未完成内部模拟电路初始化即释放复位”，机理矛盾：复位拉低时间延长通常是更晚释放复位，不会导致“未完成初始化即释放”；正确口径应描述复位过早释放、阈值漂移、上电斜率不满足POR条件或电源振荡导致首启失败。</td><td>R3Q0179</td><td>请简单说说硬件层面的双核锁步机制，主要是用来实现哪一类安全目标？</td><td>参考答案第三层原文称“双核间时钟偏差”由“PCB走线长度差异”导致，并要求“两路时钟走线长度差≤2mm”，错误在于硬件双核锁步通常是MCU/SoC芯片内部机制，双核时钟分配和容忍窗口不是由PCB上两路核心时钟走线长度直接决定；正确口径应关注芯片内部锁步比较器、时钟/复位监控、诊断覆盖和安全响应配置。</td></tr><tr><td>B5</td><td>R3Q0003</td><td>请简述运算放大器在负反馈配置下，其两个输入端电压近似相等的原因。</td><td>第三层答案中指出ISO 7637-2 Pulse 5a导致数百纳秒的暂态饱和，实际上Pulse 5a（抛负载）的上升沿是毫秒级，非纳秒级的高频尖峰，事实描述错误。</td><td>R3Q0060</td><td>在车载电子控制单元的12V供电入口处，需同时应对ISO 7637-2脉冲5a（抛负载）和IEC 61000-4-5的组合波浪涌（如2Ω/40Ω耦合路径）。请简述如何通过协同设计TVS选型、串联阻抗与PCB走线布局，在不增加额外有源器件的前提下，实现对这两种浪涌能量的分级泄放与路径隔离。</td><td>第一层答案中称ISO 7637-2 5a脉冲为微秒级上升沿（实际应为毫秒级），IEC 61000-4-5组合波为纳秒级上升沿（实际为微秒级，如1.2/50us），事实参数描述存在明显错误。</td></tr><tr><td>B6</td><td>R3Q0536</td><td>量产前评审发现BOM表中某个电阻器件的封装代码与实际贴片机识别标准不一致，可能影响SMT贴装。此时应优先核查和更新BOM中的哪三项关键字段？请简述理由。</td><td>编造标准参数：IEC 60633是高压直流输电术语相关标准，与贴片电阻封装高度毫无关联。</td><td>R3Q0560</td><td>某车载以太网（100BASE-T1）接口PCB走线长度达45厘米，两端均需端接。若受限于板框空间，只能在一端实现理想位置端接，另一端端接位置偏离连接器3厘米。此时应优先保证哪一端的端接位置严格靠近连接器？请结合传输线理论和车载电磁兼容要求说明判断依据。</td><td>编造标准：ISO 10500是锌-银或饮用水相关标准，并非车载以太网设计相关标准（应为IEEE 802.3bw等）。</td></tr><tr><td>C2</td><td>R3Q0023</td><td>当两个不同页的电路模块需要电气连通时，通常依靠什么来建立连接？</td><td>与R3Q0022考察知识点高度重复，均在询问网络标号在跨页连接中的作用，候选人作答思路完全一致。</td><td>R3Q0024</td><td>为什么使用相同名称的网络标号，就能让分散在不同位置的引脚实现电气导通？</td><td>与R3Q0022、R3Q0023高度同质化，都是考察同名网络标号实现电气导通的原理。</td></tr></tbody>
+  </table>
+
+  <hr class="section-divider" />
+  <h2>Final Consolidation（三类分流）</h2>
+  <div class="cards">
+    <div class="card"><div class="k">可保留题目答案</div><div class="v">325</div></div>
+    <div class="card"><div class="k">需要重新出题（A/C类）</div><div class="v">56</div></div>
+    <div class="card"><div class="k">保留题干重出答案（仅B类）</div><div class="v">216</div></div>
+    <div class="card"><div class="k">待回流处理合计</div><div class="v">272</div></div>
+  </div>
+  <p>守恒校验：325 + 56 + 216 = 597，结果：True。</p>
+  <h3>按批次三类分流</h3>
+  <table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>三轮分流类别</th>
+      <th>batch_id</th>
+      <th>可保留题目答案</th>
+      <th>需要重新出题</th>
+      <th>保留题干重出答案</th>
+      <th>待回流处理合计</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th></th>
+      <td>R3-B001</td>
+      <td>24</td>
+      <td>5</td>
+      <td>11</td>
+      <td>16</td>
+    </tr>
+    <tr>
+      <th></th>
+      <td>R3-B002</td>
+      <td>20</td>
+      <td>8</td>
+      <td>12</td>
+      <td>20</td>
+    </tr>
+    <tr>
+      <th></th>
+      <td>R3-B003</td>
+      <td>20</td>
+      <td>11</td>
+      <td>9</td>
+      <td>20</td>
+    </tr>
+    <tr>
+      <th></th>
+      <td>R3-B004</td>
+      <td>19</td>
+      <td>7</td>
+      <td>14</td>
+      <td>21</td>
+    </tr>
+    <tr>
+      <th></th>
+      <td>R3-B005</td>
+      <td>21</td>
+      <td>8</td>
+      <td>11</td>
+      <td>19</td>
+    </tr>
+    <tr>
+      <th></th>
+      <td>R3-B006</td>
+      <td>24</td>
+      <td>11</td>
+      <td>5</td>
+      <td>16</td>
+    </tr>
+    <tr>
+      <th></th>
+      <td>R3-B007</td>
+      <td>12</td>
+      <td>1</td>
+      <td>27</td>
+      <td>28</td>
+    </tr>
+    <tr>
+      <th></th>
+      <td>R3-B008</td>
+      <td>24</td>
+      <td>0</td>
+      <td>16</td>
+      <td>16</td>
+    </tr>
+    <tr>
+      <th></th>
+      <td>R3-B009</td>
+      <td>24</td>
+      <td>1</td>
+      <td>15</td>
+      <td>16</td>
+    </tr>
+    <tr>
+      <th></th>
+      <td>R3-B010</td>
+      <td>25</td>
+      <td>0</td>
+      <td>15</td>
+      <td>15</td>
+    </tr>
+    <tr>
+      <th></th>
+      <td>R3-B011</td>
+      <td>16</td>
+      <td>0</td>
+      <td>24</td>
+      <td>24</td>
+    </tr>
+    <tr>
+      <th></th>
+      <td>R3-B012</td>
+      <td>29</td>
+      <td>0</td>
+      <td>11</td>
+      <td>11</td>
+    </tr>
+    <tr>
+      <th></th>
+      <td>R3-B013</td>
+      <td>34</td>
+      <td>0</td>
+      <td>6</td>
+      <td>6</td>
+    </tr>
+    <tr>
+      <th></th>
+      <td>R3-B014</td>
+      <td>28</td>
+      <td>1</td>
+      <td>11</td>
+      <td>12</td>
+    </tr>
+    <tr>
+      <th></th>
+      <td>R3-B015</td>
+      <td>5</td>
+      <td>3</td>
+      <td>29</td>
+      <td>32</td>
+    </tr>
+  </tbody>
+</table>
+
+</body>
+</html>
